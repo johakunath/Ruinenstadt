@@ -6,12 +6,15 @@ function update(dt){
   for(const s of swings)s.life-=dt;swings=swings.filter(s=>s.life>0);
   for(const b of bolts)b.life-=dt;bolts=bolts.filter(b=>b.life>0);
   for(const b of brk)b.flash-=dt;
-  shake=Math.max(0,shake-dt*30);flashT=Math.max(0,flashT-dt);for(const c of corpses)c.t-=dt;corpses=corpses.filter(c=>c.t>0);
+  shake=Math.max(0,shake-dt*30);flashT=Math.max(0,flashT-dt);goldT=Math.max(0,goldT-dt);for(const c of corpses)c.t-=dt;corpses=corpses.filter(c=>c.t>0);
   for(const b of barrels)if(Math.random()<dt*2)parts.push({x:b.x+R(-4,4),y:b.y-18,vx:R(-8,8),vy:R(-50,-25),life:R(.5,1),max:1,col:'#EF9F27',size:R(1.5,2.5)});
   if(spati){const inS=P.x>spati.x&&P.x<spati.x+spati.w&&P.y>spati.y&&P.y<spati.y+spati.h;spati.fade+=((inS?.12:1)-spati.fade)*Math.min(1,dt*8);spati.inside=inS;
     if(inS&&!spati.seen&&state==='play'){spati.seen=true;toast(`<span style="color:var(--ember);font-family:var(--f-display);font-size:22px">${spati.name}</span>`);sfx('bell');}}
   if(state!=='play')return;
-  S.rec.time+=dt;tipT-=dt;if(tipQ.length&&tipT<=0){toast('<span style="color:#7dd3ff">Tipp</span> · '+tipQ.shift());tipT=3.2;}
+  S.rec.time+=dt;tipT-=dt;
+  if(streak.n){streak.t-=dt;if(streak.t<=0){if(streak.n>=10){const b=Math.round(streak.n*.6*(1+.1*D.i)*DF().sc);S.scrap+=b;run.sg+=b;toast(`Serie ${streak.n} · <span style="color:var(--ember)">+${b} Schrott</span>`);}streak.n=0;}}
+  if(P.hp<ST.maxHp*.3){beatT-=dt;if(beatT<=0){beatT=Math.max(.5,.5+P.hp/ST.maxHp*1.6);sfx('beat');}}
+  if(Math.hypot(P.mvx,P.mvy)>.3&&P.dashT<=0){stepT-=dt;if(stepT<=0){stepT=.22;parts.push({x:P.x+R(-4,4),y:P.y+8,vx:R(-12,12),vy:R(-8,-2),life:.4,max:.4,col:'rgba(120,100,80,.35)',size:R(3,5)});}}if(tipQ.length&&tipT<=0){toast('<span style="color:#7dd3ff">Tipp</span> · '+tipQ.shift());tipT=3.2;}
   {const dz=darks.find(z=>P.x>z.x&&P.x<z.x+z.w&&P.y>z.y&&P.y<z.y+z.h);P.dark=!!dz;P.torch=P.dark&&ST.kind!=='hammer';
    if(dz&&!dz.seen){dz.seen=true;toast(P.torch?'<span style="color:#f2d14b">Dunkelzone</span> · Fackel entzündet':'<span style="color:#f2d14b">Dunkelzone</span> · Der Hammer braucht beide Hände, keine Fackel');sfx('ignite');}}
   let mx=joy.x,my=joy.y;if(keys.KeyA||keys.ArrowLeft)mx-=1;if(keys.KeyD||keys.ArrowRight)mx+=1;if(keys.KeyW||keys.ArrowUp)my-=1;if(keys.KeyS||keys.ArrowDown)my+=1;
@@ -102,7 +105,9 @@ function update(dt){
   hazards=hazards.filter(h=>h.t>0);if(hazards.length>60)hazards.splice(0,hazards.length-60);
   enemies=enemies.filter(e=>e.hp>0);
   const mr=90*pk('magnet'),pr=26*(1+.5*pk('magnet'));
-  for(const d of drops){d.t+=dt;const dx=P.x-d.x,dy=P.y-d.y,dd=Math.hypot(dx,dy);
+  for(const d of drops){d.t+=dt;if(d.vh===undefined){d.vh=R(150,210);d.h=0;const a=R(0,6.28),s=R(30,80);d.vx=Math.cos(a)*s;d.vy=Math.sin(a)*s;if(d.item&&d.item.r>=3){goldT=.6;sfx('legend');banner('Legendär!');}}
+    if(d.vh!==null){d.h+=d.vh*dt;d.vh-=620*dt;d.x+=d.vx*dt;d.y+=d.vy*dt;if(inWall(d.x,d.y,4)){d.x-=d.vx*dt;d.y-=d.vy*dt;d.vx=d.vy=0;}if(d.h<=0){d.h=0;d.vh=null;if(d.item&&d.item.r>=1)sfx('coin');}continue;}
+    const dx=P.x-d.x,dy=P.y-d.y,dd=Math.hypot(dx,dy);
     if(dd>1&&(run.cleared||dd<mr)){const sp=run.cleared?520:280;d.x+=dx/dd*Math.min(dd,sp*dt);d.y+=dy/dd*Math.min(dd,sp*dt);}
     if(dd<pr){d.taken=true;if(d.food){P.hp=Math.min(ST.maxHp,P.hp+ST.maxHp*.25);P.fed=30;toast('Döner · <span style="color:var(--good)">satt: +10% Schaden für 30 Sekunden</span>');sfx('heal');}else if(d.heal){const h=Math.round(ST.maxHp*.3);P.hp=Math.min(ST.maxHp,P.hp+h);nums.push({x:P.x,y:P.y-40,t:'+'+h,col:'#8fd16a',life:.9});sfx('heal');}else addToBag(d.item);}}
   drops=drops.filter(d=>!d.taken);

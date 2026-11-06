@@ -14,7 +14,7 @@ const SFX={swing:()=>noise(.13,2200,1.2,.22,'bandpass',600),heavy:()=>{noise(.28
  pop:()=>{noise(.18,300,1,.35,'lowpass',80);tone(80,.15,'sine',.2,40);},spin:()=>noise(.3,1200,2,.2,'bandpass',2600),
  wood:()=>{noise(.12,1400,3,.3,'bandpass',500);tone(180,.06,'square',.05,90);},crash:()=>{noise(.3,900,1,.4,'lowpass',150);tone(140,.12,'square',.06,60);},
  pick:r=>{if(r===3)[523,659,784,1047].forEach((f,i)=>tone(f,.3,'triangle',.14,0,i*.08));else{const b=[440,520,660][r];tone(b,.1,'triangle',.14);if(r>=1)tone(b*1.5,.14,'triangle',.11,0,.07);}},
- lvl:()=>[392,494,587,784].forEach((f,i)=>tone(f,.32,'triangle',.12,0,i*.07)),horn:()=>{tone(98,1.3,'sawtooth',.1,92);tone(147,1.3,'sawtooth',.05,139);},heal:()=>tone(620,.22,'sine',.14,980),
+ lvl:()=>[392,494,587,784].forEach((f,i)=>tone(f,.32,'triangle',.12,0,i*.07)),horn:()=>{tone(98,1.3,'sawtooth',.1,92);tone(147,1.3,'sawtooth',.05,139);},heal:()=>tone(620,.22,'sine',.14,980),beat:()=>{tone(55,.12,'sine',.35,40);tone(50,.12,'sine',.25,36,.16);},legend:()=>{[523,659,784,1047,1319].forEach((f,i)=>tone(f,.6,'triangle',.1,0,i*.09));noise(.6,4000,1,.08,'highpass');},
  zap:()=>{tone(1400,.08,'square',.04,300);noise(.1,4000,2,.15,'highpass');},ignite:()=>noise(.25,900,1,.2,'bandpass',300),
  bell:()=>{tone(1320,.25,'triangle',.08);tone(1760,.3,'triangle',.06,0,.08);},
  ui:()=>tone(720,.05,'square',.04),coin:()=>{tone(880,.08,'square',.05);tone(1320,.1,'square',.04,0,.05);},win:()=>[262,330,392,523,659].forEach((f,i)=>tone(f,.5,'triangle',.12,0,i*.12))};
