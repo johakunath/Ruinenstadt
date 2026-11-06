@@ -24,7 +24,7 @@ function update(dt){
     if(pk('ram'))for(const e of enemies)if(!P.ramHit.includes(e)&&Math.hypot(e.x-P.x,e.y-P.y)<e.r+P.r+8){P.ramHit.push(e);hit(e,ST.dmg*1.2*pk('ram'),false,{knock:360});}}
   else{P.x+=mx*ST.spd*dt;P.y+=my*ST.spd*dt;}
   if(ml>.15){P.walk+=dt*13*Math.min(1,ml);if(P.swingT<=0)P.face=Math.atan2(my,mx);}
-  collide(P);P.cd-=dt;P.inv-=dt;P.dashCd-=dt;P.swingT-=dt;P.skCd-=dt;
+  collide(P);P.comboT-=dt;P.cd-=dt;P.inv-=dt;P.dashCd-=dt;P.swingT-=dt;P.skCd-=dt;
   if(ST.regen)P.hp=Math.min(ST.maxHp,P.hp+ST.regen*dt);
   if(P.spin>0){P.spin-=dt;P.spinTick-=dt;if(P.spinTick<=0){P.spinTick=.15;const sr=80*(1+.2*pk('reach'));for(const e of enemies)if(Math.hypot(e.x-P.x,e.y-P.y)<sr+e.r){const c=Math.random()<ST.crit;hit(e,ST.dmg*.6*(c?2:1),c,{knock:160});}propsInRadius(P.x,P.y,sr,ST.dmg*.6);sfx('swing');}}
   if(P.hot>0){P.hot-=dt;P.hp=Math.min(ST.maxHp,P.hp+ST.maxHp*.4/3*dt);}if(P.fed>0)P.fed-=dt;
@@ -37,6 +37,8 @@ function update(dt){
   if(run.toSpawn>0){run.spawnT-=dt;if(run.spawnT<=0){spawnOne();run.toSpawn--;run.spawnT=Math.max(.3,1-run.wave*.05);}}
   else if(!enemies.length&&!run.cleared){run.cleared=true;run.perkDone=false;progWave(run.wave);if(run.wave>=10){win();return;}toast('Welle '+run.wave+' geschafft');S.best[run.d]=Math.max(S.best[run.d],run.wave);save();run.breakT=2;}
   if(run.cleared){run.breakT-=dt;if(run.breakT<=0){if(!run.perkDone){offerPerks();if(state!=='play')return;}else{run.cleared=false;startWave();}}}
+  for(const k in SHR)if(SHR[k]>0){SHR[k]-=dt;if(SHR[k]<=0){SHR[k]=0;refresh();toast(`<span style="color:var(--dim)">${SHRN[k][0]} ist verflogen</span>`);}}
+  for(const h of shrines)if(!h.used&&Math.hypot(h.x-P.x,h.y+10-P.y)<46){h.used=1;h.o.spr=h.off;h.o.lights=[];const k=pick(Object.keys(SHRN));SHR[k]=45;refresh();toast(`Litfaßsäule · <span style="color:#7dd3ff">${SHRN[k][0]}</span>: ${SHRN[k][1]} (45 s)`);sfx('legend');burst(h.x,h.y-30,'#7dd3ff',24,200);rings.push({x:h.x,y:h.y,r:10,max:120,col:'125,211,255'});prog('shrine');}
   if(run.crateIn>0){run.crateIn-=dt;if(run.crateIn<=0)spawnCrate();}
   if(run.evIn>0){run.evIn-=dt;if(run.evIn<=0)startEvent(run.evType);}
   if(npc){npc.t-=dt;const nd=Math.hypot(npc.x-P.x,npc.y-P.y);if(nd<34&&!npc.near){npc.near=true;openTrade();return;}if(nd>60)npc.near=false;if(npc.t<=0){npc=null;toast('Der Händler ist weitergezogen');}}
@@ -86,7 +88,7 @@ function update(dt){
   }
   for(let i=0;i<enemies.length;i++)for(let j=i+1;j<enemies.length;j++){const a=enemies[i],b=enemies[j];if(a.fly||b.fly)continue;const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy),m=a.r+b.r;
     if(d<m&&d>0){const p=(m-d)/2,wa=a.type==='boss'?.1:1,wb=b.type==='boss'?.1:1;a.x-=dx/d*p*wa;a.y-=dy/d*p*wa;b.x+=dx/d*p*wb;b.y+=dy/d*p*wb;}}
-  for(const s of shocks){s.r+=460*dt;for(const e of enemies)if(e.hp>0&&!s.hit.includes(e)&&Math.abs(Math.hypot(e.x-s.x,e.y-s.y)-s.r)<26+e.r){s.hit.push(e);if(s.acid){const W=ER(e,'acid');hit(e,ST.dmg*1.2,false,{knock:200},true,ELC.acid);if(W>0)e.acid=3;}else{hit(e,ST.dmg*2.5,false,KIND.hammer);e.stun=Math.max(e.stun,e.type==='boss'?.3:1.3);}}}
+  for(const s of shocks){s.r+=460*dt;for(const e of enemies)if(e.hp>0&&!s.hit.includes(e)&&Math.abs(Math.hypot(e.x-s.x,e.y-s.y)-s.r)<26+e.r){s.hit.push(e);if(s.acid){const W=ER(e,'acid');hit(e,ST.dmg*1.2,false,{knock:200},true,ELC.acid);if(W>0)e.acid=3;}else if(s.small){hit(e,ST.dmg*.7,false,{knock:260});e.stun=Math.max(e.stun,e.type==='boss'?.1:.5);}else{hit(e,ST.dmg*2.5,false,KIND.hammer);e.stun=Math.max(e.stun,e.type==='boss'?.3:1.3);}}}
   shocks=shocks.filter(s=>s.r<s.max);
   for(const r of rings)r.r+=300*dt;rings=rings.filter(r=>r.r<r.max);
   if(run.blasts.length){const bs=run.blasts;run.blasts=[];for(const b of bs){burst(b.x,b.y-10,'#ff8a3d',26,260);burst(b.x,b.y,'#3d3027',14,160);shake=Math.max(shake,9);sfx('boom');stamp(b.x,b.y,'rgba(8,5,3,.45)',b.r*.5);rings.push({x:b.x,y:b.y,r:10,max:b.r,col:'255,138,61'});

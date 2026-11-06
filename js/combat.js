@@ -31,14 +31,16 @@ function propsInRadius(x,y,r,dmg){for(const p of brk.slice())if(Math.hypot(p.x+p
 function attack(){
   if(P.cd>0||P.dashT>0||P.spin>0)return;const K=ST.K;P.cd=ST.rate;const tg=nearest(ST.kind==='sling'?360:180);
   if(tg)P.face=Math.atan2(tg.y-P.y,tg.x-P.x);else{const pp=nearestProp(ST.kind==='sling'?220:95);if(pp)P.face=Math.atan2(pp.y+pp.h/2-P.y,pp.x+pp.w/2-P.x);}
-  P.atkA=P.face;const crit=Math.random()<ST.crit,dmg=ST.dmg*R(.9,1.1)*(crit?2:1)*(P.fed>0?1.1:1);
+  P.atkA=P.face;P.combo=(P.comboT>0?(P.combo||0)+1:1);P.comboT=.85;const n=P.combo,fin=(ST.kind==='blade'&&n%3===0)||(ST.kind==='sling'&&n%4===0)||(ST.kind==='hammer'&&n%3===0);
+  const crit=Math.random()<ST.crit,dmg=ST.dmg*R(.9,1.1)*(crit?2:1)*(P.fed>0?1.1:1)*(fin?(ST.kind==='hammer'?1.2:1.6):1);
   P.swingKind=ST.kind;P.swingDur=P.swingT=ST.kind==='hammer'?.3:ST.kind==='sling'?.14:.17;
-  if(ST.kind==='sling'){const c=Math.cos(P.face),s=Math.sin(P.face);pproj.push({x:P.x+c*14,y:P.y+s*14,vx:c*ST.pspd,vy:s*ST.pspd,r:4,dmg,crit,life:.7,pierce:0,hits:[],el:ST.els[0]});sfx('sling');return;}
-  swings.push({a:P.face,life:P.swingDur,max:P.swingDur,kind:ST.kind,arc:K.arc,reach:ST.reach});sfx(ST.kind==='hammer'?'heavy':'swing');
+  if(ST.kind==='sling'){const c=Math.cos(P.face),s=Math.sin(P.face);pproj.push({x:P.x+c*14,y:P.y+s*14,vx:c*ST.pspd*(fin?1.3:1),vy:s*ST.pspd*(fin?1.3:1),r:fin?6:4,dmg,crit,life:fin?.9:.7,pierce:fin?3:0,hits:[],el:ST.els[0],fin});sfx('sling');if(fin)sfx('zap');return;}
+  const arc=K.arc*(fin&&ST.kind==='blade'?1.35:1),reach=ST.reach*(fin&&ST.kind==='blade'?1.15:1),KK=fin?Object.assign({},K,{knock:K.knock*1.7}):K;
+  swings.push({a:P.face,life:P.swingDur,max:P.swingDur,kind:ST.kind,arc,reach,fin});sfx(ST.kind==='hammer'||fin?'heavy':'swing');if(fin){freeze=Math.max(freeze,.035);if(ST.kind==='hammer'){shocks.push({x:P.x+Math.cos(P.face)*40,y:P.y+Math.sin(P.face)*40,r:10,max:95,hit:[],small:1});shake=Math.max(shake,7);}}
   if(ST.kind==='hammer'){shake=Math.max(shake,4);burst(P.x+Math.cos(P.face)*50,P.y+Math.sin(P.face)*50,'#5a4636',10,140);}
-  for(const e of enemies){const dx=e.x-P.x,dy=e.y-P.y,d=Math.hypot(dx,dy);if(d>ST.reach+e.r)continue;let da=Math.atan2(dy,dx)-P.face;da=Math.atan2(Math.sin(da),Math.cos(da));
-    if(Math.abs(da)<K.arc||d<e.r+P.r+6)hit(e,dmg,crit,K);}
-  propsInArc(P.face,K.arc,ST.reach,dmg);
+  for(const e of enemies){const dx=e.x-P.x,dy=e.y-P.y,d=Math.hypot(dx,dy);if(d>reach+e.r)continue;let da=Math.atan2(dy,dx)-P.face;da=Math.atan2(Math.sin(da),Math.cos(da));
+    if(Math.abs(da)<arc||d<e.r+P.r+6)hit(e,dmg,crit,KK);}
+  propsInArc(P.face,arc,reach,dmg);
   if(hasL('mauer')){P.mc=(P.mc||0)+1;if(P.mc%4===0){shocks.push({x:P.x,y:P.y,r:10,max:130,hit:[],acid:true});sfx('ignite');}}
 }
 function skill(){if(state!=='play'||P.skCd>0||P.dashT>0)return;P.skCd=ST.skCd;const k=ST.kind;
@@ -56,11 +58,12 @@ function hit(e,dmg,crit,K,noproc,col){if(e.hp<=0)return;if(e.elite==='gepanzert'
     if(W>1&&!e.wk){tip('weak','„schwach“ heißt: Dieses Element wirkt hier besonders gut.');e.wk=1;nums.push({x:e.x,y:e.y-e.r-40,t:'schwach',col:ELC[el],life:1});}
     if(el==='fire'){if(!(e.burn>0))sfx('ignite');e.bdps=Math.max(e.burn>0?e.bdps:0,dmg*.45*ST.elp*W);e.burn=2;}
     else if(el==='acid')e.acid=3;else chain(e,dmg*.5*ST.elp,2+2*pk('chain'));}
+  if(!noproc&&SHR.zap>0&&Math.random()<.25)chain(e,dmg*.45,2);
   if(e.hp<=0)kill(e);}
 function chain(src,d,n){const dd=t=>Math.hypot(t.x-src.x,t.y-src.y),ts=enemies.filter(t=>t!==src&&t.hp>0&&dd(t)<140).sort((a,b)=>dd(a)-dd(b)).slice(0,n);
   let px=src.x,py=src.y-14;for(const t of ts){bolts.push({x0:px,y0:py,x1:t.x,y1:t.y-14,life:.16});px=t.x;py=t.y-14;const W=ER(t,'shock');if(W>0){hit(t,d*W,false,{knock:60},true,ELC.shock);prog('shock');}}if(ts.length)sfx('zap');}
 function kill(e){
-  e.dead=true;streak.n++;streak.t=2.6;const sc=Math.round(e.sc*(1+.5*pk('scrap'))*DF().sc*(1+.15*run.th)*(S.camp.presse?1.15:1));run.kills++;S.rec.kills++;S.scrap+=sc;run.sg+=sc;burst(e.x,e.y,'#EF9F27',10,160);burst(e.x,e.y,'#3d3027',8,90);stamp(e.x,e.y+e.r*.6,'rgba(40,12,6,.35)',e.r*1.6);sfx('kill');gainXp(e.xp);
+  e.dead=true;streak.n++;streak.t=2.6;const sc=Math.round(e.sc*(1+.5*pk('scrap'))*DF().sc*(1+.15*run.th)*(S.camp.presse?1.15:1)*(SHR.gold>0?2:1));run.kills++;S.rec.kills++;S.scrap+=sc;run.sg+=sc;burst(e.x,e.y,'#EF9F27',10,160);burst(e.x,e.y,'#3d3027',8,90);stamp(e.x,e.y+e.r*.6,'rgba(40,12,6,.35)',e.r*1.6);sfx('kill');gainXp(e.xp);
   if(ST.leech)P.hp=Math.min(ST.maxHp,P.hp+ST.leech);
   if(pk('spread')&&e.burn>0)for(const t of enemies)if(t!==e&&t.hp>0&&Math.hypot(t.x-e.x,t.y-e.y)<90&&ER(t,'fire')>0){t.burn=2;t.bdps=Math.max(t.bdps||0,e.bdps*.8);burst(t.x,t.y-10,ELC.fire,6,90);}
   if(pk('boom')&&e.type!=='boss')run.booms.push({x:e.x,y:e.y});

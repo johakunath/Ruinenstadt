@@ -64,6 +64,13 @@ function drawDoll(){const c=$('dollc');if(!c)return;const g=c.getContext('2d'),W
   g.fillStyle='rgba(0,0,0,.35)';g.beginPath();g.ellipse(W/2,H*.83,W*.22,H*.05,0,0,7);g.fill();
   ctx=g;Object.assign(P,{x:0,y:0,face:.25,mvx:0,mvy:0,swingT:0,spin:0,dashT:0,inv:0,torch:false});
   try{g.setTransform(W/90,0,0,W/90,W/2,H*.8);drawPlayer(performance.now());}catch(e){}ctx=o;Object.assign(P,keep);}
+function drawMapTab(){const c=$('mapc');if(!c||!MB2)return;const g=c.getContext('2d'),k=600/WS;g.drawImage(MB2,0,0);
+  g.fillStyle='rgba(0,0,0,.55)';for(const z of darks)g.fillRect(z.x*k,z.y*k,z.w*k,z.h*k);g.fillStyle='#1d4a8a';for(const z of darks)g.fillRect(z.x*k,z.y*k-6,8,8);
+  if(spati){g.strokeStyle='#f2d14b';g.lineWidth=2;g.strokeRect(spati.x*k,spati.y*k,spati.w*k,spati.h*k);}
+  for(const h of shrines)if(!h.used){g.fillStyle='#7dd3ff';g.beginPath();g.arc(h.x*k,h.y*k,4,0,7);g.fill();}
+  for(const e of enemies){g.fillStyle='#c23a2e';g.fillRect(e.x*k-1.5,e.y*k-1.5,3,3);}
+  g.font='600 13px "Barlow Condensed",sans-serif';g.textAlign='center';for(const m of marks){const x=m.x*k,y=m.y*k;if(!m.soft){g.fillStyle='#EF9F27';g.beginPath();g.arc(x,y,4,0,7);g.fill();}g.fillStyle=m.soft?'rgba(234,217,192,.55)':'#ead9c0';g.fillText(m.n,x,y-8);}
+  g.save();g.translate(P.x*k,P.y*k);g.rotate(P.face);g.fillStyle='#fff';g.beginPath();g.moveTo(8,0);g.lineTo(-5,-5);g.lineTo(-5,5);g.fill();g.restore();}
 function statTable(){const s=ST;let h='';for(const[n,f,d,u]of SROWS){const v=f(s);if(!v&&n!=='Kampfkraft')continue;h+=`<span>${n}</span><b>${v.toFixed(d)}${u||''}</b>`;}
   if(s.els.length)h+=`<span>Elemente</span><b>${s.els.map(e=>`<i style="color:${ELC[e]};font-style:normal">${ELN[e]}</i>`).join(', ')}</b>`;return`<div class="stab">${h}</div>`;}
 const KODEX=[['Ratte','Kommt im Rudel, schnell und schwach.',''],['Zünder','Explodiert, wenn er dich erreicht oder stirbt. Auf Abstand halten.','shock'],['Schildträger','Blockt Treffer von vorn. Umlaufen oder mit dem Hammer betäuben.','acid'],['Krähe','Fliegt über Hindernisse und stößt im Sturzflug herab.','shock'],['Heuler','Treibt Gegner in seiner Nähe an. Zuerst ausschalten.','fire'],['Ghul','Schnell und zahlreich. Fürchtet Feuer.','fire'],['Brocken','Zäh und hart. Verträgt Feuer, aber keine Säure.','acid'],['Speier','Spuckt aus der Distanz. Immun gegen Säure, anfällig für Strom.','shock'],
@@ -84,7 +91,7 @@ function renderInv(){
   const perkList=run&&invFrom==='run'?Object.keys(run.perks).map(k=>PERKS.find(p=>p.k===k).n+(run.perks[k]>1?' '+run.perks[k]:'')).join(' · '):'';
   if(invFrom==='run'&&invTab==='stash')invTab='bag';refresh();
   const tb=(k,n)=>`<button class="tab${invTab===k?' on':''}" data-t="${k}">${n}</button>`;
-  const head=`<div class="ihead"><div class="tabs">${tb('bag','Ausrüstung')}${invFrom!=='run'?tb('stash','Lager'):''}${tb('jobs','Aufträge')}${tb('shop','Werkstatt')}${tb('kodex','Kodex')}</div>
+  const head=`<div class="ihead"><div class="tabs">${tb('bag','Ausrüstung')}${invFrom!=='run'?tb('stash','Lager'):''}${tb('jobs','Aufträge')}${tb('shop','Werkstatt')}${invFrom==='run'?tb('map','Karte'):''}${tb('kodex','Kodex')}</div>
     <div class="ires"><span>Schrott <b>${S.scrap}</b></span><span>Kampfkraft <b>${power(ST)}</b></span>${invFrom==='run'?`<span>${DIST[run.d].n} · Welle ${run.wave}/10</span>`:''}<button class="btn sm main" data-a="close">${invFrom==='run'?'Weiter':'Zurück'}</button></div></div>${perkList?`<div class="perks">Segen: ${perkList}</div>`:''}`;
   let body='';
   if(invTab==='bag'||invTab==='stash'){const LST=invTab==='stash'?S.stash:S.bag,N=invTab==='stash'?stashMax():BAG,src=invTab==='stash'?'stash':'bag';
@@ -99,6 +106,8 @@ function renderInv(){
       <section class="ibag"><div class="lbl">${invTab==='stash'?`Lager ${S.stash.length}/${stashMax()}`:`Rucksack ${S.bag.length}/${BAG}`}</div><div class="grid">${cells}</div>
       ${chips.length?`<div class="lbl">Verschrotten</div><div class="chips">${chips.join('')}</div><p class="hint">„Alles ohne ▲“ behält Verbesserungen, Legendäres, Set-Teile und Gesperrtes.</p>`:'<p class="hint">▲ heißt: mehr Kampfkraft als dein angelegtes Teil.</p>'}</section>
       <section class="idet">${detail()}</section></div>`;}
+  else if(invTab==='map'&&run){const lots=[...new Set(BLK.filter(b=>!b.center).map(b=>LOTN[b.lot]).filter(Boolean))].join(', ');
+    body=`<div class="mapw"><canvas id="mapc" width="600" height="600" aria-label="Karte von ${D.n}"></canvas><div class="leg"><div class="lbl" style="text-align:left">${D.n}</div><div><i style="background:#fff"></i>Du</div><div><i style="background:#EF9F27"></i>Wahrzeichen</div><div><i style="background:#f2d14b"></i>Späti</div><div><i style="background:#1d4a8a"></i>U-Bahn-Dunkelzone mit Truhe</div><div><i style="background:#7dd3ff"></i>Litfaßsäule (unbenutzt)</div><div><i style="background:#c23a2e"></i>Gegner</div><p class="hint" style="text-align:left">Gebiete: ${lots}</p></div></div>`;}
   else if(invTab==='kodex')body=`<div class="lbl">Gegner</div><div class="cols2">${KODEX.map(k=>`<div class="upg"><div><div class="un">${k[0]}</div><div class="ud">${k[1]}</div></div>${k[2]?`<span class="ud" style="color:${ELC[k[2]]}">${ELN[k[2]]}</span>`:''}</div>`).join('')}</div>
     <div class="lbl">Endgegner</div><div class="cols2">${BN.map((n,i)=>`<div class="upg"><div><div class="un" style="color:var(--ember)">${n}</div><div class="ud">${DIST[i]?DIST[i].n:''}${S.best[i]>=10?' · besiegt':''}</div></div><span class="ud">${Object.entries(RES[BK[i]]).filter(q=>q[1]>1.2).map(q=>`<span style="color:${ELC[q[0]]}">${ELN[q[0]]}</span>`).join(' ')}</span></div>`).join('')}</div>
     <div class="lbl">Elite-Gegner</div><div class="cols2">${Object.keys(EMN).map(k=>`<div class="upg"><div><div class="un" style="color:${EMC[k]}">${EMN[k]}</div><div class="ud">${EDESC[k]||''}</div></div></div>`).join('')}</div>`;
@@ -109,7 +118,7 @@ function renderInv(){
     `</div><div class="lbl">Lagerausbau</div><div class="cols2">`+CAMP.map(c=>`<div class="upg"><div><div class="un">${c.n}</div><div class="ud">${c.d}</div></div>${S.camp[c.k]?'<span class="ud ok">Gebaut</span>':`<button class="btn sm${S.scrap>=c.p?' main':''}" data-bd="${c.k}">${c.p} Schrott</button>`}</div>`).join('')+
     `</div><div class="lbl">Herstellen</div><div class="cols2">`+CONS.map(c=>{const n=S.cons[c.k]||0;return`<div class="upg"><div><div class="un">${c.n}</div><div class="ud">${c.d} · ${n}/3 dabei</div></div>${n>=3?'<span class="ud">Voll</span>':`<button class="btn sm${S.scrap>=c.p?' main':''}" data-cr="${c.k}">${c.p} Schrott</button>`}</div>`;}).join('')+'</div>';
   const foot=`<div class="msg">${invMsg}</div>${invFrom==='run'?`<div class="two"><button class="btn sm" data-a="mute">${S.mute?'Ton aus':'Ton an'}</button><button class="btn sm" data-a="quit">${run.quitArm?'Sicher? Tippe erneut':'Expedition abbrechen'}</button></div>`:''}`;
-  $('invbox').innerHTML=head+body+foot;drawDoll();
+  $('invbox').innerHTML=head+body+foot;drawDoll();drawMapTab();
 }
 $('invbox').addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return;const d=t.dataset;invMsg='';sfx('ui');if(d.a!=='all')allArm=false;
   if(d.t){invTab=d.t;sel=null;}

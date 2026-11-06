@@ -167,6 +167,11 @@ function makeTree(tx,ty,kind){
   gx.fillStyle='rgba(0,0,0,.3)';gx.beginPath();gx.ellipse(tx+6,ty+2,Rr*.9,Rr*.4,0,0,7);gx.fill();
   blds.push({x:tx-cx,y:ty,w:W,h:0,top:base,spr:c,lights:[]});walls.push({x:tx-4,y:ty-5,w:8,h:7});
 }
+function makeLitfass(x,y){const mk=on=>{const c=cnv(30,84),g=c.getContext('2d');g.fillStyle='#2a2522';g.fillRect(3,76,24,8);g.fillStyle='#3d4a3a';g.fillRect(5,18,20,60);
+    const cols=on?['#c23a2e','#f2d14b','#7d9bff','#ead9c0','#8fd16a','#d4537e']:['#3a332e','#4a4038','#2e2824'];for(let i=0;i<5;i++){g.fillStyle=pick(cols);g.fillRect(5,20+i*11,20,10);g.fillStyle='rgba(0,0,0,.25)';g.fillRect(5+R(2,12),22+i*11,R(4,8),2);}
+    g.fillStyle='rgba(0,0,0,.3)';g.fillRect(18,18,7,60);g.fillStyle='#2c3a32';g.beginPath();g.ellipse(15,16,13,5,0,0,7);g.fill();g.beginPath();g.moveTo(3,16);g.lineTo(15,2);g.lineTo(27,16);g.fill();g.fillStyle='#c9a227';g.fillRect(14,0,2,4);return c;};
+  const o={x:x-15,y:y-4,w:30,h:8,H:0,top:80,spr:mk(1),lights:[{x,y:y-40,r:70}]};blds.push(o);walls.push({x:x-11,y:y-6,w:22,h:10});shrines.push({x,y,o,off:mk(0),used:0});
+  gx.fillStyle='rgba(0,0,0,.3)';gx.beginPath();gx.ellipse(x+6,y+2,16,6,0,0,7);gx.fill();}
 function makeLamp(lx_,ly,lit){
   const c=cnv(22,70),g=c.getContext('2d');g.fillStyle='#24201c';g.fillRect(4,8,4,62);g.fillRect(2,66,8,4);g.fillRect(4,8,14,3);
   g.fillStyle='#3a342e';g.fillRect(14,9,7,5);g.fillStyle=lit?'#f7d98a':'#1a1612';g.fillRect(15,13,5,2);
@@ -226,10 +231,13 @@ function buildWorld(d){
     if(inWall(x,y,24)||resHit(x-9,y-9,18,18)||Math.hypot(x-SX,y-SY)<160)continue;barrels.push({x,y,ph:R(0,6)});walls.push({x:x-9,y:y-9,w:18,h:18});}
   let lt=0,ln=0;while(ln<22&&lt++<500){const v=Math.random()<.5,p=pick(v?RX:RY),side=pick([-1,1]),a=R(60,WS-60),x=v?p+side*50:a,y=v?a:p+side*50;
     if(inWall(x,y,30)||resHit(x-6,y-70,22,72)||Math.hypot(x-SX,y-SY)<120)continue;makeLamp(x,y,Math.random()<.55);ln++;}
+  shrines=[];let st=0;while(shrines.length<3&&st++<300){const v=Math.random()<.5,p=pick(v?RX:RY),side=pick([-1,1]),a=R(120,WS-120),x=v?p+side*70:a,y=v?a:p+side*70;
+    if(inWall(x,y,40)||resHit(x-16,y-80,32,90)||Math.hypot(x-SX,y-SY)<300||shrines.some(h=>Math.hypot(h.x-x,h.y-y)<600))continue;makeLitfass(x,y);}
   let tt=0,tn=0;while(tn<d.trees&&tt++<500){const x=R(975,1425),y=R(975,1425);
     if(inWall(x,y,34)||resHit(x-28,y-60,56,62)||Math.hypot(x-SX,y-SY)<200||Math.hypot(x-1200,y-1100)<80)continue;makeTree(x,y,pick(BIOME[d.i].trees));tn++;}
   let bt=0,bn=0;while(bn<28&&bt++<800){const x=R(40,WS-40),y=R(40,WS-40),ty=Math.random()<.45?'bin':'crate';if(inWall(x,y,26)||resHit(x-12,y-12,24,24)||onRoad(x,y,-20)||Math.hypot(x-SX,y-SY)<120)continue;addBrk(x,y,ty,false);bn++;}
   decorate();gridBuild();
+  const k2=600/WS;MB2=cnv(600,600);const m2=MB2.getContext('2d');m2.drawImage(G,0,0,600,600);m2.fillStyle='rgba(0,0,0,.25)';m2.fillRect(0,0,600,600);m2.fillStyle='rgba(234,217,192,.38)';for(const b of blds)if(b.h>0)m2.fillRect(b.x*k2,b.y*k2,b.w*k2,b.h*k2);
   const k=192/WS;MB=cnv(192,192);const mg=MB.getContext('2d');mg.drawImage(G,0,0,192,192);mg.fillStyle='rgba(0,0,0,.3)';mg.fillRect(0,0,192,192);mg.fillStyle='rgba(234,217,192,.32)';for(const b of blds)if(b.h>0)mg.fillRect(b.x*k,b.y*k,b.w*k,b.h*k);mg.fillStyle='rgba(0,0,0,.65)';for(const z of darks)mg.fillRect(z.x*k,z.y*k,z.w*k,z.h*k);mg.fillStyle='#1d4a8a';for(const z of darks)mg.fillRect(z.x*k,z.y*k-3,4,4);
 }
 const TAGS=['KIEZ','BERLIN','LIEBE','RUINE','WIR BLEIBEN','HALT DURCH','SPREE','B36','HOFFNUNG','KEIN AUSGANG'];

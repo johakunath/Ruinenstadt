@@ -165,3 +165,7 @@ body.tab #banner{font-size:76px}
 #streak b{font:40px/1 var(--f-display)}#streak span{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}#streak.pop b{animation:sp .25s}
 @keyframes sp{0%{transform:scale(1.35)}100%{transform:none}}
 body.tab #streak{left:max(24px,env(safe-area-inset-left,0px));top:calc(env(safe-area-inset-top,0px) + 96px)}body.tab #streak b{font-size:54px}
+#bufs{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 14px);pointer-events:none;font-size:16px;color:#7dd3ff;display:grid;gap:2px}body.tab #bufs{font-size:20px;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 18px)}
+body:not(.inrun) #bufs,body:not(.inrun) #streak{display:none}
+.mapw{display:grid;gap:12px}#mapc{width:100%;max-width:640px;margin:0 auto;display:block;border:1px solid var(--edge);border-radius:4px;background:#120d0a}@media (min-width:900px){.mapw{grid-template-columns:minmax(0,640px) minmax(0,1fr);align-items:start}}
+.leg{display:grid;gap:6px;font-size:16px}.leg i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:8px;vertical-align:-1px}
