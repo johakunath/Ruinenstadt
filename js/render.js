@@ -26,6 +26,7 @@ function render(t){
   for(const h of hazards){ctx.globalAlpha=Math.min(1,h.t);ctx.drawImage(glow(h.col||'#ff6a2a'),h.x-h.r*1.4,h.y-h.r*.9,h.r*2.8,h.r*1.8);}ctx.globalAlpha=1;
   for(const d of drops){const bob=Math.sin(d.t*4)*2;
     if(d.food){ctx.drawImage(glow('#f2a04b'),d.x-14,d.y+bob-14,28,28);ctx.fillStyle='#e8d8b0';ctx.beginPath();ctx.moveTo(d.x-7,d.y+bob-4);ctx.lineTo(d.x+7,d.y+bob-4);ctx.lineTo(d.x,d.y+bob+8);ctx.fill();ctx.fillStyle='#8a4a22';ctx.fillRect(d.x-6,d.y+bob-7,12,4);ctx.fillStyle='#8fd16a';ctx.fillRect(d.x-4,d.y+bob-9,3,2);ctx.fillStyle='#c23a2e';ctx.fillRect(d.x+1,d.y+bob-9,3,2);continue;}
+    if(d.mat){const hh=d.h||0,c=MATS[d.mat][1];ctx.drawImage(glow(c),d.x-12,d.y+bob-12-hh,24,24);ctx.fillStyle=c;ctx.fillRect(d.x-4,d.y+bob-4-hh,8,7);ctx.fillStyle='rgba(0,0,0,.3)';ctx.fillRect(d.x-4,d.y+bob+1-hh,8,2);continue;}
     if(d.heal){ctx.drawImage(glow('#ff5040'),d.x-16,d.y+bob-16,32,32);ctx.fillStyle='#c23a2e';ctx.beginPath();ctx.arc(d.x,d.y+bob,6,0,7);ctx.fill();continue;}
     const c=rc(d.item),gs=24+Math.sin(d.t*5)*4,hh=d.h||0;if(d.item.r>=2&&!hh){ctx.fillStyle=c+'30';ctx.fillRect(d.x-3,d.y-(d.item.r>=3?140:70),6,d.item.r>=3?140:70);}
     if(hh){ctx.fillStyle='rgba(0,0,0,.35)';ctx.beginPath();ctx.ellipse(d.x,d.y+4,6,2.5,0,0,7);ctx.fill();}

@@ -33,6 +33,14 @@ const EMC={schnell:'#7dd3ff',brennend:'#ff6a2a',spaltend:'#97C459',gepanzert:'#d
 const ENAME={ghoul:'Ghul',brute:'Brocken',spitter:'Speier',raser:'Raser',rat:'Ratte',bomb:'Zünder',shield:'Schildträger',crow:'Krähe',howl:'Heuler'};
 const EDESC={schnell:'Deutlich schneller als normal.',brennend:'Hinterlässt eine Feuerspur.',spaltend:'Zerfällt beim Tod in kleinere Gegner.',gepanzert:'Nimmt nur halben Schaden.'};
 const SHRN={as:['Adrenalin','+30% Angriffstempo'],res:['Eisenhaut','+25% Widerstand'],gold:['Goldrausch','doppelter Schrott von Gegnern'],spd:['Rückenwind','+25% Lauftempo'],zap:['Funkenflug','Treffer lösen oft Blitze aus']};
+const MATS={stoff:['Stoff','#d6cfc0'],metall:['Metall','#9aa4b0'],chemie:['Chemie','#97C459'],kabel:['Kabel','#f2a04b']};
+const EMAT={ghoul:'stoff',rat:'stoff',brute:'metall',shield:'metall',spitter:'chemie',bomb:'chemie',raser:'kabel',crow:'kabel',howl:'kabel'};
+// weapon mods (Aufsätze): recipe in materials + Schrott, effect applied in gear()/stats()
+const MODS=[{k:'nagel',n:'Nagelband',d:'+12% Schaden',c:{metall:3,stoff:1},p:30,a:[['dmg',12]]},{k:'griff',n:'Griffband',d:'+10% Angriffstempo',c:{stoff:4},p:25,a:[['as',10]]},
+ {k:'gewicht',n:'Gegengewicht',d:'+6% Krit-Chance',c:{metall:4},p:30,a:[['crit',6]]},{k:'batt',n:'Autobatterie',d:'Strom-Element, sonst +20% Elementarschaden',c:{kabel:3,metall:1},p:40,el:'shock'},
+ {k:'tank',n:'Benzintank',d:'Feuer-Element, sonst +20% Elementarschaden',c:{chemie:2,metall:2},p:40,el:'fire'},{k:'phiole',n:'Säurephiole',d:'Säure-Element, sonst +20% Elementarschaden',c:{chemie:3,stoff:1},p:40,el:'acid'},
+ {k:'dorn',n:'Stacheldraht',d:'+2 Leben pro Kill',c:{metall:2,kabel:2},p:35,a:[['leech',2]]}];
+const modSlots=it=>it&&it.slot==='w'?(it.r>=2||it.set?2:1):0;
 const MAST_N={blade:'Klingen',hammer:'Hammer',sling:'Schleuder'};
 const mLvl=k=>Math.min(10,Math.floor(Math.sqrt(((S.mast&&S.mast[k])||0)/40))),mNext=k=>{const l=mLvl(k);return l>=10?0:40*(l+1)*(l+1);};
 const JOBT=[

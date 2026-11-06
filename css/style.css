@@ -169,3 +169,4 @@ body.tab #streak{left:max(24px,env(safe-area-inset-left,0px));top:calc(env(safe-
 body:not(.inrun) #bufs,body:not(.inrun) #streak{display:none}
 .mapw{display:grid;gap:12px}#mapc{width:100%;max-width:640px;margin:0 auto;display:block;border:1px solid var(--edge);border-radius:4px;background:#120d0a}@media (min-width:900px){.mapw{grid-template-columns:minmax(0,640px) minmax(0,1fr);align-items:start}}
 .leg{display:grid;gap:6px;font-size:16px}.leg i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:8px;vertical-align:-1px}
+.mats{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;font-size:17px;color:var(--dim)}.mats b{color:var(--bone)}.mats i{display:inline-block;width:10px;height:10px;margin-right:6px;border-radius:2px}

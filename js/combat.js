@@ -23,7 +23,7 @@ function breakProp(b){const i=walls.indexOf(b);if(i>=0)walls.splice(i,1);gridDel
   burst(cx,cy,b.type==='crate'?'#9a7040':'#d8642e',18,180);burst(cx,cy,'#3d3027',8,90);stamp(cx,cy,'rgba(60,40,25,.35)',12);
   const sc=Math.round((b.inside?R(4,8):R(1,4))*DF().sc*(1+.5*pk('scrap')));if(run){S.scrap+=sc;run.sg+=sc;}nums.push({x:cx,y:cy-14,t:'+'+sc+' Schrott',col:'#a8957d',life:1});
   if(Math.random()<.15*(hasL('spaeti')?2:1)){const k=pick(['verband','molotow']);if((S.cons[k]||0)<3){S.cons[k]=(S.cons[k]||0)+1;toast(`+1 ${k==='verband'?'Verband':'Molotow'}`);}}
-  if(Math.random()<.1)drops.push({x:cx+10,y:cy,food:true,t:0});
+  if(Math.random()<.1)drops.push({x:cx+10,y:cy,food:true,t:0});if(run&&Math.random()<(b.inside?.6:.3))drops.push({x:cx-8,y:cy,mat:pick(Object.keys(MATS)),t:0});
   if(Math.random()<(b.inside?.6:.18))drops.push({x:cx,y:cy,item:makeItem(ilvl(),b.inside?1:0),t:0});else if(Math.random()<.12)drops.push({x:cx,y:cy,heal:true,t:0});
   if(b.type==='chest'&&run){prog('chest');S.rec.chests++;drops.push({x:cx+14,y:cy,item:lootItem(ilvl()+1,2,.1),t:0});drops.push({x:cx-14,y:cy,item:makeItem(ilvl()+1,1),t:0});const cs=Math.round(20*DF().sc);S.scrap+=cs;run.sg+=cs;sfx('pick',2);toast('<span style="color:#c9a227">Kellertruhe</span> geöffnet');}}
 function propsInArc(a,arc,reach,dmg){for(const p of brk.slice()){const dx=p.x+p.w/2-P.x,dy=p.y+p.h/2-P.y,d=Math.hypot(dx,dy);if(d>reach+12)continue;let da=Math.atan2(dy,dx)-a;da=Math.atan2(Math.sin(da),Math.cos(da));if(Math.abs(da)<arc||d<P.r+16)hitProp(p,dmg);}}
@@ -75,6 +75,7 @@ function kill(e){
     if(e.elite==='spaltend')for(let i=0;i<2;i++){const m=mkEnemy('ghoul',e.x+R(-16,16),e.y+R(-16,16));m.r=7;m.hp=m.max=m.max*.4;m.xp=1;m.sc=0;enemies.push(m);}}
   const il=ilvl();
   if(e.type==='boss'){for(let i=0;i<(e.big?4:3);i++)drops.push({x:e.x+R(-40,40),y:e.y+R(-40,40),item:lootItem(il+2,2,.12),t:R(0,3)});if(e.big)drops.push({x:e.x,y:e.y-24,item:makeItem(il+3,3),t:0});drops.push({x:e.x,y:e.y+20,heal:true,t:0});run.boss=null;shake=12;sfx('boom');}
+  if(Math.random()<(e.type==='boss'?1:e.elite?.8:e.type==='rat'?.08:.22)){const n=e.type==='boss'?5:e.elite?2:1;for(let i=0;i<n;i++)drops.push({x:e.x,y:e.y,mat:i&&e.type==='boss'?pick(Object.keys(MATS)):EMAT[e.type]||pick(Object.keys(MATS)),t:0});}
   else{const ch={ghoul:.2,spitter:.28,brute:.75,raser:.32,rat:.04,bomb:.3,shield:.55,crow:.18,howl:.6}[e.type]||.2;if(Math.random()<.03*(hasL('spaeti')?2:1))drops.push({x:e.x-10,y:e.y,food:true,t:0});if(Math.random()<ch)drops.push({x:e.x,y:e.y,item:makeItem(il,e.type==='brute'?1:0),t:R(0,3)});else if(Math.random()<.1)drops.push({x:e.x,y:e.y,heal:true,t:0});}}
 function gainXp(n){P.xp+=n;while(P.xp>=20+P.lvl*15){P.xp-=20+P.lvl*15;P.lvl++;refresh();P.hp=ST.maxHp;banner('Stufe '+P.lvl);burst(P.x,P.y,'#f2d14b',26,210);sfx('lvl');}}
 function hurt(dmg,sh){if(P.inv>0||state!=='play')return false;if(hasL('panzer')&&Math.random()<.2){P.inv=.3;nums.push({x:P.x,y:P.y-40,t:'geblockt',col:'#d6cfc0',life:.8});sfx('wood');return false;}dmg=Math.max(1,Math.round(dmg*(1-ST.res)));P.hp-=dmg;P.inv=.4;shake=Math.max(shake,sh);sfx('hurt');burst(P.x,P.y-10,'#c23a2e',8,140);
