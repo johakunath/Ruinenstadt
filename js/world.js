@@ -1,6 +1,6 @@
 /* ================= world ================= */
 // roads: RX vertical road centres, RY horizontal. Blocks (BLK) are the lots between them. The legacy 1600 map sits in the middle, shifted by OFF.
-const OFF=400,SX=1200,SY=1220;let RX=[920,1480],RY=[920,1480],BLK=[],waters=[];
+const OFF=400,SX=1200,SY=1220;let neons=[],RX=[920,1480],RY=[920,1480],BLK=[],waters=[];
 let darks=[],G=null,gx=null,walls=[],blds=[],barrels=[],reserved=[],marks=[],brk=[],spati=null,D=DIST[0];
 function inWall(x,y,r){return walls.some(o=>x>o.x-r&&x<o.x+o.w+r&&y>o.y-r&&y<o.y+o.h+r);}
 function wallAt(x,y){for(const o of nearWalls(x,y,1))if(!o.water&&x>o.x&&x<o.x+o.w&&y>o.y&&y<o.y+o.h)return o;return null;}
@@ -140,7 +140,7 @@ function makeSpati(){
       t.fillStyle='#110b08';t.fillRect(74,h+31,28,15);
       t.fillStyle='#0b0806';t.fillRect(dx,h+28,dw,H-28);t.fillStyle='rgba(224,137,46,.25)';t.fillRect(dx+4,h+32,dw-8,H-32);
       t.fillStyle='rgba(0,0,0,.45)';t.fillRect(0,h,w,3);t.strokeStyle='rgba(0,0,0,.5)';t.lineWidth=2;t.strokeRect(1,1,w-2,h-2);
-      sp.spr=c;sp.lights.push({x:x+38,y:y+h-12,r:70},{x:x+w/2,y:y+h/2,r:0,inner:1});blds.push(sp);reserved.push({x,y:y-H,w,h:h+H+70});spati=sp;
+      sp.spr=c;sp.lights.push({x:x+38,y:y+h-12,r:70},{x:x+w/2,y:y+h/2,r:0,inner:1});neons.push({x:x+w/2,y:y+h-H+12,c:'#f2d14b',s:70},{x:x+38,y:y+h-6,c:'#e0892e',s:50});blds.push(sp);reserved.push({x,y:y-H,w,h:h+H+70});spati=sp;
       gx.fillStyle='rgba(0,0,0,.3)';gx.fillRect(x+w,y-H+14,14,h+H-14);
       [[x+w-30,y+30],[x+120,y+80],[x+18,y+40]].forEach(p=>addBrk(p[0],p[1],'crate',true));
       return;}}
@@ -151,7 +151,7 @@ function makeDark(){const cands=lotCands();
     g.fillStyle='rgba(8,6,5,.55)';g.fillRect(x,y,w,h);for(let i=0;i<70;i++){g.fillStyle=pick(['#2a221c','#1f1915','#3a2e25']);g.fillRect(x+R(0,w),y+R(0,h),R(4,14),R(3,9));}
     g.strokeStyle='rgba(0,0,0,.6)';g.lineWidth=3;g.strokeRect(x,y,w,h);
     g.fillStyle='#24201c';g.fillRect(x+16,y-10,4,28);g.fillStyle='#1d4a8a';g.fillRect(x+6,y-30,24,24);g.fillStyle='#fff';g.font='700 18px sans-serif';g.textAlign='center';g.fillText('U',x+18,y-11);
-    reserved.push({x,y,w,h});darks.push({x,y,w,h,seen:false});
+    reserved.push({x,y,w,h});darks.push({x,y,w,h,seen:false});neons.push({x:x+18,y:y-18,c:'#3a7ad8',s:40});
     for(let k=0;k<4;k++){const rx=x+R(20,w-60),ry=y+R(20,h-40),rw=R(24,44),rh=R(14,24);if(Math.hypot(rx+rw/2-(x+w/2),ry+rh/2-(y+h/2))<60)continue;
       g.fillStyle='rgba(0,0,0,.4)';g.fillRect(rx+3,ry+4,rw,rh);g.fillStyle='#3a2e25';g.fillRect(rx,ry,rw,rh);g.fillStyle='#4a3a2e';g.fillRect(rx,ry,rw,4);walls.push({x:rx,y:ry,w:rw,h:rh});}
     addBrk(x+w/2,y+h/2,'chest',true);return;}}
@@ -175,7 +175,7 @@ function makeLitfass(x,y){const mk=on=>{const c=cnv(30,84),g=c.getContext('2d');
 function makeLamp(lx_,ly,lit){
   const c=cnv(22,70),g=c.getContext('2d');g.fillStyle='#24201c';g.fillRect(4,8,4,62);g.fillRect(2,66,8,4);g.fillRect(4,8,14,3);
   g.fillStyle='#3a342e';g.fillRect(14,9,7,5);g.fillStyle=lit?'#f7d98a':'#1a1612';g.fillRect(15,13,5,2);
-  blds.push({x:lx_-6,y:ly,w:22,h:0,top:70,spr:c,lights:lit?[{x:lx_+11,y:ly-8,r:105}]:[]});walls.push({x:lx_-3,y:ly-3,w:6,h:5});
+  blds.push({x:lx_-6,y:ly,w:22,h:0,top:70,spr:c,lights:lit?[{x:lx_+11,y:ly-8,r:105,fl:Math.random()<.25}]:[]});if(lit)neons.push({x:lx_+11,y:ly-8,c:'#f7d98a',s:30});walls.push({x:lx_-3,y:ly-3,w:6,h:5});
 }
 function decorate(){
   const g=gx,greens=['#3b4a22','#4a5a2a','#2f3b1c','#56662e'];
@@ -199,7 +199,7 @@ function makeLayout(d){const B=BIOME[d.i],ex=B.roads;RX=[920,1480];RY=[920,1480]
 function wpick(o){let t=0;for(const k in o)t+=o[k];let r=Math.random()*t;for(const k in o){r-=o[k];if(r<=0)return k;}return Object.keys(o)[0];}
 function lotCands(){return BLK.filter(b=>!b.center&&['houses','hinterhof','ruins','plattenbau','market','parking','construction','kleingarten'].includes(b.lot)&&b.w>=330&&b.h>=300).sort(()=>Math.random()-.5);}
 function buildWorld(d){
-  D=d;G=cnv(WS,WS);gx=G.getContext('2d');walls=[];blds=[];barrels=[];reserved=[];marks=[];brk=[];spati=null;darks=[];waters=[];const g=gx;makeLayout(d);
+  D=d;G=cnv(WS,WS);gx=G.getContext('2d');walls=[];blds=[];barrels=[];reserved=[];marks=[];brk=[];spati=null;darks=[];waters=[];neons=[];const g=gx;makeLayout(d);
   g.fillStyle=d.ground;g.fillRect(0,0,WS,WS);
   const sp=['rgba(255,230,200,.04)','rgba(0,0,0,.18)','rgba(0,0,0,.1)','rgba(120,80,50,.08)'];
   for(let i=0;i<11000;i++){g.fillStyle=pick(sp);const s=R(1,5);g.fillRect(R(0,WS),R(0,WS),s,s);}
@@ -225,7 +225,9 @@ function buildWorld(d){
   makeSpati();makeDark();makeDark();if(Math.random()<.5)makeDark();
   for(const b of BLK)lotFill(b);
   let ct=0;for(let i=0;i<140&&ct<22;i++){const v=Math.random()<.5,p=pick(v?RX:RY),a=R(40,WS-90),w=v?22:48,h=v?48:22,x=v?p+R(-32,32)-w/2:a,y=v?a:p+R(-32,32)-h/2;
-    if(Math.hypot(x+w/2-SX,y+h/2-SY)<230||inWall(x+w/2,y+h/2,46)||resHit(x,y,w,h))continue;drawCar(x,y,w,h,v);walls.push({x,y,w,h});ct++;}
+    if(Math.hypot(x+w/2-SX,y+h/2-SY)<230||inWall(x+w/2,y+h/2,46)||resHit(x,y,w,h))continue;const k=pick(['car','car','trabi','trabi','van']);if(k==='car')drawCar(x,y,w,h,v);else{const s=k==='trabi'?.8:1.15,w2=v?w:w*s,h2=v?h*s:h;drawVeh(x,y,w2,h2,v,k);}walls.push({x,y,w,h});ct++;}
+  for(let i=0,n=0;i<80&&n<3;i++){const v=Math.random()<.5,p=pick(v?RX:RY);if(!v&&p===1480)continue;const a=R(80,WS-200),w=v?28:110,h=v?110:28,x=v?p+R(-20,20)-w/2:a,y=v?a:p+R(-20,20)-h/2;if(Math.hypot(x+w/2-SX,y+h/2-SY)<260||inWall(x+w/2,y+h/2,70)||resHit(x,y,w,h))continue;drawVeh(x,y,w,h,v,'bus');walls.push({x,y,w,h});n++;}
+  for(let i=0,n=0;i<40&&n<2;i++){const a=R(80,WS-200),x=a,y=1480-15,w=120,h=30;if(Math.abs(x+60-SX)<300||inWall(x+60,y+15,70)||resHit(x,y,w,h))continue;drawVeh(x,y,w,h,false,'tram');walls.push({x,y,w,h});n++;}
   for(const q of [[1100,1180],[1300,1180]]){barrels.push({x:q[0],y:q[1],ph:R(0,6)});walls.push({x:q[0]-9,y:q[1]-9,w:18,h:18});}
   let tr=0;while(barrels.length<26&&tr++<600){const v=Math.random()<.5,p=pick(v?RX:RY),side=pick([-1,1]),a=R(60,WS-60),o=side*R(46,58),x=v?p+o:a,y=v?a:p+o;
     if(inWall(x,y,24)||resHit(x-9,y-9,18,18)||Math.hypot(x-SX,y-SY)<160)continue;barrels.push({x,y,ph:R(0,6)});walls.push({x:x-9,y:y-9,w:18,h:18});}
@@ -269,6 +271,9 @@ function makeB(b,st){
     g.strokeStyle='rgba(0,0,0,.2)';g.lineWidth=1;g.beginPath();g.moveTo(0,b.h/2);g.lineTo(b.w,b.h/2);g.stroke();}
   else if(L_){g.fillStyle='rgba(0,0,0,.2)';g.fillRect(0,b.h/2,b.w,b.h/2);g.strokeStyle='rgba(0,0,0,.25)';for(let x=0;x<b.w;x+=4){g.beginPath();g.moveTo(x,0);g.lineTo(x,b.h);g.stroke();}}
   else{for(let i=0;i<Math.floor(R(1,4));i++){g.fillStyle='#2a1f19';const vx=R(6,b.w-20),vy=R(6,b.h-16);g.fillRect(vx,vy,12,9);g.fillStyle='rgba(255,230,200,.08)';g.fillRect(vx,vy,12,2);}
+  for(let i=0;i<Math.floor(R(0,3));i++){const cx=R(8,b.w-18),cy=R(4,b.h-18);g.fillStyle='rgba(0,0,0,.35)';g.fillRect(cx+3,cy+4,10,12);g.fillStyle=pick(D.walls);g.fillRect(cx,cy,10,12);g.fillStyle='#14100d';g.fillRect(cx+2,cy+2,6,4);}
+  if(Math.random()<.35){const cx=R(14,b.w-14),cy=R(10,b.h-10);g.fillStyle='rgba(0,0,0,.3)';g.beginPath();g.ellipse(cx+3,cy+3,7,4,0,0,7);g.fill();g.fillStyle='#b8b0a0';g.beginPath();g.ellipse(cx,cy,7,4,.4,0,7);g.fill();g.fillStyle='#7a766c';g.fillRect(cx-1,cy-1,2,2);}
+  if(Math.random()<.2&&b.w>90){const px=R(8,b.w-60),py=R(6,Math.max(7,b.h-30));for(let r=0;r<2;r++)for(let k=0;k<4;k++){g.fillStyle='#1d2a3a';g.fillRect(px+k*12,py+r*11,11,10);g.fillStyle='rgba(125,170,220,.25)';g.fillRect(px+k*12,py+r*11,11,2);}}
   if(Math.random()<.4){for(let i=0;i<6;i++){g.fillStyle=pick(['#3b4a22','#4a5a2a','#2f3b1c']);g.beginPath();g.arc(R(6,b.w-6),R(6,b.h-6),R(3,7),0,7);g.fill();}}
   if(Math.random()<.65){const cx=R(b.w*.25,b.w*.75),cy=R(b.h*.3,b.h*.7),rr_=Math.min(b.w,b.h)*R(.18,.3);g.fillStyle='#0d0806';g.beginPath();
     for(let a=0;a<6.28;a+=.5){const q=rr_*R(.6,1.15);g.lineTo(cx+Math.cos(a)*q,cy+Math.sin(a)*q*.8);}g.closePath();g.fill();
@@ -279,6 +284,18 @@ function makeB(b,st){
   gx.fillStyle='rgba(0,0,0,.32)';gx.fillRect(b.x+b.w,b.y-b.H+14,Math.min(14,b.H*.3),b.h+b.H-14);gx.fillRect(b.x+10,b.y+b.h,b.w,9);
   for(let i=0;i<(L_?2:10);i++){gx.fillStyle=pick(['#4a3a2e','#3d3027','#5a4636']);const s=R(3,9);gx.fillRect(b.x+R(-12,b.w+6),b.y+b.h+R(0,14),s,s*.7);}
 }
+function drawVeh(x,y,w,h,v,k){const g=gx,L=v?h:w,T=v?w:h;g.save();g.translate(x+w/2,y+h/2);if(!v)g.rotate(-Math.PI/2);
+  g.fillStyle='rgba(0,0,0,.4)';g.fillRect(-T/2+4,-L/2+5,T,L);
+  if(k==='bus'||k==='tram'){const c=k==='bus'?'#e8b820':'#e0c040';g.fillStyle='#0c0907';for(let i=-L/2+12;i<L/2-8;i+=(k==='tram'?30:L-28))g.fillRect(-T/2-2,i,T+4,10);g.fillStyle=c;g.fillRect(-T/2,-L/2,T,L);
+    g.fillStyle='#1a1e22';for(let i=-L/2+8;i<L/2-10;i+=12){g.fillRect(-T/2+2,i,3,8);g.fillRect(T/2-5,i,3,8);}g.fillStyle='rgba(0,0,0,.15)';g.fillRect(-T/2+6,-L/2+6,T-12,L-12);
+    g.fillStyle='#2a2522';g.fillRect(-T/2+4,-L/2+2,T-8,5);if(k==='tram'){g.strokeStyle='#3a342e';g.lineWidth=1.5;g.beginPath();g.moveTo(0,-14);g.lineTo(0,-28);g.moveTo(-6,-28);g.lineTo(6,-28);g.stroke();}
+    else{g.fillStyle='#c23a2e';g.fillRect(-T/2,L/2-14,T,3);}}
+  else{const c=k==='trabi'?pick(['#8ab0a8','#c8b890','#a87a6a','#7a8aa8','#d6cfc0']):k==='van'?pick(['#d6cfc0','#5a7a8a','#8a4a32']):pick(['#6b3a24','#4a4038','#5c4a2e','#3d3a36','#5a2e22']);
+    g.fillStyle='#0c0907';g.fillRect(-T/2-2,-L/2+6,T+4,8);g.fillRect(-T/2-2,L/2-14,T+4,8);g.fillStyle=c;if(k==='trabi')rr(g,-T/2,-L/2,T,L,6);else g.fillRect(-T/2,-L/2,T,L);
+    g.fillStyle='rgba(0,0,0,.3)';g.fillRect(-T/2+3,-L/2+(k==='van'?8:12),T-6,L-(k==='van'?16:24));g.fillStyle='#1a1e22';g.fillRect(-T/2+4,-L/2+(k==='van'?3:8),T-8,5);g.fillRect(-T/2+4,L/2-12,T-8,4);
+    if(k==='van'){g.fillStyle='rgba(255,255,255,.08)';g.fillRect(-T/2+3,-L/2+16,T-6,2);}}
+  const gr=g.createRadialGradient(R(-T/4,T/4),R(-L/4,L/4),0,0,0,L*.6);gr.addColorStop(0,'rgba(5,3,2,.65)');gr.addColorStop(1,'rgba(5,3,2,0)');g.fillStyle=gr;g.fillRect(-T/2,-L/2,T,L);
+  for(let i=0;i<L/4;i++){g.fillStyle='rgba(186,100,40,.35)';g.fillRect(R(-T/2,T/2-2),R(-L/2,L/2-2),2,2);}g.restore();}
 function drawCar(x,y,w,h,v){const g=gx;g.fillStyle='rgba(0,0,0,.4)';g.fillRect(x+4,y+5,w,h);g.fillStyle='#0c0907';
   if(v){g.fillRect(x-2,y+6,4,9);g.fillRect(x+w-2,y+6,4,9);g.fillRect(x-2,y+h-15,4,9);g.fillRect(x+w-2,y+h-15,4,9);}else{g.fillRect(x+6,y-2,9,4);g.fillRect(x+w-15,y-2,9,4);g.fillRect(x+6,y+h-2,9,4);g.fillRect(x+w-15,y+h-2,9,4);}
   g.fillStyle=pick(['#6b3a24','#4a4038','#5c4a2e','#3d3a36','#5a2e22']);g.fillRect(x,y,w,h);

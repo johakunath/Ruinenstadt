@@ -54,11 +54,12 @@ function render(t){
   const lit=(x,y,r)=>{x-=camX;y-=camY;if(x<-r||x>VW+r||y<-r||y>VH+r)return;lx.drawImage(LSPR,x-r,y-r,r*2,r*2);};
   lit(P.x,P.y-10,(P.dark?(P.torch?270:95):250)+Math.sin(t*.008)*8+Math.sin(t*.021)*4);
   for(const b of barrels)lit(b.x,b.y-10,150+Math.sin(t*.012+b.ph)*12);
-  for(const b of blds)for(const l of b.lights){if(l.inner){if(b.inside)lit(l.x,l.y,150);continue;}if(l.r||!S.eco)lit(l.x,l.y,l.r||34);}
+  for(const b of blds)for(const l of b.lights){if(l.inner){if(b.inside)lit(l.x,l.y,150);continue;}if(l.r||!S.eco)lit(l.x,l.y,(l.r||34)*(l.fl&&Math.sin(t*.031+l.x)*Math.sin(t*.017+l.y)>.55?.35:1));}
   for(const p of eproj)lit(p.x,p.y,46);for(const b of bolts)lit(b.x1,b.y1,60);if(!S.eco)for(const h of hazards)lit(h.x,h.y,50);for(const d of drops)if(d.item&&d.item.r>=2)lit(d.x,d.y,60);for(const f of fields)lit(f.x,f.y,f.r+50);
   if(crate)lit(crate.x,crate.y,110);if(trove)lit(trove.x,trove.y,110);if(captive)lit(captive.x,captive.y,90);if(npc)lit(npc.x,npc.y-10,110);if(zone)lit(zone.x,zone.y,zone.r+50);for(const tl of teles)lit(tl.x,tl.y,tl.r*1.3);for(const s of shocks)lit(s.x,s.y,s.r+40);
   ctx.drawImage(lc,0,0,VW,VH);if(flashT>0){ctx.fillStyle=`rgba(255,90,40,${flashT*.6})`;ctx.fillRect(0,0,VW,VH);}if(goldT>0){ctx.fillStyle=`rgba(255,200,90,${goldT*.45})`;ctx.fillRect(0,0,VW,VH);}if(state==='play'&&P.hp<ST.maxHp*.3){ctx.globalAlpha=.5+.3*Math.sin(t*.008);ctx.drawImage(VIG,0,0,VW,VH);ctx.globalAlpha=1;}
   ctx.globalCompositeOperation='lighter';
+  if(!S.eco)for(const n of neons){const x=n.x-camX,y=n.y-camY;if(x<-n.s||x>VW+n.s||y<-n.s||y>VH+n.s)continue;ctx.globalAlpha=.55;ctx.drawImage(glow(n.c),x-n.s,y-n.s*.7,n.s*2,n.s*1.4);}ctx.globalAlpha=1;
   if(P.torch)ctx.drawImage(FIRE,P.x-camX-110,P.y-40-camY-110,220,220);
   for(const b of barrels){const x=b.x-camX,y=b.y-10-camY;if(x<-130||x>VW+130||y<-130||y>VH+130)continue;ctx.drawImage(FIRE,x-120,y-120,240,240);}
   ctx.globalCompositeOperation='source-over';
