@@ -11,7 +11,7 @@ function startWave(){
   else banner('Welle '+w);sfx('horn');
 }
 function spawnOne(){const w=run.wave,q=Math.random();let type='ghoul';if(w>=D.bw&&q<D.brute)type='brute';else if(w>=D.sw&&q<D.brute+D.spit)type='spitter';else if(w>=4&&q<D.brute+D.spit+RZ[D.i])type='raser';
-  let x,y,t=0;do{const a=R(0,6.28),d=R(380,560);x=clamp(P.x+Math.cos(a)*d,30,WS-30);y=clamp(P.y+Math.sin(a)*d,30,WS-30);}while((inWall(x,y,20)||(spati&&x>spati.x-20&&x<spati.x+spati.w+20&&y>spati.y-20&&y<spati.y+spati.h+20))&&t++<40);const e=mkEnemy(type,x,y);
+  let x,y,t=0;do{const a=R(0,6.28),d0=Math.max(380,Math.hypot(VW,VH)/2+30),d=R(d0,d0+180);x=clamp(P.x+Math.cos(a)*d,30,WS-30);y=clamp(P.y+Math.sin(a)*d,30,WS-30);}while((inWall(x,y,20)||(spati&&x>spati.x-20&&x<spati.x+spati.w+20&&y>spati.y-20&&y<spati.y+spati.h+20))&&t++<40);const e=mkEnemy(type,x,y);
   if(w>=2&&Math.random()<Math.min(.25,.022*w+.03*D.i)){tip('elite','Elite-Gegner tragen einen farbigen Ring und lassen immer gute Beute fallen.');const m=pick(['schnell','brennend','spaltend','gepanzert']);e.elite=m;e.hp*=2.6;e.max=e.hp;e.xp*=3;e.sc*=4;e.r=Math.round(e.r*1.15);if(m==='schnell')e.spd*=1.55;}
   enemies.push(e);}
 function nearest(range){let b=null,bd=range;for(const e of enemies){const d=Math.hypot(e.x-P.x,e.y-P.y)-e.r;if(d<bd){bd=d;b=e;}}return b;}

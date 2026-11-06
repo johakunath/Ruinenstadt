@@ -2,23 +2,34 @@
 let invTab='bag',invFrom='menu',sel=null,invMsg='',allArm=false;
 function cloudLine(){const m={off:'Spielstand auf diesem Gerät',sync:'Cloud wird geladen',on:'Cloud-Speicher aktiv · auf allen Geräten',slow:'Cloud gerade nicht erreichbar · speichert lokal',err:'Cloud nicht verfügbar · speichert lokal'};
   return`<div class="cloud${cloud.state==='on'?' on':''}">${m[cloud.state]}</div>`;}
-function renderMenu(){
-  $('menubox').innerHTML=`<h1>Ruinenstadt</h1><canvas id="campc" width="800" height="300" style="width:100%;height:auto;border:1px solid var(--edge);border-radius:4px;display:block" aria-label="Dein Lager"></canvas><p class="lead">Berlin, nach dem Fall. Befreie Bezirk um Bezirk, plündere, werde stärker.</p>
-  <div class="scrap">Schrott <b>${S.scrap}</b></div>
-  <div class="btns">${DIST.map((d,i)=>{const lock=i>=S.unlocked;return`<button class="dist${i===S.dist&&!lock?' on':''}${lock?' lock':''}" data-d="${i}"${lock?' aria-disabled="true"':''}><span class="dn">${d.n}</span><span class="dm">${lock?'Gesperrt':(S.best[i]>=10?'Befreit':S.best[i]?'Rekord: Welle '+S.best[i]+'/10':'Unerforscht')}</span></button>`;}).join('')}</div>
-  <button class="btn main" id="go">Losziehen</button>
-  <div class="two"><button class="btn" data-m="inv">Ausrüstung</button><button class="btn" data-m="shop">Werkstatt</button></div>
-  <button class="btn" data-m="jobs">Aufträge${S.jobs.filter(j=>j.p>=j.t).length?` · <span class="ok">${S.jobs.filter(j=>j.p>=j.t).length} fertig</span>`:''}</button>
-  ${S.tmax>0?`<div class="row"><button class="btn sm" data-m="thm" aria-label="Bedrohung senken">−</button><div class="scrap">Bedrohung <b>${S.threat}</b> von ${S.tmax}<br><span style="font-size:14px">${S.threat?`Gegner +${S.threat*25}% Leben · Beute +${S.threat*3} Stufen`:'Grundbedrohung'}</span></div><button class="btn sm" data-m="thp" aria-label="Bedrohung erhöhen">+</button></div>`:'<p class="hint">Befreie einen Bezirk, um höhere Bedrohung mit besserer Beute freizuschalten.</p>'}
-  <button class="btn sm" data-m="diff">Schwierigkeit: ${DF().n}</button>
-  <div class="two"><button class="btn sm" data-m="mute">${S.mute?'Ton aus':'Ton an'}</button><button class="btn sm" data-m="eco">${S.eco?'Akkusparen an':'Akkusparen aus'}</button></div>
-  <button class="btn sm" data-m="music">${S.music?'Musik an':'Musik aus'}</button>
-  ${cloudLine()}
-  <div class="two"><button class="btn sm" data-m="exp">Spielstand kopieren</button><button class="btn sm" data-m="imp">Spielstand laden</button></div>
-  <p class="hint">${S.rec.kills.toLocaleString('de-DE')} Gegner besiegt · ${S.rec.legs} Legendäre · ${S.rec.runs} Expeditionen · ${S.rec.wins} Befreiungen · ${Math.round(S.rec.time/60)} Minuten gespielt</p>
-  <p class="hint">Baue dein Lager in der Werkstatt aus.</p>
-  <p class="hint">Links ziehen: laufen · Hieb halten: kämpfen<br>Sprint: ausweichen · Kraft: Spezialangriff deiner Waffe<br>Kisten und Mülltonnen lassen sich zerschlagen<br>Verband und Molotow stellst du in der Werkstatt her<br>Dunkelzonen am U-Bahn-Schild: Fackel nur mit einhändiger Waffe<br>Tastatur: WASD, Leertaste, Shift, E, Q, R, P</p>
-  <p class="hint">Version ${VERSION}</p>`;
+// district map positions (viewBox 400x250) and flavour
+const DMAP=[{x:330,y:186,d:'Altstadt am Wasser, Kopfsteinpflaster, Wälder im Osten'},{x:236,y:138,d:'Dichte Altbauten, Hinterhöfe, die Spree im Norden'},{x:196,y:96,d:'Plattenbau, Plätze und der Fernsehturm'},{x:178,y:182,d:'Das offene Flugfeld, Hangars und Kleingärten'},{x:262,y:192,d:'Kaufhaus am Hermannplatz, Märkte, enge Kieze'}];
+let menuOpt=false;
+function mapSVG(){const N=DIST.length,pts=DIST.map((d,i)=>DMAP[i]||{x:60+i*40,y:60});
+  let h=`<svg class="bmap" viewBox="0 0 400 250" role="group" aria-label="Karte von Berlin"><path d="M40 120 C50 60 120 30 190 34 C260 30 330 50 360 100 C385 140 370 210 320 228 C250 246 140 240 90 214 C50 196 34 160 40 120Z" fill="#1c1511" stroke="#4a3a2e" stroke-width="2"/>
+  <path d="M30 96 C90 110 140 92 186 120 C220 136 250 128 290 150 C320 166 350 170 390 196" fill="none" stroke="#1d3a44" stroke-width="7" stroke-linecap="round" opacity=".9"/><path d="M30 96 C90 110 140 92 186 120 C220 136 250 128 290 150 C320 166 350 170 390 196" fill="none" stroke="#2c5866" stroke-width="2" opacity=".6"/>
+  <text x="70" y="112" class="mlbl">Spree</text>`;
+  for(let i=1;i<N;i++){const a=pts[i-1],b=pts[i];h+=`<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="${i<S.unlocked?'#993C1D':'#3a2e25'}" stroke-width="2" stroke-dasharray="${i<S.unlocked?'':'4 4'}"/>`;}
+  DIST.forEach((d,i)=>{const p=pts[i],lock=i>=S.unlocked,on=i===S.dist,won=S.best[i]>=10;
+    h+=`<g class="node${lock?' lock':''}" data-d="${i}" role="button" aria-label="${d.n}${lock?' gesperrt':''}" tabindex="0">${on?`<circle cx="${p.x}" cy="${p.y}" r="17" fill="none" stroke="#EF9F27" stroke-width="2"><animate attributeName="r" values="14;18;14" dur="2s" repeatCount="indefinite"/></circle>`:''}
+    <circle cx="${p.x}" cy="${p.y}" r="10" fill="${lock?'#2a211b':won?'#3B6D11':'#993C1D'}" stroke="${on?'#EF9F27':lock?'#4a3a2e':'#ead9c0'}" stroke-width="${on?3:1.5}"/>${won?`<path d="M${p.x-4} ${p.y}l3 3 5-6" stroke="#ead9c0" stroke-width="2" fill="none"/>`:lock?`<rect x="${p.x-3}" y="${p.y-1}" width="6" height="5" fill="#a8957d"/>`:''}
+    <text x="${p.x}" y="${p.y+(p.y>200?-16:24)}" class="mname${lock?' lock':''}">${d.n}</text><circle cx="${p.x}" cy="${p.y}" r="22" fill="transparent"/></g>`;});
+  return h+'</svg>';}
+function distCard(i){const d=DIST[i],m=DMAP[i]||{},b=S.best[i],st=b>=10?'<span class="ok">Befreit</span>':b?`Rekord: Welle ${b}/10`:'Unerforscht';const w=Object.entries(RES[BK[i]]||{}).filter(q=>q[1]>1.2).map(q=>`<span style="color:${ELC[q[0]]}">${ELN[q[0]]}</span>`).join(', ');
+  return`<div class="dcard"><div class="dtop"><span class="dn">${d.n}</span><span class="dm">${st}</span></div><div class="sub">${m.d||''}</div>
+  <div class="dgrid"><span>Gegnerstufe</span><b>${d.lvl+1+S.threat*3}+</b><span>Endgegner</span><b>${BN[i]||'?'}</b><span>Schwäche</span><b>${w||'keine'}</b></div></div>`;}
+function renderMenu(){refresh();
+  const jd=S.jobs.filter(j=>j.p>=j.t).length,lock=S.dist>=S.unlocked;
+  const opt=menuOpt?`<div class="opts"><button class="btn sm" data-m="diff">Schwierigkeit: ${DF().n}</button><button class="btn sm" data-m="mute">${S.mute?'Ton aus':'Ton an'}</button><button class="btn sm" data-m="music">${S.music?'Musik an':'Musik aus'}</button>
+    <button class="btn sm" data-m="eco">${S.eco?'Akkusparen an':'Akkusparen aus'}</button><button class="btn sm" data-m="fs">${S.fs===0?'Vollbild aus':'Vollbild an'}</button><button class="btn sm" data-m="exp">Spielstand kopieren</button><button class="btn sm" data-m="imp">Spielstand laden</button></div>${cloudLine()}
+    <p class="hint">Links ziehen: laufen · Hieb halten: kämpfen · Sprint: ausweichen · Kraft: Spezialangriff<br>Tastatur: WASD, Leertaste, Shift, E, Q, R, P · Version ${VERSION}</p>`:'';
+  $('menubox').innerHTML=`<div class="mhead"><h1>Ruinenstadt</h1><div class="mres"><span>Schrott <b>${S.scrap}</b></span><span>Kampfkraft <b>${power(ST)}</b></span><button class="btn sm" data-m="opt" aria-expanded="${menuOpt}">${menuOpt?'Schließen':'Optionen'}</button></div></div>${opt}
+  <div class="mgrid"><div class="mleft"><canvas id="campc" width="800" height="300" aria-label="Dein Lager"></canvas>${mapSVG()}</div>
+  <div class="mright">${distCard(S.dist)}
+  ${S.tmax>0?`<div class="row thr"><button class="btn sm" data-m="thm" aria-label="Bedrohung senken">−</button><div class="scrap">Bedrohung <b>${S.threat}</b> von ${S.tmax}<br><span style="font-size:14px">${S.threat?`Gegner +${S.threat*25}% Leben · Beute +${S.threat*3} Stufen`:'Grundbedrohung'}</span></div><button class="btn sm" data-m="thp" aria-label="Bedrohung erhöhen">+</button></div>`:'<p class="hint">Befreie einen Bezirk, um höhere Bedrohung mit besserer Beute freizuschalten.</p>'}
+  <button class="btn main go" id="go"${lock?' disabled':''}>Losziehen</button>
+  <div class="nav3"><button class="btn" data-m="inv">Ausrüstung${S.bag.some(it=>better(it))?' <span class="ok">▲</span>':''}</button><button class="btn" data-m="shop">Werkstatt</button><button class="btn" data-m="jobs">Aufträge${jd?` <span class="ok">${jd}</span>`:''}</button></div>
+  <p class="hint">${S.rec.kills.toLocaleString('de-DE')} Gegner · ${S.rec.legs} Legendäre · ${S.rec.runs} Expeditionen · ${S.rec.wins} Befreiungen · ${Math.round(S.rec.time/60)} Min.</p></div></div>`;
   drawCamp();
 }
 function drawCamp(){const c=$('campc');if(!c)return;const g=c.getContext('2d'),W=800,H=300,K=S.camp;g.save();
@@ -41,12 +52,22 @@ function drawCamp(){const c=$('campc');if(!c)return;const g=c.getContext('2d'),W
   fig(470,250,'#26304a','#f2c230');fig(330,245,LOOK[S.eq.a?baseOf(S.eq.a):'none'].j,null);
   g.font='600 22px sans-serif';g.fillStyle='rgba(234,217,192,.65)';g.textAlign='left';g.fillText('Ilse',446,282);g.textAlign='right';g.fillText(CAMP.filter(c=>K[c.k]).length+'/'+CAMP.length+' gebaut',788,288);
   g.restore();}
-$('menubox').addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return;initAudio();sfx('ui');
+$('menubox').addEventListener('click',e=>{const nd=e.target.closest('.node');if(nd){initAudio();const i=+nd.dataset.d;if(i<S.unlocked){sfx('ui');S.dist=i;save();buildWorld(DIST[i]);renderMenu();}return;}const t=e.target.closest('button');if(!t)return;initAudio();sfx('ui');
   if(t.dataset.d!==undefined){const i=+t.dataset.d;if(i<S.unlocked){S.dist=i;save();buildWorld(DIST[i]);renderMenu();}return;}
   if(t.id==='go')return startRun(S.dist);const m=t.dataset.m;if(m==='inv'||m==='shop'||m==='jobs'){invTab=m==='inv'?'bag':m;openInv('menu');}
-  if(m==='mute'){setMute(!S.mute);renderMenu();}if(m==='eco'){setEco(!S.eco);renderMenu();}if(m==='thm'){S.threat=Math.max(0,S.threat-1);save();renderMenu();}if(m==='thp'){S.threat=Math.min(S.tmax,S.threat+1);save();renderMenu();}if(m==='music'){S.music=!S.music;save();if(S.music)startMusic();else stopMusic();renderMenu();}if(m==='exp')exportSave();if(m==='imp')importSave();if(m==='diff'){S.diff=((S.diff==null?1:S.diff)+1)%3;save();renderMenu();}});
+  if(m==='mute'){setMute(!S.mute);renderMenu();}if(m==='eco'){setEco(!S.eco);renderMenu();}if(m==='thm'){S.threat=Math.max(0,S.threat-1);save();renderMenu();}if(m==='thp'){S.threat=Math.min(S.tmax,S.threat+1);save();renderMenu();}if(m==='music'){S.music=!S.music;save();if(S.music)startMusic();else stopMusic();renderMenu();}if(m==='opt'){menuOpt=!menuOpt;renderMenu();}if(m==='fs'){S.fs=S.fs===0?1:0;save();if(S.fs===0&&document.fullscreenElement)document.exitFullscreen().catch(()=>{});renderMenu();}if(m==='exp')exportSave();if(m==='imp')importSave();if(m==='diff'){S.diff=((S.diff==null?1:S.diff)+1)%3;save();renderMenu();}});
 function openInv(from){invFrom=from;sel=null;invMsg='';allArm=false;if(run)run.quitArm=false;renderInv();$('inv').hidden=false;$('menu').hidden=true;}
-function slotBtn(k,lbl){const it=S.eq[k],s=sel&&sel.src==='eq'&&sel.slot===k;return`<button class="slot${s?' sel':''}" data-eq="${k}" aria-label="${lbl}"><span class="ic${it?'':' empty'}" style="${it?'border-color:'+rc(it):''}">${it?icon(it,44):''}</span>${lbl}</button>`;}
+function slotBtn(k,lbl){const it=S.eq[k],s=sel&&sel.src==='eq'&&sel.slot===k;return`<button class="slot s${k}${s?' sel':''}" data-eq="${k}" aria-label="${lbl}"><span class="ic${it?'':' empty'}" style="${it?'border-color:'+rc(it)+';box-shadow:inset 0 0 18px '+rc(it)+'44':''}">${it?icon(it,44):''}</span>${lbl}</button>`;}
+// paper doll: draws the player with current gear into the inventory canvas by borrowing the art functions
+function drawDoll(){const c=$('dollc');if(!c)return;const g=c.getContext('2d'),W=c.width,H=c.height,o=ctx,keep={};for(const k of ['x','y','face','mvx','mvy','swingT','spin','dashT','inv','torch','walk'])keep[k]=P[k];
+  g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,W,H);const gr=g.createRadialGradient(W/2,H*.62,0,W/2,H*.62,W*.5);gr.addColorStop(0,rc(S.eq.w)+'33');gr.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=gr;g.fillRect(0,0,W,H);
+  g.fillStyle='rgba(0,0,0,.35)';g.beginPath();g.ellipse(W/2,H*.83,W*.22,H*.05,0,0,7);g.fill();
+  ctx=g;Object.assign(P,{x:0,y:0,face:.25,mvx:0,mvy:0,swingT:0,spin:0,dashT:0,inv:0,torch:false});
+  try{g.setTransform(W/90,0,0,W/90,W/2,H*.8);drawPlayer(performance.now());}catch(e){}ctx=o;Object.assign(P,keep);}
+function statTable(){const s=ST;let h='';for(const[n,f,d,u]of SROWS){const v=f(s);if(!v&&n!=='Kampfkraft')continue;h+=`<span>${n}</span><b>${v.toFixed(d)}${u||''}</b>`;}
+  if(s.els.length)h+=`<span>Elemente</span><b>${s.els.map(e=>`<i style="color:${ELC[e]};font-style:normal">${ELN[e]}</i>`).join(', ')}</b>`;return`<div class="stab">${h}</div>`;}
+const KODEX=[['Ghul','Schnell und zahlreich. Fürchtet Feuer.','fire'],['Brocken','Zäh und hart. Verträgt Feuer, aber keine Säure.','acid'],['Speier','Spuckt aus der Distanz. Immun gegen Säure, anfällig für Strom.','shock'],
+  ['Raser','Kündigt seinen Sturmlauf mit einer roten Linie an. Seitlich ausweichen.',''],['Schrottkoloss','Zwischenboss in Welle 5. Leitet Strom besonders gut.','shock']];
 function detail(){
   if(!sel)return`<div class="card"><div class="sub">Tippe ein Teil an, um es mit deiner Ausrüstung zu vergleichen.</div></div>`;
   const it=sel.src==='eq'?S.eq[sel.slot]:(sel.src==='stash'?S.stash:S.bag)[sel.i];if(!it)return`<div class="card"><div class="sub">Dieser Platz ist leer. Lege einen Talisman oder eine Rüstung aus dem Rucksack an.</div></div>`;
@@ -56,35 +77,39 @@ function detail(){
   else if(it.slot!=='w')b=`<div class="two"><button class="btn sm" data-a="uneq">Ablegen</button><span></span></div>`;
   b+=`<div class="two">${sel.src!=='eq'?`<button class="btn sm" data-a="lock">${it.lock?'Entsperren':'Sperren'}</button>`:'<span></span>'}${camp&&it.r>0?`<button class="btn sm" data-a="forge">Umschmieden · ${rfCost(it)}</button>`:'<span></span>'}</div>`;
   const sk=it.slot==='w'?`<div class="sub">Kraft: ${KIND[it.kind].sk}</div>`:'';
-  return`<div class="card"><div class="nm" style="color:${rc(it)}">${it.name}</div><div class="sub">${it.set?'Set-Teil':R_.n} · ${it.slot==='w'?KIND[it.kind].n:it.slot==='a'?'Rüstung':'Talisman'} · Stufe ${it.ilvl}</div>
+  return`<div class="card"><div class="chead"><span class="dic" style="border-color:${rc(it)};background:radial-gradient(circle,${rc(it)}33,#120d0a 70%)">${icon(it,44)}</span><div><div class="nm" style="color:${rc(it)}">${it.name}</div><div class="sub">${it.set?'Set-Teil':R_.n} · ${it.slot==='w'?KIND[it.kind].n:it.slot==='a'?'Rüstung':'Talisman'} · Stufe ${it.ilvl}</div></div></div>
     <div class="st">${statLine(it)}</div>${afxLines(it)}${sk}${sel.src!=='eq'?`<div class="lbl" style="text-align:left;margin-top:4px">Wenn angelegt</div>${cmpBlock(it)}`:'<div class="sub">Angelegt</div>'}${b}</div>`;}
 const notUp=it=>better(it)!==true&&it.r<3&&!it.lock&&!it.set;
 function renderInv(){
   const perkList=run&&invFrom==='run'?Object.keys(run.perks).map(k=>PERKS.find(p=>p.k===k).n+(run.perks[k]>1?' '+run.perks[k]:'')).join(' · '):'';
   if(invFrom==='run'&&invTab==='stash')invTab='bag';refresh();
   const tb=(k,n)=>`<button class="tab${invTab===k?' on':''}" data-t="${k}">${n}</button>`;
-  const head=`<div class="tabs">${tb('bag','Rucksack')}${invFrom!=='run'?tb('stash','Lager'):''}${tb('jobs','Aufträge')}${tb('shop','Werkstatt')}</div>
-    <div class="row"><div class="scrap" style="text-align:left">Schrott <b>${S.scrap}</b> · Kampfkraft <b>${power(ST)}</b></div><button class="btn sm main" data-a="close">${invFrom==='run'?'Weiter':'Zurück'}</button></div>
-    <div class="scrap" style="font-size:16px">${invTab==='stash'?`Lager ${S.stash.length}/${stashMax()}`:`Rucksack ${S.bag.length}/${BAG}`}${invFrom==='run'?` · ${DIST[run.d].n} Welle ${run.wave}/10`:''}</div>${perkList?`<div class="perks">${perkList}</div>`:''}`;
+  const head=`<div class="ihead"><div class="tabs">${tb('bag','Ausrüstung')}${invFrom!=='run'?tb('stash','Lager'):''}${tb('jobs','Aufträge')}${tb('shop','Werkstatt')}${tb('kodex','Kodex')}</div>
+    <div class="ires"><span>Schrott <b>${S.scrap}</b></span><span>Kampfkraft <b>${power(ST)}</b></span>${invFrom==='run'?`<span>${DIST[run.d].n} · Welle ${run.wave}/10</span>`:''}<button class="btn sm main" data-a="close">${invFrom==='run'?'Weiter':'Zurück'}</button></div></div>${perkList?`<div class="perks">Segen: ${perkList}</div>`:''}`;
   let body='';
   if(invTab==='bag'||invTab==='stash'){const LST=invTab==='stash'?S.stash:S.bag,N=invTab==='stash'?stashMax():BAG,src=invTab==='stash'?'stash':'bag';
     let cells='';for(let i=0;i<N;i++){const it=LST[i],s=sel&&sel.src===src&&sel.i===i;
-      cells+=it?`<button class="cell${s?' sel':''}" data-b="${i}" style="border-color:${rc(it)}" aria-label="${it.name}">${icon(it,32)}${it.lock?LOCK:''}${better(it)?'<span class="up">▲</span>':''}${it.el?`<span class="el" style="background:${ELC[it.el]}"></span>`:''}</button>`:`<div class="cell" aria-hidden="true"></div>`;}
+      cells+=it?`<button class="cell${s?' sel':''}" data-b="${i}" style="border-color:${rc(it)};background:radial-gradient(circle,${rc(it)}22,#120d0a 70%)" aria-label="${it.name}">${icon(it,36)}${it.lock?LOCK:''}${better(it)?'<span class="up">▲</span>':''}${it.el?`<span class="el" style="background:${ELC[it.el]}"></span>`:''}</button>`:`<div class="cell" aria-hidden="true"></div>`;}
     const sum=f=>LST.filter(f).reduce((a,i)=>a+scrapVal(i),0),chips=[];
     ['Gewöhnliche','Magische','Seltene'].forEach((n,r)=>{const v=sum(i=>i.r===r&&!i.lock&&!i.set);if(v)chips.push(`<button class="chip" data-sr="${r}" style="color:${RAR[r].c}">${n} +${v}</button>`);});
     const va=sum(notUp);if(va)chips.push(`<button class="chip${allArm?' warn':''}" data-a="all">${allArm?'Sicher? Tippe erneut':'Alles ohne ▲ +'+va}</button>`);
-    body=`<div class="eq">${slotBtn('w','Waffe')}${slotBtn('a','Rüstung')}${slotBtn('t','Talisman')}</div>${(()=>{const mk=S.eq.w.kind,l=mLvl(mk),nx=mNext(mk);return`<p class="hint">${MAST_N[mk]}-Meisterschaft Stufe ${l}${nx?` · ${S.mast[mk]||0}/${nx} EP`:' · maximal'} · +${4*l}% Schaden${l>=5?' · schnellere Kraft':''}</p>`;})()}${detail()}<div class="grid">${cells}</div>
-      ${chips.length?`<div class="lbl">Verschrotten</div><div class="chips">${chips.join('')}</div><p class="hint">„Alles ohne ▲“ behält Verbesserungen, Legendäres, Set-Teile und Gesperrtes. ▲ heißt: mehr Kampfkraft.</p>`:''}
-      <p class="hint">Gegnerkunde: Ghule fürchten <span style="color:${ELC.fire}">Feuer</span>. Brocken vertragen Feuer, aber keine <span style="color:${ELC.acid}">Säure</span>. Speier sind immun gegen Säure und anfällig für <span style="color:${ELC.shock}">Strom</span>. Der Schrottkoloss leitet Strom. Jeder Bezirk hat seinen eigenen Endgegner mit eigener Schwäche.</p>`;}
-  else if(invTab==='jobs')body=`<p class="hint" style="text-align:left">Ilse von der Kiezwache hat Arbeit für dich. Fortschritt zählt in jeder Expedition, egal in welchem Bezirk.</p>`+S.jobs.map((j,i)=>{const J=JOBT.find(x=>x.k===j.k),done=j.p>=j.t;
-      return`<div class="upg"><div><div class="un">${J.n(j.t)}</div><div class="ud">${Math.min(j.p,j.t)} / ${j.t} · ${j.sc} Schrott${j.item?' + seltenes Teil':''}</div><div class="pbar"><i style="width:${Math.round(100*Math.min(1,j.p/j.t))}%"></i></div></div>${done?`<button class="btn sm main" data-j="${i}">Abholen</button>`:`<button class="btn sm" data-jr="${i}">Tauschen · 10</button>`}</div>`;}).join('')+`<div class="lbl">Erfolge ${ACH.filter(a=>S.ach[a.k]).length} von ${ACH.length}</div>`+ACH.map(a=>`<div class="upg"><div><div class="un" style="${S.ach[a.k]?'color:var(--good)':''}">${a.n}</div><div class="ud">${a.d} · ${a.r} Schrott</div></div><span class="ud${S.ach[a.k]?' ok':''}">${S.ach[a.k]?'Erreicht':'Offen'}</span></div>`).join('');
-  else body=UPG.map(u=>{const l=S.upg[u.k],mx=l>=u.max;return`<div class="upg"><div><div class="un">${u.n}</div><div class="ud">${u.d(l)}${mx?'':' → '+u.d(l+1)}</div>
+    const mk=S.eq.w.kind,ml=mLvl(mk),nx=mNext(mk);
+    body=`<div class="inv3"><section class="ichar"><div class="doll"><canvas id="dollc" width="360" height="360" aria-hidden="true"></canvas>${slotBtn('w','Waffe')}${slotBtn('a','Rüstung')}${slotBtn('t','Talisman')}</div>
+      <div class="mast"><span>${MAST_N[mk]}-Meisterschaft ${ml}</span><div class="pbar"><i style="width:${nx?Math.round(100*(S.mast[mk]||0)/nx):100}%"></i></div><span class="sub">${nx?`${S.mast[mk]||0}/${nx} EP`:'maximal'} · +${4*ml}% Schaden${ml>=5?' · schnellere Kraft':''}</span></div>${statTable()}</section>
+      <section class="ibag"><div class="lbl">${invTab==='stash'?`Lager ${S.stash.length}/${stashMax()}`:`Rucksack ${S.bag.length}/${BAG}`}</div><div class="grid">${cells}</div>
+      ${chips.length?`<div class="lbl">Verschrotten</div><div class="chips">${chips.join('')}</div><p class="hint">„Alles ohne ▲“ behält Verbesserungen, Legendäres, Set-Teile und Gesperrtes.</p>`:'<p class="hint">▲ heißt: mehr Kampfkraft als dein angelegtes Teil.</p>'}</section>
+      <section class="idet">${detail()}</section></div>`;}
+  else if(invTab==='kodex')body=`<div class="lbl">Gegner</div><div class="cols2">${KODEX.map(k=>`<div class="upg"><div><div class="un">${k[0]}</div><div class="ud">${k[1]}</div></div>${k[2]?`<span class="ud" style="color:${ELC[k[2]]}">${ELN[k[2]]}</span>`:''}</div>`).join('')}</div>
+    <div class="lbl">Endgegner</div><div class="cols2">${BN.map((n,i)=>`<div class="upg"><div><div class="un" style="color:var(--ember)">${n}</div><div class="ud">${DIST[i]?DIST[i].n:''}${S.best[i]>=10?' · besiegt':''}</div></div><span class="ud">${Object.entries(RES[BK[i]]).filter(q=>q[1]>1.2).map(q=>`<span style="color:${ELC[q[0]]}">${ELN[q[0]]}</span>`).join(' ')}</span></div>`).join('')}</div>
+    <div class="lbl">Elite-Gegner</div><div class="cols2">${Object.keys(EMN).map(k=>`<div class="upg"><div><div class="un" style="color:${EMC[k]}">${EMN[k]}</div><div class="ud">${EDESC[k]||''}</div></div></div>`).join('')}</div>`;
+  else if(invTab==='jobs')body=`<p class="hint">Ilse von der Kiezwache hat Arbeit für dich. Fortschritt zählt in jeder Expedition, egal in welchem Bezirk.</p><div class="cols2">`+S.jobs.map((j,i)=>{const J=JOBT.find(x=>x.k===j.k),done=j.p>=j.t;
+      return`<div class="upg"><div><div class="un">${J.n(j.t)}</div><div class="ud">${Math.min(j.p,j.t)} / ${j.t} · ${j.sc} Schrott${j.item?' + seltenes Teil':''}</div><div class="pbar"><i style="width:${Math.round(100*Math.min(1,j.p/j.t))}%"></i></div></div>${done?`<button class="btn sm main" data-j="${i}">Abholen</button>`:`<button class="btn sm" data-jr="${i}">Tauschen · 10</button>`}</div>`;}).join('')+`</div><div class="lbl">Erfolge ${ACH.filter(a=>S.ach[a.k]).length} von ${ACH.length}</div><div class="cols2">`+ACH.map(a=>`<div class="upg"><div><div class="un" style="${S.ach[a.k]?'color:var(--good)':''}">${a.n}</div><div class="ud">${a.d} · ${a.r} Schrott</div></div><span class="ud${S.ach[a.k]?' ok':''}">${S.ach[a.k]?'Erreicht':'Offen'}</span></div>`).join('')+'</div>';
+  else body='<div class="lbl">Verbesserungen</div><div class="cols2">'+UPG.map(u=>{const l=S.upg[u.k],mx=l>=u.max;return`<div class="upg"><div><div class="un">${u.n}</div><div class="ud">${u.d(l)}${mx?'':' → '+u.d(l+1)}</div>
       <div class="pips">${Array.from({length:u.max},(_,i)=>`<i class="${i<l?'f':''}"></i>`).join('')}</div></div>${mx?'<span class="ud">Maximal</span>':`<button class="btn sm${S.scrap>=upCost(u)?' main':''}" data-u="${u.k}">${upCost(u)} Schrott</button>`}</div>`;}).join('')+
-    `<div class="lbl">Lagerausbau</div>`+CAMP.map(c=>`<div class="upg"><div><div class="un">${c.n}</div><div class="ud">${c.d}</div></div>${S.camp[c.k]?'<span class="ud ok">Gebaut</span>':`<button class="btn sm${S.scrap>=c.p?' main':''}" data-bd="${c.k}">${c.p} Schrott</button>`}</div>`).join('')+
-    `<div class="lbl">Herstellen</div>`+CONS.map(c=>{const n=S.cons[c.k]||0;return`<div class="upg"><div><div class="un">${c.n}</div><div class="ud">${c.d} · ${n}/3 dabei</div></div>${n>=3?'<span class="ud">Voll</span>':`<button class="btn sm${S.scrap>=c.p?' main':''}" data-cr="${c.k}">${c.p} Schrott</button>`}</div>`;}).join('');
-  const foot=`<div class="msg">${invMsg}</div><div class="two"><button class="btn sm" data-a="mute">${S.mute?'Ton aus':'Ton an'}</button><button class="btn sm" data-a="eco">${S.eco?'Akkusparen an':'Akkusparen aus'}</button></div>
-    ${invFrom==='run'?`<button class="btn sm" data-a="quit">${run.quitArm?'Sicher? Tippe erneut':'Expedition abbrechen'}</button>`:''}`;
-  $('invbox').innerHTML=head+body+foot;
+    `</div><div class="lbl">Lagerausbau</div><div class="cols2">`+CAMP.map(c=>`<div class="upg"><div><div class="un">${c.n}</div><div class="ud">${c.d}</div></div>${S.camp[c.k]?'<span class="ud ok">Gebaut</span>':`<button class="btn sm${S.scrap>=c.p?' main':''}" data-bd="${c.k}">${c.p} Schrott</button>`}</div>`).join('')+
+    `</div><div class="lbl">Herstellen</div><div class="cols2">`+CONS.map(c=>{const n=S.cons[c.k]||0;return`<div class="upg"><div><div class="un">${c.n}</div><div class="ud">${c.d} · ${n}/3 dabei</div></div>${n>=3?'<span class="ud">Voll</span>':`<button class="btn sm${S.scrap>=c.p?' main':''}" data-cr="${c.k}">${c.p} Schrott</button>`}</div>`;}).join('')+'</div>';
+  const foot=`<div class="msg">${invMsg}</div>${invFrom==='run'?`<div class="two"><button class="btn sm" data-a="mute">${S.mute?'Ton aus':'Ton an'}</button><button class="btn sm" data-a="quit">${run.quitArm?'Sicher? Tippe erneut':'Expedition abbrechen'}</button></div>`:''}`;
+  $('invbox').innerHTML=head+body+foot;drawDoll();
 }
 $('invbox').addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return;const d=t.dataset;invMsg='';sfx('ui');if(d.a!=='all')allArm=false;
   if(d.t){invTab=d.t;sel=null;}

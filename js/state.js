@@ -16,7 +16,7 @@ function power(st){const dps=st.dmg*(1+st.crit)/st.rate*(1+(st.els.length?.18*st
 function refresh(){if(!P){ST=stats();return;}const pct=ST?P.hp/ST.maxHp:1;ST=stats();P.hp=Math.min(ST.maxHp,Math.max(1,Math.round(ST.maxHp*pct)));}
 const ilvl=()=>D.lvl+(run?Math.max(1,run.wave)+run.th*3:1);
 function startRun(di){
-  initAudio();S.dist=di;save();
+  initAudio();immerse();S.dist=di;save();
   S.rec.runs++;run={d:di,th:S.threat||0,wave:0,toSpawn:0,spawnT:0,cleared:true,perkDone:true,breakT:1.5,kills:0,sg:0,crateIn:-1,boss:null,quitArm:false,perks:{},booms:[],seen:{},second:false};
   buildWorld(DIST[di]);newPlayer();ST=stats();P.hp=ST.maxHp;
   enemies=[];drops=[];parts=[];nums=[];swings=[];eproj=[];pproj=[];teles=[];shocks=[];bolts=[];corpses=[];hazards=[];freeze=0;flashT=0;crate=null;npc=null;zone=null;mols=[];fields=[];shake=0;

@@ -29,6 +29,7 @@ const LEGP={turm:'Krits lösen eine Feuerexplosion aus',mauer:'Jeder vierte Tref
 const hasL=k=>baseOf(S.eq.w)===k||(S.eq.a&&baseOf(S.eq.a)===k)||(S.eq.t&&baseOf(S.eq.t)===k);
 const LEGEL={turm:'fire',mauer:'acid',ring:'shock'},TM={krit:'crit',tempo:'spd',heil:'regen'};
 const EMC={schnell:'#7dd3ff',brennend:'#ff6a2a',spaltend:'#97C459',gepanzert:'#d6cfc0'},EMN={schnell:'Flink',brennend:'Brennend',spaltend:'Spaltend',gepanzert:'Gepanzert'};
+const EDESC={schnell:'Deutlich schneller als normal.',brennend:'Hinterlässt eine Feuerspur.',spaltend:'Zerfällt beim Tod in kleinere Gegner.',gepanzert:'Nimmt nur halben Schaden.'};
 const MAST_N={blade:'Klingen',hammer:'Hammer',sling:'Schleuder'};
 const mLvl=k=>Math.min(10,Math.floor(Math.sqrt(((S.mast&&S.mast[k])||0)/40))),mNext=k=>{const l=mLvl(k);return l>=10?0:40*(l+1)*(l+1);};
 const JOBT=[
