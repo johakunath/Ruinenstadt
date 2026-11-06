@@ -8,7 +8,7 @@ function progWave(w){for(const j of S.jobs)if(j.k==='wave'&&j.p<j.t&&w>j.p){j.p=
 function rollR(minR){const l=S.upg.luck+DF().luck+(ST?ST.luck:0)+(run?run.th:0),w=run?run.wave:1;const ws=[60,26+w+l*3,8+w*.7+l*2,1.2+w*.3+l*.8];for(let i=0;i<(minR||0);i++)ws[i]=0;let t=ws.reduce((a,b)=>a+b),x=Math.random()*t;for(let i=0;i<4;i++){if((x-=ws[i])<0)return i;}return minR||0;}
 function makeItem(il,minR){
   const r=rollR(minR),roll=Math.random(),slot=roll<.45?'w':roll<.8?'a':'t',m=RAR[r].m*R(.85,1.15);let kind,name,val;
-  if(slot==='w'){kind=pick(['blade','blade','hammer','sling']);name=r===3?pick(LEGW[kind]):pick(NW[kind]);val=Math.round((4+il*1.6)*KIND[kind].k*m);}
+  if(slot==='w'){kind=pick(['blade','blade','hammer','sling','spear']);name=r===3?pick(LEGW[kind]):pick(NW[kind]);val=Math.round((4+il*1.6)*KIND[kind].k*m);}
   else if(slot==='a'){kind='armor';name=r===3?pick(LEGA):pick(NA);val=Math.round((12+il*6)*m);}
   else{kind=pick(['krit','tempo','heil']);name=r===3?pick(LEGT):pick(NT[kind]);const b={krit:3+il*.35,tempo:4+il*.3,heil:.5+il*.12}[kind]*m;val=kind==='heil'?+b.toFixed(1):Math.round(b);}
   const base=BASES[name];if(r===1||r===2)name+=' '+pick(SUF[r]);
@@ -44,6 +44,10 @@ function statLine(it){if(it.slot==='w')return`${it.val} Schaden · ${KIND[it.kin
 
 const Y='<path d="M12 21v-8M12 13L7 4M12 13l5-9"/><path d="M7 4q5 5 10 0" stroke-width="1.2"/>';
 const ICO={
+ rspeer:c=>`<path d="M4 20L18 6" stroke-width="2.4"/><path d="M18 6l3-3-1 5z" fill="${c}"/>`,
+ fahne:c=>`<path d="M5 21V3" stroke-width="2.2"/><path d="M5 4h12l-3 3 3 3H5" fill="${c}" fill-opacity=".45"/>`,
+ harpune:c=>`<path d="M4 20L18 6" stroke-width="2.2"/><path d="M18 6l3-3-1 5zM15 6l2 3M12 9l2 3" fill="${c}"/>`,
+ siegsp:c=>`<path d="M4 20L18 6" stroke-width="2.6"/><path d="M18 6l3-3-1 5z" fill="${c}"/><circle cx="9" cy="15" r="2.5" fill="${c}" fill-opacity=".5"/>`,
  zitklinge:c=>`<path d="M5 19L18 6" stroke-width="2.6"/><path d="M7 12l5 5" stroke-width="2"/><path d="M18 6l2-3-3 1z" fill="${c}"/>`,
  pbrecher:c=>`<path d="M5 21L13 13" stroke-width="2.6"/><rect x="11" y="3" width="10" height="9" fill="${c}" fill-opacity=".4"/><path d="M11 7.5h10"/>`,
  kraehe:c=>Y+`<path d="M16 3q5 2 3 8q-4-2-3-8z" fill="${c}" fill-opacity=".45"/>`,

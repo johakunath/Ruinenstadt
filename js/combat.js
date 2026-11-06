@@ -32,11 +32,13 @@ function propsInRadius(x,y,r,dmg){for(const p of brk.slice())if(Math.hypot(p.x+p
 function attack(){
   if(P.cd>0||P.dashT>0||P.spin>0)return;const K=ST.K;P.cd=ST.rate;const tg=nearest(ST.kind==='sling'?360:180);
   if(tg)P.face=Math.atan2(tg.y-P.y,tg.x-P.x);else{const pp=nearestProp(ST.kind==='sling'?220:95);if(pp)P.face=Math.atan2(pp.y+pp.h/2-P.y,pp.x+pp.w/2-P.x);}
-  P.atkA=P.face;P.combo=(P.comboT>0?(P.combo||0)+1:1);P.comboT=.85;const n=P.combo,cb=pk('combo'),fin=(ST.kind==='blade'&&n%(3-cb)===0)||(ST.kind==='sling'&&n%(4-cb)===0)||(ST.kind==='hammer'&&n%(3-cb)===0);
+  P.atkA=P.face;P.combo=(P.comboT>0?(P.combo||0)+1:1);P.comboT=.85;const n=P.combo,cb=pk('combo'),fin=((ST.kind==='blade'||ST.kind==='spear')&&n%(3-cb)===0)||(ST.kind==='sling'&&n%(4-cb)===0)||(ST.kind==='hammer'&&n%(3-cb)===0);
   const crit=Math.random()<ST.crit,dmg=ST.dmg*R(.9,1.1)*(crit?2:1)*(P.fed>0?1.1:1)*(fin?(ST.kind==='hammer'?1.2:1.6):1);
-  P.swingKind=ST.kind;P.swingDur=P.swingT=ST.kind==='hammer'?.3:ST.kind==='sling'?.14:.17;
+  P.swingKind=ST.kind;P.swingDur=P.swingT=ST.kind==='hammer'?.3:ST.kind==='sling'?.14:ST.kind==='spear'?.22:.17;
+  if(ST.kind==='spear'&&fin){const l=Math.min(60,Math.max(0,(tg?Math.hypot(tg.x-P.x,tg.y-P.y)-40:40)));P.x+=Math.cos(P.face)*l;P.y+=Math.sin(P.face)*l;collide(P);parts.push({x:P.x,y:P.y-12,vx:0,vy:0,life:.2,max:.2,col:'rgba(234,217,192,.35)',size:14});}
+  if(hasL('siegsp')){const c=Math.cos(P.face),s=Math.sin(P.face);pproj.push({x:P.x+c*20,y:P.y+s*20,vx:c*ST.pspd,vy:s*ST.pspd,r:5,dmg:dmg*.5,crit,life:.55,pierce:2,hits:[],el:'fire',fin:1});}
   if(ST.kind==='sling'){const c=Math.cos(P.face),s=Math.sin(P.face);pproj.push({x:P.x+c*14,y:P.y+s*14,vx:c*ST.pspd*(fin?1.3:1),vy:s*ST.pspd*(fin?1.3:1),r:fin?6:4,dmg,crit,life:fin?.9:.7,pierce:fin?3:0,hits:[],el:ST.els[0],fin});sfx('sling');if(fin)sfx('zap');return;}
-  const arc=K.arc*(fin&&ST.kind==='blade'?1.35:1),reach=ST.reach*(fin&&ST.kind==='blade'?1.15:1),KK=fin?Object.assign({},K,{knock:K.knock*1.7}):K;
+  const arc=K.arc*(fin&&ST.kind==='blade'?1.35:1),reach=ST.reach*(fin&&ST.kind==='blade'?1.15:fin&&ST.kind==='spear'?1.2:1),KK=fin?Object.assign({},K,{knock:K.knock*1.7}):K;
   swings.push({a:P.face,life:P.swingDur,max:P.swingDur,kind:ST.kind,arc,reach,fin});sfx(ST.kind==='hammer'||fin?'heavy':'swing');if(fin){freeze=Math.max(freeze,.035);if(ST.kind==='hammer'){shocks.push({x:P.x+Math.cos(P.face)*40,y:P.y+Math.sin(P.face)*40,r:10,max:95,hit:[],small:1});shake=Math.max(shake,7);}}
   if(ST.kind==='hammer'){shake=Math.max(shake,4);burst(P.x+Math.cos(P.face)*50,P.y+Math.sin(P.face)*50,'#5a4636',10,140);}
   for(const e of enemies){const dx=e.x-P.x,dy=e.y-P.y,d=Math.hypot(dx,dy);if(d>reach+e.r)continue;let da=Math.atan2(dy,dx)-P.face;da=Math.atan2(Math.sin(da),Math.cos(da));
@@ -47,6 +49,7 @@ function attack(){
 function skill(){if(state!=='play'||P.skCd>0||P.dashT>0)return;P.skCd=ST.skCd;const k=ST.kind;
   if(k==='blade'){P.spin=1.2;P.spinTick=0;sfx('spin');}
   else if(k==='hammer'){shocks.push({x:P.x,y:P.y,r:10,max:165,hit:[]});shake=Math.max(shake,11);sfx('boom');burst(P.x,P.y,'#5a4636',28,260);stamp(P.x,P.y,'rgba(8,5,3,.35)',46);P.swingKind='hammer';P.atkA=P.face;P.swingDur=P.swingT=.3;propsInRadius(P.x,P.y,165,ST.dmg*3);}
+  else if(k==='spear'){const tg=nearest(520),a=tg?Math.atan2(tg.y-P.y,tg.x-P.x):P.face;P.face=P.atkA=a;P.swingKind='spear';P.swingDur=P.swingT=.25;pproj.push({x:P.x,y:P.y,vx:Math.cos(a)*720,vy:Math.sin(a)*720,r:8,dmg:ST.dmg*2.6,crit:false,life:.9,pierce:30,hits:[],el:ST.els[0],spear:1});sfx('heavy');sfx('dash');}
   else{const tg=nearest(420),a=tg?Math.atan2(tg.y-P.y,tg.x-P.x):P.face;P.face=P.atkA=a;P.swingKind='sling';P.swingDur=P.swingT=.2;for(let i=0;i<9;i++){const q=a+(i-4)*.14;pproj.push({x:P.x,y:P.y,vx:Math.cos(q)*ST.pspd,vy:Math.sin(q)*ST.pspd,r:4,dmg:ST.dmg*.8,crit:false,life:.8,pierce:1,hits:[],el:ST.els[0]});}sfx('sling');sfx('heavy');}}
 function hit(e,dmg,crit,K,noproc,col){if(e.hp<=0)return;if(e.elite==='gepanzert')dmg*=.5;if(hasL('auge')&&(e.elite||e.type==='boss'))dmg*=1.25;if(pk('breaker')&&(e.elite||e.type==='boss'||e.type==='shield'))dmg*=1+.25*pk('breaker');if(pk('rush')&&streak.n>=10)dmg*=1+.02*Math.floor(streak.n/10);e.lc=crit;
   if((e.type==='shield'||(e.type==='boss'&&e.v===6))&&!(e.guard>0)&&!noproc){let da=Math.atan2(P.y-e.y,P.x-e.x)-e.fa;da=Math.atan2(Math.sin(da),Math.cos(da));if(Math.abs(da)<1.2){if(K.stun){e.guard=e.type==='boss'?1.2:2.2;nums.push({x:e.x,y:e.y-e.r-40,t:'Deckung offen',col:'#f2d14b',life:1});}else{dmg*=e.type==='boss'?.35:.2;if(Math.random()<.4)nums.push({x:e.x,y:e.y-e.r-38,t:'geblockt',col:'#a8957d',life:.7});burst(e.x+Math.cos(e.fa)*e.r,e.y-12+Math.sin(e.fa)*e.r,'#d6cfc0',4,140);}}}if(crit)freeze=Math.max(freeze,.03);if(e.acid>0)dmg*=1+.25*ST.elp*ER(e,'acid');dmg=Math.max(1,Math.round(dmg));e.hp-=dmg;e.flash=.1;

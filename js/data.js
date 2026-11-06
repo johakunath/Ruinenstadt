@@ -19,7 +19,7 @@ const ACH=[{k:'k100',n:'Aufräumer',d:'Besiege 100 Gegner',r:50,c:()=>S.rec.kill
   {k:'leg1',n:'Ein Fund fürs Leben',d:'Finde ein legendäres Teil',r:100,c:()=>S.rec.legs>=1},{k:'win1',n:'Befreier',d:'Befreie einen Bezirk',r:100,c:()=>S.rec.wins>=1},
   {k:'win5',n:'Berlin atmet',d:'Befreie Neukölln',r:400,c:()=>S.best[4]>=10},{k:'th3',n:'Gegen die Übermacht',d:'Schalte Bedrohung 3 frei',r:300,c:()=>S.tmax>=3},
   {k:'set3',n:'Komplett',d:'Trage ein vollständiges Set',r:250,c:()=>['kiez','spree','zit'].some(k=>setCount(S.eq,k)>=3)},{k:'camp',n:'Zuhause',d:'Baue das Lager komplett aus',r:300,c:()=>CAMP.every(x=>S.camp[x.k])},
-  {k:'m5',n:'Meisterhand',d:'Erreiche Meisterschaft 5 mit einer Waffe',r:150,c:()=>['blade','hammer','sling'].some(k=>mLvl(k)>=5)},{k:'chest5',n:'Kellerkind',d:'Öffne 5 Kellertruhen',r:150,c:()=>S.rec.chests>=5},
+  {k:'m5',n:'Meisterhand',d:'Erreiche Meisterschaft 5 mit einer Waffe',r:150,c:()=>['blade','hammer','sling','spear'].some(k=>mLvl(k)>=5)},{k:'chest5',n:'Kellerkind',d:'Öffne 5 Kellertruhen',r:150,c:()=>S.rec.chests>=5},
   {k:'win8',n:'Ganz Berlin',d:'Befreie Marzahn',r:800,c:()=>S.best[7]>=10},{k:'boss10',n:'Bezwinger',d:'Besiege 10 Endgegner',r:250,c:()=>S.rec.bosses>=10}];
 let tipQ=[],tipT=0;function tip(k,txt){if(!S.tips||S.tips[k])return;S.tips[k]=1;tipQ.push(txt);}
 function checkAch(){for(const a of ACH)if(!S.ach[a.k]&&a.c()){S.ach[a.k]=1;S.scrap+=a.r;toast(`Erfolg: <span style="color:var(--ember)">${a.n}</span> · +${a.r} Schrott`);sfx('win');}}
@@ -28,9 +28,9 @@ const rfCost=it=>Math.round((20+it.ilvl*4+it.r*20)*Math.pow(1.4,it.rr||0));
 const LOCK='<svg class="lk" width="10" height="11" viewBox="0 0 10 11" aria-hidden="true"><rect x="1" y="5" width="8" height="6" fill="#a8957d"/><path d="M3 5V3a2 2 0 0 1 4 0v2" stroke="#a8957d" fill="none" stroke-width="1.4"/></svg>';
 const LEGP={turm:'Krits lösen eine Feuerexplosion aus',mauer:'Jeder vierte Treffer erzeugt eine Säurewelle',ring:'Geschosse springen auf einen weiteren Gegner über',
   spaeti:'Gegner und Kisten lassen doppelt so oft Döner und Vorräte fallen',panzer:'20% Chance, einen Treffer komplett abzublocken',herz:'Einmal pro Expedition überlebst du einen tödlichen Treffer mit 40% Leben',
-  zitklinge:'Jeder Kill lädt deine Kraft um 1 Sekunde auf',pbrecher:'Krit-Kills lösen ein betäubendes Beben aus',kraehe:'Geschosse verlangsamen Gegner 2 Sekunden lang',rattenmantel:'Wirst du getroffen, schwappt eine Säurewelle um dich (alle 1,5 s)',ritter:'Am Ende jedes Sprints bebt der Boden',auge:'Elite-Gegner und Endgegner nehmen 25% mehr Schaden'};
+  zitklinge:'Jeder Kill lädt deine Kraft um 1 Sekunde auf',pbrecher:'Krit-Kills lösen ein betäubendes Beben aus',kraehe:'Geschosse verlangsamen Gegner 2 Sekunden lang',rattenmantel:'Wirst du getroffen, schwappt eine Säurewelle um dich (alle 1,5 s)',ritter:'Am Ende jedes Sprints bebt der Boden',auge:'Elite-Gegner und Endgegner nehmen 25% mehr Schaden',siegsp:'Jeder Stoß verschießt eine goldene Klinge'};
 const hasL=k=>baseOf(S.eq.w)===k||(S.eq.a&&baseOf(S.eq.a)===k)||(S.eq.t&&baseOf(S.eq.t)===k);
-const LEGEL={turm:'fire',mauer:'acid',ring:'shock',zitklinge:'shock',pbrecher:'fire',kraehe:'acid'},TM={krit:'crit',tempo:'spd',heil:'regen'};
+const LEGEL={turm:'fire',mauer:'acid',ring:'shock',zitklinge:'shock',pbrecher:'fire',kraehe:'acid',siegsp:'fire'},TM={krit:'crit',tempo:'spd',heil:'regen'};
 const EMC={schnell:'#7dd3ff',brennend:'#ff6a2a',spaltend:'#97C459',gepanzert:'#d6cfc0'},EMN={schnell:'Flink',brennend:'Brennend',spaltend:'Spaltend',gepanzert:'Gepanzert'};
 const ENAME={ghoul:'Ghul',brute:'Brocken',spitter:'Speier',raser:'Raser',rat:'Ratte',bomb:'Zünder',shield:'Schildträger',crow:'Krähe',howl:'Heuler'};
 const EDESC={schnell:'Deutlich schneller als normal.',brennend:'Hinterlässt eine Feuerspur.',spaltend:'Zerfällt beim Tod in kleinere Gegner.',gepanzert:'Nimmt nur halben Schaden.'};
@@ -47,7 +47,7 @@ const SURV=[{k:'doktor',n:'Dr. Ahmet',d:'Jede Expedition startet mit einem Verba
  {k:'kurier',n:'Kurier Jonas',d:'Händler bieten ein viertes Teil an',c:'#3a6a8a'},{k:'koechin',n:'Oma Gerda',d:'Döner fallen doppelt so oft',c:'#7a3a6a'},
  {k:'spaeher',n:'Späherin Lin',d:'+1 Beuteglück',c:'#3B6D11'},{k:'mechaniker',n:'Kalle, Mechaniker',d:'-10% Sprint-Abklingzeit',c:'#c9a227'}];
 const hasS=k=>S.surv&&S.surv[k];
-const MAST_N={blade:'Klingen',hammer:'Hammer',sling:'Schleuder'};
+const MAST_N={blade:'Klingen',hammer:'Hammer',sling:'Schleuder',spear:'Speer'};
 const mLvl=k=>Math.min(10,Math.floor(Math.sqrt(((S.mast&&S.mast[k])||0)/40))),mNext=k=>{const l=mLvl(k);return l>=10?0:40*(l+1)*(l+1);};
 const JOBT=[
  {k:'ghoul',n:t=>`Besiege ${t} Ghule`,t:()=>pick([30,40,50])},{k:'brute',n:t=>`Besiege ${t} Brocken`,t:()=>pick([8,12])},{k:'spitter',n:t=>`Besiege ${t} Speier`,t:()=>pick([10,15])},
@@ -58,9 +58,9 @@ const JOBT=[
 const CONS=[{k:'verband',n:'Verband',d:'Heilt 40% Leben über 3 Sekunden',p:15},{k:'molotow',n:'Molotow',d:'Wirft ein Feuerfeld, das Gegner in Brand setzt',p:25}],RZ=[0,.06,.1,.14,.25,.15,.18,.2];
 const DIFF=[{n:'Leicht',hp:.7,dmg:.6,luck:0,sc:1},{n:'Normal',hp:1,dmg:1,luck:0,sc:1},{n:'Schwer',hp:1.4,dmg:1.35,luck:4,sc:1.3}];
 const DF=()=>DIFF[S.diff==null?1:S.diff];
-const KIND={blade:{n:'Klinge',k:1,rate:.3,reach:60,arc:1.1,knock:240,sk:'Wirbel'},hammer:{n:'Hammer',k:2.3,rate:.68,reach:74,arc:1.6,knock:430,stun:.6,sk:'Stoß'},sling:{n:'Schleuder',k:.85,rate:.42,knock:120,sk:'Salve'}};
-const NW={blade:['Rostiges Rohr','Bewehrungsstahl','Machete','Brechstange'],hammer:['Vorschlaghammer','Pflasterhammer','Rohrzange'],sling:['Zwille','Nagelschleuder','Steinschleuder']};
-const LEGW={blade:['Fernsehturm-Splitter','Klinge der Zitadelle'],hammer:['Mauerbrecher','Plattenbrecher'],sling:['Zorn der Ringbahn','Krähenschleuder']},LEGT=['Herz der Spree','Auge des Fernsehturms'];
+const KIND={blade:{n:'Klinge',k:1,rate:.3,reach:60,arc:1.1,knock:240,sk:'Wirbel'},hammer:{n:'Hammer',k:2.3,rate:.68,reach:74,arc:1.6,knock:430,stun:.6,sk:'Stoß'},sling:{n:'Schleuder',k:.85,rate:.42,knock:120,sk:'Salve'},spear:{n:'Speer',k:1.45,rate:.5,reach:98,arc:.34,knock:300,sk:'Wurf'}};
+const NW={blade:['Rostiges Rohr','Bewehrungsstahl','Machete','Brechstange'],hammer:['Vorschlaghammer','Pflasterhammer','Rohrzange'],sling:['Zwille','Nagelschleuder','Steinschleuder'],spear:['Rohrspeer','Fahnenstange','Harpune']};
+const LEGW={blade:['Fernsehturm-Splitter','Klinge der Zitadelle'],hammer:['Mauerbrecher','Plattenbrecher'],sling:['Zorn der Ringbahn','Krähenschleuder'],spear:['Speer der Siegessäule']},LEGT=['Herz der Spree','Auge des Fernsehturms'];
 const NA=['Lederjacke','Bauhelm','Arbeitsmantel','Schutzweste','Feuerwehrjacke','BVG-Uniform'],LEGA=['Mantel des letzten Späti','Panzer vom Tempelhofer Feld','Mantel der Rattenmutter','Rüstung des Zitadellenritters'];
 const NT={krit:['Spreekiesel','Mauerstück'],tempo:['Rabenfeder','Fahrradkette'],heil:['Kräuterbeutel','Currywurst-Abzeichen']};
 const SUF=[[],['der Glut','des Schutts','der Asche','des Rauchs'],['des Spreewächters','der letzten Ruine','des Brandes'],[]];
@@ -68,7 +68,7 @@ const BASES={'Holzlatte':'latte','Rostiges Rohr':'rohr','Bewehrungsstahl':'stahl
  'Zwille':'zwille','Nagelschleuder':'nagel','Steinschleuder':'stein','Fernsehturm-Splitter':'turm','Mauerbrecher':'mauer','Zorn der Ringbahn':'ring',
  'Lederjacke':'leder','Bauhelm':'helm','Arbeitsmantel':'mantel','Schutzweste':'weste','Feuerwehrjacke':'feuer','BVG-Uniform':'bvg','Mantel des letzten Späti':'spaeti','Panzer vom Tempelhofer Feld':'panzer',
  'Spreekiesel':'kiesel','Mauerstück':'stueck','Rabenfeder':'feder','Fahrradkette':'kette','Kräuterbeutel':'beutel','Currywurst-Abzeichen':'abzeichen','Herz der Spree':'herz',
- 'Klinge der Zitadelle':'zitklinge','Plattenbrecher':'pbrecher','Krähenschleuder':'kraehe','Mantel der Rattenmutter':'rattenmantel','Rüstung des Zitadellenritters':'ritter','Auge des Fernsehturms':'auge','Morgenstern der Zitadelle':'morgen','Kettenhemd der Zitadelle':'kette','Wappen der Zitadelle':'wappen'};
+ 'Klinge der Zitadelle':'zitklinge','Plattenbrecher':'pbrecher','Krähenschleuder':'kraehe','Mantel der Rattenmutter':'rattenmantel','Rüstung des Zitadellenritters':'ritter','Auge des Fernsehturms':'auge','Morgenstern der Zitadelle':'morgen','Kettenhemd der Zitadelle':'kette','Wappen der Zitadelle':'wappen','Rohrspeer':'rspeer','Fahnenstange':'fahne','Harpune':'harpune','Speer der Siegessäule':'siegsp'};
 function baseOf(it){if(!it)return'none';if(it.base)return it.base;for(const n in BASES)if(it.name.startsWith(n))return(it.base=BASES[n]);return({blade:'rohr',hammer:'vorschlag',sling:'zwille',armor:'leder'}[it.kind])||'kiesel';}
 const LOOK={none:{j:'#3d3a36',hood:'#2c2926'},leder:{j:'#4a2a1a',collar:'#2a160d',hair:1},helm:{j:'#45413b',helmet:'hard',hc:'#d9a520'},mantel:{j:'#5a5040',coat:1,hair:1},
  weste:{j:'#33302c',vest:'#4a5536',hair:1},feuer:{j:'#7a2416',stripes:'#e8d36a',helmet:'fire',hc:'#2a2522'},bvg:{j:'#26304a',helmet:'cap',hc:'#f2c230'},

@@ -1,7 +1,7 @@
 # Ruinenstadt Backlog
 
 Top-down loot ARPG in post-collapse Berlin. Hobby project to learn game development.
-Current build: v0.29, static web app (PWA) in this repo. Game text in German.
+Current build: v0.30, static web app (PWA) in this repo. Game text in German.
 Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are now v0.1–v0.16.
 
 ## Intent (working version, refine as we go)
@@ -134,3 +134,4 @@ Runs take 4 to 7 minutes of game time. Re-run with `node tools/balance.mjs 30 1`
 | v0.27 | Blessings: 8 new (Kombo-Meister, Plünderer, Schildbrecher, Sprengmeister, Atempause, Gnadenstoß, Sammler, Rausch), rare and epic cards that grant two levels, one reroll per wave for Schrott, three-column card layout on tablets |
 | v0.28 | Endless mode for liberated districts (bosses every 5 waves, events every 3 waves, Schrott bonus per wave beyond 10, record per district). Music: own chord progression and melody scale per district, drums during boss fights |
 | v0.29 | Balance pass with a bot simulator (tools/): enemy life now scales with item level like player damage, +20% enemy life and damage per district, +6% enemies per wave per district, Schärfen +7% per level (was 10%), Holzlatte 5 damage, softer mid-boss (520 life, 20 damage, slower glob ring, -25% in Köpenick), boss contact damage -40%, crows hover after diving, stuck enemies relocate, arrows to the last 3 enemies of a wave |
+| v0.30 | Fourth weapon type Speer (Rohrspeer, Fahnenstange, Harpune): long narrow thrust hits everything in a line, finisher lunges forward, skill Wurf throws a piercing spear, two-handed (no torch). Legendary Speer der Siegessäule shoots a golden blade with each thrust. Spear mastery |
