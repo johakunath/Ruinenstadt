@@ -83,8 +83,8 @@ const DIST=[
  {i:6,n:'Spandau',lvl:66,ground:'#25231b',road:'#1f1c16',walls:['#5a4a38','#4e4032','#66523e'],roof:['#35291f','#3f3126','#2d231b'],dark:.82,spit:.24,brute:.26,sw:1,bw:1,trees:16,spati:'Späti an der Havel'},
  {i:7,n:'Marzahn',lvl:78,ground:'#26231f',road:'#1f1c19',walls:['#5e5a52','#54504a','#66625a'],roof:['#35322e','#3d3a35','#2e2b28'],dark:.84,spit:.26,brute:.28,sw:1,bw:1,trees:8,spati:'Späti Helle Mitte'}];
 // extra enemy mix per district: [rat, bomb, shield, crow, howl]
-const MIX=[[0,0,0,.06,0],[.14,.05,0,0,0],[0,.07,.1,0,0],[0,.08,0,.12,0],[.1,0,.08,0,.04],[.22,.05,.06,0,.05],[0,.06,.14,.1,.05],[.08,.12,.1,.06,.07]];
-const UPG=[{k:'dmg',n:'Schärfen',d:l=>`+${l*10}% Schaden`,max:10,base:15},{k:'hp',n:'Panzerung',d:l=>`+${l*15} Leben`,max:10,base:15},{k:'dash',n:'Ausdauer',d:l=>`-${l*8}% Sprint-Abklingzeit`,max:5,base:25},{k:'luck',n:'Spürnase',d:l=>`+${l} Beuteglück`,max:5,base:30}];
+const MIX=[[0,0,0,.06,0],[.14,.05,0,0,0],[0,.07,.1,0,0],[0,.08,0,.12,0],[.1,0,.08,0,.04],[.22,.05,.06,0,.05],[0,.06,.1,.1,.05],[.08,.12,.1,.06,.07]];
+const UPG=[{k:'dmg',n:'Schärfen',d:l=>`+${l*7}% Schaden`,max:10,base:15},{k:'hp',n:'Panzerung',d:l=>`+${l*15} Leben`,max:10,base:15},{k:'dash',n:'Ausdauer',d:l=>`-${l*8}% Sprint-Abklingzeit`,max:5,base:25},{k:'luck',n:'Spürnase',d:l=>`+${l} Beuteglück`,max:5,base:30}];
 const upCost=u=>Math.round(u.base*Math.pow(1.55,S.upg[u.k]));
 const PERKS=[
  {k:'dmg',n:'Glutzorn',d:'+15% Schaden',max:5},{k:'hp',n:'Zähigkeit',d:'+25 maximales Leben',max:5},{k:'spd',n:'Leichtfuß',d:'+10% Lauftempo',max:3},

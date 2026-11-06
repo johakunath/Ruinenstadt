@@ -152,7 +152,7 @@ $('invbox').addEventListener('click',e=>{const t=e.target.closest('button');if(!
   else if(d.a==='eco')setEco(!S.eco);
   else if(d.a==='quit'){if(!run.quitArm){run.quitArm=true;}else{S.best[run.d]=Math.max(S.best[run.d],run.wave-1);save();state='menu';run=null;refresh();$('inv').hidden=true;renderMenu();$('menu').hidden=false;return;}}
   updateHot();renderInv();});
-function showEnd(won){
+function showEnd(won){if(!run)return;
   const d=DIST[run.d];
   $('endbox').innerHTML=`<h2>${won?d.n+' befreit':'Gefallen'}</h2><p class="lead">${won?'Der Bezirk atmet wieder.':'Die Ruinen behalten dich heute Nacht.'}</p>
   <div class="stats">${run.endless?`<div>Endlos · Welle <b>${run.wave}</b> · Rekord <b>${S.eb[run.d]||0}</b></div>`:''}<div>${run.endless?'':`Welle <b>${won?10:run.wave}</b> von 10 · `}${DF().n}${run.th?' · Bedrohung '+run.th:''}</div><div><b>${run.kills}</b> Gegner besiegt · Stufe <b>${P.lvl}</b></div><div>Schrott gesammelt <b>+${run.sg}</b>${won?` (inkl. ${run.bonus} Bonus)`:''}</div>

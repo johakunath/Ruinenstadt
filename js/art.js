@@ -99,7 +99,7 @@ function drawEnemy(e,t){
     ctx.fillStyle=bl?'#ffefd0':C('#a83020');rr(ctx,-11,-32,9,20,3);ctx.fillStyle=bl?'#ffefd0':C('#7a2016');ctx.fillRect(-11,-26,9,2);ctx.fillRect(-11,-19,9,2);ctx.fillStyle='#2a2522';ctx.fillRect(-8,-35,3,4);
     ctx.globalCompositeOperation='lighter';ctx.drawImage(glow('#ff8a3d'),-14,-46,16,16);ctx.globalCompositeOperation='source-over';ctx.fillStyle='#FAC775';ctx.fillRect(-7,-39+Math.sin(e.t*20),2,2);
     ctx.fillStyle=C('#5a4030');ctx.beginPath();ctx.arc(7,-26,4.6,0,7);ctx.fill();ctx.fillStyle='#EF9F27';ctx.fillRect(8.5,-27.5,2,2);stick(5,-20,11,-12+sw*2,2.6,C('#4a3424'));}
-  else if(e.type==='crow'){ctx.restore();const fy2=fy-28-(e.dive>0?-14:Math.sin(e.t*3)*4),fl2=e.dive>0?(e.rdx<0?-1:1):(e.x<P.x?1:-1),wf=e.dive>0?.2:Math.sin(e.t*18);
+  else if(e.type==='crow'){ctx.restore();const fy2=fy-28-(e.dive>0?-14:e.rest>0?-16:Math.sin(e.t*3)*4),fl2=e.dive>0?(e.rdx<0?-1:1):(e.x<P.x?1:-1),wf=e.dive>0?.2:Math.sin(e.t*18);
     ctx.save();ctx.translate(e.x,fy2);ctx.scale(fl2*1.2,1.2);ctx.fillStyle=C('#1a1614');ctx.beginPath();ctx.ellipse(0,0,8,4,0,0,7);ctx.fill();ctx.beginPath();ctx.moveTo(-6,0);ctx.lineTo(-12,-2);ctx.lineTo(-11,3);ctx.fill();
     ctx.fillStyle=C('#2a2422');ctx.beginPath();ctx.moveTo(-2,-1);ctx.lineTo(-6+wf*2,-12*wf-2);ctx.lineTo(4,-2);ctx.fill();ctx.beginPath();ctx.moveTo(-2,1);ctx.lineTo(-4,8*wf+2);ctx.lineTo(4,1);ctx.fill();
     ctx.fillStyle=C('#1a1614');ctx.beginPath();ctx.arc(7,-2,3.4,0,7);ctx.fill();ctx.fillStyle='#c9a227';ctx.beginPath();ctx.moveTo(10,-2.5);ctx.lineTo(14,-1);ctx.lineTo(10,0);ctx.fill();ctx.fillStyle=e.dive>0?'#ff4030':'#EF9F27';ctx.fillRect(7.5,-3.5,1.6,1.6);

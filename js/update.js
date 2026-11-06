@@ -70,14 +70,15 @@ function update(dt){
     if(e.type==='bomb'){if(e.fuse>0){e.fuse-=dt;sp=0;if(e.fuse<=0){e.selfx=1;e.hp=0;kill(e);continue;}}else if(d<58&&e.stun<=0){e.fuse=.85;sfx('zap');}}
     if(e.type==='howl'){if(d<180){vx=-vx;vy=-vy;}else if(d<260){const tx=-vy*e.side,ty=vx*e.side;vx=tx;vy=ty;sp*=.6;}
       e.fire-=dt;if(e.fire<=0&&d<460&&e.stun<=0){e.fire=R(4.5,6);rings.push({x:e.x,y:e.y-14,r:10,max:220,col:'214,90,140'});for(const o of enemies)if(o!==e&&Math.hypot(o.x-e.x,o.y-e.y)<220)o.buff=4;sfx('horn');}}
-    if(e.fly){if(e.dive>0){e.dive-=dt;vx=e.rdx;vy=e.rdy;sp=e.stun>0?0:380;}else{e.dcd-=dt;e.orb+=dt*1.5*e.side;const tx=P.x+Math.cos(e.orb)*150,ty=P.y+Math.sin(e.orb)*110,ddx=tx-e.x,ddy=ty-e.y,dl=Math.hypot(ddx,ddy)||1;vx=ddx/dl;vy=ddy/dl;sp=e.stun>0?0:e.spd*Math.min(1,dl/40+.3);
+    if(e.fly){if(e.dive>0){e.dive-=dt;vx=e.rdx;vy=e.rdy;sp=e.stun>0?0:380;if(e.dive<=0)e.rest=1.3;}else if(e.rest>0){e.rest-=dt;sp=e.stun>0?0:40;}else{e.dcd-=dt;e.orb+=dt*1.5*e.side;const tx=P.x+Math.cos(e.orb)*150,ty=P.y+Math.sin(e.orb)*110,ddx=tx-e.x,ddy=ty-e.y,dl=Math.hypot(ddx,ddy)||1;vx=ddx/dl;vy=ddy/dl;sp=e.stun>0?0:e.spd*Math.min(1,dl/40+.3);
       if(e.dcd<=0&&d<280&&e.stun<=0){e.dive=.6;e.dcd=R(2.5,3.8);e.rdx=dx/d;e.rdy=dy/d;sfx('swing');}}}
     if(e.det>0){e.det-=dt;const a=Math.atan2(vy,vx)+e.detA;vx=Math.cos(a);vy=Math.sin(a);}
     const f=Math.pow(.002,dt);const ox=e.x,oy=e.y;e.x+=vx*sp*dt+e.kx*dt;e.y+=vy*sp*dt+e.ky*dt;e.kx*=f;e.ky*=f;if(e.fly){e.x=clamp(e.x,10,WS-10);e.y=clamp(e.y,10,WS-10);}else collide(e);e.mv=Math.hypot(e.x-ox,e.y-oy)/Math.max(dt,.001);
+    if(!e.fly&&e.type!=='boss'){e.sto=(e.sto||0)+dt;if(e.sto>6){const pd=Math.hypot(e.x-P.x,e.y-P.y);if(pd>=(e.lpd||1e9)-40&&pd>260){const q=freeSpot(Math.max(300,Math.hypot(VW,VH)/2),Math.max(340,Math.hypot(VW,VH)/2+120),e.r+6);e.x=q.x;e.y=q.y;}e.sto=0;e.lpd=Math.hypot(e.x-P.x,e.y-P.y);}}
     e.chk+=dt;if(e.chk>.5){if(sp>0&&!e.fly&&e.det<=0&&Math.hypot(e.x-e.lx,e.y-e.ly)<sp*.12){e.det=.8;e.detA=pick([-1.4,1.4]);}e.chk=0;e.lx=e.x;e.ly=e.y;}
     if(e.type==='boss'){if(!e.rage&&e.hp<e.max*.5){e.rage=1;e.spd*=1.3;banner(e.name+' tobt');flashT=.35;shake=10;sfx('horn');}const rg=e.rage?1.35:1;e.slam-=dt*rg;e.ring-=dt*rg;
       if(e.slam<=0&&d<320){e.slam=e.big?3.3:4.2;teles.push({x:P.x,y:P.y,r:e.big?96:80,t:.95,max:.95,dmg:Math.round(e.dmg*1.3)});}
-      if(e.ring<=0){e.ring=e.big?5:6.5;const n=e.big?16:12;for(let i=0;i<n;i++)fireGlob(e,i/n*6.283+e.t,165);sfx('spit');}
+      if(e.ring<=0){e.ring=e.big?5:7.5;const n=e.big?16:12;for(let i=0;i<n;i++)fireGlob(e,i/n*6.283+e.t,165);sfx('spit');}
       if(e.big){e.sum-=dt*rg;const v=e.v;
         if(v===0){if(e.sum<=0){e.sum=7;for(let i=0;i<4;i++)enemies.push(mkEnemy('ghoul',e.x+R(-60,60),e.y+R(-60,60)));toast('„Antreten!“');sfx('horn');}}
         else if(v===1){if(e.sum<=0){e.sum=2.2;hazards.push({x:P.x+R(-30,30),y:P.y+9+R(-20,20),r:26,t:5,dmg:Math.max(1,Math.round(e.dmg*.4)),col:'#97C459'});}e.ring-=dt*rg*.6;}
@@ -89,7 +90,7 @@ function update(dt){
         else if(v===7){if(e.sum<=0){e.sum=e.rage?3.4:4.6;e.k7=(e.k7||0)+1;for(let i=0;i<5;i++){const q=1+i*.15,o=i?{x:P.x+R(-170,170),y:P.y+R(-140,140)}:{x:P.x,y:P.y};teles.push({x:o.x,y:o.y,r:52,t:q,max:q,dmg:Math.round(e.dmg*.95),slab:1});}sfx('horn');
           if(e.k7%2===0)for(let i=0;i<2;i++)enemies.push(mkEnemy('bomb',e.x+R(-60,60),e.y+R(-60,60)));}}
         else{if(e.sum<=0){e.sum=9;for(let i=0;i<3;i++)enemies.push(mkEnemy('ghoul',e.x+R(-50,50),e.y+R(-50,50)));}e.trail=(e.trail||0)-dt;if(e.trail<=0&&(e.mv||0)>8){e.trail=.4;hazards.push({x:e.x,y:e.y+e.r*.6,r:26,t:4,dmg:Math.max(1,Math.round(e.dmg*.35))});}}}}
-    if(d<e.r+P.r+2&&e.hcd<=0&&e.stun<=0&&e.hp>0&&e.type!=='bomb'&&(!e.fly||e.dive>0)){e.hcd=.9;e.atk=.25;const landed=hurt(e.dmg,e.type==='boss'||e.type==='brute'?9:5);if(state!=='play')return;if(landed&&pk('thorns'))hit(e,ST.dmg*.6*pk('thorns'),false,{knock:300});}
+    if(d<e.r+P.r+2&&e.hcd<=0&&e.stun<=0&&e.hp>0&&e.type!=='bomb'&&(!e.fly||e.dive>0)){e.hcd=.9;e.atk=.25;const landed=hurt(e.type==='boss'?e.dmg*.6:e.dmg,e.type==='boss'||e.type==='brute'?9:5);if(state!=='play')return;if(landed&&pk('thorns'))hit(e,ST.dmg*.6*pk('thorns'),false,{knock:300});}
     if(e.atk>0)e.atk-=dt;
   }
   for(let i=0;i<enemies.length;i++)for(let j=i+1;j<enemies.length;j++){const a=enemies[i],b=enemies[j];if(a.fly||b.fly)continue;const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy),m=a.r+b.r;

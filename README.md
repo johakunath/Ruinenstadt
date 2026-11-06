@@ -21,6 +21,7 @@ Opening `index.html` via `file://` works for playing, but the service worker onl
 | `sw.js` | Service worker, offline cache |
 | `manifest.webmanifest`, `icons/` | PWA install |
 | `BACKLOG.md` | Roadmap and version history |
+| `tools/` | Balance simulator: `node tools/balance.mjs [runs] [difficulty]` with the local server running. A bot plays a fresh campaign and prints a line per run |
 
 ## Release
 
