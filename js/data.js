@@ -96,5 +96,9 @@ const PERKS=[
  {k:'fire',n:'Feuertaufe',d:'Deine Treffer setzen Gegner manchmal in Brand',max:1},{k:'acid',n:'Säurebad',d:'Deine Treffer verätzen Gegner manchmal, sie nehmen dann mehr Schaden',max:1},
  {k:'shock',n:'Blitzableiter',d:'Deine Treffer lassen manchmal Blitze auf Nachbarn überspringen',max:1},{k:'spread',n:'Flächenbrand',d:'Brennende Gegner entzünden beim Tod ihre Nachbarn',max:1,req:'fire'},
  {k:'corrode',n:'Zersetzung',d:'Verätzte Gegner sind 30% langsamer',max:1,req:'acid'},{k:'chain',n:'Kettenblitz',d:'Blitze springen auf 2 weitere Gegner',max:2,req:'shock'},
- {k:'elp',n:'Urgewalt',d:'+25% Elementarschaden',max:3,req:'any'},{k:'res',n:'Abgehärtet',d:'+6% Widerstand',max:4}];
+ {k:'elp',n:'Urgewalt',d:'+25% Elementarschaden',max:3,req:'any'},{k:'res',n:'Abgehärtet',d:'+6% Widerstand',max:4},
+ {k:'combo',n:'Kombo-Meister',d:'Finisher kommen einen Schlag früher',max:1},{k:'loot',n:'Plünderer',d:'Kisten und Tonnen geben doppelt Schrott und öfter Material',max:1},
+ {k:'breaker',n:'Schildbrecher',d:'+25% Schaden gegen Schildträger, Elite-Gegner und Endgegner',max:2},{k:'blast',n:'Sprengmeister',d:'Molotows brennen 50% größer, Explosionen verletzen dich nicht',max:1},
+ {k:'breath',n:'Atempause',d:'Jeder Sprint heilt 3% Leben',max:2},{k:'exec',n:'Gnadenstoß',d:'Normale Gegner unter 12% Leben sterben sofort',max:1},
+ {k:'mat',n:'Sammler',d:'+50% Materialfunde',max:2},{k:'rush',n:'Rausch',d:'+2% Schaden je 10 Kills in der laufenden Serie',max:1}];
 let run=null;const pk=k=>(run&&run.perks[k])||0;

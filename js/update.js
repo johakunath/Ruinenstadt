@@ -29,7 +29,7 @@ function update(dt){
   if(ST.regen)P.hp=Math.min(ST.maxHp,P.hp+ST.regen*dt);
   if(P.spin>0){P.spin-=dt;P.spinTick-=dt;if(P.spinTick<=0){P.spinTick=.15;const sr=80*(1+.2*pk('reach'));for(const e of enemies)if(Math.hypot(e.x-P.x,e.y-P.y)<sr+e.r){const c=Math.random()<ST.crit;hit(e,ST.dmg*.6*(c?2:1),c,{knock:160});}propsInRadius(P.x,P.y,sr,ST.dmg*.6);sfx('swing');}}
   if(P.hot>0){P.hot-=dt;P.hp=Math.min(ST.maxHp,P.hp+ST.maxHp*.4/3*dt);}if(P.fed>0)P.fed-=dt;
-  for(const m of mols){m.t+=dt;if(m.t>=m.dur){fields.push({x:m.x1,y:m.y1,r:65,t:4});sfx('ignite');sfx('crash');burst(m.x1,m.y1,'#ff6a2a',24,200);propsInRadius(m.x1,m.y1,60,ST.dmg*2);m.done=1;}}mols=mols.filter(m=>!m.done);
+  for(const m of mols){m.t+=dt;if(m.t>=m.dur){fields.push({x:m.x1,y:m.y1,r:65*(pk('blast')?1.5:1),t:4});sfx('ignite');sfx('crash');burst(m.x1,m.y1,'#ff6a2a',24,200);propsInRadius(m.x1,m.y1,60,ST.dmg*2);m.done=1;}}mols=mols.filter(m=>!m.done);
   for(const f of fields){f.t-=dt;if(Math.random()<dt*22)parts.push({x:f.x+R(-f.r,f.r)*.8,y:f.y+R(-f.r,f.r)*.4,vx:R(-8,8),vy:R(-70,-30),life:.5,max:.5,col:pick(['#ff6a2a','#FAC775','#EF9F27']),size:R(2,4)});
     for(const e of enemies)if(e.hp>0&&Math.hypot(e.x-f.x,(e.y-f.y)*1.6)<f.r){const W=ER(e,'fire');if(W>0){e.bdps=Math.max(e.burn>0?e.bdps||0:0,ST.dmg*.9*W);e.burn=Math.max(e.burn||0,.7);}}}
   fields=fields.filter(f=>f.t>0);
@@ -98,7 +98,7 @@ function update(dt){
   shocks=shocks.filter(s=>s.r<s.max);
   for(const r of rings)r.r+=300*dt;rings=rings.filter(r=>r.r<r.max);
   if(run.blasts.length){const bs=run.blasts;run.blasts=[];for(const b of bs){burst(b.x,b.y-10,'#ff8a3d',26,260);burst(b.x,b.y,'#3d3027',14,160);shake=Math.max(shake,9);sfx('boom');stamp(b.x,b.y,'rgba(8,5,3,.45)',b.r*.5);rings.push({x:b.x,y:b.y,r:10,max:b.r,col:'255,138,61'});
-    if(P.inv<=0&&Math.hypot(P.x-b.x,P.y-b.y)<b.r+P.r){hurt(b.dmg,10);if(state!=='play')return;}for(const o of enemies)if(o.hp>0&&Math.hypot(o.x-b.x,o.y-b.y)<b.r+o.r)hit(o,b.dmg*1.5,false,{knock:320},true,'#ff8a3d');}}
+    if(!pk('blast')&&P.inv<=0&&Math.hypot(P.x-b.x,P.y-b.y)<b.r+P.r){hurt(b.dmg,10);if(state!=='play')return;}for(const o of enemies)if(o.hp>0&&Math.hypot(o.x-b.x,o.y-b.y)<b.r+o.r)hit(o,b.dmg*1.5,false,{knock:320},true,'#ff8a3d');}}
   if(run.booms.length){const bs=run.booms;run.booms=[];for(const b of bs){burst(b.x,b.y,'#ff8a3d',12,200);sfx('pop');for(const e of enemies)if(e.hp>0&&Math.hypot(e.x-b.x,e.y-b.y)<72+e.r)hit(e,ST.dmg*.35*pk('boom'),false,{knock:220});propsInRadius(b.x,b.y,72,ST.dmg*.35);}}
   for(const p of eproj){p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=dt;if(wallAt(p.x,p.y+12)){p.life=0;burst(p.x,p.y,'#97C459',5,70);}
     else if(Math.hypot(p.x-P.x,p.y-(P.y-14))<p.r+P.r){if(P.inv<=0){p.life=0;burst(p.x,p.y,'#97C459',6,90);hurt(p.dmg,4);if(state!=='play')return;}}}

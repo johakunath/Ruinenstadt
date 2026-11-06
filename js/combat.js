@@ -21,9 +21,9 @@ function nearestProp(range){let b=null,bd=range;for(const p of brk){const d=Math
 function hitProp(b,dmg){if(b.hp<=0)return;b.hp-=dmg>=ST.dmg*1.5?2:1;b.flash=.12;sfx('wood');burst(b.x+b.w/2,b.y+b.h/2,b.type==='crate'?'#7a5530':'#d8642e',5,110);if(b.hp<=0)breakProp(b);}
 function breakProp(b){const i=walls.indexOf(b);if(i>=0)walls.splice(i,1);gridDel(b);prog('props');if(b.inside)prog('spati');brk=brk.filter(o=>o!==b);const cx=b.x+b.w/2,cy=b.y+b.h/2;sfx('crash');
   burst(cx,cy,b.type==='crate'?'#9a7040':'#d8642e',18,180);burst(cx,cy,'#3d3027',8,90);stamp(cx,cy,'rgba(60,40,25,.35)',12);
-  const sc=Math.round((b.inside?R(4,8):R(1,4))*DF().sc*(1+.5*pk('scrap')));if(run){S.scrap+=sc;run.sg+=sc;}nums.push({x:cx,y:cy-14,t:'+'+sc+' Schrott',col:'#a8957d',life:1});
+  const sc=Math.round((b.inside?R(4,8):R(1,4))*DF().sc*(1+.5*pk('scrap'))*(pk('loot')?2:1));if(run){S.scrap+=sc;run.sg+=sc;}nums.push({x:cx,y:cy-14,t:'+'+sc+' Schrott',col:'#a8957d',life:1});
   if(Math.random()<.15*(hasL('spaeti')?2:1)){const k=pick(['verband','molotow']);if((S.cons[k]||0)<3){S.cons[k]=(S.cons[k]||0)+1;toast(`+1 ${k==='verband'?'Verband':'Molotow'}`);}}
-  if(Math.random()<.1)drops.push({x:cx+10,y:cy,food:true,t:0});if(run&&Math.random()<(b.inside?.6:.3))drops.push({x:cx-8,y:cy,mat:pick(Object.keys(MATS)),t:0});
+  if(Math.random()<.1)drops.push({x:cx+10,y:cy,food:true,t:0});if(run&&Math.random()<(b.inside?.6:.3)*(pk('loot')?1.6:1)*(1+.5*pk('mat')))drops.push({x:cx-8,y:cy,mat:pick(Object.keys(MATS)),t:0});
   if(Math.random()<(b.inside?.6:.18))drops.push({x:cx,y:cy,item:makeItem(ilvl(),b.inside?1:0),t:0});else if(Math.random()<.12)drops.push({x:cx,y:cy,heal:true,t:0});
   if(b.type==='chest'&&run){prog('chest');S.rec.chests++;drops.push({x:cx+14,y:cy,item:lootItem(ilvl()+1,2,.1),t:0});drops.push({x:cx-14,y:cy,item:makeItem(ilvl()+1,1),t:0});const cs=Math.round(20*DF().sc);S.scrap+=cs;run.sg+=cs;sfx('pick',2);toast('<span style="color:#c9a227">Kellertruhe</span> geöffnet');}}
 function propsInArc(a,arc,reach,dmg){for(const p of brk.slice()){const dx=p.x+p.w/2-P.x,dy=p.y+p.h/2-P.y,d=Math.hypot(dx,dy);if(d>reach+12)continue;let da=Math.atan2(dy,dx)-a;da=Math.atan2(Math.sin(da),Math.cos(da));if(Math.abs(da)<arc||d<P.r+16)hitProp(p,dmg);}}
@@ -31,7 +31,7 @@ function propsInRadius(x,y,r,dmg){for(const p of brk.slice())if(Math.hypot(p.x+p
 function attack(){
   if(P.cd>0||P.dashT>0||P.spin>0)return;const K=ST.K;P.cd=ST.rate;const tg=nearest(ST.kind==='sling'?360:180);
   if(tg)P.face=Math.atan2(tg.y-P.y,tg.x-P.x);else{const pp=nearestProp(ST.kind==='sling'?220:95);if(pp)P.face=Math.atan2(pp.y+pp.h/2-P.y,pp.x+pp.w/2-P.x);}
-  P.atkA=P.face;P.combo=(P.comboT>0?(P.combo||0)+1:1);P.comboT=.85;const n=P.combo,fin=(ST.kind==='blade'&&n%3===0)||(ST.kind==='sling'&&n%4===0)||(ST.kind==='hammer'&&n%3===0);
+  P.atkA=P.face;P.combo=(P.comboT>0?(P.combo||0)+1:1);P.comboT=.85;const n=P.combo,cb=pk('combo'),fin=(ST.kind==='blade'&&n%(3-cb)===0)||(ST.kind==='sling'&&n%(4-cb)===0)||(ST.kind==='hammer'&&n%(3-cb)===0);
   const crit=Math.random()<ST.crit,dmg=ST.dmg*R(.9,1.1)*(crit?2:1)*(P.fed>0?1.1:1)*(fin?(ST.kind==='hammer'?1.2:1.6):1);
   P.swingKind=ST.kind;P.swingDur=P.swingT=ST.kind==='hammer'?.3:ST.kind==='sling'?.14:.17;
   if(ST.kind==='sling'){const c=Math.cos(P.face),s=Math.sin(P.face);pproj.push({x:P.x+c*14,y:P.y+s*14,vx:c*ST.pspd*(fin?1.3:1),vy:s*ST.pspd*(fin?1.3:1),r:fin?6:4,dmg,crit,life:fin?.9:.7,pierce:fin?3:0,hits:[],el:ST.els[0],fin});sfx('sling');if(fin)sfx('zap');return;}
@@ -47,7 +47,7 @@ function skill(){if(state!=='play'||P.skCd>0||P.dashT>0)return;P.skCd=ST.skCd;co
   if(k==='blade'){P.spin=1.2;P.spinTick=0;sfx('spin');}
   else if(k==='hammer'){shocks.push({x:P.x,y:P.y,r:10,max:165,hit:[]});shake=Math.max(shake,11);sfx('boom');burst(P.x,P.y,'#5a4636',28,260);stamp(P.x,P.y,'rgba(8,5,3,.35)',46);P.swingKind='hammer';P.atkA=P.face;P.swingDur=P.swingT=.3;propsInRadius(P.x,P.y,165,ST.dmg*3);}
   else{const tg=nearest(420),a=tg?Math.atan2(tg.y-P.y,tg.x-P.x):P.face;P.face=P.atkA=a;P.swingKind='sling';P.swingDur=P.swingT=.2;for(let i=0;i<9;i++){const q=a+(i-4)*.14;pproj.push({x:P.x,y:P.y,vx:Math.cos(q)*ST.pspd,vy:Math.sin(q)*ST.pspd,r:4,dmg:ST.dmg*.8,crit:false,life:.8,pierce:1,hits:[],el:ST.els[0]});}sfx('sling');sfx('heavy');}}
-function hit(e,dmg,crit,K,noproc,col){if(e.hp<=0)return;if(e.elite==='gepanzert')dmg*=.5;if(hasL('auge')&&(e.elite||e.type==='boss'))dmg*=1.25;e.lc=crit;
+function hit(e,dmg,crit,K,noproc,col){if(e.hp<=0)return;if(e.elite==='gepanzert')dmg*=.5;if(hasL('auge')&&(e.elite||e.type==='boss'))dmg*=1.25;if(pk('breaker')&&(e.elite||e.type==='boss'||e.type==='shield'))dmg*=1+.25*pk('breaker');if(pk('rush')&&streak.n>=10)dmg*=1+.02*Math.floor(streak.n/10);e.lc=crit;
   if((e.type==='shield'||(e.type==='boss'&&e.v===6))&&!(e.guard>0)&&!noproc){let da=Math.atan2(P.y-e.y,P.x-e.x)-e.fa;da=Math.atan2(Math.sin(da),Math.cos(da));if(Math.abs(da)<1.2){if(K.stun){e.guard=e.type==='boss'?1.2:2.2;nums.push({x:e.x,y:e.y-e.r-40,t:'Deckung offen',col:'#f2d14b',life:1});}else{dmg*=e.type==='boss'?.35:.2;if(Math.random()<.4)nums.push({x:e.x,y:e.y-e.r-38,t:'geblockt',col:'#a8957d',life:.7});burst(e.x+Math.cos(e.fa)*e.r,e.y-12+Math.sin(e.fa)*e.r,'#d6cfc0',4,140);}}}if(crit)freeze=Math.max(freeze,.03);if(e.acid>0)dmg*=1+.25*ST.elp*ER(e,'acid');dmg=Math.max(1,Math.round(dmg));e.hp-=dmg;e.flash=.1;
   const res=(e.type==='boss'?.12:e.type==='brute'?.5:1)*(e.elite==='gepanzert'?.3:1),a=Math.atan2(e.y-P.y,e.x-P.x);e.kx=Math.cos(a)*K.knock*res;e.ky=Math.sin(a)*K.knock*res;
   const bs=e.type==='boss'?.15:1;if(K.stun)e.stun=Math.max(e.stun,K.stun*bs);if(crit&&pk('stun'))e.stun=Math.max(e.stun,.6*bs);
@@ -59,6 +59,7 @@ function hit(e,dmg,crit,K,noproc,col){if(e.hp<=0)return;if(e.elite==='gepanzert'
     if(el==='fire'){if(!(e.burn>0))sfx('ignite');e.bdps=Math.max(e.burn>0?e.bdps:0,dmg*.45*ST.elp*W);e.burn=2;}
     else if(el==='acid')e.acid=3;else chain(e,dmg*.5*ST.elp,2+2*pk('chain'));}
   if(!noproc&&SHR.zap>0&&Math.random()<.25)chain(e,dmg*.45,2);
+  if(pk('exec')&&e.type!=='boss'&&e.hp>0&&e.hp<e.max*.12){e.hp=0;nums.push({x:e.x,y:e.y-e.r-30,t:'Gnadenstoß',col:'#c23a2e',life:.7});}
   if(e.hp<=0)kill(e);}
 function chain(src,d,n){const dd=t=>Math.hypot(t.x-src.x,t.y-src.y),ts=enemies.filter(t=>t!==src&&t.hp>0&&dd(t)<140).sort((a,b)=>dd(a)-dd(b)).slice(0,n);
   let px=src.x,py=src.y-14;for(const t of ts){bolts.push({x0:px,y0:py,x1:t.x,y1:t.y-14,life:.16});px=t.x;py=t.y-14;const W=ER(t,'shock');if(W>0){hit(t,d*W,false,{knock:60},true,ELC.shock);prog('shock');}}if(ts.length)sfx('zap');}
@@ -75,13 +76,13 @@ function kill(e){
     if(e.elite==='spaltend')for(let i=0;i<2;i++){const m=mkEnemy('ghoul',e.x+R(-16,16),e.y+R(-16,16));m.r=7;m.hp=m.max=m.max*.4;m.xp=1;m.sc=0;enemies.push(m);}}
   const il=ilvl();
   if(e.type==='boss'){for(let i=0;i<(e.big?4:3);i++)drops.push({x:e.x+R(-40,40),y:e.y+R(-40,40),item:lootItem(il+2,2,.12),t:R(0,3)});if(e.big)drops.push({x:e.x,y:e.y-24,item:makeItem(il+3,3),t:0});drops.push({x:e.x,y:e.y+20,heal:true,t:0});run.boss=null;shake=12;sfx('boom');}
-  if(Math.random()<(e.type==='boss'?1:e.elite?.8:e.type==='rat'?.08:.22)){const n=e.type==='boss'?5:e.elite?2:1;for(let i=0;i<n;i++)drops.push({x:e.x,y:e.y,mat:i&&e.type==='boss'?pick(Object.keys(MATS)):EMAT[e.type]||pick(Object.keys(MATS)),t:0});}
+  if(Math.random()<(e.type==='boss'?1:e.elite?.8:e.type==='rat'?.08:.22)*(1+.5*pk('mat'))){const n=e.type==='boss'?5:e.elite?2:1;for(let i=0;i<n;i++)drops.push({x:e.x,y:e.y,mat:i&&e.type==='boss'?pick(Object.keys(MATS)):EMAT[e.type]||pick(Object.keys(MATS)),t:0});}
   else{const ch={ghoul:.2,spitter:.28,brute:.75,raser:.32,rat:.04,bomb:.3,shield:.55,crow:.18,howl:.6}[e.type]||.2;if(Math.random()<.03*(hasL('spaeti')?2:1)*(hasS('koechin')?2:1))drops.push({x:e.x-10,y:e.y,food:true,t:0});if(Math.random()<ch)drops.push({x:e.x,y:e.y,item:makeItem(il,e.type==='brute'?1:0),t:R(0,3)});else if(Math.random()<.1)drops.push({x:e.x,y:e.y,heal:true,t:0});}}
 function gainXp(n){P.xp+=n;while(P.xp>=20+P.lvl*15){P.xp-=20+P.lvl*15;P.lvl++;refresh();P.hp=ST.maxHp;banner('Stufe '+P.lvl);burst(P.x,P.y,'#f2d14b',26,210);sfx('lvl');}}
 function hurt(dmg,sh){if(P.inv>0||state!=='play')return false;if(hasL('panzer')&&Math.random()<.2){P.inv=.3;nums.push({x:P.x,y:P.y-40,t:'geblockt',col:'#d6cfc0',life:.8});sfx('wood');return false;}dmg=Math.max(1,Math.round(dmg*(1-ST.res)));P.hp-=dmg;if(hasL('rattenmantel')&&!(P.ratT>0)){P.ratT=1.5;shocks.push({x:P.x,y:P.y,r:10,max:120,hit:[],acid:true});sfx('ignite');}P.inv=.4;shake=Math.max(shake,sh);sfx('hurt');burst(P.x,P.y-10,'#c23a2e',8,140);
   nums.push({x:P.x,y:P.y-40,t:'-'+dmg,col:'#ff6b5a',life:.8});
   if(P.hp<=0){if((pk('second')||hasL('herz'))&&!run.second){run.second=true;P.hp=Math.round(ST.maxHp*(hasL('herz')?.4:.3));P.inv=1.5;banner('Zweiter Atem');sfx('lvl');burst(P.x,P.y,'#f2d14b',30,220);}else die();}return true;}
-function dash(){if(state!=='play'||P.dashCd>0)return;let dx=P.mvx,dy=P.mvy;const l=Math.hypot(dx,dy);if(l<.2){dx=Math.cos(P.face);dy=Math.sin(P.face);}else{dx/=l;dy/=l;}
+function dash(){if(state!=='play'||P.dashCd>0)return;if(pk('breath'))P.hp=Math.min(ST.maxHp,P.hp+ST.maxHp*.03*pk('breath'));let dx=P.mvx,dy=P.mvy;const l=Math.hypot(dx,dy);if(l<.2){dx=Math.cos(P.face);dy=Math.sin(P.face);}else{dx/=l;dy/=l;}
   P.ddx=dx;P.ddy=dy;P.dashT=.18;P.inv=Math.max(P.inv,.32);P.dashCd=ST.dashCd;P.ramHit=[];sfx('dash');}
 function fireGlob(e,a,sp){eproj.push({x:e.x,y:e.y-(e.type==='boss'?30:14),vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,r:e.type==='boss'?8:6,dmg:Math.round(e.dmg*(e.type==='boss'?.6:1)),life:3.5});}
 function addToBag(it){
@@ -124,11 +125,13 @@ $('c1').addEventListener('pointerdown',e=>{e.preventDefault();useCons('verband')
 addEventListener('keydown',e=>{if(e.code==='KeyQ')useCons('verband');if(e.code==='KeyR')useCons('molotow');});
 function die(){state='over';P.hp=0;clearInput();burst(P.x,P.y,'#c23a2e',34,230);S.best[run.d]=Math.max(S.best[run.d],run.wave-1);save();setTimeout(()=>showEnd(false),1000);}
 function win(){state='over';clearInput();S.rec.wins++;if(run.th>=S.tmax){S.tmax=run.th+1;run.thUnl=true;}const bonus=Math.round(50*(run.d+1)*DF().sc);S.scrap+=bonus;run.sg+=bonus;S.best[run.d]=10;const unl=run.d+1<DIST.length&&S.unlocked<run.d+2;if(unl)S.unlocked=run.d+2;run.unl=unl;run.bonus=bonus;save();sfx('win');setTimeout(()=>showEnd(true),900);}
-function offerPerks(){tip('perk','Segen gelten nur für diese Expedition. Kombiniere sie mit deinem Element.');const pool=PERKS.filter(p=>pk(p.k)<p.max&&!(ELC[p.k]&&ST.els.includes(p.k))&&(!p.req||(p.req==='any'?ST.els.length>0:ST.els.includes(p.req)))),ch=[];while(ch.length<3&&pool.length)ch.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
+function offerPerks(reroll){tip('perk','Segen gelten nur für diese Expedition. Blaue und goldene Karten geben zwei Stufen auf einmal.');const pool=PERKS.filter(p=>pk(p.k)<p.max&&!(ELC[p.k]&&ST.els.includes(p.k))&&(!p.req||(p.req==='any'?ST.els.length>0:ST.els.includes(p.req)))),ch=[];while(ch.length<3&&pool.length)ch.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
   if(!ch.length){run.perkDone=true;run.breakT=.5;return;}
-  state='perk';clearInput();
+  state='perk';clearInput();if(!reroll)run.rr=0;const rc_=20+run.wave*8;
+  const cards=ch.map(p=>{const room=p.max-pk(p.k),q=Math.random(),lv=room>=2&&q<.18+.01*run.wave?2:1;return{p,lv,ep:lv===2&&q<.05};});
   $('perkbox').innerHTML=`<h2>Wähle einen Segen</h2><p class="hint">Welle ${run.wave} geschafft. Segen gelten bis zum Ende dieser Expedition.</p>
-  ${ch.map(p=>`<button class="pcard" data-p="${p.k}"><span class="pn" style="${ELC[p.k]||ELC[p.req]?'color:'+(ELC[p.k]||ELC[p.req]):''}">${p.n}</span><span class="pd">${p.d}</span><span class="pl">${pk(p.k)?'Stufe '+(pk(p.k)+1)+' von '+p.max:'Neu'}</span></button>`).join('')}`;
+  <div class="pcards">${cards.map(({p,lv,ep})=>`<button class="pcard${lv>1?(ep?' ep':' ra'):''}" data-p="${p.k}" data-lv="${lv}"><span class="prar">${lv>1?(ep?'Episch · zwei Stufen':'Selten · zwei Stufen'):'Gewöhnlich'}</span><span class="pn" style="${ELC[p.k]||ELC[p.req]?'color:'+(ELC[p.k]||ELC[p.req]):''}">${p.n}</span><span class="pd">${p.d}</span><span class="pl">${pk(p.k)?'Stufe '+(pk(p.k)+lv)+' von '+p.max:lv>1?'Neu · Stufe 2 von '+p.max:'Neu'}</span></button>`).join('')}</div>
+  <button class="btn sm" data-rr="1"${run.rr||S.scrap<rc_?' disabled':''}>Neu würfeln · ${rc_} Schrott</button>`;
   $('perk').hidden=false;sfx('lvl');}
-$('perkbox').addEventListener('click',e=>{const t=e.target.closest('button');if(!t||state!=='perk')return;const k=t.dataset.p;run.perks[k]=(run.perks[k]||0)+1;refresh();if(k==='hp')P.hp=Math.min(ST.maxHp,P.hp+25);
+$('perkbox').addEventListener('click',e=>{const t=e.target.closest('button');if(!t||state!=='perk')return;if(t.dataset.rr){const c=20+run.wave*8;if(!run.rr&&S.scrap>=c){S.scrap-=c;run.rr=1;sfx('coin');offerPerks(true);}return;}const k=t.dataset.p,lv=+t.dataset.lv||1,mx=PERKS.find(p=>p.k===k).max;run.perks[k]=Math.min(mx,(run.perks[k]||0)+lv);refresh();if(k==='hp')P.hp=Math.min(ST.maxHp,P.hp+25);
   $('perk').hidden=true;state='play';last=performance.now();run.perkDone=true;run.breakT=2;sfx('coin');toast(`Segen: <span style="color:var(--ember)">${PERKS.find(p=>p.k===k).n}</span>`);});
