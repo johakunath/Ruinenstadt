@@ -32,4 +32,6 @@ async function exportSave(){save();const code='RS1:'+b64e(JSON.stringify(S));
   try{await navigator.clipboard.writeText(code);toast('Spielstand-Code kopiert');}catch(e){prompt('Spielstand-Code kopieren:',code);}}
 function importSave(){const code=(prompt('Spielstand-Code einfügen. Der aktuelle Spielstand wird ersetzt.')||'').trim();if(!code)return;
   let rs=null;try{rs=JSON.parse(b64d(code.replace(/^RS1:/,'')));}catch(e){}
-  if(!rs||!rs.upg||!rs.eq){toast('Ungültiger Code');return;}applySave(rs);renderMenu();toast('Spielstand geladen');}
+  // dry run on a copy: only replace the current save if the game can compute stats with it
+  let ok=false;const old=S;if(rs&&rs.upg&&rs.eq)try{S=fix(JSON.parse(JSON.stringify(rs)));ok=!!KIND[S.eq.w.kind]&&isFinite(power(stats()));}catch(e){}S=old;
+  if(!ok){toast('Ungültiger Code');return;}applySave(rs);renderMenu();toast('Spielstand geladen');}
