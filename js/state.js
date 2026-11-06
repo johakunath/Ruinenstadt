@@ -5,7 +5,7 @@ function gear(eq){const A={};for(const k in AFX)A[k]=0;
   for(const s of ['w','a','t']){const it=eq[s];if(!it)continue;if(s==='a')A.hp+=it.val;if(s==='t')A[TM[it.kind]]+=it.val;
     (IMP[baseOf(it)]||[]).forEach(q=>A[q[0]]+=q[1]);(it.afx||[]).forEach(f=>A[f.k]+=f.v);
     (it.mods||[]).forEach(k=>{const M=MODS.find(m=>m.k===k);if(!M)return;(M.a||[]).forEach(q=>A[q[0]]+=q[1]);if(M.el&&(it.el||(it.mods.find(x=>MODS.find(m=>m.k===x&&m.el))!==k)))A.el+=20;});}
-  const kz=setCount(eq,'kiez'),sp=setCount(eq,'spree');if(S.camp&&S.camp.turm)A.res+=8;if(kz>=2)A.res+=15;if(kz>=3)A.dmg+=30;if(sp>=2)A.as+=15;if(sp>=3)A.el+=40;return A;}
+  const kz=setCount(eq,'kiez'),sp=setCount(eq,'spree');if(S.camp&&S.camp.turm)A.res+=8;if(kz>=2)A.res+=15;if(kz>=3)A.dmg+=30;if(sp>=2)A.as+=15;if(sp>=3)A.el+=40;const zt=setCount(eq,'zit');if(zt>=2)A.hp+=60;if(zt>=3){A.dmg+=25;A.res+=10;}return A;}
 function stats(eq){eq=eq||S.eq;const w=eq.w,K=KIND[w.kind],A=gear(eq),lv=P?P.lvl:1,els=[];const wel=w.el||((w.mods||[]).map(k=>MODS.find(m=>m.k===k)).find(m=>m&&m.el)||{}).el;if(wel)els.push(wel);if(setCount(eq,'spree')>=3&&!els.includes('shock'))els.push('shock');['fire','acid','shock'].forEach(e=>{if(pk(e)&&!els.includes(e))els.push(e);});
   const asF=Math.max(.4,1+.12*pk('rate')+A.as/100+(SHR.as>0?.3:0)),cdr=clamp(A.cdr/100,0,.5);
   return{kind:w.kind,K,A,els,elp:Math.max(0,1+A.el/100+.25*pk('elp')),dmg:Math.max(1,(w.val+(lv-1)*2*K.k)*(1+.1*S.upg.dmg+.15*pk('dmg')+A.dmg/100+.04*mLvl(w.kind))),

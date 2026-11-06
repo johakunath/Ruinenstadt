@@ -1,7 +1,7 @@
 # Ruinenstadt Backlog
 
 Top-down loot ARPG in post-collapse Berlin. Hobby project to learn game development.
-Current build: v0.23, static web app (PWA) in this repo. Game text in German.
+Current build: v0.24, static web app (PWA) in this repo. Game text in German.
 Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are now v0.1–v0.16.
 
 ## Intent (working version, refine as we go)
@@ -118,3 +118,4 @@ Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are n
 | v0.21 | Game feel: loot arcs out with bounce and lands with name labels on the ground in rarity colour, legendary drops with gold flash, fanfare and taller beam. Smooth camera with look-ahead. Kill streak counter with Schrott bonus from 10 kills. Dusk to night across the 10 waves. Heartbeat at low life, footstep dust, popping crit numbers, enemies-left counter in the HUD |
 | v0.22 | Combo finishers: every 3rd blade swing is a wide heavy finisher, every 3rd hammer blow adds a stunning quake, every 4th sling shot pierces 3 enemies. Litfaßsäulen: 3 advertising columns per map grant a 45 s blessing (Adrenalin, Eisenhaut, Goldrausch, Rückenwind, Funkenflug), shown in the HUD. Map tab in the pause screen with landmarks, Späti, dark zones, columns, enemies and area names. New job |
 | v0.23 | Crafting: four materials (Stoff, Metall, Chemie, Kabel) drop from enemies by type, elites, bosses and crates. Seven weapon mods (Aufsätze) built in the Werkstatt from materials and Schrott: Nagelband, Griffband, Gegengewicht, Autobatterie, Benzintank, Säurephiole, Stacheldraht. Weapons have one mod slot, rare and set weapons two. Element mods give an element or +20% elemental damage |
+| v0.24 | Loot expansion: six new legendaries with powers (Klinge der Zitadelle, Plattenbrecher, Krähenschleuder, Mantel der Rattenmutter, Rüstung des Zitadellenritters, Auge des Fernsehturms), third set Zitadelle (Morgenstern, Kettenhemd, Wappen), new icons, weapon models and armor looks. Kodex collection of legendary finds and set pieces |
