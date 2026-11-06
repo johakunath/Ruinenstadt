@@ -52,7 +52,7 @@ function render(t){
   ctx.restore();
   lx.setTransform(LS,0,0,LS,0,0);lx.globalCompositeOperation='source-over';lx.clearRect(0,0,VW,VH);lx.fillStyle=`rgba(6,4,3,${P.dark?.95:clamp(D.dark-.12+(run?run.wave:0)*.017,.45,.93)})`;lx.fillRect(0,0,VW,VH);lx.globalCompositeOperation='destination-out';
   const lit=(x,y,r)=>{x-=camX;y-=camY;if(x<-r||x>VW+r||y<-r||y>VH+r)return;lx.drawImage(LSPR,x-r,y-r,r*2,r*2);};
-  lit(P.x,P.y-10,(P.dark?(P.torch?270:95):250)+Math.sin(t*.008)*8+Math.sin(t*.021)*4);
+  lit(P.x,P.y-10,(P.dark?(P.torch?270:P.lamp?200:95):250)+Math.sin(t*.008)*8+Math.sin(t*.021)*4);
   for(const b of barrels)lit(b.x,b.y-10,150+Math.sin(t*.012+b.ph)*12);
   for(const b of blds)for(const l of b.lights){if(l.inner){if(b.inside)lit(l.x,l.y,150);continue;}if(l.r||!S.eco)lit(l.x,l.y,(l.r||34)*(l.fl&&Math.sin(t*.031+l.x)*Math.sin(t*.017+l.y)>.55?.35:1));}
   for(const p of eproj)lit(p.x,p.y,46);for(const b of bolts)lit(b.x1,b.y1,60);if(!S.eco)for(const h of hazards)lit(h.x,h.y,50);for(const d of drops)if(d.item&&d.item.r>=2)lit(d.x,d.y,60);for(const f of fields)lit(f.x,f.y,f.r+50);

@@ -15,8 +15,8 @@ function update(dt){
   if(streak.n){streak.t-=dt;if(streak.t<=0){if(streak.n>=10){const b=Math.round(streak.n*.6*(1+.1*D.i)*DF().sc);S.scrap+=b;run.sg+=b;toast(`Serie ${streak.n} · <span style="color:var(--ember)">+${b} Schrott</span>`);}streak.n=0;}}
   if(P.hp<ST.maxHp*.3){beatT-=dt;if(beatT<=0){beatT=Math.max(.5,.5+P.hp/ST.maxHp*1.6);sfx('beat');}}
   if(Math.hypot(P.mvx,P.mvy)>.3&&P.dashT<=0){stepT-=dt;if(stepT<=0){stepT=.22;parts.push({x:P.x+R(-4,4),y:P.y+8,vx:R(-12,12),vy:R(-8,-2),life:.4,max:.4,col:'rgba(120,100,80,.35)',size:R(3,5)});}}if(tipQ.length&&tipT<=0){toast('<span style="color:#7dd3ff">Tipp</span> · '+tipQ.shift());tipT=3.2;}
-  {const dz=darks.find(z=>P.x>z.x&&P.x<z.x+z.w&&P.y>z.y&&P.y<z.y+z.h);P.dark=!!dz;P.torch=P.dark&&ST.kind!=='hammer'&&ST.kind!=='spear';
-   if(dz&&!dz.seen){dz.seen=true;toast(P.torch?'<span style="color:#f2d14b">Dunkelzone</span> · Fackel entzündet':'<span style="color:#f2d14b">Dunkelzone</span> · Zweihändige Waffe, keine Fackel');sfx('ignite');}}
+  {const dz=darks.find(z=>P.x>z.x&&P.x<z.x+z.w&&P.y>z.y&&P.y<z.y+z.h);P.dark=!!dz;P.torch=P.dark&&ST.kind!=='hammer'&&ST.kind!=='spear';P.lamp=P.dark&&!P.torch&&S.camp.lampe;
+   if(dz&&!dz.seen){dz.seen=true;toast(P.torch?'<span style="color:#f2d14b">Dunkelzone</span> · Fackel entzündet':S.camp.lampe?'<span style="color:#f2d14b">Dunkelzone</span> · Stirnlampe an':'<span style="color:#f2d14b">Dunkelzone</span> · Zweihändige Waffe, keine Fackel');sfx('ignite');}}
   let mx=joy.x,my=joy.y;if(keys.KeyA||keys.ArrowLeft)mx-=1;if(keys.KeyD||keys.ArrowRight)mx+=1;if(keys.KeyW||keys.ArrowUp)my-=1;if(keys.KeyS||keys.ArrowDown)my+=1;
   const ml=Math.hypot(mx,my);if(ml>1){mx/=ml;my/=ml;}P.mvx=mx;P.mvy=my;
   if(dashReq){dashReq=false;dash();}if(skillReq){skillReq=false;skill();}

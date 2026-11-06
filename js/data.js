@@ -14,12 +14,14 @@ const SETS={kiez:{n:'Kiezwache',p:{w:['Brechstange der Kiezwache','blade','brech
   zit:{n:'Zitadelle',p:{w:['Morgenstern der Zitadelle','hammer','morgen'],a:['Kettenhemd der Zitadelle','armor','kette'],t:['Wappen der Zitadelle','krit','wappen']},b2:'+60 Leben',b3:'+25% Schaden und +10% Widerstand'}};
 const stashMax=()=>40+(S.camp&&S.camp.halle?20:0);
 const CAMP=[{k:'turm',n:'Wachturm',d:'+8% Widerstand, dauerhaft',p:150},{k:'sani',n:'Sanitätszelt',d:'Jede Expedition startet mit mindestens 2 Verbänden',p:140},{k:'garten',n:'Gemüsegarten',d:'Du startest jede Expedition satt (+10% Schaden für 60 Sekunden)',p:120},
-  {k:'halle',n:'Lagerhalle',d:'+20 Plätze im Lager',p:180},{k:'funk',n:'Funkmast',d:'Ein zusätzliches Ereignis pro Expedition',p:200},{k:'presse',n:'Schrottpresse',d:'+15% Schrott von Gegnern',p:250}];
+  {k:'halle',n:'Lagerhalle',d:'+20 Plätze im Lager',p:180},{k:'funk',n:'Funkmast',d:'Ein zusätzliches Ereignis pro Expedition',p:200},{k:'presse',n:'Schrottpresse',d:'+15% Schrott von Gegnern',p:250},{k:'lampe',n:'Stirnlampen-Werkstatt',d:'Zweihändige Waffen bekommen in Dunkelzonen eine Stirnlampe',p:160}];
 const ACH=[{k:'k100',n:'Aufräumer',d:'Besiege 100 Gegner',r:50,c:()=>S.rec.kills>=100},{k:'k1000',n:'Kiezlegende',d:'Besiege 1.000 Gegner',r:200,c:()=>S.rec.kills>=1000},
   {k:'leg1',n:'Ein Fund fürs Leben',d:'Finde ein legendäres Teil',r:100,c:()=>S.rec.legs>=1},{k:'win1',n:'Befreier',d:'Befreie einen Bezirk',r:100,c:()=>S.rec.wins>=1},
   {k:'win5',n:'Berlin atmet',d:'Befreie Neukölln',r:400,c:()=>S.best[4]>=10},{k:'th3',n:'Gegen die Übermacht',d:'Schalte Bedrohung 3 frei',r:300,c:()=>S.tmax>=3},
   {k:'set3',n:'Komplett',d:'Trage ein vollständiges Set',r:250,c:()=>['kiez','spree','zit'].some(k=>setCount(S.eq,k)>=3)},{k:'camp',n:'Zuhause',d:'Baue das Lager komplett aus',r:300,c:()=>CAMP.every(x=>S.camp[x.k])},
   {k:'m5',n:'Meisterhand',d:'Erreiche Meisterschaft 5 mit einer Waffe',r:150,c:()=>['blade','hammer','sling','spear'].some(k=>mLvl(k)>=5)},{k:'chest5',n:'Kellerkind',d:'Öffne 5 Kellertruhen',r:150,c:()=>S.rec.chests>=5},
+  {k:'surv6',n:'Volles Lager',d:'Befreie alle sechs Gefangenen',r:300,c:()=>SURV.every(s=>hasS(s.k))},{k:'streak50',n:'Kettenreaktion',d:'Erreiche eine Serie von 50',r:150,c:()=>(S.rec.streak||0)>=50},{k:'endl20',n:'Nachtschicht',d:'Erreiche Welle 20 im Endlos-Modus',r:300,c:()=>(S.eb||[]).some(w=>w>=20)},
+  {k:'legall',n:'Sammler',d:'Finde alle legendären Teile',r:500,c:()=>Object.keys(LEGP).every(k=>S.found&&S.found[k])},{k:'mods3',n:'Bastler',d:'Baue 3 Aufsätze in Waffen ein',r:100,c:()=>(S.rec.mods||0)>=3},{k:'spear5',n:'Lanzenreiter',d:'Erreiche Speer-Meisterschaft 5',r:150,c:()=>mLvl('spear')>=5},{k:'th5',n:'Unaufhaltsam',d:'Schalte Bedrohung 5 frei',r:500,c:()=>S.tmax>=5},
   {k:'win8',n:'Ganz Berlin',d:'Befreie Marzahn',r:800,c:()=>S.best[7]>=10},{k:'boss10',n:'Bezwinger',d:'Besiege 10 Endgegner',r:250,c:()=>S.rec.bosses>=10}];
 let tipQ=[],tipT=0;function tip(k,txt){if(!S.tips||S.tips[k])return;S.tips[k]=1;tipQ.push(txt);}
 function checkAch(){for(const a of ACH)if(!S.ach[a.k]&&a.c()){S.ach[a.k]=1;S.scrap+=a.r;toast(`Erfolg: <span style="color:var(--ember)">${a.n}</span> · +${a.r} Schrott`);sfx('win');}}
@@ -47,6 +49,7 @@ const SURV=[{k:'doktor',n:'Dr. Ahmet',d:'Jede Expedition startet mit einem Verba
  {k:'kurier',n:'Kurier Jonas',d:'Händler bieten ein viertes Teil an',c:'#3a6a8a'},{k:'koechin',n:'Oma Gerda',d:'Döner fallen doppelt so oft',c:'#7a3a6a'},
  {k:'spaeher',n:'Späherin Lin',d:'+1 Beuteglück',c:'#3B6D11'},{k:'mechaniker',n:'Kalle, Mechaniker',d:'-10% Sprint-Abklingzeit',c:'#c9a227'}];
 const hasS=k=>S.surv&&S.surv[k];
+const MEALS=[{k:'suppe',n:'Erbsensuppe',d:'+20% Leben',p:30},{k:'curry',n:'Currywurst',d:'+12% Schaden',p:40},{k:'kaffee',n:'Filterkaffee',d:'+10% Angriffs- und Lauftempo',p:40},{k:'soljanka',n:'Soljanka',d:'+1,5 Leben pro Sekunde',p:35},{k:'gurke',n:'Spreewaldgurken',d:'+2 Beuteglück',p:50,req:'garten'}];
 const MAST_N={blade:'Klingen',hammer:'Hammer',sling:'Schleuder',spear:'Speer'};
 const mLvl=k=>Math.min(10,Math.floor(Math.sqrt(((S.mast&&S.mast[k])||0)/40))),mNext=k=>{const l=mLvl(k);return l>=10?0:40*(l+1)*(l+1);};
 const JOBT=[
