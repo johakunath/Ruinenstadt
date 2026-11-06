@@ -1,6 +1,6 @@
 /* ================= state ================= */
 let MB=null,mols=[],fields=[],npc=null,zone=null,mf=0,state='menu',P=null,ST=null,bolts=[],corpses=[],hazards=[],freeze=0,flashT=0,enemies=[],drops=[],parts=[],nums=[],swings=[],eproj=[],pproj=[],teles=[],shocks=[],crate=null,shake=0;
-function newPlayer(){P={x:800,y:820,r:12,hp:100,lvl:1,xp:0,face:-Math.PI/2,atkA:0,cd:0,inv:0,walk:0,dashT:0,dashCd:0,ddx:0,ddy:0,mvx:0,mvy:0,swingT:0,swingDur:.2,swingKind:'blade',skCd:0,spin:0,spinTick:0,ramHit:[]};}
+function newPlayer(){P={x:1200,y:1220,r:12,hp:100,lvl:1,xp:0,face:-Math.PI/2,atkA:0,cd:0,inv:0,walk:0,dashT:0,dashCd:0,ddx:0,ddy:0,mvx:0,mvy:0,swingT:0,swingDur:.2,swingKind:'blade',skCd:0,spin:0,spinTick:0,ramHit:[]};}
 function gear(eq){const A={};for(const k in AFX)A[k]=0;
   for(const s of ['w','a','t']){const it=eq[s];if(!it)continue;if(s==='a')A.hp+=it.val;if(s==='t')A[TM[it.kind]]+=it.val;
     (IMP[baseOf(it)]||[]).forEach(q=>A[q[0]]+=q[1]);(it.afx||[]).forEach(f=>A[f.k]+=f.v);}

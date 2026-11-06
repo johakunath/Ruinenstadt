@@ -30,7 +30,7 @@ function update(dt){
     for(const e of enemies)if(e.hp>0&&Math.hypot(e.x-f.x,(e.y-f.y)*1.6)<f.r){const W=ER(e,'fire');if(W>0){e.bdps=Math.max(e.burn>0?e.bdps||0:0,ST.dmg*.9*W);e.burn=Math.max(e.burn||0,.7);}}}
   fields=fields.filter(f=>f.t>0);
   if(atkHeld)attack();
-  for(const m of marks)if(!run.seen[m.n]&&Math.hypot(m.x-P.x,m.y-P.y)<260){run.seen[m.n]=1;toast(`<span style="color:var(--ember);font-family:var(--f-display);font-size:22px">${m.n}</span>`);}
+  for(const m of marks)if(!m.seen&&Math.hypot(m.x-P.x,m.y-P.y)<(m.soft?180:260)){m.seen=1;if(!m.soft&&run.seen[m.n])continue;run.seen[m.n]=1;toast(m.soft?`<span style="color:var(--dim)">${m.n}</span>`:`<span style="color:var(--ember);font-family:var(--f-display);font-size:22px">${m.n}</span>`);}
   if(run.toSpawn>0){run.spawnT-=dt;if(run.spawnT<=0){spawnOne();run.toSpawn--;run.spawnT=Math.max(.3,1-run.wave*.05);}}
   else if(!enemies.length&&!run.cleared){run.cleared=true;run.perkDone=false;progWave(run.wave);if(run.wave>=10){win();return;}toast('Welle '+run.wave+' geschafft');S.best[run.d]=Math.max(S.best[run.d],run.wave);save();run.breakT=2;}
   if(run.cleared){run.breakT-=dt;if(run.breakT<=0){if(!run.perkDone){offerPerks();if(state!=='play')return;}else{run.cleared=false;startWave();}}}

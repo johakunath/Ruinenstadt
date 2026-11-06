@@ -17,7 +17,7 @@ function spawnOne(){const w=run.wave,q=Math.random();let type='ghoul';if(w>=D.bw
 function nearest(range){let b=null,bd=range;for(const e of enemies){const d=Math.hypot(e.x-P.x,e.y-P.y)-e.r;if(d<bd){bd=d;b=e;}}return b;}
 function nearestProp(range){let b=null,bd=range;for(const p of brk){const d=Math.hypot(p.x+p.w/2-P.x,p.y+p.h/2-P.y);if(d<bd){bd=d;b=p;}}return b;}
 function hitProp(b,dmg){if(b.hp<=0)return;b.hp-=dmg>=ST.dmg*1.5?2:1;b.flash=.12;sfx('wood');burst(b.x+b.w/2,b.y+b.h/2,b.type==='crate'?'#7a5530':'#d8642e',5,110);if(b.hp<=0)breakProp(b);}
-function breakProp(b){const i=walls.indexOf(b);if(i>=0)walls.splice(i,1);prog('props');if(b.inside)prog('spati');brk=brk.filter(o=>o!==b);const cx=b.x+b.w/2,cy=b.y+b.h/2;sfx('crash');
+function breakProp(b){const i=walls.indexOf(b);if(i>=0)walls.splice(i,1);gridDel(b);prog('props');if(b.inside)prog('spati');brk=brk.filter(o=>o!==b);const cx=b.x+b.w/2,cy=b.y+b.h/2;sfx('crash');
   burst(cx,cy,b.type==='crate'?'#9a7040':'#d8642e',18,180);burst(cx,cy,'#3d3027',8,90);stamp(cx,cy,'rgba(60,40,25,.35)',12);
   const sc=Math.round((b.inside?R(4,8):R(1,4))*DF().sc*(1+.5*pk('scrap')));if(run){S.scrap+=sc;run.sg+=sc;}nums.push({x:cx,y:cy-14,t:'+'+sc+' Schrott',col:'#a8957d',life:1});
   if(Math.random()<.15*(hasL('spaeti')?2:1)){const k=pick(['verband','molotow']);if((S.cons[k]||0)<3){S.cons[k]=(S.cons[k]||0)+1;toast(`+1 ${k==='verband'?'Verband':'Molotow'}`);}}
