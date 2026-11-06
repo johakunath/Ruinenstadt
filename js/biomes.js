@@ -5,7 +5,10 @@ const BIOME=[
  {lots:{houses:3,hinterhof:3,market:2,park:1,ruins:1,parking:1},big:{park:1,hinterhof:1},roads:.7,trees:['green','autumn','dead'],grass:['#283019','#313a1e','#3a4422'],wx:'rain'},
  {lots:{plattenbau:4,construction:2,ruins:2,parking:1,park:1},big:{plattenbau:2,construction:1},roads:.8,trees:['dead','green','dead'],grass:['#2a2c1c','#33361f','#3d4024'],wx:'ash'},
  {lots:{kleingarten:3,houses:1,parking:1,construction:1,airfield:2},big:{airfield:3,kleingarten:1},roads:.35,trees:['dead','autumn'],grass:['#2c2e18','#36381c','#414322'],wx:'dust'},
- {lots:{houses:3,market:3,hinterhof:2,parking:1,park:1},big:{market:1,park:1,hinterhof:1},roads:.65,trees:['green','autumn','dead'],grass:['#283019','#313a1e','#3a4422'],wx:'embers'}];
+ {lots:{houses:3,market:3,hinterhof:2,parking:1,park:1},big:{market:1,park:1,hinterhof:1},roads:.65,trees:['green','autumn','dead'],grass:['#283019','#313a1e','#3a4422'],wx:'embers'},
+ {lots:{houses:4,hinterhof:3,park:2,market:1,ruins:1},big:{park:2,hinterhof:1},roads:.6,trees:['autumn','autumn','green'],grass:['#2c3019','#363a1e','#40441f'],wx:'leaves'},
+ {lots:{houses:2,forest:2,ruins:1,kleingarten:2,water:1},big:{water:2,forest:2},roads:.45,trees:['green','dark','autumn'],grass:['#232c18','#2b3620','#344026'],wx:'fog'},
+ {lots:{plattenbau:5,parking:2,park:1,construction:1,ruins:1},big:{plattenbau:2,park:1},roads:.75,trees:['dead','green'],grass:['#2a2c1c','#33361f','#3d4024'],wx:'snow'}];
 const LOTN={park:'Park',forest:'Wald',kleingarten:'Kleingärten',market:'Markt',plattenbau:'Plattenbau',hinterhof:'Hinterhof',ruins:'Trümmerfeld',construction:'Baustelle',parking:'Parkplatz',water:'See',airfield:'Rollfeld',houses:'Altbau'};
 const inB=(b,m)=>({x:R(b.x0+m,b.x1-m),y:R(b.y0+m,b.y1-m)});
 function grassFill(b,pal,dens){const g=gx;g.fillStyle=pal[0];g.fillRect(b.x0+6,b.y0+6,b.w-12,b.h-12);
@@ -48,7 +51,7 @@ const LOTS={
  water(b){const rx=b.w/2-50,ry=b.h/2-50;pond((b.x0+b.x1)/2,(b.y0+b.y1)/2,rx,ry);const g=gx,cx=(b.x0+b.x1)/2,y=(b.y0+b.y1)/2+ry-6;
    g.fillStyle='#4a3424';g.fillRect(cx-10,y-70,20,80);for(let k=0;k<8;k++){g.fillStyle='rgba(0,0,0,.3)';g.fillRect(cx-10,y-66+k*10,20,2);}
    for(let i=0;i<6;i++){const a=R(0,6.28),x=cx+Math.cos(a)*(rx+30),yy=(b.y0+b.y1)/2+Math.sin(a)*(ry+26);if(x>b.x0+20&&x<b.x1-20&&yy>b.y0+40&&yy<b.y1-10&&!inWall(x,yy,24))makeTree(x,yy,pick(BIOME[D.i].trees));}
-   marks.push({x:cx,y:(b.y0+b.y1)/2,n:D.i===0?'Müggelsee':'Der See',soft:1});},
+   marks.push({x:cx,y:(b.y0+b.y1)/2,n:D.i===0?'Müggelsee':D.i===6?'Havel':'Der See',soft:1});},
  kleingarten(b){const g=gx,pw=118,ph=96,gap=26;const cols=Math.floor((b.w-30)/(pw+gap)),rows=Math.floor((b.h-30)/(ph+gap));const ox=b.x0+(b.w-cols*(pw+gap)+gap)/2,oy=b.y0+(b.h-rows*(ph+gap)+gap)/2;
    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){const x=ox+c*(pw+gap),y=oy+r*(ph+gap);if(resHit(x,y,pw,ph))continue;
      const wild=Math.random()<.3;g.fillStyle=wild?'#2a3018':'#33301e';g.fillRect(x,y,pw,ph);
@@ -109,6 +112,9 @@ function drawWeather(t,dt){const k=BIOME[D.i].wx,n=S.eco?40:WX.length;
     else if(k==='ash'){m.y+=m.s*dt*.05;m.w+=dt;if(m.y>1.02){m.y=-.02;m.x=Math.random();}ctx.fillStyle=`rgba(200,195,185,${.18+.15*m.s})`;ctx.fillRect(m.x*VW+Math.sin(m.w)*14,m.y*VH,m.z,m.z);}
     else if(k==='dust'){m.x+=m.s*dt*.06;m.w+=dt*2;if(m.x>1.02){m.x=-.02;m.y=Math.random();}ctx.fillStyle=`rgba(210,190,140,${.12+.12*m.s})`;ctx.fillRect(m.x*VW,m.y*VH+Math.sin(m.w)*6,m.z*.8,m.z*.8);}
     else if(k==='fireflies'){if(i>30)break;m.w+=dt*m.s;m.x+=Math.cos(m.w*1.3)*dt*.01;m.y+=Math.sin(m.w)*dt*.01;if(m.x<0||m.x>1)m.x=Math.random();if(m.y<0||m.y>1)m.y=Math.random();const a=.3+.3*Math.sin(m.w*3);ctx.fillStyle=`rgba(210,240,120,${a})`;ctx.fillRect(m.x*VW,m.y*VH,2,2);ctx.fillStyle=`rgba(210,240,120,${a*.25})`;ctx.fillRect(m.x*VW-2,m.y*VH-2,6,6);}
+    else if(k==='leaves'){if(i>40)break;m.y+=m.s*dt*.07;m.w+=dt*2;if(m.y>1.02){m.y=-.02;m.x=Math.random();}ctx.save();ctx.translate(m.x*VW+Math.sin(m.w)*20,m.y*VH);ctx.rotate(m.w);ctx.fillStyle=i%3?'rgba(150,90,30,.55)':'rgba(120,60,24,.55)';ctx.beginPath();ctx.ellipse(0,0,3.5,1.8,0,0,7);ctx.fill();ctx.restore();}
+    else if(k==='snow'){m.y+=m.s*dt*.09;m.w+=dt;if(m.y>1.02){m.y=-.02;m.x=Math.random();}ctx.fillStyle=`rgba(235,235,240,${.35+.3*m.s})`;ctx.beginPath();ctx.arc(m.x*VW+Math.sin(m.w)*10,m.y*VH,m.z*.8,0,7);ctx.fill();}
+    else if(k==='fog'){if(i>10)break;m.x+=dt*.008*m.s;if(m.x>1.3)m.x=-.3;const fx=m.x*VW,fy=m.y*VH;ctx.globalAlpha=.07;ctx.drawImage(glow('#c8ccd0'),fx-180,fy-90,360,180);ctx.globalAlpha=1;}
     else{if(i>36)break;m.y-=m.s*.016*.06;m.w+=.02;if(m.y<-.02){m.y=1.02;m.x=Math.random();}ctx.fillStyle=`rgba(239,159,39,${.25+.25*Math.sin(m.w*2)})`;ctx.fillRect(m.x*VW+Math.sin(m.w)*12,m.y*VH,m.z,m.z);}}}
 function drawWaters(t,camX,camY){ctx.strokeStyle='rgba(160,200,210,.16)';ctx.lineWidth=1.5;
   for(const w of waters){if(w.ex!=null){if(w.ex+w.rx<camX||w.ex-w.rx>camX+VW||w.ey+w.ry<camY||w.ey-w.ry>camY+VH)continue;for(let i=0;i<10;i++){const a=i*2.4+t*.0002*(i%3+1),r=.25+.6*((i*.37)%1),x=w.ex+Math.cos(a)*w.rx*r,y=w.ey+Math.sin(a*1.3)*w.ry*r*.8,l=8+6*Math.sin(t*.002+i);ctx.beginPath();ctx.moveTo(x-l,y);ctx.lineTo(x+l,y);ctx.stroke();}}

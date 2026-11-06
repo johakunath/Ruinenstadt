@@ -3,12 +3,12 @@ let invTab='bag',invFrom='menu',sel=null,invMsg='',allArm=false;
 function cloudLine(){const m={off:'Spielstand auf diesem Gerät',sync:'Cloud wird geladen',on:'Cloud-Speicher aktiv · auf allen Geräten',slow:'Cloud gerade nicht erreichbar · speichert lokal',err:'Cloud nicht verfügbar · speichert lokal'};
   return`<div class="cloud${cloud.state==='on'?' on':''}">${m[cloud.state]}</div>`;}
 // district map positions (viewBox 400x250) and flavour
-const DMAP=[{x:330,y:186,d:'Altstadt am Wasser, Kopfsteinpflaster, Wälder im Osten'},{x:236,y:138,d:'Dichte Altbauten, Hinterhöfe, die Spree im Norden'},{x:196,y:96,d:'Plattenbau, Plätze und der Fernsehturm'},{x:178,y:182,d:'Das offene Flugfeld, Hangars und Kleingärten'},{x:262,y:192,d:'Kaufhaus am Hermannplatz, Märkte, enge Kieze'}];
+const DMAP=[{x:330,y:186,d:'Altstadt am Wasser, Kopfsteinpflaster, Wälder im Osten'},{x:236,y:138,d:'Dichte Altbauten, Hinterhöfe, die Spree im Norden'},{x:196,y:96,d:'Plattenbau, Plätze und der Fernsehturm'},{x:178,y:182,d:'Das offene Flugfeld, Hangars und Kleingärten'},{x:262,y:192,d:'Kaufhaus am Hermannplatz, Märkte, enge Kieze'},{x:226,y:58,d:'Wasserturm, Hinterhöfe, Kastanien im Herbst'},{x:62,y:96,d:'Zitadelle, Havelufer und dichte Wälder'},{x:342,y:84,d:'Endlose Plattenbauten im Schneetreiben'}];
 let menuOpt=false;
 function mapSVG(){const N=DIST.length,pts=DIST.map((d,i)=>DMAP[i]||{x:60+i*40,y:60});
   let h=`<svg class="bmap" viewBox="0 0 400 250" role="group" aria-label="Karte von Berlin"><path d="M40 120 C50 60 120 30 190 34 C260 30 330 50 360 100 C385 140 370 210 320 228 C250 246 140 240 90 214 C50 196 34 160 40 120Z" fill="#1c1511" stroke="#4a3a2e" stroke-width="2"/>
   <path d="M30 96 C90 110 140 92 186 120 C220 136 250 128 290 150 C320 166 350 170 390 196" fill="none" stroke="#1d3a44" stroke-width="7" stroke-linecap="round" opacity=".9"/><path d="M30 96 C90 110 140 92 186 120 C220 136 250 128 290 150 C320 166 350 170 390 196" fill="none" stroke="#2c5866" stroke-width="2" opacity=".6"/>
-  <text x="70" y="112" class="mlbl">Spree</text>`;
+  <text x="300" y="148" class="mlbl">Spree</text>`;
   for(let i=1;i<N;i++){const a=pts[i-1],b=pts[i];h+=`<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="${i<S.unlocked?'#993C1D':'#3a2e25'}" stroke-width="2" stroke-dasharray="${i<S.unlocked?'':'4 4'}"/>`;}
   DIST.forEach((d,i)=>{const p=pts[i],lock=i>=S.unlocked,on=i===S.dist,won=S.best[i]>=10;
     h+=`<g class="node${lock?' lock':''}" data-d="${i}" role="button" aria-label="${d.n}${lock?' gesperrt':''}" tabindex="0">${on?`<circle cx="${p.x}" cy="${p.y}" r="17" fill="none" stroke="#EF9F27" stroke-width="2"><animate attributeName="r" values="14;18;14" dur="2s" repeatCount="indefinite"/></circle>`:''}
@@ -66,7 +66,7 @@ function drawDoll(){const c=$('dollc');if(!c)return;const g=c.getContext('2d'),W
   try{g.setTransform(W/90,0,0,W/90,W/2,H*.8);drawPlayer(performance.now());}catch(e){}ctx=o;Object.assign(P,keep);}
 function statTable(){const s=ST;let h='';for(const[n,f,d,u]of SROWS){const v=f(s);if(!v&&n!=='Kampfkraft')continue;h+=`<span>${n}</span><b>${v.toFixed(d)}${u||''}</b>`;}
   if(s.els.length)h+=`<span>Elemente</span><b>${s.els.map(e=>`<i style="color:${ELC[e]};font-style:normal">${ELN[e]}</i>`).join(', ')}</b>`;return`<div class="stab">${h}</div>`;}
-const KODEX=[['Ghul','Schnell und zahlreich. Fürchtet Feuer.','fire'],['Brocken','Zäh und hart. Verträgt Feuer, aber keine Säure.','acid'],['Speier','Spuckt aus der Distanz. Immun gegen Säure, anfällig für Strom.','shock'],
+const KODEX=[['Ratte','Kommt im Rudel, schnell und schwach.',''],['Zünder','Explodiert, wenn er dich erreicht oder stirbt. Auf Abstand halten.','shock'],['Schildträger','Blockt Treffer von vorn. Umlaufen oder mit dem Hammer betäuben.','acid'],['Krähe','Fliegt über Hindernisse und stößt im Sturzflug herab.','shock'],['Heuler','Treibt Gegner in seiner Nähe an. Zuerst ausschalten.','fire'],['Ghul','Schnell und zahlreich. Fürchtet Feuer.','fire'],['Brocken','Zäh und hart. Verträgt Feuer, aber keine Säure.','acid'],['Speier','Spuckt aus der Distanz. Immun gegen Säure, anfällig für Strom.','shock'],
   ['Raser','Kündigt seinen Sturmlauf mit einer roten Linie an. Seitlich ausweichen.',''],['Schrottkoloss','Zwischenboss in Welle 5. Leitet Strom besonders gut.','shock']];
 function detail(){
   if(!sel)return`<div class="card"><div class="sub">Tippe ein Teil an, um es mit deiner Ausrüstung zu vergleichen.</div></div>`;

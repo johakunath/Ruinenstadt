@@ -11,6 +11,7 @@ function render(t){
   ctx.save();ctx.translate(-camX,-camY);
   drawWaters(t,camX,camY);
   for(const tl of teles){const p=1-tl.t/tl.max;ctx.fillStyle=`rgba(194,58,46,${.12+.25*p})`;ctx.beginPath();ctx.arc(tl.x,tl.y,tl.r,0,7);ctx.fill();ctx.strokeStyle='rgba(255,140,90,.8)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(tl.x,tl.y,tl.r,0,7);ctx.stroke();ctx.beginPath();ctx.arc(tl.x,tl.y,tl.r*p,0,7);ctx.stroke();}
+  for(const r of rings){ctx.strokeStyle=`rgba(${r.col},${.7*(1-r.r/r.max)})`;ctx.lineWidth=6;ctx.beginPath();ctx.ellipse(r.x,r.y,r.r,r.r*.6,0,0,7);ctx.stroke();}
   for(const s of shocks){ctx.strokeStyle=s.acid?`rgba(151,196,89,${1-s.r/s.max})`:`rgba(239,159,39,${1-s.r/s.max})`;ctx.lineWidth=10;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,7);ctx.stroke();}
   for(const f of fields){ctx.globalAlpha=Math.min(1,f.t);ctx.drawImage(glow('#ff6a2a'),f.x-f.r*1.3,f.y-f.r*.8,f.r*2.6,f.r*1.6);ctx.globalAlpha=1;}
   for(const e of enemies)if(e.ch>0){ctx.strokeStyle=`rgba(255,80,60,${.3+.6*(1-e.ch/.6)})`;ctx.lineWidth=3;ctx.setLineDash([10,6]);ctx.beginPath();ctx.moveTo(e.x,e.y);ctx.lineTo(e.x+e.rdx*240,e.y+e.rdy*240);ctx.stroke();ctx.setLineDash([]);}

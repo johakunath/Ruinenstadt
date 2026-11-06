@@ -1,5 +1,5 @@
 /* ================= state ================= */
-let MB=null,mols=[],fields=[],npc=null,zone=null,mf=0,state='menu',P=null,ST=null,bolts=[],corpses=[],hazards=[],freeze=0,flashT=0,enemies=[],drops=[],parts=[],nums=[],swings=[],eproj=[],pproj=[],teles=[],shocks=[],crate=null,shake=0;
+let MB=null,rings=[],mols=[],fields=[],npc=null,zone=null,mf=0,state='menu',P=null,ST=null,bolts=[],corpses=[],hazards=[],freeze=0,flashT=0,enemies=[],drops=[],parts=[],nums=[],swings=[],eproj=[],pproj=[],teles=[],shocks=[],crate=null,shake=0;
 function newPlayer(){P={x:1200,y:1220,r:12,hp:100,lvl:1,xp:0,face:-Math.PI/2,atkA:0,cd:0,inv:0,walk:0,dashT:0,dashCd:0,ddx:0,ddy:0,mvx:0,mvy:0,swingT:0,swingDur:.2,swingKind:'blade',skCd:0,spin:0,spinTick:0,ramHit:[]};}
 function gear(eq){const A={};for(const k in AFX)A[k]=0;
   for(const s of ['w','a','t']){const it=eq[s];if(!it)continue;if(s==='a')A.hp+=it.val;if(s==='t')A[TM[it.kind]]+=it.val;
@@ -17,9 +17,9 @@ function refresh(){if(!P){ST=stats();return;}const pct=ST?P.hp/ST.maxHp:1;ST=sta
 const ilvl=()=>D.lvl+(run?Math.max(1,run.wave)+run.th*3:1);
 function startRun(di){
   initAudio();immerse();S.dist=di;save();
-  S.rec.runs++;run={d:di,th:S.threat||0,wave:0,toSpawn:0,spawnT:0,cleared:true,perkDone:true,breakT:1.5,kills:0,sg:0,crateIn:-1,boss:null,quitArm:false,perks:{},booms:[],seen:{},second:false};
+  S.rec.runs++;run={d:di,th:S.threat||0,wave:0,toSpawn:0,spawnT:0,cleared:true,perkDone:true,breakT:1.5,kills:0,sg:0,crateIn:-1,boss:null,quitArm:false,perks:{},booms:[],blasts:[],seen:{},second:false};
   buildWorld(DIST[di]);newPlayer();ST=stats();P.hp=ST.maxHp;
-  enemies=[];drops=[];parts=[];nums=[];swings=[];eproj=[];pproj=[];teles=[];shocks=[];bolts=[];corpses=[];hazards=[];freeze=0;flashT=0;crate=null;npc=null;zone=null;mols=[];fields=[];shake=0;
+  enemies=[];rings=[];drops=[];parts=[];nums=[];swings=[];eproj=[];pproj=[];teles=[];shocks=[];bolts=[];corpses=[];hazards=[];freeze=0;flashT=0;crate=null;npc=null;zone=null;mols=[];fields=[];shake=0;
   const evw=[2,4,6,8,9].sort(()=>Math.random()-.5).slice(0,S.camp.funk?3:2),evt=['ambush','trader','zone'].sort(()=>Math.random()-.5);run.events={};evw.forEach((w,i)=>run.events[w]=evt[i%3]);if(S.camp.sani)S.cons.verband=Math.max(S.cons.verband||0,2);
   ['menu','inv','end','perk','trade'].forEach(i=>$(i).hidden=true);state='play';last=performance.now();updateHot();banner(DIST[di].n+(run.th?' · Bedrohung '+run.th:''));tip('move','Links ziehen zum Laufen, Hieb halten zum Kämpfen. Zielen geht automatisch.');tip('dash','Sprint macht dich kurz unverwundbar. Nutze ihn gegen Geschosse.');if(S.camp.garten)P.fed=60;
 }

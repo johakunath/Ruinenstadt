@@ -91,6 +91,29 @@ function lmNeukoelln(){
   b.spr=c;addLm(b);marks.push({x:800,y:440,n:'Hermannplatz'});
   gx.fillStyle='rgba(0,0,0,.3)';gx.fillRect(b.x+b.w,b.y-b.H+14,16,b.h+b.H-14);gx.fillRect(b.x+10,b.y+b.h,b.w,10);
 }
+function lmWasserturm(){const g=gx,cx=1200,cy=760;g.fillStyle='#2f3b1c';g.beginPath();g.ellipse(cx,cy+40,190,110,0,0,7);g.fill();for(let i=0;i<300;i++){g.fillStyle=pick(['#3b4a22','#26301a','#4a5a2a']);g.fillRect(cx+R(-170,170),cy+40+R(-95,95),3,2);}
+  const b={x:cx-70,y:cy,w:140,h:60,H:210,top:210,lights:[]},c=cnv(140,270),t=c.getContext('2d');
+  const gr=t.createLinearGradient(0,0,140,0);gr.addColorStop(0,'#5a2a1c');gr.addColorStop(.35,'#8a4a32');gr.addColorStop(1,'#3a1a10');t.fillStyle=gr;t.fillRect(8,60,124,210);bricks(t,8,60,124,210,6);
+  t.fillStyle='rgba(0,0,0,.2)';for(let x=20;x<130;x+=22)t.fillRect(x,60,2,210);
+  for(let r=0;r<4;r++)for(let k=0;k<5;k++){const wx=18+k*22,wy=90+r*44,lit=Math.random()<.15;t.fillStyle=lit?'#e0892e':'#110b08';t.beginPath();t.moveTo(wx,wy+18);t.lineTo(wx,wy+5);t.arc(wx+5,wy+5,5,Math.PI,0);t.lineTo(wx+10,wy+18);t.fill();if(lit)b.lights.push({x:b.x+wx+5,y:b.y-b.top+wy+10});}
+  t.fillStyle='#4a2216';t.fillRect(0,48,140,16);t.fillStyle='#6b3626';for(let i=0;i<10;i++)t.fillRect(4+i*14,42,8,8);
+  t.fillStyle='#2c3a32';t.beginPath();t.moveTo(4,48);t.lineTo(70,4);t.lineTo(136,48);t.fill();t.fillStyle='#3d5045';t.beginPath();t.moveTo(4,48);t.lineTo(70,4);t.lineTo(70,48);t.fill();
+  t.fillStyle='#0b0806';t.beginPath();t.moveTo(58,270);t.lineTo(58,246);t.arc(70,246,12,Math.PI,0);t.lineTo(82,270);t.fill();b.lights.push({x:cx,y:cy-150,r:80});
+  b.spr=c;addLm(b);gx.fillStyle='rgba(0,0,0,.3)';gx.fillRect(b.x+b.w,b.y-60,30,b.h+60);marks.push({x:cx,y:cy+60,n:'Wasserturm'});}
+function lmZitadelle(){const g=gx,x0=1010,y0=800;
+  const b={x:x0,y:y0,w:340,h:56,H:64,top:84,lights:[]},c=cnv(340,140),t=c.getContext('2d');t.fillStyle='#5a3a26';t.fillRect(0,20,340,56);t.fillStyle='#6a4430';t.fillRect(0,20,340,8);
+  for(let i=0;i<17;i++){t.fillStyle='#6a4430';t.fillRect(i*20,8,12,14);}t.fillStyle='#7a5038';t.fillRect(0,76,340,64);bricks(t,0,76,340,64,7);
+  t.fillStyle='#0b0806';t.beginPath();t.moveTo(150,140);t.lineTo(150,104);t.arc(170,104,20,Math.PI,0);t.lineTo(190,140);t.fill();t.fillStyle='rgba(224,137,46,.25)';t.fillRect(156,110,28,30);
+  for(const wx of [40,90,250,300]){t.fillStyle='#110b08';t.fillRect(wx,96,8,16);}t.fillStyle='rgba(0,0,0,.4)';t.fillRect(0,76,340,4);b.lights.push({x:x0+170,y:y0+30,r:70});b.spr=c;addLm(b);
+  const tw={x:1300,y:740,w:60,h:50,H:180,top:180,lights:[]},c2=cnv(60,230),u=c2.getContext('2d');const gr=u.createLinearGradient(0,0,60,0);gr.addColorStop(0,'#5a3a26');gr.addColorStop(.4,'#8a5a3e');gr.addColorStop(1,'#3a2416');
+  u.fillStyle=gr;u.fillRect(4,30,52,200);bricks(u,4,30,52,200,6);for(let i=0;i<5;i++){u.fillStyle='#6a4430';u.fillRect(2+i*12,18,8,14);}u.fillStyle='#4a2c1c';u.fillRect(0,28,60,6);
+  for(let i=0;i<4;i++){u.fillStyle='#110b08';u.fillRect(26,60+i*38,8,14);}u.fillStyle='#d9822b';u.fillRect(26,60,8,14);tw.lights.push({x:1330,y:740-180+67,r:60});tw.spr=c2;addLm(tw);
+  g.fillStyle='#10171a';g.fillRect(x0-40,y0+60,420,30);walls.push({x:x0-40,y:y0+62,w:180,h:26,water:1},{x:x0+200,y:y0+62,w:180,h:26,water:1});waters.push({x:x0-40,y:y0+60,w:420,h:30});g.fillStyle='#4a3424';g.fillRect(x0+140,y0+56,60,38);
+  marks.push({x:1180,y:900,n:'Zitadelle Spandau'});}
+function lmMarzahn(){const b={x:1040,y:770,w:320,h:80,H:230,top:230};makeB(b,'platte');const t=b.spr.getContext('2d');
+  t.fillStyle='#1a1e22';t.fillRect(70,10,180,22);t.fillStyle='#ff6a2a';t.font='700 16px sans-serif';t.textAlign='center';t.fillText('M A R Z A H N',160,27);b.lights.push({x:1200,y:770-230+20,r:90});
+  addLm(b);gx.fillStyle='rgba(0,0,0,.3)';gx.fillRect(b.x+b.w,b.y-120,40,b.h+120);marks.push({x:1200,y:880,n:'Hochhaus Marzahn'});
+  for(let i=0;i<4;i++){const q={x:R(1000,1400),y:R(560,700)};if(!inWall(q.x,q.y,30))makeTree(q.x,q.y,'dead');}}
 /* ---- Späti: enterable shop ---- */
 function makeSpati(){
   const w=176,h=118,H=50,dw=36,cands=lotCands();
@@ -193,7 +216,7 @@ function buildWorld(d){
   g.fillStyle='#5a4636';g.beginPath();g.arc(1200,1100,36,0,7);g.fill();g.fillStyle='#14100d';g.beginPath();g.arc(1200,1100,27,0,7);g.fill();
   g.fillStyle='#6b5543';g.beginPath();g.arc(1200,1100,8,0,7);g.fill();g.strokeStyle='rgba(255,230,200,.12)';g.lineWidth=2;g.beginPath();g.arc(1200,1100,35,3.4,5.6);g.stroke();
   walls.push({x:1168,y:1068,w:64,h:64});
-  if(d.i===1)lmSpree();else legacy([lmRathaus,null,lmTurm,lmTempelhof,lmNeukoelln][d.i]);
+  if(d.i===1)lmSpree();else if(d.i>=5)[lmWasserturm,lmZitadelle,lmMarzahn][d.i-5]();else legacy([lmRathaus,null,lmTurm,lmTempelhof,lmNeukoelln][d.i]);
   makeSpati();makeDark();makeDark();if(Math.random()<.5)makeDark();
   for(const b of BLK)lotFill(b);
   let ct=0;for(let i=0;i<140&&ct<22;i++){const v=Math.random()<.5,p=pick(v?RX:RY),a=R(40,WS-90),w=v?22:48,h=v?48:22,x=v?p+R(-32,32)-w/2:a,y=v?a:p+R(-32,32)-h/2;

@@ -1,7 +1,7 @@
 # Ruinenstadt Backlog
 
 Top-down loot ARPG in post-collapse Berlin. Hobby project to learn game development.
-Current build: v0.19, static web app (PWA) in this repo. Game text in German.
+Current build: v0.20, static web app (PWA) in this repo. Game text in German.
 Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are now v0.1–v0.16.
 
 ## Intent (working version, refine as we go)
@@ -114,3 +114,4 @@ Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are n
 | v0.17 | Moved to GitHub repo, split into CSS and JS modules, PWA (manifest, service worker, offline, install), save code export and import, version shown in menu |
 | v0.18 | Tablet pass (Galaxy Tab S9): world zoom for big screens, sharper rendering, larger HUD, controls and joystick, fullscreen and screen wake lock. Camp menu in two columns with a Berlin district map and district card. Inventory with paper doll, full stat sheet, side-by-side detail and compare, Kodex tab for enemies, bosses and elites |
 | v0.19 | World 2400×2400 (was 1600). Random road layouts per run, 12 lot types (Altbau, Hinterhof, Plattenbau, Markt, Park with ponds, Wald, Kleingärten, Trümmerfeld, Baustelle with crane, Parkplatz, See, Rollfeld with plane wreck). Biome weights, grass and trees per district. Weather per district (fireflies, rain, ash, dust, embers), animated water, Spree across the whole map. Spatial grid for wall collisions |
+| v0.20 | Five new enemy types: Ratte (packs), Zünder (fuse and blast, hurts enemies too), Schildträger (frontal shield, flank or stun with hammer), Krähe (flies over walls, dives), Heuler (buffs nearby enemies). Enemy mix per district. Three new districts with landmarks and bosses: Prenzlauer Berg (Wasserturm, Rattenmutter), Spandau (Zitadelle, Zitadellenritter with shield and charge), Marzahn (Hochhaus, Plattenkönig with falling slabs and Zünder). Weather: leaves, fog, snow. New jobs, achievement, Kodex entries |
