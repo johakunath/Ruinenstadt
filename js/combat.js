@@ -6,7 +6,8 @@ function mkEnemy(type,x,y,big){const il=ilvl(),th=run?run.th:0,s=(1+.15*(il-1))*
     fire:R(1.5,2.5),side:pick([-1,1]),slam:2.5,ring:4,sum:6,fa:0,orb:R(0,6.28),dive:0,dcd:R(2,3.5),fly:type==='crow'};}
 function startWave(){
   run.wave++;const w=run.wave;run.toSpawn=Math.round(5+w*2.4);run.spawnT=.6;run.crateIn=(w===3||w===7)?6:-1;run.evIn=run.events[w]?5:-1;run.evType=run.events[w];
-  if(w===5||w===10){const big=w===10;let x,y,t=0;do{const a=R(0,6.28);x=clamp(P.x+Math.cos(a)*420,80,WS-80);y=clamp(P.y+Math.sin(a)*420,80,WS-80);}while(inWall(x,y,50)&&t++<40);
+  if(run.endless&&w>10&&w%3===0){run.evIn=5;run.evType=pick(['ambush','cache','horde','zone','trader']);}
+  if(w%5===0){const big=w%10===0;let x,y,t=0;do{const a=R(0,6.28);x=clamp(P.x+Math.cos(a)*420,80,WS-80);y=clamp(P.y+Math.sin(a)*420,80,WS-80);}while(inWall(x,y,50)&&t++<40);
     tip('boss','Rote Kreise am Boden: rausgehen, bevor sie zünden.');const b=mkEnemy('boss',x,y,big);b.name=big?BN[D.i]:'Schrottkoloss';b.v=big?D.i:-1;if(big)b.col=['#3a1a10','#2a3020','#3a3a40','#3a3020','#4a1a10','#4a3e36','#383e48','#4a4842'][D.i]||b.col;enemies.push(b);run.boss=b;run.toSpawn=Math.round(run.toSpawn*.4);banner(b.name);}
   else banner('Welle '+w);sfx('horn');
 }
@@ -123,7 +124,7 @@ function useCons(k){tip('cons','Verbände und Molotows stellst du im Lager in de
   else{const tg=nearest(320);let x1,y1;if(tg){x1=tg.x;y1=tg.y;}else{x1=P.x+Math.cos(P.face)*150;y1=P.y+Math.sin(P.face)*150;}mols.push({x0:P.x,y0:P.y-20,x1,y1,t:0,dur:.42});sfx('swing');}}
 $('c1').addEventListener('pointerdown',e=>{e.preventDefault();useCons('verband');});$('c2').addEventListener('pointerdown',e=>{e.preventDefault();useCons('molotow');});
 addEventListener('keydown',e=>{if(e.code==='KeyQ')useCons('verband');if(e.code==='KeyR')useCons('molotow');});
-function die(){state='over';P.hp=0;clearInput();burst(P.x,P.y,'#c23a2e',34,230);S.best[run.d]=Math.max(S.best[run.d],run.wave-1);save();setTimeout(()=>showEnd(false),1000);}
+function die(){state='over';P.hp=0;clearInput();burst(P.x,P.y,'#c23a2e',34,230);S.best[run.d]=Math.max(S.best[run.d],Math.min(10,run.wave-1));if(run.endless)S.eb[run.d]=Math.max(S.eb[run.d]||0,run.wave-1);save();setTimeout(()=>showEnd(false),1000);}
 function win(){state='over';clearInput();S.rec.wins++;if(run.th>=S.tmax){S.tmax=run.th+1;run.thUnl=true;}const bonus=Math.round(50*(run.d+1)*DF().sc);S.scrap+=bonus;run.sg+=bonus;S.best[run.d]=10;const unl=run.d+1<DIST.length&&S.unlocked<run.d+2;if(unl)S.unlocked=run.d+2;run.unl=unl;run.bonus=bonus;save();sfx('win');setTimeout(()=>showEnd(true),900);}
 function offerPerks(reroll){tip('perk','Segen gelten nur für diese Expedition. Blaue und goldene Karten geben zwei Stufen auf einmal.');const pool=PERKS.filter(p=>pk(p.k)<p.max&&!(ELC[p.k]&&ST.els.includes(p.k))&&(!p.req||(p.req==='any'?ST.els.length>0:ST.els.includes(p.req)))),ch=[];while(ch.length<3&&pool.length)ch.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
   if(!ch.length){run.perkDone=true;run.breakT=.5;return;}

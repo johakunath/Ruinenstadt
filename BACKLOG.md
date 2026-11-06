@@ -1,7 +1,7 @@
 # Ruinenstadt Backlog
 
 Top-down loot ARPG in post-collapse Berlin. Hobby project to learn game development.
-Current build: v0.27, static web app (PWA) in this repo. Game text in German.
+Current build: v0.28, static web app (PWA) in this repo. Game text in German.
 Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are now v0.1–v0.16.
 
 ## Intent (working version, refine as we go)
@@ -122,3 +122,4 @@ Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are n
 | v0.25 | Events: Gefangene befreien (guards with an elite, rescued survivor moves into the camp), Schatzversteck (timed treasure hunt with arrow), Rattenflut (rat horde). 3 events per run (4 with Funkmast). Six survivors with permanent bonuses (Dr. Ahmet, Mira, Jonas, Oma Gerda, Lin, Kalle), shown at the campfire and in the Werkstatt |
 | v0.26 | Cityscape: vehicle variety (Trabis, vans, BVG buses, trams on the tracks), roof details (chimneys, satellite dishes, solar panels), coloured neon glows (street lamps, Späti sign, U-Bahn signs), flickering lamps |
 | v0.27 | Blessings: 8 new (Kombo-Meister, Plünderer, Schildbrecher, Sprengmeister, Atempause, Gnadenstoß, Sammler, Rausch), rare and epic cards that grant two levels, one reroll per wave for Schrott, three-column card layout on tablets |
+| v0.28 | Endless mode for liberated districts (bosses every 5 waves, events every 3 waves, Schrott bonus per wave beyond 10, record per district). Music: own chord progression and melody scale per district, drums during boss fights |

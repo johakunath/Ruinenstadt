@@ -16,11 +16,11 @@ function stats(eq){eq=eq||S.eq;const w=eq.w,K=KIND[w.kind],A=gear(eq),lv=P?P.lvl
 function power(st){const dps=st.dmg*(1+st.crit)/st.rate*(1+(st.els.length?.18*st.elp:0)),ehp=st.maxHp/(1-st.res)*(1+st.regen*.04);return Math.round(Math.sqrt(dps*ehp)*(1+(st.spd/165-1)*.4)*(1+st.luck*.01));}
 function refresh(){if(!P){ST=stats();return;}const pct=ST?P.hp/ST.maxHp:1;ST=stats();P.hp=Math.min(ST.maxHp,Math.max(1,Math.round(ST.maxHp*pct)));}
 const ilvl=()=>D.lvl+(run?Math.max(1,run.wave)+run.th*3:1);
-function startRun(di){
+function startRun(di,endless){
   initAudio();immerse();S.dist=di;save();
-  S.rec.runs++;run={d:di,th:S.threat||0,wave:0,toSpawn:0,spawnT:0,cleared:true,perkDone:true,breakT:1.5,kills:0,sg:0,crateIn:-1,boss:null,quitArm:false,perks:{},booms:[],blasts:[],seen:{},second:false};
+  S.rec.runs++;run={d:di,th:S.threat||0,wave:0,toSpawn:0,spawnT:0,cleared:true,perkDone:true,breakT:1.5,kills:0,sg:0,crateIn:-1,boss:null,quitArm:false,perks:{},booms:[],blasts:[],seen:{},second:false,endless:!!endless};
   buildWorld(DIST[di]);newPlayer();ST=stats();P.hp=ST.maxHp;
   enemies=[];rings=[];cam.x=null;for(const k in SHR)SHR[k]=0;streak.n=0;streak.t=0;goldT=0;drops=[];parts=[];nums=[];swings=[];eproj=[];pproj=[];teles=[];shocks=[];bolts=[];corpses=[];hazards=[];freeze=0;flashT=0;crate=null;npc=null;zone=null;captive=null;trove=null;mols=[];fields=[];shake=0;
   const evw=[2,3,4,6,7,8,9].sort(()=>Math.random()-.5).slice(0,S.camp.funk?4:3),evt=['ambush','trader','zone','cache','horde',...(SURV.some(s=>!hasS(s.k))?['rescue','rescue']:[])].sort(()=>Math.random()-.5);run.events={};evw.forEach((w,i)=>run.events[w]=evt[i%evt.length]);if(hasS('doktor'))S.cons.verband=Math.min(3,(S.cons.verband||0)+1);if(S.camp.sani)S.cons.verband=Math.max(S.cons.verband||0,2);
-  ['menu','inv','end','perk','trade'].forEach(i=>$(i).hidden=true);state='play';last=performance.now();updateHot();banner(DIST[di].n+(run.th?' · Bedrohung '+run.th:''));tip('move','Links ziehen zum Laufen, Hieb halten zum Kämpfen. Zielen geht automatisch.');tip('dash','Sprint macht dich kurz unverwundbar. Nutze ihn gegen Geschosse.');if(S.camp.garten)P.fed=60;
+  ['menu','inv','end','perk','trade'].forEach(i=>$(i).hidden=true);state='play';last=performance.now();updateHot();banner(DIST[di].n+(run.endless?' · Endlos':run.th?' · Bedrohung '+run.th:''));tip('move','Links ziehen zum Laufen, Hieb halten zum Kämpfen. Zielen geht automatisch.');tip('dash','Sprint macht dich kurz unverwundbar. Nutze ihn gegen Geschosse.');if(S.camp.garten)P.fed=60;
 }
