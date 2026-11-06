@@ -50,6 +50,13 @@ const SURV=[{k:'doktor',n:'Dr. Ahmet',d:'Jede Expedition startet mit einem Verba
  {k:'spaeher',n:'Späherin Lin',d:'+1 Beuteglück',c:'#3B6D11'},{k:'mechaniker',n:'Kalle, Mechaniker',d:'-10% Sprint-Abklingzeit',c:'#c9a227'}];
 const hasS=k=>S.surv&&S.surv[k];
 const MEALS=[{k:'suppe',n:'Erbsensuppe',d:'+20% Leben',p:30},{k:'curry',n:'Currywurst',d:'+12% Schaden',p:40},{k:'kaffee',n:'Filterkaffee',d:'+10% Angriffs- und Lauftempo',p:40},{k:'soljanka',n:'Soljanka',d:'+1,5 Leben pro Sekunde',p:35},{k:'gurke',n:'Spreewaldgurken',d:'+2 Beuteglück',p:50,req:'garten'}];
+// daily challenge: seeded world and spawns, two modifiers per day
+const DMODS={blut:['Blutmond','Gegner sind 30% schneller'],elite:['Elitenacht','Doppelt so viele Elite-Gegner'],glas:['Glaskanone','+50% Schaden, -40% Leben'],dunkel:['Stromausfall','Die Nacht ist stockdunkel'],gold:['Goldrausch','Doppelter Schrott'],horde:['Horde','40% mehr Gegner pro Welle'],eisen:['Eiserne Haut','Gegner haben 30% mehr Leben, Beute ist besser']};
+const dayKey=()=>{const t=new Date();return t.getFullYear()*10000+(t.getMonth()+1)*100+t.getDate();};
+function rngFrom(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function dailyPlan(){const r=rngFrom(dayKey()*7+13),ks=Object.keys(DMODS),a=ks[Math.floor(r()*ks.length)];let b;do{b=ks[Math.floor(r()*ks.length)];}while(b===a);return{d:Math.floor(r()*Math.max(1,S.unlocked)),mods:[a,b]};}
+let RNG0=null;const dm_=k=>run&&run.dmods&&run.dmods.includes(k);
+function endDaily(){if(RNG0){Math.random=RNG0;RNG0=null;}if(run&&run.daily){const sc=run.kills*10+run.wave*100+(P.hp>0&&run.wave>=10?1000:0);run.score=sc;const k=dayKey();if(!S.daily||S.daily.k!==k)S.daily={k,best:0,tries:0};S.daily.tries++;S.daily.best=Math.max(S.daily.best,sc);save();}}
 const MAST_N={blade:'Klingen',hammer:'Hammer',sling:'Schleuder',spear:'Speer'};
 const mLvl=k=>Math.min(10,Math.floor(Math.sqrt(((S.mast&&S.mast[k])||0)/40))),mNext=k=>{const l=mLvl(k);return l>=10?0:40*(l+1)*(l+1);};
 const JOBT=[

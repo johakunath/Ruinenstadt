@@ -173,3 +173,4 @@ body:not(.inrun) #bufs,body:not(.inrun) #streak{display:none}
 .pcards{display:grid;gap:12px}.prar{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}.pcard.ra{border:2px solid #7d9bff;box-shadow:0 0 20px rgba(125,155,255,.25)}.pcard.ra .prar{color:#7d9bff}.pcard.ep{border:2px solid #f2d14b;box-shadow:0 0 24px rgba(242,209,75,.3)}.pcard.ep .prar{color:#f2d14b}
 @media (min-width:900px){#perkbox{max-width:1000px}.pcards{grid-template-columns:repeat(3,minmax(0,1fr))}.pcard{align-content:start;min-height:180px}}
 @media (min-width:600px) and (max-width:899px){#menubox,#invbox,#perkbox,#endbox,#tradebox{max-width:640px}.cols2{grid-template-columns:1fr 1fr}}
+.dcard.daily{border-color:#993C1D;background:linear-gradient(180deg,rgba(153,60,29,.18),var(--panel))}

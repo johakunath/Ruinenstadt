@@ -31,6 +31,7 @@ function renderMenu(){refresh();
   ${S.meal?`<p class="hint" style="color:var(--good)">Gekocht: ${MEALS.find(m=>m.k===S.meal).n} · ${MEALS.find(m=>m.k===S.meal).d}</p>`:''}
   <button class="btn main go" id="go"${lock?' disabled':''}>${menuEnd&&S.best[S.dist]>=10?'Endlos losziehen':'Losziehen'}</button>
   <div class="nav3"><button class="btn" data-m="inv">Ausrüstung${S.bag.some(it=>better(it))?' <span class="ok">▲</span>':''}</button><button class="btn" data-m="shop">Werkstatt</button><button class="btn" data-m="jobs">Aufträge${jd?` <span class="ok">${jd}</span>`:''}</button></div>
+  ${S.unlocked>=2?(()=>{const pl=dailyPlan(),db=S.daily&&S.daily.k===dayKey()?S.daily:null;return`<div class="dcard daily"><div class="dtop"><span class="dn" style="font-size:26px">Tageskampf</span><span class="dm">${db?'Bestwert '+db.best:'Heute noch offen'}</span></div><div class="sub">${DIST[pl.d].n} · ${pl.mods.map(k=>`<b style="color:var(--ember)">${DMODS[k][0]}</b>: ${DMODS[k][1]}`).join(' · ')}</div><div class="sub">Gleiche Karte und Gegner für alle Versuche heute. Punkte: Kills, Wellen, Sieg.</div><button class="btn sm main" data-m="daily">Tageskampf starten</button></div>`;})():''}
   <p class="hint">${S.rec.kills.toLocaleString('de-DE')} Gegner · ${S.rec.legs} Legendäre · ${S.rec.runs} Expeditionen · ${S.rec.wins} Befreiungen · ${Math.round(S.rec.time/60)} Min.</p></div></div>`;
   drawCamp();
 }
@@ -57,7 +58,7 @@ function drawCamp(){const c=$('campc');if(!c)return;const g=c.getContext('2d'),W
   g.restore();}
 $('menubox').addEventListener('click',e=>{const nd=e.target.closest('.node');if(nd){initAudio();const i=+nd.dataset.d;if(i<S.unlocked){sfx('ui');S.dist=i;save();buildWorld(DIST[i]);renderMenu();}return;}const t=e.target.closest('button');if(!t)return;initAudio();sfx('ui');
   if(t.dataset.d!==undefined){const i=+t.dataset.d;if(i<S.unlocked){S.dist=i;save();buildWorld(DIST[i]);renderMenu();}return;}
-  if(t.id==='go')return startRun(S.dist,menuEnd&&S.best[S.dist]>=10);if(t.dataset.m==='end'){menuEnd=!menuEnd;renderMenu();return;}const m=t.dataset.m;if(m==='inv'||m==='shop'||m==='jobs'){invTab=m==='inv'?'bag':m;openInv('menu');}
+  if(t.id==='go')return startRun(S.dist,menuEnd&&S.best[S.dist]>=10);if(t.dataset.m==='daily')return startRun(0,false,true);if(t.dataset.m==='end'){menuEnd=!menuEnd;renderMenu();return;}const m=t.dataset.m;if(m==='inv'||m==='shop'||m==='jobs'){invTab=m==='inv'?'bag':m;openInv('menu');}
   if(m==='mute'){setMute(!S.mute);renderMenu();}if(m==='eco'){setEco(!S.eco);renderMenu();}if(m==='thm'){S.threat=Math.max(0,S.threat-1);save();renderMenu();}if(m==='thp'){S.threat=Math.min(S.tmax,S.threat+1);save();renderMenu();}if(m==='music'){S.music=!S.music;save();if(S.music)startMusic();else stopMusic();renderMenu();}if(m==='opt'){menuOpt=!menuOpt;renderMenu();}if(m==='fs'){S.fs=S.fs===0?1:0;save();if(S.fs===0&&document.fullscreenElement)document.exitFullscreen().catch(()=>{});renderMenu();}if(m==='exp')exportSave();if(m==='imp')importSave();if(m==='diff'){S.diff=((S.diff==null?1:S.diff)+1)%3;save();renderMenu();}});
 function openInv(from){invFrom=from;sel=null;invMsg='';allArm=false;if(run)run.quitArm=false;renderInv();$('inv').hidden=false;$('menu').hidden=true;}
 function slotBtn(k,lbl){const it=S.eq[k],s=sel&&sel.src==='eq'&&sel.slot===k;return`<button class="slot s${k}${s?' sel':''}" data-eq="${k}" aria-label="${lbl}"><span class="ic${it?'':' empty'}" style="${it?'border-color:'+rc(it)+';box-shadow:inset 0 0 18px '+rc(it)+'44':''}">${it?icon(it,44):''}</span>${lbl}</button>`;}
@@ -153,15 +154,15 @@ $('invbox').addEventListener('click',e=>{const t=e.target.closest('button');if(!
   else if(d.a==='forge'){const it=sel.src==='eq'?S.eq[sel.slot]:(sel.src==='stash'?S.stash:S.bag)[sel.i],c=rfCost(it);if(S.scrap<c)invMsg=`Dir fehlen ${c-S.scrap} Schrott.`;else{S.scrap-=c;it.afx=[];rollAfx(it);if(it.set)delete it.el;it.rr=(it.rr||0)+1;refresh();save();sfx('coin');invMsg='<span class="ok">Umgeschmiedet</span>';}}
   else if(d.a==='mute')setMute(!S.mute);
   else if(d.a==='eco')setEco(!S.eco);
-  else if(d.a==='quit'){if(!run.quitArm){run.quitArm=true;}else{S.best[run.d]=Math.max(S.best[run.d],run.wave-1);save();state='menu';run=null;refresh();$('inv').hidden=true;renderMenu();$('menu').hidden=false;return;}}
+  else if(d.a==='quit'){if(!run.quitArm){run.quitArm=true;}else{endDaily();S.best[run.d]=Math.max(S.best[run.d],run.wave-1);save();state='menu';run=null;refresh();$('inv').hidden=true;renderMenu();$('menu').hidden=false;return;}}
   updateHot();renderInv();});
 function showEnd(won){if(!run)return;
   const d=DIST[run.d];
   $('endbox').innerHTML=`<h2>${won?d.n+' befreit':'Gefallen'}</h2><p class="lead">${won?'Der Bezirk atmet wieder.':'Die Ruinen behalten dich heute Nacht.'}</p>
-  <div class="stats">${run.endless?`<div>Endlos · Welle <b>${run.wave}</b> · Rekord <b>${S.eb[run.d]||0}</b></div>`:''}<div>${run.endless?'':`Welle <b>${won?10:run.wave}</b> von 10 · `}${DF().n}${run.th?' · Bedrohung '+run.th:''}</div><div><b>${run.kills}</b> Gegner besiegt · Stufe <b>${P.lvl}</b></div><div>Schrott gesammelt <b>+${run.sg}</b>${won?` (inkl. ${run.bonus} Bonus)`:''}</div>
+  <div class="stats">${run.daily?`<div style="color:var(--ember)">Tageskampf · <b>${run.score||0}</b> Punkte · Bestwert heute <b>${S.daily?S.daily.best:0}</b></div>`:''}${run.endless?`<div>Endlos · Welle <b>${run.wave}</b> · Rekord <b>${S.eb[run.d]||0}</b></div>`:''}<div>${run.endless?'':`Welle <b>${won?10:run.wave}</b> von 10 · `}${DF().n}${run.th?' · Bedrohung '+run.th:''}</div><div><b>${run.kills}</b> Gegner besiegt · Stufe <b>${P.lvl}</b></div><div>Schrott gesammelt <b>+${run.sg}</b>${won?` (inkl. ${run.bonus} Bonus)`:''}</div>
   ${won&&run.unl?`<div style="color:var(--ember)">Neuer Bezirk: ${DIST[run.d+1].n}</div>`:''}${won&&run.thUnl?`<div style="color:var(--ember)">Bedrohung ${S.tmax} freigeschaltet</div>`:''}</div>
   <p class="hint">Deine Beute und dein Schrott bleiben erhalten. Segen verfallen.</p>
-  <div class="btns">${won&&run.unl?`<button class="btn main" data-e="next">Weiter nach ${DIST[run.d+1].n}</button>`:''}<button class="btn${won&&run.unl?'':' main'}" data-e="again" data-en="${run.endless?1:''}">${won?'Nochmal':'Nochmal versuchen'}</button><button class="btn" data-e="camp">Zum Lager</button></div>`;
+  <div class="btns">${won&&run.unl?`<button class="btn main" data-e="next">Weiter nach ${DIST[run.d+1].n}</button>`:''}<button class="btn${won&&run.unl?'':' main'}" data-e="again" data-en="${run.endless?1:''}" data-dy="${run.daily?1:''}">${won?'Nochmal':'Nochmal versuchen'}</button><button class="btn" data-e="camp">Zum Lager</button></div>`;
   $('end').hidden=false;}
 $('endbox').addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return;sfx('ui');const a=t.dataset.e;
-  if(a==='next')startRun(run.d+1);else if(a==='again')startRun(run.d,!!t.dataset.en);else{$('end').hidden=true;state='menu';run=null;refresh();renderMenu();$('menu').hidden=false;}});
+  if(a==='next')startRun(run.d+1);else if(a==='again')startRun(run.d,!!t.dataset.en,!!t.dataset.dy);else{$('end').hidden=true;state='menu';run=null;refresh();renderMenu();$('menu').hidden=false;}});

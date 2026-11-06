@@ -50,7 +50,7 @@ function render(t){
   for(const s of swings){const a=s.life/s.max;if(s.kind==='spear'){const c=Math.cos(s.a),sn=Math.sin(s.a),p=1-a,r0=20+p*20;ctx.strokeStyle=s.fin?`rgba(255,230,140,${a})`:`rgba(250,199,117,${a})`;ctx.lineWidth=s.fin?7:4;ctx.beginPath();ctx.moveTo(P.x+c*r0,P.y-10+sn*r0);ctx.lineTo(P.x+c*s.reach,P.y-10+sn*s.reach);ctx.stroke();continue;}ctx.strokeStyle=s.fin?`rgba(255,230,140,${a})`:s.kind==='hammer'?`rgba(239,159,39,${a*.8})`:`rgba(250,199,117,${a})`;ctx.lineWidth=(s.kind==='hammer'?9:5)+(s.fin?5:0);ctx.beginPath();ctx.arc(P.x,P.y-10,s.reach-10,s.a-s.arc,s.a+s.arc);ctx.stroke();}
   for(const p of parts){ctx.globalAlpha=Math.max(0,p.life/p.max);ctx.fillStyle=p.col;ctx.fillRect(p.x-p.size/2,p.y-p.size/2,p.size,p.size);}ctx.globalAlpha=1;
   ctx.restore();
-  lx.setTransform(LS,0,0,LS,0,0);lx.globalCompositeOperation='source-over';lx.clearRect(0,0,VW,VH);lx.fillStyle=`rgba(6,4,3,${P.dark?.95:clamp(D.dark-.12+(run?run.wave:0)*.017,.45,.93)})`;lx.fillRect(0,0,VW,VH);lx.globalCompositeOperation='destination-out';
+  lx.setTransform(LS,0,0,LS,0,0);lx.globalCompositeOperation='source-over';lx.clearRect(0,0,VW,VH);lx.fillStyle=`rgba(6,4,3,${P.dark?.95:clamp(D.dark-.12+(run?run.wave:0)*.017+(dm_('dunkel')?.12:0),.45,.96)})`;lx.fillRect(0,0,VW,VH);lx.globalCompositeOperation='destination-out';
   const lit=(x,y,r)=>{x-=camX;y-=camY;if(x<-r||x>VW+r||y<-r||y>VH+r)return;lx.drawImage(LSPR,x-r,y-r,r*2,r*2);};
   lit(P.x,P.y-10,(P.dark?(P.torch?270:P.lamp?200:95):250)+Math.sin(t*.008)*8+Math.sin(t*.021)*4);
   for(const b of barrels)lit(b.x,b.y-10,150+Math.sin(t*.012+b.ph)*12);
