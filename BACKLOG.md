@@ -1,7 +1,7 @@
 # Ruinenstadt Backlog
 
 Top-down loot ARPG in post-collapse Berlin. Hobby project to learn game development.
-Current build: v0.24, static web app (PWA) in this repo. Game text in German.
+Current build: v0.25, static web app (PWA) in this repo. Game text in German.
 Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are now v0.1–v0.16.
 
 ## Intent (working version, refine as we go)
@@ -119,3 +119,4 @@ Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are n
 | v0.22 | Combo finishers: every 3rd blade swing is a wide heavy finisher, every 3rd hammer blow adds a stunning quake, every 4th sling shot pierces 3 enemies. Litfaßsäulen: 3 advertising columns per map grant a 45 s blessing (Adrenalin, Eisenhaut, Goldrausch, Rückenwind, Funkenflug), shown in the HUD. Map tab in the pause screen with landmarks, Späti, dark zones, columns, enemies and area names. New job |
 | v0.23 | Crafting: four materials (Stoff, Metall, Chemie, Kabel) drop from enemies by type, elites, bosses and crates. Seven weapon mods (Aufsätze) built in the Werkstatt from materials and Schrott: Nagelband, Griffband, Gegengewicht, Autobatterie, Benzintank, Säurephiole, Stacheldraht. Weapons have one mod slot, rare and set weapons two. Element mods give an element or +20% elemental damage |
 | v0.24 | Loot expansion: six new legendaries with powers (Klinge der Zitadelle, Plattenbrecher, Krähenschleuder, Mantel der Rattenmutter, Rüstung des Zitadellenritters, Auge des Fernsehturms), third set Zitadelle (Morgenstern, Kettenhemd, Wappen), new icons, weapon models and armor looks. Kodex collection of legendary finds and set pieces |
+| v0.25 | Events: Gefangene befreien (guards with an elite, rescued survivor moves into the camp), Schatzversteck (timed treasure hunt with arrow), Rattenflut (rat horde). 3 events per run (4 with Funkmast). Six survivors with permanent bonuses (Dr. Ahmet, Mira, Jonas, Oma Gerda, Lin, Kalle), shown at the campfire and in the Werkstatt |

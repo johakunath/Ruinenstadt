@@ -43,6 +43,10 @@ const MODS=[{k:'nagel',n:'Nagelband',d:'+12% Schaden',c:{metall:3,stoff:1},p:30,
  {k:'tank',n:'Benzintank',d:'Feuer-Element, sonst +20% Elementarschaden',c:{chemie:2,metall:2},p:40,el:'fire'},{k:'phiole',n:'Säurephiole',d:'Säure-Element, sonst +20% Elementarschaden',c:{chemie:3,stoff:1},p:40,el:'acid'},
  {k:'dorn',n:'Stacheldraht',d:'+2 Leben pro Kill',c:{metall:2,kabel:2},p:35,a:[['leech',2]]}];
 const modSlots=it=>it&&it.slot==='w'?(it.r>=2||it.set?2:1):0;
+const SURV=[{k:'doktor',n:'Dr. Ahmet',d:'Jede Expedition startet mit einem Verband mehr',c:'#d6cfc0'},{k:'schmied',n:'Mira, Schmiedin',d:'Aufsätze kosten 30% weniger Schrott',c:'#8a4a32'},
+ {k:'kurier',n:'Kurier Jonas',d:'Händler bieten ein viertes Teil an',c:'#3a6a8a'},{k:'koechin',n:'Oma Gerda',d:'Döner fallen doppelt so oft',c:'#7a3a6a'},
+ {k:'spaeher',n:'Späherin Lin',d:'+1 Beuteglück',c:'#3B6D11'},{k:'mechaniker',n:'Kalle, Mechaniker',d:'-10% Sprint-Abklingzeit',c:'#c9a227'}];
+const hasS=k=>S.surv&&S.surv[k];
 const MAST_N={blade:'Klingen',hammer:'Hammer',sling:'Schleuder'};
 const mLvl=k=>Math.min(10,Math.floor(Math.sqrt(((S.mast&&S.mast[k])||0)/40))),mNext=k=>{const l=mLvl(k);return l>=10?0:40*(l+1)*(l+1);};
 const JOBT=[
@@ -50,7 +54,7 @@ const JOBT=[
  {k:'elite',n:t=>`Besiege ${t} Elite-Gegner`,t:()=>pick([2,3,4])},{k:'props',n:t=>`Zerschlage ${t} Kisten oder Tonnen`,t:()=>pick([12,18])},{k:'spati',n:t=>`Plündere ${t} Kisten in einem Späti`,t:()=>3},
  {k:'fire',n:t=>`Besiege ${t} brennende Gegner`,t:()=>pick([15,25])},{k:'acid',n:t=>`Besiege ${t} verätzte Gegner`,t:()=>pick([15,25])},{k:'shock',n:t=>`Triff ${t} Gegner mit Blitzen`,t:()=>pick([30,50])},
  {k:'chest',n:t=>t>1?`Öffne ${t} Kellertruhen`:'Öffne eine Kellertruhe',t:()=>pick([1,2])},{k:'zone',n:t=>t>1?`Halte ${t} Funksignale`:'Halte ein Funksignal',t:()=>pick([1,2])},{k:'trade',n:t=>`Kaufe ${t} Teile beim Händler`,t:()=>pick([1,2])},
- {k:'boss',n:t=>t>1?`Besiege ${t} Endgegner`:'Besiege einen Endgegner',t:()=>pick([1,2])},{k:'shrine',n:t=>t>1?`Nutze ${t} Litfaßsäulen`:'Nutze eine Litfaßsäule',t:()=>pick([1,2])},{k:'rat',n:t=>`Besiege ${t} Ratten`,t:()=>pick([30,50])},{k:'bomb',n:t=>`Besiege ${t} Zünder`,t:()=>pick([6,10])},{k:'shield',n:t=>`Besiege ${t} Schildträger`,t:()=>pick([5,8])},{k:'wave',n:t=>`Erreiche Welle ${t} in einem Bezirk`,t:()=>pick([6,8,10])}];
+ {k:'boss',n:t=>t>1?`Besiege ${t} Endgegner`:'Besiege einen Endgegner',t:()=>pick([1,2])},{k:'rescue',n:t=>'Befreie eine gefangene Person',t:()=>1},{k:'shrine',n:t=>t>1?`Nutze ${t} Litfaßsäulen`:'Nutze eine Litfaßsäule',t:()=>pick([1,2])},{k:'rat',n:t=>`Besiege ${t} Ratten`,t:()=>pick([30,50])},{k:'bomb',n:t=>`Besiege ${t} Zünder`,t:()=>pick([6,10])},{k:'shield',n:t=>`Besiege ${t} Schildträger`,t:()=>pick([5,8])},{k:'wave',n:t=>`Erreiche Welle ${t} in einem Bezirk`,t:()=>pick([6,8,10])}];
 const CONS=[{k:'verband',n:'Verband',d:'Heilt 40% Leben über 3 Sekunden',p:15},{k:'molotow',n:'Molotow',d:'Wirft ein Feuerfeld, das Gegner in Brand setzt',p:25}],RZ=[0,.06,.1,.14,.25,.15,.18,.2];
 const DIFF=[{n:'Leicht',hp:.7,dmg:.6,luck:0,sc:1},{n:'Normal',hp:1,dmg:1,luck:0,sc:1},{n:'Schwer',hp:1.4,dmg:1.35,luck:4,sc:1.3}];
 const DF=()=>DIFF[S.diff==null?1:S.diff];
