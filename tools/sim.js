@@ -33,7 +33,8 @@ SIM.think=function(dt){
   // stuck: if we want to move but don't, sidestep for a moment
   const st=SIM.stuck;st.t+=dt;if(st.at>0){st.at-=dt;mx+=st.ax;my+=st.ay;}
   if(st.t>.8){if(Math.hypot(mx,my)>.4&&Math.hypot(P.x-st.x,P.y-st.y)<10){const a=Math.atan2(my,mx)+(Math.random()<.5?1.6:-1.6);st.ax=Math.cos(a)*1.5;st.ay=Math.sin(a)*1.5;st.at=.7;}st.t=0;st.x=P.x;st.y=P.y;}
-  const l=Math.hypot(mx,my);joy.x=l>.05?mx/l:0;joy.y=l>.05?my/l:0;atkHeld=true;};
+  // joystick is in screen space (iso view): project the world direction
+  const sx=(mx-my)*IS,sy=(mx+my)*IS/2,l=Math.hypot(mx,my),sl=Math.hypot(sx,sy);joy.x=l>.05?sx/sl:0;joy.y=l>.05?sy/sl:0;atkHeld=true;};
 SIM.run=function(di,opt){opt=opt||{};startRun(di,opt.endless);gridFree();const dt=1/30;let t=0,thinkT=0,hp0=0,dmgTaken=0,lastHp=P.hp,wv=0,wt=0,slow=[0,0,''],diag='';const p0=power(ST);
   while(state!=='over'&&t<(opt.maxT||1500)){
     if(state==='perk'){SIM.equip();const cs=[...document.querySelectorAll('#perkbox .pcard')];const c=cs.find(b=>b.classList.contains('ep'))||cs.find(b=>b.classList.contains('ra'))||cs[Math.floor(Math.random()*cs.length)];c.click();continue;}

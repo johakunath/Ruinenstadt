@@ -17,7 +17,7 @@ const aim={id:null,k:null,ox:0,oy:0,dx:0,dy:0},AIMD=22;let aimA=null,aimP=null;
 const aimOn=()=>aim.id!==null&&Math.hypot(aim.dx,aim.dy)>AIMD;
 function aimStart(k,e){e.preventDefault();if(state!=='play')return;aim.id=e.pointerId;aim.k=k;aim.ox=e.clientX;aim.oy=e.clientY;aim.dx=aim.dy=0;try{e.target.setPointerCapture(e.pointerId);}catch(_){}}
 function aimMove(e){if(e.pointerId!==aim.id)return;aim.dx=e.clientX-aim.ox;aim.dy=e.clientY-aim.oy;}
-function aimEnd(e){if(e.pointerId!==aim.id)return;const on=aimOn(),a=Math.atan2(aim.dy,aim.dx),k=aim.k;aim.id=null;if(e.type==='pointercancel')return;
+function aimEnd(e){if(e.pointerId!==aim.id)return;const on=aimOn(),a=wAng(Math.atan2(aim.dy,aim.dx)),k=aim.k;aim.id=null;if(e.type==='pointercancel')return;
   if(k==='skill'){aimA=on?a:null;skillReq=true;}else useCons('molotow',on?aimTgt(a):null);}
 const aimTgt=a=>{const d=clamp(Math.hypot(aim.dx,aim.dy)*2.4,60,320);return{x:P.x+Math.cos(a)*d,y:P.y+Math.sin(a)*d};};
 for(const[id,k]of[['skill','skill'],['c2','mol']]){const b=$(id);b.addEventListener('pointerdown',e=>aimStart(k,e));b.addEventListener('pointermove',aimMove);b.addEventListener('pointerup',aimEnd);b.addEventListener('pointercancel',aimEnd);}

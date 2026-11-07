@@ -1,7 +1,7 @@
 {
   "name": "Ruinenstadt",
   "short_name": "Ruinenstadt",
-  "description": "Top-down Loot-ARPG im Berlin nach dem Fall",
+  "description": "Isometrisches Loot-ARPG im Berlin nach dem Fall",
   "lang": "de",
   "start_url": "./",
   "scope": "./",
