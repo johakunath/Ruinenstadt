@@ -1,5 +1,5 @@
 /* ================= combat ================= */
-function mkEnemy(type,x,y,big){const il=ilvl(),th=run?run.th:0,dm=(1+.2*D.i)*(dm_('eisen')?1.3:1),s=(1+.15*(il-1)+.09*Math.max(0,il-11))*(1+.25*th)*dm,sd=(1+.13*(il-1))*(1+.15*th)*(1+.16*D.i),df=DF();
+function mkEnemy(type,x,y,big){const il=ilvl(),th=run?run.th:0,dm=(1+.3*D.i)*(dm_('eisen')?1.3:1),s=(1+.15*(il-1)+.09*Math.max(0,il-11))*(1+.25*th)*dm,sd=(1+.13*(il-1))*(1+.15*th)*(1+.24*D.i),df=DF();
   const T={ghoul:{r:10,hp:20,spd:R(70,86),dmg:7,xp:5,sc:1,col:'#8e4628'},raser:{r:11,hp:26,spd:62,dmg:14,xp:9,sc:3,col:'#6a3a2a'},brute:{r:17,hp:75,spd:50,dmg:18,xp:14,sc:4,col:'#5e2a16'},spitter:{r:11,hp:16,spd:64,dmg:9,xp:7,sc:2,col:'#5c4a2e'},rat:{r:6,hp:6,spd:R(118,140),dmg:3,xp:1,sc:0,col:'#5a4e44'},bomb:{r:11,hp:22,spd:R(74,84),dmg:20,xp:8,sc:3,col:'#4a3a2a'},shield:{r:13,hp:52,spd:46,dmg:13,xp:12,sc:4,col:'#3a4048'},crow:{r:8,hp:12,spd:150,dmg:8,xp:5,sc:1,col:'#1a1614'},howl:{r:11,hp:34,spd:58,dmg:6,xp:12,sc:4,col:'#5a3a4a'},
     boss:{r:big?42:34,hp:big?1250:520,spd:big?46:42,dmg:big?26:20,xp:big?200:120,sc:big?70:40,col:big?'#3a1a10':'#5a3a2a'}}[type];
   return{type,big,x,y,r:T.r,hp:T.hp*s*df.hp,max:T.hp*s*df.hp,spd:T.spd*(1+.01*il)*(dm_('blut')?1.3:1),dmg:Math.max(1,Math.round(T.dmg*sd*df.dmg)),xp:T.xp,sc:T.sc,col:T.col,kx:0,ky:0,flash:0,hcd:0,stun:0,t:R(0,3),det:0,detA:0,lx:x,ly:y,chk:0,
