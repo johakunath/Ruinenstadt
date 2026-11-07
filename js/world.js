@@ -1,6 +1,7 @@
 /* ================= world ================= */
 // roads: RX vertical road centres, RY horizontal. Blocks (BLK) are the lots between them. The legacy 1600 map sits in the middle, shifted by OFF.
-const OFF=400,SX=1200,SY=1220;let neons=[],RX=[920,1480],RY=[920,1480],BLK=[],waters=[];
+// BSC: building footprint scale, BHS: facade height scale (v0.40 made buildings bigger; turn down here if it gets too bulky)
+const OFF=400,SX=1200,SY=1220,BSC=1.6,BHS=2;let neons=[],RX=[920,1480],RY=[920,1480],BLK=[],waters=[];
 let darks=[],G=null,gx=null,walls=[],blds=[],barrels=[],reserved=[],marks=[],brk=[],spati=null,D=DIST[0];
 function inWall(x,y,r){return walls.some(o=>x>o.x-r&&x<o.x+o.w+r&&y>o.y-r&&y<o.y+o.h+r);}
 function wallAt(x,y){for(const o of nearWalls(x,y,1))if(!o.water&&!(o.gate&&!spSafe())&&x>o.x&&x<o.x+o.w&&y>o.y&&y<o.y+o.h)return o;return null;}
@@ -272,13 +273,15 @@ function makeB(b,st){
   else if(L_){g.fillStyle='rgba(0,0,0,.2)';for(let x=0;x<b.w;x+=5)g.fillRect(x,b.h,1,b.H);}else bricks(g,0,b.h,b.w,b.H,6);
   b.lights=[];
   if(L_){g.fillStyle='#110b08';g.fillRect(4,b.h+6,9,8);g.fillStyle='#2a1d14';g.fillRect(b.w-14,b.h+6,9,b.H-6);}
-  else{const fh=P_?18:20,rows=Math.max(1,Math.floor((b.H-(P_?8:16))/fh)),cols=Math.max(1,Math.floor((b.w-10)/18)),ox=(b.w-cols*18)/2+4;
-  for(let r=0;r<rows;r++)for(let k=0;k<cols;k++){const wx=ox+k*18,wy=b.h+(P_?4:7)+r*fh,q=Math.random();if(RU&&r===0&&Math.random()<.5)continue;
-    if(q<(P_?.07:.1)){g.fillStyle='#e0892e';g.fillRect(wx,wy,P_?10:9,P_?10:12);g.fillStyle='rgba(255,215,150,.55)';g.fillRect(wx+1,wy+1,3,P_?8:10);b.lights.push({x:b.x+wx+4.5,y:b.y-b.H+wy+6});}
-    else if(q<.3&&!P_){g.fillStyle='#4a3424';g.fillRect(wx,wy,9,12);g.fillStyle='#24180f';g.fillRect(wx,wy+3,9,2);g.fillRect(wx,wy+8,9,2);}
-    else if(P_&&q<.2){g.fillStyle='#3a3a36';g.fillRect(wx-1,wy+9,12,3);g.fillStyle='#110b08';g.fillRect(wx,wy,10,10);}
-    else{g.fillStyle='#110b08';g.fillRect(wx,wy,P_?10:9,P_?10:12);}}
-  g.fillStyle='#0b0806';g.fillRect(Math.floor(R(8,b.w-20)),b.h+b.H-17,12,17);}
+  else{// floors and windows grow with BHS: Altbau about 24*BHS per floor, Platte 18*BHS
+  const k=BHS,fh=(P_?18:24)*k,ww=(P_?10:9)*k,wh=(P_?10:13)*k,cw=(P_?18:18)*k,rows=Math.max(1,Math.floor((b.H-(P_?8:16)*k)/fh)),cols=Math.max(1,Math.floor((b.w-10)/cw)),ox=(b.w-cols*cw)/2+(cw-ww)/2;
+  for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){const wx=ox+c*cw,wy=b.h+(P_?4:7)*k+r*fh,q=Math.random();if(RU&&r===0&&Math.random()<.5)continue;
+    if(!P_){g.fillStyle='rgba(0,0,0,.18)';g.fillRect(wx-2,wy+wh,ww+4,3);}
+    if(q<(P_?.07:.1)){g.fillStyle='#e0892e';g.fillRect(wx,wy,ww,wh);g.fillStyle='rgba(255,215,150,.55)';g.fillRect(wx+1,wy+1,ww*.35,wh-2);g.fillStyle='rgba(60,30,10,.6)';g.fillRect(wx+ww/2-1,wy,2,wh);b.lights.push({x:b.x+wx+ww/2,y:b.y-b.H+wy+wh/2});}
+    else if(q<.3&&!P_){g.fillStyle='#4a3424';g.fillRect(wx,wy,ww,wh);g.fillStyle='#24180f';for(let j=3;j<wh;j+=5)g.fillRect(wx,wy+j,ww,2);}
+    else if(P_&&q<.2){g.fillStyle='#3a3a36';g.fillRect(wx-2,wy+wh-2,ww+4,4);g.fillStyle='#110b08';g.fillRect(wx,wy,ww,wh);}
+    else{g.fillStyle='#110b08';g.fillRect(wx,wy,ww,wh);g.fillStyle='rgba(90,110,120,.12)';g.fillRect(wx+1,wy+1,ww*.4,wh-2);}}
+  g.fillStyle='#0b0806';const dw=12*k,dh=17*k;g.fillRect(Math.floor(R(8,b.w-dw-8)),b.h+b.H-dh,dw,dh);}
   if(!L_&&Math.random()<.55){g.save();g.globalAlpha=.75;g.fillStyle=pick(['#d4537e','#7d9bff','#8fd16a','#f2d14b','#ead9c0','#d8642e']);g.font='600 '+Math.round(R(9,13))+'px sans-serif';
     g.translate(R(6,b.w*.5),b.h+b.H-R(4,10));g.rotate(R(-.12,.06));g.fillText(pick(TAGS),0,0);g.restore();}
   g.fillStyle='rgba(0,0,0,.45)';g.fillRect(0,b.h,b.w,4);g.fillStyle='rgba(0,0,0,.35)';g.fillRect(0,b.h+b.H-3,b.w,3);

@@ -36,7 +36,7 @@ function fence(x,y,w,h,gate,col){const g=gx;g.strokeStyle=col||'#5a4636';g.lineW
   seg(x,y,x+w,y);seg(x,y,x,y+h);seg(x+w,y,x+w,y+h);const gm=x+w*gate;seg(x,y+h,gm-16,y+h);seg(gm+16,y+h,x+w,y+h);}
 function sprite(x,y,w,h,H,draw,lights){const c=cnv(w,h+H),t=c.getContext('2d');draw(t);const o={x,y,w,h,H,top:H,spr:c,lights:lights||[]};blds.push(o);if(h>0)walls.push(o);return o;}
 const LOTS={
- houses(b){const n=Math.max(2,Math.round(b.w*b.h/48000));let k=0,t=0;while(k<n&&t++<n*40){const w=R(100,220),h=R(50,105),H=R(38,72),x=R(b.x0+24,b.x1-24-w),y=R(b.y0+24+H,b.y1-24-h);if(tryB(x,y,w,h,H))k++;}
+ houses(b){const n=Math.max(2,Math.round(b.w*b.h/(48000*BSC*BSC)));let k=0,t=0;while(k<n&&t++<n*40){const w=Math.min(b.w-60,R(100,220)*BSC),h=R(50,105)*BSC,H=R(38,72)*BHS,x=R(b.x0+24,b.x1-24-w),y=R(b.y0+24+H,b.y1-24-h);if(tryB(x,y,w,h,H))k++;}
    for(let i=0;i<4;i++){const q=inB(b,40);if(!inWall(q.x,q.y,30)&&!resHit(q.x-28,q.y-60,56,62))makeTree(q.x,q.y,pick(BIOME[D.i].trees));}},
  park(b){const g=gx,pts=[];const sx=b.x0,sy=R(b.y0+60,b.y1-60),ex=b.x1,ey=R(b.y0+60,b.y1-60),mx=(sx+ex)/2+R(-80,80),my=R(b.y0+40,b.y1-40);
    g.strokeStyle='#3a3127';g.lineWidth=30;g.lineCap='round';g.beginPath();g.moveTo(sx,sy);g.quadraticCurveTo(mx,my,ex,ey);g.stroke();g.strokeStyle='#4a4034';g.lineWidth=24;g.stroke();g.lineCap='butt';
@@ -81,14 +81,14 @@ const LOTS={
      else if(k<.7){for(let r=0;r<3;r++)for(let c=0;c<4-r;c++){g.fillStyle='#5a5650';g.beginPath();g.arc(q.x+c*12+r*6,q.y-r*9,6,0,7);g.fill();g.fillStyle='#1a1612';g.beginPath();g.arc(q.x+c*12+r*6,q.y-r*9,3,0,7);g.fill();}walls.push({x:q.x-6,y:q.y-24,w:48,h:30});}
      else{g.fillStyle='#6a5a3e';g.beginPath();g.ellipse(q.x,q.y,30,16,0,0,7);g.fill();g.fillStyle='#7a6a4a';g.beginPath();g.ellipse(q.x-6,q.y-4,18,9,0,0,7);g.fill();walls.push({x:q.x-22,y:q.y-10,w:44,h:20});}}
    g.fillStyle='#d8642e';for(let x=b.x0+12;x<b.x1-12;x+=40){g.fillRect(x,b.y0+12,20,4);g.fillRect(x,b.y1-16,20,4);}},
- plattenbau(b){const n=Math.max(1,Math.floor(b.h/300));for(let k=0;k<n;k++){const w=Math.min(b.w-70,R(240,520)),h=R(64,90),H=R(100,140),x=b.x0+R(30,Math.max(31,b.w-w-30)),y=b.y0+H+30+k*(b.h/n);if(y+h>b.y1-20)continue;tryB(x,y,w,h,H,'platte');}
+ plattenbau(b){const n=Math.max(1,Math.floor(b.h/420));for(let k=0;k<n;k++){const w=Math.min(b.w-70,R(240,520)),h=R(64,90)*BSC,H=R(100,140)*BHS*.75,x=b.x0+R(30,Math.max(31,b.w-w-30)),y=b.y0+H+30+k*(b.h/n);if(y+h>b.y1-20)continue;tryB(x,y,w,h,H,'platte');}
    const g=gx;for(let i=0;i<3;i++){const q=inB(b,50);if(inWall(q.x,q.y,40)||resHit(q.x-30,q.y-30,60,60))continue;g.fillStyle='#5a4a3a';g.fillRect(q.x-20,q.y-14,40,28);g.strokeStyle='#8a3a2a';g.lineWidth=3;g.beginPath();g.moveTo(q.x-16,q.y);g.lineTo(q.x-16,q.y-30);g.lineTo(q.x+16,q.y-30);g.lineTo(q.x+16,q.y);g.stroke();break;}
    for(let i=0;i<3;i++){const q=inB(b,40);if(!inWall(q.x,q.y,30)&&!resHit(q.x-28,q.y-60,56,62))makeTree(q.x,q.y,pick(BIOME[D.i].trees));}},
- ruins(b){const g=gx;const n=Math.round(b.w*b.h/45000);for(let k=0,t=0;k<n&&t<n*20;t++){const w=R(60,150),h=R(30,60),H=R(14,34),x=R(b.x0+20,b.x1-20-w),y=R(b.y0+20+H,b.y1-20-h);if(tryB(x,y,w,h,H,'ruin'))k++;}
+ ruins(b){const g=gx;const n=Math.round(b.w*b.h/(45000*BSC*BSC));for(let k=0,t=0;k<n&&t<n*20;t++){const w=R(60,150)*BSC,h=R(30,60)*BSC,H=R(14,34)*BHS*.75,x=R(b.x0+20,b.x1-20-w),y=R(b.y0+20+H,b.y1-20-h);if(tryB(x,y,w,h,H,'ruin'))k++;}
    for(let i=0;i<Math.round(b.w*b.h/30000);i++){const q=inB(b,30);if(inWall(q.x,q.y,30)||resHit(q.x-25,q.y-15,50,30))continue;g.fillStyle='rgba(0,0,0,.35)';g.beginPath();g.ellipse(q.x+4,q.y+5,26,12,0,0,7);g.fill();
      for(let j=0;j<16;j++){g.fillStyle=pick(['#5a4636','#4a3a2e','#6b5543','#3a2c22','#7a3a26']);g.fillRect(q.x+R(-22,18),q.y+R(-10,8),R(4,10),R(3,7));}walls.push({x:q.x-20,y:q.y-9,w:40,h:18});}
    if(Math.random()<.7){const q=inB(b,60);if(!inWall(q.x,q.y,24)){barrels.push({x:q.x,y:q.y,ph:R(0,6)});walls.push({x:q.x-9,y:q.y-9,w:18,h:18});}}},
- hinterhof(b){if(b.h<400||b.w<300)return LOTS.houses(b);const m=20,d=R(70,90),H=R(60,80),gc=b.x0+R(.35,.65)*b.w,y1=b.y1-m-d;
+ hinterhof(b){const m=20,d=R(70,90)*BSC,H=R(60,80)*BHS;if(b.h<H+3*d+2*m+120||b.w<2*d+240)return LOTS.houses(b);const gc=b.x0+R(.35,.65)*b.w,y1=b.y1-m-d;
    if(resHit(b.x0+m,b.y0+m,b.w-2*m,b.h-2*m))return LOTS.houses(b);
    tryB(b.x0+m,b.y0+m+H,b.w-2*m,d,H,0,1);const wy=b.y0+m+H+d,wh=y1-wy;
    tryB(b.x0+m,wy,d,wh,H*.6,0,1);tryB(b.x1-m-d,wy,d,wh,H*.6,0,1);

@@ -1,0 +1,63 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Köpenick Geografie</title>
+<style>body{margin:0;background:#1a1512;color:#ead9c0;font:14px system-ui,sans-serif;padding:16px}h1{font-size:20px;margin:0 0 6px}p{margin:0 0 12px;color:#a8957d;max-width:900px}
+.g{display:grid;grid-template-columns:minmax(0,760px) minmax(0,420px);gap:16px}.c{background:#241d18;border:1px solid #3a2e25;border-radius:8px;padding:10px}.c b{display:block;margin:8px 0 4px}.c span{color:#a8957d;font-size:13px}svg{width:100%;height:auto;display:block}
+@media(max-width:900px){.g{grid-template-columns:1fr}}</style></head><body>
+<h1>v0.40: Köpenick nach Geografie, Gebäude größer</h1><p>Welt 3600 × 3600 (bisher 2400). Straßen nur an Land, Brücken als Engstellen. Lage aus dem Gedächtnis, stark gestaucht (der echte Müggelsee ist 4 km breit).</p>
+<div class="g"><div class="c"><svg id="map" viewBox="0 0 3600 3600"></svg><b>A · Karte (Weltkoordinaten)</b><span>Lager an der Lindenstraße nördlich der Dammbrücke. Altstadt als saubere Halbinsel zwischen Spree und Dahme, Rathaus darauf. Schlossinsel in der Dahme. Müggelsee füllt den Osten, die Karte endet im Wasser. Drei Brücken als Engstellen: Dammbrücke (Spree), Lange Brücke (Dahme), Stubenrauchbrücke im Westen. Weiter südlich keine Brücke über die Dahme.</span></div>
+<div class="c"><svg id="sc" viewBox="0 0 420 300"></svg><b>B · Gebäudegröße (Seitenansicht, Weltmaß)</b><span>Spieler, Auto, Altbau heute und neu. Neu: Grundfläche ×1,6, Fassade ×2 mit größeren Stockwerken (4 bis 5 Etagen), Plattenbau 6 bis 8 Etagen. Ein Regler im Code, falls es zu wuchtig wird.</span></div></div>
+<script>
+const K={
+ lake:[[2700,250],[3100,120],[3600,150],[3600,2150],[3250,2180],[2900,1980],[2660,1620],[2570,1250],[2610,800]],
+ spree:[[2620,1040],[2250,1180],[1900,1330],[1600,1440],[1400,1500],[1100,1420],[750,1300],[350,1260],[0,1300]],
+ dahme:[[1650,3600],[1620,3100],[1560,2600],[1530,2200],[1490,1820],[1420,1520]],
+ island:[1555,2020,70,120],
+ roads:{
+  'Lindenstraße':[[1290,1740],[1300,1500],[1340,1200],[1360,700],[1390,0]],
+  'Müggelheimer Str.':[[1180,1740],[1480,1780],[1720,1830],[2200,2060],[2700,2360],[3200,2500],[3600,2580]],
+  'Fürstenwalder Damm':[[1345,950],[1800,850],[2250,700],[2460,480],[2520,0]],
+  'Oberspreestraße':[[1180,1740],[800,1810],[400,1860],[0,1900]],
+  'An der Wuhlheide':[[1335,1100],[900,950],[500,760],[0,600]],
+  'Grünauer Str.':[[1260,1760],[1300,2300],[1350,2900],[1400,3600]],
+  'Wendenschloßstr.':[[1720,1830],[1760,2400],[1800,3000],[1850,3600]],
+  'Stubenrauchstr.':[[420,1860],[460,1270],[500,760]]},
+ bridges:[[1300,1500,'Dammbrücke'],[1460,1778,'Lange Brücke'],[460,1275,'Stubenrauchbr.']],
+ zones:[['Wuhlheide','#2f4a2a',[[0,0],[1150,0],[1050,520],[600,680],[0,520]]],
+  ['Stadtforst, Müggelberge','#2f4a2a',[[1950,2420],[2700,2520],[3600,2720],[3600,3600],[1960,3600]]],
+  ['Kleingärten','#3e4a2a',[[0,1980],[1180,1940],[1220,2800],[0,3000]]],
+  ['Allende-Viertel (Platte)','#4a4640',[[1860,1950],[2450,2200],[2380,2450],[1860,2380]]],
+  ['Industrie Oberschöneweide','#4a3c2e',[[0,700],[1150,1060],[1050,1330],[0,1200]]],
+  ['Altbau','#5a4636',[[1460,600],[2200,560],[2350,980],[1430,1160]]],
+  ['Friedrichshagen','#5a4636',[[2000,0],[2580,0],[2560,380],[2150,520]]],
+  ['Wald','#2f4a2a',[[0,3050],[1250,2900],[1300,3600],[0,3600]]]],
+ alt:[[1110,1560],[1250,1530],[1400,1560],[1450,1700],[1440,1880],[1300,1930],[1160,1880],[1100,1720]],
+ camp:[1390,1180],rathaus:[1270,1640]};
+const S=document.getElementById('map'),ns='http://www.w3.org/2000/svg',el=(t,a,p)=>{const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e;},pts=a=>a.map(p=>p.join(',')).join(' '),
+ txt=(x,y,s,c,sz,w,rot)=>{const e=el('text',{x,y,fill:c,'font-size':sz,'font-weight':w||400,'text-anchor':'middle',transform:rot?`rotate(${rot} ${x} ${y})`:''});e.textContent=s;};
+el('rect',{width:3600,height:3600,fill:'#2a2420'});
+for(const[n,c,p]of K.zones){el('polygon',{points:pts(p),fill:c});}
+el('polygon',{points:pts(K.alt),fill:'#6a5240',stroke:'#ead9c0','stroke-width':10});
+el('polygon',{points:pts(K.lake),fill:'#3a6a8a'});
+for(const[r,w]of[[K.spree,150],[K.dahme,140]])el('polyline',{points:pts(r),fill:'none',stroke:'#3a6a8a','stroke-width':w,'stroke-linecap':'round','stroke-linejoin':'round'});
+{const[x,y,rx,ry]=K.island;el('ellipse',{cx:x,cy:y,rx:rx+55,ry:ry+45,fill:'#3a6a8a'});el('ellipse',{cx:x,cy:y,rx,ry,fill:'#6a5240',stroke:'#ead9c0','stroke-width':8});}
+for(const n in K.roads)el('polyline',{points:pts(K.roads[n]),fill:'none',stroke:'#7a7068','stroke-width':110,'stroke-linecap':'round','stroke-linejoin':'round'});
+for(const n in K.roads)el('polyline',{points:pts(K.roads[n]),fill:'none',stroke:'#9a9088','stroke-width':6,'stroke-dasharray':'40 50'});
+for(const[x,y]of K.bridges)el('rect',{x:x-75,y:y-75,width:150,height:150,fill:'#d6cfc0',opacity:.85,transform:`rotate(45 ${x} ${y})`});
+for(const[n,c,p]of K.zones){const cx=(n==='Altbau'?150:0)+p.reduce((a,q)=>a+q[0],0)/p.length,cy=(n==='Altbau'?180:0)+p.reduce((a,q)=>a+q[1],0)/p.length;txt(cx,cy,n,'#cfe0b0',64);}
+txt(3120,1100,'Müggelsee','#cfe8ff',130,700);txt(3120,1240,'Karte endet im See','#cfe8ff',60);
+txt(700,1240,'Spree','#cfe8ff',70,700,-5);txt(1700,2700,'Dahme','#cfe8ff',70,700,-85);
+txt(1270,1820,'Altstadt','#ead9c0',70,700);el('rect',{x:K.rathaus[0]-60,y:K.rathaus[1]-60,width:120,height:120,fill:'#c23a2e',stroke:'#1a0f0a','stroke-width':10});txt(K.rathaus[0]-230,K.rathaus[1]+20,'Rathaus','#ead9c0',56);
+txt(1555,2035,'Schlossinsel','#ead9c0',40);
+for(const[x,y,n]of K.bridges)txt(x+(x<1000?0:250),y-100,n,'#ead9c0',50);
+el('circle',{cx:K.camp[0],cy:K.camp[1],r:70,fill:'#e0892e',stroke:'#1a0f0a','stroke-width':14});txt(K.camp[0]+380,K.camp[1]-90,'Lager Lindenstraße','#e0892e',64,700);
+const lab={'Lindenstraße':[1400,420,-87],'Müggelheimer Str.':[2900,2380,17],'Fürstenwalder Damm':[1900,760,-14],'Oberspreestraße':[600,1780,-8],'An der Wuhlheide':[700,800,25],'Grünauer Str.':[1220,2600,-85],'Wendenschloßstr.':[1880,2700,-86],'Stubenrauchstr.':[370,1600,-86]};
+for(const n in lab)txt(lab[n][0],lab[n][1],n,'#ead9c0',48,600,lab[n][2]);
+el('rect',{x:20,y:3480,width:600,height:20,fill:'#ead9c0'});txt(320,3460,'600 Einheiten ≈ 26 m bei Spielermaß','#a8957d',46);
+// scale panel: world units, 1 svg px = 1.2 units; ground at y=270
+const T=document.getElementById('sc'),q=1/1.6,gy=270,sel=(t,a)=>el(t,a,T),st=(x,y,s,c,sz)=>{const e=sel('text',{x,y,fill:c,'font-size':sz||11,'text-anchor':'middle'});e.textContent=s;};
+sel('rect',{width:420,height:300,fill:'#2a2420'});sel('line',{x1:0,y1:gy,x2:420,y2:gy,stroke:'#6a6058','stroke-width':2});
+const bld=(x,w,H,fl,c,lab)=>{sel('rect',{x,y:gy-H*q,width:w*q,height:H*q,fill:c,stroke:'#1a0f0a'});const fh=H*q/fl;for(let f=0;f<fl;f++)for(let k=6;k<w*q-8;k+=w*q/Math.max(2,Math.round(w*q/16)))sel('rect',{x:x+k,y:gy-H*q+f*fh+fh*.25,width:6,height:fh*.45,fill:'#110b08'});st(x+w*q/2,gy-H*q-8,lab,'#ead9c0');};
+sel('ellipse',{cx:30,cy:gy-20,rx:8,ry:20,fill:'#e0892e'});st(30,gy+16,'Spieler','#a8957d',10);
+sel('rect',{x:50,y:gy-22,width:96*q,height:22,fill:'#6b3a24',stroke:'#1a0f0a'});st(80,gy+16,'Auto','#a8957d',10);
+bld(120,160,110,3,'#7a5a46','Altbau heute');bld(240,256,230,5,'#8a6a52','Altbau neu');
+st(150,gy+16,'w 100–220, Fassade 76–144','#a8957d',9);st(320,gy+16,'w 160–350, Fassade 150–290','#a8957d',9);
+</script></body></html>
