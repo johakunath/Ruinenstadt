@@ -11,21 +11,29 @@ Top-down loot ARPG in post-collapse Berlin. Hobby project to learn game developm
 - **Inspirations:** Diablo 2/3 (loot, acts), Hades (dash, boons, weapon = playstyle, hand-drawn look), V Rising (boss-gated unlocks, base), Valheim (weak to strong), Enshrouded (authored points of interest).
 - **Out of scope:** multiplayer, 3D, hunger as a timer, story dialogue trees.
 
+## Playtest 1 (v0.34, Tab S9 portrait, 15 min Köpenick)
+
+Fun, "almost something to show friends". Lighting and floors good. Item looks on the character good.
+Problems: environment scale (cars smaller than player), pure top-down props vs side-view characters, grid-like streets, only 3 equipment slots, Normal too easy, text not wrapping on tablet (fixed v0.35).
+
 ## Next
 
 | # | Item | Notes |
 |---|---|---|
-| 1 | Art direction mockups | Current canvas vs Hades-like hand-drawn vs asset pack, plus a cyberpunk district sample. Pixel art not preferred. User picks, then implement |
-| 2 | Späti rework | Mockup first. Safe room enemies cannot enter: calm spot to eat, swap gear |
-| 3 | Elite tactics | Elites and some types get telegraphed attacks and punish windows. Fodder stays fast |
-| 4 | Weapon = class | Each weapon type 2 to 3 skills, pick 1 before a run. Touch stays at 4 buttons |
-| 5 | Zones and U-Bahn waypoints | District = 2 to 3 zones of 5 to 10 min, U-Bahn as save point and town portal |
-| 6 | Controller support | Gamepad API for Xbox and Steam Deck (browser), stick aiming |
-| 7 | AI-maintainability review | Code and docs readable for Claude and Codex with few tokens |
-| 8 | Walkable camp hub | Mockup first |
-| 9 | Sound files | jsfxr samples instead of synth |
-| 10 | Run telemetry | Local run log (deaths, cause, time per wave), exported with the save code. No database needed |
-| - | Playtest on Tab S9 and Xiaomi 17 | Whenever there is time. Gate for balance work |
+| 1 | Perspective and scale | Mockup `mockups/v035-scale-slots-map.html`. Proposal: 3/4 oblique view (facades, cars, trees with height), environment about ×2, world 2400 → 3600 (tile the ground canvas for memory) |
+| 2 | Equipment slots | 6 or 8 slots (same mockup). New item bases per slot, paper doll, compare, save migration, rebalance |
+| 3 | Geographic districts | Köpenick first: Müggelsee huge in the east (map ends in the lake), Spree from Friedrichshagen, Altstadt peninsula, Dahme from the south, forest south-east, camp at Lindenstraße. Roads follow rivers, bridges as chokepoints. Then other districts. Fixes the grid look |
+| 4 | Art pipeline: hand-painted look | Not doable with code-drawn SVG/canvas. Needs an image model for painted sprites (see Tech). Characters as painted cut-out parts so gear stays visible. Floors stay |
+| 5 | Potsdamer Platz cyberpunk district | Mockup D approved: neon, rain, implant clinic, cable enemies. Implant slot unlocks here |
+| 6 | Balance: Normal harder | "Pretty easy, upgrades come quickly". Needs run telemetry first |
+| 7 | Elite tactics | Telegraphs and punish windows on elites and some types. Fodder stays fast |
+| 8 | Weapon = class | Each weapon type 2 to 3 skills, pick 1 before a run. Touch stays at 4 buttons |
+| 9 | Zones and U-Bahn waypoints | District = 2 to 3 zones of 5 to 10 min, U-Bahn as save point and town portal |
+| 10 | Controller support | Gamepad API for Xbox and Steam Deck (browser), stick aiming, assists per input device |
+| 11 | AI-maintainability review | Code and docs readable for Claude and Codex with few tokens |
+| 12 | Walkable camp hub | Mockup first. Lives at Lindenstraße in Köpenick |
+| 13 | Sound files | jsfxr samples instead of synth |
+| 14 | Run telemetry | Local run log (deaths, cause, time per wave), exported with the save code |
 | - | GitHub Pages | When playtesting outside the dev setup |
 
 ## Ideas by theme
@@ -63,7 +71,7 @@ Top-down loot ARPG in post-collapse Berlin. Hobby project to learn game developm
 | Release | Bump `VERSION` (`js/core.js`) and `CACHE` (`sw.js`), add a row to Done |
 | Save | localStorage plus save code. Supabase only when cross-device saves matter |
 | Balance | Bot: `node tools/balance.mjs 30 1` with the local server running. Last result (v0.29): Leicht about 8 runs for all 8 districts, Normal 10 to 15, Schwer about 20 |
-| Art and sound | Kenney.nl (CC0), itch.io, jsfxr |
+| Art and sound | Painted look needs an image model (for example ChatGPT image generation via Codex, or Midjourney, Leonardo, Scenario) with a fixed style sheet and prompt templates, transparent PNGs. Canvas draws sprites fine, no engine needed. Sound: jsfxr |
 | Later engine | Godot if the browser limits us (for example a high-end desktop version) |
 
 ## Done
@@ -104,3 +112,4 @@ Top-down loot ARPG in post-collapse Berlin. Hobby project to learn game developm
 | v0.32 | Tageskampf (daily challenge, unlocks after the first liberation): seeded map and spawns per day, district and two of seven modifiers chosen by date (Blutmond, Elitenacht, Glaskanone, Stromausfall, Goldrausch, Horde, Eiserne Haut), score from kills, waves and victory, best score per day |
 | v0.33 | Balance: enemy damage grows +16% per district instead of +20%, so late districts no longer double the hits you take relative to your life |
 | v0.34 | Auto-attack (on by default on touch, toggle in options and pause), drag the skill or Molotov button to aim with a preview, tap still auto-targets. Short haptic pulses on taking damage (Vibration: aus, leicht, stark). AGENTS.md points to CLAUDE.md |
+| v0.35 | Späti as barricaded safe room (S2): bigger, sandbags, shutter, oven, workbench, radio. Inside: shutter keeps enemies out, no damage, slow healing, 60 s calm per wave, then the shutter gives way. Fix: text did not wrap on tablets (`.tab` CSS class collided with `body.tab`) |

@@ -9,6 +9,9 @@ function update(dt){
   shake=Math.max(0,shake-dt*30);flashT=Math.max(0,flashT-dt);goldT=Math.max(0,goldT-dt);for(const c of corpses)c.t-=dt;corpses=corpses.filter(c=>c.t>0);
   for(const b of barrels)if(Math.random()<dt*2)parts.push({x:b.x+R(-4,4),y:b.y-18,vx:R(-8,8),vy:R(-50,-25),life:R(.5,1),max:1,col:'#EF9F27',size:R(1.5,2.5)});
   if(spati){const inS=P.x>spati.x&&P.x<spati.x+spati.w&&P.y>spati.y&&P.y<spati.y+spati.h;spati.fade+=((inS?.12:1)-spati.fade)*Math.min(1,dt*8);spati.inside=inS;
+    if(inS&&state==='play'){const c0=spati.calm;spati.calm=Math.max(0,spati.calm-dt);if(spati.calm>0){P.hp=Math.min(ST.maxHp,P.hp+ST.maxHp*.03*dt);if(!spati.told){spati.told=1;toast(`<span style="color:var(--ember)">Schutzraum</span> · Gitter unten, ${Math.ceil(spati.calm)} s Ruhe`);}
+      for(const e of enemies)if(e.type!=='boss'&&inSp(e,e.fly?20:0)){e.x=spati.x+spati.dx+spati.dw/2+R(-60,60);e.y=spati.y+spati.h+60;}}
+      else if(c0>0){toast('<span style="color:#c23a2e">Das Gitter gibt nach!</span>');sfx('crash');shake=Math.max(shake,8);}}
     if(inS&&!spati.seen&&state==='play'){spati.seen=true;toast(`<span style="color:var(--ember);font-family:var(--f-display);font-size:22px">${spati.name}</span>`);sfx('bell');}}
   if(state!=='play')return;
   S.rec.time+=dt;tipT-=dt;
