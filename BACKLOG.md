@@ -23,18 +23,15 @@ Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pip
 | # | Item | Notes |
 |---|---|---|
 | 1 | Isometric follow-ups | Playtest v0.37 on the Tab S9 (feel of screen-space joystick, frame rate). Then: world 2400 → about 3600 for longer levels (do it with the geographic Köpenick map, #3), Späti interior and sandbags as iso props, landmark towers as real iso sprites (Codex step 4), rebalance with the bot |
-| 2 | Equipment: 8 slots | Weapon, head, body, hands, feet, talisman, ring, implant (one ring: two ring slots are too fiddly). Implant unlocks at Potsdamer Platz. New bases, paper doll, compare, save migration, rebalance |
+| 2 | Equipment follow-ups | Legendaries and set pieces for head, hands, feet and ring (they top out at rare for now). Implant items with Potsdamer Platz (#4). Codex: painted head, hand and foot parts |
 | 3 | Geographic districts | Köpenick first, mockup `mockups/v035-scale-slots-map.html` approved with fixes: no road in the water (the grey line along the Spree is wrong, roads go on land), cleaner Altstadt peninsula. Müggelsee huge in the east, Spree from Friedrichshagen, Dahme from the south, forest south-east, camp at Lindenstraße. Then the other districts |
 | 4 | Potsdamer Platz cyberpunk district | Mockup D approved: neon, rain, implant clinic, cable enemies |
-| 5 | Balance: Normal harder | "Pretty easy, upgrades come quickly". Run telemetry first |
-| 6 | Elite tactics | Telegraphs and punish windows on elites and some types. Fodder stays fast |
 | 7 | Weapon = class | Each weapon type 2 to 3 skills, pick 1 before a run. Touch stays at 4 buttons |
 | 8 | Zones and U-Bahn waypoints | District = 2 to 3 zones of 5 to 10 min, U-Bahn as save point and town portal |
 | 9 | Controller support | Gamepad API for Xbox and Steam Deck (browser), stick aiming, assists per input device |
 | 10 | AI-maintainability review | Code and docs readable for Claude and Codex with few tokens |
 | 11 | Walkable camp hub | Mockup first. Lives at Lindenstraße in Köpenick |
 | 12 | Sound files | jsfxr samples instead of synth |
-| 13 | Run telemetry | Local run log (deaths, cause, time per wave), exported with the save code |
 | A | Asset pipeline (Codex) | Hand-painted isometric art. Steps, order and prompts in `docs/asset-pipeline.md`. Step 1: 3 to 5 style references, Johannes picks |
 | - | GitHub Pages | When playtesting outside the dev setup |
 
@@ -45,7 +42,7 @@ Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pip
 | Pacing | Some enemies with tactics instead of more HP: telegraphed attacks, punish windows, flanking, retreat. Short calm phases between fights. Safe rooms (Späti) |
 | Enemy roles | Types that need a different answer, not more DPS (shield, charger, buffer exist). Element enemies that make resist gear matter for a whole district |
 | Build depth | Weapon = class (Hades model): each weapon type with 2 to 3 skills to choose from. Blessings that stack into overpowered builds. Optional skill tree later. Unlockable starting characters as an alternative |
-| Gear | More equipment slots (now 3: weapon, armor, talisman). Sockets for gems or implants that slot in and out freely (Cyberpunk 2077 cyberware) |
+| Gear | Sockets for gems or implants that slot in and out freely (Cyberpunk 2077 cyberware) |
 | Food and buffs | Eat from the inventory while paused, stackable meal buffs. Shrines with short invincibility or power spikes |
 | World structure | Longer districts. Fight your way to the next zone (Diablo acts), U-Bahn stations as waypoints and town portal. Authored set pieces: U-Bahn dungeon, rooftop, bunker |
 | Quests | Pick up and hand in at NPCs. Quest chains with a light story per district |
@@ -71,8 +68,9 @@ Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pip
 |---|---|
 | Platform | Static PWA, no build step, GitHub repo, developed with Claude Code |
 | Release | Bump `VERSION` (`js/core.js`) and `CACHE` (`sw.js`), add a row to Done |
+| Telemetry | Every run (win, death, quit) is logged into the save with the same fields the bot prints, last 60 runs. Now and then Johannes pastes a save code, Claude runs `node tools/telemetry.mjs <code file>` and compares with the bot per district. Goal: learn over time whether the bot plays better or worse than Johannes, and calibrate difficulty from that. The bot stays the basis for balancing |
 | Save | localStorage plus save code. Supabase only when cross-device saves matter |
-| Balance | Bot: `node tools/balance.mjs 30 1` with the local server running. Last result (v0.29): Leicht about 8 runs for all 8 districts, Normal 10 to 15, Schwer about 20 |
+| Balance | Bot: `node tools/balance.mjs 30 1` with the local server running. Last result (v0.39, 3 repeats each): Leicht 8 runs for all 8 districts without deaths, Normal 12 to 14 with deaths from Neukölln on, Schwer 9 to 27 (high variance) |
 | Art and sound | Painted look needs an image model (for example ChatGPT image generation via Codex, or Midjourney, Leonardo, Scenario) with a fixed style sheet and prompt templates, transparent PNGs. Canvas draws sprites fine, no engine needed. Sound: jsfxr |
 | Later engine | Godot if the browser limits us (for example a high-end desktop version) |
 
@@ -117,4 +115,5 @@ Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pip
 | v0.35 | Späti as barricaded safe room (S2): bigger, sandbags, shutter, oven, workbench, radio. Inside: shutter keeps enemies out, no damage, slow healing, 60 s calm per wave, then the shutter gives way. Fix: text did not wrap on tablets (`.tab` CSS class collided with `body.tab`) |
 | v0.38 | Phone: menu tabs as a bottom bar, Zurück/Weiter button above it. Kodex shows a portrait for every enemy, boss and elite (in-game art) and icons for legendaries and set parts. Werkstatt: built Aufsätze get an "Einbauen" button that opens the weapon, clearer hint where Aufsätze go. Device back button closes menus and pauses runs; in camp it needs three presses to leave |
 | v0.37 | Isometric 2:1 view (mockup C). Logic and collision stay in flat world coords, the renderer projects: ground as a diamond, buildings as boxes from their old roof and facade art (facades twice as tall), cars, vans, Trabis, buses and trams as iso boxes at real scale (car about 4 × player width), trees ×1.6, depth sorting against boxes, buildings in front of the player fade. Joystick, keys and drag-aim work in screen directions. Minimap turned 45° to match the screen. Balance bot steers in screen space |
+| v0.39 | 8 equipment slots: Kopf (Widerstand), Körper (Leben), Füße (Lauftempo), Waffe, Hände (Angriffstempo), Talisman, Ring (rolls like a talisman), Implantat (locked until Potsdamer Platz). 16 new bases with icons, head, gloves and boots drawn on the character. Segen tab in the pause menu: hex icon per blessing, frame colour = rarest card picked, level dots, detail card with current and next level. Perk cards show the icon. Inventory close button next to the tabs (phone: sticky header). Balance (#5): Normal enemies ×1.15 life and ×1.1 damage, per district +58% life (was 20%) and +44% damage (was 16%), so Köpenick stays gentle and later districts catch up with the extra slots. Elite tactics (#6): Flink lunges, Brennend flame ring, Spaltend acid fan, Gepanzert stomp; Brocken stomps, Raser rests after charging; afterwards a punish window (gold ring, „Offen!“, +30% damage taken). Run telemetry (#13). Fix: local save was reset on every page load (fix() ran before data.js) |
 | v0.36 | Späti shelves and fridges show bottles, cans, chip bags and boxes. Asset pipeline handover for Codex in `docs/asset-pipeline.md` |

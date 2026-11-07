@@ -7,10 +7,13 @@ function prog(k,n){for(const j of S.jobs)if(j.k===k&&j.p<j.t){j.p=Math.min(j.t,j
 function progWave(w){for(const j of S.jobs)if(j.k==='wave'&&j.p<j.t&&w>j.p){j.p=Math.min(j.t,w);if(j.p>=j.t)jobDone(j);}}
 function rollR(minR){const l=S.upg.luck+DF().luck+(ST?ST.luck:0)+(run?run.th:0)+(dm_('eisen')?3:0),w=run?run.wave:1;const ws=[60,26+w+l*3,8+w*.7+l*2,1.2+w*.3+l*.8];for(let i=0;i<(minR||0);i++)ws[i]=0;let t=ws.reduce((a,b)=>a+b),x=Math.random()*t;for(let i=0;i<4;i++){if((x-=ws[i])<0)return i;}return minR||0;}
 function makeItem(il,minR){
-  const r=rollR(minR),roll=Math.random(),slot=roll<.45?'w':roll<.8?'a':'t',m=RAR[r].m*R(.85,1.15);let kind,name,val;
+  // legendaries exist only for weapon, body and talisman; head, hands, feet and ring top out at rare
+  const r=rollR(minR),roll=Math.random(),slot=r===3?(roll<.45?'w':roll<.8?'a':'t'):roll<.3?'w':roll<.46?'a':roll<.56?'h':roll<.66?'g':roll<.76?'f':roll<.88?'t':'r',m=RAR[r].m*R(.85,1.15);let kind,name,val;
   if(slot==='w'){kind=pick(['blade','blade','hammer','sling','spear']);name=r===3?pick(LEGW[kind]):pick(NW[kind]);val=Math.round((4+il*1.6)*KIND[kind].k*m);}
   else if(slot==='a'){kind='armor';name=r===3?pick(LEGA):pick(NA);val=Math.round((12+il*6)*m);}
-  else{kind=pick(['krit','tempo','heil']);name=r===3?pick(LEGT):pick(NT[kind]);const b={krit:3+il*.35,tempo:4+il*.3,heil:.5+il*.12}[kind]*m;val=kind==='heil'?+b.toFixed(1):Math.round(b);}
+  else if(slot==='h'){kind='head';name=pick(NH);val=Math.round((2+il*.12)*m);}
+  else if(slot==='g'||slot==='f'){kind=slot==='g'?'hand':'feet';name=pick(slot==='g'?NG:NF);val=Math.round((3+il*.12)*m);}
+  else{kind=pick(['krit','tempo','heil']);name=r===3?pick(LEGT):pick((slot==='r'?NR:NT)[kind]);const b={krit:3+il*.35,tempo:4+il*.3,heil:.5+il*.12}[kind]*m;val=kind==='heil'?+b.toFixed(1):Math.round(b);}
   const base=BASES[name];if(r===1||r===2)name+=' '+pick(SUF[r]);
   const it={id:++uid,slot,kind,base,name,r,val,ilvl:il,afx:[]};rollAfx(it);return it;
 }
@@ -40,7 +43,7 @@ function cmpBlock(it){const a=stats(),b=stats(withItem(it));let h='';
   if(a.els.join()!==b.els.join())h+=`<div class="cmp"><span>Element</span><span>${a.els.map(e=>ELN[e]).join(', ')||'keins'} → <b>${b.els.map(e=>ELN[e]).join(', ')||'keins'}</b></span></div>`;
   return h||'<div class="sub">Keine Veränderung</div>';}
 const scrapVal=it=>Math.round((it.r+1)*3*(1+it.ilvl*.08));
-function statLine(it){if(it.slot==='w')return`${it.val} Schaden · ${KIND[it.kind].n} · ${Math.round(dps(it))} DPS`;if(it.slot==='a')return`+${it.val} Leben`;return{krit:`+${it.val}% Krit-Chance`,tempo:`+${it.val}% Tempo`,heil:`+${it.val} Leben pro Sekunde`}[it.kind];}
+function statLine(it){if(it.slot==='w')return`${it.val} Schaden · ${KIND[it.kind].n} · ${Math.round(dps(it))} DPS`;if(it.slot==='a')return`+${it.val} Leben`;if(SSTAT[it.slot])return`+${it.val}% ${AFX[SSTAT[it.slot]].n}`;return{krit:`+${it.val}% Krit-Chance`,tempo:`+${it.val}% Tempo`,heil:`+${it.val} Leben pro Sekunde`}[it.kind];}
 
 const Y='<path d="M12 21v-8M12 13L7 4M12 13l5-9"/><path d="M7 4q5 5 10 0" stroke-width="1.2"/>';
 const ICO={
@@ -83,6 +86,57 @@ const ICO={
  kette:c=>`<rect x="2" y="9" width="8" height="6" rx="3"/><rect x="8" y="9" width="8" height="6" rx="3"/><rect x="14" y="9" width="8" height="6" rx="3"/>`,
  beutel:c=>`<path d="M8 8h8l3 10a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z" fill="${c}" fill-opacity=".3"/><path d="M9 8l-1-4h8l-1 4"/><path d="M10 14h4M12 12v4" stroke-width="1.4"/>`,
  abzeichen:c=>`<circle cx="12" cy="12" r="8" fill="${c}" fill-opacity=".3"/><path d="M7 13q5-4 10 0" stroke-width="2.4"/>`,
+ schieber:c=>`<path d="M4 15q0-8 8-8t8 6z" fill="${c}" fill-opacity=".3"/><path d="M3 15h18"/>`,
+ muetze:c=>`<path d="M5 17V12a7 7 0 0 1 14 0v5z" fill="${c}" fill-opacity=".3"/><path d="M5 15h14"/><circle cx="12" cy="4" r="1.8" fill="${c}"/>`,
+ maske:c=>`<path d="M6 6h12v7a6 6 0 0 1-12 0z" fill="${c}" fill-opacity=".25"/><circle cx="9.5" cy="10" r="2"/><circle cx="14.5" cy="10" r="2"/><rect x="10" y="16" width="4" height="5" fill="${c}" fill-opacity=".4"/>`,
+ handsch:c=>`<path d="M7 21v-8L5 9l2-1 2 3V4h2v6V3h2v7V4h2v7l1-3 2 1-2 6v6z" fill="${c}" fill-opacity=".3"/>`,
+ bandage:c=>`<path d="M7 21v-8L5 9l2-1 2 3V4h2v6V3h2v7V4h2v7l1-3 2 1-2 6v6z" fill="${c}" fill-opacity=".15"/><path d="M7 14h10M7 17h10" stroke-width="1.4"/>`,
+ schweiss:c=>`<path d="M6 21v-9L4 8l3-1 2 3V4h8v7l2-3 2 1-3 6v6z" fill="${c}" fill-opacity=".35"/><path d="M6 17h12"/>`,
+ turnsch:c=>`<path d="M3 17l2-6 5 1 3 2 7 1 1 3H3z" fill="${c}" fill-opacity=".3"/><path d="M8 13l1 2M11 13.5l1 2" stroke-width="1.2"/>`,
+ stiefel:c=>`<path d="M7 3h6v11l7 2v4H5v-6z" fill="${c}" fill-opacity=".3"/><path d="M5 18h15"/>`,
+ gummi:c=>`<path d="M7 2h6v12l7 2v5H6V12z" fill="${c}" fill-opacity=".3"/><path d="M7 6h6"/>`,
+ siegel:c=>`<circle cx="12" cy="14" r="6"/><rect x="9" y="3" width="6" height="5" rx="1" fill="${c}" fill-opacity=".5"/>`,
+ totenk:c=>`<circle cx="12" cy="15" r="5.5"/><path d="M8.5 5a3.5 3.5 0 0 1 7 0v2h-7z" fill="${c}" fill-opacity=".5"/>`,
+ mutter:c=>`<path d="M12 4l7 4v8l-7 4-7-4V8z" fill="${c}" fill-opacity=".25"/><circle cx="12" cy="12" r="3.5"/>`,
+ draht:c=>`<circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="4.5" stroke-dasharray="2 2"/>`,
+ ehe:c=>`<circle cx="12" cy="13" r="7"/><path d="M10 4l2-2 2 2-2 2z" fill="${c}"/>`,
+ kupfer:c=>`<circle cx="12" cy="12" r="7" stroke-width="3"/>`,
  herz:c=>`<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" fill="${c}" fill-opacity=".3"/><path d="M8 12q2 2 4 0t4 0" stroke-width="1.2"/>`};
 function icon(it,sz){if(!it)return'';const c=rc(it),f=ICO[baseOf(it)]||ICO.kiesel;
   return`<svg viewBox="0 0 24 24" width="${sz}" height="${sz}" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${f(c)}</svg>`;}
+// blessing (Segen) icons: hex medallion, frame colour = rarest card picked for it (white, blue, gold), glyph per blessing in a 24 grid
+const PQC=['#e8ddd0','#7d9bff','#f2d14b'],PQN=['Gewöhnlich','Selten','Episch'];
+const PG={dmg:['#ff8a3d','f','<path d="M12 3c5 5 7 9 5 14a5 5 0 0 1-10 0c-1-4 2-6 2-9 2 2 2 4 3 5 1-3 0-6 0-10z"/>'],
+ hp:['#e05050','f','<path d="M12 20l-7-7a4.5 4.5 0 0 1 7-5.5A4.5 4.5 0 0 1 19 13z"/>'],
+ spd:['#c9b08a','s','<path d="M3 8h7M2 12h8M3 16h7M13 6l6 6-6 6M10 6l6 6-6 6"/>'],
+ crit:['#f2d14b','s','<path d="M3 12q9-9 18 0q-9 9-18 0z"/><circle cx="12" cy="12" r="2.6" fill="#f2d14b"/>'],
+ rate:['#ead9c0','s','<circle cx="12" cy="13" r="7"/><path d="M12 9v4l3 2M10 3h4"/>'],
+ reach:['#c9b08a','s','<path d="M3 12h16M15 8l4 4-4 4M3 8v8"/>'],
+ leech:['#c23a2e','f','<path d="M5 5h14l-5 15-2-6-2 6z"/>'],
+ ram:['#c9b08a','f','<path d="M3 9h9V5l8 7-8 7v-4H3z"/>'],
+ stun:['#f2d14b','f','<path d="M12 3l2.2 6H21l-5.5 4 2 7-5.5-4.2L6.5 20l2-7L3 9h6.8z"/>'],
+ boom:['#ff8a3d','f','<path d="M12 2l2 6 6-3-3 6 6 2-6 2 3 6-6-3-2 6-2-6-6 3 3-6-6-2 6-2-3-6 6 3z"/>'],
+ second:['#8fd16a','f','<path d="M10 4h4v6h6v4h-6v6h-4v-6H4v-4h6z"/>'],
+ scrap:['#b8b8c8','s','<path d="M12 4l7 4v8l-7 4-7-4V8z"/><circle cx="12" cy="12" r="3"/>'],
+ dashcd:['#ead9c0','s','<path d="M3 18q8-12 17-10M15 4l5 4-4 5"/><path d="M3 13l3-1M4 8l3 0" stroke-width="1.4"/>'],
+ thorns:['#a8b060','f','<path d="M12 2l2 6 5-3-2 6 6 1-6 2 3 5-5-2-1 6-2-5-4 4 0-6-6-1 5-3-4-4 6 0z"/>'],
+ skill:['#f2a04b','s','<rect x="4" y="7" width="14" height="10" rx="1.5"/><path d="M18 10h2v4h-2M12 8l-3 4h3l-2 4" /> '],
+ magnet:['#b8b8c8','f','<path d="M5 4h4v8a3 3 0 0 0 6 0V4h4v8a7 7 0 0 1-14 0z"/><path d="M5 4h4v3H5zM15 4h4v3h-4z" fill="#e05050"/>'],
+ fire:['#ff6a2a','f','<path d="M12 3c5 5 7 9 5 14a5 5 0 0 1-10 0c-1-4 2-6 2-9 2 2 2 4 3 5 1-3 0-6 0-10z"/>'],
+ acid:['#97C459','f','<path d="M12 3c4 6 7 9 7 12a7 7 0 0 1-14 0c0-3 3-6 7-12z"/>'],
+ shock:['#7dd3ff','f','<path d="M14 2L5 13h6l-2 9 10-12h-6z"/>'],
+ spread:['#ff6a2a','f','<path d="M8 6c3 3 4 6 3 9a3.5 3.5 0 0 1-7 0c0-3 2-4 2-6 1 1 1 2 2 3zM16 4c3 3 5 7 3 11a4 4 0 0 1-8 0c0-3 2-5 2-7 1 1 2 2 2 4 1-3 1-5 1-8z"/>'],
+ corrode:['#97C459','f','<path d="M12 3c4 6 7 9 7 12a7 7 0 0 1-14 0c0-3 3-6 7-12z"/><path d="M8 15h8M9 18h6" stroke="#120d0a" stroke-width="1.6"/>'],
+ chain:['#7dd3ff','f','<path d="M9 2L3 10h4l-2 6 7-8H8zM18 8l-6 8h4l-2 6 7-8h-4z"/>'],
+ elp:['#ead9c0','f','<circle cx="12" cy="6" r="3.4" fill="#ff6a2a"/><circle cx="6" cy="17" r="3.4" fill="#97C459"/><circle cx="18" cy="17" r="3.4" fill="#7dd3ff"/>'],
+ res:['#9aa4b0','f','<path d="M12 3l8 3v6c0 5-4 8-8 10-4-2-8-5-8-10V6z"/>'],
+ combo:['#ead9c0','s','<path d="M4 19L10 5M10 19L16 5M16 19l4-9" stroke-width="2.4"/>'],
+ loot:['#c9a227','s','<rect x="4" y="8" width="16" height="12" rx="1"/><path d="M4 12h16M12 8v12M7 8l2-4h6l2 4"/>'],
+ breaker:['#9aa4b0','f','<path d="M12 3l8 3v6c0 5-4 8-8 10-4-2-8-5-8-10V6z"/><path d="M12 4l-2 6 4 2-3 8" stroke="#120d0a" stroke-width="1.8" fill="none"/>'],
+ blast:['#ff8a3d','f','<path d="M10 9h4v2l2 3v8H8v-8l2-3z"/><path d="M12 2c2 2 2 4 0 6-2-2-2-4 0-6z" fill="#f2d14b"/>'],
+ breath:['#9fd8c8','s','<path d="M3 9h11a3 3 0 1 0-3-3M3 14h14a3 3 0 1 1-3 3"/>'],
+ exec:['#e8ddd0','f','<path d="M5 11a7 7 0 0 1 14 0v4h-3v4H8v-4H5z"/><circle cx="9" cy="11" r="1.8" fill="#120d0a"/><circle cx="15" cy="11" r="1.8" fill="#120d0a"/>'],
+ mat:['#d6cfc0','f','<path d="M8 8h8l3 10a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z"/><path d="M9 8l-1-4h8l-1 4" fill="none" stroke="#d6cfc0" stroke-width="2"/>'],
+ rush:['#c23a2e','s','<path d="M5 13l7-7 7 7M5 20l7-7 7 7" stroke-width="2.6"/>']};
+function pIcon(k,sz,q){const g=PG[k]||PG.dmg,f=PQC[q||0],st=g[1]==='s';
+  return`<svg viewBox="0 0 32 32" width="${sz}" height="${sz}" aria-hidden="true"><path d="M16 1.5L29 9v14l-13 7.5L3 23V9z" fill="#1c140f" stroke="${f}" stroke-width="2"/><g transform="translate(6 6) scale(.8333)" fill="${st?'none':g[0]}" stroke="${st?g[0]:'none'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${g[2]}</g></svg>`;}

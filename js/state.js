@@ -2,7 +2,7 @@
 let captive=null,trove=null,MB=null,MB2=null,shrines=[],SHR={as:0,res:0,gold:0,spd:0,zap:0},cam={x:null,y:null},goldT=0,streak={n:0,t:0},beatT=0,stepT=0,rings=[],mols=[],fields=[],npc=null,zone=null,mf=0,state='menu',P=null,ST=null,bolts=[],corpses=[],hazards=[],freeze=0,flashT=0,enemies=[],drops=[],parts=[],nums=[],swings=[],eproj=[],pproj=[],teles=[],shocks=[],crate=null,shake=0;
 function newPlayer(){P={x:1200,y:1220,r:12,hp:100,lvl:1,xp:0,face:-Math.PI/2,atkA:0,cd:0,inv:0,walk:0,dashT:0,dashCd:0,ddx:0,ddy:0,mvx:0,mvy:0,swingT:0,swingDur:.2,swingKind:'blade',skCd:0,spin:0,spinTick:0,ramHit:[]};}
 function gear(eq){const A={};for(const k in AFX)A[k]=0;
-  for(const s of ['w','a','t']){const it=eq[s];if(!it)continue;if(s==='a')A.hp+=it.val;if(s==='t')A[TM[it.kind]]+=it.val;
+  for(const s of SLOTS){const it=eq[s];if(!it)continue;if(SSTAT[s])A[SSTAT[s]]+=it.val;if(s==='t'||s==='r')A[TM[it.kind]]+=it.val;
     (IMP[baseOf(it)]||[]).forEach(q=>A[q[0]]+=q[1]);(it.afx||[]).forEach(f=>A[f.k]+=f.v);
     (it.mods||[]).forEach(k=>{const M=MODS.find(m=>m.k===k);if(!M)return;(M.a||[]).forEach(q=>A[q[0]]+=q[1]);if(M.el&&(it.el||(it.mods.find(x=>MODS.find(m=>m.k===x&&m.el))!==k)))A.el+=20;});}
   const kz=setCount(eq,'kiez'),sp=setCount(eq,'spree');if(S.camp&&S.camp.turm)A.res+=8;if(kz>=2)A.res+=15;if(kz>=3)A.dmg+=30;if(sp>=2)A.as+=15;if(sp>=3)A.el+=40;const zt=setCount(eq,'zit');if(zt>=2)A.hp+=60;if(zt>=3){A.dmg+=25;A.res+=10;}return A;}
@@ -20,7 +20,7 @@ const ilvl=()=>D.lvl+(run?Math.max(1,run.wave)+run.th*3:1);
 function startRun(di,endless,daily){initAudio();if(RNG0){Math.random=RNG0;RNG0=null;}let plan=null;if(daily){plan=dailyPlan();di=plan.d;RNG0=Math.random;Math.random=rngFrom(dayKey());}
   initAudio();immerse();S.dist=di;save();
   S.rec.runs++;run={d:di,th:S.threat||0,wave:0,toSpawn:0,spawnT:0,cleared:true,perkDone:true,breakT:1.5,kills:0,sg:0,crateIn:-1,boss:null,quitArm:false,perks:{},booms:[],blasts:[],seen:{},second:false,endless:!!endless,meal:S.meal||null,daily:!!daily,dmods:plan?plan.mods:[]};S.meal=null;
-  buildWorld(DIST[di]);newPlayer();ST=stats();P.hp=ST.maxHp;
+  buildWorld(DIST[di]);newPlayer();ST=stats();P.hp=ST.maxHp;run.tl={t:0,ws:[],dmg:0,pw0:power(ST)};
   enemies=[];rings=[];cam.x=null;for(const k in SHR)SHR[k]=0;streak.n=0;streak.t=0;goldT=0;drops=[];parts=[];nums=[];swings=[];eproj=[];pproj=[];teles=[];shocks=[];bolts=[];corpses=[];hazards=[];freeze=0;flashT=0;crate=null;npc=null;zone=null;captive=null;trove=null;mols=[];fields=[];shake=0;
   const evw=[2,3,4,6,7,8,9].sort(()=>Math.random()-.5).slice(0,S.camp.funk?4:3),evt=['ambush','trader','zone','cache','horde',...(SURV.some(s=>!hasS(s.k))?['rescue','rescue']:[])].sort(()=>Math.random()-.5);run.events={};evw.forEach((w,i)=>run.events[w]=evt[i%evt.length]);if(hasS('doktor'))S.cons.verband=Math.min(3,(S.cons.verband||0)+1);if(S.camp.sani)S.cons.verband=Math.max(S.cons.verband||0,2);
   ['menu','inv','end','perk','trade'].forEach(i=>$(i).hidden=true);state='play';last=performance.now();updateHot();banner(run.daily?'Tageskampf · '+run.dmods.map(k=>DMODS[k][0]).join(' · '):DIST[di].n+(run.endless?' · Endlos':run.th?' · Bedrohung '+run.th:''));tip('move','Links ziehen zum Laufen, Hieb halten zum Kämpfen. Zielen geht automatisch.');tip('dash','Sprint macht dich kurz unverwundbar. Nutze ihn gegen Geschosse.');if(S.camp.garten)P.fed=60;
