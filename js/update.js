@@ -64,7 +64,14 @@ function update(dt){
       if(e.hp<=0&&!e.dead){kill(e);continue;}}
     if(e.elite==='brennend'){e.trail=(e.trail||0)-dt;if(e.trail<=0&&(e.mv||0)>8){e.trail=.45;hazards.push({x:e.x,y:e.y+e.r*.6,r:20,t:3.5,dmg:Math.max(1,Math.round(e.dmg*.45))});}}
     if(e.acid>0){e.acid-=dt;if(pk('corrode'))sp*=.7;if(Math.random()<dt*6)parts.push({x:e.x+R(-6,6),y:e.y-R(2,18),vx:0,vy:R(20,40),life:.5,max:.5,col:'#97C459',size:2});}
-    if(e.type==='raser'){e.cc=(e.cc==null?R(1,2):e.cc)-dt;if(e.ch>0){e.ch-=dt;sp=0;if(e.ch<=0)e.ru=.45;}else if(e.ru>0){e.ru-=dt;vx=e.rdx;vy=e.rdy;sp=e.stun>0?0:520;}else if(e.cc<=0&&d<260&&e.stun<=0){e.ch=.6;e.cc=2.4;e.rdx=dx/d;e.rdy=dy/d;}}
+    // elite tactics: telegraphed special (tw = wind-up), then a punish window (open) with +30% damage taken
+    if((e.elite||e.type==='brute')&&e.type!=='bomb'&&e.type!=='raser'&&!(e.open>0)){e.tcd=(e.tcd==null?R(2,4):e.tcd)-dt;const k=e.elite||'brute';
+      if(e.tw>0){e.tw-=dt;sp=0;if(e.tw<=0){if(k==='spaltend'){const a=Math.atan2(dy,dx);for(const o of [-.3,0,.3])fireGlob(e,a+o,230);sfx('spit');}e.open=TACO[k];tip('open','Nach ihrem Spezialangriff sind Elite-Gegner kurz offen (goldener Ring) und nehmen 30% mehr Schaden.');}}
+      else if(k==='schnell'&&e.ch>0){e.ch-=dt;sp=0;if(e.ch<=0)e.ru=.4;}else if(k==='schnell'&&e.ru>0){e.ru-=dt;vx=e.rdx;vy=e.rdy;sp=e.stun>0?0:480;if(e.ru<=0)e.open=TACO.schnell;}
+      else if(e.tcd<=0&&e.stun<=0&&d<(k==='schnell'?260:k==='spaltend'?380:k==='brennend'?140:220)){e.tcd=R(4.5,6.5);
+        if(k==='schnell'){e.ch=.7;e.rdx=dx/d;e.rdy=dy/d;sfx('horn');}
+        else{e.tw=e.twm=k==='spaltend'?.6:k==='brennend'?.9:.95;if(k==='brennend')teles.push({x:e.x,y:e.y,r:95,t:.9,max:.9,dmg:Math.round(e.dmg*1.2)});else if(k!=='spaltend')teles.push({x:P.x,y:P.y,r:k==='brute'?60:70,t:.95,max:.95,dmg:Math.round(e.dmg*(k==='brute'?1:1.3))});sfx(k==='brute'?'swing':'horn');}}}
+    if(e.type==='raser'){e.cc=(e.cc==null?R(1,2):e.cc)-dt;if(e.ch>0){e.ch-=dt;sp=0;if(e.ch<=0)e.ru=.45;}else if(e.ru>0){e.ru-=dt;vx=e.rdx;vy=e.rdy;sp=e.stun>0?0:520;if(e.ru<=0)e.open=TACO.raser;}else if(e.cc<=0&&d<260&&e.stun<=0&&!(e.open>0)){e.ch=.6;e.cc=2.4;e.rdx=dx/d;e.rdy=dy/d;}}
     if(e.type==='spitter'){if(d<200){vx=-vx;vy=-vy;}else if(d<290){const tx=-vy*e.side,ty=vx*e.side;vx=tx;vy=ty;sp*=.6;}
       e.fire-=dt;if(e.fire<=0&&d<440&&e.stun<=0){e.fire=R(2.3,3.1);fireGlob(e,Math.atan2(dy,dx),210);sfx('spit');}}
     if(e.buff>0){e.buff-=dt;sp*=1.35;}if(e.slow>0){e.slow-=dt;sp*=.6;}
@@ -75,6 +82,7 @@ function update(dt){
       e.fire-=dt;if(e.fire<=0&&d<460&&e.stun<=0){e.fire=R(4.5,6);rings.push({x:e.x,y:e.y-14,r:10,max:220,col:'214,90,140'});for(const o of enemies)if(o!==e&&Math.hypot(o.x-e.x,o.y-e.y)<220)o.buff=4;sfx('horn');}}
     if(e.fly){if(e.dive>0){e.dive-=dt;vx=e.rdx;vy=e.rdy;sp=e.stun>0?0:380;if(e.dive<=0)e.rest=1.3;}else if(e.rest>0){e.rest-=dt;sp=e.stun>0?0:40;}else{e.dcd-=dt;e.orb+=dt*1.5*e.side;const tx=P.x+Math.cos(e.orb)*150,ty=P.y+Math.sin(e.orb)*110,ddx=tx-e.x,ddy=ty-e.y,dl=Math.hypot(ddx,ddy)||1;vx=ddx/dl;vy=ddy/dl;sp=e.stun>0?0:e.spd*Math.min(1,dl/40+.3);
       if(e.dcd<=0&&d<280&&e.stun<=0){e.dive=.6;e.dcd=R(2.5,3.8);e.rdx=dx/d;e.rdy=dy/d;sfx('swing');}}}
+    if(e.open>0){e.open-=dt;sp=0;}
     if(e.det>0){e.det-=dt;const a=Math.atan2(vy,vx)+e.detA;vx=Math.cos(a);vy=Math.sin(a);}
     const f=Math.pow(.002,dt);const ox=e.x,oy=e.y;e.x+=vx*sp*dt+e.kx*dt;e.y+=vy*sp*dt+e.ky*dt;e.kx*=f;e.ky*=f;if(e.fly){e.x=clamp(e.x,10,WS-10);e.y=clamp(e.y,10,WS-10);}else collide(e);e.mv=Math.hypot(e.x-ox,e.y-oy)/Math.max(dt,.001);
     if(!e.fly&&e.type!=='boss'){e.sto=(e.sto||0)+dt;if(e.sto>6){const pd=Math.hypot(e.x-P.x,e.y-P.y);if(pd>=(e.lpd||1e9)-40&&pd>260){const q=freeSpot(Math.max(300,VIEWR()),Math.max(340,VIEWR()+120),e.r+6);e.x=q.x;e.y=q.y;}e.sto=0;e.lpd=Math.hypot(e.x-P.x,e.y-P.y);}}

@@ -78,6 +78,8 @@ function drawEnemy(e,t){
   const fl=P.x-P.y<e.x-e.y?-1:1,f=e.flash>0,C=c=>f?'#ead9c0':c,mv=(e.mv||0)>8&&e.stun<=0,sw=mv?Math.sin(e.t*10):0,fy=e.y+e.r*.75,near=e.atk>0||Math.hypot(P.x-e.x,P.y-e.y)<e.r+34;
   ctx.fillStyle='rgba(0,0,0,.42)';ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.1,e.r*.36,0,0,7);ctx.fill();
   if(e.elite){ctx.strokeStyle=EMC[e.elite];ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.45,e.r*.5,0,0,7);ctx.stroke();}
+  if(e.tw>0){const p=1-e.tw/e.twm;ctx.strokeStyle=`rgba(255,80,60,${.4+.5*p})`;ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(e.x,fy,e.r*(1.2+p),e.r*(.45+.35*p),0,0,7);ctx.stroke();}
+  if(e.open>0){ctx.strokeStyle='#f2d14b';ctx.lineWidth=3;ctx.setLineDash([6,4]);ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.9,e.r*.7,0,0,7);ctx.stroke();ctx.setLineDash([]);}
   ctx.save();ctx.translate(e.x,fy);ctx.scale(fl*1.15,1.15);let H=34;
   if(e.type==='ghoul'||e.type==='shield'){const s=e.r/10;ctx.scale(s,s);H=36*s;const reach=near?8:0;
     limb(-2,-12,sw*.5,12,3,C('#3d1d12'));limb(3,-12,-sw*.5,12,3,C('#4a2414'));
@@ -142,7 +144,7 @@ function drawEnemy(e,t){
     if(!op){ctx.strokeStyle=C('#9aa4b0');ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx-px*L*.8,cy-py*L*.8-3);ctx.lineTo(cx+px*L*.8,cy+py*L*.8-3);ctx.stroke();}ctx.lineCap='butt';}
   if(e.buff>0&&e.type!=='howl'){ctx.strokeStyle='rgba(214,90,140,.55)';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.25,e.r*.45,0,0,7);ctx.stroke();}
   if(e.stun>0){ctx.strokeStyle='#f2d14b';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(e.x,fy-H-4,e.r*.6,3,0,0,7);ctx.stroke();}
-  if(e.elite){ctx.font='600 12px "Barlow Condensed",sans-serif';ctx.textAlign='center';ctx.fillStyle=EMC[e.elite];ctx.fillText('Elite · '+EMN[e.elite],e.x,fy-H-14);}
+  if(e.elite||e.open>0){ctx.font='600 12px "Barlow Condensed",sans-serif';ctx.textAlign='center';ctx.fillStyle=e.open>0?'#f2d14b':EMC[e.elite];ctx.fillText(e.open>0?'Offen!':'Elite · '+EMN[e.elite],e.x,fy-H-14);}
   if(e.type!=='boss'&&(e.hp<e.max||e.elite)){ctx.fillStyle='#0d0907';ctx.fillRect(e.x-e.r,fy-H-10,e.r*2,3);ctx.fillStyle='#c23a2e';ctx.fillRect(e.x-e.r,fy-H-10,e.r*2*Math.max(0,e.hp)/e.max,3);}}
 function drawProp(b){const x=b.x,y=b.y,w=b.w,h=b.h,f=b.flash>0;
   ctx.fillStyle='rgba(0,0,0,.4)';ctx.fillRect(x+3,y+h-2,w,5);

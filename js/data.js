@@ -35,7 +35,9 @@ const hasL=k=>SLOTS.some(s=>S.eq[s]&&baseOf(S.eq[s])===k);
 const LEGEL={turm:'fire',mauer:'acid',ring:'shock',zitklinge:'shock',pbrecher:'fire',kraehe:'acid',siegsp:'fire'},TM={krit:'crit',tempo:'spd',heil:'regen'};
 const EMC={schnell:'#7dd3ff',brennend:'#ff6a2a',spaltend:'#97C459',gepanzert:'#d6cfc0'},EMN={schnell:'Flink',brennend:'Brennend',spaltend:'Spaltend',gepanzert:'Gepanzert'};
 const ENAME={ghoul:'Ghul',brute:'Brocken',spitter:'Speier',raser:'Raser',rat:'Ratte',bomb:'Zünder',shield:'Schildträger',crow:'Krähe',howl:'Heuler'};
-const EDESC={schnell:'Deutlich schneller als normal.',brennend:'Hinterlässt eine Feuerspur.',spaltend:'Zerfällt beim Tod in kleinere Gegner.',gepanzert:'Nimmt nur halben Schaden.'};
+const EDESC={schnell:'Deutlich schneller. Springt dich an (rote Linie), danach kurz offen.',brennend:'Hinterlässt eine Feuerspur. Zündet einen Flammenring um sich, danach kurz offen.',spaltend:'Wirft drei Säurekugeln und zerfällt beim Tod in kleinere Gegner.',gepanzert:'Nimmt nur halben Schaden. Nach seinem Stampfer ist die Panzerung offen.'};
+// punish window in seconds after an elite or type special (gold ring, +30% damage taken)
+const TACO={schnell:1.2,brennend:1,spaltend:1,gepanzert:1.6,brute:1,raser:.8};
 const SHRN={as:['Adrenalin','+30% Angriffstempo'],res:['Eisenhaut','+25% Widerstand'],gold:['Goldrausch','doppelter Schrott von Gegnern'],spd:['Rückenwind','+25% Lauftempo'],zap:['Funkenflug','Treffer lösen oft Blitze aus']};
 const MATS={stoff:['Stoff','#d6cfc0'],metall:['Metall','#9aa4b0'],chemie:['Chemie','#97C459'],kabel:['Kabel','#f2a04b']};
 const EMAT={ghoul:'stoff',rat:'stoff',brute:'metall',shield:'metall',spitter:'chemie',bomb:'chemie',raser:'kabel',crow:'kabel',howl:'kabel'};
