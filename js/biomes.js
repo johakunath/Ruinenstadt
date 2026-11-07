@@ -9,14 +9,14 @@ const BIOME=[
  {lots:{houses:4,hinterhof:3,park:2,market:1,ruins:1},big:{park:2,hinterhof:1},roads:.6,trees:['autumn','autumn','green'],grass:['#2c3019','#363a1e','#40441f'],wx:'leaves'},
  {lots:{houses:2,forest:2,ruins:1,kleingarten:2,water:1},big:{water:2,forest:2},roads:.45,trees:['green','dark','autumn'],grass:['#232c18','#2b3620','#344026'],wx:'fog'},
  {lots:{plattenbau:5,parking:2,park:1,construction:1,ruins:1},big:{plattenbau:2,park:1},roads:.75,trees:['dead','green'],grass:['#2a2c1c','#33361f','#3d4024'],wx:'snow'}];
-const LOTN={park:'Park',forest:'Wald',kleingarten:'Kleingärten',market:'Markt',plattenbau:'Plattenbau',hinterhof:'Hinterhof',ruins:'Trümmerfeld',construction:'Baustelle',parking:'Parkplatz',water:'See',airfield:'Rollfeld',houses:'Altbau'};
+const LOTN={efh:'Einfamilienhäuser',reihen:'Reihenhäuser',park:'Park',forest:'Wald',kleingarten:'Kleingärten',market:'Markt',plattenbau:'Plattenbau',hinterhof:'Hinterhof',ruins:'Trümmerfeld',construction:'Baustelle',parking:'Parkplatz',water:'See',airfield:'Rollfeld',houses:'Altbau'};
 const inB=(b,m)=>({x:R(b.x0+m,b.x1-m),y:R(b.y0+m,b.y1-m)});
 function grassFill(b,pal,dens){const g=gx;g.fillStyle=pal[0];g.fillRect(b.x0+6,b.y0+6,b.w-12,b.h-12);
   for(let i=0;i<b.w*b.h/260*(dens||1);i++){g.fillStyle=pick(pal);g.globalAlpha=R(.4,.9);g.fillRect(R(b.x0+6,b.x1-8),R(b.y0+6,b.y1-8),R(2,7),R(2,5));}g.globalAlpha=1;
   g.strokeStyle='rgba(120,150,70,.18)';g.lineWidth=1;for(let i=0;i<b.w*b.h/900;i++){const x=R(b.x0+8,b.x1-8),y=R(b.y0+8,b.y1-8);g.beginPath();g.moveTo(x,y);g.lineTo(x+R(-2,2),y-R(3,7));g.stroke();}}
 function lotGround(b){const g=gx,B=BIOME[D.i];
   if(b.lot==='park'||b.lot==='forest'||b.lot==='airfield')grassFill(b,b.lot==='forest'?B.grass.map(c=>dark(c,.8)):B.grass,b.lot==='forest'?1.4:1);
-  else if(b.lot==='kleingarten'){grassFill(b,B.grass,.6);}
+  else if(b.lot==='kleingarten'||b.lot==='efh'||b.lot==='reihen'){grassFill(b,B.grass,.6);}
   else if(b.lot==='market'){for(let y=b.y0+8;y<b.y1-8;y+=10)for(let x=b.x0+8+((y/10)%2)*6;x<b.x1-8;x+=12){g.fillStyle=pick(['#3d3128','#372c24','#433629','#30261f']);g.fillRect(x,y,10,8);}}
   else if(b.lot==='parking'){g.fillStyle='#211c19';g.fillRect(b.x0+8,b.y0+8,b.w-16,b.h-16);for(let i=0;i<b.w*b.h/600;i++){g.fillStyle='rgba(0,0,0,.2)';g.fillRect(R(b.x0,b.x1),R(b.y0,b.y1),R(2,6),R(2,4));}}
   else if(b.lot==='construction'){g.fillStyle='#4a3c2a';g.fillRect(b.x0+8,b.y0+8,b.w-16,b.h-16);for(let i=0;i<b.w*b.h/150;i++){g.fillStyle=pick(['#5a4a34','#3e3224','#54442e','rgba(0,0,0,.15)']);g.fillRect(R(b.x0+8,b.x1-10),R(b.y0+8,b.y1-10),R(2,5),R(2,4));}}
@@ -24,7 +24,8 @@ function lotGround(b){const g=gx,B=BIOME[D.i];
   else if(b.lot==='ruins'){for(let i=0;i<b.w*b.h/120;i++){g.fillStyle=pick(['#3a2e25','#4a3a2e','#2a211b','#55443a','rgba(0,0,0,.25)']);g.fillRect(R(b.x0+8,b.x1-10),R(b.y0+8,b.y1-10),R(2,8),R(2,6));}}
   else if(b.lot==='hinterhof'){g.fillStyle='#2e2620';g.fillRect(b.x0+8,b.y0+8,b.w-16,b.h-16);}}
 function lotFill(b){if(b.center)return;const f=LOTS[b.lot];if(f)f(b);if(b.lot!=='houses'&&b.lot!=='plaza'&&LOTN[b.lot]&&Math.random()<.5){const q=inB(b,60);if(!inWall(q.x,q.y,20))marks.push({x:q.x,y:q.y,n:LOTN[b.lot],soft:1});}}
-function tryB(x,y,w,h,H,st,force){if(w<30||h<20||resHit(x,y-H,w,h+H)||!force&&blds.some(o=>o.h>0&&x<o.x+o.w+24&&x+w+24>o.x&&y-H<o.y+o.h+24&&y+h+24>o.y-o.top))return null;const bb={x,y,w,h,H:Math.round(H*(st==='laube'?1.2:2)),top:H,R0:0};makeB(bb,st);blds.push(bb);walls.push(bb);return bb;}
+function tryB(x,y,w,h,H,st,force){const gb=st==='efh'?R(.55,.7)*h:st==='reihen'?R(.45,.55)*h:0;H+=gb*.5;const T=D.geo?20:H;// geo maps check the footprint only (iso facades rise on screen, not into the street north of the house)
+  if(w<30||h<20||resHit(x,y-T,w,h+T)||!force&&blds.some(o=>o.h>0&&x<o.x+o.w+24&&x+w+24>o.x&&y-T<o.y+o.h+24&&y+h+24>o.y-(D.geo?0:o.top)))return null;const bb={x,y,w,h,H:Math.round((H-gb*.5)*(st==='laube'?1.2:2)),top:H,R0:0,gable:gb};makeB(bb,st);blds.push(bb);walls.push(bb);return bb;}
 function bench(x,y){const g=gx;g.fillStyle='rgba(0,0,0,.35)';g.fillRect(x-18,y+3,38,6);g.fillStyle='#4a3424';for(let k=0;k<3;k++)g.fillRect(x-18,y-6+k*4,36,3);g.fillStyle='#24201c';g.fillRect(x-16,y+4,3,5);g.fillRect(x+13,y+4,3,5);}
 function pond(cx,cy,rx,ry){const g=gx;g.fillStyle='#3a3226';g.beginPath();g.ellipse(cx,cy,rx+8,ry+7,0,0,7);g.fill();g.fillStyle='#0f1a1d';g.beginPath();g.ellipse(cx,cy,rx,ry,0,0,7);g.fill();
   g.fillStyle='rgba(120,170,180,.12)';g.beginPath();g.ellipse(cx-rx*.2,cy-ry*.3,rx*.6,ry*.35,0,0,7);g.fill();
@@ -46,7 +47,7 @@ const LOTS={
    const n=Math.round(b.w*b.h/9000);for(let i=0,t=0;i<n&&t<n*6;t++){const q=inB(b,24);if(nearP(q.x,q.y,34)||inWall(q.x,q.y,30)||resHit(q.x-28,q.y-60,56,62))continue;makeTree(q.x,q.y,pick(BIOME[D.i].trees));i++;}
    for(let i=0;i<3;i++){const p=pick(pts);if(!inWall(p[0]+30,p[1],20))makeLamp(p[0]+28,p[1]+4,Math.random()<.6);}},
  forest(b){const g=gx;const n=Math.round(b.w*b.h/4200);for(let i=0,t=0;i<n&&t<n*5;t++){const q=inB(b,20);if(inWall(q.x,q.y,26)||resHit(q.x-28,q.y-60,56,62))continue;makeTree(q.x,q.y,pick(['green','green','dark',...BIOME[D.i].trees]));i++;}
-   for(let i=0;i<Math.round(b.w*b.h/60000);i++){const q=inB(b,50),w=R(50,80);if(inWall(q.x,q.y,40))continue;g.fillStyle='rgba(0,0,0,.35)';g.fillRect(q.x+3,q.y+4,w,10);g.fillStyle='#3a2a1e';g.fillRect(q.x,q.y,w,10);g.fillStyle='#4a3626';g.fillRect(q.x,q.y,w,3);g.fillStyle='#2a1d14';g.beginPath();g.arc(q.x+w,q.y+5,5,0,7);g.fill();walls.push({x:q.x,y:q.y,w,h:10});}
+   for(let i=0;i<Math.round(b.w*b.h/60000);i++){const q=inB(b,50),w=R(50,80);if(inWall(q.x,q.y,40)||resHit(q.x-4,q.y-4,w+8,18))continue;g.fillStyle='rgba(0,0,0,.35)';g.fillRect(q.x+3,q.y+4,w,10);g.fillStyle='#3a2a1e';g.fillRect(q.x,q.y,w,10);g.fillStyle='#4a3626';g.fillRect(q.x,q.y,w,3);g.fillStyle='#2a1d14';g.beginPath();g.arc(q.x+w,q.y+5,5,0,7);g.fill();walls.push({x:q.x,y:q.y,w,h:10});}
    for(let i=0;i<b.w*b.h/8000;i++){const q=inB(b,10);g.fillStyle=pick(['#c23a2e','#ead9c0','#d8642e']);g.fillRect(q.x,q.y,3,2);g.fillStyle='#ead9c0';g.fillRect(q.x+1,q.y+2,1,2);}},
  water(b){const rx=b.w/2-50,ry=b.h/2-50;pond((b.x0+b.x1)/2,(b.y0+b.y1)/2,rx,ry);const g=gx,cx=(b.x0+b.x1)/2,y=(b.y0+b.y1)/2+ry-6;
    g.fillStyle='#4a3424';g.fillRect(cx-10,y-70,20,80);for(let k=0;k<8;k++){g.fillStyle='rgba(0,0,0,.3)';g.fillRect(cx-10,y-66+k*10,20,2);}
@@ -87,7 +88,7 @@ const LOTS={
  ruins(b){const g=gx;const n=Math.round(b.w*b.h/(45000*BSC*BSC));for(let k=0,t=0;k<n&&t<n*20;t++){const w=R(60,150)*BSC,h=R(30,60)*BSC,H=R(14,34)*BHS*.75,x=R(b.x0+20,b.x1-20-w),y=R(b.y0+20+H,b.y1-20-h);if(tryB(x,y,w,h,H,'ruin'))k++;}
    for(let i=0;i<Math.round(b.w*b.h/30000);i++){const q=inB(b,30);if(inWall(q.x,q.y,30)||resHit(q.x-25,q.y-15,50,30))continue;g.fillStyle='rgba(0,0,0,.35)';g.beginPath();g.ellipse(q.x+4,q.y+5,26,12,0,0,7);g.fill();
      for(let j=0;j<16;j++){g.fillStyle=pick(['#5a4636','#4a3a2e','#6b5543','#3a2c22','#7a3a26']);g.fillRect(q.x+R(-22,18),q.y+R(-10,8),R(4,10),R(3,7));}walls.push({x:q.x-20,y:q.y-9,w:40,h:18});}
-   if(Math.random()<.7){const q=inB(b,60);if(!inWall(q.x,q.y,24)){barrels.push({x:q.x,y:q.y,ph:R(0,6)});walls.push({x:q.x-9,y:q.y-9,w:18,h:18});}}},
+   if(Math.random()<.7){const q=inB(b,60);if(!inWall(q.x,q.y,24)&&!resHit(q.x-9,q.y-9,18,18)){barrels.push({x:q.x,y:q.y,ph:R(0,6)});walls.push({x:q.x-9,y:q.y-9,w:18,h:18});}}},
  hinterhof(b){const m=20,d=R(70,90)*BSC,H=R(60,80)*BHS;if(b.h<H+3*d+2*m+120||b.w<2*d+240)return LOTS.houses(b);const gc=b.x0+R(.35,.65)*b.w,y1=b.y1-m-d;
    if(resHit(b.x0+m,b.y0+m,b.w-2*m,b.h-2*m))return LOTS.houses(b);
    tryB(b.x0+m,b.y0+m+H,b.w-2*m,d,H,0,1);const wy=b.y0+m+H+d,wh=y1-wy;
@@ -98,6 +99,16 @@ const LOTS={
    for(let i=0;i<4;i++){const q={x:cx+R(-80,80),y:cy+R(-50,50)};if(!inWall(q.x,q.y,24))addBrk(q.x,q.y,Math.random()<.6?'bin':'crate',false);}
    for(let i=0;i<5;i++){g.strokeStyle='#2a2522';g.lineWidth=1.5;const x=b.x0+m+d+20+i*14,y=wy+16;g.beginPath();g.arc(x,y,5,0,7);g.arc(x+9,y,5,0,7);g.stroke();}
    marks.push({x:cx,y:cy,n:'Hinterhof',soft:1});},
+ // Einfamilienhäuser: plots with fence, garden and a gabled house. Reihenhäuser: rows of 3 to 6 units under one gable roof
+ efh(b){const pw=Math.max(180,R(.9,1.1)*230),ph=230,cols=Math.max(1,Math.floor((b.w-20)/pw)),rows=Math.max(1,Math.floor((b.h-20)/ph));
+   for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){const x=b.x0+10+c*pw,y=b.y0+10+r*ph;if(Math.random()<.15||resHit(x,y,pw-10,ph-10))continue;
+     const w=R(80,100)*BSC,h=R(65,80)*BSC,hx=x+R(10,Math.max(11,pw-w-20)),hy=y+ph-h-50;if(!tryB(hx,hy,w,h,44,'efh'))continue;
+     fence(x,y,pw-10,ph-10,R(.3,.7),pick(['#5a4636','#6a5a46','#c8c0b0']));
+     for(let i=0;i<2;i++){const tx=x+R(20,pw-30),ty=y+R(20,50);if(!inWall(tx,ty,26)&&!resHit(tx-28,ty-60,56,62))makeTree(tx,ty,pick(BIOME[D.i].trees));}
+     if(Math.random()<.3)addBrk(x+pw-30,y+ph-30,'bin',false);}},
+ reihen(b){const uw=R(52,64)*BSC,h=R(70,85)*BSC,ph=h+150;for(let y=b.y0+110;y+h<b.y1-30;y+=ph){const n=Math.min(6,Math.floor((b.w-40)/uw));if(n<3)return LOTS.houses(b);
+     const x=b.x0+R(20,Math.max(21,b.w-n*uw-20)),bb=tryB(x,y,n*uw,h,44,'reihen');if(!bb)continue;
+     const g=gx;for(let i=0;i<n;i++){g.fillStyle=pick(['#33301e','#3b4a22','#2a3018']);g.fillRect(x+i*uw+4,y+h+8,uw-8,50);g.fillStyle='#5a4636';g.fillRect(x+i*uw,y+h+8,2,50);}}},
  airfield(b){const g=gx,y=(b.y0+b.y1)/2;g.fillStyle='#2e2c27';g.fillRect(b.x0+10,y-40,b.w-20,80);g.fillStyle='rgba(234,217,192,.18)';for(let x=b.x0+20;x<b.x1-40;x+=60)g.fillRect(x,y-3,30,6);
    for(let i=0;i<b.w*b.h/9000;i++){const q=inB(b,10);if(Math.abs(q.y-y)<50)continue;g.strokeStyle=pick(['#5a6a30','#6a7a34','#4a5a2a']);g.lineWidth=1.5;for(let k=0;k<4;k++){g.beginPath();g.moveTo(q.x+k*2,q.y);g.lineTo(q.x+k*2+R(-3,3),q.y-R(6,12));g.stroke();}}
    if(Math.random()<.4){const q=inB(b,120);if(!resHit(q.x-70,q.y-40,140,80)){const a=R(-.4,.4);g.save();g.translate(q.x,q.y);g.rotate(a);g.fillStyle='rgba(0,0,0,.4)';g.fillRect(-60,-6,130,16);g.fillRect(-14,-56,30,120);

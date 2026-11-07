@@ -91,7 +91,9 @@ function drawSorted(t){const BX=[],IT=[],vL=-OX-60,vR=VW-OX+60,vT=-OY-60,vB=VH-O
   for(const b of BX){const occ=!(P.x>=b.x+b.w||P.y>=b.y+b.h)&&PX>b._s[0]-10&&PX<b._s[1]+10&&PY>b._s[2]+10;b.oa=(b.oa==null?1:b.oa)+((occ?.32:1)-(b.oa==null?1:b.oa))*.2;}
   const vis=IT.filter(it=>it.s>=0).sort((a,b)=>a.s-b.s||a.d-b.d);let j=0;
   const box=b=>{ctx.globalAlpha=Math.min(b.oa,b.isSpati?b.fade:1);if(b.veh)drawVehBox(b);else drawBox(b);ctx.globalAlpha=1;};
-  for(const it of vis){while(j<BX.length&&j<it.s)box(BX[j++]);drawItem(it,t);}while(j<BX.length)box(BX[j++]);}
+  for(const it of vis){while(j<BX.length&&j<it.s)box(BX[j++]);drawItem(it,t);}while(j<BX.length)box(BX[j++]);
+  // enemies standing behind a box: draw again as a faint silhouette on top so tall buildings never hide them
+  ctx.globalAlpha=.3;for(const it of vis)if(it.k===2&&it.s<BX.length)drawItem(it,t);ctx.globalAlpha=1;}
 function drawItem(it,t){const o=it.o;if(it.k===0)return drawBB(o);
   if(it.k===3){const f=P.face,a=P.atkA;P.face=sAng(f);P.atkA=sAng(a);upr(P.x,P.y,()=>drawPlayer(t));P.face=f;P.atkA=a;return;}
   if(it.k===2){const fa=o.fa;o.fa=sAng(fa||0);upr(it.x,it.y,()=>drawEnemy(o,t));o.fa=fa;return;}// shield facing is a world angle, draw it in screen space
