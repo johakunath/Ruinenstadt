@@ -33,7 +33,7 @@ function update(dt){
   for(const f of fields){f.t-=dt;if(Math.random()<dt*22)parts.push({x:f.x+R(-f.r,f.r)*.8,y:f.y+R(-f.r,f.r)*.4,vx:R(-8,8),vy:R(-70,-30),life:.5,max:.5,col:pick(['#ff6a2a','#FAC775','#EF9F27']),size:R(2,4)});
     for(const e of enemies)if(e.hp>0&&Math.hypot(e.x-f.x,(e.y-f.y)*1.6)<f.r){const W=ER(e,'fire');if(W>0){e.bdps=Math.max(e.burn>0?e.bdps||0:0,ST.dmg*.9*W);e.burn=Math.max(e.burn||0,.7);}}}
   fields=fields.filter(f=>f.t>0);
-  if(atkHeld)attack();
+  if(atkHeld||(autoAtk()&&P.cd<=0&&nearest(ST.kind==='sling'?360:180)))attack();
   for(const m of marks)if(!m.seen&&Math.hypot(m.x-P.x,m.y-P.y)<(m.soft?180:260)){m.seen=1;if(!m.soft&&run.seen[m.n])continue;run.seen[m.n]=1;toast(m.soft?`<span style="color:var(--dim)">${m.n}</span>`:`<span style="color:var(--ember);font-family:var(--f-display);font-size:22px">${m.n}</span>`);}
   if(run.toSpawn>0){run.spawnT-=dt;if(run.spawnT<=0){spawnOne();run.toSpawn--;run.spawnT=Math.max(.3,1-run.wave*.05);}}
   else if(!enemies.length&&!run.cleared){run.cleared=true;run.perkDone=false;progWave(run.wave);if(run.wave>=10&&!run.endless){win();return;}if(run.endless&&run.wave>10){const b=Math.round(10*(run.wave-10)*(1+.1*D.i)*DF().sc);S.scrap+=b;run.sg+=b;S.eb[run.d]=Math.max(S.eb[run.d]||0,run.wave);}toast('Welle '+run.wave+' geschafft');S.best[run.d]=Math.max(S.best[run.d],run.wave);save();run.breakT=2;}

@@ -69,6 +69,9 @@ function render(t){
   const lastE=run&&run.toSpawn<=0&&enemies.length<=3?enemies:[];
   for(const[o,col]of[...lastE.map(e=>[e,'#c23a2e']),[crate,'#f2d14b'],[npc,'#8fd16a'],[zone,'#7dd3ff'],[captive,'#ead9c0'],[trove,'#f2d14b']]){if(!o)continue;const x=o.x-camX,y=o.y-camY;if(x<0||x>VW||y<0||y>VH){const a=Math.atan2(y-VH/2,x-VW/2),m=46,ex=clamp(VW/2+Math.cos(a)*VW,m,VW-m),ey=clamp(VH/2+Math.sin(a)*VH,m+90,VH-m-160);
     ctx.save();ctx.translate(ex,ey);ctx.rotate(a);ctx.fillStyle=col;ctx.beginPath();ctx.moveTo(16,0);ctx.lineTo(-8,-11);ctx.lineTo(-8,11);ctx.fill();ctx.restore();}}
+  if(aimOn()){const a=Math.atan2(aim.dy,aim.dx),px=P.x-camX,py=P.y-12-camY;ctx.strokeStyle='rgba(242,209,75,.75)';ctx.fillStyle='rgba(242,209,75,.18)';ctx.lineWidth=3;ctx.setLineDash([10,8]);ctx.beginPath();
+    if(aim.k==='skill'){const L=ST.kind==='spear'?420:ST.kind==='sling'?300:0;if(L){ctx.moveTo(px,py);ctx.lineTo(px+Math.cos(a)*L,py+Math.sin(a)*L);ctx.stroke();}}
+    else{const q=aimTgt(a),tx=q.x-camX,ty=q.y-camY;ctx.moveTo(px,py);ctx.quadraticCurveTo((px+tx)/2,Math.min(py,ty)-60,tx,ty);ctx.stroke();ctx.setLineDash([]);ctx.beginPath();ctx.ellipse(tx,ty,65*(pk('blast')?1.5:1),40*(pk('blast')?1.5:1),0,0,7);ctx.fill();ctx.stroke();}ctx.setLineDash([]);}
   ctx.setTransform(DPR,0,0,DPR,0,0);if(joy.id!==null){ctx.strokeStyle='rgba(234,217,192,.3)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(joy.ox,joy.oy,JR,0,7);ctx.stroke();ctx.fillStyle='rgba(234,217,192,.35)';ctx.beginPath();ctx.arc(joy.ox+joy.x*JR,joy.oy+joy.y*JR,JR*.4,0,7);ctx.fill();}
 }
 const cache={};function setT(id,v){if(cache[id]!==v){cache[id]=v;$(id).textContent=v;}}function setW(id,v){v=Math.round(v*10)/10;if(cache[id]!==v){cache[id]=v;$(id).style.width=v+'%';}}

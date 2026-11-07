@@ -1,104 +1,70 @@
 # Ruinenstadt Backlog
 
-Top-down loot ARPG in post-collapse Berlin. Hobby project to learn game development.
-Current build: v0.33, static web app (PWA) in this repo. Game text in German.
-Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are now v0.1–v0.16.
+Top-down loot ARPG in post-collapse Berlin. Hobby project to learn game development. Game text German. Versions `v0.N`.
 
-## Intent (working version, refine as we go)
+## Intent
 
-- **Fantasy:** a survivor reclaiming Berlin district by district, getting visibly stronger through loot.
-- **Pillars:** satisfying combat feel, loot worth reading, a reason to go one more run.
-- **Difficulty:** fun first, not punishing. Hard mode is opt-in.
-- **Session shape:** playable in 5–15 minute phone sessions, one-handed-ish controls.
-- **Inspirations:** Diablo 2 (loot, rarity), Hades (perks, dash, run structure), Subnautica (survival, exploration), Minecraft (crafting, base).
-- **Out of scope for now:** multiplayer, open world, story dialogue trees, 3D.
+- **Fantasy:** a survivor reclaiming Berlin district by district, visibly stronger through loot.
+- **Pillars:** satisfying combat feel, loot worth reading, a reason for one more run.
+- **Difficulty:** fun first, not punishing. Hard mode opt-in.
+- **Session:** 5 to 15 minutes. Devices: Galaxy Tab S9 first, Xiaomi 17 phone second. Later Xbox controller, Steam Deck, 2K monitor.
+- **Inspirations:** Diablo 2/3 (loot, acts), Hades (dash, boons, weapon = playstyle, hand-drawn look), V Rising (boss-gated unlocks, base), Valheim (weak to strong), Enshrouded (authored points of interest).
+- **Out of scope:** multiplayer, 3D, hunger as a timer, story dialogue trees.
 
-## Shipped: v0.4 "Look and feel"
+## Next
 
-| Item | Notes |
-|---|---|
-| New character art style | Style chosen via mockup, applied to player, ghoul, brute, spitter, both bosses |
-| Visible gear on player | Armor changes silhouette and color (jacket, vest, helmet, coat), weapon model per item base |
-| Better item icons | Distinct icon per item base (pipe vs machete vs crowbar), rarity frame |
-| Walk and attack animation | Leg swing, body bob, wind-up and follow-through on swings |
-| Environment variety | Trees, shrubs, weeds through asphalt, benches, lamp posts, trash bins, graffiti |
-| Destructible props | Crates and bins break on hit, drop Schrott, sometimes loot |
-| Enterable Späti | One small shop per district. Roof fades when you walk in, loot crates inside |
-| Difficulty setting | Leicht / Normal / Schwer. Enemy HP and damage multipliers, better loot on Schwer |
-| Salvage buttons | Salvage by rarity, plus "salvage everything that is not an upgrade" |
-| Bigger backpack | 12 → 18 slots until the stash exists |
-| Cloud save | Artifact `db` capability, save tied to the Claude account, works across devices. localStorage fallback when signed out |
-
-## Shipped: v0.5 "Build depth"
-
-| Item | Notes |
-|---|---|
-| Item affixes with trade-offs | Items roll 1–3 affixes, some negative (+30% damage, −10% speed). No more "always equip the higher number" |
-| Elements and resistances | Fire, acid, shock. Weapons and perks carry elements, enemies have weaknesses and resistances |
-| Element-aware perks | Hades-style synergies (fire spreads on kill, shock chains, acid lowers armor) |
-| Stash | 40+ slots, accessed from the camp, separate from the backpack |
-| Camp hub screen | Home base between runs: stash, workshop, later NPCs |
-| Item compare with trade-offs | Detail card shows gains in green and losses in red per stat |
-
-## Shipped: v0.17 "Repo and PWA"
-
-| Item | Notes |
-|---|---|
-| Move to repo | Game lives in GitHub, served as static files (GitHub Pages from `main`, root) |
-| Split the file | `index.html` + `css/style.css` + 16 classic scripts in `js/` (core, save, canvas, data, items, audio, world, state, feedback, combat, input, panels, update, art, render, main). No build step |
-| PWA | Manifest, icons, service worker (offline, stale-while-revalidate), home-screen install, fullscreen |
-| Save code | Copy and paste the save as text from the menu. Replaces cross-device cloud save outside claude.ai |
-| Version in menu | `VERSION` constant shown at the bottom of the menu |
-
-## Next: candidates for v0.34
-
-| Item | Notes |
-|---|---|
-| Playtest on the Tab S9 | Check feel of zoom, control sizes and difficulty against the bot numbers below |
-| GitHub Pages + cloud save | Pages from `main` root; Supabase for cross-device saves |
-| Walkable camp hub | Mockup first |
-| Sound files | Replace synth effects with jsfxr samples |
-
-## Later
-
-| Theme | Items |
-|---|---|
-| Light and darkness | Dark zones (U-Bahn tunnels, basements) that need a torch. Torch takes the off-hand, so only one-handed weapons |
-| Survival | Hunger, food drops, cooking at the camp fire |
-| Crafting | Recipes from Schrott and materials: bandages, torches, weapon mods |
-| Safe zones | Camp where no enemies spawn, unlockable per district |
-| NPCs and quests | Simple quest givers in the camp (kill X, find Y, reach landmark). Quest log |
-| Map | District map with landmarks, crates, quest markers. Minimap in HUD |
-| More enemy variety | Elites with modifiers (fast, burning trail, splits on death), new type per district |
-| More districts | Neukölln, Prenzlauer Berg, Spandau. One landmark each |
-| Juice | Hit-stop on crits, corpses that linger, screen flash on boss phases |
-
-## Parking lot (unsorted ideas)
-
-- Weapon mastery: using a weapon type levels it up
-- Achievements
-- Day and night cycle per run
-
-## Balance (v0.29, bot simulation, fresh save)
-
-| Difficulty | Runs to beat all 8 districts | Where it gets hard |
+| # | Item | Notes |
 |---|---|---|
-| Leicht | 8, no deaths | nowhere |
-| Normal | about 10 to 15 | Tempelhof, Neukölln, Spandau sometimes need a second try |
-| Schwer | about 20 | first runs in Köpenick, then Neukölln |
+| 1 | Art direction mockups | Current canvas vs Hades-like hand-drawn vs asset pack, plus a cyberpunk district sample. Pixel art not preferred. User picks, then implement |
+| 2 | Späti rework | Mockup first. Safe room enemies cannot enter: calm spot to eat, swap gear |
+| 3 | Elite tactics | Elites and some types get telegraphed attacks and punish windows. Fodder stays fast |
+| 4 | Weapon = class | Each weapon type 2 to 3 skills, pick 1 before a run. Touch stays at 4 buttons |
+| 5 | Zones and U-Bahn waypoints | District = 2 to 3 zones of 5 to 10 min, U-Bahn as save point and town portal |
+| 6 | Controller support | Gamepad API for Xbox and Steam Deck (browser), stick aiming |
+| 7 | AI-maintainability review | Code and docs readable for Claude and Codex with few tokens |
+| 8 | Walkable camp hub | Mockup first |
+| 9 | Sound files | jsfxr samples instead of synth |
+| 10 | Run telemetry | Local run log (deaths, cause, time per wave), exported with the save code. No database needed |
+| - | Playtest on Tab S9 and Xiaomi 17 | Whenever there is time. Gate for balance work |
+| - | GitHub Pages | When playtesting outside the dev setup |
 
-Runs take 4 to 7 minutes of game time. Re-run with `node tools/balance.mjs 30 1` after changing numbers.
+## Ideas by theme
 
-## Tech decisions
-
-| Topic | Decision or open question |
+| Theme | Ideas |
 |---|---|
-| Platform now | Static PWA in GitHub repo, no build step, served by GitHub Pages. Developed with Claude Code |
-| Release steps | Bump `VERSION` in `js/core.js` and `CACHE` in `sw.js` together, add a row to Done |
-| Move to | GitHub repo + Claude Code on desktop. Later Godot (free, 2D and 3D, GDScript) |
-| Art later | Free asset packs: Kenney.nl (CC0), itch.io. Sound: jsfxr for effects |
-| Save outside claude.ai | Artifact `db` only works inside claude.ai. On GitHub Pages: Supabase (auth + database, free tier) is the simplest. Alternative: Cloudflare Pages + Worker + D1/KV behind Cloudflare Access. Check current free tiers before choosing |
-| Save fallback | Export and import a save code (copy and paste text) needs no backend at all |
+| Pacing | Some enemies with tactics instead of more HP: telegraphed attacks, punish windows, flanking, retreat. Short calm phases between fights. Safe rooms (Späti) |
+| Enemy roles | Types that need a different answer, not more DPS (shield, charger, buffer exist). Element enemies that make resist gear matter for a whole district |
+| Build depth | Weapon = class (Hades model): each weapon type with 2 to 3 skills to choose from. Blessings that stack into overpowered builds. Optional skill tree later. Unlockable starting characters as an alternative |
+| Gear | More equipment slots (now 3: weapon, armor, talisman). Sockets for gems or implants that slot in and out freely (Cyberpunk 2077 cyberware) |
+| Food and buffs | Eat from the inventory while paused, stackable meal buffs. Shrines with short invincibility or power spikes |
+| World structure | Longer districts. Fight your way to the next zone (Diablo acts), U-Bahn stations as waypoints and town portal. Authored set pieces: U-Bahn dungeon, rooftop, bunker |
+| Quests | Pick up and hand in at NPCs. Quest chains with a light story per district |
+| Base | Barricades and turrets (camp raid event, or placed mid-run). Boss kills unlock camp stations or skills (V Rising) |
+| Day and night | Real cycle with gameplay differences (night: stronger enemies, better loot, need light) |
+| Setting | Cyberpunk-Fallout mix: a neon district, implants as abilities. Keep one coherent style |
+| Feel | Hit flash, knockback, per-weapon screen shake, perfect-dodge slow motion, persistent decals |
+| Platforms | Gamepad API (Xbox, Steam Deck in browser), faster pace and aim with the stick on controller, high-detail graphics mode for big screens |
+| Research | Benchmark more games only when ideas run out |
+
+## Design decisions (v0.34 interview)
+
+| Question | Decision |
+|---|---|
+| Pace | Fast fodder, smart elites: telegraphs and punish windows on elites and some types, calm phases between waves, safe rooms |
+| Builds | Weapon = class (Hades model), blessings stack into strong builds |
+| Structure | Districts of 2 to 3 zones with U-Bahn waypoints, sessions stay short |
+| Still open | Cyberpunk-Fallout elements yes or no (decide with the art mockups). Touch vs controller: one game with assists per input, or a separate desktop version |
+
+## Tech
+
+| Topic | Decision |
+|---|---|
+| Platform | Static PWA, no build step, GitHub repo, developed with Claude Code |
+| Release | Bump `VERSION` (`js/core.js`) and `CACHE` (`sw.js`), add a row to Done |
+| Save | localStorage plus save code. Supabase only when cross-device saves matter |
+| Balance | Bot: `node tools/balance.mjs 30 1` with the local server running. Last result (v0.29): Leicht about 8 runs for all 8 districts, Normal 10 to 15, Schwer about 20 |
+| Art and sound | Kenney.nl (CC0), itch.io, jsfxr |
+| Later engine | Godot if the browser limits us (for example a high-end desktop version) |
 
 ## Done
 
@@ -137,3 +103,4 @@ Runs take 4 to 7 minutes of game time. Re-run with `node tools/balance.mjs 30 1`
 | v0.31 | Lagerfeuer cooking: one meal per expedition (Erbsensuppe, Currywurst, Filterkaffee, Soljanka, Spreewaldgurken) for a run-long bonus. Stirnlampen-Werkstatt camp building lights dark zones for two-handed weapons. 7 new achievements (all survivors, streak 50, endless wave 20, all legendaries, 3 mods, spear mastery, threat 5) |
 | v0.32 | Tageskampf (daily challenge, unlocks after the first liberation): seeded map and spawns per day, district and two of seven modifiers chosen by date (Blutmond, Elitenacht, Glaskanone, Stromausfall, Goldrausch, Horde, Eiserne Haut), score from kills, waves and victory, best score per day |
 | v0.33 | Balance: enemy damage grows +16% per district instead of +20%, so late districts no longer double the hits you take relative to your life |
+| v0.34 | Auto-attack (on by default on touch, toggle in options and pause), drag the skill or Molotov button to aim with a preview, tap still auto-targets. Short haptic pulses on taking damage (Vibration: aus, leicht, stark). AGENTS.md points to CLAUDE.md |
