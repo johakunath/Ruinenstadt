@@ -10,25 +10,40 @@ const VIEWR=()=>Math.hypot(VW,VH*2)/2;// farthest visible world distance from th
 function isoGround(){ctx.transform(IS,IS/2,-IS,IS/2,0,0);}
 function upr(x,y,f){ctx.save();ctx.translate(ix(x,y)-x,iy(x,y)-y);f();ctx.restore();}// draw f (world coords around x,y) upright at the projected point
 /* ---- boxes ---- */
-const P3=(x,y,z)=>[ix(x,y),iy(x,y)-z],INK='rgba(12,8,6,.75)';
+// ROT: rotation around a box centre while drawing a rotated box (b.rot, radians, |rot|<45° so the south and east faces stay the visible ones)
+let ROT=null;const rw=(x,y)=>ROT?[ROT.cx+(x-ROT.cx)*ROT.c-(y-ROT.cy)*ROT.s,ROT.cy+(x-ROT.cx)*ROT.s+(y-ROT.cy)*ROT.c]:[x,y];
+const P3=(x,y,z)=>{if(ROT)[x,y]=rw(x,y);return[ix(x,y),iy(x,y)-z];},INK='rgba(12,8,6,.75)';
+function withRot(b,f){if(!b.rot)return f();ROT={cx:b.x+b.w/2,cy:b.y+b.h/2,c:Math.cos(b.rot),s:Math.sin(b.rot)};try{f();}finally{ROT=null;}}
+// screen basis of the box's local x and y axes (unit world vectors projected)
+const bAx=()=>{const c=ROT?ROT.c:1,s=ROT?ROT.s:0;return[(c-s)*IS,(c+s)*IS/2,(-s-c)*IS,(c-s)*IS/2];};
 function poly(p,f,s){ctx.beginPath();ctx.moveTo(p[0][0],p[0][1]);for(let i=1;i<p.length;i++)ctx.lineTo(p[i][0],p[i][1]);ctx.closePath();if(f){ctx.fillStyle=f;ctx.fill();}if(s){ctx.strokeStyle=s;ctx.lineWidth=1;ctx.stroke();}}
 const faceS=(x,y,w,h,z0,z1,f,s)=>poly([P3(x,y+h,z0),P3(x+w,y+h,z0),P3(x+w,y+h,z1),P3(x,y+h,z1)],f,s),faceE=(x,y,w,h,z0,z1,f,s)=>poly([P3(x+w,y+h,z0),P3(x+w,y,z0),P3(x+w,y,z1),P3(x+w,y+h,z1)],f,s),
   faceT=(x,y,w,h,z,f,s)=>poly([P3(x,y,z),P3(x+w,y,z),P3(x+w,y+h,z),P3(x,y+h,z)],f,s);
 function ibox(x,y,w,h,z0,z1,c,s,top){faceS(x,y,w,h,z0,z1,c,s);faceE(x,y,w,h,z0,z1,dark(c,.62),s);faceT(x,y,w,h,z1,top||dark(c,1.15),s);}
-const isBox=b=>!!(b.veh||(b.h>0&&b.H>0&&!b.bb)),bR0=b=>b.R0!=null?b.R0:b.top-b.H,bHs=b=>(b.FH||b.H)*(b.vs||1),boxTop=b=>b.veh?70:bHs(b)+bR0(b)*(b.vs||1);
+const isBox=b=>!!(b.veh||(b.h>0&&b.H>0&&!b.bb)),bR0=b=>b.R0!=null?b.R0:b.top-b.H,bHs=b=>(b.FH||b.H)*(b.vs||1),boxTop=b=>b.veh?70:bHs(b)+bR0(b)*(b.vs||1)+(b.gable||0);
 // building from its old 3/4 sprite: rows [0,R0) extra (towers), [R0,R0+h) roof, then FH rows facade. Roof goes on the top face, facade on south and (shaded) east face.
 function drawBox(b){const x=b.x,y=b.y,w=b.w,h=b.h,s=b.spr,vs=b.vs||1,FH=b.FH||b.H,Hs=FH*vs,R0=bR0(b);
   faceT(x+5,y+5,w,h,0,'rgba(0,0,0,.25)');
-  ctx.save();ctx.transform(IS,IS/2,0,vs,ix(x,y+h),iy(x,y+h)-Hs);ctx.drawImage(s,0,R0+h,w,FH,0,0,w,FH);ctx.restore();
-  ctx.save();ctx.transform(IS,-IS/2,0,vs,ix(x+w,y+h),iy(x+w,y+h)-Hs);if(b.ef)ctx.drawImage(b.ef,0,0,b.ef.width,b.ef.height,0,0,h,FH);else{const sw=Math.min(w,h*1.5);ctx.drawImage(s,w-sw,R0+h,sw,FH,0,0,h,FH);}ctx.restore();faceE(x,y,w,h,0,Hs,'rgba(8,5,4,.42)');
+  const[ux,uy,vx,vy]=bAx(),o=(a,c,z)=>P3(a,c,z);
+  {const q=o(x,y+h,Hs);ctx.save();ctx.transform(ux,uy,0,vs,q[0],q[1]);ctx.drawImage(s,0,R0+h,w,FH,0,0,w,FH);ctx.restore();}
+  {const q=o(x+w,y+h,Hs);ctx.save();ctx.transform(-vx,-vy,0,vs,q[0],q[1]);if(b.ef)ctx.drawImage(b.ef,0,0,b.ef.width,b.ef.height,0,0,h,FH);else{const sw=Math.min(w,h*1.5);ctx.drawImage(s,w-sw,R0+h,sw,FH,0,0,h,FH);}ctx.restore();}faceE(x,y,w,h,0,Hs,'rgba(8,5,4,.42)');
   faceS(x,y,w,h,0,Hs*.35,'rgba(8,5,4,.18)');
-  ctx.save();ctx.transform(IS,IS/2,-IS,IS/2,ix(x,y),iy(x,y)-Hs);ctx.drawImage(s,0,R0,w,h,0,0,w,h);ctx.restore();
-  if(R0>0){ctx.save();ctx.transform(IS,IS/2,0,vs,ix(x,y+h*.5),iy(x,y+h*.5)-Hs-R0*vs);ctx.drawImage(s,0,0,w,R0,0,0,w,R0);ctx.restore();}
+  if(b.gable){gableRoof(b,Hs);return;}
+  {const q=o(x,y,Hs);ctx.save();ctx.transform(ux,uy,vx,vy,q[0],q[1]);ctx.drawImage(s,0,R0,w,h,0,0,w,h);ctx.restore();}
+  if(R0>0){const q=o(x,y+h*.5,Hs+R0*vs);ctx.save();ctx.transform(ux,uy,0,vs,q[0],q[1]);ctx.drawImage(s,0,0,w,R0,0,0,w,R0);ctx.restore();}
   faceS(x,y,w,h,0,Hs,0,INK);faceE(x,y,w,h,0,Hs,0,INK);faceT(x,y,w,h,Hs,0,INK);}
+// gable roof, ridge along world x at y+h/2: back slope, front slope with tile rows, east gable triangle. Overhang 4 units
+function gableRoof(b,Hs){const{x,y,w,h}=b,G_=b.gable,o=4,rc=b.rc||'#6a3a2a',ym=y+h/2,Z=Hs+G_;faceS(x,y,w,h,0,Hs,0,INK);faceE(x,y,w,h,0,Hs,0,INK);
+  const tri=[P3(x+w,y,Hs),P3(x+w,y+h,Hs),P3(x+w,ym,Z)];poly(tri,b.wc||'#b8a888');poly(tri,'rgba(8,5,4,.42)',INK);
+  poly([P3(x-o,y-o,Hs-2),P3(x+w+o,y-o,Hs-2),P3(x+w+o,ym,Z),P3(x-o,ym,Z)],dark(rc,.8),INK);
+  poly([P3(x-o,ym,Z),P3(x+w+o,ym,Z),P3(x+w+o,y+h+o,Hs-2),P3(x-o,y+h+o,Hs-2)],rc,INK);
+  ctx.strokeStyle='rgba(0,0,0,.22)';ctx.lineWidth=1;for(let f=.2;f<1;f+=.2){const a=P3(x-o,ym+(h/2+o)*f,Z-(G_+2)*f),c=P3(x+w+o,ym+(h/2+o)*f,Z-(G_+2)*f);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(c[0],c[1]);ctx.stroke();}
+  const r0=P3(x-o,ym,Z),r1=P3(x+w+o,ym,Z);ctx.strokeStyle='rgba(255,230,200,.18)';ctx.beginPath();ctx.moveTo(r0[0],r0[1]);ctx.lineTo(r1[0],r1[1]);ctx.stroke();
+  if(b.w>140&&!b.chim)b.chim=R(.15,.85);if(b.chim){const cx=x+w*b.chim;ibox(cx,ym-14,10,10,Z-G_*.5,Z+10,'#5a3a2e',INK);}}
 // upright sprite (tree, lamp, Litfaßsäule, crane): base row at b.top, anchored at the footprint centre
 function drawBB(b){const s=b.spr,sc=b.sc||1,ax=b.x+b.w/2,X=ix(ax,b.y),Y=iy(ax,b.y);ctx.drawImage(s,X-s.width*sc/2,Y-b.top*sc,s.width*sc,s.height*sc);}
 // light position (x,y on the ground, z height in screen px) for lights stored in the old 3/4 sprite coordinates
-function lpos(b,l){if(l.z!=null)return[l.x,l.y,l.z];if(l.inner)return[l.x,l.y,0];if(isBox(b))return[clamp(l.x,b.x,b.x+b.w),b.y+b.h,Math.max(0,b.y+b.h-l.y)*(b.vs||1)];return[l.x,b.y,Math.max(0,b.y-l.y)*(b.sc||1)];}
+function lpos(b,l){if(l.z!=null)return[l.x,l.y,l.z];if(l.inner)return[l.x,l.y,0];if(isBox(b)){const z=Math.max(0,b.y+b.h-l.y)*(b.vs||1);let p=[clamp(l.x,b.x,b.x+b.w),b.y+b.h];if(b.rot){ROT={cx:b.x+b.w/2,cy:b.y+b.h/2,c:Math.cos(b.rot),s:Math.sin(b.rot)};p=rw(p[0],p[1]);ROT=null;}return[p[0],p[1],z];}return[l.x,b.y,Math.max(0,b.y-l.y)*(b.sc||1)];}
 /* ---- vehicles: iso boxes. b={x,y,w,h,veh:{k,c,v}} ---- */
 function addVeh(x,y,w,h,v,k){const c=k==='bus'?'#d8a818':k==='tram'?'#d6b436':k==='trabi'?pick(['#8ab0a8','#c8b890','#a87a6a','#7a8aa8','#d6cfc0']):k==='van'?pick(['#c8c0b0','#5a7a8a','#8a4a32']):pick(['#6b3a24','#4a4038','#5c4a2e','#55524c','#5a2e22','#3a4a5a']);
   const g=gx;g.fillStyle='rgba(0,0,0,.3)';g.fillRect(x-3,y-3,w+6,h+6);for(let i=0;i<4;i++){g.fillStyle='rgba(20,10,5,.35)';g.beginPath();g.ellipse(x+R(0,w),y+R(0,h),R(6,14),R(4,9),R(0,3),0,7);g.fill();}
