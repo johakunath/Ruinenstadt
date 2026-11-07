@@ -94,6 +94,7 @@ function drawSorted(t){const BX=[],IT=[],vL=-OX-60,vR=VW-OX+60,vT=-OY-60,vB=VH-O
   for(const it of vis){while(j<BX.length&&j<it.s)box(BX[j++]);drawItem(it,t);}while(j<BX.length)box(BX[j++]);}
 function drawItem(it,t){const o=it.o;if(it.k===0)return drawBB(o);
   if(it.k===3){const f=P.face,a=P.atkA;P.face=sAng(f);P.atkA=sAng(a);upr(P.x,P.y,()=>drawPlayer(t));P.face=f;P.atkA=a;return;}
+  if(it.k===2){const fa=o.fa;o.fa=sAng(fa||0);upr(it.x,it.y,()=>drawEnemy(o,t));o.fa=fa;return;}// shield facing is a world angle, draw it in screen space
   upr(it.x,it.y,()=>{if(it.k===1)drawBarrel(o,t);else if(it.k===2)drawEnemy(o,t);else if(it.k===4)drawProp(o);else if(it.k===5)drawNpc(o,t);else drawCaptive(o,t);});}
 const cache={};function setT(id,v){if(cache[id]!==v){cache[id]=v;$(id).textContent=v;}}function setW(id,v){v=Math.round(v*10)/10;if(cache[id]!==v){cache[id]=v;$(id).style.width=v+'%';}}
 function hud(){if(!P||!ST)return;setW('hpf',100*Math.max(0,P.hp)/ST.maxHp);setT('hpt',Math.max(0,Math.ceil(P.hp))+' / '+ST.maxHp);setW('xpf',100*P.xp/(20+P.lvl*15));
