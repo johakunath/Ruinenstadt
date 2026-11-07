@@ -1,5 +1,5 @@
 /* ================= panels ================= */
-let invTab='bag',invFrom='menu',sel=null,invMsg='',allArm=false;
+let sgSel=null,invTab='bag',invFrom='menu',sel=null,invMsg='',allArm=false;
 function cloudLine(){const m={off:'Spielstand auf diesem Gerät',sync:'Cloud wird geladen',on:'Cloud-Speicher aktiv · auf allen Geräten',slow:'Cloud gerade nicht erreichbar · speichert lokal',err:'Cloud nicht verfügbar · speichert lokal'};
   return`<div class="cloud${cloud.state==='on'?' on':''}">${m[cloud.state]}</div>`;}
 // district map positions (viewBox 400x250) and flavour
@@ -61,7 +61,7 @@ $('menubox').addEventListener('click',e=>{const nd=e.target.closest('.node');if(
   if(t.id==='go')return startRun(S.dist,menuEnd&&S.best[S.dist]>=10);if(t.dataset.m==='daily')return startRun(0,false,true);if(t.dataset.m==='end'){menuEnd=!menuEnd;renderMenu();return;}const m=t.dataset.m;if(m==='inv'||m==='shop'||m==='jobs'){invTab=m==='inv'?'bag':m;openInv('menu');}
   if(m==='mute'){setMute(!S.mute);renderMenu();}if(m==='eco'){setEco(!S.eco);renderMenu();}if(m==='thm'){S.threat=Math.max(0,S.threat-1);save();renderMenu();}if(m==='thp'){S.threat=Math.min(S.tmax,S.threat+1);save();renderMenu();}if(m==='music'){S.music=!S.music;save();if(S.music)startMusic();else stopMusic();renderMenu();}if(m==='opt'){menuOpt=!menuOpt;renderMenu();}if(m==='auto'){S.auto=!autoAtk();save();renderMenu();}if(m==='hap'){S.hap=((S.hap==null?1:S.hap)+1)%3;save();buzz(12);renderMenu();}if(m==='fs'){S.fs=S.fs===0?1:0;save();if(S.fs===0&&document.fullscreenElement)document.exitFullscreen().catch(()=>{});renderMenu();}if(m==='exp')exportSave();if(m==='imp')importSave();if(m==='diff'){S.diff=((S.diff==null?1:S.diff)+1)%3;save();renderMenu();}});
 function openInv(from){invFrom=from;sel=null;invMsg='';allArm=false;if(run)run.quitArm=false;renderInv();$('inv').hidden=false;$('menu').hidden=true;}
-function slotBtn(k,lbl){const it=S.eq[k],s=sel&&sel.src==='eq'&&sel.slot===k;return`<button class="slot s${k}${s?' sel':''}" data-eq="${k}" aria-label="${lbl}"><span class="ic${it?'':' empty'}" style="${it?'border-color:'+rc(it)+';box-shadow:inset 0 0 18px '+rc(it)+'44':''}">${it?icon(it,44):''}</span>${lbl}</button>`;}
+function slotBtn(k){const lbl=SLOTN[k];if(k==='i'&&!S.eq.i)return`<button class="slot si lockd${sel&&sel.slot==='i'?' sel':''}" data-eq="i" aria-label="${lbl}, gesperrt"><span class="ic empty">${LOCK}</span>${lbl}</button>`;const it=S.eq[k],s=sel&&sel.src==='eq'&&sel.slot===k;return`<button class="slot s${k}${s?' sel':''}" data-eq="${k}" aria-label="${lbl}"><span class="ic${it?'':' empty'}" style="${it?'border-color:'+rc(it)+';box-shadow:inset 0 0 18px '+rc(it)+'44':''}">${it?icon(it,44):''}</span>${lbl}</button>`;}
 // paper doll: draws the player with current gear into the inventory canvas by borrowing the art functions
 function drawDoll(){const c=$('dollc');if(!c)return;const g=c.getContext('2d'),W=c.width,H=c.height,o=ctx,keep={};for(const k of ['x','y','face','mvx','mvy','swingT','spin','dashT','inv','torch','walk'])keep[k]=P[k];
   g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,W,H);const gr=g.createRadialGradient(W/2,H*.62,0,W/2,H*.62,W*.5);gr.addColorStop(0,rc(S.eq.w)+'33');gr.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=gr;g.fillRect(0,0,W,H);
@@ -84,9 +84,17 @@ const kImg=(src,dim)=>`<img class="kimg" src="${src}" alt=""${dim?' style="opaci
 const kEnemy=(t,f)=>portrait(t+(f?JSON.stringify(f):''),()=>Object.assign(mkEnemy(t,0,0,!!(f&&f.big)),f||{}));
 const KODEX=[['Ratte','Kommt im Rudel, schnell und schwach.','','rat'],['Zünder','Explodiert, wenn er dich erreicht oder stirbt. Auf Abstand halten.','shock','bomb'],['Schildträger','Blockt Treffer von vorn. Umlaufen oder mit dem Hammer betäuben.','acid','shield'],['Krähe','Fliegt über Hindernisse und stößt im Sturzflug herab.','shock','crow'],['Heuler','Treibt Gegner in seiner Nähe an. Zuerst ausschalten.','fire','howl'],['Ghul','Schnell und zahlreich. Fürchtet Feuer.','fire','ghoul'],['Brocken','Zäh und hart. Verträgt Feuer, aber keine Säure.','acid','brute'],['Speier','Spuckt aus der Distanz. Immun gegen Säure, anfällig für Strom.','shock','spitter'],
   ['Raser','Kündigt seinen Sturmlauf mit einer roten Linie an. Seitlich ausweichen.','','raser'],['Schrottkoloss','Zwischenboss in Welle 5. Leitet Strom besonders gut.','shock','boss']];
+// Segen tab: icon grid of this run's blessings, tap shows details (frame = rarest card picked)
+function segenTab(){const ks=Object.keys(run.perks).filter(k=>run.perks[k]>0),pq=run.pq||{};if(!ks.length)return`<p class="hint">Noch keine Segen. Nach jeder geschafften Welle wählst du einen.</p>`;if(!ks.includes(sgSel))sgSel=ks[0];
+  const dots=(l,m)=>`<span class="sgd">${Array.from({length:m},(_,i)=>`<i class="${i<l?'f':''}"></i>`).join('')}</span>`;
+  const P_=PERKS.find(p=>p.k===sgSel),l=run.perks[sgSel],q=pq[sgSel]||0,m=P_.d.match(/^([+-])(\d+)(%?)/),tot=n=>m?P_.d.replace(m[0],`${m[1]}${n*m[2]}${m[3]}`):'';
+  const ex=sgSel==='second'?`<div class="st" style="color:${run.second?'var(--dim)':'var(--good)'}">${run.second?'In diesem Lauf schon verbraucht':'Bereit'}</div>`:'';
+  return`<div class="segen"><div class="sgrid">${ks.map(k=>{const p=PERKS.find(x=>x.k===k);return`<button class="sgb${k===sgSel?' sel':''}" data-sg="${k}" aria-label="${p.n}, Stufe ${run.perks[k]}">${pIcon(k,58,pq[k])}<span class="sgn">${p.n}</span>${dots(run.perks[k],p.max)}</button>`;}).join('')}</div>
+    <div class="card sgdet" style="border-color:${PQC[q]}"><div class="chead">${pIcon(sgSel,56,q)}<div><div class="nm" style="color:${PQC[q]}">${P_.n}</div><div class="sub">Stufe ${l} von ${P_.max} · ${PQN[q]}</div></div></div>
+    <div class="st">${P_.max>1?'Je Stufe: ':''}${P_.d}</div>${P_.max>1&&m?`<div class="st">Jetzt: <b>${tot(l)}</b></div>${l<P_.max?`<div class="sub">Nächste Stufe: ${tot(l+1)}</div>`:'<div class="sub">Maximale Stufe</div>'}`:''}${ex}</div></div>`;}
 function detail(){
   if(!sel)return`<div class="card"><div class="sub">Tippe ein Teil an, um es mit deiner Ausrüstung zu vergleichen.</div></div>`;
-  const it=sel.src==='eq'?S.eq[sel.slot]:(sel.src==='stash'?S.stash:S.bag)[sel.i];if(!it)return`<div class="card"><div class="sub">Dieser Platz ist leer. Lege einen Talisman oder eine Rüstung aus dem Rucksack an.</div></div>`;
+  const it=sel.src==='eq'?S.eq[sel.slot]:(sel.src==='stash'?S.stash:S.bag)[sel.i];if(!it)return`<div class="card"><div class="sub">${sel.slot==='i'?'Implantat-Platz: Steckbare Implantate gibt es mit dem Bezirk Potsdamer Platz.':`${SLOTN[sel.slot]}: Dieser Platz ist leer. Lege ein passendes Teil aus dem Rucksack an.`}</div></div>`;
   const R_=RAR[it.r],camp=invFrom!=='run';let b='';
   if(sel.src==='bag')b=`<div class="two"><button class="btn main sm" data-a="equip">Anlegen</button><button class="btn sm" data-a="salv">Schrott +${scrapVal(it)}</button></div>${camp?'<button class="btn sm" data-a="tostash">Ins Lager</button>':''}`;
   else if(sel.src==='stash')b=`<div class="two"><button class="btn main sm" data-a="equip">Anlegen</button><button class="btn sm" data-a="salv">Schrott +${scrapVal(it)}</button></div><button class="btn sm" data-a="tobag">In den Rucksack</button>`;
@@ -95,15 +103,14 @@ function detail(){
   if(camp&&modSlots(it)>(it.mods||[]).length){const own=MODS.filter(m=>S.mods[m.k]>0&&!(it.mods||[]).includes(m.k));b+=own.length?`<div class="lbl" style="text-align:left">Aufsatz einbauen</div><div class="chips" style="justify-content:flex-start">${own.map(m=>`<button class="chip" data-mi="${m.k}" style="color:#f2a04b">${m.n}</button>`).join('')}</div>`:`<p class="hint" style="text-align:left">Freier Aufsatz-Platz. Aufsätze baust du in der Werkstatt.</p>`;}
   else if(modSlots(it)&&MODS.some(m=>S.mods[m.k]>0))b+=`<p class="hint" style="text-align:left">${!camp?'Aufsätze baust du im Lager ein, nicht während der Expedition.':'Alle Aufsatz-Plätze dieser Waffe sind belegt.'}</p>`;
   const sk=it.slot==='w'?`<div class="sub">Kraft: ${KIND[it.kind].sk}</div>`:'';
-  return`<div class="card"><div class="chead"><span class="dic" style="border-color:${rc(it)};background:radial-gradient(circle,${rc(it)}33,#120d0a 70%)">${icon(it,44)}</span><div><div class="nm" style="color:${rc(it)}">${it.name}</div><div class="sub">${it.set?'Set-Teil':R_.n} · ${it.slot==='w'?KIND[it.kind].n:it.slot==='a'?'Rüstung':'Talisman'} · Stufe ${it.ilvl}</div></div></div>
+  return`<div class="card"><div class="chead"><span class="dic" style="border-color:${rc(it)};background:radial-gradient(circle,${rc(it)}33,#120d0a 70%)">${icon(it,44)}</span><div><div class="nm" style="color:${rc(it)}">${it.name}</div><div class="sub">${it.set?'Set-Teil':R_.n} · ${typeN(it)} · Stufe ${it.ilvl}</div></div></div>
     <div class="st">${statLine(it)}</div>${afxLines(it)}${sk}${sel.src!=='eq'?`<div class="lbl" style="text-align:left;margin-top:4px">Wenn angelegt</div>${cmpBlock(it)}`:'<div class="sub">Angelegt</div>'}${b}</div>`;}
 const notUp=it=>better(it)!==true&&it.r<3&&!it.lock&&!it.set;
 function renderInv(){
-  const perkList=run&&invFrom==='run'?Object.keys(run.perks).map(k=>PERKS.find(p=>p.k===k).n+(run.perks[k]>1?' '+run.perks[k]:'')).join(' · '):'';
-  if(invFrom==='run'&&invTab==='stash')invTab='bag';refresh();
+  if(invFrom==='run'&&invTab==='stash'||invFrom!=='run'&&invTab==='segen')invTab='bag';refresh();
   const tb=(k,n)=>`<button class="tab${invTab===k?' on':''}" data-t="${k}">${n}</button>`;
-  const head=`<div class="ihead"><div class="tabs">${tb('bag','Ausrüstung')}${invFrom!=='run'?tb('stash','Lager'):''}${tb('jobs','Aufträge')}${tb('shop','Werkstatt')}${invFrom==='run'?tb('map','Karte'):''}${tb('kodex','Kodex')}</div>
-    <div class="ires"><span>Schrott <b>${S.scrap}</b></span><span>Kampfkraft <b>${power(ST)}</b></span>${invFrom==='run'?`<span>${DIST[run.d].n} · Welle ${run.wave}/10</span>`:''}</div><button class="btn sm main iclose" data-a="close">${invFrom==='run'?'Weiter':'Zurück'}</button></div>${perkList?`<div class="perks">Segen: ${perkList}</div>`:''}`;
+  const head=`<div class="ihead"><div class="tabs">${tb('bag','Ausrüstung')}${invFrom!=='run'?tb('stash','Lager'):tb('segen','Segen')}${tb('jobs','Aufträge')}${tb('shop','Werkstatt')}${invFrom==='run'?tb('map','Karte'):''}${tb('kodex','Kodex')}</div>
+    <div class="ires"><span>Schrott <b>${S.scrap}</b></span><span>Kampfkraft <b>${power(ST)}</b></span>${invFrom==='run'?`<span>${DIST[run.d].n} · Welle ${run.wave}/10</span>`:''}</div><button class="btn sm main iclose" data-a="close">${invFrom==='run'?'Weiter':'Zurück'}</button></div>`;
   let body='';
   if(invTab==='bag'||invTab==='stash'){const LST=invTab==='stash'?S.stash:S.bag,N=invTab==='stash'?stashMax():BAG,src=invTab==='stash'?'stash':'bag';
     let cells='';for(let i=0;i<N;i++){const it=LST[i],s=sel&&sel.src===src&&sel.i===i;
@@ -112,11 +119,12 @@ function renderInv(){
     ['Gewöhnliche','Magische','Seltene'].forEach((n,r)=>{const v=sum(i=>i.r===r&&!i.lock&&!i.set);if(v)chips.push(`<button class="chip" data-sr="${r}" style="color:${RAR[r].c}">${n} +${v}</button>`);});
     const va=sum(notUp);if(va)chips.push(`<button class="chip${allArm?' warn':''}" data-a="all">${allArm?'Sicher? Tippe erneut':'Alles ohne ▲ +'+va}</button>`);
     const mk=S.eq.w.kind,ml=mLvl(mk),nx=mNext(mk);
-    body=`<div class="inv3"><section class="ichar"><div class="doll"><canvas id="dollc" width="360" height="360" aria-hidden="true"></canvas>${slotBtn('w','Waffe')}${slotBtn('a','Rüstung')}${slotBtn('t','Talisman')}</div>
+    body=`<div class="inv3"><section class="ichar"><div class="doll"><canvas id="dollc" width="360" height="360" aria-hidden="true"></canvas>${SLOTS.map(slotBtn).join('')}</div>
       <div class="mast"><span>${MAST_N[mk]}-Meisterschaft ${ml}</span><div class="pbar"><i style="width:${nx?Math.round(100*(S.mast[mk]||0)/nx):100}%"></i></div><span class="sub">${nx?`${S.mast[mk]||0}/${nx} EP`:'maximal'} · +${4*ml}% Schaden${ml>=5?' · schnellere Kraft':''}</span></div>${statTable()}</section>
       <section class="ibag"><div class="lbl">${invTab==='stash'?`Lager ${S.stash.length}/${stashMax()}`:`Rucksack ${S.bag.length}/${BAG}`}</div><div class="grid">${cells}</div>
       ${chips.length?`<div class="lbl">Verschrotten</div><div class="chips">${chips.join('')}</div><p class="hint">„Alles ohne ▲“ behält Verbesserungen, Legendäres, Set-Teile und Gesperrtes.</p>`:'<p class="hint">▲ heißt: mehr Kampfkraft als dein angelegtes Teil.</p>'}</section>
       <section class="idet">${detail()}</section></div>`;}
+  else if(invTab==='segen'&&run)body=segenTab();
   else if(invTab==='map'&&run){const lots=[...new Set(BLK.filter(b=>!b.center).map(b=>LOTN[b.lot]).filter(Boolean))].join(', ');
     body=`<div class="mapw"><canvas id="mapc" width="600" height="600" aria-label="Karte von ${D.n}"></canvas><div class="leg"><div class="lbl" style="text-align:left">${D.n}</div><div><i style="background:#fff"></i>Du</div><div><i style="background:#EF9F27"></i>Wahrzeichen</div><div><i style="background:#f2d14b"></i>Späti</div><div><i style="background:#1d4a8a"></i>U-Bahn-Dunkelzone mit Truhe</div><div><i style="background:#7dd3ff"></i>Litfaßsäule (unbenutzt)</div><div><i style="background:#c23a2e"></i>Gegner</div><p class="hint" style="text-align:left">Gebiete: ${lots}</p></div></div>`;}
   else if(invTab==='kodex')body=`<div class="lbl">Gegner</div><div class="cols2">${KODEX.map(k=>`<div class="upg kx">${kImg(kEnemy(k[3]))}<div><div class="un">${k[0]}</div><div class="ud">${k[1]}</div></div>${k[2]?`<span class="ud" style="color:${ELC[k[2]]}">${ELN[k[2]]}</span>`:''}</div>`).join('')}</div>
@@ -136,7 +144,8 @@ function renderInv(){
   $('invbox').innerHTML=head+body+foot;drawDoll();drawMapTab();
 }
 $('invbox').addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return;const d=t.dataset;invMsg='';sfx('ui');if(d.a!=='all')allArm=false;
-  if(d.t){invTab=d.t;sel=null;}
+  if(d.t){invTab=d.t;sel=null;sgSel=null;}
+  else if(d.sg)sgSel=d.sg;
   else if(d.b!==undefined)sel={src:invTab==='stash'?'stash':'bag',i:+d.b};
   else if(d.eq)sel={src:'eq',slot:d.eq};
   else if(d.mw){invTab='bag';sel={src:'eq',slot:'w'};renderInv();const c=document.querySelector('#inv .idet');if(c)c.scrollIntoView({block:'start'});return;}
