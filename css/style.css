@@ -174,3 +174,12 @@ body:not(.inrun) #bufs,body:not(.inrun) #streak{display:none}
 @media (min-width:900px){#perkbox{max-width:1000px}.pcards{grid-template-columns:repeat(3,minmax(0,1fr))}.pcard{align-content:start;min-height:180px}}
 @media (min-width:600px) and (max-width:899px){#menubox,#invbox,#perkbox,#endbox,#tradebox{max-width:640px}.cols2{grid-template-columns:1fr 1fr}}
 .dcard.daily{border-color:#993C1D;background:linear-gradient(180deg,rgba(153,60,29,.18),var(--panel))}
+/* Kodex rows with a portrait or icon on the left */
+.upg.kx{grid-template-columns:auto minmax(0,1fr) auto}.kimg{width:64px;height:64px;border-radius:4px;background:radial-gradient(circle at 50% 60%,#3a2c22,#120d0a 72%);border:1px solid var(--edge);display:grid;place-items:center}
+.kset{display:grid;grid-template-columns:repeat(3,auto);gap:4px}.kset .kimg{width:44px;height:44px}.kset svg{width:30px;height:30px}
+#toasts{z-index:30}
+/* phones: tabs as a bottom bar in thumb reach, close button above it */
+@media (max-width:599px){#inv{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 132px)}
+  #inv .tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;justify-content:space-around;gap:0;background:#17110d;border-top:1px solid var(--edge);border-bottom:0;padding:0 4px env(safe-area-inset-bottom,0px)}
+  #inv button.tab{flex:1;font-size:15px;padding:14px 2px 12px;border-bottom:0;border-top:3px solid transparent}#inv button.tab.on{border-top-color:var(--ember)}
+  #inv .ires .btn[data-a=close]{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 64px);z-index:10;min-width:120px;box-shadow:0 4px 14px rgba(0,0,0,.6)}}

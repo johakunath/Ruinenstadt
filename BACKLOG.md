@@ -1,6 +1,6 @@
 # Ruinenstadt Backlog
 
-Top-down loot ARPG in post-collapse Berlin. Hobby project to learn game development. Game text German. Versions `v0.N`.
+Isometric loot ARPG in post-collapse Berlin. Hobby project to learn game development. Game text German. Versions `v0.N`.
 
 ## Intent
 
@@ -22,7 +22,7 @@ Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pip
 
 | # | Item | Notes |
 |---|---|---|
-| 1 | Isometric view (mockup C chosen) | Next session. Rework renderer, collision and map generator for 2:1 isometric. Environment bigger than ×2, longer levels are fine, rebalance afterwards. Check every drawn object by screenshot: a car must read as a car |
+| 1 | Isometric follow-ups | Playtest v0.37 on the Tab S9 (feel of screen-space joystick, frame rate). Then: world 2400 → about 3600 for longer levels (do it with the geographic Köpenick map, #3), Späti interior and sandbags as iso props, landmark towers as real iso sprites (Codex step 4), rebalance with the bot |
 | 2 | Equipment: 8 slots | Weapon, head, body, hands, feet, talisman, ring, implant (one ring: two ring slots are too fiddly). Implant unlocks at Potsdamer Platz. New bases, paper doll, compare, save migration, rebalance |
 | 3 | Geographic districts | Köpenick first, mockup `mockups/v035-scale-slots-map.html` approved with fixes: no road in the water (the grey line along the Spree is wrong, roads go on land), cleaner Altstadt peninsula. Müggelsee huge in the east, Spree from Friedrichshagen, Dahme from the south, forest south-east, camp at Lindenstraße. Then the other districts |
 | 4 | Potsdamer Platz cyberpunk district | Mockup D approved: neon, rain, implant clinic, cable enemies |
@@ -115,4 +115,6 @@ Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pip
 | v0.33 | Balance: enemy damage grows +16% per district instead of +20%, so late districts no longer double the hits you take relative to your life |
 | v0.34 | Auto-attack (on by default on touch, toggle in options and pause), drag the skill or Molotov button to aim with a preview, tap still auto-targets. Short haptic pulses on taking damage (Vibration: aus, leicht, stark). AGENTS.md points to CLAUDE.md |
 | v0.35 | Späti as barricaded safe room (S2): bigger, sandbags, shutter, oven, workbench, radio. Inside: shutter keeps enemies out, no damage, slow healing, 60 s calm per wave, then the shutter gives way. Fix: text did not wrap on tablets (`.tab` CSS class collided with `body.tab`) |
+| v0.38 | Phone: menu tabs as a bottom bar, Zurück/Weiter button above it. Kodex shows a portrait for every enemy, boss and elite (in-game art) and icons for legendaries and set parts. Werkstatt: built Aufsätze get an "Einbauen" button that opens the weapon, clearer hint where Aufsätze go. Device back button closes menus and pauses runs; in camp it needs three presses to leave |
+| v0.37 | Isometric 2:1 view (mockup C). Logic and collision stay in flat world coords, the renderer projects: ground as a diamond, buildings as boxes from their old roof and facade art (facades twice as tall), cars, vans, Trabis, buses and trams as iso boxes at real scale (car about 4 × player width), trees ×1.6, depth sorting against boxes, buildings in front of the player fade. Joystick, keys and drag-aim work in screen directions. Minimap turned 45° to match the screen. Balance bot steers in screen space |
 | v0.36 | Späti shelves and fridges show bottles, cans, chip bags and boxes. Asset pipeline handover for Codex in `docs/asset-pipeline.md` |

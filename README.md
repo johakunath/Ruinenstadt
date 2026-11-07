@@ -1,6 +1,6 @@
 # Ruinenstadt
 
-Top-down loot ARPG in post-collapse Berlin. Runs in the browser, installable as a PWA, works offline.
+Isometric loot ARPG in post-collapse Berlin. Runs in the browser, installable as a PWA, works offline.
 
 ## Run locally
 
