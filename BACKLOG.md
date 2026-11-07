@@ -18,22 +18,24 @@ Problems: environment scale (cars smaller than player), pure top-down props vs s
 
 ## Next
 
+Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pipeline.md`).
+
 | # | Item | Notes |
 |---|---|---|
-| 1 | Perspective and scale | Mockup `mockups/v035-scale-slots-map.html`. Proposal: 3/4 oblique view (facades, cars, trees with height), environment about ×2, world 2400 → 3600 (tile the ground canvas for memory) |
-| 2 | Equipment slots | 6 or 8 slots (same mockup). New item bases per slot, paper doll, compare, save migration, rebalance |
-| 3 | Geographic districts | Köpenick first: Müggelsee huge in the east (map ends in the lake), Spree from Friedrichshagen, Altstadt peninsula, Dahme from the south, forest south-east, camp at Lindenstraße. Roads follow rivers, bridges as chokepoints. Then other districts. Fixes the grid look |
-| 4 | Art pipeline: hand-painted look | Not doable with code-drawn SVG/canvas. Needs an image model for painted sprites (see Tech). Characters as painted cut-out parts so gear stays visible. Floors stay |
-| 5 | Potsdamer Platz cyberpunk district | Mockup D approved: neon, rain, implant clinic, cable enemies. Implant slot unlocks here |
-| 6 | Balance: Normal harder | "Pretty easy, upgrades come quickly". Needs run telemetry first |
-| 7 | Elite tactics | Telegraphs and punish windows on elites and some types. Fodder stays fast |
-| 8 | Weapon = class | Each weapon type 2 to 3 skills, pick 1 before a run. Touch stays at 4 buttons |
-| 9 | Zones and U-Bahn waypoints | District = 2 to 3 zones of 5 to 10 min, U-Bahn as save point and town portal |
-| 10 | Controller support | Gamepad API for Xbox and Steam Deck (browser), stick aiming, assists per input device |
-| 11 | AI-maintainability review | Code and docs readable for Claude and Codex with few tokens |
-| 12 | Walkable camp hub | Mockup first. Lives at Lindenstraße in Köpenick |
-| 13 | Sound files | jsfxr samples instead of synth |
-| 14 | Run telemetry | Local run log (deaths, cause, time per wave), exported with the save code |
+| 1 | Isometric view (mockup C chosen) | Next session. Rework renderer, collision and map generator for 2:1 isometric. Environment bigger than ×2, longer levels are fine, rebalance afterwards. Check every drawn object by screenshot: a car must read as a car |
+| 2 | Equipment: 8 slots | Weapon, head, body, hands, feet, talisman, ring, implant (one ring: two ring slots are too fiddly). Implant unlocks at Potsdamer Platz. New bases, paper doll, compare, save migration, rebalance |
+| 3 | Geographic districts | Köpenick first, mockup `mockups/v035-scale-slots-map.html` approved with fixes: no road in the water (the grey line along the Spree is wrong, roads go on land), cleaner Altstadt peninsula. Müggelsee huge in the east, Spree from Friedrichshagen, Dahme from the south, forest south-east, camp at Lindenstraße. Then the other districts |
+| 4 | Potsdamer Platz cyberpunk district | Mockup D approved: neon, rain, implant clinic, cable enemies |
+| 5 | Balance: Normal harder | "Pretty easy, upgrades come quickly". Run telemetry first |
+| 6 | Elite tactics | Telegraphs and punish windows on elites and some types. Fodder stays fast |
+| 7 | Weapon = class | Each weapon type 2 to 3 skills, pick 1 before a run. Touch stays at 4 buttons |
+| 8 | Zones and U-Bahn waypoints | District = 2 to 3 zones of 5 to 10 min, U-Bahn as save point and town portal |
+| 9 | Controller support | Gamepad API for Xbox and Steam Deck (browser), stick aiming, assists per input device |
+| 10 | AI-maintainability review | Code and docs readable for Claude and Codex with few tokens |
+| 11 | Walkable camp hub | Mockup first. Lives at Lindenstraße in Köpenick |
+| 12 | Sound files | jsfxr samples instead of synth |
+| 13 | Run telemetry | Local run log (deaths, cause, time per wave), exported with the save code |
+| A | Asset pipeline (Codex) | Hand-painted isometric art. Steps, order and prompts in `docs/asset-pipeline.md`. Step 1: 3 to 5 style references, Johannes picks |
 | - | GitHub Pages | When playtesting outside the dev setup |
 
 ## Ideas by theme
@@ -113,3 +115,4 @@ Problems: environment scale (cars smaller than player), pure top-down props vs s
 | v0.33 | Balance: enemy damage grows +16% per district instead of +20%, so late districts no longer double the hits you take relative to your life |
 | v0.34 | Auto-attack (on by default on touch, toggle in options and pause), drag the skill or Molotov button to aim with a preview, tap still auto-targets. Short haptic pulses on taking damage (Vibration: aus, leicht, stark). AGENTS.md points to CLAUDE.md |
 | v0.35 | Späti as barricaded safe room (S2): bigger, sandbags, shutter, oven, workbench, radio. Inside: shutter keeps enemies out, no damage, slow healing, 60 s calm per wave, then the shutter gives way. Fix: text did not wrap on tablets (`.tab` CSS class collided with `body.tab`) |
+| v0.36 | Späti shelves and fridges show bottles, cans, chip bags and boxes. Asset pipeline handover for Codex in `docs/asset-pipeline.md` |
