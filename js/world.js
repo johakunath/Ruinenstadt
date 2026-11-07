@@ -263,8 +263,8 @@ function buildWorld(d){
   const side=(q,o)=>({x:q.x+q.nx*o,y:q.y+q.ny*o}),far=(x,y,r)=>Math.hypot(x-SX,y-SY)>=r;
   // on geo maps vehicles turn with the road (rot), slightly askew
   const veh=(x,y,w,h,v,k,rot)=>{const cx=x+w/2,cy=y+h/2;if(rot){gx.save();gx.translate(cx,cy);gx.rotate(rot);gx.translate(-cx,-cy);}addVeh(x,y,w,h,v,k);if(rot)gx.restore();const b=blds[blds.length-1];b.rot=rot;walls.push(rot?obWall(b):{x,y,w,h});},vrot=q=>K?rotN(Math.atan2(q.uy,q.ux))+R(-.06,.06):0;
-  let ct=0;for(let i=0;i<160*A&&ct<18*A;i++){const q=roadPt(),v=q.v,k=pick(['car','car','trabi','trabi','van']),s=k==='trabi'?.82:k==='van'?1.1:1,w=v?44:96*s,h=v?96*s:44,c=side(q,R(-8,8)+pick([-27,27])),x=c.x-w/2,y=c.y-h/2;
-    if(!far(c.x,c.y,240)||inWall(c.x,c.y,70)||resHit(c.x-30,c.y-30,60,60,1)||x<0||y<0||x+w>WS||y+h>WS)continue;veh(x,y,w,h,v,k,vrot(q));ct++;}
+  let ct=0;for(let i=0;i<160*A&&ct<14*A;i++){const q=roadPt(),v=q.v,k=pick(['car','car','trabi','trabi','van']),s=k==='trabi'?.82:k==='van'?1.1:1,w=v?44:96*s,h=v?96*s:44,c=side(q,R(-8,8)+pick([-27,27])),x=c.x-w/2,y=c.y-h/2;
+    if(!far(c.x,c.y,240)||inWall(c.x,c.y,90)||resHit(c.x-30,c.y-30,60,60,1)||x<0||y<0||x+w>WS||y+h>WS)continue;veh(x,y,w,h,v,k,vrot(q));ct++;}
   for(let i=0,n=0;i<80&&n<3;i++){const q=roadPt(s=>s.n==='tram'),v=q.v,w=v?46:230,h=v?230:46,c=side(q,R(-20,20)),x=c.x-w/2,y=c.y-h/2;if(!far(c.x,c.y,300)||inWall(c.x,c.y,130)||resHit(c.x-40,c.y-40,80,80,1)||x<0||y<0||x+w>WS||y+h>WS)continue;veh(x,y,w,h,v,'bus',vrot(q));n++;}
   if(!K)for(let i=0,n=0;i<40&&n<2;i++){const a=R(80,WS-330),x=a,y=1480-22,w=250,h=44;if(Math.abs(x+125-SX)<340||inWall(x+125,y+22,140)||resHit(x,y,w,h))continue;addVeh(x,y,w,h,false,'tram');walls.push({x,y,w,h});n++;}
   for(const q of [[SX-100,SY-40],[SX+100,SY-40]]){barrels.push({x:q[0],y:q[1],ph:R(0,6)});walls.push({x:q[0]-9,y:q[1]-9,w:18,h:18});}

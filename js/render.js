@@ -90,12 +90,14 @@ function drawSorted(t){const BX=[],IT=[],vL=-OX-60,vR=VW-OX+60,vT=-OY-60,vB=VH-O
   for(const it of IT){it.s=1e9;it.d=it.x+it.y;if(it.k!==3&&it.k!==0){const X=ix(it.x,it.y),Y=iy(it.x,it.y);if(X<vL||X>vR||Y<vT||Y-60>vB){it.s=-1;continue;}}const X=ix(it.x,it.y),Y=iy(it.x,it.y);
     for(let j=0;j<BX.length;j++){const b=BX[j];if(X<b._s[0]-12||X>b._s[1]+12||Y<b._s[2]||front(b,it.x,it.y))continue;it.s=j;break;}}
   for(const b of BX){const occ=!front(b,P.x,P.y)&&PX>b._s[0]-10&&PX<b._s[1]+10&&PY>b._s[2]+10;b.oa=(b.oa==null?1:b.oa)+((occ?.32:1)-(b.oa==null?1:b.oa))*.2;}
+  // trees and other tall sprites in front of the player fade too, so the player is never hidden under a canopy
+  for(const it of IT)if(it.k===0){const o=it.o,sc=o.sc||1,X=ix(it.x,it.y),Y=iy(it.x,it.y),hw=o.spr.width*sc/2;const occ=it.d>P.x+P.y&&Math.abs(PX-X)<hw+6&&PY<Y+4&&PY>Y-o.top*sc-10;o.oa=(o.oa==null?1:o.oa)+((occ?.3:1)-(o.oa==null?1:o.oa))*.2;}
   const vis=IT.filter(it=>it.s>=0).sort((a,b)=>a.s-b.s||a.d-b.d);let j=0;
   const box=b=>{ctx.globalAlpha=Math.min(b.oa,b.isSpati?b.fade:1);withRot(b,()=>b.veh?drawVehBox(b):drawBox(b));ctx.globalAlpha=1;};
   for(const it of vis){while(j<BX.length&&j<it.s)box(BX[j++]);drawItem(it,t);}while(j<BX.length)box(BX[j++]);
   // enemies standing behind a box: draw again as a faint silhouette on top so tall buildings never hide them
   ctx.globalAlpha=.3;for(const it of vis)if(it.k===2&&it.s<BX.length)drawItem(it,t);ctx.globalAlpha=1;}
-function drawItem(it,t){const o=it.o;if(it.k===0)return drawBB(o);
+function drawItem(it,t){const o=it.o;if(it.k===0){ctx.globalAlpha=o.oa==null?1:o.oa;drawBB(o);ctx.globalAlpha=1;return;}
   if(it.k===3){const f=P.face,a=P.atkA;P.face=sAng(f);P.atkA=sAng(a);upr(P.x,P.y,()=>drawPlayer(t));P.face=f;P.atkA=a;return;}
   if(it.k===2){const fa=o.fa;o.fa=sAng(fa||0);upr(it.x,it.y,()=>drawEnemy(o,t));o.fa=fa;return;}// shield facing is a world angle, draw it in screen space
   upr(it.x,it.y,()=>{if(it.k===1)drawBarrel(o,t);else if(it.k===2)drawEnemy(o,t);else if(it.k===4)drawProp(o);else if(it.k===5)drawNpc(o,t);else drawCaptive(o,t);});}

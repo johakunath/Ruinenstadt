@@ -99,13 +99,15 @@ function spawnCrate(){let x,y,t=0;do{const a=R(0,6.28),d=R(360,600);x=clamp(P.x+
 function freeSpot(a0,a1,r){let x,y,t=0;do{const a=R(0,6.28),d=R(a0,a1);x=clamp(P.x+Math.cos(a)*d,70,WS-70);y=clamp(P.y+Math.sin(a)*d,70,WS-70);}while(inWall(x,y,r)&&t++<60);return{x,y};}
 function startEvent(k){
   if(k==='ambush'){banner('Hinterhalt!');sfx('horn');shake=6;const n=6+run.wave;for(let i=0;i<n;i++){const a=i/n*6.283;let x=clamp(P.x+Math.cos(a)*190,30,WS-30),y=clamp(P.y+Math.sin(a)*190,30,WS-30);if(inWall(x,y,14)){const q=freeSpot(150,260,14);x=q.x;y=q.y;}enemies.push(mkEnemy(Math.random()<.7?'ghoul':'brute',x,y));}run.cleared=false;}
-  else if(k==='trader'){const q=freeSpot(260,480,30);npc={x:q.x,y:q.y,r:12,t:60,near:false,offers:(hasS('kurier')?[0,1,2,3]:[0,1,2]).map(i=>{const it=makeItem(ilvl()+1,i===2?2:1);return{it,price:scrapVal(it)*5+15};})};toast('<span style="color:#8fd16a">Ein Händler</span> wartet in der Nähe · folge dem Pfeil');sfx('bell');}
+  else if(k==='trader'){const q=freeSpot(260,480,30);npc={x:q.x,y:q.y,r:12,t:60,near:false,offers:(hasS('kurier')?[0,1,2,3]:[0,1,2]).map(i=>{const it=makeItem(tradeLvl()+(i===2?2:0),i===2&&Math.random()<.3?3:2);return{it,price:scrapVal(it)*5+15};})};toast('<span style="color:#8fd16a">Ein Händler</span> wartet in der Nähe · folge dem Pfeil');sfx('bell');}
   else if(k==='rescue'){const free=SURV.filter(s=>!hasS(s.k));if(!free.length)return startEvent('cache');const q=freeSpot(320,520,40),sv=pick(free);captive={x:q.x,y:q.y,s:sv,free:false,t:0};
     for(let i=0;i<3;i++){const g=mkEnemy(i===0?'brute':pick(['ghoul','shield','spitter']),q.x+R(-60,60),q.y+R(-60,60));if(i===0){g.elite=pick(['schnell','gepanzert','brennend']);g.hp*=2.6;g.max=g.hp;g.xp*=3;g.sc*=4;}g.guard2=1;enemies.push(g);}
     run.cleared=false;toast(`<span style="color:#ead9c0">Hilferufe</span> · Jemand wird gefangen gehalten. Befreie ${sv.n.split(',')[0]}!`);sfx('horn');}
   else if(k==='cache'){const q=freeSpot(520,760,30);trove={x:q.x,y:q.y,t:50};toast('<span style="color:#f2d14b">Schatzkarte</span> · Ein Versteck in der Nähe · 50 Sekunden');sfx('bell');}
   else if(k==='horde'){banner('Rattenflut!');sfx('horn');const a=R(0,6.28),n=18+run.wave*2;for(let i=0;i<n;i++){const q={x:clamp(P.x+Math.cos(a)*(420+R(0,120))+R(-60,60),30,WS-30),y:clamp(P.y+Math.sin(a)*(420+R(0,120))+R(-60,60),30,WS-30)};if(inWall(q.x,q.y,8))continue;enemies.push(mkEnemy('rat',q.x,q.y));}run.cleared=false;}
   else{const q=freeSpot(240,420,60);zone={x:q.x,y:q.y,r:70,p:0,need:8,t:45,sp:0};toast('<span style="color:#7dd3ff">Funksignal</span> · halte die Zone 8 Sekunden');sfx('horn');}}
+// trader stock: rare or better, item level above both the current wave and the best equipped piece, so it is worth the scrap
+const tradeLvl=()=>Math.max(ilvl(),...Object.values(S.eq).filter(Boolean).map(it=>it.ilvl||0))+2;
 const healP=()=>20+(run?run.wave:1)*4;
 function openTrade(){state='trade';clearInput();renderTrade();$('trade').hidden=false;sfx('bell');}
 function renderTrade(msg){$('tradebox').innerHTML=`<h2>Händler</h2><p class="hint">„Schrott gegen Ware. Kein Feilschen.“ · Schrott <b style="color:var(--bone)">${S.scrap}</b></p>`+

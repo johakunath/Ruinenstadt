@@ -28,6 +28,9 @@ S=defSave();// placeholder until data.js has run; the real load() runs in main.j
 /* save code: copy and paste the save as text, works without any backend */
 const b64e=t=>btoa(String.fromCharCode(...new TextEncoder().encode(t))),b64d=t=>new TextDecoder().decode(Uint8Array.from(atob(t),c=>c.charCodeAt(0)));
 function applySave(rs){S=fix(rs);fillJobs();save();resize();S.dist=Math.min(S.dist,S.unlocked-1);buildWorld(DIST[S.dist]);ST=stats();P.hp=ST.maxHp;}
+// new game: progress back to zero, options (sound, difficulty, input, display) and run telemetry stay. Two confirms because it cannot be undone
+function newGame(){if(!confirm('Neues Spiel starten? Fortschritt, Ausrüstung, Lager und Schrott werden gelöscht. Tipp: vorher „Spielstand kopieren“.'))return;if(!confirm('Wirklich alles löschen?'))return;
+  const keep={};for(const k of ['mute','music','eco','auto','hap','fs','diff','tips','tlog'])if(S[k]!=null)keep[k]=S[k];S=fix(Object.assign(defSave(),keep));fillJobs();save();resize();buildWorld(DIST[0]);ST=stats();P.hp=ST.maxHp;menuOpt=false;renderMenu();toast('Neues Spiel gestartet');}
 async function exportSave(){save();const code='RS1:'+b64e(JSON.stringify(S));
   try{await navigator.clipboard.writeText(code);toast('Spielstand-Code kopiert');}catch(e){prompt('Spielstand-Code kopieren:',code);}}
 function importSave(){const code=(prompt('Spielstand-Code einfügen. Der aktuelle Spielstand wird ersetzt.')||'').trim();if(!code)return;
