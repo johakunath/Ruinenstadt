@@ -170,7 +170,7 @@ $('invbox').addEventListener('click',e=>{const t=e.target.closest('button');if(!
   else if(d.a==='forge'){const it=sel.src==='eq'?S.eq[sel.slot]:(sel.src==='stash'?S.stash:S.bag)[sel.i],c=rfCost(it);if(S.scrap<c)invMsg=`Dir fehlen ${c-S.scrap} Schrott.`;else{S.scrap-=c;it.afx=[];rollAfx(it);if(it.set)delete it.el;it.rr=(it.rr||0)+1;refresh();save();sfx('coin');invMsg='<span class="ok">Umgeschmiedet</span>';}}
   else if(d.a==='mute')setMute(!S.mute);else if(d.a==='auto'){S.auto=!autoAtk();save();}
   else if(d.a==='eco')setEco(!S.eco);
-  else if(d.a==='quit'){if(!run.quitArm){run.quitArm=true;}else{endDaily();S.best[run.d]=Math.max(S.best[run.d],run.wave-1);save();state='menu';run=null;refresh();$('inv').hidden=true;renderMenu();$('menu').hidden=false;return;}}
+  else if(d.a==='quit'){if(!run.quitArm){run.quitArm=true;}else{logRun('quit');endDaily();S.best[run.d]=Math.max(S.best[run.d],run.wave-1);save();state='menu';run=null;refresh();$('inv').hidden=true;renderMenu();$('menu').hidden=false;return;}}
   updateHot();renderInv();});
 function showEnd(won){if(!run)return;
   const d=DIST[run.d];
