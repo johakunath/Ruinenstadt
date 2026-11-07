@@ -51,7 +51,7 @@ h2{font:44px/1.05 var(--f-display);color:var(--ember);margin:0;font-weight:400;t
 .btn{font:600 18px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;padding:12px 18px;background:rgba(13,9,7,.6);color:var(--bone);border:1px solid var(--edge);border-radius:3px;cursor:pointer}
 .btn.main{background:var(--rust);border-color:var(--ember)}
 .btn.sm{font-size:15px;padding:8px 12px}
-.btn:focus-visible,.dist:focus-visible,.cell:focus-visible,.slot:focus-visible,.tab:focus-visible,.pcard:focus-visible,.chip:focus-visible{outline:2px solid var(--bone);outline-offset:2px}
+.btn:focus-visible,.dist:focus-visible,.cell:focus-visible,.slot:focus-visible,button.tab:focus-visible,.pcard:focus-visible,.chip:focus-visible{outline:2px solid var(--bone);outline-offset:2px}
 .btns{display:grid;gap:10px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .dist{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:12px 14px;background:rgba(13,9,7,.6);border:1px solid var(--edge);border-radius:3px;color:var(--bone);cursor:pointer;font-family:var(--f-ui);text-align:left}
@@ -64,8 +64,8 @@ h2{font:44px/1.05 var(--f-display);color:var(--ember);margin:0;font-weight:400;t
 .cloud.on{color:var(--good)}
 .perks{font-size:16px;color:var(--ember);text-align:center;line-height:1.4}
 .tabs{display:flex;gap:12px;align-items:center;border-bottom:1px solid var(--edge)}
-.tab{background:none;border:0;border-bottom:3px solid transparent;color:var(--dim);font:600 18px var(--f-ui);white-space:nowrap;letter-spacing:.02em!important;letter-spacing:.06em;padding:6px 0 8px;cursor:pointer}
-.tab.on{color:var(--ember);border-color:var(--ember)}
+button.tab{background:none;border:0;border-bottom:3px solid transparent;color:var(--dim);font:600 18px var(--f-ui);white-space:nowrap;letter-spacing:.02em!important;letter-spacing:.06em;padding:6px 0 8px;cursor:pointer}
+button.tab.on{color:var(--ember);border-color:var(--ember)}
 .tabs .sp{flex:1}
 .eq{display:flex;justify-content:center;gap:14px}
 .slot{width:72px;display:grid;justify-items:center;gap:4px;background:none;border:0;color:var(--dim);font:500 14px var(--f-ui);cursor:pointer;padding:0}

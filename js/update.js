@@ -9,6 +9,9 @@ function update(dt){
   shake=Math.max(0,shake-dt*30);flashT=Math.max(0,flashT-dt);goldT=Math.max(0,goldT-dt);for(const c of corpses)c.t-=dt;corpses=corpses.filter(c=>c.t>0);
   for(const b of barrels)if(Math.random()<dt*2)parts.push({x:b.x+R(-4,4),y:b.y-18,vx:R(-8,8),vy:R(-50,-25),life:R(.5,1),max:1,col:'#EF9F27',size:R(1.5,2.5)});
   if(spati){const inS=P.x>spati.x&&P.x<spati.x+spati.w&&P.y>spati.y&&P.y<spati.y+spati.h;spati.fade+=((inS?.12:1)-spati.fade)*Math.min(1,dt*8);spati.inside=inS;
+    if(inS&&state==='play'){const c0=spati.calm;spati.calm=Math.max(0,spati.calm-dt);if(spati.calm>0){P.hp=Math.min(ST.maxHp,P.hp+ST.maxHp*.03*dt);if(!spati.told){spati.told=1;toast(`<span style="color:var(--ember)">Schutzraum</span> · Gitter unten, ${Math.ceil(spati.calm)} s Ruhe`);}
+      for(const e of enemies)if(e.type!=='boss'&&inSp(e,e.fly?20:0)){e.x=spati.x+spati.dx+spati.dw/2+R(-60,60);e.y=spati.y+spati.h+60;}}
+      else if(c0>0){toast('<span style="color:#c23a2e">Das Gitter gibt nach!</span>');sfx('crash');shake=Math.max(shake,8);}}
     if(inS&&!spati.seen&&state==='play'){spati.seen=true;toast(`<span style="color:var(--ember);font-family:var(--f-display);font-size:22px">${spati.name}</span>`);sfx('bell');}}
   if(state!=='play')return;
   S.rec.time+=dt;tipT-=dt;
@@ -33,7 +36,7 @@ function update(dt){
   for(const f of fields){f.t-=dt;if(Math.random()<dt*22)parts.push({x:f.x+R(-f.r,f.r)*.8,y:f.y+R(-f.r,f.r)*.4,vx:R(-8,8),vy:R(-70,-30),life:.5,max:.5,col:pick(['#ff6a2a','#FAC775','#EF9F27']),size:R(2,4)});
     for(const e of enemies)if(e.hp>0&&Math.hypot(e.x-f.x,(e.y-f.y)*1.6)<f.r){const W=ER(e,'fire');if(W>0){e.bdps=Math.max(e.burn>0?e.bdps||0:0,ST.dmg*.9*W);e.burn=Math.max(e.burn||0,.7);}}}
   fields=fields.filter(f=>f.t>0);
-  if(atkHeld)attack();
+  if(atkHeld||(autoAtk()&&P.cd<=0&&nearest(ST.kind==='sling'?360:180)))attack();
   for(const m of marks)if(!m.seen&&Math.hypot(m.x-P.x,m.y-P.y)<(m.soft?180:260)){m.seen=1;if(!m.soft&&run.seen[m.n])continue;run.seen[m.n]=1;toast(m.soft?`<span style="color:var(--dim)">${m.n}</span>`:`<span style="color:var(--ember);font-family:var(--f-display);font-size:22px">${m.n}</span>`);}
   if(run.toSpawn>0){run.spawnT-=dt;if(run.spawnT<=0){spawnOne();run.toSpawn--;run.spawnT=Math.max(.3,1-run.wave*.05);}}
   else if(!enemies.length&&!run.cleared){run.cleared=true;run.perkDone=false;progWave(run.wave);if(run.wave>=10&&!run.endless){win();return;}if(run.endless&&run.wave>10){const b=Math.round(10*(run.wave-10)*(1+.1*D.i)*DF().sc);S.scrap+=b;run.sg+=b;S.eb[run.d]=Math.max(S.eb[run.d]||0,run.wave);}toast('Welle '+run.wave+' geschafft');S.best[run.d]=Math.max(S.best[run.d],run.wave);save();run.breakT=2;}
