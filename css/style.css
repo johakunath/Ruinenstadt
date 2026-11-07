@@ -142,7 +142,7 @@ body.tab #banner{font-size:76px}
   .mleft{grid-template-columns:1fr}
 }
 /* ---- inventory ---- */
-.ihead{display:grid;gap:8px}.ires{display:flex;gap:14px;align-items:center;justify-content:flex-end;flex-wrap:wrap;font-size:17px;color:var(--dim)}.ires b{color:var(--bone)}
+.ihead{display:grid;gap:8px;grid-template-columns:minmax(0,1fr) auto;align-items:center}.ihead .tabs{min-width:0;overflow-x:auto}.iclose{grid-column:2;grid-row:1;width:auto;min-width:120px}.ires{grid-column:1/-1;display:flex;gap:14px;align-items:center;justify-content:flex-end;flex-wrap:wrap;font-size:17px;color:var(--dim)}.ires b{color:var(--bone)}
 .inv3{display:grid;gap:14px}.inv3 section{display:grid;gap:10px;align-content:start;min-width:0}
 .doll{position:relative;width:100%;max-width:340px;margin:0 auto;aspect-ratio:1}
 #dollc{width:100%;height:100%;display:block}
@@ -153,7 +153,7 @@ body.tab #banner{font-size:76px}
 .card .nm{font:28px/1.1 var(--f-display)}
 @media (min-width:900px){
   #invbox{max-width:1200px}
-  .ihead{grid-template-columns:1fr auto;align-items:end}.ires{justify-content:flex-end}
+  .ihead{grid-template-columns:minmax(0,1fr) auto auto;gap:8px 20px;align-items:end}.ires{grid-column:auto;justify-content:flex-end}.iclose{grid-column:3}
   .inv3{grid-template-columns:minmax(0,300px) minmax(0,1fr) minmax(0,340px);gap:20px;align-items:start}
   .idet{position:sticky;top:0}
   .cols2{grid-template-columns:1fr 1fr}
@@ -178,8 +178,9 @@ body:not(.inrun) #bufs,body:not(.inrun) #streak{display:none}
 .upg.kx{grid-template-columns:auto minmax(0,1fr) auto}.kimg{width:64px;height:64px;border-radius:4px;background:radial-gradient(circle at 50% 60%,#3a2c22,#120d0a 72%);border:1px solid var(--edge);display:grid;place-items:center}
 .kset{display:grid;grid-template-columns:repeat(3,auto);gap:4px}.kset .kimg{width:44px;height:44px}.kset svg{width:30px;height:30px}
 #toasts{z-index:30}
-/* phones: tabs as a bottom bar in thumb reach, close button above it */
-@media (max-width:599px){#inv{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 132px)}
+/* phones: tabs as a bottom bar in thumb reach, sticky header with close button on top */
+@media (max-width:599px){#inv{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 76px)}
+  #inv .ihead{position:sticky;top:0;z-index:9;margin:0 -16px;padding:max(8px,env(safe-area-inset-top,0px)) 16px 8px;background:#140f0b;border-bottom:1px solid var(--edge)}#inv .ires{grid-column:1;grid-row:1;justify-content:flex-start;gap:4px 12px;font-size:15px}
   #inv .tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;justify-content:space-around;gap:0;background:#17110d;border-top:1px solid var(--edge);border-bottom:0;padding:0 4px env(safe-area-inset-bottom,0px)}
   #inv button.tab{flex:1;font-size:15px;padding:14px 2px 12px;border-bottom:0;border-top:3px solid transparent}#inv button.tab.on{border-top-color:var(--ember)}
-  #inv .ires .btn[data-a=close]{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 64px);z-index:10;min-width:120px;box-shadow:0 4px 14px rgba(0,0,0,.6)}}
+}

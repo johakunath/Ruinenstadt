@@ -103,7 +103,7 @@ function renderInv(){
   if(invFrom==='run'&&invTab==='stash')invTab='bag';refresh();
   const tb=(k,n)=>`<button class="tab${invTab===k?' on':''}" data-t="${k}">${n}</button>`;
   const head=`<div class="ihead"><div class="tabs">${tb('bag','Ausrüstung')}${invFrom!=='run'?tb('stash','Lager'):''}${tb('jobs','Aufträge')}${tb('shop','Werkstatt')}${invFrom==='run'?tb('map','Karte'):''}${tb('kodex','Kodex')}</div>
-    <div class="ires"><span>Schrott <b>${S.scrap}</b></span><span>Kampfkraft <b>${power(ST)}</b></span>${invFrom==='run'?`<span>${DIST[run.d].n} · Welle ${run.wave}/10</span>`:''}<button class="btn sm main" data-a="close">${invFrom==='run'?'Weiter':'Zurück'}</button></div></div>${perkList?`<div class="perks">Segen: ${perkList}</div>`:''}`;
+    <div class="ires"><span>Schrott <b>${S.scrap}</b></span><span>Kampfkraft <b>${power(ST)}</b></span>${invFrom==='run'?`<span>${DIST[run.d].n} · Welle ${run.wave}/10</span>`:''}</div><button class="btn sm main iclose" data-a="close">${invFrom==='run'?'Weiter':'Zurück'}</button></div>${perkList?`<div class="perks">Segen: ${perkList}</div>`:''}`;
   let body='';
   if(invTab==='bag'||invTab==='stash'){const LST=invTab==='stash'?S.stash:S.bag,N=invTab==='stash'?stashMax():BAG,src=invTab==='stash'?'stash':'bag';
     let cells='';for(let i=0;i<N;i++){const it=LST[i],s=sel&&sel.src===src&&sel.i===i;
