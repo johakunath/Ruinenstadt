@@ -254,7 +254,8 @@ function buildWorld(d){
   g.fillStyle='#6b5543';g.beginPath();g.arc(1200,1100,8,0,7);g.fill();g.strokeStyle='rgba(255,230,200,.12)';g.lineWidth=2;g.beginPath();g.arc(1200,1100,35,3.4,5.6);g.stroke();
   walls.push({x:1168,y:1068,w:64,h:64});
   }
-  if(K){legacy(lmRathaus,1050,1230);reserved.push({x:1590,y:1420,w:520,h:360});}// Rathausplatz stays openelse if(d.i===1)lmSpree();else if(d.i>=5)[lmWasserturm,lmZitadelle,lmMarzahn][d.i-5]();else legacy([lmRathaus,null,lmTurm,lmTempelhof,lmNeukoelln][d.i]);
+  if(K){legacy(lmRathaus,1050,1230);reserved.push({x:1590,y:1420,w:520,h:360});}// Rathausplatz stays open
+  else if(d.i===1)lmSpree();else if(d.i>=5)[lmWasserturm,lmZitadelle,lmMarzahn][d.i-5]();else legacy([lmRathaus,null,lmTurm,lmTempelhof,lmNeukoelln][d.i]);
   if(K)geoStreets(K);
   makeSpati();makeDark();makeDark();if(Math.random()<.5)makeDark();if(K)makeDark();
   for(const b of BLK)lotFill(b);
