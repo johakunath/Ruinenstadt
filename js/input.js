@@ -34,3 +34,13 @@ function resume(){$('inv').hidden=true;state='play';last=performance.now();updat
 let wake=null;function immerse(){try{if(S.fs!==0&&!document.fullscreenElement&&document.documentElement.requestFullscreen)document.documentElement.requestFullscreen({navigationUI:'hide'}).catch(()=>{});}catch(e){}
   try{if(navigator.wakeLock&&!wake)navigator.wakeLock.request('screen').then(l=>{wake=l;l.addEventListener('release',()=>wake=null);}).catch(()=>{});}catch(e){}}
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&run)immerse();});
+/* device back button (Android): closes menus and pauses instead of leaving. In camp it takes three presses within 2 s to leave the app.
+   Browsers ignore history entries added without a tap, so the guard entry is re-armed on every tap. */
+let backN=0,backT=0;const armBack=()=>{try{if(!(history.state&&history.state.rs))history.pushState({rs:1},'');}catch(_){}};
+addEventListener('pointerdown',armBack,true);
+addEventListener('popstate',()=>{
+  if(state==='play'){pauseGame();return armBack();}
+  if(!$('inv').hidden){const b=document.querySelector('#inv [data-a=close]');if(b)b.click();return armBack();}
+  if(state!=='menu'||!$('trade').hidden||!$('perk').hidden||!$('end').hidden)return armBack();
+  const n=performance.now();backN=n-backT<2000?backN+1:1;backT=n;
+  if(backN<3){toast(`Noch ${3-backN}× Zurück zum Verlassen`);if(backN<2)armBack();else setTimeout(()=>{if(backN<3&&performance.now()-backT>=2000){backN=0;armBack();}},2100);}});
