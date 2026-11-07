@@ -77,16 +77,24 @@ function geoRoads(K,d){const g=gx;
   for(const n in K.roads){const p=K.roads[n],m=p[Math.floor(p.length/2)];marks.push({x:m[0],y:m[1],n,soft:1});}
   for(const b of K.bridges)marks.push({x:b[0],y:b[1],n:b[2]});for(const m of K.marks)marks.push({x:m[0],y:m[1],n:m[2],soft:1});
   for(const z of K.zones){const P_=z[1],cx=P_.reduce((a,q)=>a+q[0],0)/P_.length,cy=P_.reduce((a,q)=>a+q[1],0)/P_.length;marks.push({x:cx,y:cy,n:z[0],soft:1});}}
-// street fronts: walk every road and line it with buildings picked from the zone's lot weights (Altbau, EFH, Reihenhaus, Platte, ruins). Forest and park zones stay open.
-// A failed spot retries once at 65% size, then moves on 40 units
+// rotated building at centre cx,cy (rot in (-45°,45°]): free if footprint plus 14 margin is off water, roads, walls and reserved areas
+const ptRes=(x,y)=>reserved.some(r=>!r.road&&x>r.x&&x<r.x+r.w&&y>r.y&&y<r.y+r.h),rotN=a=>{while(a>Math.PI/4)a-=Math.PI/2;while(a<=-Math.PI/4)a+=Math.PI/2;return a;};
+function tryBR(cx,cy,w,h,rot,H,st){const b0={x:cx-w/2,y:cy-h/2,w,h,rot};
+  for(let a=0;a<=6;a++)for(let c=0;c<=4;c++){const[px,py]=obW(b0,(a/3-1)*(w/2+14),(c/2-1)*(h/2+14));if(px<10||py<10||px>WS-10||py>WS-10||isWater(px,py)||roadD(px,py)<60||inWall(px,py,4)||ptRes(px,py))return null;}
+  const gb=st==='efh'?R(.55,.7)*h:st==='reihen'?R(.45,.55)*h:0,bb={x:b0.x,y:b0.y,w,h,H:Math.round(H*(st==='laube'?1.2:2)),top:H+gb*.5,R0:0,gable:gb,rot};
+  makeB(bb,st);blds.push(bb);const ow=obWall(bb);walls.push(ow);reserved.push({x:ow.x,y:ow.y,w:ow.w,h:ow.h,road:1});return bb;}// road:1 = soft reserve, roadside props may ignore it (they check walls)
+const bSpec=k=>k==='efh'?['efh',R(80,100)*BSC,R(65,80)*BSC,44]:k==='reihen'?['reihen',4*58*BSC,R(70,85)*BSC,44]:k==='plattenbau'?['platte',R(240,420),R(64,90)*BSC,R(100,140)*BHS*.75]:k==='ruins'?['ruin',R(60,150)*BSC,R(30,60)*BSC,R(14,34)*BHS*.75]:[0,R(100,220)*BSC,R(50,105)*BSC,R(38,72)*BHS];
+// street fronts: walk every road and line it with buildings turned to the road, picked from the zone's lot weights. Forest and park zones stay open.
+// Urban fronts sometimes get a Hinterhaus behind them. A failed spot retries at 65% size, then moves on 40 units
 function geoStreets(K){const zoneAt=(x,y)=>{for(const z of K.zones)if(inPoly(z[1],x,y))return z[2];return K.other;};
-  for(const s of ROADS)for(const sd of [-1,1]){const ax=Math.abs(s.ux),ay=Math.abs(s.uy);let t=30;
-    while(t<s.len-30){const px=s.ax+s.ux*t,py=s.ay+s.uy*t,L=zoneAt(px-s.uy*sd*120,py+s.ux*sd*120).lots,
+  for(const s of ROADS){const rot=rotN(Math.atan2(s.uy,s.ux)),hz=Math.abs(s.ux)>=Math.abs(s.uy);
+   for(const sd of [-1,1]){let t=30;const nx=-s.uy*sd,ny=s.ux*sd;
+    while(t<s.len-30){const px=s.ax+s.ux*t,py=s.ay+s.uy*t,L=zoneAt(px+nx*120,py+ny*120).lots,
       k=wpick({houses:(L.houses||0)+(L.hinterhof||0)+(L.market||0)*.5,efh:L.efh||0,reihen:L.reihen||0,plattenbau:L.plattenbau||0,ruins:L.ruins||0,none:(L.forest||0)+(L.park||0)+(L.kleingarten||0)*.5+.3});
       if(k==='none'||Math.random()<.12){t+=R(80,200);continue;}
-      const[st,w0,h0,H]=k==='efh'?['efh',R(80,100)*BSC,R(65,80)*BSC,44]:k==='reihen'?['reihen',4*58*BSC,R(70,85)*BSC,44]:k==='plattenbau'?['platte',R(240,420),R(64,90)*BSC,R(100,140)*BHS*.75]:k==='ruins'?['ruin',R(60,150)*BSC,R(30,60)*BSC,R(14,34)*BHS*.75]:[0,R(100,220)*BSC,R(50,105)*BSC,R(38,72)*BHS];
-      let ok=false,along=0;
-      for(const f of [1,.65]){const w=w0*f,h=h0*f,ext=(w*ay+h*ax)/2,off=84*(ax+ay)+ext;along=w*ax+h*ay;// 84: road reserve half (60) + resHit margin (20) + 4, projected on the normal
-        const cx=px+s.ux*along/2-s.uy*sd*off,cy=py+s.uy*along/2+s.ux*sd*off;
-        if(Math.hypot(cx-SX,cy-SY)>220&&!isWater(cx,cy)&&cx-w/2>10&&cy-h/2>10&&cx+w/2<WS-10&&cy+h/2<WS-10&&tryB(cx-w/2,cy-h/2,w,h,H,st)){ok=true;break;}}
-      t+=ok?along+R(16,40):40;}}}
+      const[st,l0,d0,H]=bSpec(k);let ok=null,len=0;
+      for(const f of [1,.65]){const l=l0*f,d=d0*f,off=82+d/2;len=l;if(Math.hypot(px+nx*off-SX,py+ny*off-SY)<220)break;
+        ok=tryBR(px+s.ux*l/2+nx*off,py+s.uy*l/2+ny*off,hz?l:d,hz?d:l,rot,H,st);if(ok){
+          if(k==='houses'&&Math.random()<.45){const[,l2,d2,H2]=bSpec('houses'),o2=82+d+30+d2*.35;tryBR(px+s.ux*l/2+nx*o2,py+s.uy*l/2+ny*o2,hz?Math.min(l,l2):d2*.7,hz?d2*.7:Math.min(l,l2),rot,H2*.8,0);}
+          break;}}
+      t+=ok?len+R(16,40):40;}}}}
