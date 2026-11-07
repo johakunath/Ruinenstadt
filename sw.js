@@ -1,7 +1,7 @@
 // Bump CACHE with every release so installed copies pick up the new files.
-const CACHE='ruinenstadt-0.17';
+const CACHE='ruinenstadt-0.33';
 const SHELL=['./','index.html','css/style.css','manifest.webmanifest','icons/icon.svg','icons/icon-192.png','icons/icon-512.png',
-  ...['core','save','canvas','data','items','audio','world','state','feedback','combat','input','panels','update','art','render','main'].map(n=>`js/${n}.js`)];
+  ...['core','save','canvas','data','items','audio','world','biomes','state','feedback','combat','input','panels','update','art','render','main'].map(n=>`js/${n}.js`)];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k.startsWith('ruinenstadt-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
 // Stale-while-revalidate: serve from cache, refresh in the background. Fonts are cached too, so the game works offline.

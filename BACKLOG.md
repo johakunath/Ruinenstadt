@@ -1,7 +1,7 @@
 # Ruinenstadt Backlog
 
 Top-down loot ARPG in post-collapse Berlin. Hobby project to learn game development.
-Current build: v0.17, static web app (PWA) in this repo. Game text in German.
+Current build: v0.33, static web app (PWA) in this repo. Game text in German.
 Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are now v0.1–v0.16.
 
 ## Intent (working version, refine as we go)
@@ -50,14 +50,14 @@ Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are n
 | Save code | Copy and paste the save as text from the menu. Replaces cross-device cloud save outside claude.ai |
 | Version in menu | `VERSION` constant shown at the bottom of the menu |
 
-## Next: candidates for v0.18
+## Next: candidates for v0.34
 
 | Item | Notes |
 |---|---|
-| Cloud save outside claude.ai | Supabase (auth + database, free tier). Needs a Supabase project and keys. Save code covers it until then |
-| Walkable camp hub | Upgrade the drawn camp scene into a walkable hub. Mockup first |
-| Balance pass | Tune threat scaling and elite frequency with real play data |
-| Sound files | Replace synth effects with jsfxr samples where it helps |
+| Playtest on the Tab S9 | Check feel of zoom, control sizes and difficulty against the bot numbers below |
+| GitHub Pages + cloud save | Pages from `main` root; Supabase for cross-device saves |
+| Walkable camp hub | Mockup first |
+| Sound files | Replace synth effects with jsfxr samples |
 
 ## Later
 
@@ -76,9 +76,18 @@ Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are n
 ## Parking lot (unsorted ideas)
 
 - Weapon mastery: using a weapon type levels it up
-- Daily challenge run with fixed seed
 - Achievements
 - Day and night cycle per run
+
+## Balance (v0.29, bot simulation, fresh save)
+
+| Difficulty | Runs to beat all 8 districts | Where it gets hard |
+|---|---|---|
+| Leicht | 8, no deaths | nowhere |
+| Normal | about 10 to 15 | Tempelhof, Neukölln, Spandau sometimes need a second try |
+| Schwer | about 20 | first runs in Köpenick, then Neukölln |
+
+Runs take 4 to 7 minutes of game time. Re-run with `node tools/balance.mjs 30 1` after changing numbers.
 
 ## Tech decisions
 
@@ -112,3 +121,19 @@ Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are n
 | v0.15 | 11 achievements with Schrott rewards, shown in the quests tab |
 | v0.16 | One-time onboarding tips at first run, loot, sets, perks, elites, bosses, weaknesses, consumables and off-screen targets |
 | v0.17 | Moved to GitHub repo, split into CSS and JS modules, PWA (manifest, service worker, offline, install), save code export and import, version shown in menu |
+| v0.18 | Tablet pass (Galaxy Tab S9): world zoom for big screens, sharper rendering, larger HUD, controls and joystick, fullscreen and screen wake lock. Camp menu in two columns with a Berlin district map and district card. Inventory with paper doll, full stat sheet, side-by-side detail and compare, Kodex tab for enemies, bosses and elites |
+| v0.19 | World 2400×2400 (was 1600). Random road layouts per run, 12 lot types (Altbau, Hinterhof, Plattenbau, Markt, Park with ponds, Wald, Kleingärten, Trümmerfeld, Baustelle with crane, Parkplatz, See, Rollfeld with plane wreck). Biome weights, grass and trees per district. Weather per district (fireflies, rain, ash, dust, embers), animated water, Spree across the whole map. Spatial grid for wall collisions |
+| v0.20 | Five new enemy types: Ratte (packs), Zünder (fuse and blast, hurts enemies too), Schildträger (frontal shield, flank or stun with hammer), Krähe (flies over walls, dives), Heuler (buffs nearby enemies). Enemy mix per district. Three new districts with landmarks and bosses: Prenzlauer Berg (Wasserturm, Rattenmutter), Spandau (Zitadelle, Zitadellenritter with shield and charge), Marzahn (Hochhaus, Plattenkönig with falling slabs and Zünder). Weather: leaves, fog, snow. New jobs, achievement, Kodex entries |
+| v0.21 | Game feel: loot arcs out with bounce and lands with name labels on the ground in rarity colour, legendary drops with gold flash, fanfare and taller beam. Smooth camera with look-ahead. Kill streak counter with Schrott bonus from 10 kills. Dusk to night across the 10 waves. Heartbeat at low life, footstep dust, popping crit numbers, enemies-left counter in the HUD |
+| v0.22 | Combo finishers: every 3rd blade swing is a wide heavy finisher, every 3rd hammer blow adds a stunning quake, every 4th sling shot pierces 3 enemies. Litfaßsäulen: 3 advertising columns per map grant a 45 s blessing (Adrenalin, Eisenhaut, Goldrausch, Rückenwind, Funkenflug), shown in the HUD. Map tab in the pause screen with landmarks, Späti, dark zones, columns, enemies and area names. New job |
+| v0.23 | Crafting: four materials (Stoff, Metall, Chemie, Kabel) drop from enemies by type, elites, bosses and crates. Seven weapon mods (Aufsätze) built in the Werkstatt from materials and Schrott: Nagelband, Griffband, Gegengewicht, Autobatterie, Benzintank, Säurephiole, Stacheldraht. Weapons have one mod slot, rare and set weapons two. Element mods give an element or +20% elemental damage |
+| v0.24 | Loot expansion: six new legendaries with powers (Klinge der Zitadelle, Plattenbrecher, Krähenschleuder, Mantel der Rattenmutter, Rüstung des Zitadellenritters, Auge des Fernsehturms), third set Zitadelle (Morgenstern, Kettenhemd, Wappen), new icons, weapon models and armor looks. Kodex collection of legendary finds and set pieces |
+| v0.25 | Events: Gefangene befreien (guards with an elite, rescued survivor moves into the camp), Schatzversteck (timed treasure hunt with arrow), Rattenflut (rat horde). 3 events per run (4 with Funkmast). Six survivors with permanent bonuses (Dr. Ahmet, Mira, Jonas, Oma Gerda, Lin, Kalle), shown at the campfire and in the Werkstatt |
+| v0.26 | Cityscape: vehicle variety (Trabis, vans, BVG buses, trams on the tracks), roof details (chimneys, satellite dishes, solar panels), coloured neon glows (street lamps, Späti sign, U-Bahn signs), flickering lamps |
+| v0.27 | Blessings: 8 new (Kombo-Meister, Plünderer, Schildbrecher, Sprengmeister, Atempause, Gnadenstoß, Sammler, Rausch), rare and epic cards that grant two levels, one reroll per wave for Schrott, three-column card layout on tablets |
+| v0.28 | Endless mode for liberated districts (bosses every 5 waves, events every 3 waves, Schrott bonus per wave beyond 10, record per district). Music: own chord progression and melody scale per district, drums during boss fights |
+| v0.29 | Balance pass with a bot simulator (tools/): enemy life now scales with item level like player damage, +20% enemy life and damage per district, +6% enemies per wave per district, Schärfen +7% per level (was 10%), Holzlatte 5 damage, softer mid-boss (520 life, 20 damage, slower glob ring, -25% in Köpenick), boss contact damage -40%, crows hover after diving, stuck enemies relocate, arrows to the last 3 enemies of a wave |
+| v0.30 | Fourth weapon type Speer (Rohrspeer, Fahnenstange, Harpune): long narrow thrust hits everything in a line, finisher lunges forward, skill Wurf throws a piercing spear, two-handed (no torch). Legendary Speer der Siegessäule shoots a golden blade with each thrust. Spear mastery |
+| v0.31 | Lagerfeuer cooking: one meal per expedition (Erbsensuppe, Currywurst, Filterkaffee, Soljanka, Spreewaldgurken) for a run-long bonus. Stirnlampen-Werkstatt camp building lights dark zones for two-handed weapons. 7 new achievements (all survivors, streak 50, endless wave 20, all legendaries, 3 mods, spear mastery, threat 5) |
+| v0.32 | Tageskampf (daily challenge, unlocks after the first liberation): seeded map and spawns per day, district and two of seven modifiers chosen by date (Blutmond, Elitenacht, Glaskanone, Stromausfall, Goldrausch, Horde, Eiserne Haut), score from kills, waves and victory, best score per day |
+| v0.33 | Balance: enemy damage grows +16% per district instead of +20%, so late districts no longer double the hits you take relative to your life |

@@ -21,7 +21,7 @@
 
 <canvas id="c"></canvas>
 <div id="hud">
-  <div class="row"><div class="bar"><i id="hpf"></i><span id="hpt"></span></div><div class="stat"><b id="dn">Köpenick</b> · <b id="wv">0</b>/10</div></div>
+  <div class="row"><div class="bar"><i id="hpf"></i><span id="hpt"></span></div><div class="stat"><b id="dn">Köpenick</b> · <b id="wv">0</b>/<span id="wmax">10</span><span id="remw"> · <b id="rem">0</b> Gegner</span></div></div>
   <div class="row"><div class="bar xp"><i id="xpf" style="width:0"></i></div><div class="stat">Stufe <b id="lv">1</b> · Schrott <b id="sc">0</b></div></div>
   <div id="boss" hidden><div id="bossn"></div><div class="bar"><i id="bossf"></i></div></div>
 </div>
@@ -32,6 +32,8 @@
 <div id="c2" class="cbtn cons" role="button" aria-label="Molotow werfen"><span>Molotow</span><b id="c2n">0</b></div>
 <div id="dash" class="cbtn" role="button" aria-label="Sprint">Sprint</div>
 <div id="atk" class="cbtn" role="button" aria-label="Angreifen">Hieb</div>
+<div id="bufs"></div>
+<div id="streak" hidden><b id="stn">0</b><span>Serie</span></div>
 <div id="toasts"></div>
 <div id="banner"></div>
 <div id="menu" class="ov"><div class="box" id="menubox"></div></div>
@@ -46,6 +48,7 @@
 <script src="js/items.js"></script>
 <script src="js/audio.js"></script>
 <script src="js/world.js"></script>
+<script src="js/biomes.js"></script>
 <script src="js/state.js"></script>
 <script src="js/feedback.js"></script>
 <script src="js/combat.js"></script>
