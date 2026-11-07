@@ -1,7 +1,7 @@
 # Ruinenstadt Backlog
 
 Top-down loot ARPG in post-collapse Berlin. Hobby project to learn game development.
-Current build: v0.32, static web app (PWA) in this repo. Game text in German.
+Current build: v0.33, static web app (PWA) in this repo. Game text in German.
 Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are now v0.1–v0.16.
 
 ## Intent (working version, refine as we go)
@@ -50,14 +50,14 @@ Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are n
 | Save code | Copy and paste the save as text from the menu. Replaces cross-device cloud save outside claude.ai |
 | Version in menu | `VERSION` constant shown at the bottom of the menu |
 
-## Next: candidates for v0.18
+## Next: candidates for v0.34
 
 | Item | Notes |
 |---|---|
-| Cloud save outside claude.ai | Supabase (auth + database, free tier). Needs a Supabase project and keys. Save code covers it until then |
-| Walkable camp hub | Upgrade the drawn camp scene into a walkable hub. Mockup first |
-| Balance pass | Tune threat scaling and elite frequency with real play data |
-| Sound files | Replace synth effects with jsfxr samples where it helps |
+| Playtest on the Tab S9 | Check feel of zoom, control sizes and difficulty against the bot numbers below |
+| GitHub Pages + cloud save | Pages from `main` root; Supabase for cross-device saves |
+| Walkable camp hub | Mockup first |
+| Sound files | Replace synth effects with jsfxr samples |
 
 ## Later
 
@@ -84,7 +84,7 @@ Versioning: `v0.N`, one number per release. v1–v16 from the artifact era are n
 | Difficulty | Runs to beat all 8 districts | Where it gets hard |
 |---|---|---|
 | Leicht | 8, no deaths | nowhere |
-| Normal | about 15 | Neukölln, Prenzlauer Berg, Spandau need 2 to 5 tries |
+| Normal | about 10 to 15 | Tempelhof, Neukölln, Spandau sometimes need a second try |
 | Schwer | about 20 | first runs in Köpenick, then Neukölln |
 
 Runs take 4 to 7 minutes of game time. Re-run with `node tools/balance.mjs 30 1` after changing numbers.
@@ -136,3 +136,4 @@ Runs take 4 to 7 minutes of game time. Re-run with `node tools/balance.mjs 30 1`
 | v0.30 | Fourth weapon type Speer (Rohrspeer, Fahnenstange, Harpune): long narrow thrust hits everything in a line, finisher lunges forward, skill Wurf throws a piercing spear, two-handed (no torch). Legendary Speer der Siegessäule shoots a golden blade with each thrust. Spear mastery |
 | v0.31 | Lagerfeuer cooking: one meal per expedition (Erbsensuppe, Currywurst, Filterkaffee, Soljanka, Spreewaldgurken) for a run-long bonus. Stirnlampen-Werkstatt camp building lights dark zones for two-handed weapons. 7 new achievements (all survivors, streak 50, endless wave 20, all legendaries, 3 mods, spear mastery, threat 5) |
 | v0.32 | Tageskampf (daily challenge, unlocks after the first liberation): seeded map and spawns per day, district and two of seven modifiers chosen by date (Blutmond, Elitenacht, Glaskanone, Stromausfall, Goldrausch, Horde, Eiserne Haut), score from kills, waves and victory, best score per day |
+| v0.33 | Balance: enemy damage grows +16% per district instead of +20%, so late districts no longer double the hits you take relative to your life |
