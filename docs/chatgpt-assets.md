@@ -135,6 +135,8 @@ Success test: Claude cuts it (`tools/cut_sheets.py H01` → `assets/hero/`), lay
 
 > One sheet, one character: the survivor from the Köpenick board, game-sprite proportions: stocky and readable, about 5 heads tall, big head and hands, broad shoulders, thick limbs, bold dark outline, strong warm rim light on the back edge. Dark brown hair, red scarf, long brown **leather** coat to the knees, harness with pouches, dark trousers, heavy boots, no weapon. Strict side view facing right, flat even light. H01 full figure standing, arms hanging, about 400 px tall. H02 head and hair only, cut at the neck. H03 torso only: coat, scarf and harness, **no head, no arms, no sleeves**, the shoulder ends flat where the arm attaches. H04 one arm: shoulder to fingers, straight and hanging, sleeve with bare hand. H05 one leg: hip to boot, straight. H06 leave empty. Draw every part at exactly the same scale as H01, do not enlarge parts to fill their cells.
 
+**H02 result (`assets/raw/H02a..c.png`):** ChatGPT ignored "5 heads tall" again (all three about 7 heads) and kept the olive cloth coat. Parts are consistent and closer to scale (1.0 to 1.2 times). Fix on our side: the parts are assembled in code, so the code exaggerates them (head ×1.45, torso and limbs ×1.25 to 1.3 wider, legs ×0.8 shorter). That reads at 60 px, see `docs/style/h02-gamesize.png` (left: plain figure, right: exaggerated). Chosen: variant A. Lesson for later sheets: don't fight ChatGPT on proportions, fix them in assembly.
+
 
 ## Totals
 
@@ -158,7 +160,7 @@ Claude ticks a batch here once its sheet is in `assets/raw/`.
 |---|---|
 | B01 to B10 | done, cut into `assets/icons/` (v0.49) |
 | B11, B12, P06 (Mitte) | open |
-| H01 (player test) | done, see result above. Next: H02 |
+| H01, H02 (player test) | done, see results above. Pick: H02 variant A |
 | P01 to P05 | done, cut into `assets/portraits/` (v0.49) |
 
 Cutting: `python3 tools/cut_sheets.py [B01 ...]`. It finds the label strip per cell, keys out the teal (also enclosed holes such as ring centres) and writes WebP. New batches: add their IDs to `IDS` in the script, and the mapping to `ICOI` / `PORTI` in `js/items.js`.

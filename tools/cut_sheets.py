@@ -90,7 +90,7 @@ def run(b):
         lt = label_top(im, x0, x0 + cw, y0, y0 + ch, b[0] == 'H')
         m = 6; cell = im.crop((x0 + m, y0 + m, x0 + cw - m, lt - 4))
         img = icon(cell) if b[0] == 'B' else part(cell) if b[0] == 'H' else portrait(cell)
-        img.save(os.path.join(out, idn + b[3:] + '.webp'), 'WEBP', quality=86, method=6)
+        img.save(os.path.join(out, (b + '-' + idn if b[0] == 'H' else idn) + '.webp'), 'WEBP', quality=86, method=6)  # H: sheet-variant-part, e.g. H02a-H03
         print(b, idn, 'label at', lt - y0)
 
 if __name__ == '__main__':
