@@ -4,11 +4,20 @@ Work order for generating menu art (item icons, portraits) with ChatGPT image ge
 
 ## How to work
 
-1. Read this file and `docs/style-bible.md`.
-2. Look at `docs/style/koepenick.png` (main style reference). If you cannot open images from the repository, ask Johannes to attach it.
-3. Generate **exactly one batch per step**, the one Johannes names (or the next one after the last finished batch). Do not combine batches.
-4. After each image, say the batch ID and the file name to save it as. Then stop and wait.
+Johannes starts a ChatGPT chat with the short handover below, then only says "next batch".
+
+> Read `docs/chatgpt-assets.md` in the GitHub repo johakunath/Ruinenstadt (branch main) and follow "How to work". Start with the first open batch in the Queue.
+
+Rules for ChatGPT:
+
+1. Read this file. The **Queue** below holds every open batch with its complete prompt, in order.
+2. On "next batch": take the first queue entry whose status is open and not yet done in this chat. Use its prompt exactly as written. Each prompt names the reference images to attach; if you cannot open them from the repository, ask Johannes to attach them.
+3. Generate **exactly one batch per image**. Do not combine batches. If you can make several images at once, make 2 or 3 variants of the same batch, never different batches.
+4. After each image, say the batch ID and the file name to save it as (`assets/raw/<batch ID>.png`, variants `<batch ID>a.png`, `b`, `c`). Then stop and wait.
 5. If a cell fails (wrong object, merged cells, unreadable), regenerate the whole batch rather than patching.
+6. Everything that must match (one character, its parts, its outfits) goes on one sheet. Between sheets, attach the earlier sheet as reference.
+
+Claude cuts the sheets with `tools/cut_sheets.py`, integrates them and marks the batch done in the Queue.
 
 ## Sheet format (all batches)
 
@@ -96,17 +105,7 @@ Zombies are gaunt, grey-green skin, torn Berlin everyday clothes. Same look as t
 | P04 | X01 Der Hauptmann von Köpenick (zombie Prussian captain, spiked helmet, long coat) · X02 Die Spreehexe (river witch, wet hair, acid) · X03 Der Turmwächter (guardian of the TV tower, electric) · X04 Der Fliegerkönig (zombie pilot king, aviator goggles, Tempelhof) · X05 Der Brandmeister (burning fire chief) · X06 Die Rattenmutter (huge rat queen, grey fur) |
 | P05 | X07 Der Zitadellenritter (undead knight with shield) · X08 Der Plattenkönig (giant of Plattenbau concrete slabs) · then four empty cells (leave them as plain background) |
 
-### Icons and portraits: Mitte (Potsdamer Platz)
-
-Attach `docs/style/potsdamer-platz.png` in addition to the Köpenick board and add to the style block: *"Mitte variant: same painted style and base palette, plus cyan `#43d1cf` and magenta `#bd2b77` neon accents. Improvised club and techno gear, cables, glowing parts, rain-worn."*
-
-| Batch | Cells |
-|---|---|
-| B11 | I59 Leuchtröhre (neon tube taped to a handle, used as a club) · I60 Boxenhammer (hammer with a small speaker box as head) · I61 Neonflinte (improvised rifle with a glowing neon tube barrel) · I62 Mikroständer (microphone stand used as a spear) · I63 Regenponcho (transparent rain poncho, neon reflections) · I64 Kabelmantel (long coat wrapped in cables) · I65 Neonbrille (goggles with glowing cyan lenses) · I66 Neonauge (cybernetic eye implant, glowing) |
-| B12 | I67 Zielchip (targeting chip with fine circuits) · I68 Reflexkoppler (spine nerve module with a small lightning spark) · I69 Bassherz (heart-shaped implant with a speaker membrane) · I70 Nanopumpe (glass cylinder pump with glowing liquid) · D01 Döner (döner kebab in paper, the food pickup) · then three empty cells |
-| P06 | E13 Kabelghul (gaunt zombie wrapped in glowing cyan cables) · E14 Boxenkopf (zombie with a speaker box instead of a head, bass waves) · X09 Der Bassprediger (boss: techno preacher with headphones, mixer on his chest, magenta neon) · then three empty cells |
-
-### Player parts (test, not menu art)
+### Player parts: test history (H01, H02)
 
 Rule for anything that must stay consistent (one character, its parts, its outfits): **put it on one sheet.** Inside one image the colours, line weight and proportions match. Between two images they drift, even when generated in the same go. For a follow-up sheet, attach the previous sheet as reference and say "same character, same scale as the attached sheet". Canvas stays 1536 × 1024 (ChatGPT's largest landscape size); more content means more sheets, not a bigger canvas.
 
@@ -135,22 +134,154 @@ Success test: Claude cuts it (`tools/cut_sheets.py H01` → `assets/hero/`), lay
 
 > One sheet, one character: the survivor from the Köpenick board, game-sprite proportions: stocky and readable, about 5 heads tall, big head and hands, broad shoulders, thick limbs, bold dark outline, strong warm rim light on the back edge. Dark brown hair, red scarf, long brown **leather** coat to the knees, harness with pouches, dark trousers, heavy boots, no weapon. Strict side view facing right, flat even light. H01 full figure standing, arms hanging, about 400 px tall. H02 head and hair only, cut at the neck. H03 torso only: coat, scarf and harness, **no head, no arms, no sleeves**, the shoulder ends flat where the arm attaches. H04 one arm: shoulder to fingers, straight and hanging, sleeve with bare hand. H05 one leg: hip to boot, straight. H06 leave empty. Draw every part at exactly the same scale as H01, do not enlarge parts to fill their cells.
 
-**H02 result (`assets/raw/H02a..c.png`):** ChatGPT ignored "5 heads tall" again (all three about 7 heads) and kept the olive cloth coat. Parts are consistent and closer to scale (1.0 to 1.2 times). Fix on our side: the parts are assembled in code, so the code exaggerates them (head ×1.45, torso and limbs ×1.25 to 1.3 wider, legs ×0.8 shorter). That reads at 60 px, see `docs/style/h02-gamesize.png` (left: plain figure, right: exaggerated). Chosen: variant A. Lesson for later sheets: don't fight ChatGPT on proportions, fix them in assembly.
+**H02 result (`assets/raw/H02a..c.png`):** ChatGPT ignored "5 heads tall" again (all three about 7 heads) and kept the olive cloth coat. Parts are consistent and closer to scale (1.0 to 1.2 times). Fix on our side: the parts are assembled in code, so the code exaggerates them (head ×1.45, torso and limbs ×1.25 to 1.3 wider, legs ×0.8 shorter). That reads better at 60 px, see `docs/style/h02-gamesize.png` (left: plain figure, right: exaggerated). Decision: variant A with its **plain, slim proportions** (Johannes prefers the look). Later sheets keep these proportions; any small readability tweak happens in assembly, not in the prompt.
 
+
+## Queue
+
+Open batches in order, each with its complete prompt. ChatGPT takes the first open one on "next batch". Claude sets the status to done once the sheet is cut. Reference images live in the repo: `docs/style/koepenick.png`, `docs/style/potsdamer-platz.png`, `assets/raw/H02a.png`.
+
+| Order | Batch | Content | Status |
+|---|---|---|---|
+| 1 | B11 | Mitte icons: weapons, armour, head, implant | open |
+| 2 | B12 | Mitte implant icons, Döner | open |
+| 3 | P06 | Mitte portraits: Kabelghul, Boxenkopf, Bassprediger | open |
+| 4 | H03 | Player outfits 1: Lederjacke, Arbeitsmantel, Schutzweste | open |
+| 5 | H04 | Player outfits 2: Feuerwehrjacke, BVG-Uniform, Mantel des letzten Späti | open |
+| 6 | H05 | Player outfits 3: Tempelhof armour, Rattenmutter coat, Zitadellenritter armour | open |
+| 7 | H06 | Player outfits 4: Kettenhemd, Regenponcho, Kabelmantel | open |
+| 8 | H07 | Player headwear | open |
+
+**B11** · attach: koepenick.png, potsdamer-platz.png
+
+```
+Painted comic illustration in the style of the attached Köpenick reference board: dark ink outlines, painterly brush texture, stylized not realistic, gritty post-apocalyptic Berlin with a western-steampunk and noir touch. Warm light from the top left, cool teal shadow. Palette: cream #f0b27a, ochre #db8c2b, olive #7b6a32, teal grey #516a62, rust #8b4a35, oxblood #591e1e. Every object must still read as a clear silhouette when shrunk to 48 pixels. Mitte variant, see the attached Potsdamer Platz board: same painted style and base palette, plus cyan #43d1cf and magenta #bd2b77 neon accents. Improvised club and techno gear, cables, glowing parts, rain-worn.
+
+Canvas 1536 x 1024, landscape. Flat, even dark teal #1e3238 background behind everything: no scene, no gradient, no texture, no frames, no drop shadows. Thin even gaps between cells. Below each object a dark strip with the cell ID in large plain white capitals, only the ID. Order left to right, top row first. Nothing touches the cell edge.
+
+Grid 4 columns x 2 rows, 8 cells of 384 x 512. Each cell shows one inventory icon: a single object in 3/4 view from slightly above, all at the same scale and lighting, centred in the upper part of the cell, about 75% of it.
+I59 Leuchtröhre: neon tube taped to a handle, used as a club, glowing cyan.
+I60 Boxenhammer: hammer with a small speaker box as its head.
+I61 Neonflinte: improvised rifle with a glowing neon tube as barrel.
+I62 Mikroständer: microphone stand used as a spear.
+I63 Regenponcho: transparent rain poncho with neon reflections.
+I64 Kabelmantel: long coat wrapped in cables.
+I65 Neonbrille: goggles with glowing cyan lenses.
+I66 Neonauge: cybernetic eye implant, glowing.
+```
+**B12** · attach: koepenick.png, potsdamer-platz.png
+
+```
+Painted comic illustration in the style of the attached Köpenick reference board: dark ink outlines, painterly brush texture, stylized not realistic, gritty post-apocalyptic Berlin with a western-steampunk and noir touch. Warm light from the top left, cool teal shadow. Palette: cream #f0b27a, ochre #db8c2b, olive #7b6a32, teal grey #516a62, rust #8b4a35, oxblood #591e1e. Every object must still read as a clear silhouette when shrunk to 48 pixels. Mitte variant, see the attached Potsdamer Platz board: same painted style and base palette, plus cyan #43d1cf and magenta #bd2b77 neon accents. Improvised club and techno gear, cables, glowing parts, rain-worn.
+
+Canvas 1536 x 1024, landscape. Flat, even dark teal #1e3238 background behind everything: no scene, no gradient, no texture, no frames, no drop shadows. Thin even gaps between cells. Below each object a dark strip with the cell ID in large plain white capitals, only the ID. Order left to right, top row first. Nothing touches the cell edge.
+
+Grid 4 columns x 2 rows, 8 cells of 384 x 512. Each cell shows one inventory icon: a single object in 3/4 view from slightly above, all at the same scale and lighting, centred in the upper part of the cell, about 75% of it.
+I67 Zielchip: targeting chip with fine glowing circuits.
+I68 Reflexkoppler: spine nerve implant module with a small lightning spark.
+I69 Bassherz: heart-shaped implant with a speaker membrane, magenta glow.
+I70 Nanopumpe: glass cylinder pump with glowing liquid.
+D01 Döner: döner kebab wrapped in paper (no neon, plain street food).
+Cells 6 to 8: leave empty, plain background, no label.
+```
+**P06** · attach: koepenick.png, potsdamer-platz.png
+
+```
+Painted comic illustration in the style of the attached Köpenick reference board: dark ink outlines, painterly brush texture, stylized not realistic, gritty post-apocalyptic Berlin with a western-steampunk and noir touch. Warm light from the top left, cool teal shadow. Palette: cream #f0b27a, ochre #db8c2b, olive #7b6a32, teal grey #516a62, rust #8b4a35, oxblood #591e1e. Every object must still read as a clear silhouette when shrunk to 48 pixels. Mitte variant, see the attached Potsdamer Platz board: same painted style and base palette, plus cyan #43d1cf and magenta #bd2b77 neon accents. Improvised club and techno gear, cables, glowing parts, rain-worn.
+
+Canvas 1536 x 1024, landscape. Flat, even dark teal #1e3238 background behind everything: no scene, no gradient, no texture, no frames, no drop shadows. Thin even gaps between cells. Below each object a dark strip with the cell ID in large plain white capitals, only the ID. Order left to right, top row first. Nothing touches the cell edge.
+
+Grid 3 columns x 2 rows, 6 cells of 512 x 512. Each cell shows one bust portrait (head and shoulders, 3/4 view), same framing and eye height in every cell. Zombies are gaunt with grey-green skin, like the ghouls on the Köpenick board.
+E13 Kabelghul: gaunt zombie wrapped in glowing cyan cables, cables growing into the skin.
+E14 Boxenkopf: zombie with a cracked speaker box instead of a head, visible bass waves.
+X09 Der Bassprediger: boss, undead techno preacher with big headphones, a DJ mixer strapped to his chest, magenta neon, preacher's collar.
+Cells 4 to 6: leave empty, plain background, no label.
+```
+**H03** · attach: koepenick.png, H02a.png
+
+```
+Painted comic illustration in the style of the attached Köpenick reference board: dark ink outlines, painterly brush texture, stylized not realistic, gritty post-apocalyptic Berlin with a western-steampunk and noir touch. Warm light from the top left, cool teal shadow. Palette: cream #f0b27a, ochre #db8c2b, olive #7b6a32, teal grey #516a62, rust #8b4a35, oxblood #591e1e. Every object must still read as a clear silhouette when shrunk to 48 pixels.
+
+Canvas 1536 x 1024, landscape. Flat, even dark teal #1e3238 background behind everything: no scene, no gradient, no texture, no frames, no drop shadows. Thin even gaps between cells. Below each object a dark strip with the cell ID in large plain white capitals, only the ID. Order left to right, top row first. Nothing touches the cell edge.
+
+Grid 3 columns x 2 rows, 6 cells of 512 x 512. Same survivor as the attached sheet H02a (same face, hair, red scarf, proportions and scale; keep the slim proportions of H02a). Strict side view facing right, flat even light, no weapon. Draw every part at exactly the same scale as the full figure on H02a; do not enlarge parts to fill their cells.
+Top row: three torsos. Bottom row: the matching arm under each torso.
+K01 torso only in Lederjacke (brown leather jacket, zip, short to the hip): no head, no arms, no sleeves, the shoulder ends flat where the arm attaches, same shoulder width and neck height as the H02a torso, length as described.
+K03 torso only in Arbeitsmantel (long brown work coat to the knee): no head, no arms, no sleeves, the shoulder ends flat where the arm attaches, same shoulder width and neck height as the H02a torso, length as described.
+K05 torso only in Schutzweste (padded olive vest over a shirt): no head, no arms, no sleeves, the shoulder ends flat where the arm attaches, same shoulder width and neck height as the H02a torso, length as described.
+K02 one arm in the Lederjacke sleeve: shoulder to fingers, straight and hanging, same size as the H02a arm.
+K04 one arm in the Arbeitsmantel sleeve: shoulder to fingers, straight and hanging, same size as the H02a arm.
+K06 one arm in the Schutzweste sleeve: shoulder to fingers, straight and hanging, same size as the H02a arm.
+```
+**H04** · attach: koepenick.png, H02a.png
+
+```
+Painted comic illustration in the style of the attached Köpenick reference board: dark ink outlines, painterly brush texture, stylized not realistic, gritty post-apocalyptic Berlin with a western-steampunk and noir touch. Warm light from the top left, cool teal shadow. Palette: cream #f0b27a, ochre #db8c2b, olive #7b6a32, teal grey #516a62, rust #8b4a35, oxblood #591e1e. Every object must still read as a clear silhouette when shrunk to 48 pixels.
+
+Canvas 1536 x 1024, landscape. Flat, even dark teal #1e3238 background behind everything: no scene, no gradient, no texture, no frames, no drop shadows. Thin even gaps between cells. Below each object a dark strip with the cell ID in large plain white capitals, only the ID. Order left to right, top row first. Nothing touches the cell edge.
+
+Grid 3 columns x 2 rows, 6 cells of 512 x 512. Same survivor as the attached sheet H02a (same face, hair, red scarf, proportions and scale; keep the slim proportions of H02a). Strict side view facing right, flat even light, no weapon. Draw every part at exactly the same scale as the full figure on H02a; do not enlarge parts to fill their cells.
+Top row: three torsos. Bottom row: the matching arm under each torso.
+K07 torso only in Feuerwehrjacke (dark fire brigade jacket with yellow reflective stripes): no head, no arms, no sleeves, the shoulder ends flat where the arm attaches, same shoulder width and neck height as the H02a torso, length as described.
+K09 torso only in BVG-Uniform (dark blue transit uniform jacket with yellow details): no head, no arms, no sleeves, the shoulder ends flat where the arm attaches, same shoulder width and neck height as the H02a torso, length as described.
+K11 torso only in Mantel des letzten Späti (coat covered in Späti stickers and bottle caps, faint golden glow): no head, no arms, no sleeves, the shoulder ends flat where the arm attaches, same shoulder width and neck height as the H02a torso, length as described.
+K08 one arm in the Feuerwehrjacke sleeve: shoulder to fingers, straight and hanging, same size as the H02a arm.
+K10 one arm in the BVG-Uniform sleeve: shoulder to fingers, straight and hanging, same size as the H02a arm.
+K12 one arm in the Mantel des letzten Späti sleeve: shoulder to fingers, straight and hanging, same size as the H02a arm.
+```
+**H05** · attach: koepenick.png, H02a.png
+
+```
+Painted comic illustration in the style of the attached Köpenick reference board: dark ink outlines, painterly brush texture, stylized not realistic, gritty post-apocalyptic Berlin with a western-steampunk and noir touch. Warm light from the top left, cool teal shadow. Palette: cream #f0b27a, ochre #db8c2b, olive #7b6a32, teal grey #516a62, rust #8b4a35, oxblood #591e1e. Every object must still read as a clear silhouette when shrunk to 48 pixels.
+
+Canvas 1536 x 1024, landscape. Flat, even dark teal #1e3238 background behind everything: no scene, no gradient, no texture, no frames, no drop shadows. Thin even gaps between cells. Below each object a dark strip with the cell ID in large plain white capitals, only the ID. Order left to right, top row first. Nothing touches the cell edge.
+
+Grid 3 columns x 2 rows, 6 cells of 512 x 512. Same survivor as the attached sheet H02a (same face, hair, red scarf, proportions and scale; keep the slim proportions of H02a). Strict side view facing right, flat even light, no weapon. Draw every part at exactly the same scale as the full figure on H02a; do not enlarge parts to fill their cells.
+Top row: three torsos. Bottom row: the matching arm under each torso.
+K13 torso only in Panzer vom Tempelhofer Feld (riveted armour plates from an airfield, faint golden glow): no head, no arms, no sleeves, the shoulder ends flat where the arm attaches, same shoulder width and neck height as the H02a torso, length as described.
+K15 torso only in Mantel der Rattenmutter (coat of grey rat fur with a green scarf, faint golden glow): no head, no arms, no sleeves, the shoulder ends flat where the arm attaches, same shoulder width and neck height as the H02a torso, length as described.
+K17 torso only in Rüstung des Zitadellenritters (steel knight plate armour with a castle emblem, faint golden glow): no head, no arms, no sleeves, the shoulder ends flat where the arm attaches, same shoulder width and neck height as the H02a torso, length as described.
+K14 one arm in the Panzer vom Tempelhofer Feld sleeve: shoulder to fingers, straight and hanging, same size as the H02a arm.
+K16 one arm in the Mantel der Rattenmutter sleeve: shoulder to fingers, straight and hanging, same size as the H02a arm.
+K18 one arm in the Rüstung des Zitadellenritters sleeve: shoulder to fingers, straight and hanging, same size as the H02a arm.
+```
+**H06** · attach: koepenick.png, potsdamer-platz.png, H02a.png
+
+```
+Painted comic illustration in the style of the attached Köpenick reference board: dark ink outlines, painterly brush texture, stylized not realistic, gritty post-apocalyptic Berlin with a western-steampunk and noir touch. Warm light from the top left, cool teal shadow. Palette: cream #f0b27a, ochre #db8c2b, olive #7b6a32, teal grey #516a62, rust #8b4a35, oxblood #591e1e. Every object must still read as a clear silhouette when shrunk to 48 pixels.
+Mitte variant, see the attached Potsdamer Platz board: same painted style and base palette, plus cyan #43d1cf and magenta #bd2b77 neon accents. Improvised club and techno gear, cables, glowing parts, rain-worn.
+
+Canvas 1536 x 1024, landscape. Flat, even dark teal #1e3238 background behind everything: no scene, no gradient, no texture, no frames, no drop shadows. Thin even gaps between cells. Below each object a dark strip with the cell ID in large plain white capitals, only the ID. Order left to right, top row first. Nothing touches the cell edge.
+
+Grid 3 columns x 2 rows, 6 cells of 512 x 512. Same survivor as the attached sheet H02a (same face, hair, red scarf, proportions and scale; keep the slim proportions of H02a). Strict side view facing right, flat even light, no weapon. Draw every part at exactly the same scale as the full figure on H02a; do not enlarge parts to fill their cells.
+Top row: three torsos. Bottom row: the matching arm under each torso.
+K19 torso only in Kettenhemd der Zitadelle (rusty chainmail shirt): no head, no arms, no sleeves, the shoulder ends flat where the arm attaches, same shoulder width and neck height as the H02a torso, length as described.
+K21 torso only in Regenponcho (transparent rain poncho with neon reflections): no head, no arms, no sleeves, the shoulder ends flat where the arm attaches, same shoulder width and neck height as the H02a torso, length as described.
+K23 torso only in Kabelmantel (long coat wrapped in glowing cables): no head, no arms, no sleeves, the shoulder ends flat where the arm attaches, same shoulder width and neck height as the H02a torso, length as described.
+K20 one arm in the Kettenhemd der Zitadelle sleeve: shoulder to fingers, straight and hanging, same size as the H02a arm.
+K22 one arm in the Regenponcho sleeve: shoulder to fingers, straight and hanging, same size as the H02a arm.
+K24 one arm in the Kabelmantel sleeve: shoulder to fingers, straight and hanging, same size as the H02a arm.
+```
+**H07** · attach: koepenick.png, potsdamer-platz.png, H02a.png
+
+```
+Painted comic illustration in the style of the attached Köpenick reference board: dark ink outlines, painterly brush texture, stylized not realistic, gritty post-apocalyptic Berlin with a western-steampunk and noir touch. Warm light from the top left, cool teal shadow. Palette: cream #f0b27a, ochre #db8c2b, olive #7b6a32, teal grey #516a62, rust #8b4a35, oxblood #591e1e. Every object must still read as a clear silhouette when shrunk to 48 pixels.
+
+Canvas 1536 x 1024, landscape. Flat, even dark teal #1e3238 background behind everything: no scene, no gradient, no texture, no frames, no drop shadows. Thin even gaps between cells. Below each object a dark strip with the cell ID in large plain white capitals, only the ID. Order left to right, top row first. Nothing touches the cell edge.
+
+Grid 3 columns x 2 rows, 6 cells of 512 x 512. Same survivor as the attached sheet H02a (same face, hair, red scarf, proportions and scale; keep the slim proportions of H02a). Strict side view facing right, flat even light, no weapon. Draw every part at exactly the same scale as the full figure on H02a; do not enlarge parts to fill their cells.
+Each cell: the H02a head (cut at the neck, same size as on H02a) wearing one item. Hair may be squashed or hidden where the item covers it.
+K25 Bauhelm: yellow hard hat.
+K26 Schiebermütze: brown flat cap.
+K27 Wollmütze: olive wool beanie.
+K28 Gasmaske: gas mask with round lenses, straps over the hair.
+K29 Neonbrille: goggles with glowing cyan lenses (Mitte neon accent).
+K30: leave empty, plain background, no label.
+```
 
 ## Totals
 
-| Group | Batches | Images |
-|---|---|---|
-| Icons | B01 to B10, B11, B12 (Mitte) | 79 + 13 |
-| Survivor portraits | P01 | 6 |
-| Enemy portraits | P02, P03 | 12 |
-| Boss portraits | P04, P05 | 8 |
-| Mitte portraits | P06 | 3 |
-| Player parts (test) | H01 | 5 |
-| **All** | **19 steps** | **126** |
-
-Recommended order: B01 first (Claude checks how it cuts and reads at game size), then the rest in order.
+Done: 15 batches, 105 images (B01 to B10, P01 to P05) plus the player tests H01, H02. Open: see Queue.
 
 ## Progress
 
@@ -159,8 +290,8 @@ Claude ticks a batch here once its sheet is in `assets/raw/`.
 | Batch | Status |
 |---|---|
 | B01 to B10 | done, cut into `assets/icons/` (v0.49) |
-| B11, B12, P06 (Mitte) | open |
-| H01, H02 (player test) | done, see results above. Pick: H02 variant A |
+| H01, H02 (player test) | done. Pick: H02 variant A, plain proportions (Johannes prefers it over the exaggerated build) |
+| Everything else | see Queue |
 | P01 to P05 | done, cut into `assets/portraits/` (v0.49) |
 
 Cutting: `python3 tools/cut_sheets.py [B01 ...]`. It finds the label strip per cell, keys out the teal (also enclosed holes such as ring centres) and writes WebP. New batches: add their IDs to `IDS` in the script, and the mapping to `ICOI` / `PORTI` in `js/items.js`.
