@@ -125,7 +125,18 @@ const ICO={
  npumpe:c=>`<rect x="8" y="3" width="8" height="18" rx="3" fill="${c}" fill-opacity=".25"/><path d="M8 9h8M8 15h8M12 1v2M12 21v2" stroke-width="1.4"/>`,
  bassarm:c=>`<path d="M3 16l7-7 4 1 5-5 2 2-5 5 1 4-7 7z" fill="${c}" fill-opacity=".35"/><circle cx="10" cy="14" r="2.5"/><path d="M17 15l2 2 3-1" stroke-width="1.4"/>`,
  herz:c=>`<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" fill="${c}" fill-opacity=".3"/><path d="M8 12q2 2 4 0t4 0" stroke-width="1.2"/>`};
-function icon(it,sz){if(!it)return'';const c=rc(it),f=ICO[baseOf(it)]||ICO.kiesel;
+// painted icons and portraits (ChatGPT sheets, cut by tools/cut_sheets.py); ids from docs/chatgpt-assets.md, SVG stays as fallback
+const ICOI={latte:'I01',rohr:'I02',stahl:'I03',machete:'I04',brech:'I05',vorschlag:'I06',pflaster:'I07',zange:'I08',zwille:'I09',nagel:'I10',stein:'I11',rspeer:'I12',fahne:'I13',harpune:'I14',turm:'I15',mauer:'I16',
+ leder:'I17',mantel:'I18',weste:'I19',feuer:'I20',bvg:'I21',helm:'I22',schieber:'I23',muetze:'I24',maske:'I25',handsch:'I26',bandage:'I27',schweiss:'I28',turnsch:'I29',stiefel:'I30',gummi:'I31',ring:'I32',
+ siegel:'I33',totenk:'I34',mutter:'I35',draht:'I36',ehe:'I37',kupfer:'I38',kiesel:'I39',stueck:'I40',feder:'I41',kette:'I42',beutel:'I43',abzeichen:'I44',herz:'I45',wappen:'I46',auge:'I47',morgen:'I48',
+ spaeti:'I49',panzer:'I50',zitklinge:'I51',pbrecher:'I52',kraehe:'I53',rattenmantel:'I54',ritter:'I55',siegsp:'I56',khemd:'I57',karm:'I58',bassarm:'I58',
+ verband:'C01',molotow:'C02',suppe:'C03',curry:'C04',kaffee:'C05',soljanka:'C06',gurke:'C07',m_nagel:'M01',griff:'M02',gewicht:'M03',batt:'M04',tank:'M05',phiole:'M06',dorn:'M07',
+ stoff:'R01',metall:'R02',chemie:'R03',kabel:'R04',schrott:'R05'};
+const PORTI={ghoul:'E01',brute:'E02',spitter:'E03',rat:'E04',crow:'E05',shield:'E06',bomb:'E07',howl:'E08',raser:'E09',boss:'E10',
+ doktor:'S01',schmied:'S02',kurier:'S03',koechin:'S04',spaeher:'S05',mechaniker:'S06',hauptmann:'X01',hexe:'X02',flieger:'X04',brand:'X05',ratten:'X06',ritter:'X07',platte:'X08'};
+const pImgSrc=k=>PORTI[k]&&`assets/portraits/${PORTI[k]}.webp`;
+const img=(k,sz,cl)=>ICOI[k]?`<img class="${cl||'ico'}" src="assets/icons/${ICOI[k]}.webp" width="${sz}" height="${sz}" alt="" draggable="false">`:'';
+function icon(it,sz){if(!it)return'';const b=baseOf(it),k=b==='kette'&&(it.slot==='a'||/^Kettenhemd/.test(it.name))?'khemd':b;if(ICOI[k])return img(k,sz);const c=rc(it),f=ICO[b]||ICO.kiesel;
   return`<svg viewBox="0 0 24 24" width="${sz}" height="${sz}" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${f(c)}</svg>`;}
 // blessing (Segen) icons: hex medallion, frame colour = rarest card picked for it (white, blue, gold), glyph per blessing in a 24 grid
 const PQC=['#e8ddd0','#7d9bff','#f2d14b'],PQN=['Gewöhnlich','Selten','Episch'];
