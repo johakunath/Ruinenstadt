@@ -66,13 +66,16 @@ function update(dt){
     if(e.elite==='brennend'){e.trail=(e.trail||0)-dt;if(e.trail<=0&&(e.mv||0)>8){e.trail=.45;hazards.push({x:e.x,y:e.y+e.r*.6,r:20,t:3.5,dmg:Math.max(1,Math.round(e.dmg*.45))});}}
     if(e.acid>0){e.acid-=dt;if(pk('corrode'))sp*=.7;if(Math.random()<dt*6)parts.push({x:e.x+R(-6,6),y:e.y-R(2,18),vx:0,vy:R(20,40),life:.5,max:.5,col:'#97C459',size:2});}
     // elite tactics: telegraphed special (tw = wind-up), then a punish window (open) with +30% damage taken
-    if((e.elite||e.type==='brute')&&e.type!=='bomb'&&e.type!=='raser'&&!(e.open>0)){e.tcd=(e.tcd==null?R(2,4):e.tcd)-dt;const k=e.elite||'brute';
+    if((e.elite||e.type==='brute')&&e.type!=='bomb'&&e.type!=='raser'&&e.type!=='kabel'&&e.type!=='bass'&&!(e.open>0)){e.tcd=(e.tcd==null?R(2,4):e.tcd)-dt;const k=e.elite||'brute';
       if(e.tw>0){e.tw-=dt;sp=0;if(e.tw<=0){if(k==='spaltend'){const a=Math.atan2(dy,dx);for(const o of [-.3,0,.3])fireGlob(e,a+o,230);sfx('spit');}e.open=TACO[k];tip('open','Nach ihrem Spezialangriff sind Elite-Gegner kurz offen (goldener Ring) und nehmen 30% mehr Schaden.');}}
       else if(k==='schnell'&&e.ch>0){e.ch-=dt;sp=0;if(e.ch<=0)e.ru=.4;}else if(k==='schnell'&&e.ru>0){e.ru-=dt;vx=e.rdx;vy=e.rdy;sp=e.stun>0?0:480;if(e.ru<=0)e.open=TACO.schnell;}
       else if(e.tcd<=0&&e.stun<=0&&d<(k==='schnell'?260:k==='spaltend'?380:k==='brennend'?140:220)){e.tcd=R(4.5,6.5);
         if(k==='schnell'){e.ch=.7;e.rdx=dx/d;e.rdy=dy/d;sfx('horn');}
         else{e.tw=e.twm=k==='spaltend'?.6:k==='brennend'?.9:.95;if(k==='brennend')teles.push({x:e.x,y:e.y,r:95,t:.9,max:.9,dmg:Math.round(e.dmg*1.2)});else if(k!=='spaltend')teles.push({x:P.x,y:P.y,r:k==='brute'?60:70,t:.95,max:.95,dmg:Math.round(e.dmg*(k==='brute'?1:1.3))});sfx(k==='brute'?'swing':'horn');}}}
-    if(e.type==='raser'){e.cc=(e.cc==null?R(1,2):e.cc)-dt;if(e.ch>0){e.ch-=dt;sp=0;if(e.ch<=0)e.ru=.45;}else if(e.ru>0){e.ru-=dt;vx=e.rdx;vy=e.rdy;sp=e.stun>0?0:520;if(e.ru<=0)e.open=TACO.raser;}else if(e.cc<=0&&d<260&&e.stun<=0&&!(e.open>0)){e.ch=.6;e.cc=2.4;e.rdx=dx/d;e.rdy=dy/d;}}
+    if(e.type==='raser'||e.type==='kabel'){const kb=e.type==='kabel';e.cc=(e.cc==null?R(1,2):e.cc)-dt;if(e.ch>0){e.ch-=dt;sp=0;if(e.ch<=0)e.ru=kb?.3:.45;}else if(e.ru>0){e.ru-=dt;vx=e.rdx;vy=e.rdy;sp=e.stun>0?0:kb?440:520;if(e.ru<=0)e.open=kb?.5:TACO.raser;}else if(e.cc<=0&&d<(kb?200:260)&&e.stun<=0&&!(e.open>0)){e.ch=kb?.4:.6;e.cc=kb?R(2.2,3):2.4;e.rdx=dx/d;e.rdy=dy/d;}}
+    // Boxenkopf: wind-up (red ring), then a bass wave (pink ring, hurts unless you dash through) that buffs nearby enemies, then open
+    if(e.type==='bass'){e.pc=(e.pc==null?R(2,4):e.pc)-dt;if(e.tw>0){e.tw-=dt;sp=0;if(e.tw<=0){rings.push({x:e.x,y:e.y,r:12,max:270,col:'255,79,163',dmg:Math.round(e.dmg*.9)});for(const o of enemies)if(o!==e&&Math.hypot(o.x-e.x,o.y-e.y)<220)o.buff=3;sfx('boom');shake=Math.max(shake,4);e.open=1.1;}}
+      else if(e.pc<=0&&d<300&&e.stun<=0&&!(e.open>0)){e.pc=R(5,6.5);e.tw=e.twm=.8;sfx('horn');}}
     if(e.type==='spitter'){if(d<200){vx=-vx;vy=-vy;}else if(d<290){const tx=-vy*e.side,ty=vx*e.side;vx=tx;vy=ty;sp*=.6;}
       e.fire-=dt;if(e.fire<=0&&d<440&&e.stun<=0){e.fire=R(2.3,3.1);fireGlob(e,Math.atan2(dy,dx),210);sfx('spit');}}
     if(e.buff>0){e.buff-=dt;sp*=1.35;}if(e.slow>0){e.slow-=dt;sp*=.6;}
@@ -95,7 +98,7 @@ function update(dt){
       if(e.big){e.sum-=dt*rg;const v=e.v;
         if(v===0){if(e.sum<=0){e.sum=7;for(let i=0;i<4;i++)enemies.push(mkEnemy('ghoul',e.x+R(-60,60),e.y+R(-60,60)));toast('„Antreten!“');sfx('horn');}}
         else if(v===1){if(e.sum<=0){e.sum=2.2;hazards.push({x:P.x+R(-30,30),y:P.y+9+R(-20,20),r:26,t:5,dmg:Math.max(1,Math.round(e.dmg*.4)),col:'#97C459'});}e.ring-=dt*rg*.6;}
-        else if(v===2){if(e.ch>0){e.ch-=dt;if(e.ch<=0)e.ru=.55;}else if(e.ru>0){e.ru-=dt;e.x+=e.rdx*560*dt;e.y+=e.rdy*560*dt;collide(e);if(Math.random()<dt*20)bolts.push({x0:e.x,y0:e.y-40,x1:e.x+R(-30,30),y1:e.y-10,life:.12});}else if(e.sum<=0&&d<400){e.sum=3.8;e.ch=.7;e.hold=1.25;e.rdx=dx/d;e.rdy=dy/d;sfx('zap');}}
+        else if(v===2){if(e.ch>0){e.ch-=dt;if(e.ch<=0)e.ru=.55;}else if(e.ru>0){e.ru-=dt;e.x+=e.rdx*560*dt;e.y+=e.rdy*560*dt;collide(e);if(Math.random()<dt*20)bolts.push({x0:e.x,y0:e.y-40,x1:e.x+R(-30,30),y1:e.y-10,life:.12});}else if(e.sum<=0&&d<400){e.sum=3.8;e.ch=.7;e.hold=1.25;e.rdx=dx/d;e.rdy=dy/d;sfx('zap');e.k2=(e.k2||0)+1;if(e.k2%2===0||e.rage)for(let i=0;i<3;i++)rings.push({x:e.x,y:e.y,r:-i*110,max:340,col:'255,79,163',dmg:Math.round(e.dmg*.7)});}}// Bassprediger: shock charge, bass waves every second charge (every charge in rage)
         else if(v===3){if(e.sum<=0){e.sum=4.5;teles.push({x:P.x,y:P.y,r:55,t:1.1,max:1.1,dmg:Math.round(e.dmg*.9)});for(let i=0;i<5;i++){const q=1.1+i*.12;teles.push({x:P.x+R(-150,150),y:P.y+R(-130,130),r:55,t:q,max:q,dmg:Math.round(e.dmg*.9)});}sfx('horn');}}
         else if(v===5){if(e.sum<=0){e.sum=e.rage?2.6:3.8;for(let i=0;i<5;i++)enemies.push(mkEnemy('rat',e.x+R(-50,50),e.y+R(-50,50)));sfx('spit');}e.trail=(e.trail||0)-dt;if(e.trail<=0&&(e.mv||0)>8){e.trail=.5;hazards.push({x:e.x,y:e.y+e.r*.6,r:24,t:4,dmg:Math.max(1,Math.round(e.dmg*.3)),col:'#97C459'});}}
         else if(v===6){if(e.ch>0){e.ch-=dt;if(e.ch<=0)e.ru=.6;}else if(e.ru>0){e.ru-=dt;e.x+=e.rdx*600*dt;e.y+=e.rdy*600*dt;collide(e);if(Math.random()<dt*25)parts.push({x:e.x,y:e.y,vx:R(-30,30),vy:R(-30,30),life:.4,max:.4,col:'#d6cfc0',size:4});}
@@ -110,7 +113,7 @@ function update(dt){
     if(d<m&&d>0){const p=(m-d)/2,wa=a.type==='boss'?.1:1,wb=b.type==='boss'?.1:1;a.x-=dx/d*p*wa;a.y-=dy/d*p*wa;b.x+=dx/d*p*wb;b.y+=dy/d*p*wb;}}
   for(const s of shocks){s.r+=460*dt;for(const e of enemies)if(e.hp>0&&!s.hit.includes(e)&&Math.abs(Math.hypot(e.x-s.x,e.y-s.y)-s.r)<26+e.r){s.hit.push(e);if(s.acid){const W=ER(e,'acid');hit(e,ST.dmg*1.2,false,{knock:200},true,ELC.acid);if(W>0)e.acid=3;}else if(s.small){hit(e,ST.dmg*.7,false,{knock:260});e.stun=Math.max(e.stun,e.type==='boss'?.1:.5);}else{hit(e,ST.dmg*2.5,false,KIND.hammer);e.stun=Math.max(e.stun,e.type==='boss'?.3:1.3);}}}
   shocks=shocks.filter(s=>s.r<s.max);
-  for(const r of rings)r.r+=300*dt;rings=rings.filter(r=>r.r<r.max);
+  for(const r of rings){r.r+=300*dt;if(r.dmg&&!r.hit&&r.r>0&&P.inv<=0&&Math.abs(Math.hypot(P.x-r.x,P.y-r.y)-r.r)<14+P.r){r.hit=1;if(hurt(r.dmg,7)){const a=Math.atan2(P.y-r.y,P.x-r.x);P.x+=Math.cos(a)*40;P.y+=Math.sin(a)*40;collide(P);}if(state!=='play')return;}}rings=rings.filter(r=>r.r<r.max);
   if(run.blasts.length){const bs=run.blasts;run.blasts=[];for(const b of bs){burst(b.x,b.y-10,'#ff8a3d',26,260);burst(b.x,b.y,'#3d3027',14,160);shake=Math.max(shake,9);sfx('boom');stamp(b.x,b.y,'rgba(8,5,3,.45)',b.r*.5);rings.push({x:b.x,y:b.y,r:10,max:b.r,col:'255,138,61'});
     if(!pk('blast')&&P.inv<=0&&Math.hypot(P.x-b.x,P.y-b.y)<b.r+P.r){hurt(b.dmg,10);if(state!=='play')return;}for(const o of enemies)if(o.hp>0&&Math.hypot(o.x-b.x,o.y-b.y)<b.r+o.r)hit(o,b.dmg*1.5,false,{knock:320},true,'#ff8a3d');}}
   if(run.booms.length){const bs=run.booms;run.booms=[];for(const b of bs){burst(b.x,b.y,'#ff8a3d',12,200);sfx('pop');for(const e of enemies)if(e.hp>0&&Math.hypot(e.x-b.x,e.y-b.y)<72+e.r)hit(e,ST.dmg*.35*pk('boom'),false,{knock:220});propsInRadius(b.x,b.y,72,ST.dmg*.35);}}

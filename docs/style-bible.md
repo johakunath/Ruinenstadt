@@ -67,7 +67,7 @@ Real-world hook: Spreepark Plänterwald (next to Köpenick in Treptow-Köpenick)
 | Weapon | Brass lamp gun / flamethrower with gas tank on the back |
 | Progression | Fight through underground sections first, they become the fast-travel network between districts later |
 
-### Potsdamer Platz / Mitte (future)
+### Potsdamer Platz / Mitte (in game since v0.47)
 
 | Topic | From the board |
 |---|---|
@@ -77,6 +77,7 @@ Real-world hook: Spreepark Plänterwald (next to Köpenick in Treptow-Köpenick)
 | NPC | Clinic doctor with tablet |
 | Props | Amp, speaker box, battery pack, cyber arm |
 | Weapon | Neon rifle |
+| In game (v0.47, code placeholders) | Night tint `4,7,12`, violet-grey ground and concrete, Tiergarten teal-green, neon cyan `#43d1cf`, magenta `#ff4fa3`, amber `#e19142`. Kabelghul, Boxenkopf, Bassprediger, cable brute, Neonflinte, cyber arm for implants. Painted sprites still to come (Codex) |
 
 ### Alexanderplatz / future GDR (future)
 
@@ -103,7 +104,7 @@ Real-world hook: Spreepark Plänterwald (next to Köpenick in Treptow-Köpenick)
 | Heuler buffs nearby enemies | Speaker-headed brute (bass as buff) |
 | Brocken (brute), Ratte packs | Orange-vest hulk, mutated dog |
 | Oma Gerda (survivor) | Alexanderplatz gardener |
-| Mitte district with Fernsehturm and Turmwächter | Alexanderplatz board |
+| Mitte (v0.47): Reichstag, Tor, Tiergarten, Potsdamer Platz neon core, Bassprediger | Potsdamer Platz board: stage, clinic, Wall with bear, cable enemies, speaker head, rain, implants (cyber arm) |
 | Xhain (v0.42 to v0.45): Berghain, Hochbahn U1, Warschauer Straße station | Techno details from the Potsdamer board, U-Bahn board for the station |
 
 ### Conflicts to resolve
@@ -113,7 +114,7 @@ Real-world hook: Spreepark Plänterwald (next to Köpenick in Treptow-Köpenick)
 | Boards are eye-level illustrations with front/back character views. The game is 2:1 isometric | Boards define look, palette, materials and design. Camera, scale and anchors stay as in `docs/asset-pipeline.md` |
 | Boards are very detailed and textured | Simplify for sprites: keep silhouette, ink outline and main colour blocks, drop small texture. Check every asset at 64 px |
 | Pipeline doc used Hades as the closest reference | Hades stays the reference for outline and readability. The boards replace it for palette, mood and Berlin detail |
-| "Mitte" appears for both Potsdamer Platz and Alexanderplatz | In-game Mitte (Fernsehturm) leans Alexanderplatz. Potsdamer Platz stays its own district (#4) |
+| "Mitte" appears for both Potsdamer Platz and Alexanderplatz | Decided v0.47: in-game Mitte is the government district from Reichstag to Potsdamer Platz with the Potsdamer Platz board (cyberpunk). Alexanderplatz becomes its own future district with the GDR clockwork board |
 | Steampunk and clockwork in Köpenick vs. Alexanderplatz | Köpenick: western steampunk gear (brass, leather, tubes). Clockwork order and machines belong to Alexanderplatz |
 
 ### Proposals (not decided)

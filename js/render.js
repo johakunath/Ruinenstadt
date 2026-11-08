@@ -19,7 +19,7 @@ function render(t){
   {const x0=clamp(Math.floor(VB.x0),0,WS),y0=clamp(Math.floor(VB.y0),0,WS),x1=clamp(Math.ceil(VB.x1),0,WS),y1=clamp(Math.ceil(VB.y1),0,WS);if(x1>x0&&y1>y0)ctx.drawImage(G,x0,y0,x1-x0,y1-y0,x0,y0,x1-x0,y1-y0);}
   drawWaters(t);
   for(const tl of teles){const p=1-tl.t/tl.max;ctx.fillStyle=`rgba(194,58,46,${.12+.25*p})`;ctx.beginPath();ctx.arc(tl.x,tl.y,tl.r,0,7);ctx.fill();ctx.strokeStyle='rgba(255,140,90,.8)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(tl.x,tl.y,tl.r,0,7);ctx.stroke();ctx.beginPath();ctx.arc(tl.x,tl.y,tl.r*p,0,7);ctx.stroke();}
-  for(const r of rings){ctx.strokeStyle=`rgba(${r.col},${.7*(1-r.r/r.max)})`;ctx.lineWidth=6;ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,7);ctx.stroke();}
+  for(const r of rings){if(r.r<=0)continue;ctx.strokeStyle=`rgba(${r.col},${.7*(1-r.r/r.max)})`;ctx.lineWidth=r.dmg?11:6;ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,7);ctx.stroke();}
   for(const s of shocks){ctx.strokeStyle=s.acid?`rgba(151,196,89,${1-s.r/s.max})`:`rgba(239,159,39,${1-s.r/s.max})`;ctx.lineWidth=10;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,7);ctx.stroke();}
   for(const f of fields){ctx.globalAlpha=Math.min(1,f.t);ctx.drawImage(glow('#ff6a2a'),f.x-f.r*1.2,f.y-f.r*.75,f.r*2.4,f.r*1.5);ctx.globalAlpha=1;}
   for(const e of enemies)if(e.ch>0){ctx.strokeStyle=`rgba(255,80,60,${.3+.6*(1-e.ch/.6)})`;ctx.lineWidth=3;ctx.setLineDash([10,6]);ctx.beginPath();ctx.moveTo(e.x,e.y);ctx.lineTo(e.x+e.rdx*240,e.y+e.rdy*240);ctx.stroke();ctx.setLineDash([]);}
@@ -49,7 +49,7 @@ function render(t){
   for(const p of parts){if(p.ox==null){p.ox=p.x;p.oy=p.y;}ctx.globalAlpha=Math.max(0,p.life/p.max);ctx.fillStyle=p.col;ctx.fillRect(ix(p.ox,p.oy)+p.x-p.ox-p.size/2,iy(p.ox,p.oy)+p.y-p.oy-p.size/2,p.size,p.size);}ctx.globalAlpha=1;
   ctx.restore();
   /* ---- light ---- */
-  lx.setTransform(LS,0,0,LS,0,0);lx.globalCompositeOperation='source-over';lx.clearRect(0,0,VW,VH);lx.fillStyle=`rgba(6,4,3,${P.dark?.95:clamp(D.dark-.12+wE()*.017+(dm_('dunkel')?.12:0),.45,.96)})`;lx.fillRect(0,0,VW,VH);lx.globalCompositeOperation='destination-out';
+  lx.setTransform(LS,0,0,LS,0,0);lx.globalCompositeOperation='source-over';lx.clearRect(0,0,VW,VH);lx.fillStyle=`rgba(${D.nc||'6,4,3'},${P.dark?.95:clamp(D.dark-.12+wE()*.017+(dm_('dunkel')?.12:0),.45,.96)})`;lx.fillRect(0,0,VW,VH);lx.globalCompositeOperation='destination-out';
   const lit=(x,y,r,z)=>{const X=scx(x,y),Y=scy(x,y)-(z||0);if(X<-r||X>VW+r||Y<-r||Y>VH+r)return;lx.drawImage(LSPR,X-r,Y-r*.7,r*2,r*1.4);};
   lit(P.x,P.y,(P.dark?(P.torch?270:P.lamp?200:95):250)+Math.sin(t*.008)*8+Math.sin(t*.021)*4,10);
   for(const b of barrels)lit(b.x,b.y,150+Math.sin(t*.012+b.ph)*12,10);
