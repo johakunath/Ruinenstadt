@@ -39,8 +39,71 @@ const KOEP={ws:3600,start:[1100,1231],
   ['Wald',[[0,3050],[1250,2900],[1300,3600],[0,3600]],{lots:{forest:4,kleingarten:1},fringe:'forest'}]],
  other:{lots:{houses:3,efh:2,reihen:1,park:1,ruins:1,kleingarten:1},fringe:'houses'},
  marks:[[3120,1100,'Müggelsee'],[700,1340,'Spree'],[1560,2700,'Dahme']],
- lm:'rathaus'};
+ lm:()=>{legacy(lmRathaus,1050,1230);reserved.push({x:1590,y:1420,w:520,h:360});}};// Rathausplatz stays open
 DIST[0].geo=KOEP;
+/* ---- Kreuzberg (v0.42). World 3600. Spree in the north-east cuts off the Friedrichshain bank (Oberbaumbrücke, Schillingbrücke), Landwehrkanal runs across with many bridges.
+   Hochbahn U1 over Gitschiner and Skalitzer Straße onto the Oberbaumbrücke. Start in Görli. Mockup: mockups/v042-kreuzberg-geo.html ---- */
+const KREUZ={ws:3600,start:[2850,1520],land:[],
+ rivers:[{n:'Spree',w:170,p:[[3600,1650],[3300,1330],[2950,1000],[2600,720],[2250,450],[1950,220],[1700,0]]},
+  {n:'Landwehrkanal',w:80,p:[[3450,1500],[3200,1760],[2800,1950],[2300,2050],[1900,1960],[1500,1850],[1100,1730],[700,1700],[300,1750],[0,1780]]}],
+ roads:{'Warschauer Straße':[[3350,450],[3117,814]],'Oberbaumbrücke':[[3117,814],[2783,1186]],
+  'Skalitzer Straße':[[2783,1186],[2400,1280],[2000,1360]],'Gitschiner Straße':[[2000,1360],[1500,1480],[1000,1560],[800,1570],[0,1600]],
+  'Oranienstraße':[[1350,1000],[1800,1040],[2250,1080],[2600,1231]],'Adalbertstraße':[[1950,330],[1980,800],[2000,1360]],
+  'Kottbusser Damm':[[2000,1360],[2150,1700],[2300,2050],[2450,2600],[2550,3600]],'Köpenicker Straße':[[1100,330],[1950,330],[2250,700]],'Schillingbrücke':[[2250,700],[2450,520],[2620,330]],
+  'Prinzenstraße':[[1350,0],[1350,1000],[1400,1500],[1450,1850],[1500,2440]],'Friedrichstraße':[[800,1570],[850,1000],[900,0]],'Mehringdamm':[[800,1570],[820,2000],[800,2420],[780,3000],[800,3600]],
+  'Yorckstraße':[[0,2350],[800,2420]],'Gneisenaustraße':[[800,2420],[1300,2430],[1800,2470],[2440,2560]],'Bergmannstraße':[[780,2850],[1300,2860],[1850,2850]],
+  'Columbiadamm':[[800,3300],[1600,3320],[2500,3250]],'Wiener Straße':[[2450,1268],[2750,1650],[3000,1850],[3200,2200],[3600,2400]],
+  'Schlesische Straße':[[2783,1186],[3050,1380],[3230,1560],[3450,1800],[3600,1950]]},
+ bridges:[[2950,1000,'Oberbaumbrücke'],[2440,560,'Schillingbrücke'],[2290,2040,'Kottbusser Brücke'],[805,1700,'Hallesches Tor'],[1430,1830,'Baerwaldbrücke'],[3000,1850,'Lohmühlenbrücke'],[3310,1645,'Schlesische Brücke']],
+ zones:[['Kotti',[[1780,1150],[2150,1150],[2200,1500],[1800,1500]],{lots:{plattenbau:3,market:1,parking:1},fringe:'plattenbau'}],
+  ['Osthafen',[[1900,0],[3600,0],[3600,1500],[3250,1200],[2900,880],[2550,600],[2200,330]],{lots:{ruins:2,construction:2,parking:1,houses:1},fringe:'ruins'}],
+  ['Mauerstreifen',[[0,0],[1750,0],[1900,200],[1100,280],[0,260]],{lots:{ruins:3,construction:1,parking:1},fringe:'ruins'}],
+  ['Wrangelkiez',[[2700,1240],[2800,1200],[3050,1390],[3220,1570],[3150,1620],[2950,1450]],{lots:{houses:2,hinterhof:3,market:1},fringe:'houses'}],
+  ['Görlitzer Park',[[2560,1340],[2700,1260],[2950,1450],[3150,1620],[3050,1780],[2750,1620]],{lots:{park:3,ruins:1},fringe:'park'}],
+  ['SO36',[[2000,850],[2650,900],[2700,1180],[2150,1150]],{lots:{houses:3,hinterhof:3,market:1},fringe:'houses'}],
+  ['Mariannenplatz',[[2050,420],[2300,480],[2600,800],[2050,800]],{lots:{park:2,houses:1,hinterhof:1},fringe:'houses'}],
+  ['Mehringplatz',[[620,1330],[1000,1330],[1000,1520],[620,1520]],{lots:{plattenbau:3,parking:1},fringe:'plattenbau'}],
+  ['Gleisdreieck',[[0,1850],[700,1820],[720,2280],[0,2300]],{lots:{park:2,ruins:2,construction:1},fringe:'park'}],
+  ['Viktoriapark',[[100,2500],[730,2490],[720,3200],[100,3200]],{lots:{park:3,forest:2},fringe:'forest'}],
+  ['Bergmannkiez',[[860,2500],[1800,2520],[1800,3230],[860,3230]],{lots:{houses:3,hinterhof:2,market:2},fringe:'houses'}],
+  ['Graefekiez',[[1550,1950],[2200,2100],[2380,2480],[1560,2420]],{lots:{houses:3,hinterhof:2,market:1},fringe:'houses'}],
+  ['Hasenheide',[[1880,2580],[2420,2620],[2470,3220],[1880,3220]],{lots:{forest:3,park:2},fringe:'forest'}],
+  ['Friedhöfe',[[0,3260],[2500,3320],[2520,3600],[0,3600]],{lots:{forest:2,park:2},fringe:'forest'}],
+  ['Treptower Park',[[3300,1880],[3600,1700],[3600,2350],[3450,2200]],{lots:{forest:3,park:2},fringe:'forest'}],
+  ['Kreuzkölln',[[2520,2150],[3150,1900],[3600,2450],[3600,3600],[2600,3600]],{lots:{houses:3,hinterhof:2,ruins:1},fringe:'houses'}]],
+ other:{lots:{houses:3,hinterhof:3,ruins:1,market:1,construction:1},fringe:'houses'},
+ marks:[[2300,330,'Spree'],[1150,1760,'Landwehrkanal']],
+ lm:()=>{oberbaum();hochbahn(['Gitschiner Straße','Skalitzer Straße','Oberbaumbrücke','Warschauer Straße']);}};
+DIST[1].geo=KREUZ;
+/* ---- Kreuzberg landmarks: custom-drawn iso boxes (b.draw runs inside withRot, so P3 follows b.rot) ---- */
+const ln3=(a,b,c)=>{ctx.strokeStyle=c;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();};
+function drawPillar(b){const{x,y,w,h,H}=b;faceT(x+4,y+3,w,h,0,'rgba(0,0,0,.35)');ibox(x,y,w,h,0,H-6,'#3f6a4a',INK);ibox(x-3,y-3,w+6,h+6,H-6,H,'#2c4a34',INK);
+  for(let z=10;z<H-8;z+=12)ln3(P3(x,y+h,z),P3(x+w,y+h,z),'rgba(0,0,0,.25)');}
+// deck span: steel slab z0..z1, gravel top with two rails along the long axis (lx: along local x). train: wrecked U-Bahn car on top
+function drawDeck(b){const{x,y,w,h,z0,z1}=b;ibox(x,y,w,h,z0,z1,'#3f6a4a',INK,'#3a3630');faceS(x,y,w,h,z0+3,z0+5,'#2c4a34');faceE(x,y,w,h,z0+3,z0+5,'#223a2a');
+  for(const f of [.32,.68])b.lx?ln3(P3(x,y+h*f,z1),P3(x+w,y+h*f,z1),'#8a8276'):ln3(P3(x+w*f,y,z1),P3(x+w*f,y+h,z1),'#8a8276');
+  if(!b.train)return;const t=z1+24;if(b.lx)ibox(x+2,y+5,w-4,h-10,z1+2,t,'#d8b830',INK);else ibox(x+5,y+2,w-10,h-4,z1+2,t,'#d8b830',INK);
+  const gl='#1a2024';if(b.lx)faceS(x+6,y+5,w-12,h-10,t-13,t-5,gl);else faceE(x+5,y+6,w-10,h-12,t-13,t-5,gl);
+  if(b.lx)faceS(x+2,y+5,w-4,h-10,z1+4,z1+7,'#3a3a36');else faceE(x+5,y+2,w-10,h-4,z1+4,z1+7,'#2a2a26');
+  ctx.fillStyle='rgba(110,55,25,.3)';for(const r of b.rust){const p=P3(x+w*r[0],y+h*r[1],t);ctx.beginPath();ctx.ellipse(p[0],p[1],5,2.5,0,0,7);ctx.fill();}}
+function drawTower(b){const{x,y,w,h,H}=b,c='#8a4430';faceT(x+6,y+4,w,h,0,'rgba(0,0,0,.35)');ibox(x,y,w,h,0,H-12,c,INK);
+  for(let z=8;z<H-12;z+=8){ln3(P3(x,y+h,z),P3(x+w,y+h,z),'rgba(0,0,0,.16)');ln3(P3(x+w,y+h,z),P3(x+w,y,z),'rgba(0,0,0,.2)');}
+  for(let i=0;i<4;i++){const z=26+i*30;faceS(x+w*.38,y,w*.24,h,z,z+14,b.lit[i]?'#e0892e':'#110b08');faceE(x,y+h*.38,w,h*.24,z,z+14,'#110b08');}
+  ibox(x-3,y-3,w+6,h+6,H-12,H,'#7a3a26',INK);const m=(w+6)/7;for(let i=0;i<7;i+=2){ibox(x-3+i*m,y-3,m,5,H,H+8,'#7a3a26',INK);ibox(x-3+i*m,y+h-2,m,5,H,H+8,'#7a3a26',INK);ibox(x-3,y-3+i*m,5,m,H,H+8,'#7a3a26',INK);ibox(x+w-2,y-3+i*m,5,m,H,H+8,'#7a3a26',INK);}}
+// Oberbaumbrücke: brick edges and arches along the part over water, two crenellated towers beside the deck
+function oberbaum(){const s=ROADS.find(q=>q.n==='Oberbaumbrücke'),g=gx,a=Math.atan2(s.uy,s.ux);let u0=-1,u1=-1;for(let t=0;t<=s.len;t+=6)if(isWater(s.ax+s.ux*t,s.ay+s.uy*t)){if(u0<0)u0=t;u1=t;}if(u0<0)return;u0-=20;u1+=20;
+  g.save();g.translate(s.ax,s.ay);g.rotate(a);for(const sd of [-1,1]){const v0=sd<0?-68:43;g.fillStyle='#6b3626';g.fillRect(u0,v0,u1-u0,25);bricks(g,u0,v0,u1-u0,25,5);g.fillStyle='#4a2216';g.fillRect(u0,sd<0?v0:v0+21,u1-u0,4);
+    for(let u=u0+20;u<u1-10;u+=40){g.fillStyle='rgba(8,5,4,.55)';g.beginPath();g.ellipse(u,sd*70,14,10,0,sd<0?Math.PI:0,sd<0?0:Math.PI);g.fill();}}g.restore();
+  const um=(u0+u1)/2,rot=rotN(a);for(const v of [-82,82]){const cx=s.ax+s.ux*um-s.uy*v,cy=s.ay+s.uy*um+s.ux*v,b={x:cx-18,y:cy-18,w:36,h:36,H:150,top:150,R0:0,rot,lights:[],lit:[0,1,2,3].map(()=>Math.random()<.4),draw:drawTower};
+    b.lit.forEach((l,i)=>{if(l)b.lights.push({x:cx,y:cy,z:33+i*30,r:40});});blds.push(b);const ow=obWall(b);walls.push(ow);reserved.push({x:ow.x,y:ow.y,w:ow.w,h:ow.h});}}
+// Hochbahn: deck spans of about 120 along the named roads, green steel pillars at the joints (collision, cover). No pillars over water or on crossings. Some spans carry a wrecked train (3 spans long)
+function hochbahn(names){const on=q=>names.includes(q.n),pil=[],g=gx;let tr=0;
+  for(const s of ROADS){if(!on(s))continue;const rot=rotN(Math.atan2(s.uy,s.ux)),hz=Math.abs(s.ux)>=Math.abs(s.uy),n=Math.max(1,Math.round(s.len/120)),L=s.len/n;
+    for(let i=0;i<n;i++){const t=(i+.5)*L,cx=s.ax+s.ux*t,cy=s.ay+s.uy*t,l=L+2,d=30,w=hz?l:d,h=hz?d:l;if(tr<=0&&Math.random()<.06)tr=3;const train=tr-->0;
+      blds.push({x:cx-w/2,y:cy-h/2,w,h,H:train?98:74,top:train?98:74,R0:0,z0:62,z1:74,lx:hz,rot,train,rust:Array.from({length:4},()=>[R(.1,.9),R(.2,.8)]),lights:[],draw:drawDeck});
+      g.save();g.translate(cx,cy);g.rotate(Math.atan2(s.uy,s.ux));g.fillStyle='rgba(0,0,0,.22)';g.fillRect(-l/2,-12,l,34);g.restore();}
+    for(let i=0;i<=n;i++){const px=s.ax+s.ux*i*L,py=s.ay+s.uy*i*L;if(isWater(px,py)||pil.some(p=>Math.hypot(p[0]-px,p[1]-py)<60)||ROADS.some(o=>!on(o)&&segD(o,px,py)<70))continue;pil.push([px,py]);
+      blds.push({x:px-7,y:py-7,w:14,h:14,H:62,top:62,R0:0,lights:[],draw:drawPillar});walls.push({x:px-8,y:py-8,w:16,h:16});}}}
 /* ---- build: called by buildWorld for D.geo districts. Order: lot ground, water, roads, then lots are filled by buildWorld ---- */
 const CS=240,GAP=50;// GAP: open ground between lots (v0.41: was 24, felt cramped with the bigger buildings)
 function geoLayout(K){ROADS=[];for(const n in K.roads){const p=K.roads[n];for(let i=1;i<p.length;i++)seg(p[i-1][0],p[i-1][1],p[i][0],p[i][1],n);}
