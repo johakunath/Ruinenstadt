@@ -10,6 +10,7 @@ const BIOME=[
  {lots:{houses:2,forest:2,ruins:1,kleingarten:2,water:1},big:{water:2,forest:2},roads:.45,trees:['green','dark','autumn'],grass:['#232c18','#2b3620','#344026'],wx:'fog'},
  {lots:{plattenbau:5,parking:2,park:1,construction:1,ruins:1},big:{plattenbau:2,park:1},roads:.75,trees:['dead','green'],grass:['#2a2c1c','#33361f','#3d4024'],wx:'snow'}];
 const LOTN={efh:'Einfamilienhäuser',reihen:'Reihenhäuser',park:'Park',forest:'Wald',kleingarten:'Kleingärten',market:'Markt',plattenbau:'Plattenbau',hinterhof:'Hinterhof',ruins:'Trümmerfeld',construction:'Baustelle',parking:'Parkplatz',water:'See',airfield:'Rollfeld',houses:'Altbau'};
+const BGAP=48;// min gap between buildings in a lot (v0.41: was 24)
 const inB=(b,m)=>({x:R(b.x0+m,b.x1-m),y:R(b.y0+m,b.y1-m)});
 function grassFill(b,pal,dens){const g=gx;g.fillStyle=pal[0];g.fillRect(b.x0+6,b.y0+6,b.w-12,b.h-12);
   for(let i=0;i<b.w*b.h/260*(dens||1);i++){g.fillStyle=pick(pal);g.globalAlpha=R(.4,.9);g.fillRect(R(b.x0+6,b.x1-8),R(b.y0+6,b.y1-8),R(2,7),R(2,5));}g.globalAlpha=1;
@@ -25,9 +26,9 @@ function lotGround(b){const g=gx,B=BIOME[D.i];
   else if(b.lot==='hinterhof'){g.fillStyle='#2e2620';g.fillRect(b.x0+8,b.y0+8,b.w-16,b.h-16);}}
 function lotFill(b){if(b.center)return;const f=LOTS[b.lot];if(f)f(b);if(b.lot!=='houses'&&b.lot!=='plaza'&&LOTN[b.lot]&&Math.random()<.5){const q=inB(b,60);if(!inWall(q.x,q.y,20))marks.push({x:q.x,y:q.y,n:LOTN[b.lot],soft:1});}}
 function tryB(x,y,w,h,H,st,force){const gb=st==='efh'?R(.55,.7)*h:st==='reihen'?R(.45,.55)*h:0;H+=gb*.5;const T=D.geo?20:H;// geo maps check the footprint only (iso facades rise on screen, not into the street north of the house)
-  if(w<30||h<20||resHit(x,y-T,w,h+T)||!force&&blds.some(o=>o.h>0&&x<o.x+o.w+24&&x+w+24>o.x&&y-T<o.y+o.h+24&&y+h+24>o.y-(D.geo?0:o.top)))return null;const bb={x,y,w,h,H:Math.round((H-gb*.5)*(st==='laube'?1.2:2)),top:H,R0:0,gable:gb};makeB(bb,st);blds.push(bb);walls.push(bb);return bb;}
+  if(w<30||h<20||resHit(x,y-T,w,h+T)||!force&&blds.some(o=>o.h>0&&x<o.x+o.w+BGAP&&x+w+BGAP>o.x&&y-T<o.y+o.h+BGAP&&y+h+BGAP>o.y-(D.geo?0:o.top)))return null;const bb={x,y,w,h,H:Math.round((H-gb*.5)*(st==='laube'?1.2:2)),top:H,R0:0,gable:gb};makeB(bb,st);blds.push(bb);walls.push(bb);return bb;}
 function bench(x,y){const g=gx;g.fillStyle='rgba(0,0,0,.35)';g.fillRect(x-18,y+3,38,6);g.fillStyle='#4a3424';for(let k=0;k<3;k++)g.fillRect(x-18,y-6+k*4,36,3);g.fillStyle='#24201c';g.fillRect(x-16,y+4,3,5);g.fillRect(x+13,y+4,3,5);}
-function pond(cx,cy,rx,ry){const g=gx;g.fillStyle='#3a3226';g.beginPath();g.ellipse(cx,cy,rx+8,ry+7,0,0,7);g.fill();g.fillStyle='#0f1a1d';g.beginPath();g.ellipse(cx,cy,rx,ry,0,0,7);g.fill();
+function pond(cx,cy,rx,ry){const g=gx;g.fillStyle='#3a3226';g.beginPath();g.ellipse(cx,cy,rx+8,ry+7,0,0,7);g.fill();g.fillStyle='#1e3a44';g.beginPath();g.ellipse(cx,cy,rx,ry,0,0,7);g.fill();
   g.fillStyle='rgba(120,170,180,.12)';g.beginPath();g.ellipse(cx-rx*.2,cy-ry*.3,rx*.6,ry*.35,0,0,7);g.fill();
   for(let y=cy-ry+8;y<cy+ry-8;y+=16){const hw=rx*Math.sqrt(Math.max(0,1-Math.pow((y+8-cy)/ry,2)))-10;if(hw>10)walls.push({x:cx-hw,y,w:hw*2,h:16,water:1});}
   for(let i=0;i<Math.round(rx/6);i++){const a=R(0,6.28);g.strokeStyle=pick(['#4a5a2a','#5a6a30','#3b4a22']);g.lineWidth=1.5;const x=cx+Math.cos(a)*(rx+4),y=cy+Math.sin(a)*(ry+3);for(let k=0;k<3;k++){g.beginPath();g.moveTo(x+k*2,y);g.lineTo(x+k*2+R(-2,2),y-R(8,14));g.stroke();}}
@@ -37,7 +38,7 @@ function fence(x,y,w,h,gate,col){const g=gx;g.strokeStyle=col||'#5a4636';g.lineW
   seg(x,y,x+w,y);seg(x,y,x,y+h);seg(x+w,y,x+w,y+h);const gm=x+w*gate;seg(x,y+h,gm-16,y+h);seg(gm+16,y+h,x+w,y+h);}
 function sprite(x,y,w,h,H,draw,lights){const c=cnv(w,h+H),t=c.getContext('2d');draw(t);const o={x,y,w,h,H,top:H,spr:c,lights:lights||[]};blds.push(o);if(h>0)walls.push(o);return o;}
 const LOTS={
- houses(b){const n=Math.max(2,Math.round(b.w*b.h/(48000*BSC*BSC)*(D.geo?1.5:1)));let k=0,t=0;while(k<n&&t++<n*40){const w=Math.min(b.w-60,R(100,220)*BSC),h=R(50,105)*BSC,H=R(38,72)*BHS,x=R(b.x0+24,b.x1-24-w),y=R(b.y0+24+H,b.y1-24-h);if(tryB(x,y,w,h,H))k++;}
+ houses(b){const n=Math.max(2,Math.round(b.w*b.h/(60000*BSC*BSC)));let k=0,t=0;while(k<n&&t++<n*40){const w=Math.min(b.w-60,R(100,220)*BSC),h=R(50,105)*BSC,H=R(38,72)*BHS,x=R(b.x0+24,b.x1-24-w),y=R(b.y0+24+H,b.y1-24-h);if(tryB(x,y,w,h,H))k++;}
    for(let i=0;i<4;i++){const q=inB(b,40);if(!inWall(q.x,q.y,30)&&!resHit(q.x-28,q.y-60,56,62))makeTree(q.x,q.y,pick(BIOME[D.i].trees));}},
  park(b){const g=gx,pts=[];const sx=b.x0,sy=R(b.y0+60,b.y1-60),ex=b.x1,ey=R(b.y0+60,b.y1-60),mx=(sx+ex)/2+R(-80,80),my=R(b.y0+40,b.y1-40);
    g.strokeStyle='#3a3127';g.lineWidth=30;g.lineCap='round';g.beginPath();g.moveTo(sx,sy);g.quadraticCurveTo(mx,my,ex,ey);g.stroke();g.strokeStyle='#4a4034';g.lineWidth=24;g.stroke();g.lineCap='butt';
@@ -53,14 +54,15 @@ const LOTS={
    g.fillStyle='#4a3424';g.fillRect(cx-10,y-70,20,80);for(let k=0;k<8;k++){g.fillStyle='rgba(0,0,0,.3)';g.fillRect(cx-10,y-66+k*10,20,2);}
    for(let i=0;i<6;i++){const a=R(0,6.28),x=cx+Math.cos(a)*(rx+30),yy=(b.y0+b.y1)/2+Math.sin(a)*(ry+26);if(x>b.x0+20&&x<b.x1-20&&yy>b.y0+40&&yy<b.y1-10&&!inWall(x,yy,24))makeTree(x,yy,pick(BIOME[D.i].trees));}
    marks.push({x:cx,y:(b.y0+b.y1)/2,n:D.i===0?'Müggelsee':D.i===6?'Havel':'Der See',soft:1});},
- kleingarten(b){const g=gx,pw=118,ph=96,gap=26;const cols=Math.floor((b.w-30)/(pw+gap)),rows=Math.floor((b.h-30)/(ph+gap));const ox=b.x0+(b.w-cols*(pw+gap)+gap)/2,oy=b.y0+(b.h-rows*(ph+gap)+gap)/2;
+ kleingarten(b){const g=gx,k_=1.6,pw=118*k_,ph=96*k_,gap=40;const cols=Math.floor((b.w-30)/(pw+gap)),rows=Math.floor((b.h-30)/(ph+gap));const ox=b.x0+(b.w-cols*(pw+gap)+gap)/2,oy=b.y0+(b.h-rows*(ph+gap)+gap)/2;// k_: plot scale, v0.41 matched to the bigger buildings
    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){const x=ox+c*(pw+gap),y=oy+r*(ph+gap);if(resHit(x,y,pw,ph))continue;
      const wild=Math.random()<.3;g.fillStyle=wild?'#2a3018':'#33301e';g.fillRect(x,y,pw,ph);
-     if(!wild)for(let k=0;k<4;k++){g.fillStyle='#3a2a1e';g.fillRect(x+10,y+40+k*13,pw-56,7);for(let j=0;j<6;j++){g.fillStyle=pick(['#4a5a2a','#5a6a30','#6a7a34','#c23a2e','#f2d14b']);g.beginPath();g.arc(x+14+j*(pw-62)/6,y+43+k*13,3,0,7);g.fill();}}
-     else for(let k=0;k<30;k++){g.fillStyle=pick(['#3b4a22','#4a5a2a','#2f3b1c']);g.beginPath();g.arc(x+R(6,pw-6),y+R(6,ph-6),R(3,7),0,7);g.fill();}
+     if(!wild)for(let k=0;k<5;k++){g.fillStyle='#3a2a1e';g.fillRect(x+14,y+62+k*18,pw-90,10);for(let j=0;j<8;j++){g.fillStyle=pick(['#4a5a2a','#5a6a30','#6a7a34','#c23a2e','#f2d14b']);g.beginPath();g.arc(x+20+j*(pw-100)/8,y+67+k*18,4,0,7);g.fill();}}
+     else for(let k=0;k<60;k++){g.fillStyle=pick(['#3b4a22','#4a5a2a','#2f3b1c']);g.beginPath();g.arc(x+R(8,pw-8),y+R(8,ph-8),R(4,10),0,7);g.fill();}
      fence(x,y,pw,ph,R(.3,.7),pick(['#5a4636','#6a5a46','#4a3a2e']));
-     const sw=34,sh=26,sH=24;tryB(x+pw-sw-6,y+8+sH,sw,sh,sH,'laube');
-     if(Math.random()<.25)addBrk(x+20,y+20,Math.random()<.5?'crate':'bin',false);}},
+     const sw=34*k_,sh=26*k_,sH=24*k_;tryB(x+pw-sw-10,y+12+sH,sw,sh,sH,'laube');
+     if(Math.random()<.5){const tx=x+R(24,pw*.45),ty=y+R(24,50);if(!inWall(tx,ty,26))makeTree(tx,ty,pick(['green','green','autumn']));}
+     if(Math.random()<.25)addBrk(x+30,y+ph-30,Math.random()<.5?'crate':'bin',false);}},
  market(b){const g=gx,cols=['#c23a2e','#3a6a8a','#d8a020','#3B6D11','#7a3a6a'];const sw=64,sh=30,gx_=40,gy=96;
    for(let y=b.y0+60;y<b.y1-50;y+=sh+gy)for(let x=b.x0+30;x<b.x1-sw-20;x+=sw+gx_){if(Math.random()<.35||resHit(x,y-28,sw,sh+28))continue;const c1=pick(cols);
      sprite(x,y,sw,sh,28,t=>{t.fillStyle='#3a2a20';t.fillRect(4,28,sw-8,sh);t.fillStyle='#5a4030';t.fillRect(4,28+sh-8,sw-8,8);
@@ -100,13 +102,13 @@ const LOTS={
    for(let i=0;i<5;i++){g.strokeStyle='#2a2522';g.lineWidth=1.5;const x=b.x0+m+d+20+i*14,y=wy+16;g.beginPath();g.arc(x,y,5,0,7);g.arc(x+9,y,5,0,7);g.stroke();}
    marks.push({x:cx,y:cy,n:'Hinterhof',soft:1});},
  // Einfamilienhäuser: plots with fence, garden and a gabled house. Reihenhäuser: rows of 3 to 6 units under one gable roof
- efh(b){const pw=Math.max(180,R(.9,1.1)*230),ph=230,cols=Math.max(1,Math.floor((b.w-20)/pw)),rows=Math.max(1,Math.floor((b.h-20)/ph));
+ efh(b){const pw=Math.max(240,R(.9,1.1)*290),ph=290,cols=Math.max(1,Math.floor((b.w-20)/pw)),rows=Math.max(1,Math.floor((b.h-20)/ph));
    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){const x=b.x0+10+c*pw,y=b.y0+10+r*ph;if(Math.random()<.15||resHit(x,y,pw-10,ph-10))continue;
      const w=R(80,100)*BSC,h=R(65,80)*BSC,hx=x+R(10,Math.max(11,pw-w-20)),hy=y+ph-h-50;if(!tryB(hx,hy,w,h,44,'efh'))continue;
      fence(x,y,pw-10,ph-10,R(.3,.7),pick(['#5a4636','#6a5a46','#c8c0b0']));
      for(let i=0;i<2;i++){const tx=x+R(20,pw-30),ty=y+R(20,50);if(!inWall(tx,ty,26)&&!resHit(tx-28,ty-60,56,62))makeTree(tx,ty,pick(BIOME[D.i].trees));}
      if(Math.random()<.3)addBrk(x+pw-30,y+ph-30,'bin',false);}},
- reihen(b){const uw=R(52,64)*BSC,h=R(70,85)*BSC,ph=h+150;for(let y=b.y0+110;y+h<b.y1-30;y+=ph){const n=Math.min(6,Math.floor((b.w-40)/uw));if(n<3)return LOTS.houses(b);
+ reihen(b){const uw=R(52,64)*BSC,h=R(70,85)*BSC,ph=h+200;for(let y=b.y0+110;y+h<b.y1-30;y+=ph){const n=Math.min(6,Math.floor((b.w-40)/uw));if(n<3)return LOTS.houses(b);
      const x=b.x0+R(20,Math.max(21,b.w-n*uw-20)),bb=tryB(x,y,n*uw,h,44,'reihen');if(!bb)continue;
      const g=gx;for(let i=0;i<n;i++){g.fillStyle=pick(['#33301e','#3b4a22','#2a3018']);g.fillRect(x+i*uw+4,y+h+8,uw-8,50);g.fillStyle='#5a4636';g.fillRect(x+i*uw,y+h+8,2,50);}}},
  airfield(b){const g=gx,y=(b.y0+b.y1)/2;g.fillStyle='#2e2c27';g.fillRect(b.x0+10,y-40,b.w-20,80);g.fillStyle='rgba(234,217,192,.18)';for(let x=b.x0+20;x<b.x1-40;x+=60)g.fillRect(x,y-3,30,6);
@@ -127,7 +129,7 @@ function drawWeather(t,dt){const k=BIOME[D.i].wx,n=S.eco?40:WX.length;
     else if(k==='snow'){m.y+=m.s*dt*.09;m.w+=dt;if(m.y>1.02){m.y=-.02;m.x=Math.random();}ctx.fillStyle=`rgba(235,235,240,${.35+.3*m.s})`;ctx.beginPath();ctx.arc(m.x*VW+Math.sin(m.w)*10,m.y*VH,m.z*.8,0,7);ctx.fill();}
     else if(k==='fog'){if(i>10)break;m.x+=dt*.008*m.s;if(m.x>1.3)m.x=-.3;const fx=m.x*VW,fy=m.y*VH;ctx.globalAlpha=.07;ctx.drawImage(glow('#c8ccd0'),fx-180,fy-90,360,180);ctx.globalAlpha=1;}
     else{if(i>36)break;m.y-=m.s*.016*.06;m.w+=.02;if(m.y<-.02){m.y=1.02;m.x=Math.random();}ctx.fillStyle=`rgba(239,159,39,${.25+.25*Math.sin(m.w*2)})`;ctx.fillRect(m.x*VW+Math.sin(m.w)*12,m.y*VH,m.z,m.z);}}}
-function drawWaters(t){const camX=VB.x0,camY=VB.y0,VW_=VB.x1-VB.x0,VH_=VB.y1-VB.y0;ctx.strokeStyle='rgba(160,200,210,.16)';ctx.lineWidth=1.5;
-  for(const w of waters){if(w.ex!=null){if(w.ex+w.rx<camX||w.ex-w.rx>camX+VW_||w.ey+w.ry<camY||w.ey-w.ry>camY+VH_)continue;for(let i=0;i<10;i++){const a=i*2.4+t*.0002*(i%3+1),r=.25+.6*((i*.37)%1),x=w.ex+Math.cos(a)*w.rx*r,y=w.ey+Math.sin(a*1.3)*w.ry*r*.8,l=8+6*Math.sin(t*.002+i);ctx.beginPath();ctx.moveTo(x-l,y);ctx.lineTo(x+l,y);ctx.stroke();}}
+function drawWaters(t){const camX=VB.x0,camY=VB.y0,VW_=VB.x1-VB.x0,VH_=VB.y1-VB.y0;ctx.strokeStyle='rgba(185,220,230,.34)';ctx.lineWidth=2.2;// v0.41: stronger ripples, water was hard to read
+  for(const w of waters){if(w.ex!=null){if(w.ex+w.rx<camX||w.ex-w.rx>camX+VW_||w.ey+w.ry<camY||w.ey-w.ry>camY+VH_)continue;for(let i=0;i<10;i++){const a=i*2.4+t*.0002*(i%3+1),r=.25+.6*((i*.37)%1),x=w.ex+Math.cos(a)*w.rx*r,y=w.ey+Math.sin(a*1.3)*w.ry*r*.8,l=12+9*Math.sin(t*.002+i);ctx.beginPath();ctx.moveTo(x-l,y);ctx.lineTo(x+l,y);ctx.stroke();}}
     else{if(w.y>camY+VH_||w.y+w.h<camY)continue;const a=Math.max(w.x,camX-30),b=Math.min(w.x+w.w,camX+VW_+30),span=b-a;if(span<=20)continue;// ripples only over this strip's own x range
-      for(let i=0,n=Math.min(24,Math.ceil(24*span/(VW_+60)));i<n;i++){const x=a+((i*97+t*.03*(1+i%3))%span),y=w.y+10+((i*37)%(w.h-20)),l=10+6*Math.sin(t*.003+i);ctx.beginPath();ctx.moveTo(x-l,y);ctx.lineTo(x+l,y);ctx.stroke();}}}}
+      for(let i=0,n=Math.min(36,Math.ceil(36*span/(VW_+60)));i<n;i++){const x=a+((i*97+t*.03*(1+i%3))%span),y=w.y+10+((i*37)%(w.h-20)),l=14+9*Math.sin(t*.003+i);ctx.beginPath();ctx.moveTo(x-l,y);ctx.lineTo(x+l,y);ctx.stroke();}}}}

@@ -42,7 +42,7 @@ const KOEP={ws:3600,start:[1100,1231],
  lm:'rathaus'};
 DIST[0].geo=KOEP;
 /* ---- build: called by buildWorld for D.geo districts. Order: lot ground, water, roads, then lots are filled by buildWorld ---- */
-const CS=240;
+const CS=240,GAP=50;// GAP: open ground between lots (v0.41: was 24, felt cramped with the bigger buildings)
 function geoLayout(K){ROADS=[];for(const n in K.roads){const p=K.roads[n];for(let i=1;i<p.length;i++)seg(p[i-1][0],p[i-1][1],p[i][0],p[i][1],n);}
   const n=Math.ceil(WS/CS),cell=[];BLK=[];
   const zoneAt=(x,y)=>{for(const z of K.zones)if(inPoly(z[1],x,y))return z[2];return K.other;};
@@ -54,17 +54,17 @@ function geoLayout(K){ROADS=[];for(const n in K.roads){const p=K.roads[n];for(le
     let gw=1,gh=1;while(gw<3){const q=C(c.i+gw,c.j);if(!q||q.used||!q.clear||q.z!==c.z)break;gw++;}
     while(gh<3){let ok=true;for(let a=0;a<gw;a++){const q=C(c.i+a,c.j+gh);if(!q||q.used||!q.clear||q.z!==c.z)ok=false;}if(!ok)break;gh++;}
     for(let a=0;a<gw;a++)for(let b=0;b<gh;b++)C(c.i+a,c.j+b).used=true;
-    const x0=c.i*CS+12,y0=c.j*CS+12,w=gw*CS-24,h=gh*CS-24;BLK.push({x0,x1:x0+w,y0,y1:y0+h,w,h,lot:wpick(c.z.lots)});}
+    const x0=c.i*CS+GAP/2,y0=c.j*CS+GAP/2,w=gw*CS-GAP,h=gh*CS-GAP;BLK.push({x0,x1:x0+w,y0,y1:y0+h,w,h,lot:wpick(c.z.lots)});}
   // keep buildings off roads and water: reserve squares along roads and the water rows (also used as water walls)
   for(const s of ROADS)for(let t=0;t<=s.len;t+=50)reserved.push({x:s.ax+s.ux*t-60,y:s.ay+s.uy*t-60,w:120,h:120,road:1});
-  for(let y=0;y<WS;y+=40){let x0=-1;for(let x=0;x<=WS;x+=40){const wt=x<WS&&isWater(x+20,y+20)&&roadD(x+20,y+20)>=58;if(wt&&x0<0)x0=x;if(!wt&&x0>=0){walls.push({x:x0,y,w:x-x0,h:40,water:1});reserved.push({x:x0,y,w:x-x0,h:40});if(y%120===0)waters.push({x:x0,y,w:x-x0,h:40});x0=-1;}}}}
+  for(let y=0;y<WS;y+=40){let x0=-1;for(let x=0;x<=WS;x+=40){const wt=x<WS&&isWater(x+20,y+20)&&roadD(x+20,y+20)>=58;if(wt&&x0<0)x0=x;if(!wt&&x0>=0){walls.push({x:x0,y,w:x-x0,h:40,water:1});reserved.push({x:x0,y,w:x-x0,h:40});if(y%80===0)waters.push({x:x0,y,w:x-x0,h:40});x0=-1;}}}}
 function geoWater(K){const g=gx;
   const path=(L,w,c)=>{g.strokeStyle=c;g.lineWidth=w;g.lineCap='round';g.lineJoin='round';g.beginPath();L.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.stroke();};
   const poly=(P_,c)=>{g.fillStyle=c;g.beginPath();P_.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.closePath();g.fill();};
-  if(K.lake){g.save();g.strokeStyle='#4a4038';g.lineWidth=16;g.beginPath();K.lake.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.closePath();g.stroke();g.restore();poly(K.lake,'#10171a');}
-  for(const r of K.rivers)path(r.p,r.w+14,'#4a4038');for(const r of K.rivers)path(r.p,r.w,'#10171a');
+  if(K.lake){g.save();g.strokeStyle='#4a4038';g.lineWidth=16;g.beginPath();K.lake.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.closePath();g.stroke();g.restore();poly(K.lake,'#1e3a44');}
+  for(const r of K.rivers)path(r.p,r.w+14,'#4a4038');for(const r of K.rivers)path(r.p,r.w,'#1e3a44');
   for(const p of K.land)poly(p,D.ground);
-  for(let i=0;i<2600;i++){const x=R(0,WS),y=R(0,WS);if(!isWater(x,y))continue;g.fillStyle=`rgba(150,180,190,${R(.03,.1)})`;g.fillRect(x,y,R(8,30),1.5);}
+  for(let i=0;i<2600;i++){const x=R(0,WS),y=R(0,WS);if(!isWater(x,y))continue;g.fillStyle=`rgba(170,205,215,${R(.06,.16)})`;g.fillRect(x,y,R(8,30),1.5);}
   // reeds on banks
   for(let i=0;i<500;i++){const x=R(0,WS),y=R(0,WS);if(isWater(x,y)||!isWater(x+R(-30,30),y+R(-30,30)))continue;g.strokeStyle=pick(['#4a5a2a','#5a6a30','#3b4a22']);g.lineWidth=1.5;for(let k=0;k<3;k++){g.beginPath();g.moveTo(x+k*2,y);g.lineTo(x+k*2+R(-2,2),y-R(8,14));g.stroke();}}}
 function geoRoads(K,d){const g=gx;
@@ -77,24 +77,24 @@ function geoRoads(K,d){const g=gx;
   for(const n in K.roads){const p=K.roads[n],m=p[Math.floor(p.length/2)];marks.push({x:m[0],y:m[1],n,soft:1});}
   for(const b of K.bridges)marks.push({x:b[0],y:b[1],n:b[2]});for(const m of K.marks)marks.push({x:m[0],y:m[1],n:m[2],soft:1});
   for(const z of K.zones){const P_=z[1],cx=P_.reduce((a,q)=>a+q[0],0)/P_.length,cy=P_.reduce((a,q)=>a+q[1],0)/P_.length;marks.push({x:cx,y:cy,n:z[0],soft:1});}}
-// rotated building at centre cx,cy (rot in (-45°,45°]): free if footprint plus 14 margin is off water, roads, walls and reserved areas
+// rotated building at centre cx,cy (rot in (-45°,45°]): free if footprint plus 30 margin is off water, roads, walls and reserved areas
 const ptRes=(x,y)=>reserved.some(r=>!r.road&&x>r.x&&x<r.x+r.w&&y>r.y&&y<r.y+r.h),rotN=a=>{while(a>Math.PI/4)a-=Math.PI/2;while(a<=-Math.PI/4)a+=Math.PI/2;return a;};
 function tryBR(cx,cy,w,h,rot,H,st){const b0={x:cx-w/2,y:cy-h/2,w,h,rot};
-  for(let a=0;a<=6;a++)for(let c=0;c<=4;c++){const[px,py]=obW(b0,(a/3-1)*(w/2+14),(c/2-1)*(h/2+14));if(px<10||py<10||px>WS-10||py>WS-10||isWater(px,py)||roadD(px,py)<60||inWall(px,py,4)||ptRes(px,py))return null;}
+  for(let a=0;a<=6;a++)for(let c=0;c<=4;c++){const[px,py]=obW(b0,(a/3-1)*(w/2+30),(c/2-1)*(h/2+30));if(px<10||py<10||px>WS-10||py>WS-10||isWater(px,py)||roadD(px,py)<44||inWall(px,py,4)||ptRes(px,py))return null;}
   const gb=st==='efh'?R(.55,.7)*h:st==='reihen'?R(.45,.55)*h:0,bb={x:b0.x,y:b0.y,w,h,H:Math.round(H*(st==='laube'?1.2:2)),top:H+gb*.5,R0:0,gable:gb,rot};
   makeB(bb,st);blds.push(bb);const ow=obWall(bb);walls.push(ow);reserved.push({x:ow.x,y:ow.y,w:ow.w,h:ow.h,road:1});return bb;}// road:1 = soft reserve, roadside props may ignore it (they check walls)
 const bSpec=k=>k==='efh'?['efh',R(80,100)*BSC,R(65,80)*BSC,44]:k==='reihen'?['reihen',4*58*BSC,R(70,85)*BSC,44]:k==='plattenbau'?['platte',R(240,420),R(64,90)*BSC,R(100,140)*BHS*.75]:k==='ruins'?['ruin',R(60,150)*BSC,R(30,60)*BSC,R(14,34)*BHS*.75]:[0,R(100,220)*BSC,R(50,105)*BSC,R(38,72)*BHS];
 // street fronts: walk every road and line it with buildings turned to the road, picked from the zone's lot weights. Forest and park zones stay open.
-// Urban fronts sometimes get a Hinterhaus behind them. A failed spot retries at 65% size, then moves on 40 units
+// Urban fronts sometimes get a Hinterhaus behind them. A failed spot retries at 65% size, then moves on 40 units. Gap between fronts 50 to 110
 function geoStreets(K){const zoneAt=(x,y)=>{for(const z of K.zones)if(inPoly(z[1],x,y))return z[2];return K.other;};
   for(const s of ROADS){const rot=rotN(Math.atan2(s.uy,s.ux)),hz=Math.abs(s.ux)>=Math.abs(s.uy);
    for(const sd of [-1,1]){let t=30;const nx=-s.uy*sd,ny=s.ux*sd;
     while(t<s.len-30){const px=s.ax+s.ux*t,py=s.ay+s.uy*t,L=zoneAt(px+nx*120,py+ny*120).lots,
       k=wpick({houses:(L.houses||0)+(L.hinterhof||0)+(L.market||0)*.5,efh:L.efh||0,reihen:L.reihen||0,plattenbau:L.plattenbau||0,ruins:L.ruins||0,none:(L.forest||0)+(L.park||0)+(L.kleingarten||0)*.5+.3});
-      if(k==='none'||Math.random()<.12){t+=R(80,200);continue;}
+      if(k==='none'||Math.random()<.2){t+=R(100,240);continue;}
       const[st,l0,d0,H]=bSpec(k);let ok=null,len=0;
       for(const f of [1,.65]){const l=l0*f,d=d0*f,off=82+d/2;len=l;if(Math.hypot(px+nx*off-SX,py+ny*off-SY)<220)break;
         ok=tryBR(px+s.ux*l/2+nx*off,py+s.uy*l/2+ny*off,hz?l:d,hz?d:l,rot,H,st);if(ok){
-          if(k==='houses'&&Math.random()<.45){const[,l2,d2,H2]=bSpec('houses'),o2=82+d+30+d2*.35;tryBR(px+s.ux*l/2+nx*o2,py+s.uy*l/2+ny*o2,hz?Math.min(l,l2):d2*.7,hz?d2*.7:Math.min(l,l2),rot,H2*.8,0);}
+          if(k==='houses'&&Math.random()<.45){const[,l2,d2,H2]=bSpec('houses'),o2=82+d+70+d2*.35;tryBR(px+s.ux*l/2+nx*o2,py+s.uy*l/2+ny*o2,hz?Math.min(l,l2):d2*.7,hz?d2*.7:Math.min(l,l2),rot,H2*.8,0);}
           break;}}
-      t+=ok?len+R(16,40):40;}}}}
+      t+=ok?len+R(50,110):40;}}}}

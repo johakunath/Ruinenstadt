@@ -40,7 +40,7 @@ function lmRathaus(){
   bShadow(b);
 }
 function lmSpree(){
-  const g=gx,y0=550,y1=650;g.fillStyle='#10171a';g.fillRect(0,y0,WS,y1-y0);
+  const g=gx,y0=550,y1=650;g.fillStyle='#1e3a44';g.fillRect(0,y0,WS,y1-y0);
   for(let i=0;i<400;i++){g.fillStyle=`rgba(150,180,190,${R(.03,.1)})`;g.fillRect(R(0,WS),R(y0+6,y1-8),R(8,30),1.5);}
   g.fillStyle='#4a4038';g.fillRect(0,y0-6,WS,6);g.fillRect(0,y1,WS,6);g.fillStyle='rgba(255,230,200,.08)';g.fillRect(0,y0-6,WS,2);g.fillRect(0,y1,WS,2);
   let x=0;for(const r of RX){walls.push({x,y:y0,w:r-55-x,h:y1-y0,water:1});x=r+55;}walls.push({x,y:y0,w:WS-x,h:y1-y0,water:1});waters.push({x:0,y:y0,w:WS,h:y1-y0});
@@ -118,7 +118,7 @@ function lmZitadelle(){const g=gx,x0=1010,y0=800;
   const tw={x:1300,y:740,w:60,h:50,H:180,top:180,lights:[]},c2=cnv(60,230),u=c2.getContext('2d');const gr=u.createLinearGradient(0,0,60,0);gr.addColorStop(0,'#5a3a26');gr.addColorStop(.4,'#8a5a3e');gr.addColorStop(1,'#3a2416');
   u.fillStyle=gr;u.fillRect(4,30,52,200);bricks(u,4,30,52,200,6);for(let i=0;i<5;i++){u.fillStyle='#6a4430';u.fillRect(2+i*12,18,8,14);}u.fillStyle='#4a2c1c';u.fillRect(0,28,60,6);
   for(let i=0;i<4;i++){u.fillStyle='#110b08';u.fillRect(26,60+i*38,8,14);}u.fillStyle='#d9822b';u.fillRect(26,60,8,14);tw.lights.push({x:1330,y:740-180+67,r:60});tw.spr=c2;addLm(tw);
-  g.fillStyle='#10171a';g.fillRect(x0-40,y0+60,420,30);walls.push({x:x0-40,y:y0+62,w:180,h:26,water:1},{x:x0+200,y:y0+62,w:180,h:26,water:1});waters.push({x:x0-40,y:y0+60,w:420,h:30});g.fillStyle='#4a3424';g.fillRect(x0+140,y0+56,60,38);
+  g.fillStyle='#1e3a44';g.fillRect(x0-40,y0+60,420,30);walls.push({x:x0-40,y:y0+62,w:180,h:26,water:1},{x:x0+200,y:y0+62,w:180,h:26,water:1});waters.push({x:x0-40,y:y0+60,w:420,h:30});g.fillStyle='#4a3424';g.fillRect(x0+140,y0+56,60,38);
   marks.push({x:1180,y:900,n:'Zitadelle Spandau'});}
 function lmMarzahn(){const b={x:1040,y:770,w:320,h:80,H:230,top:230};makeB(b,'platte');const t=b.spr.getContext('2d');
   t.fillStyle='#1a1e22';t.fillRect(70,10,180,22);t.fillStyle='#ff6a2a';t.font='700 16px sans-serif';t.textAlign='center';t.fillText('M A R Z A H N',160,27);b.lights.push({x:1200,y:770-230+20,r:90});
@@ -263,8 +263,8 @@ function buildWorld(d){
   const side=(q,o)=>({x:q.x+q.nx*o,y:q.y+q.ny*o}),far=(x,y,r)=>Math.hypot(x-SX,y-SY)>=r;
   // on geo maps vehicles turn with the road (rot), slightly askew
   const veh=(x,y,w,h,v,k,rot)=>{const cx=x+w/2,cy=y+h/2;if(rot){gx.save();gx.translate(cx,cy);gx.rotate(rot);gx.translate(-cx,-cy);}addVeh(x,y,w,h,v,k);if(rot)gx.restore();const b=blds[blds.length-1];b.rot=rot;walls.push(rot?obWall(b):{x,y,w,h});},vrot=q=>K?rotN(Math.atan2(q.uy,q.ux))+R(-.06,.06):0;
-  let ct=0;for(let i=0;i<160*A&&ct<18*A;i++){const q=roadPt(),v=q.v,k=pick(['car','car','trabi','trabi','van']),s=k==='trabi'?.82:k==='van'?1.1:1,w=v?44:96*s,h=v?96*s:44,c=side(q,R(-8,8)+pick([-27,27])),x=c.x-w/2,y=c.y-h/2;
-    if(!far(c.x,c.y,240)||inWall(c.x,c.y,70)||resHit(c.x-30,c.y-30,60,60,1)||x<0||y<0||x+w>WS||y+h>WS)continue;veh(x,y,w,h,v,k,vrot(q));ct++;}
+  let ct=0;for(let i=0;i<160*A&&ct<14*A;i++){const q=roadPt(),v=q.v,k=pick(['car','car','trabi','trabi','van']),s=k==='trabi'?.82:k==='van'?1.1:1,w=v?44:96*s,h=v?96*s:44,c=side(q,R(-8,8)+pick([-27,27])),x=c.x-w/2,y=c.y-h/2;
+    if(!far(c.x,c.y,240)||inWall(c.x,c.y,90)||resHit(c.x-30,c.y-30,60,60,1)||x<0||y<0||x+w>WS||y+h>WS)continue;veh(x,y,w,h,v,k,vrot(q));ct++;}
   for(let i=0,n=0;i<80&&n<3;i++){const q=roadPt(s=>s.n==='tram'),v=q.v,w=v?46:230,h=v?230:46,c=side(q,R(-20,20)),x=c.x-w/2,y=c.y-h/2;if(!far(c.x,c.y,300)||inWall(c.x,c.y,130)||resHit(c.x-40,c.y-40,80,80,1)||x<0||y<0||x+w>WS||y+h>WS)continue;veh(x,y,w,h,v,'bus',vrot(q));n++;}
   if(!K)for(let i=0,n=0;i<40&&n<2;i++){const a=R(80,WS-330),x=a,y=1480-22,w=250,h=44;if(Math.abs(x+125-SX)<340||inWall(x+125,y+22,140)||resHit(x,y,w,h))continue;addVeh(x,y,w,h,false,'tram');walls.push({x,y,w,h});n++;}
   for(const q of [[SX-100,SY-40],[SX+100,SY-40]]){barrels.push({x:q[0],y:q[1],ph:R(0,6)});walls.push({x:q[0]-9,y:q[1]-9,w:18,h:18});}
