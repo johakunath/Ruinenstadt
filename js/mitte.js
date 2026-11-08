@@ -1,44 +1,45 @@
 /* ================= Mitte (v0.47): Regierungsviertel to Potsdamer Platz, the cyberpunk quarter =================
-   World 4000, about 1.4 units per metre, north up. Spree with the Spreebogen in the north, Tiergarten with the Neuer See in the west, Brandenburger Tor on the
+   World 4000, about 1.4 units per metre east of the Tiergarten (v0.47b: map shifted east, western Tiergarten squeezed to half), north up. Spree with the Spreebogen in the north, Tiergarten with the Neuer See in the west, Brandenburger Tor on the
    17. Juni / Unter den Linden axis, Potsdamer Platz as the neon core in the south (board docs/style/potsdamer-platz.png), Landwehrkanal at the bottom.
    Start at S+U Potsdamer Platz. Mockup: mockups/v047-mitte-geo.html. Landmarks are custom-drawn iso boxes (b.draw) like the Xhain ones in js/geo.js ---- */
-const MITTE={ws:4000,start:[2820,2940],
- lake:[[260,2330],[620,2270],[900,2360],[860,2480],[520,2540],[240,2460]],
- rivers:[{n:'Spree',w:170,p:[[4000,1060],[3830,1110],[3400,1200],[3050,1250],[2760,1250],[2520,1080],[2280,830],[2000,760],[1740,840],[1420,1060],[1100,1260],[780,1190],[450,1080],[0,1000]]},
-  {n:'Landwehrkanal',w:90,p:[[0,3180],[600,3330],[1200,3440],[1900,3500],[2500,3700],[3000,3950],[3080,4000]]}],land:[],
- rail:[[0,700],[900,560],[1700,450],[2400,430],[3000,560],[3500,800],[4000,870]],// Stadtbahn viaduct
- roads:{'Invalidenstraße':[[0,240],[1500,200],[2600,170],[4000,140]],'Hugo-Preuß-Brücke':[[2150,190],[2150,600],[2160,900],[2170,1200],[2170,1500]],
-  'Scheidemannstraße':[[2880,1640],[2400,1610],[2170,1500]],'John-Foster-Dulles-Allee':[[2170,1500],[1700,1420],[1250,1380]],
-  'Ebertstraße':[[2880,1380],[2880,1640],[2860,1960],[2830,2400],[2760,2800]],'Straße des 17. Juni':[[300,2050],[1500,1980],[2860,1900]],
-  'Pariser Platz':[[2860,1900],[3150,1870]],'Unter den Linden':[[3150,1870],[3600,1810],[4000,1760]],
-  'Wilhelmstraße':[[3150,140],[3100,1260],[3170,1860],[3200,2300],[3220,2800],[3280,3300],[3320,4000]],'Friedrichstraße':[[3830,140],[3840,1110],[3850,1780],[3870,2720],[3900,4000]],
-  'Leipziger Straße':[[2760,2800],[3050,2820],[3500,2770],[4000,2720]],'Potsdamer Straße':[[2760,2800],[2470,2950],[2180,3150],[1920,3500],[1800,4000]],
-  'Bellevuestraße':[[2760,2800],[2560,2620],[2250,2640]],'Entlastungsstraße':[[2170,1500],[2200,1980],[2230,2400],[2250,2640]],'Tiergartenstraße':[[0,2720],[1300,2700],[2250,2640]],
-  'Stresemannstraße':[[2760,2800],[2980,3150],[3295,3560]]},
- bridges:[[3840,1110,'Weidendammer Brücke'],[3100,1245,'Marschallbrücke'],[2155,795,'Hugo-Preuß-Brücke'],[1910,3500,'Potsdamer Brücke']],
- stations:[['S+U','Potsdamer Platz',2820,2900,1],['U','Brandenburger Tor',3080,1960],['U','Bundestag',2300,1420],['S+U','Hauptbahnhof',1880,640],['U','Mendelssohn-Bartholdy-Park',2200,3250],
-  ['U','Mohrenstraße',3400,2850],['S+U','Friedrichstraße',3700,1000],['S','Anhalter Bahnhof',3320,3480],['S','Bellevue',500,880]],
- zones:[['Tiergarten',[[0,1290],[450,1180],[780,1290],[1100,1380],[1400,1470],[2140,1580],[2820,1700],[2800,2560],[2560,2600],[2250,2600],[1300,2620],[0,2640]],{lots:{park:3,forest:2},fringe:'park'}],
-  ['Moabit',[[0,0],[1600,0],[1600,600],[900,640],[0,780]],{lots:{houses:3,hinterhof:2,ruins:1},fringe:'houses'}],
-  ['Europacity',[[2200,0],[3050,0],[3050,600],[2400,560],[2200,600]],{lots:{construction:3,buero:2},fringe:'buero'}],
-  ['Charité',[[3100,0],[4000,0],[4000,1000],[3300,1120],[3150,700]],{lots:{houses:2,hinterhof:2,ruins:1},fringe:'houses'}],
-  ['Regierungsviertel',[[1800,1250],[2860,1250],[2860,1600],[1800,1500]],{lots:{park:1},fringe:'park'}],
-  ['Dorotheenstadt',[[2920,1280],[4000,1110],[4000,1720],[3150,1820],[2920,1700]],{lots:{houses:2,buero:2,market:1},fringe:'houses'}],
-  ['Ministergärten',[[2900,1960],[3130,1960],[3150,2700],[2880,2700]],{lots:{park:2,ruins:1},fringe:'park'}],
-  ['Friedrichstadt',[[3260,1880],[4000,1800],[4000,2660],[3260,2740]],{lots:{buero:2,houses:2,ruins:1},fringe:'buero'}],
-  ['Potsdamer Platz',[[2280,2660],[2860,2620],[3200,2650],[3240,3000],[2900,3250],[2550,3150],[2300,2950]],{lots:{buero:3,hochhaus:2},fringe:'buero'}],
-  ['Kulturforum',[[1500,2740],[2250,2720],[2300,3000],[2050,3330],[1500,3300]],{lots:{park:1,ruins:1,construction:1},fringe:'ruins'}],
-  ['Diplomatenviertel',[[0,2760],[1450,2760],[1450,3280],[600,3240],[0,3100]],{lots:{efh:2,houses:1,park:1},fringe:'efh'}],
-  ['Gleisdreieck',[[0,3320],[1900,3600],[2500,3800],[2900,4000],[0,4000]],{lots:{ruins:2,park:1,construction:1,parking:1},fringe:'ruins'}],
-  ['Anhalter Bahnhof',[[2600,3250],[3300,3100],[4000,2800],[4000,4000],[3150,4000],[2600,3700]],{lots:{ruins:2,houses:2,construction:1},fringe:'ruins'}]],
+const MITTE={ws:4000,start:[2120,2940],
+ lake:[[130,2330],[310,2270],[450,2360],[430,2480],[260,2540],[120,2460]],
+ rivers:[{n:'Spree',w:170,p:[[4000,930],[3600,1000],[3130,1110],[2700,1200],[2350,1250],[2060,1250],[1820,1080],[1580,830],[1300,760],[1040,840],[720,1060],[550,1260],[390,1190],[225,1080],[0,1000]]},
+  {n:'Landwehrkanal',w:90,p:[[0,3180],[300,3330],[600,3440],[1200,3500],[1800,3700],[2300,3950],[2380,4000]]}],land:[],
+ rail:[[0,700],[450,560],[1000,450],[1700,430],[2300,560],[2800,800],[3300,850],[4000,800]],// Stadtbahn viaduct
+ roads:{'Invalidenstraße':[[0,240],[800,200],[1900,170],[4000,140]],'Hugo-Preuß-Brücke':[[1450,190],[1450,600],[1460,900],[1470,1200],[1470,1500]],
+  'Scheidemannstraße':[[2180,1640],[1700,1610],[1470,1500]],'John-Foster-Dulles-Allee':[[1470,1500],[1000,1420],[625,1380]],
+  'Ebertstraße':[[2180,1380],[2180,1640],[2160,1960],[2130,2400],[2060,2800]],'Straße des 17. Juni':[[150,2050],[800,1980],[2160,1900]],
+  'Pariser Platz':[[2160,1900],[2450,1870]],'Unter den Linden':[[2450,1870],[2900,1810],[4000,1760]],
+  'Wilhelmstraße':[[2450,140],[2400,1260],[2470,1860],[2500,2300],[2520,2800],[2580,3300],[2620,4000]],'Friedrichstraße':[[3130,140],[3140,1110],[3150,1780],[3170,2720],[3200,4000]],
+  'Leipziger Straße':[[2060,2800],[2350,2820],[2800,2770],[4000,2720]],'Potsdamer Straße':[[2060,2800],[1770,2950],[1480,3150],[1220,3500],[1100,4000]],
+  'Bellevuestraße':[[2060,2800],[1860,2620],[1550,2640]],'Entlastungsstraße':[[1470,1500],[1500,1980],[1530,2400],[1550,2640]],'Tiergartenstraße':[[0,2720],[650,2700],[1550,2640]],
+  'Stresemannstraße':[[2060,2800],[2280,3150],[2595,3560]],'Markgrafenstraße':[[3700,1750],[3710,2730],[3720,4000]],'Zimmerstraße':[[2560,3150],[3180,3140],[4000,3110]]},
+ bridges:[[3140,1110,'Weidendammer Brücke'],[2400,1245,'Marschallbrücke'],[1455,795,'Hugo-Preuß-Brücke'],[1210,3500,'Potsdamer Brücke']],
+ stations:[['U','Potsdamer Platz',2120,2900,1],['U','Brandenburger Tor',2380,1960],['U','Bundestag',1600,1420],['U','Hauptbahnhof',1010,740],['U','Mendelssohn-Bartholdy-Park',1500,3250],
+  ['U','Mohrenstraße',2700,2850],['U','Friedrichstraße',3000,1000],['U','Anhalter Bahnhof',2620,3480],['U','Bellevue',250,880]],
+ zones:[['Tiergarten',[[0,1290],[225,1180],[390,1290],[550,1380],[700,1470],[1440,1580],[2120,1700],[2100,2560],[1860,2600],[1550,2600],[650,2620],[0,2640]],{lots:{park:3,forest:2},fringe:'park'}],
+  ['Moabit',[[0,0],[900,0],[900,600],[450,640],[0,780]],{lots:{houses:3,hinterhof:2,ruins:1},fringe:'houses'}],
+  ['Europacity',[[1500,0],[2350,0],[2350,600],[1700,560],[1500,600]],{lots:{construction:3,buero:2},fringe:'buero'}],
+  ['Charité',[[2400,0],[4000,0],[4000,1000],[2600,1120],[2450,700]],{lots:{houses:2,hinterhof:2,ruins:1},fringe:'houses'}],
+  ['Regierungsviertel',[[1100,1250],[2160,1250],[2160,1600],[1100,1500]],{lots:{park:1},fringe:'park'}],
+  ['Dorotheenstadt',[[2220,1280],[4000,1110],[4000,1720],[2450,1820],[2220,1700]],{lots:{houses:2,buero:2,market:1},fringe:'houses'}],
+  ['Ministergärten',[[2200,1960],[2430,1960],[2450,2700],[2180,2700]],{lots:{park:2,ruins:1},fringe:'park'}],
+  ['Gendarmenmarkt',[[3260,1960],[3600,1960],[3600,2420],[3260,2420]],{lots:{market:1},fringe:'houses'}],['Checkpoint Charlie',[[2700,2950],[3600,2950],[3600,3400],[2700,3400]],{lots:{ruins:2,buero:1,parking:1},fringe:'ruins'}],
+  ['Friedrichstadt',[[2560,1880],[4000,1800],[4000,2660],[2560,2740]],{lots:{buero:2,houses:2,ruins:1},fringe:'buero'}],
+  ['Potsdamer Platz',[[1580,2660],[2160,2620],[2500,2650],[2540,3000],[2200,3250],[1850,3150],[1600,2950]],{lots:{buero:3,hochhaus:2},fringe:'buero'}],
+  ['Kulturforum',[[800,2740],[1550,2720],[1600,3000],[1350,3330],[800,3300]],{lots:{park:1,ruins:1,construction:1},fringe:'ruins'}],
+  ['Diplomatenviertel',[[0,2760],[750,2760],[750,3280],[300,3240],[0,3100]],{lots:{efh:2,houses:1,park:1},fringe:'efh'}],
+  ['Gleisdreieck',[[0,3320],[1200,3600],[1800,3800],[2200,4000],[0,4000]],{lots:{ruins:2,park:1,construction:1,parking:1},fringe:'ruins'}],
+  ['Anhalter Bahnhof',[[1900,3250],[2600,3100],[4000,2800],[4000,4000],[2450,4000],[1900,3700]],{lots:{ruins:2,houses:2,construction:1},fringe:'ruins'}]],
  other:{lots:{houses:2,buero:1,ruins:1,hinterhof:1},fringe:'houses'},
- marks:[[3300,1120,'Spree'],[1150,3470,'Landwehrkanal'],[580,2410,'Neuer See'],[1000,560,'Stadtbahn']],
- hbf:[1880,470],
- lm:()=>{const K=MITTE;mPuddles();grStern(300,2050);hbf(...K.hbf);
-  viaduct(segsOf(K.rail),{c:['#7a3a26','#5a2a1a','#4a2216'],pc:'#6b3626',pcap:'#4a2216',ps:22,z0:46,z1:60,d:40,step:72,tc:'#a83228',skip:(x,y)=>Math.hypot(x-K.hbf[0],y-K.hbf[1])<230,free:(x,y)=>roadD(x,y)<72});
-  reichstag(2680,1440);kanzleramt(1960,1180);mBox(2380,1290,220,110,drawPLH,'Paul-Löbe-Haus',70);tor(2935,1890);
-  sony(2440,2780);roundTower(2565,2785,46,250);kollhoff(2700,2705);stage(2905,2650);clinic(2600,3010);wallPieces(2900,2985);
-  mBox(2030,2800,200,150,drawPhil,'Philharmonie',120);mBox(1950,3180,170,170,drawNNG,'Neue Nationalgalerie',42);anhalter(3060,3700);
+ marks:[[2600,1120,'Spree'],[575,3470,'Landwehrkanal'],[290,2410,'Neuer See'],[500,560,'Stadtbahn']],
+ hbf:[1010,450],
+ lm:()=>{const K=MITTE;mPuddles();grStern(170,2050);hbf(...K.hbf);
+  viaduct(segsOf(K.rail),{c:['#7a3a26','#5a2a1a','#4a2216'],pc:'#6b3626',pcap:'#4a2216',ps:22,z0:46,z1:60,d:40,step:72,tc:'#a83228',skip:(x,y)=>Math.abs(x-K.hbf[0])<440&&Math.abs(y-K.hbf[1])<190,free:(x,y)=>roadD(x,y)<72});
+  reichstag(1980,1440);kanzleramt(1260,1180);mBox(1680,1290,220,110,drawPLH,'Paul-Löbe-Haus',70);tor(2235,1890);
+  sony(1740,2780);roundTower(1865,2785,46,250);kollhoff(2000,2705);stage(2205,2650);clinic(1900,3010);wallPieces(2200,2985);
+  mBox(1330,2800,200,150,drawPhil,'Philharmonie',120);mBox(1250,3180,170,170,drawNNG,'Neue Nationalgalerie',42);anhalter(2360,3700);gendarmenmarkt(3430,2190);checkpoint(3180,3140);
   for(const s of K.stations){const p=station(...s);if(s[4]&&p){SX=p[0];SY=p[1]+38;}}},
  post:()=>mNeon()};
 DIST[DI('Mitte')].geo=MITTE;
@@ -85,10 +86,12 @@ function drawAttic(b){const{x,y,w,h,z0,z1}=b,c='#d8c8a0';ibox(x,y,w,h,z0,z1,c,IN
   for(let v=6;v<h-6;v+=10)faceE(x,y+v,w,5,z0+10,z0+14,'#b8a880');ibox(x+4,y+h*.3,w-8,h*.4,z1,z1+8,c,INK,'#c8b890');
   const cx=x+w/2,cy=y+h/2,Q='#4a6a58',z=z1+8;ibox(cx-12,cy-26,24,22,z,z+12,Q,INK);ibox(cx-12,cy+4,24,22,z,z+12,Q,INK);ibox(cx-7,cy-7,14,14,z,z+18,Q,INK);ibox(cx-2,cy-2,4,4,z+18,z+34,Q,INK);
   const a=P3(cx,cy,z+34);poly([a,P3(cx,cy-12,z+44),P3(cx,cy-4,z+30)],Q,INK);poly([a,P3(cx,cy+12,z+44),P3(cx,cy+4,z+30)],Q,INK);ln3(a,P3(cx+4,cy,z+52),'#6a8a78');}
-function tor(cx,cy){const W=44,c='#d8c8a0',cap='#c8b890';for(const o of [-125,-80,-35,35,80,125]){const y=cy+o-7;blds.push({x:cx-W/2,y,w:W,h:14,H:68,top:68,R0:0,c,cap,lights:[],draw:drawPillar});walls.push({x:cx-W/2,y,w:W,h:14});}
-  for(const sd of [-1,1]){const y=cy+sd*165-18;mBox(cx,y+18,W+12,36,(b)=>{ibox(b.x,b.y,b.w,b.h,0,52,c,INK,cap);faceS(b.x+14,b.y,16,b.h,10,40,'#1a1814');},0,52);}
-  blds.push({x:cx-W/2-2,y:cy-138,w:W+4,h:276,H:140,top:140,R0:0,z0:68,z1:92,lights:[],draw:drawAttic});reserved.push({x:cx-60,y:cy-200,w:120,h:400});marks.push({x:cx,y:cy,n:'Brandenburger Tor'});
-  neons.push({x:cx,y:cy,z:150,c:'#f0a050',s:30});}
+// real gate: 62.5 m wide, 11 m deep, five passages (middle one wider). Here about 2.5x real so the passages stay walkable (middle 32, others 26, pillars 10 thick, 34 deep).
+// All parts share a fade group (grp), so the whole gate turns transparent together
+function tor(cx,cy){const W=34,c='#d8c8a0',cap='#c8b890',G_={};for(const o of [-93,-57,-21,21,57,93]){const y=cy+o-5;blds.push({x:cx-W/2,y,w:W,h:10,H:66,top:66,R0:0,c,cap,grp:G_,lights:[],draw:drawPillar});walls.push({x:cx-W/2,y,w:W,h:10});}
+  for(const sd of [-1,1])mBox(cx,cy+sd*112,W+8,28,(b)=>{ibox(b.x,b.y,b.w,b.h,0,46,c,INK,cap);faceS(b.x+12,b.y,14,b.h,10,36,'#1a1814');faceE(b.x,b.y+8,b.w,10,10,36,'#1a1814');},0,46,{grp:G_});
+  blds.push({x:cx-W/2-2,y:cy-100,w:W+4,h:200,H:130,top:130,R0:0,z0:66,z1:88,grp:G_,lights:[],draw:drawAttic});reserved.push({x:cx-60,y:cy-150,w:120,h:300});marks.push({x:cx,y:cy,n:'Brandenburger Tor'});
+  neons.push({x:cx,y:cy,z:140,c:'#f0a050',s:30});}
 /* ---- Kanzleramt (white cube with the round window, low wings), Paul-Löbe-Haus (glass and concrete slab) ---- */
 function drawKanzler(b){const{x,y,w,h}=b,c='#e0ddd4';faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,0,50,c,INK,'#b8b4aa');glassRows(x,y,w,h,12,40,'#4a5a64',16);
   const cx=x+w*.3,cy=y+h*.15,cw=w*.4,ch=h*.7;ibox(cx,cy,cw,ch,50,150,'#ecebe4',INK,'#c8c4ba');ibox(cx-10,cy-10,cw+20,ch+20,150,156,'#f4f2ec',INK);
@@ -96,13 +99,54 @@ function drawKanzler(b){const{x,y,w,h}=b,c='#e0ddd4';faceT(x+8,y+5,w,h,0,'rgba(0
   poly(ring((u,v)=>P3(cx+cw/2+u,cy+ch,100+v)),'#3a5260',INK);poly(ring((u,v)=>P3(cx+cw,cy+ch/2+u,100+v)),'#2e4450',INK);}
 function kanzleramt(cx,cy){mBox(cx,cy,220,160,drawKanzler,'Kanzleramt',160);}
 function drawPLH(b){const{x,y,w,h}=b;faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,0,64,'#d0ccc0',INK,'#a8a498');glassRows(x,y,w,h,8,58,'#3e4e58',14);ibox(x-6,y-6,w+12,h+12,64,70,'#e8e4dc',INK);}
-/* ---- Hauptbahnhof: glass hall along the Stadtbahn with a barrel roof, two office slabs crossing it ---- */
-function drawHbf(b){const{x,y,w,h}=b,H=34,Rf=30,N=8;faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,0,H,'#5a6a74',INK);glassRows(x,y,w,h,4,H-4,'#2a3640',12);
-  for(let k=0;k<N;k++){const f0=k/N,f1=(k+1)/N,z0=H+Rf*Math.sin(Math.PI*f0),z1=H+Rf*Math.sin(Math.PI*f1);poly([P3(x,y+h*f0,z0),P3(x+w,y+h*f0,z0),P3(x+w,y+h*f1,z1),P3(x,y+h*f1,z1)],k<N/2?'#6a8496':'#9ab4c4',INK);}
-  const gp=[];for(let k=0;k<=N;k++)gp.push(P3(x+w,y+h*k/N,H+Rf*Math.sin(Math.PI*k/N)));poly(gp,'#5a7080',INK);
-  for(const f of [.3,.7]){const sx=x+w*f-16;ibox(sx,y-50,32,h+100,0,120,'#9aa4ac',INK,'#7a848c');glassRows(sx,y-50,32,h+100,10,112,'#26323c',10);}}
-function hbf(cx,cy){const w=380,h=110,b={x:cx-w/2,y:cy-h/2,w,h,H:130,top:130,R0:0,lights:[],draw:drawHbf};blds.push(b);bShadow({...b,H:70});walls.push({x:b.x,y:b.y,w,h});
-  for(const f of [.3,.7])walls.push({x:b.x+w*f-16,y:b.y-50,w:32,h:50},{x:b.x+w*f-16,y:b.y+h,w:32,h:50});reserved.push({x:b.x-30,y:b.y-80,w:w+60,h:h+160});marks.push({x:cx,y:cy+30,n:'Hauptbahnhof'});}
+/* ---- Hauptbahnhof (v0.47b): open hall you walk through. Two tracks through the middle (a wrecked ICE on one), platforms with shops along both long walls,
+   three doors per side, open ends where the Stadtbahn comes in, translucent glass barrel roof and the two office bridges ("Bügelbauten") crossing high above.
+   Roof and bridges sort late (dk) and fade together (grp). Several floors: later (BACKLOG) ---- */
+const HBF_SH=['Döner','Bäckerei','Presse','Späti','Apotheke','Blumen','Imbiss','Kiosk'];
+function signC(t,col){const c=cnv(70,16),g=c.getContext('2d');g.fillStyle='#0c0a10';g.fillRect(0,0,70,16);g.strokeStyle=col;g.lineWidth=1.5;g.strokeRect(1,1,68,14);g.fillStyle=col;g.font='700 10px sans-serif';g.textAlign='center';g.fillText(t,35,12);return c;}
+function onS(img,x,y,w,z,hh){const q=P3(x,y,z),[ux,uy]=bAx();ctx.save();ctx.transform(ux,uy,0,1,q[0],q[1]);ctx.drawImage(img,0,0,w,hh);ctx.restore();}// image on a south-facing plane, top edge at z
+function drawShop(b){const{x,y,w,h}=b;faceT(x+3,y+3,w,h,0,'rgba(0,0,0,.35)');ibox(x,y,w,h,0,24,'#3a2e28',INK,'#4a3a30');for(let u=0;u<w;u+=10)faceS(x+u,y-4,5,h+4,24,30,b.c);faceT(x,y-4,w,h+4,30,b.c);
+  faceS(x+6,y,w-12,h,4,20,'rgba(224,137,46,.35)');ibox(x+4,y+2,4,4,30,52,'#2a2a30');ibox(x+w-8,y+2,4,4,30,52,'#2a2a30');onS(b.sg,x,y+2,w,56,14);}
+function drawGlassW(b){const{x,y,w,h}=b;ibox(x,y,w,h,0,48,'#4a5a64',INK,'#5a6a74');for(let u=4;u<w;u+=16)faceS(x+u,y,10,h,4,44,'rgba(20,30,36,.85)');faceS(x,y,w,h,44,48,'#7a848c');}
+function drawICE(b){const{x,y,w,h}=b;faceT(x+5,y+4,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,4,40,'#d8dcd8',INK,'#c8ccc8');faceS(x,y,w,h,12,15,'#c23a2e');faceE(x,y,w,h,12,15,'#8a2a20');
+  for(let u=10;u<w-10;u+=16)faceS(x+u,y,12,h,20,32,'#1a2024');for(const r of b.rust){const p=P3(x+w*r,y+h,26);ctx.fillStyle='rgba(110,55,25,.35)';ctx.beginPath();ctx.ellipse(p[0],p[1],8,4,0,0,7);ctx.fill();}
+  for(let u=w*.33;u<w;u+=w*.33)ln3(P3(x+u,y+h,4),P3(x+u,y+h,40),'#1a1814');}
+function drawHbfRoof(b){const{x,y,w,h,z0}=b,Rf=48,N=10,zz=k=>z0+Rf*Math.sin(Math.PI*k/N);
+  for(let k=0;k<N;k++)poly([P3(x,y+h*k/N,zz(k)),P3(x+w,y+h*k/N,zz(k)),P3(x+w,y+h*(k+1)/N,zz(k+1)),P3(x,y+h*(k+1)/N,zz(k+1))],k<N/2?'rgba(110,140,160,.22)':'rgba(160,190,205,.3)');
+  ctx.strokeStyle='rgba(40,52,60,.8)';ctx.lineWidth=1;for(let u=0;u<=w;u+=40){ctx.beginPath();for(let k=0;k<=N;k++){const p=P3(x+u,y+h*k/N,zz(k));k?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]);}ctx.stroke();}
+  for(const yy of [y,y+h])ln3(P3(x,yy,z0),P3(x+w,yy,z0),'#2a343c');const gp=[];for(let k=0;k<=N;k++)gp.push(P3(x+w,y+h*k/N,zz(k)));ctx.strokeStyle='#2a343c';ctx.lineWidth=2;ctx.beginPath();gp.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.stroke();}
+function drawBuegel(b){const{x,y,w,h,z0,z1}=b;ibox(x,y,w,h,z0,z1,'#9aa4ac',INK,'#7a848c');glassRows(x,y,w,h,z0+6,z1-6,'#26323c',9);if(b.sg)onS(b.sg,x+w*.08,y+h,w*.84,z0-2,14);}
+function hbf(cx,cy){const w=700,h=280,x0=cx-w/2,y0=cy-h/2,g=gx,G_={},dk=600;
+  for(let x=x0;x<x0+w;x+=24)for(let y=y0;y<y0+h;y+=24){g.fillStyle=((x-x0)/24+(y-y0)/24)%2?'#3a3a42':'#30303a';g.fillRect(x,y,24,24);}
+  for(const ty of [cy-30,cy+30]){g.fillStyle='#1e1a18';g.fillRect(x0-90,ty-18,w+180,36);for(let x=x0-90;x<x0+w+90;x+=10){g.fillStyle='#3a2a1e';g.fillRect(x,ty-14,4,28);}g.fillStyle='#8a8276';g.fillRect(x0-90,ty-9,w+180,2);g.fillRect(x0-90,ty+7,w+180,2);}
+  g.fillStyle='#c8a020';g.fillRect(x0,cy-50,w,3);g.fillRect(x0,cy+48,w,3);
+  const doors=[w*.25,w*.5,w*.75],seg=(yy)=>{let u=0;for(const d of [...doors,w+30]){const a=u,bb=d-30;if(bb-a>4){const o={x:x0+a,y:yy,w:bb-a,h:10,H:48,top:48,R0:0,lights:[],draw:drawGlassW};blds.push(o);walls.push({x:o.x,y:o.y,w:o.w,h:10});}u=d+30;}};
+  seg(y0);seg(y0+h-10);
+  const sc=['#c23a2e','#3a6a8a','#d8a020','#3B6D11','#7a3a6a','#43d1cf','#e19142','#ff4fa3'];let si=0;
+  const slots=[0,...doors.flatMap(d=>[d-30,d+30]),w],mids=[];for(let i=0;i<slots.length;i+=2)mids.push((slots[i]+slots[i+1])/2-36);
+  for(const[yy,up]of [[y0+14,0],[y0+h-48,1]])for(const u of mids){const c=sc[si%8],o={x:x0+u,y:yy,w:72,h:32,H:60,top:60,R0:0,c,sg:signC(HBF_SH[si++%8],c),lights:[{x:x0+u+36,y:yy+16,z:40,r:60,fl:Math.random()<.4}],draw:drawShop};
+    blds.push(o);walls.push({x:o.x,y:o.y,w:72,h:32});neons.push({x:x0+u+36,y:yy+(up?0:32),z:50,c,s:30});if(Math.random()<.7)addBrk(x0+u+86,yy+(up?20:12),'crate',false);}
+  {const o={x:x0+90,y:cy-45,w:380,h:30,H:44,top:44,R0:0,lights:[],rust:[.1,.3,.55,.8],draw:drawICE};blds.push(o);walls.push({x:o.x,y:o.y,w:o.w,h:o.h});}
+  blds.push({x:x0,y:y0,w,h,H:110,top:110,R0:0,z0:62,grp:G_,dk,lights:[{x:cx-140,y:cy,z:20,r:110,fl:1},{x:cx+140,y:cy,z:20,r:110},{x:cx,y:cy+60,z:20,r:90,fl:1}],draw:drawHbfRoof});
+  for(const f of [-1,1]){const bx=cx+f*255-22,by=y0-70,bh=h+140;blds.push({x:bx,y:by,w:44,h:bh,H:200,top:200,R0:0,z0:124,z1:200,grp:G_,dk,sg:f>0?signC('BERLIN HAUPTBAHNHOF','#e8e4dc'):null,lights:[],draw:drawBuegel});
+    for(const ly of [by,by+bh-60]){const o={x:bx,y:ly,w:44,h:60,H:124,top:124,R0:0,c:'#8a949c',cap:'#7a848c',lights:[],draw:drawPillar};blds.push(o);walls.push({x:bx,y:ly,w:44,h:60});}}
+  reserved.push({x:x0-30,y:y0-100,w:w+60,h:h+200});marks.push({x:cx,y:cy,n:'Hauptbahnhof'});}
+/* ---- Gendarmenmarkt (Konzerthaus between the Französischer and the Deutscher Dom) and Checkpoint Charlie ---- */
+function domeAt(cx,cy,z,r,c,top){const B=P3(cx,cy,z),T=P3(cx,cy,z+r*.9);ctx.fillStyle=c;ctx.beginPath();ctx.ellipse(B[0],B[1],r,r/2,0,0,Math.PI);ctx.lineTo(T[0]-r,T[1]);ctx.ellipse(T[0],T[1],r,r/2,0,Math.PI,2*Math.PI);ctx.closePath();ctx.fill();ctx.strokeStyle=INK;ctx.lineWidth=1;ctx.stroke();
+  for(let k=1;k<6;k++){const u=T[0]-r+k*r/3;ctx.strokeStyle='rgba(0,0,0,.2)';ctx.beginPath();ctx.moveTo(u,T[1]+Math.sqrt(Math.max(0,1-Math.pow((u-T[0])/r,2)))*r/2);ctx.lineTo(u,B[1]+Math.sqrt(Math.max(0,1-Math.pow((u-T[0])/r,2)))*r/2);ctx.stroke();}
+  ctx.fillStyle=top;ctx.beginPath();ctx.ellipse(T[0],T[1],r*1.05,r*1.05,0,Math.PI,0);ctx.closePath();ctx.fill();ctx.stroke();ibox(cx-3,cy-3,6,6,z+r*.9+r,z+r*.9+r+14,top,INK);}
+function drawDom(b){const{x,y,w,h}=b,c='#d8ccb0';faceT(x+6,y+4,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,0,50,c,INK,'#b8ac94');for(const f of [.5])for(let i=0;i<4;i++){ibox(x+w*.3+i*w*.13,y+h,5,8,0,40,'#e4dac0',INK);ibox(x+w,y+h*.3+i*h*.13,8,5,0,40,'#e4dac0',INK);}
+  poly([P3(x+w*.25,y+h+8,40),P3(x+w*.75,y+h+8,40),P3(x+w*.5,y+h+8,58)],c,INK);domeAt(x+w/2,y+h/2,50,w*.32,'#cfc3a8','#4a7a68');}
+function drawKonz(b){const{x,y,w,h}=b,c='#ddd2b8';faceT(x+6,y+4,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,0,58,c,INK,'#b8ac94');for(let u=10;u<w-10;u+=14)faceS(x+u,y,6,h,14,44,'#2a2418');ibox(x+w*.2,y+h*.2,w*.6,h*.6,58,84,c,INK,'#a89c84');
+  for(let i=0;i<6;i++)ibox(x+w,y+h*.2+i*h*.12,10,5,0,52,'#e8dec4',INK);poly([P3(x+w+10,y+h*.15,52),P3(x+w+10,y+h*.85,52),P3(x+w+10,y+h*.5,74)],c,INK);}
+function gendarmenmarkt(cx,cy){const g=gx;g.fillStyle='#3a3530';g.fillRect(cx-150,cy-210,300,420);for(let i=0;i<500;i++){g.fillStyle=pick(['#433d36','#36302a','#2e2924']);g.fillRect(R(cx-150,cx+150),R(cy-210,cy+210),R(6,12),R(4,8));}
+  mBox(cx,cy-150,90,90,drawDom,'Französischer Dom',150);mBox(cx,cy+150,90,90,drawDom,'Deutscher Dom',150);mBox(cx,cy,110,120,drawKonz,'Gendarmenmarkt',84);
+  for(const q of [[cx-110,cy-60],[cx+110,cy+60],[cx-110,cy+70],[cx+110,cy-70]])makeTree(q[0],q[1],'green');reserved.push({x:cx-160,y:cy-220,w:320,h:440});}
+function checkpoint(x,y){mBox(x,y,30,24,(b)=>{const{x,y,w,h}=b;ibox(x,y,w,h,0,34,'#e8e4dc',INK,'#c8c4b8');faceS(x+5,y,w-10,h,14,28,'#2a3038');ibox(x-2,y-2,w+4,h+4,34,38,'#d8d4cc',INK);},0,40);
+  for(let i=0;i<10;i++){const a=i/10*6.283,bx=x+Math.cos(a)*34,by=y+Math.sin(a)*26;if(Math.abs(Math.sin(a))>.9)continue;gx.fillStyle='#8a7a5a';gx.beginPath();gx.ellipse(bx,by,8,5,0,0,7);gx.fill();}
+  const c=cnv(64,120),t=c.getContext('2d');t.fillStyle='#24201c';t.fillRect(30,40,4,80);t.fillStyle='#ead9c0';t.fillRect(0,0,64,42);t.strokeStyle='#1a1a1a';t.strokeRect(1,1,62,40);t.fillStyle='#1a1a1a';t.font='700 6px sans-serif';t.textAlign='center';
+  ['SIE VERLASSEN DEN','AMERIKANISCHEN','SEKTOR','YOU ARE LEAVING'].forEach((s,i)=>t.fillText(s,32,9+i*9));const sx=x+70,sy=y-30;blds.push({x:sx-32,y:sy,w:64,h:0,top:118,spr:c,sc:1.2,lights:[{x:sx,y:sy,z:120,r:50}]});walls.push({x:sx-3,y:sy-3,w:6,h:5});
+  marks.push({x,y:y+30,n:'Checkpoint Charlie'});}
 /* ---- Potsdamer Platz core ---- */
 // Sony Center: ring of glass buildings with gaps, magenta tent roof on cables over the plaza (deck high above, fades when the player is under it)
 function drawTent(b){const{x,y,w,z0}=b,r=w/2,cx=x+r,cy=y+r,A=P3(cx,cy,z0+70),rim=[];for(let i=0;i<24;i++){const a=i/24*6.283;rim.push(P3(cx+Math.cos(a)*r,cy+Math.sin(a)*r,z0+Math.sin(a+.8)*14));}

@@ -85,14 +85,15 @@ function drawDrop(d){const bob=Math.sin(d.t*4)*2;
 /* depth order: boxes (buildings, vehicles) sorted by centre depth; each upright item is drawn just before the first box it stands behind and overlaps on screen, else after all boxes. Buildings in front of the player fade. */
 function drawSorted(t){const BX=[],IT=[],vL=-OX-60,vR=VW-OX+60,vT=-OY-60,vB=VH-OY+80;
   for(const b of blds){if(isBox(b)){let x0=ix(b.x,b.y+b.h),x1=ix(b.x+b.w,b.y),y0=iy(b.x,b.y)-boxTop(b),y1=iy(b.x+b.w,b.y+b.h);
-    if(b.rot){const C=obbC(b).map(p=>[ix(p[0],p[1]),iy(p[0],p[1])]);x0=Math.min(...C.map(p=>p[0]));x1=Math.max(...C.map(p=>p[0]));y0=Math.min(...C.map(p=>p[1]))-boxTop(b);y1=Math.max(...C.map(p=>p[1]));}if(x1<vL||x0>vR||y1<vT||y0>vB)continue;b._s=[x0,x1,y0];b._k=b.x+b.w/2+b.y+b.h/2;BX.push(b);}
+    if(b.rot){const C=obbC(b).map(p=>[ix(p[0],p[1]),iy(p[0],p[1])]);x0=Math.min(...C.map(p=>p[0]));x1=Math.max(...C.map(p=>p[0]));y0=Math.min(...C.map(p=>p[1]))-boxTop(b);y1=Math.max(...C.map(p=>p[1]));}if(x1<vL||x0>vR||y1<vT||y0>vB)continue;b._s=[x0,x1,y0];b._k=b.x+b.w/2+b.y+b.h/2+(b.dk||0);BX.push(b);}
     else{const ax=b.x+b.w/2,X=ix(ax,b.y),Y=iy(ax,b.y),sc=b.sc||1;if(X+b.spr.width*sc<vL||X-b.spr.width*sc>vR||Y<vT||Y-b.top*sc>vB)continue;IT.push({x:ax,y:b.y,k:0,o:b});}}
   for(const b of barrels)IT.push({x:b.x,y:b.y,k:1,o:b});for(const b of brk)IT.push({x:b.x+b.w/2,y:b.y+b.h/2,k:4,o:b});
   for(const e of enemies)IT.push({x:e.x,y:e.y,k:2,o:e});if(npc)IT.push({x:npc.x,y:npc.y,k:5,o:npc});if(captive)IT.push({x:captive.x,y:captive.y,k:6,o:captive});IT.push({x:P.x,y:P.y,k:3});
   BX.sort((a,b)=>a._k-b._k);const PX=ix(P.x,P.y),PY=iy(P.x,P.y);
   for(const it of IT){it.s=1e9;it.d=it.x+it.y;if(it.k!==3&&it.k!==0){const X=ix(it.x,it.y),Y=iy(it.x,it.y);if(X<vL||X>vR||Y<vT||Y-60>vB){it.s=-1;continue;}}const X=ix(it.x,it.y),Y=iy(it.x,it.y);
     for(let j=0;j<BX.length;j++){const b=BX[j];if(X<b._s[0]-12||X>b._s[1]+12||Y<b._s[2]||front(b,it.x,it.y))continue;it.s=j;break;}}
-  for(const b of BX){const occ=!front(b,P.x,P.y)&&PX>b._s[0]-10&&PX<b._s[1]+10&&PY>b._s[2]+10;b.oa=(b.oa==null?1:b.oa)+((occ?.32:1)-(b.oa==null?1:b.oa))*.2;}
+  for(const b of BX){b._o=!front(b,P.x,P.y)&&PX>b._s[0]-10&&PX<b._s[1]+10&&PY>b._s[2]+10;if(b.grp)b.grp.o=0;}for(const b of BX)if(b.grp&&b._o)b.grp.o=1;// grp: parts of one landmark fade together
+  for(const b of BX){const occ=b.grp?b.grp.o:b._o;b.oa=(b.oa==null?1:b.oa)+((occ?.32:1)-(b.oa==null?1:b.oa))*.2;}
   // trees and other tall sprites in front of the player fade too, so the player is never hidden under a canopy
   for(const it of IT)if(it.k===0){const o=it.o,sc=o.sc||1,X=ix(it.x,it.y),Y=iy(it.x,it.y),hw=o.spr.width*sc/2;const occ=it.d>P.x+P.y&&Math.abs(PX-X)<hw+6&&PY<Y+4&&PY>Y-o.top*sc-10;o.oa=(o.oa==null?1:o.oa)+((occ?.3:1)-(o.oa==null?1:o.oa))*.2;}
   const vis=IT.filter(it=>it.s>=0).sort((a,b)=>a.s-b.s||a.d-b.d);let j=0;
