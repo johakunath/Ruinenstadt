@@ -2,7 +2,7 @@
 """Cut ChatGPT sheets from assets/raw/ into game-ready WebP files.
 
 Icons (B01..B10): 4x2 cells, teal background keyed out, trimmed, padded square, 128 px -> assets/icons/<ID>.webp
-Player parts test (H01): 3x2 cells, keyed like icons, 256 px -> assets/hero/<ID>.webp
+Player parts (H01): 3x2 cells, keyed like icons but NOT trimmed or scaled (parts share the sheet scale) -> assets/hero/<ID>.webp
 Portraits (P01..P05): 3x2 cells, background kept, square crop above the label strip, 192 px -> assets/portraits/<ID>.webp
 IDs come from docs/chatgpt-assets.md. Run: python3 tools/cut_sheets.py [B01 P02 ...]
 """
@@ -19,6 +19,7 @@ IDS = {
  'B09': 'C07 M01 M02 M03 M04 M05 M06 M07', 'B10': 'R01 R02 R03 R04 R05 R06 R07 -',
  'P01': 'S01 S02 S03 S04 S05 S06', 'P02': 'E01 E02 E03 E04 E05 E06', 'P03': 'E07 E08 E09 E10 E11 E12',
  'P04': 'X01 X02 X03 X04 X05 X06', 'P05': 'X07 X08 - - - -',
+ 'B11': 'I59 I60 I61 I62 I63 I64 I65 I66', 'B12': 'I67 I68 I69 I70 D01 - - -', 'P06': 'E13 E14 X09 - - -',
  'H01': 'H01 H02 H03 H04 H05 -'}
 ICON, PORT = 128, 192
 
@@ -63,6 +64,9 @@ def icon(cell, size=ICON):
     s = int(max(rgba.size) * 1.06); sq = Image.new('RGBA', (s, s), (0, 0, 0, 0))
     sq.paste(rgba, ((s - rgba.width) // 2, (s - rgba.height) // 2)); return sq.resize((size, size), Image.LANCZOS)
 
+def part(cell):
+    a, _ = key_out(cell); rgba = cell.convert('RGBA'); rgba.putalpha(a); return rgba
+
 def portrait(cell):
     w, h = cell.size; s = min(w, h); x = (w - s) // 2
     return cell.crop((x, h - s, x + s, h)).resize((PORT, PORT), Image.LANCZOS)
@@ -76,7 +80,7 @@ def run(b):
         x0, y0 = (i % cols) * cw, (i // cols) * ch
         lt = label_top(im, x0, x0 + cw, y0, y0 + ch)
         m = 6; cell = im.crop((x0 + m, y0 + m, x0 + cw - m, lt - 4))
-        img = icon(cell) if b[0] == 'B' else icon(cell, 256) if b[0] == 'H' else portrait(cell)
+        img = icon(cell) if b[0] == 'B' else part(cell) if b[0] == 'H' else portrait(cell)
         img.save(os.path.join(out, idn + '.webp'), 'WEBP', quality=86, method=6)
         print(b, idn, 'label at', lt - y0)
 

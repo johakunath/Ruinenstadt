@@ -96,27 +96,41 @@ Zombies are gaunt, grey-green skin, torn Berlin everyday clothes. Same look as t
 | P04 | X01 Der Hauptmann von Köpenick (zombie Prussian captain, spiked helmet, long coat) · X02 Die Spreehexe (river witch, wet hair, acid) · X03 Der Turmwächter (guardian of the TV tower, electric) · X04 Der Fliegerkönig (zombie pilot king, aviator goggles, Tempelhof) · X05 Der Brandmeister (burning fire chief) · X06 Die Rattenmutter (huge rat queen, grey fur) |
 | P05 | X07 Der Zitadellenritter (undead knight with shield) · X08 Der Plattenkönig (giant of Plattenbau concrete slabs) · then four empty cells (leave them as plain background) |
 
-### Player parts (test, not menu art)
+### Icons and portraits: Mitte (Potsdamer Platz)
 
-One test sheet to see whether ChatGPT keeps one character consistent enough to replace the code-drawn player. The game draws the player from the side, facing right (left is mirrored), about 50 px tall, and animates arms, legs and the held weapon in code. Weapons need no new art: the item icons are already painted on one diagonal and get rotated in the hand.
-
-Sheet format as the portrait batches (3 × 2 cells of 512 × 512, same teal, ID strip). Style block plus: *"All cells show the same survivor from the Köpenick board at the same scale: lean, red scarf, long brown coat, dark trousers, boots. Side view facing right, flat even light, no weapon. Body parts are drawn separately, as if cut out of the full figure in cell H01, so they fit back together."*
+Attach `docs/style/potsdamer-platz.png` in addition to the Köpenick board and add to the style block: *"Mitte variant: same painted style and base palette, plus cyan `#43d1cf` and magenta `#bd2b77` neon accents. Improvised club and techno gear, cables, glowing parts, rain-worn."*
 
 | Batch | Cells |
 |---|---|
-| H01 | H01 full figure, standing, arms hanging · H02 head only (with hair, no scarf), side view · H03 torso only: coat and scarf, no head, no arms, no legs · H04 one arm, straight and hanging, sleeve and bare hand · H05 one leg, straight, trousers and boot · then one empty cell |
+| B11 | I59 Leuchtröhre (neon tube taped to a handle, used as a club) · I60 Boxenhammer (hammer with a small speaker box as head) · I61 Neonflinte (improvised rifle with a glowing neon tube barrel) · I62 Mikroständer (microphone stand used as a spear) · I63 Regenponcho (transparent rain poncho, neon reflections) · I64 Kabelmantel (long coat wrapped in cables) · I65 Neonbrille (goggles with glowing cyan lenses) · I66 Neonauge (cybernetic eye implant, glowing) |
+| B12 | I67 Zielchip (targeting chip with fine circuits) · I68 Reflexkoppler (spine nerve module with a small lightning spark) · I69 Bassherz (heart-shaped implant with a speaker membrane) · I70 Nanopumpe (glass cylinder pump with glowing liquid) · D01 Döner (döner kebab in paper, the food pickup) · then three empty cells |
+| P06 | E13 Kabelghul (gaunt zombie wrapped in glowing cyan cables) · E14 Boxenkopf (zombie with a speaker box instead of a head, bass waves) · X09 Der Bassprediger (boss: techno preacher with headphones, mixer on his chest, magenta neon) · then three empty cells |
 
-Success test: Claude cuts it (`tools/cut_sheets.py H01` → `assets/hero/`), lays the parts over H01 and checks scale and joints. If they fit, next batches are torso variants per armour and the hats per head item, same framing.
+### Player parts (test, not menu art)
+
+Rule for anything that must stay consistent (one character, its parts, its outfits): **put it on one sheet.** Inside one image the colours, line weight and proportions match. Between two images they drift, even when generated in the same go. For a follow-up sheet, attach the previous sheet as reference and say "same character, same scale as the attached sheet". Canvas stays 1536 × 1024 (ChatGPT's largest landscape size); more content means more sheets, not a bigger canvas.
+
+The game draws the player from the side, facing right (left is mirrored), about 50 px tall, and animates arms, legs and the held weapon in code. So only one view is needed, no turnaround. Weapons need no new art: the item icons are painted on one diagonal and get rotated in the hand.
+
+Sheet format as the portrait batches (3 × 2 cells of 512 × 512, same teal, ID strip, body parts not touching the cell edge). Style block plus: *"One sheet, one character: the survivor from the Köpenick board (dark brown hair, red scarf, long brown leather coat, harness with pouches, dark trousers, heavy boots), no weapon. Strict side view facing right, flat even light. Every cell uses exactly the same scale as the full figure in H01: do not enlarge the parts to fill their cells. The parts are the full figure cut apart, so they fit back together."*
+
+| Batch | Cells |
+|---|---|
+| H01 | H01 full figure standing, arms hanging, about 420 px tall · H02 head and hair only, cut at the neck · H03 torso only: coat, scarf and harness, no head, no arms, no legs, coat ends at mid thigh · H04 one arm, straight and hanging, sleeve with bare hand · H05 one leg, straight, trousers and boot · H06 empty |
+
+Success test: Claude cuts it (`tools/cut_sheets.py H01` → `assets/hero/`), lays the parts over H01 and checks scale and joints. If they fit, next sheets: torso variants per armour piece and hats per head item, each sheet with H01 attached as reference.
 
 ## Totals
 
 | Group | Batches | Images |
 |---|---|---|
-| Icons | B01 to B10 | 79 |
+| Icons | B01 to B10, B11, B12 (Mitte) | 79 + 13 |
 | Survivor portraits | P01 | 6 |
 | Enemy portraits | P02, P03 | 12 |
 | Boss portraits | P04, P05 | 8 |
-| **All** | **15 steps** | **105** |
+| Mitte portraits | P06 | 3 |
+| Player parts (test) | H01 | 5 |
+| **All** | **19 steps** | **126** |
 
 Recommended order: B01 first (Claude checks how it cuts and reads at game size), then the rest in order.
 
@@ -127,6 +141,8 @@ Claude ticks a batch here once its sheet is in `assets/raw/`.
 | Batch | Status |
 |---|---|
 | B01 to B10 | done, cut into `assets/icons/` (v0.49) |
+| B11, B12, P06 (Mitte) | open |
+| H01 (player test) | open |
 | P01 to P05 | done, cut into `assets/portraits/` (v0.49) |
 
 Cutting: `python3 tools/cut_sheets.py [B01 ...]`. It finds the label strip per cell, keys out the teal (also enclosed holes such as ring centres) and writes WebP. New batches: add their IDs to `IDS` in the script, and the mapping to `ICOI` / `PORTI` in `js/items.js`.
