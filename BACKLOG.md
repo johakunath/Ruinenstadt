@@ -18,20 +18,21 @@ Problems: environment scale (cars smaller than player), pure top-down props vs s
 
 ## Next
 
-Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pipeline.md`).
+Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pipeline.md`). Style source of truth: `docs/style-bible.md` (Köpenick = default look, U-Bahn, Potsdamer Platz, Alexanderplatz boards).
 
 | # | Item | Notes |
 |---|---|---|
 | 1 | Isometric follow-ups | Playtest v0.40 on the Tab S9 (feel of screen-space joystick, frame rate on the 3600 Köpenick map, building size, silhouettes). Then: Späti interior and sandbags as iso props, landmark towers as real iso sprites (Codex step 4), rebalance with the bot |
 | 2 | Equipment follow-ups | Legendaries and set pieces for head, hands, feet and ring (they top out at rare for now). Implant items with Potsdamer Platz (#4). Codex: painted head, hand and foot parts |
 | 3 | Geographic districts | Köpenick done in v0.40, Xhain (Friedrichshain-Kreuzberg) in v0.42/v0.43 (`js/geo.js`, data is the source of truth). Playtest Xhain (Hochbahn and Stadtbahn pillars as cover, Warschauer start, tower density, frame rate on the 4000 map; 4000² ground canvas is near the iOS canvas limit of about 16.7 MP). Next: Mitte, then the other districts on the same system (map data per district: water, roads, zones), one at a time with a mockup each |
-| 4 | Potsdamer Platz cyberpunk district | Mockup D approved: neon, rain, implant clinic, cable enemies |
+| 4 | Potsdamer Platz cyberpunk district | Mockup D approved: neon, rain, implant clinic, cable enemies. Board: `docs/style/potsdamer-platz.png` (bassline underworld, speaker brute) |
 | 7 | Weapon = class | Each weapon type 2 to 3 skills, pick 1 before a run. Touch stays at 4 buttons |
-| 8 | Zones and U-Bahn waypoints | One working station per map (v0.44): start and later fast-travel point, lit on generator power, the only station labeled on the map (Xhain: U Warschauer Straße, Köpenick: S Köpenick). All other stations are closed and boarded up. Next: underground level per station (fight your way through to free the line, metro style), then freed stations as fast travel (S+U network). Mockup first. District = 2 to 3 zones of 5 to 10 min |
+| 8 | Zones and U-Bahn waypoints | One working station per map (v0.44): start and later fast-travel point, lit on generator power, the only station labeled on the map (Xhain: U Warschauer Straße, Köpenick: S Köpenick). All other stations are closed and boarded up. Next: underground level per station (fight your way through to free the line, metro style), then freed stations as fast travel (S+U network). Mockup first. Board: `docs/style/ubahn.png`. District = 2 to 3 zones of 5 to 10 min |
 | 9 | Controller support | Gamepad API for Xbox and Steam Deck (browser), stick aiming, assists per input device |
 | 10 | AI-maintainability review | Code and docs readable for Claude and Codex with few tokens |
 | 11 | Walkable camp hub | Mockup first. Lives at Lindenstraße in Köpenick |
-| A | Asset pipeline (Codex) | Hand-painted isometric art. Steps, order and prompts in `docs/asset-pipeline.md`. Step 1: 3 to 5 style references, Johannes picks |
+| A | Asset pipeline (Codex) | Step 1 done: four boards, Köpenick default (`docs/style-bible.md`). Next: first Köpenick batch (player, Altbau, Späti, bus, Trabi, zombie), finish style bible step 2 with it, test on the Tab S9 |
+| 12 | Style proposals | From `docs/style-bible.md`, undecided: Spreepark zone in Köpenick, zombie raptor and T-rex, U-Bahn market set piece, lamp gun, per-district palettes in code (mockup first), Alexanderplatz as GDR clockwork district |
 | - | GitHub Pages | When playtesting outside the dev setup |
 
 ## Ideas by theme
@@ -47,7 +48,7 @@ Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pip
 | Quests | Pick up and hand in at NPCs. Quest chains with a light story per district |
 | Base | Barricades and turrets (camp raid event, or placed mid-run). Boss kills unlock camp stations or skills (V Rising) |
 | Day and night | Real cycle with gameplay differences (night: stronger enemies, better loot, need light) |
-| Setting | Cyberpunk-Fallout mix: a neon district, implants as abilities. Keep one coherent style |
+| Setting | Decided in `docs/style-bible.md`: one painted base, district identities (Köpenick dinosaur jungle, U-Bahn, Potsdamer Platz cyberpunk, Alexanderplatz GDR clockwork) |
 | Feel | Hit flash, knockback, per-weapon screen shake, perfect-dodge slow motion, persistent decals |
 | Platforms | Gamepad API (Xbox, Steam Deck in browser), faster pace and aim with the stick on controller, high-detail graphics mode for big screens |
 | Research | Benchmark more games only when ideas run out |
@@ -59,7 +60,8 @@ Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pip
 | Pace | Fast fodder, smart elites: telegraphs and punish windows on elites and some types, calm phases between waves, safe rooms |
 | Builds | Weapon = class (Hades model), blessings stack into strong builds |
 | Structure | Districts of 2 to 3 zones with U-Bahn waypoints, sessions stay short |
-| Still open | Cyberpunk-Fallout elements yes or no (decide with the art mockups). Touch vs controller: one game with assists per input, or a separate desktop version |
+| Style | Köpenick board is the default look, cyberpunk only in Potsdamer Platz (`docs/style-bible.md`) |
+| Still open | Touch vs controller: one game with assists per input, or a separate desktop version |
 
 ## Tech
 
@@ -122,3 +124,4 @@ Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pip
 | v0.43 | Kreuzberg becomes Xhain (Friedrichshain-Kreuzberg): Kreuzberg compressed south, the Friedrichshain bank north of the Spree added (mockup `mockups/v043-xhain-geo.html`). Stadtbahn as a brick viaduct with S-Bahn wrecks, Ostbahnhof as a station hall with a glass barrel roof, modern high-rises at Stralauer Platz and glass office towers at Mediaspree (new lot types `hochhaus`, `buero`), Berghain as a concrete landmark, East Side Gallery as painted wall pieces along the Mühlenstraße, Andreasviertel, Heinrich-Heine-Viertel, Osthafen, Boxhagen. Runs start at a station: Xhain at S Ostbahnhof, Köpenick at S Köpenick. 13 S/U station entrances (stairs, sign, map label) as the base for the later fast-travel network. Viaduct code shared by Hochbahn and Stadtbahn |
 | v0.44 | Xhain world 4000 (was 3600), Spree wider, Görlitzer Park, Wrangelkiez, Mariannenplatz, Mehringplatz and Treptower Park bigger (Wiener and Schlesische Straße moved). Oberbaumbrücke after photos: seven vaults (7.5 to 22 m), brick arcade with pointed arches carrying the U1, crenellated turrets on the piers, two towers with battlement gallery and copper spires at the middle vault. One working station per map (start, labeled, lit), closed stations boarded up with dead signs and no label, S stations unlabeled. No power grid: lit windows are rare dim candles, many shattered panes, street lamps mostly dead, glass towers mostly dark. Campfires with stone ring and log seats on open ground (about 5 per map) |
 | v0.45 | 20 waves per district (was 10): Schrottkoloss at wave 10, district boss at 20, blessing after every second wave, wave size, spawn pace, item level, rarity, darkness, heal and reroll prices follow the old 10-wave curve (`wE()` = wave/2), 6 events per run (7 with Funkmast), crates at 5 and 14, endless bosses every 10 waves. Saves migrate once (records and wave jobs doubled, liberated stays liberated). Bot, Normal: Köpenick and Xhain won in about 11 min (was 5 to 6). Hochbahn swings onto the Oberbaumbrücke arcade at both ends instead of a sideways jog; the arcade spans the whole bridge |
+| v0.46 | Style bible (`docs/style-bible.md`) from four ChatGPT reference boards in `docs/style/`: Köpenick (default look, dinosaur jungle, steampunk noir), U-Bahn, Potsdamer Platz (cyberpunk, bassline), Alexanderplatz (GDR clockwork gardens). Palettes, district breakdowns, fit with the game, proposals. Player wears the boards' red scarf unless the armour sets its own |
