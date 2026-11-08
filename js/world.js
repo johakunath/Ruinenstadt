@@ -204,7 +204,7 @@ function buildWorld(d){
   g.strokeStyle='#6b5a4a';g.lineWidth=2;[1480-10,1480+10].forEach(y=>{g.beginPath();g.moveTo(0,y);g.lineTo(WS,y);g.stroke();});
   for(let i=0;i<80;i++){const v=Math.random()<.5,p=pick(v?RX:RY),a=R(0,WS),o=R(-40,40);g.fillStyle='rgba(8,5,4,.5)';g.beginPath();g.ellipse(v?p+o:a,v?a:p+o,R(6,16),R(4,10),R(0,3),0,7);g.fill();}
   }
-  for(let i=0;i<90*A;i++){const x=R(0,WS),y=R(0,WS),r=R(20,60),gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,'rgba(8,5,3,.55)');gr.addColorStop(1,'rgba(8,5,3,0)');g.fillStyle=gr;g.fillRect(x-r,y-r,r*2,r*2);}
+  for(let i=0;i<90*A;i++){const x=R(0,WS),y=R(0,WS),r=R(20,60),gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,d.day?'rgba(8,5,3,.22)':'rgba(8,5,3,.55)');gr.addColorStop(1,'rgba(8,5,3,0)');g.fillStyle=gr;g.fillRect(x-r,y-r,r*2,r*2);}
   g.strokeStyle='rgba(10,6,4,.55)';g.lineWidth=1.5;for(let i=0;i<300*A;i++){let x=R(0,WS),y=R(0,WS);g.beginPath();g.moveTo(x,y);for(let k=0;k<4;k++){x+=R(-22,22);y+=R(-22,22);g.lineTo(x,y);}g.stroke();}
   if(!K){
   g.fillStyle='rgba(0,0,0,.35)';g.beginPath();g.arc(1206,1108,38,0,7);g.fill();
@@ -213,7 +213,7 @@ function buildWorld(d){
   walls.push({x:1168,y:1068,w:64,h:64});
   }
   if(K){K.lm();reserved.push({x:SX-80,y:SY-80,w:160,h:160});}// landmarks of a geo district (js/geo.js), clear start
-  else ({Tempelhof:()=>legacy(lmTempelhof),'Prenzlauer Berg':lmWasserturm,Spandau:lmZitadelle,Marzahn:lmMarzahn}[d.n]||(()=>{}))();// grid districts (v0.47: Neukölln removed)
+  else ({Tempelhof:()=>legacy(lmTempelhof),Spandau:lmZitadelle,Marzahn:lmMarzahn}[d.n]||(()=>{}))();// grid districts (v0.47: Neukölln removed, v0.49: Prenzlauer Berg removed)
   if(K)geoStreets(K);
   makeSpati();makeDark();makeDark();if(Math.random()<.5)makeDark();if(K)makeDark();
   for(const b of BLK)lotFill(b);
@@ -246,7 +246,7 @@ function buildWorld(d){
 }
 const TAGS=['KIEZ','BERLIN','LIEBE','RUINE','WIR BLEIBEN','HALT DURCH','SPREE','B36','HOFFNUNG','KEIN AUSGANG'];
 // Altbau variants (V): 0 Stuck ocker, 1 Klinker mit Balkonen, 2 grau abgeplatzt, 3 pastell mit Erker und Tordurchfahrt, 4 ausgebrannt. EF: Einfamilienhaus/Reihenhaus (gable roof via b.gable)
-function makeB(b,st){if(st==='hoch'||st==='buero')return modernB(b,st);
+function makeB(b,st){if(st==='hoch'||st==='buero')return modernB(b,st);if(st==='zucker')return zuckerB(b);// zuckerB: js/alex.js
   const c=cnv(b.w,b.h+b.H),g=c.getContext('2d'),P_=st==='platte',L_=st==='laube',RU=st==='ruin',EF=st==='efh'||st==='reihen',AB=!P_&&!L_&&!RU&&!EF,V=AB?wpick({0:3,1:3,2:2,3:2,4:1})|0:-1;
   const wall=P_?pick(['#6e6a62','#625e56','#76705f']):L_?pick(['#6a4a2e','#5a3e26','#7a5a3a']):EF?pick(['#c8b896','#b8a888','#d0c0a0','#a87a5a','#9a9a8a']):V===0?pick(['#a8844e','#b09060','#9a7a58','#b8a07a']):V===2?pick(['#6e6a62','#7a746a']):V===3?pick(['#8a9a80','#a08890','#8a98a8','#b0a080']):V===4?'#4a3a30':pick(D.walls);
   const roof=P_?'#3d3a36':L_?pick(['#8a3a2a','#3a5a3a','#4a4a5a']):RU||V===4?'#2a211b':EF?pick(['#7a3a2a','#5a3a2e','#4a4a50','#8a4a30']):pick(D.roof);b.wc=wall;b.rc=roof;

@@ -79,7 +79,7 @@ Real-world hook: Spreepark Plänterwald (next to Köpenick in Treptow-Köpenick)
 | Weapon | Neon rifle |
 | In game (v0.47, code placeholders) | Night tint `4,7,12`, violet-grey ground and concrete, Tiergarten teal-green, neon cyan `#43d1cf`, magenta `#ff4fa3`, amber `#e19142`. Kabelghul, Boxenkopf, Bassprediger, cable brute, Neonflinte, cyber arm for implants. Painted sprites still to come (Codex) |
 
-### Alexanderplatz / future GDR (future)
+### Alexanderplatz / GDR (in game since v0.49)
 
 | Topic | From the board |
 |---|---|
@@ -89,6 +89,7 @@ Real-world hook: Spreepark Plänterwald (next to Köpenick in Treptow-Köpenick)
 | NPC | Older gardener with apron |
 | Props | Greenhouse, tram, Weltzeituhr, radio, wind-up key, secateurs |
 | Named places | Alexanderplatz, Hackescher Markt, central Spree, Berliner Dom, Palast der Republik (inspiration, not a list of required maps) |
+| In game (v0.49, code placeholders) | Daylight, sand and ochre ground, cream Zuckerbäcker blocks with red banners on the Karl-Marx-Allee, Palast der Republik with a greenhouse vault, Fernsehturm with a gear rim, Weltzeituhr as clockwork, sunflower field, greenhouses. Uhrwerkläufer, Wurzler, Kernspeier, Brigadeghul, boss Der Volkseigene Koloss, gardener NPC still open. Mockup `mockups/v049-alexanderplatz-geo.html`. Painted sprites still to come (Codex) |
 
 ## What it means for the game
 
