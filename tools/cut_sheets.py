@@ -96,4 +96,6 @@ def run(b):
         print(b, idn, 'label at', lt - y0)
 
 if __name__ == '__main__':
-    for b in (sys.argv[1:] or sorted(IDS)): run(b)
+    # no arguments: every sheet present in assets/raw (variants like H01a included); planned batches without a file are skipped
+    found = sorted(f[:-4] for f in os.listdir(RAW) if f.endswith('.png') and f[:3] in IDS)
+    for b in (sys.argv[1:] or found): run(b)
