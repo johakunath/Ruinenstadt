@@ -57,14 +57,14 @@ function geoLayout(K){ROADS=[];for(const n in K.roads){const p=K.roads[n];for(le
     const x0=c.i*CS+GAP/2,y0=c.j*CS+GAP/2,w=gw*CS-GAP,h=gh*CS-GAP;BLK.push({x0,x1:x0+w,y0,y1:y0+h,w,h,lot:wpick(c.z.lots)});}
   // keep buildings off roads and water: reserve squares along roads and the water rows (also used as water walls)
   for(const s of ROADS)for(let t=0;t<=s.len;t+=50)reserved.push({x:s.ax+s.ux*t-60,y:s.ay+s.uy*t-60,w:120,h:120,road:1});
-  for(let y=0;y<WS;y+=40){let x0=-1;for(let x=0;x<=WS;x+=40){const wt=x<WS&&isWater(x+20,y+20)&&roadD(x+20,y+20)>=58;if(wt&&x0<0)x0=x;if(!wt&&x0>=0){walls.push({x:x0,y,w:x-x0,h:40,water:1});reserved.push({x:x0,y,w:x-x0,h:40});if(y%120===0)waters.push({x:x0,y,w:x-x0,h:40});x0=-1;}}}}
+  for(let y=0;y<WS;y+=40){let x0=-1;for(let x=0;x<=WS;x+=40){const wt=x<WS&&isWater(x+20,y+20)&&roadD(x+20,y+20)>=58;if(wt&&x0<0)x0=x;if(!wt&&x0>=0){walls.push({x:x0,y,w:x-x0,h:40,water:1});reserved.push({x:x0,y,w:x-x0,h:40});if(y%80===0)waters.push({x:x0,y,w:x-x0,h:40});x0=-1;}}}}
 function geoWater(K){const g=gx;
   const path=(L,w,c)=>{g.strokeStyle=c;g.lineWidth=w;g.lineCap='round';g.lineJoin='round';g.beginPath();L.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.stroke();};
   const poly=(P_,c)=>{g.fillStyle=c;g.beginPath();P_.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.closePath();g.fill();};
-  if(K.lake){g.save();g.strokeStyle='#4a4038';g.lineWidth=16;g.beginPath();K.lake.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.closePath();g.stroke();g.restore();poly(K.lake,'#10171a');}
-  for(const r of K.rivers)path(r.p,r.w+14,'#4a4038');for(const r of K.rivers)path(r.p,r.w,'#10171a');
+  if(K.lake){g.save();g.strokeStyle='#4a4038';g.lineWidth=16;g.beginPath();K.lake.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.closePath();g.stroke();g.restore();poly(K.lake,'#1e3a44');}
+  for(const r of K.rivers)path(r.p,r.w+14,'#4a4038');for(const r of K.rivers)path(r.p,r.w,'#1e3a44');
   for(const p of K.land)poly(p,D.ground);
-  for(let i=0;i<2600;i++){const x=R(0,WS),y=R(0,WS);if(!isWater(x,y))continue;g.fillStyle=`rgba(150,180,190,${R(.03,.1)})`;g.fillRect(x,y,R(8,30),1.5);}
+  for(let i=0;i<2600;i++){const x=R(0,WS),y=R(0,WS);if(!isWater(x,y))continue;g.fillStyle=`rgba(170,205,215,${R(.06,.16)})`;g.fillRect(x,y,R(8,30),1.5);}
   // reeds on banks
   for(let i=0;i<500;i++){const x=R(0,WS),y=R(0,WS);if(isWater(x,y)||!isWater(x+R(-30,30),y+R(-30,30)))continue;g.strokeStyle=pick(['#4a5a2a','#5a6a30','#3b4a22']);g.lineWidth=1.5;for(let k=0;k<3;k++){g.beginPath();g.moveTo(x+k*2,y);g.lineTo(x+k*2+R(-2,2),y-R(8,14));g.stroke();}}}
 function geoRoads(K,d){const g=gx;
