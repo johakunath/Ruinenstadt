@@ -50,8 +50,8 @@ function render(t){
   for(const p of parts){if(p.ox==null){p.ox=p.x;p.oy=p.y;}ctx.globalAlpha=Math.max(0,p.life/p.max);ctx.fillStyle=p.col;ctx.fillRect(ix(p.ox,p.oy)+p.x-p.ox-p.size/2,iy(p.ox,p.oy)+p.y-p.oy-p.size/2,p.size,p.size);}ctx.globalAlpha=1;
   ctx.restore();
   /* ---- light ---- */
-  lx.setTransform(LS,0,0,LS,0,0);lx.globalCompositeOperation='source-over';lx.clearRect(0,0,VW,VH);lx.fillStyle=`rgba(${D.nc||'6,4,3'},${P.dark?.95:D.day?clamp(.12+wE()*.022+(dm_('dunkel')?.3:0),.1,.6):clamp(D.dark-.12+wE()*.017+(dm_('dunkel')?.12:0),.45,.96)})`;// D.day (Alexanderplatz): daylight, late waves dim towards dusklx.fillRect(0,0,VW,VH);lx.globalCompositeOperation='destination-out';
-  const lit=(x,y,r,z)=>{if(D.day&&!P.dark)return;const X=scx(x,y),Y=scy(x,y)-(z||0);if(X<-r||X>VW+r||Y<-r||Y>VH+r)return;lx.drawImage(LSPR,X-r,Y-r*.7,r*2,r*1.4);};
+  lx.setTransform(LS,0,0,LS,0,0);lx.globalCompositeOperation='source-over';lx.clearRect(0,0,VW,VH);lx.fillStyle=`rgba(${D.nc||'6,4,3'},${P.dark?.95:D.day?clamp(.12+wE()*.022+(dm_('dunkel')?.3:0),.1,.6):clamp(D.dark-.12+wE()*.017+(dm_('dunkel')?.12:0),.45,.96)})`;lx.fillRect(0,0,VW,VH);lx.globalCompositeOperation='destination-out';// D.day (Alexanderplatz): daylight, late waves dim towards dusk
+  const lit=(x,y,r,z)=>{const X=scx(x,y),Y=scy(x,y)-(z||0);if(X<-r||X>VW+r||Y<-r||Y>VH+r)return;lx.drawImage(LSPR,X-r,Y-r*.7,r*2,r*1.4);};
   lit(P.x,P.y,(P.dark?(P.torch?270:P.lamp?200:95):250)+Math.sin(t*.008)*8+Math.sin(t*.021)*4,10);
   for(const b of barrels)lit(b.x,b.y,150+Math.sin(t*.012+b.ph)*12,10);
   for(const b of blds)for(const l of b.lights){if(l.inner&&!b.inside)continue;const q=lpos(b,l);if(l.inner){lit(q[0],q[1],150);continue;}if(l.r||!S.eco)lit(q[0],q[1],(l.r||34)*(l.fl&&Math.sin(t*.031+l.x)*Math.sin(t*.017+l.y)>.55?.35:1),q[2]);}
