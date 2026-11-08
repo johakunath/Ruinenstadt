@@ -3,9 +3,9 @@
 const BIOME=[
  {lots:{houses:3,park:2,forest:2,kleingarten:1,ruins:1},big:{forest:3,water:2,park:1},roads:.5,trees:['green','green','autumn','dead'],grass:['#26301a','#2f3b1c','#3b4a22'],wx:'fireflies'},
  {lots:{houses:3,hinterhof:3,market:2,park:1,ruins:1,parking:1},big:{park:1,hinterhof:1},roads:.7,trees:['green','autumn','dead'],grass:['#283019','#313a1e','#3a4422'],wx:'rain'},
+ {lots:{plattenbau:3,houses:2,park:2,sonnen:1,glashaus:1,market:1},big:{park:1,sonnen:1},roads:.6,trees:['green','green','autumn'],grass:['#3a4a24','#46582a','#526630'],wx:'leaves'},
  {lots:{buero:3,park:2,ruins:1},big:{park:2},roads:.8,trees:['green','dark','green'],grass:['#1f2a22','#26332a','#2c3a2e'],wx:'rain'},
  {lots:{kleingarten:3,houses:1,parking:1,construction:1,airfield:2},big:{airfield:3,kleingarten:1},roads:.35,trees:['dead','autumn'],grass:['#2c2e18','#36381c','#414322'],wx:'dust'},
- {lots:{houses:4,hinterhof:3,park:2,market:1,ruins:1},big:{park:2,hinterhof:1},roads:.6,trees:['autumn','autumn','green'],grass:['#2c3019','#363a1e','#40441f'],wx:'leaves'},
  {lots:{houses:2,forest:2,ruins:1,kleingarten:2,water:1},big:{water:2,forest:2},roads:.45,trees:['green','dark','autumn'],grass:['#232c18','#2b3620','#344026'],wx:'fog'},
  {lots:{plattenbau:5,parking:2,park:1,construction:1,ruins:1},big:{plattenbau:2,park:1},roads:.75,trees:['dead','green'],grass:['#2a2c1c','#33361f','#3d4024'],wx:'snow'}];
 const LOTN={hochhaus:'Hochhäuser',buero:'Bürotürme',efh:'Einfamilienhäuser',reihen:'Reihenhäuser',park:'Park',forest:'Wald',kleingarten:'Kleingärten',market:'Markt',plattenbau:'Plattenbau',hinterhof:'Hinterhof',ruins:'Trümmerfeld',construction:'Baustelle',parking:'Parkplatz',water:'See',airfield:'Rollfeld',houses:'Altbau'};
@@ -15,7 +15,9 @@ function grassFill(b,pal,dens){const g=gx;g.fillStyle=pal[0];g.fillRect(b.x0+6,b
   for(let i=0;i<b.w*b.h/260*(dens||1);i++){g.fillStyle=pick(pal);g.globalAlpha=R(.4,.9);g.fillRect(R(b.x0+6,b.x1-8),R(b.y0+6,b.y1-8),R(2,7),R(2,5));}g.globalAlpha=1;
   g.strokeStyle='rgba(120,150,70,.18)';g.lineWidth=1;for(let i=0;i<b.w*b.h/900;i++){const x=R(b.x0+8,b.x1-8),y=R(b.y0+8,b.y1-8);g.beginPath();g.moveTo(x,y);g.lineTo(x+R(-2,2),y-R(3,7));g.stroke();}}
 function lotGround(b){const g=gx,B=BIOME[D.i];
-  if(b.lot==='park'||b.lot==='forest'||b.lot==='airfield')grassFill(b,b.lot==='forest'?B.grass.map(c=>dark(c,.8)):B.grass,b.lot==='forest'?1.4:1);
+  if(b.lot==='sonnen'||b.lot==='glashaus'){grassFill(b,B.grass,.8);}
+  else if(b.lot==='zucker'){g.fillStyle='#4a4234';g.fillRect(b.x0+8,b.y0+8,b.w-16,b.h-16);}
+  else if(b.lot==='park'||b.lot==='forest'||b.lot==='airfield')grassFill(b,b.lot==='forest'?B.grass.map(c=>dark(c,.8)):B.grass,b.lot==='forest'?1.4:1);
   else if(b.lot==='kleingarten'||b.lot==='efh'||b.lot==='reihen'){grassFill(b,B.grass,.6);}
   else if(b.lot==='market'){for(let y=b.y0+8;y<b.y1-8;y+=10)for(let x=b.x0+8+((y/10)%2)*6;x<b.x1-8;x+=12){g.fillStyle=pick(['#3d3128','#372c24','#433629','#30261f']);g.fillRect(x,y,10,8);}}
   else if(b.lot==='parking'){g.fillStyle='#211c19';g.fillRect(b.x0+8,b.y0+8,b.w-16,b.h-16);for(let i=0;i<b.w*b.h/600;i++){g.fillStyle='rgba(0,0,0,.2)';g.fillRect(R(b.x0,b.x1),R(b.y0,b.y1),R(2,6),R(2,4));}}
@@ -123,7 +125,7 @@ const LOTS={
 };
 // ---- weather particles in view space ----
 const WX=Array.from({length:90},()=>({x:Math.random(),y:Math.random(),s:R(.4,1),w:R(0,6.28),z:R(1,2.6)}));
-function drawWeather(t,dt){const k=BIOME[D.i].wx,n=S.eco?40:WX.length;
+function drawWeather(t,dt){if(D.tun)return;const k=BIOME[D.i].wx,n=S.eco?40:WX.length;
   for(let i=0;i<n;i++){const m=WX[i];
     if(k==='rain'){m.y+=m.s*dt*1.6;m.x-=m.s*dt*.25;if(m.y>1.05){m.y=-.05;m.x=Math.random()*1.2;}ctx.strokeStyle=D.cyber&&i%6===0?(i%12?`rgba(255,79,163,${.2+.15*m.s})`:`rgba(67,209,207,${.2+.15*m.s})`):`rgba(170,190,210,${.12+.12*m.s})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(m.x*VW,m.y*VH);ctx.lineTo(m.x*VW-3,m.y*VH+12*m.s);ctx.stroke();}
     else if(k==='ash'){m.y+=m.s*dt*.05;m.w+=dt;if(m.y>1.02){m.y=-.02;m.x=Math.random();}ctx.fillStyle=`rgba(200,195,185,${.18+.15*m.s})`;ctx.fillRect(m.x*VW+Math.sin(m.w)*14,m.y*VH,m.z,m.z);}

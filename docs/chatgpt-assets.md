@@ -289,9 +289,9 @@ Claude ticks a batch here once its sheet is in `assets/raw/`.
 
 | Batch | Status |
 |---|---|
-| B01 to B10 | done, cut into `assets/icons/` (v0.49) |
+| B01 to B10 | done, cut into `assets/icons/` (v0.51) |
 | H01, H02 (player test) | done. Pick: H02 variant A, plain proportions (Johannes prefers it over the exaggerated build) |
 | Everything else | see Queue |
-| P01 to P05 | done, cut into `assets/portraits/` (v0.49) |
+| P01 to P05 | done, cut into `assets/portraits/` (v0.51) |
 
 Cutting: `python3 tools/cut_sheets.py [B01 ...]`. It finds the label strip per cell, keys out the teal (also enclosed holes such as ring centres) and writes WebP. New batches: add their IDs to `IDS` in the script, and the mapping to `ICOI` / `PORTI` in `js/items.js`.

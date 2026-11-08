@@ -47,10 +47,9 @@ const SFX={
 function sfx(n,a){if(!AC||S.mute)return;if(n==='hit'||n==='pop'||n==='wood'||n==='zap'||n==='ignite'){const now=performance.now();if(now-lastHit<45)return;lastHit=now;}try{if(FX[n])fxPlay(n);else SFX[n](a);}catch(e){}}
 function setMute(m){S.mute=m;save();if(master)master.gain.value=m?0:.5;if(m)stopMusic();else startMusic();}
 let mus=null;const CH=[[220,261.6,329.6],[174.6,220,261.6],[261.6,329.6,392],[196,246.9,293.7]];
-// progressions and melody scales per district (falls back to CH)
-const CHS=[CH,[[196,233.1,293.7],[174.6,207.7,261.6],[155.6,196,233.1],[174.6,220,261.6]],[[146.8,174.6,220],[130.8,164.8,196],[110,130.8,164.8],[116.5,146.8,174.6]],[[220,277.2,329.6],[246.9,293.7,370],[196,246.9,293.7],[220,277.2,329.6]],
- [[261.6,311.1,392],[233.1,293.7,349.2],[207.7,261.6,311.1],[196,246.9,293.7]],[[110,138.6,164.8],[123.5,146.8,185],[98,123.5,146.8],[110,130.8,164.8]],[[130.8,155.6,196],[116.5,146.8,174.6],[103.8,130.8,155.6],[98,123.5,146.8]]];
-const MEL=[[440,523.3,587.3,659.3,784],[392,466.2,523.3,587.3,698.5],[293.7,349.2,392,440,523.3],[440,493.9,554.4,659.3,740],[523.3,622.3,698.5,784,932.3],[220,261.6,293.7,329.6,392],[261.6,311.1,349.2,392,466.2]];
+// progressions and melody scales per district index D.i (falls back to CH). v0.49: Alexanderplatz in C major, a march
+const CHS=[CH,[[196,233.1,293.7],[174.6,207.7,261.6],[155.6,196,233.1],[174.6,220,261.6]],[[261.6,329.6,392],[174.6,220,261.6],[196,246.9,293.7],[261.6,329.6,392]],[[146.8,174.6,220],[130.8,164.8,196],[110,130.8,164.8],[116.5,146.8,174.6]],[[220,277.2,329.6],[246.9,293.7,370],[196,246.9,293.7],[220,277.2,329.6]],[[110,138.6,164.8],[123.5,146.8,185],[98,123.5,146.8],[110,130.8,164.8]],[[130.8,155.6,196],[116.5,146.8,174.6],[103.8,130.8,155.6],[98,123.5,146.8]]];
+const MEL=[[440,523.3,587.3,659.3,784],[392,466.2,523.3,587.3,698.5],[392,440,523.3,587.3,659.3],[293.7,349.2,392,440,523.3],[440,493.9,554.4,659.3,740],[220,261.6,293.7,329.6,392],[261.6,311.1,349.2,392,466.2]];
 function startMusic(){if(!AC||mus||S.mute||!S.music)return;const g=AC.createGain(),f=AC.createBiquadFilter();g.gain.value=0;g.gain.linearRampToValueAtTime(.06,AC.currentTime+4);f.type='lowpass';f.frequency.value=650;f.connect(g);g.connect(master);mus={g,f,i:0};chord();mus.iv=setInterval(chord,8000);}
 function chord(){if(!mus||!AC)return;const t=AC.currentTime,di=typeof D!=='undefined'?D.i:0,c=(CHS[di]||CH)[mus.i++%4];
   if(run&&run.boss&&!S.mute)for(let i=0;i<16;i++){tone(58,.18,'sine',.22,34,i*.5);tone(6000,.03,'square',.012,null,i*.5+.25);}
