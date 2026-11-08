@@ -89,16 +89,22 @@ function segenTab(){const ks=Object.keys(run.perks).filter(k=>run.perks[k]>0),pq
 function detail(){
   if(!sel)return`<div class="card"><div class="sub">Tippe ein Teil an, um es mit deiner Ausrüstung zu vergleichen.</div></div>`;
   const it=sel.src==='eq'?S.eq[sel.slot]:(sel.src==='stash'?S.stash:S.bag)[sel.i];if(!it)return`<div class="card"><div class="sub">${sel.slot==='i'?(S.unlocked<=DI('Mitte')?'Implantat-Platz: Implantate gibt es erst in Mitte, rund um den Potsdamer Platz.':'Implantat-Platz: Implantate findest du in Mitte und beim Händler dort. Sie zeigen sich als Kabelarm.'):`${SLOTN[sel.slot]}: Dieser Platz ist leer. Lege ein passendes Teil aus dem Rucksack an.`}</div></div>`;
-  const R_=RAR[it.r],camp=invFrom!=='run';let b='';
+  const camp=invFrom!=='run';let b='';
   if(sel.src==='bag')b=`<div class="two"><button class="btn main sm" data-a="equip">Anlegen</button><button class="btn sm" data-a="salv">Schrott +${scrapVal(it)}</button></div>${camp?'<button class="btn sm" data-a="tostash">Ins Lager</button>':''}`;
   else if(sel.src==='stash')b=`<div class="two"><button class="btn main sm" data-a="equip">Anlegen</button><button class="btn sm" data-a="salv">Schrott +${scrapVal(it)}</button></div><button class="btn sm" data-a="tobag">In den Rucksack</button>`;
   else if(it.slot!=='w')b=`<div class="two"><button class="btn sm" data-a="uneq">Ablegen</button><span></span></div>`;
   b+=`<div class="two">${sel.src!=='eq'?`<button class="btn sm" data-a="lock">${it.lock?'Entsperren':'Sperren'}</button>`:'<span></span>'}${camp&&it.r>0?`<button class="btn sm" data-a="forge">Umschmieden · ${rfCost(it)}</button>`:'<span></span>'}</div>`;
   if(camp&&modSlots(it)>(it.mods||[]).length){const own=MODS.filter(m=>S.mods[m.k]>0&&!(it.mods||[]).includes(m.k));b+=own.length?`<div class="lbl" style="text-align:left">Aufsatz einbauen</div><div class="chips" style="justify-content:flex-start">${own.map(m=>`<button class="chip" data-mi="${m.k}" style="color:#f2a04b">${m.n}</button>`).join('')}</div>`:`<p class="hint" style="text-align:left">Freier Aufsatz-Platz. Aufsätze baust du in der Werkstatt.</p>`;}
   else if(modSlots(it)&&MODS.some(m=>S.mods[m.k]>0))b+=`<p class="hint" style="text-align:left">${!camp?'Aufsätze baust du im Lager ein, nicht während der Expedition.':'Alle Aufsatz-Plätze dieser Waffe sind belegt.'}</p>`;
-  const sk=it.slot==='w'?`<div class="sub">Kraft: ${KIND[it.kind].sk}</div>`:'';
-  return`<div class="card"><div class="chead"><span class="dic" style="border-color:${rc(it)};background:radial-gradient(circle,${rc(it)}33,#120d0a 70%)">${icon(it,44)}</span><div><div class="nm" style="color:${rc(it)}">${it.name}</div><div class="sub">${it.set?'Set-Teil':R_.n} · ${typeN(it)} · Stufe ${it.ilvl}</div></div></div>
-    <div class="st">${statLine(it)}</div>${afxLines(it)}${sk}${sel.src!=='eq'?`<div class="lbl" style="text-align:left;margin-top:4px">Wenn angelegt</div>${cmpBlock(it)}`:'<div class="sub">Angelegt</div>'}${b}</div>`;}
+  const head=(x,lab)=>x?`<div class="clab">${lab}</div><div class="chead"><span class="dic" style="border-color:${rc(x)};background:radial-gradient(circle,${rc(x)}33,#120d0a 70%)">${icon(x,44)}</span><div><div class="nm" style="color:${rc(x)}">${x.name}</div><div class="sub">${x.set?'Set-Teil':RAR[x.r].n} · ${typeN(x)} · Stufe ${x.ilvl}</div></div></div>`:`<div class="clab">${lab}</div><div class="chead"><span class="dic"></span><div><div class="nm" style="color:var(--dim)">Leer</div><div class="sub">${SLOTN[it.slot]}</div></div></div>`;
+  const sk=x=>x&&x.slot==='w'?`<div class="sub">Kraft: ${KIND[x.kind].sk}</div>`:'';
+  if(sel.src==='eq')return`<div class="card">${head(it,'Angelegt')}<div class="st">${statLine(it)}</div>${afxLines(it)}${sk(it)}${b}</div>`;
+  // v0.53 comparison: left the selected item with the change per row, right the equipped one; rows line up
+  const eq=S.eq[it.slot]||null,pw0=power(ST),pw1=power(stats(withItem(it)));
+  return`<div class="cmp2"><div class="card csel" style="border-color:${rc(it)}">${head(it,'Ausgewählt')}<div class="crows">${cmpRows(it,eq,1)}</div>${extraLines(it)}${sk(it)}
+    <div class="cmp ckp"><span>Kampfkraft nach Wechsel</span><span>${pw0} → <b style="color:${pw1>pw0?'var(--good)':pw1<pw0?'var(--bad)':'var(--bone)'}">${pw1}${pw1>pw0*1.01?' ▲':''}</b></span></div>
+    <details class="cdet"><summary>Alle Werte nach Wechsel</summary>${cmpBlock(it)}</details>${b}</div>
+    <div class="card ceq">${head(eq,'Angelegt')}<div class="crows">${cmpRows(eq,it,0)}</div>${eq?extraLines(eq)+sk(eq):''}</div></div>`;}
 const notUp=it=>better(it)!==true&&it.r<3&&!it.lock&&!it.set;
 function renderInv(){
   if(invFrom==='run'&&invTab==='stash'||invFrom!=='run'&&invTab==='segen')invTab='bag';refresh();
@@ -113,7 +119,7 @@ function renderInv(){
     ['Gewöhnliche','Magische','Seltene'].forEach((n,r)=>{const v=sum(i=>i.r===r&&!i.lock&&!i.set);if(v)chips.push(`<button class="chip" data-sr="${r}" style="color:${RAR[r].c}">${n} +${v}</button>`);});
     const va=sum(notUp);if(va)chips.push(`<button class="chip${allArm?' warn':''}" data-a="all">${allArm?'Sicher? Tippe erneut':'Alles ohne ▲ +'+va}</button>`);
     const mk=S.eq.w.kind,ml=mLvl(mk),nx=mNext(mk);
-    body=`<div class="inv3"><section class="ichar"><div class="doll"><canvas id="dollc" width="360" height="360" aria-hidden="true"></canvas>${SLOTS.map(slotBtn).join('')}</div>
+    body=`<div class="inv3 wide"><section class="ichar"><div class="doll"><canvas id="dollc" width="360" height="360" aria-hidden="true"></canvas>${SLOTS.map(slotBtn).join('')}</div>
       <div class="mast"><span>${MAST_N[mk]}-Meisterschaft ${ml}</span><div class="pbar"><i style="width:${nx?Math.round(100*(S.mast[mk]||0)/nx):100}%"></i></div><span class="sub">${nx?`${S.mast[mk]||0}/${nx} EP`:'maximal'} · +${4*ml}% Schaden${ml>=5?' · schnellere Kraft':''}</span></div>${statTable()}</section>
       <section class="ibag"><div class="lbl">${invTab==='stash'?`Lager ${S.stash.length}/${stashMax()}`:`Rucksack ${S.bag.length}/${BAG}`}</div><div class="grid">${cells}</div>
       ${chips.length?`<div class="lbl">Verschrotten</div><div class="chips">${chips.join('')}</div><p class="hint">„Alles ohne ▲“ behält Verbesserungen, Legendäres, Set-Teile und Gesperrtes.</p>`:'<p class="hint">▲ heißt: mehr Kampfkraft als dein angelegtes Teil.</p>'}</section>
