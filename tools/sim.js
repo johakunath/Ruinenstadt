@@ -2,7 +2,7 @@
    (game logic only, no rendering) and manages the camp between runs. Used by tools/balance.mjs. */
 (()=>{
 const SIM=window.SIM={log:[],stuck:{t:0,x:0,y:0,ax:0,ay:0,at:0}};
-SIM.setup=function(){loop=function(){};toast=function(){};banner=function(){};sfx=function(){};S.mute=true;S.music=false;S.tips={};for(const k in S.tips)S.tips[k]=1;tip=function(){};updateHot=function(){};};
+SIM.setup=function(){S.ln=DIST.map(()=>1);/* v0.50: the bot does not play U-Bahn tunnels, all lines count as cleared */loop=function(){};toast=function(){};banner=function(){};sfx=function(){};S.mute=true;S.music=false;S.tips={};for(const k in S.tips)S.tips[k]=1;tip=function(){};updateHot=function(){};};
 const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
 const GC=24;let GW=0,GB=null;function gridFree(){GW=Math.ceil(WS/GC);GB=new Uint8Array(GW*GW);for(let y=0;y<GW;y++)for(let x=0;x<GW;x++)GB[y*GW+x]=inWall(x*GC+GC/2,y*GC+GC/2,11)?1:0;}
 function pathTo(tx,ty){if(!GB)return null;const W=GW,s=Math.floor(P.y/GC)*W+Math.floor(P.x/GC),g=Math.floor(clamp(ty,0,WS-1)/GC)*W+Math.floor(clamp(tx,0,WS-1)/GC);if(s===g)return null;

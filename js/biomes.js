@@ -125,7 +125,7 @@ const LOTS={
 };
 // ---- weather particles in view space ----
 const WX=Array.from({length:90},()=>({x:Math.random(),y:Math.random(),s:R(.4,1),w:R(0,6.28),z:R(1,2.6)}));
-function drawWeather(t,dt){const k=BIOME[D.i].wx,n=S.eco?40:WX.length;
+function drawWeather(t,dt){if(D.tun)return;const k=BIOME[D.i].wx,n=S.eco?40:WX.length;
   for(let i=0;i<n;i++){const m=WX[i];
     if(k==='rain'){m.y+=m.s*dt*1.6;m.x-=m.s*dt*.25;if(m.y>1.05){m.y=-.05;m.x=Math.random()*1.2;}ctx.strokeStyle=D.cyber&&i%6===0?(i%12?`rgba(255,79,163,${.2+.15*m.s})`:`rgba(67,209,207,${.2+.15*m.s})`):`rgba(170,190,210,${.12+.12*m.s})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(m.x*VW,m.y*VH);ctx.lineTo(m.x*VW-3,m.y*VH+12*m.s);ctx.stroke();}
     else if(k==='ash'){m.y+=m.s*dt*.05;m.w+=dt;if(m.y>1.02){m.y=-.02;m.x=Math.random();}ctx.fillStyle=`rgba(200,195,185,${.18+.15*m.s})`;ctx.fillRect(m.x*VW+Math.sin(m.w)*14,m.y*VH,m.z,m.z);}
