@@ -36,8 +36,8 @@ body{font-family:var(--f-ui)}
 #mini{position:fixed;top:calc(env(safe-area-inset-top,0px) + 62px);right:max(16px,env(safe-area-inset-right,0px));width:96px;height:96px;border:1px solid var(--edge);border-radius:3px;background:#0d0907;opacity:.92;pointer-events:none}
 #trade{background:rgba(14,10,7,.88)}
 #toasts{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 168px);display:grid;justify-items:center;gap:5px;pointer-events:none;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.toast{font-size:18px;background:rgba(13,9,7,.88);border:1px solid var(--edge);padding:5px 14px;border-radius:3px;animation:t 2.8s forwards;max-width:100%;text-align:center}
-@keyframes t{0%{opacity:0;transform:translateY(-6px)}8%{opacity:1;transform:none}82%{opacity:1}100%{opacity:0}}
+.toast{font-size:18px;background:rgba(13,9,7,.88);border:1px solid var(--edge);padding:5px 14px;border-radius:3px;animation:t 5.4s forwards;max-width:100%;text-align:center}
+@keyframes t{0%{opacity:0;transform:translateY(-6px)}4%{opacity:1;transform:none}90%{opacity:1}100%{opacity:0}}
 #banner{position:fixed;left:0;right:0;top:38%;text-align:center;font:52px/1.1 var(--f-display);color:var(--ember);pointer-events:none;opacity:0;transition:opacity .5s;padding:0 16px}
 .ov{position:fixed;inset:0;overflow-y:auto;background:rgba(14,10,7,.94);display:grid;justify-items:center;align-content:start;padding-top:calc(env(safe-area-inset-top,0px) + 22px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 24px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 #menu{background:rgba(14,10,7,.78)}

@@ -40,7 +40,7 @@ const MITTE={ws:4000,start:[2120,2940],
   reichstag(1980,1440);kanzleramt(1260,1180);mBox(1680,1290,220,110,drawPLH,'Paul-Löbe-Haus',70);tor(2235,1890);
   sony(1740,2780);roundTower(1865,2785,46,250);kollhoff(2000,2705);stage(2205,2650);clinic(1900,3010);wallPieces(2200,2985);
   mBox(1330,2800,200,150,drawPhil,'Philharmonie',120);mBox(1250,3180,170,170,drawNNG,'Neue Nationalgalerie',42);anhalter(2360,3700);gendarmenmarkt(3430,2190);checkpoint(3180,3140);
-  for(const s of K.stations){const p=station(...s);if(s[4]&&p){SX=p[0];SY=p[1]+38;}}},
+  for(const s of K.stations){const p=station(...s);if(s[4]&&p){SX=p[0];SY=p[1]+60;}}},
  post:()=>mNeon()};
 DIST[DI('Mitte')].geo=MITTE;
 const MCY='#43d1cf',MMG='#ff4fa3',MAM='#e19142',ppZone=()=>MITTE.zones.find(z=>z[0]==='Potsdamer Platz')[1];

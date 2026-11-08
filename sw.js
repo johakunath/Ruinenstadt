@@ -1,5 +1,5 @@
 // Bump CACHE with every release so installed copies pick up the new files.
-const CACHE='ruinenstadt-0.51';
+const CACHE='ruinenstadt-0.52';
 const SHELL=['./','index.html','css/style.css','manifest.webmanifest','icons/icon.svg','icons/icon-192.png','icons/icon-512.png',
   ...['core','save','canvas','iso','data','items','audio','world','biomes','geo','mitte','alex','ubahn','state','feedback','combat','input','panels','update','art','render','main'].map(n=>`js/${n}.js`),
   // painted icons and portraits, so menus work offline from the first start

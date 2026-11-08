@@ -39,7 +39,7 @@ const KOEP={ws:3600,start:[1100,1231],
   ['Wald',[[0,3050],[1250,2900],[1300,3600],[0,3600]],{lots:{forest:4,kleingarten:1},fringe:'forest'}]],
  other:{lots:{houses:3,efh:2,reihen:1,park:1,ruins:1,kleingarten:1},fringe:'houses'},
  marks:[[3120,1100,'Müggelsee'],[700,1340,'Spree'],[1560,2700,'Dahme']],
- lm:()=>{legacy(lmRathaus,1050,1230);reserved.push({x:1590,y:1420,w:520,h:360});const p=station('U','Köpenick',1452,760,1);if(p){SX=p[0];SY=p[1]+38;}}};// Rathausplatz stays open, start at S-Bahnhof Köpenick
+ lm:()=>{legacy(lmRathaus,1050,1230);reserved.push({x:1590,y:1420,w:520,h:360});const p=station('U','Köpenick',1452,760,1);if(p){SX=p[0];SY=p[1]+60;}}};// Rathausplatz stays open, start at S-Bahnhof Köpenick
 DIST[0].geo=KOEP;
 /* ---- Xhain = Friedrichshain-Kreuzberg (v0.42, north bank v0.43). World 3600. Kreuzberg south of the Spree with the Landwehrkanal and its bridges, the Friedrichshain bank north of it:
    Ostbahnhof on the Stadtbahn viaduct (start), Stralauer Platz and Mediaspree with modern towers, Berghain, East Side Gallery along the Mühlenstraße.
@@ -90,7 +90,7 @@ const XHAIN={ws:4000,start:[3756,700],land:[],
   viaduct(segsOf(K.rail),{c:['#7a3a26','#5a2a1a','#4a2216'],pc:'#6b3626',pcap:'#4a2216',ps:22,z0:46,z1:60,d:40,step:72,tc:'#a83228',skip:(x,y)=>Math.hypot(x-K.obf[0],y-K.obf[1])<230,free:(x,y)=>roadD(x,y)<72});
   const o=oberbaum(),Rd=K.roads,sh=p=>[p[0]+o[0],p[1]+o[1]],W=Rd['Warschauer Straße'];// Hochbahn: Gitschiner and Skalitzer, then the last stretch swings sideways onto the arcade; north side the same from Warschauer Straße
   for(const P_ of [[sh(Rd['Skalitzer Straße'][0]),...Rd['Skalitzer Straße'].slice(1),...Rd['Gitschiner Straße'].slice(1)],[W[1],W[2],sh(W[3])]])
-    viaduct(segsOf(P_),{c:['#3f6a4a','#2c4a34','#223a2a'],pc:'#3f6a4a',pcap:'#2c4a34',ps:14,z0:62,z1:74,d:30,step:120,tc:'#d8b830',skip:(x,y)=>lineD(K.rail,x,y)<50,free:(x,y)=>ROADS.some(o=>!HB.includes(o.n)&&segD(o,x,y)<70)});for(const s of K.stations){const p=station(...s);if(s[4]&&p){SX=p[0];SY=p[1]+38;}}}};
+    viaduct(segsOf(P_),{c:['#3f6a4a','#2c4a34','#223a2a'],pc:'#3f6a4a',pcap:'#2c4a34',ps:14,z0:62,z1:74,d:30,step:120,tc:'#d8b830',skip:(x,y)=>lineD(K.rail,x,y)<50,free:(x,y)=>ROADS.some(o=>!HB.includes(o.n)&&segD(o,x,y)<70)});for(const s of K.stations){const p=station(...s);if(s[4]&&p){SX=p[0];SY=p[1]+60;}}}};
 DIST[1].geo=XHAIN;
 /* ---- Xhain landmarks: custom-drawn iso boxes (b.draw runs inside withRot, so P3 follows b.rot) ---- */
 const ln3=(a,b,c)=>{ctx.strokeStyle=c;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();};
@@ -164,15 +164,17 @@ function esg(){const s0=ROADS.filter(s=>s.n==='Mühlenstraße');for(const s of s
   const m=s0[2];marks.push({x:m.ax+m.ux*m.len/2-m.uy*95,y:m.ay+m.uy*m.len/2+m.ux*95,n:'East Side Gallery'});}
 // S/U station entrance at a free spot next to the given point (off roads, water and walls). open: the one working station per map (start, later fast travel):
 // lit sign on generator power, glow, name on the map. Closed stations: stairs boarded up, dead tilted sign, no label
-function station(k,n,x0,y0,open){for(let r=0;r<=175;r+=25)for(let a=0;a<8;a++){const x=x0+Math.cos(a*.785)*r,y=y0+Math.sin(a*.785)*r;
-    if(roadD(x,y)<84||isWater(x,y)||inWall(x,y,44)||ptRes(x,y)||x<60||y<60||x>WS-60||y>WS-60)continue;
-    const g=gx,col=!open?'#2a3036':k==='S'?'#2a8a3a':'#1d4a8a';g.fillStyle='rgba(0,0,0,.4)';g.fillRect(x-25,y-15,50,31);g.fillStyle='#0b0806';g.fillRect(x-20,y-11,40,22);for(let i=0;i<6;i++){g.fillStyle='#2a221c';g.fillRect(x-20+i*7,y-11,3,22);}
-    g.fillStyle='#5a5650';g.fillRect(x-22,y-13,44,3);g.fillRect(x-22,y+10,44,3);g.fillRect(x-22,y-13,3,26);
-    if(!open)for(let i=0;i<4;i++){g.save();g.translate(x,y-8+i*6);g.rotate(R(-.15,.15));g.fillStyle=pick(['#5a4028','#4a3424','#6a4a30']);g.fillRect(-24,-2,48,5);g.restore();}
+// v0.52: entrance 1.6x bigger (playtest: too small) with a raised stone parapet on three sides (low boxes, open to the south where the stairs go down), sign scaled 1.35
+function station(k,n,x0,y0,open){for(let r=0;r<=200;r+=25)for(let a=0;a<8;a++){const x=x0+Math.cos(a*.785)*r,y=y0+Math.sin(a*.785)*r;
+    if(roadD(x,y)<100||isWater(x,y)||inWall(x,y,64)||ptRes(x,y)||x<80||y<80||x>WS-80||y>WS-80)continue;
+    const g=gx,col=!open?'#2a3036':k==='S'?'#2a8a3a':'#1d4a8a';g.fillStyle='rgba(0,0,0,.4)';g.fillRect(x-40,y-24,80,50);g.fillStyle='#0b0806';g.fillRect(x-32,y-18,64,36);for(let i=0;i<9;i++){g.fillStyle=`rgba(90,80,70,${.15+i*.06})`;g.fillRect(x-32,y-18+i*4,64,2);}
+    g.fillStyle='#5a5650';g.fillRect(x-35,y-21,70,4);g.fillRect(x-35,y-21,4,42);g.fillRect(x+31,y-21,4,42);g.fillStyle='#c8a428';g.fillRect(x-32,y+16,64,2);
+    if(!open)for(let i=0;i<5;i++){g.save();g.translate(x,y-12+i*7);g.rotate(R(-.15,.15));g.fillStyle=pick(['#5a4028','#4a3424','#6a4a30']);g.fillRect(-36,-3,72,6);g.restore();}
+    for(const q of [[x-37,y-23,74,5],[x-37,y-23,5,45],[x+32,y-23,5,45]])lowBox(q[0],q[1],q[2],q[3],14,'#6a665e','wall');
     const c=cnv(30,96),t=c.getContext('2d');if(!open){t.translate(15,60);t.rotate(R(-.25,.25));t.translate(-15,-60);}t.fillStyle='#3a3632';t.fillRect(13,24,4,72);t.fillStyle=col;t.fillRect(2,0,26,26);t.strokeStyle=open?'#ead9c0':'#4a4a48';t.lineWidth=2;t.strokeRect(3,1,24,24);
     t.fillStyle=open?'#fff':'#6a6a68';t.font='800 '+(k.length>1?11:18)+'px sans-serif';t.textAlign='center';t.fillText(k,15,k.length>1?17:20);if(!open){t.fillStyle='rgba(0,0,0,.4)';t.fillRect(2,14,26,12);}
-    const sx=x+30;blds.push({x:sx-15,y,w:30,h:0,top:96,spr:c,lights:open?[{x:sx,y,z:80,r:70}]:[]});if(open){neons.push({x:sx,y,z:84,c:k==='S'?'#5ad06a':'#4a8aff',s:44});marks.push({x,y:y-20,n:k+' '+n});}
-    walls.push({x:x-22,y:y-13,w:44,h:26},{x:sx-3,y:y-3,w:6,h:5});reserved.push({x:x-60,y:y-60,w:130,h:120});return[x,y];}return null;}
+    const sx=x+50;blds.push({x:sx-15,y,w:30,h:0,top:96,sc:1.35,spr:c,lights:open?[{x:sx,y,z:108,r:80}]:[]});if(open){neons.push({x:sx,y,z:112,c:k==='S'?'#5ad06a':'#4a8aff',s:52});marks.push({x,y:y-28,n:k+' '+n});}
+    walls.push({x:x-32,y:y-18,w:64,h:36},{x:sx-3,y:y-3,w:6,h:5});reserved.push({x:x-90,y:y-80,w:190,h:170});return[x,y];}return null;}
 /* ---- build: called by buildWorld for D.geo districts. Order: lot ground, water, roads, then lots are filled by buildWorld ---- */
 const CS=240,GAP=50;// GAP: open ground between lots (v0.41: was 24, felt cramped with the bigger buildings)
 function geoLayout(K){ROADS=[];for(const n in K.roads){const p=K.roads[n];for(let i=1;i<p.length;i++)seg(p[i-1][0],p[i-1][1],p[i][0],p[i][1],n);}
