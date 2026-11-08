@@ -24,10 +24,10 @@ function update(dt){
   let mx=joy.x,my=joy.y;if(keys.KeyA||keys.ArrowLeft)mx-=1;if(keys.KeyD||keys.ArrowRight)mx+=1;if(keys.KeyW||keys.ArrowUp)my-=1;if(keys.KeyS||keys.ArrowDown)my+=1;
   let ml=Math.hypot(mx,my);if(ml>1){mx/=ml;my/=ml;ml=1;}if(ml>0){const q=s2w(mx,my),l=Math.hypot(q[0],q[1]);mx=q[0]/l*ml;my=q[1]/l*ml;}P.mvx=mx;P.mvy=my;
   if(dashReq){dashReq=false;dash();}if(skillReq){skillReq=false;skill();}
-  if(P.ratT>0)P.ratT-=dt;
+  if(P.ratT>0)P.ratT-=dt;if(P.root>0)P.root-=dt;if(P.rootI>0)P.rootI-=dt;
   if(P.dashT>0){P.dashT-=dt;if(P.dashT<=0&&hasL('ritter')){shocks.push({x:P.x,y:P.y,r:10,max:110,hit:[],small:1});sfx('boom');shake=Math.max(shake,5);}P.x+=P.ddx*640*dt;P.y+=P.ddy*640*dt;parts.push({x:P.x,y:P.y-12,vx:0,vy:0,life:.22,max:.22,col:'rgba(234,217,192,.35)',size:14});
     if(pk('ram'))for(const e of enemies)if(!P.ramHit.includes(e)&&Math.hypot(e.x-P.x,e.y-P.y)<e.r+P.r+8){P.ramHit.push(e);hit(e,ST.dmg*1.2*pk('ram'),false,{knock:360});}}
-  else{P.x+=mx*ST.spd*dt;P.y+=my*ST.spd*dt;}
+  else if(!(P.root>0)){P.x+=mx*ST.spd*dt;P.y+=my*ST.spd*dt;}// rooted by a Wurzler: no walking, a dash breaks free
   if(ml>.15){P.walk+=dt*13*Math.min(1,ml);if(P.swingT<=0)P.face=Math.atan2(my,mx);}
   collide(P);P.comboT-=dt;P.cd-=dt;P.inv-=dt;P.dashCd-=dt;P.swingT-=dt;P.skCd-=dt;
   if(ST.regen)P.hp=Math.min(ST.maxHp,P.hp+ST.regen*dt);
@@ -66,7 +66,7 @@ function update(dt){
     if(e.elite==='brennend'){e.trail=(e.trail||0)-dt;if(e.trail<=0&&(e.mv||0)>8){e.trail=.45;hazards.push({x:e.x,y:e.y+e.r*.6,r:20,t:3.5,dmg:Math.max(1,Math.round(e.dmg*.45))});}}
     if(e.acid>0){e.acid-=dt;if(pk('corrode'))sp*=.7;if(Math.random()<dt*6)parts.push({x:e.x+R(-6,6),y:e.y-R(2,18),vx:0,vy:R(20,40),life:.5,max:.5,col:'#97C459',size:2});}
     // elite tactics: telegraphed special (tw = wind-up), then a punish window (open) with +30% damage taken
-    if((e.elite||e.type==='brute')&&e.type!=='bomb'&&e.type!=='raser'&&e.type!=='kabel'&&e.type!=='bass'&&!(e.open>0)){e.tcd=(e.tcd==null?R(2,4):e.tcd)-dt;const k=e.elite||'brute';
+    if((e.elite||e.type==='brute')&&e.type!=='bomb'&&e.type!=='raser'&&e.type!=='kabel'&&e.type!=='bass'&&e.type!=='wurz'&&e.type!=='kern'&&!(e.open>0)){e.tcd=(e.tcd==null?R(2,4):e.tcd)-dt;const k=e.elite||'brute';
       if(e.tw>0){e.tw-=dt;sp=0;if(e.tw<=0){if(k==='spaltend'){const a=Math.atan2(dy,dx);for(const o of [-.3,0,.3])fireGlob(e,a+o,230);sfx('spit');}e.open=TACO[k];tip('open','Nach ihrem Spezialangriff sind Elite-Gegner kurz offen (goldener Ring) und nehmen 30% mehr Schaden.');}}
       else if(k==='schnell'&&e.ch>0){e.ch-=dt;sp=0;if(e.ch<=0)e.ru=.4;}else if(k==='schnell'&&e.ru>0){e.ru-=dt;vx=e.rdx;vy=e.rdy;sp=e.stun>0?0:480;if(e.ru<=0)e.open=TACO.schnell;}
       else if(e.tcd<=0&&e.stun<=0&&d<(k==='schnell'?260:k==='spaltend'?380:k==='brennend'?140:220)){e.tcd=R(4.5,6.5);
@@ -76,11 +76,16 @@ function update(dt){
     // Boxenkopf: wind-up (red ring), then a bass wave (pink ring, hurts unless you dash through) that buffs nearby enemies, then open
     if(e.type==='bass'){e.pc=(e.pc==null?R(2,4):e.pc)-dt;if(e.tw>0){e.tw-=dt;sp=0;if(e.tw<=0){rings.push({x:e.x,y:e.y,r:12,max:270,col:'255,79,163',dmg:Math.round(e.dmg*.9)});for(const o of enemies)if(o!==e&&Math.hypot(o.x-e.x,o.y-e.y)<220)o.buff=3;sfx('boom');shake=Math.max(shake,4);e.open=1.1;}}
       else if(e.pc<=0&&d<300&&e.stun<=0&&!(e.open>0)){e.pc=R(5,6.5);e.tw=e.twm=.8;sfx('horn');}}
+    // Wurzler: wind-up, then roots burst under the player (green circle). Caught: hurt and rooted .8 s (dash breaks free), then 2.5 s immune. Then open
+    if(e.type==='wurz'){e.pc=(e.pc==null?R(2,3.5):e.pc)-dt;if(e.tw>0){e.tw-=dt;sp=0;if(e.tw<=0)e.open=.9;}else if(e.pc<=0&&d<320&&e.stun<=0&&!(e.open>0)){e.pc=R(4.5,6);e.tw=e.twm=.9;teles.push({x:P.x,y:P.y,r:48,t:.95,max:.95,dmg:Math.round(e.dmg*.6),root:1});sfx('wood');}else if(d<120)sp*=.7;}
+    // Kernspeier (v0.49): walks into range, plants itself (red ring), spits a fan of three seeds, then stays open. Backs off when you get close
+    if(e.type==='kern'){if(e.tw>0){e.tw-=dt;sp=0;if(e.tw<=0){const a=Math.atan2(dy,dx);for(const o of [-.26,0,.26]){fireGlob(e,a+o,240);const q=eproj[eproj.length-1];q.seed=1;q.dmg=Math.max(1,Math.round(q.dmg*.7));}sfx('spit');e.open=.9;}}
+      else{if(d<190){vx=-vx;vy=-vy;sp*=.55;}else if(d<300)sp*=.3;e.fire-=dt;if(e.fire<=0&&d<400&&e.stun<=0&&!(e.open>0)){e.fire=R(3,3.8);e.tw=e.twm=.7;}}}
     if(e.type==='spitter'){if(d<200){vx=-vx;vy=-vy;}else if(d<290){const tx=-vy*e.side,ty=vx*e.side;vx=tx;vy=ty;sp*=.6;}
       e.fire-=dt;if(e.fire<=0&&d<440&&e.stun<=0){e.fire=R(2.3,3.1);fireGlob(e,Math.atan2(dy,dx),210);sfx('spit');}}
     if(e.buff>0){e.buff-=dt;sp*=1.35;}if(e.slow>0){e.slow-=dt;sp*=.6;}
     if(e.type==='rat'){const a=Math.atan2(vy,vx)+Math.sin(e.t*7+e.side)*.6;vx=Math.cos(a);vy=Math.sin(a);}
-    if(e.type==='shield'||(e.type==='boss'&&e.v===6)){if(e.guard>0)e.guard-=dt;let da=Math.atan2(dy,dx)-e.fa;da=Math.atan2(Math.sin(da),Math.cos(da));const tr=(e.type==='boss'?1.1:1.6)*dt;e.fa+=clamp(da,-tr,tr);if(e.guard>0)sp*=.4;}
+    if(SHD(e)){if(e.guard>0)e.guard-=dt;let da=Math.atan2(dy,dx)-e.fa;da=Math.atan2(Math.sin(da),Math.cos(da));const tr=(e.type==='boss'?1.1:1.6)*dt;e.fa+=clamp(da,-tr,tr);if(e.guard>0)sp*=.4;}
     if(e.type==='bomb'){if(e.fuse>0){e.fuse-=dt;sp=0;if(e.fuse<=0){e.selfx=1;e.hp=0;kill(e);continue;}}else if(d<58&&e.stun<=0){e.fuse=.85;sfx('zap');}}
     if(e.type==='howl'){if(d<180){vx=-vx;vy=-vy;}else if(d<260){const tx=-vy*e.side,ty=vx*e.side;vx=tx;vy=ty;sp*=.6;}
       e.fire-=dt;if(e.fire<=0&&d<460&&e.stun<=0){e.fire=R(4.5,6);rings.push({x:e.x,y:e.y-14,r:10,max:220,col:'214,90,140'});for(const o of enemies)if(o!==e&&Math.hypot(o.x-e.x,o.y-e.y)<220)o.buff=4;sfx('horn');}}
@@ -103,6 +108,10 @@ function update(dt){
         else if(v===5){if(e.sum<=0){e.sum=e.rage?2.6:3.8;for(let i=0;i<5;i++)enemies.push(mkEnemy('rat',e.x+R(-50,50),e.y+R(-50,50)));sfx('spit');}e.trail=(e.trail||0)-dt;if(e.trail<=0&&(e.mv||0)>8){e.trail=.5;hazards.push({x:e.x,y:e.y+e.r*.6,r:24,t:4,dmg:Math.max(1,Math.round(e.dmg*.3)),col:'#97C459'});}}
         else if(v===6){if(e.ch>0){e.ch-=dt;if(e.ch<=0)e.ru=.6;}else if(e.ru>0){e.ru-=dt;e.x+=e.rdx*600*dt;e.y+=e.rdy*600*dt;collide(e);if(Math.random()<dt*25)parts.push({x:e.x,y:e.y,vx:R(-30,30),vy:R(-30,30),life:.4,max:.4,col:'#d6cfc0',size:4});}
           else if(e.sum<=0&&d<420){e.sum=e.rage?3:4.2;e.ch=.75;e.hold=1.35;e.rdx=dx/d;e.rdy=dy/d;teles.push({x:e.x+e.rdx*160,y:e.y+e.rdy*160,r:70,t:.9,max:.9,dmg:Math.round(e.dmg*1.1)});sfx('horn');}}
+        // Volkseigener Koloss (v0.49): a walking slab of Plattenbau. Odd cycles: three slab drops around you; even cycles: the Weltzeituhr ring on its back spins and sprays gears in a spiral. Every third cycle two Uhrwerkläufer
+        else if(v===8){if(e.sum<=0){e.sum=e.rage?3.2:4.4;e.k8=(e.k8||0)+1;if(e.k8%2){for(let i=0;i<3;i++){const q=.9+i*.25;teles.push({x:P.x+(i?R(-130,130):0),y:P.y+(i?R(-110,110):0),r:60,t:q,max:q,dmg:Math.round(e.dmg*.95),slab:1});}sfx('horn');}else{e.spin=2.4;sfx('zap');}
+            if(e.k8%3===0)for(let i=0;i<2;i++)enemies.push(mkEnemy('uhr',e.x+R(-60,60),e.y+R(-60,60)));}
+          if(e.spin>0){e.spin-=dt;e.sp8=(e.sp8||0)-dt;if(e.sp8<=0){e.sp8=.16;for(const o of [0,Math.PI]){fireGlob(e,e.t*2.6+o,175);eproj[eproj.length-1].gear=1;}}}e.ring-=dt*rg*.5;}
         else if(v===7){if(e.sum<=0){e.sum=e.rage?3.4:4.6;e.k7=(e.k7||0)+1;for(let i=0;i<5;i++){const q=1+i*.15,o=i?{x:P.x+R(-170,170),y:P.y+R(-140,140)}:{x:P.x,y:P.y};teles.push({x:o.x,y:o.y,r:52,t:q,max:q,dmg:Math.round(e.dmg*.95),slab:1});}sfx('horn');
           if(e.k7%2===0)for(let i=0;i<2;i++)enemies.push(mkEnemy('bomb',e.x+R(-60,60),e.y+R(-60,60)));}}
         else{if(e.sum<=0){e.sum=9;for(let i=0;i<3;i++)enemies.push(mkEnemy('ghoul',e.x+R(-50,50),e.y+R(-50,50)));}e.trail=(e.trail||0)-dt;if(e.trail<=0&&(e.mv||0)>8){e.trail=.4;hazards.push({x:e.x,y:e.y+e.r*.6,r:26,t:4,dmg:Math.max(1,Math.round(e.dmg*.35))});}}}}
@@ -123,7 +132,7 @@ function update(dt){
   for(const p of pproj){p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=dt;const w=wallAt(p.x,p.y);if(w){p.life=0;if(w.brk)hitProp(w,p.dmg);else burst(p.x,p.y,'#a8957d',4,60);continue;}
     for(const e of enemies){if(e.hp<=0||p.hits.includes(e)||Math.hypot(e.x-p.x,e.y-p.y)>=e.r+p.r+4)continue;p.hits.push(e);hit(e,p.dmg,p.crit,KIND.sling);if(hasL('kraehe'))e.slow=2;if(hasL('ring')&&!p.jumped){let nb=null,nd=220;for(const o of enemies){if(o===e||o.hp<=0)continue;const q=Math.hypot(o.x-e.x,o.y-e.y);if(q<nd){nd=q;nb=o;}}if(nb){const a=Math.atan2(nb.y-e.y,nb.x-e.x);pproj.push({x:e.x,y:e.y,vx:Math.cos(a)*ST.pspd,vy:Math.sin(a)*ST.pspd,r:4,dmg:p.dmg*.8,crit:false,life:.6,pierce:0,hits:[e],el:'shock',jumped:1});}}if(p.pierce>0)p.pierce--;else{p.life=0;break;}}}
   pproj=pproj.filter(p=>p.life>0);
-  for(const t of teles){t.t-=dt;if(t.t<=0){if(Math.hypot(P.x-t.x,P.y-t.y)<t.r+P.r)hurt(t.dmg,12);shake=Math.max(shake,10);sfx('boom');burst(t.x,t.y,'#d8642e',22,240);stamp(t.x,t.y,'rgba(8,5,3,.4)',t.r*.6);if(state!=='play')return;}}
+  for(const t of teles){t.t-=dt;if(t.t<=0){if(Math.hypot(P.x-t.x,P.y-t.y)<t.r+P.r){hurt(t.dmg,12);if(t.root&&!(P.dashT>0)&&!(P.rootI>0)){P.root=.8;P.rootI=2.5;nums.push({x:P.x,y:P.y-44,t:'Festgehalten',col:'#97C459',life:.9});}}shake=Math.max(shake,t.root?4:10);sfx(t.root?'wood':'boom');burst(t.x,t.y,t.root?'#6a5634':'#d8642e',22,240);stamp(t.x,t.y,t.root?'rgba(40,30,15,.35)':'rgba(8,5,3,.4)',t.root?t.r*.4:t.r*.6);if(state!=='play')return;}}
   teles=teles.filter(t=>t.t>0);
   for(const h of hazards){h.t-=dt;if(Math.random()<dt*4)parts.push({x:h.x+R(-12,12),y:h.y+R(-6,6),vx:0,vy:R(-40,-20),life:.4,max:.4,col:h.col||pick(['#ff6a2a','#FAC775']),size:R(1.5,3)});
     if(P.inv<=0&&Math.hypot(P.x-h.x,(P.y+9-h.y)*1.6)<h.r+6){hurt(h.dmg,2);if(state!=='play')return;}}

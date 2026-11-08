@@ -3,7 +3,7 @@
 import fs from 'fs';
 const a = process.argv[2] || ''; const code = (fs.existsSync(a) ? fs.readFileSync(a, 'utf8') : a).trim().replace(/^RS1:/, '');
 const S = JSON.parse(Buffer.from(code, 'base64').toString('utf8')), L = S.tlog || [];
-const DN = i => ['Köpenick', 'Xhain', 'Mitte', 'Tempelhof', 'Prenzlauer Berg', 'Spandau', 'Marzahn'][i] || '?', DF = ['Leicht', 'Normal', 'Schwer'];
+const DN = i => ['Köpenick', 'Xhain', 'Alexanderplatz', 'Mitte', 'Tempelhof', 'Spandau', 'Marzahn'][i] || '?', DF = ['Leicht', 'Normal', 'Schwer'];
 if (!L.length) { console.log('No runs logged yet (telemetry exists since v0.39).'); process.exit(0); }
 L.forEach((r, i) => { const sw = r.ws.reduce((b, s, j) => s > b[1] ? [j + 1, s] : b, [0, 0]);
   console.log(`${String(i + 1).padStart(3)} v${r.v} ${r.day} ${DF[r.df] || '?'} ${(r.dn || DN(r.d)).padEnd(16)} ${{ win: 'WIN ', dead: 'dead', quit: 'quit' }[r.end]}${r.m === 'e' ? ' endless' : r.m === 't' ? ' daily' : ''}${r.th ? ' th' + r.th : ''} w${String(r.wave).padStart(2)} ${String(r.t).padStart(4)}s lvl${String(r.lvl).padStart(3)} pw ${String(r.pw0).padStart(5)}→${String(r.pw).padStart(5)} kills ${String(r.kills).padStart(4)} dmg ${String(r.dmg).padStart(6)} ${r.boss} | slowest wave ${sw[0]}:${sw[1]}s`); });
