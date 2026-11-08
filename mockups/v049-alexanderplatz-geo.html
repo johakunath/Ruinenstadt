@@ -1,0 +1,90 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Alexanderplatz Geografie</title>
+<style>body{margin:0;background:#1c1a16;color:#ead9c0;font:14px system-ui,sans-serif;padding:16px}h1{font-size:20px;margin:0 0 6px}p{margin:0 0 12px;color:#b8a890;max-width:900px}
+.g{display:grid;grid-template-columns:minmax(0,760px) minmax(0,420px);gap:16px}.c{background:#26231d;border:1px solid #3e382c;border-radius:8px;padding:10px}.c b{display:block;margin:8px 0 4px}.c span{color:#b8a890;font-size:13px}svg{width:100%;height:auto;display:block}
+@media(max-width:900px){.g{grid-template-columns:1fr}}</style></head><body>
+<h1>v0.49: Alexanderplatz, Uhrwerk-Gärten</h1><p>World 4000, Maßstab etwa 1,5 Einheiten pro Meter, Norden oben. Die DDR hat überlebt und ist verwildert: Tageslicht statt Nacht, Spree mit Museumsinsel im Westen, Palast der Republik als Gewächshaus-Palast, Fernsehturm und Weltzeituhr als Uhrwerk-Herz, Karl-Marx-Allee mit roten Bannern nach Osten, überwucherte Tram auf dem Stadtbahn-Viadukt. Start: S+U Alexanderplatz.</p>
+<div class="g"><div class="c"><svg id="map" viewBox="0 0 4000 4000"></svg><b>A · Karte</b><span>Grün: Gärten, Gewächshäuser, Sonnenblumenfelder. Sand: Platte mit Wandbild und Bannern. Grau: Altbau. Rot umrandet: Uhrwerk-Kern um Alex und Fernsehturm. Rauten: Brücken. Kästen: Bahnhöfe, orange umrandet der einzige offene.</span></div>
+<div class="c"><svg id="var" viewBox="0 0 420 760"></svg><b>B · Formen und Palette</b><span>Wahrzeichen als Iso-Boxen. Palette aus dem Alexanderplatz-Board: Sand, Ocker, Oliv, Salbei, Bannerrot, Ochsenblut. Einziger Tag-Bezirk.</span></div></div>
+<script>
+const K={
+ spree:[[0,180],[500,260],[820,420],[880,800],[860,1250],[980,1700],[1300,2120],[1700,2700],[2200,2880],[2700,2700],[3100,2620],[3600,2700],[4000,2760]],
+ kupfer:[[500,260],[420,700],[460,1200],[620,1700],[980,1700]],
+ rail:[[0,1120],[700,1200],[1250,1230],[1800,1260],[2150,1320],[2450,1650],[2700,2150],[2900,2650],[3050,3200],[3200,4000]],
+ roads:{'Karl-Liebknecht-Str.':[[600,1500],[1250,1440],[1800,1500],[2200,1200],[2600,800],[3000,300],[3200,0]],
+  'Karl-Marx-Allee':[[2350,1450],[2900,1660],[3500,1900],[4000,2080]],'Otto-Braun-Str.':[[2350,1450],[2600,1000],[2800,400],[2900,0]],
+  'Grunerstr.':[[2350,1450],[2100,1900],[1800,2350],[1500,2650],[1300,3000]],'Alexanderstr.':[[2350,1450],[2600,1900],[2800,2400],[2900,2660]],
+  'Rathausstr.':[[1250,1900],[1800,2050],[2100,1900]],'Spandauer Str.':[[1450,700],[1600,1400],[1700,2050],[1600,2600]],
+  'Rosenthaler Str.':[[1050,1000],[1200,500],[1350,0]],'Torstr.':[[0,300],[1200,250],[2300,200],[4000,150]],
+  'Unter den Linden':[[0,1650],[500,1600]],'Breite Str.':[[1150,2350],[1050,2900],[1000,3500]],'Holzmarktstr.':[[2900,2660],[3500,2550],[4000,2500]],
+  'Leipziger Str.':[[0,3300],[700,3250],[1050,3200]],'Wallstr.':[[1050,3200],[1600,3150],[2300,3250],[3050,3200]]},
+ bridges:[[870,1650,'Schlossbrücke'],[1320,2150,'Rathausbr.'],[1650,2650,'Mühlendammbr.'],[2900,2660,'Jannowitzbr.'],[860,1050,'Friedrichsbr.']],
+ zones:[['Museumsinsel','#3e3a2c',[[500,280],[820,430],[880,800],[860,1250],[560,1250],[440,700]]],
+  ['Lustgarten','#3a4a2a',[[480,1260],[860,1260],[960,1660],[620,1680]]],
+  ['Palast-Gärten','#34502c',[[1000,1700],[1300,1720],[1350,2100],[1280,2120]]],
+  ['Rathausforum','#3a4a2a',[[1350,1520],[1900,1560],[2000,1900],[1400,1980]]],
+  ['Nikolaiviertel','#4a4238',[[1350,2150],[1700,2120],[1720,2600],[1550,2580]]],
+  ['Fischerinsel','#5a5240',[[1050,2400],[1600,2700],[1500,3100],[1000,3050]]],
+  ['Spandauer Vorstadt','#4a4238',[[0,350],[1400,300],[1450,1100],[900,1180],[0,1050]]],
+  ['Hackescher Markt','#4a4238',[[900,1000],[1450,900],[1500,1200],[950,1200]]],
+  ['Scheunenviertel','#4a4238',[[1500,300],[2700,250],[2550,900],[1800,1100],[1550,1050]]],
+  ['Alexanderplatz','#5a3a2c',[[2050,1050],[2600,1050],[2700,1550],[2400,1750],[2050,1650]]],
+  ['Karl-Marx-Allee','#5a5240',[[2700,1150],[4000,1650],[4000,2350],[3000,2050],[2650,1700]]],
+  ['Botschaftsplatte','#5a5240',[[2700,300],[4000,250],[4000,1500],[2900,1050]]],
+  ['Märkisches Ufer','#4a4238',[[1700,2750],[2700,2750],[3050,3150],[1700,3100]]],
+  ['Köllnischer Park','#3a4a2a',[[2300,3150],[2950,3150],[3000,3600],[2300,3600]]],
+  ['Sonnenblumenfeld','#5a5a26',[[0,1750],[900,1800],[950,3100],[0,3150]]],
+  ['Heinrich-Heine-Platte','#5a5240',[[3100,2850],[4000,2850],[4000,4000],[3300,4000]]],
+  ['Luisenstadt','#4a4238',[[0,3400],[3150,3350],[3250,4000],[0,4000]]]],
+ lm:[['Berliner Dom',730,1450,220,200,'#7a8a6a'],['Palast der Republik',1150,1900,200,320,'#b06a3a'],['Rotes Rathaus',1700,1800,220,200,'#a84a36'],['Marienkirche',1600,1500,90,130,'#8a7860'],
+  ['Haus des Lehrers',2800,1050,140,90,'#c8a87a'],['Kino International',3300,1700,140,70,'#d8c8a0'],['Märkisches Museum',2500,3050,160,90,'#8a4430'],['Altes Museum',600,1100,180,90,'#d4a27e']]};
+const S=document.getElementById('map'),ns='http://www.w3.org/2000/svg',el=(t,a,p)=>{const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e;},pts=a=>a.map(p=>p.join(',')).join(' '),
+ txt=(x,y,s,c,sz,w,rot,p)=>{const e=el('text',{x,y,fill:c,'font-size':sz,'font-weight':w||400,'text-anchor':'middle',transform:rot?`rotate(${rot} ${x} ${y})`:''},p);e.textContent=s;};
+el('rect',{width:4000,height:4000,fill:'#3a352c'});
+for(const[n,c,p]of K.zones)el('polygon',{points:pts(p),fill:c});
+el('polyline',{points:pts(K.spree),fill:'none',stroke:'#3a6a6a','stroke-width':150,'stroke-linecap':'round','stroke-linejoin':'round'});
+el('polyline',{points:pts(K.kupfer),fill:'none',stroke:'#3a6a6a','stroke-width':60,'stroke-linecap':'round','stroke-linejoin':'round'});
+for(const n in K.roads)el('polyline',{points:pts(K.roads[n]),fill:'none',stroke:'#6e6656','stroke-width':n==='Karl-Marx-Allee'?170:110,'stroke-linecap':'round','stroke-linejoin':'round'});
+el('polyline',{points:pts(K.rail),fill:'none',stroke:'#7a3a26','stroke-width':55});el('polyline',{points:pts(K.rail),fill:'none',stroke:'#7b9a3a','stroke-width':14,'stroke-dasharray':'60 40'});
+// greenhouses in Lustgarten and Palast gardens
+for(const[x,y]of[[640,1380],[760,1560],[1060,1760],[1080,2020]])el('rect',{x:x-50,y:y-30,width:100,height:60,rx:28,fill:'#9ad8b8',opacity:.45,stroke:'#cfe8d0','stroke-width':6});
+// sunflowers
+for(let i=0;i<60;i++){const x=80+(i%10)*80,y=1900+Math.floor(i/10)*190;el('circle',{cx:x,cy:y,r:16,fill:'#e7982b'});}
+for(const[n,x,y,w,h,c]of K.lm){el('rect',{x:x-w/2,y:y-h/2,width:w,height:h,fill:c,stroke:'#14100c','stroke-width':10});txt(x,y-h/2-20,n,'#ead9c0',46,700);}
+// banners on Karl-Marx-Allee
+for(let i=0;i<8;i++){const x=2800+i*150,y=1560+i*55;el('rect',{x,y:y-160,width:22,height:70,fill:'#af4237',stroke:'#14100c','stroke-width':4});el('rect',{x:x+30,y:y+130,width:22,height:70,fill:'#af4237',stroke:'#14100c','stroke-width':4});}
+// Fernsehturm + Weltzeituhr core
+el('circle',{cx:2000,cy:1550,r:150,fill:'none',stroke:'#e7982b','stroke-width':14,'stroke-dasharray':'30 20'});el('circle',{cx:2000,cy:1550,r:60,fill:'#8a856e',stroke:'#14100c','stroke-width':10});el('circle',{cx:2000,cy:1550,r:22,fill:'#d4a27e'});txt(1960,1365,'Fernsehturm','#f2d14b',60,800);
+el('circle',{cx:2480,cy:1200,r:50,fill:'#e7982b',stroke:'#14100c','stroke-width':10});for(let a=0;a<12;a++)el('line',{x1:2480,y1:1200,x2:2480+Math.cos(a/12*6.28)*44,y2:1200+Math.sin(a/12*6.28)*44,stroke:'#5a3a1a','stroke-width':5});txt(2560,1120,'Weltzeituhr','#f2d14b',52,800);
+el('circle',{cx:1830,cy:1700,r:40,fill:'#3a6a6a',stroke:'#c8b890','stroke-width':8});txt(1830,1790,'Neptunbrunnen','#cfe8ff',36,700);
+for(let i=0;i<6;i++)el('rect',{x:2150+(i%3)*70,y:1420+Math.floor(i/3)*60,width:50,height:40,fill:'#c8a050',stroke:'#14100c','stroke-width':4});txt(2220,1560,'Markt','#e7982b',40,800);
+for(const n in K.roads)el('polyline',{points:pts(K.roads[n]),fill:'none',stroke:'#a09680','stroke-width':5,'stroke-dasharray':'40 50'});
+for(const[x,y]of K.bridges)el('rect',{x:x-55,y:y-55,width:110,height:110,fill:'#d6cfc0',opacity:.85,transform:`rotate(45 ${x} ${y})`});
+for(const[n,c,p]of K.zones){const cx=p.reduce((a,q)=>a+q[0],0)/p.length,cy=p.reduce((a,q)=>a+q[1],0)/p.length;if(['Lustgarten','Palast-Gärten','Alexanderplatz','Rathausforum'].includes(n))continue;if(n==='Museumsinsel'){txt(690,1000,n,'#e8dcb0',40,400,-85);continue;}txt(cx,cy,n,'#e8dcb0',n==='Sonnenblumenfeld'?56:44);}
+txt(3500,2660,'Spree','#cfe8ff',70,700,6);txt(400,560,'Kupfergraben','#cfe8ff',36,700,-80);txt(800,1180,'Stadtbahn + Tram','#e0b090',40,700,3);txt(3500,2020,'Strausberger Pl.','#ead9c0',36,700,18);
+for(const[k,n,x,y,v]of[['S+U','Alexanderplatz',2250,1290,1],['S','Hackescher Markt',1150,1160],['S','Jannowitzbrücke',2760,2300],['U','Klosterstr.',2050,2100],['U','Märkisches Museum',1950,3050],['U','Rosa-Luxemburg-Pl.',2100,700],['U','Schillingstr.',3050,1650],['U','Weinmeisterstr.',1500,700]]){
+ el('rect',{x:x-34,y:y-34,width:68,height:68,fill:'#1d4a8a',stroke:v?'#e0892e':'#ead9c0','stroke-width':v?16:6});txt(x,y+12,'U','#fff',46,800);if(v)txt(x+10,y+95,'Start','#e0892e',52,800);}
+// panel B: forms
+const V=document.getElementById('var'),ve=(t,a)=>el(t,a,V),vt=(x,y,s,c,sz)=>txt(x,y,s,c,sz||11,600,0,V);
+ve('rect',{width:420,height:760,fill:'#24211b'});
+const iso=(x,y,w,d,h,cs,ce,ct)=>{const A=[x,y],B=[x+w*.87,y+w*.5],C=[x+w*.87-d*.87,y+w*.5+d*.5],Dd=[x-d*.87,y+d*.5],up=p=>[p[0],p[1]-h],P=a=>a.map(p=>p.join(',')).join(' ');
+ ve('polygon',{points:P([Dd,C,up(C),up(Dd)]),fill:cs,stroke:'#14100c'});ve('polygon',{points:P([C,B,up(B),up(C)]),fill:ce,stroke:'#14100c'});ve('polygon',{points:P([up(A),up(B),up(C),up(Dd)]),fill:ct,stroke:'#14100c'});};
+// Fernsehturm
+iso(100,190,30,30,20,'#8a856e','#6a6656','#a09a80');ve('rect',{x:94,y:40,width:12,height:150,fill:'#c8c2a8',stroke:'#14100c'});ve('circle',{cx:100,cy:70,r:24,fill:'#9aa8a8',stroke:'#14100c'});
+for(let a=0;a<8;a++)ve('line',{x1:100,y1:70,x2:100+Math.cos(a/8*6.28)*18,y2:70+Math.sin(a/8*6.28)*18,stroke:'#e7982b','stroke-width':2});ve('line',{x1:100,y1:46,x2:100,y2:14,stroke:'#af4237','stroke-width':3});vt(100,225,'Fernsehturm (Zahnrad-Kugel)','#ead9c0',12);
+// Weltzeituhr
+ve('rect',{x:296,y:120,width:8,height:80,fill:'#8a7860',stroke:'#14100c'});ve('polygon',{points:'270,110 330,110 340,120 330,130 270,130 260,120',fill:'#e7982b',stroke:'#14100c'});
+ve('circle',{cx:300,cy:80,r:28,fill:'none',stroke:'#d4a27e','stroke-width':3});for(let a=0;a<10;a++)ve('circle',{cx:300+Math.cos(a/10*6.28)*28,cy:80+Math.sin(a/10*6.28)*28,r:4,fill:'#d4a27e'});ve('circle',{cx:300,cy:80,r:10,fill:'#e7982b',stroke:'#14100c'});vt(300,225,'Weltzeituhr (Uhrwerk)','#ead9c0',12);
+// Palast der Republik as greenhouse palace
+iso(110,360,140,60,50,'#b06a3a','#8a4a2a','#6a3a22');for(let i=0;i<9;i++)ve('rect',{x:20+i*14,y:330+i*7-20,width:10,height:26,fill:'#e7a050',opacity:.7});
+ve('path',{d:'M60 290 q50 -60 100 0',fill:'#9ad8b8',opacity:.5,stroke:'#cfe8d0'});vt(110,420,'Palast der Republik + Glashaus','#ead9c0',12);
+// Plattenbau with mural + banners
+iso(320,370,70,50,110,'#c8a87a','#9a8060','#7a6a50');ve('rect',{x:262,y:286,width:56,height:30,fill:'#af4237',opacity:.85});ve('circle',{cx:280,cy:300,r:8,fill:'#e7982b'});ve('rect',{x:294,y:294,width:18,height:14,fill:'#7b6a32'});
+for(const x of[350,372])ve('rect',{x,y:270,width:10,height:44,fill:'#af4237',stroke:'#14100c'});vt(320,420,'Platte mit Wandbild + Banner','#ead9c0',12);
+// enemies
+ve('rect',{x:60,y:470,width:36,height:40,rx:6,fill:'#8a7860',stroke:'#14100c'});ve('circle',{cx:78,cy:490,r:10,fill:'#e7982b',stroke:'#14100c'});ve('line',{x1:66,y1:510,x2:58,y2:540,stroke:'#14100c','stroke-width':4});ve('line',{x1:90,y1:510,x2:98,y2:540,stroke:'#14100c','stroke-width':4});ve('path',{d:'M96 476 l14 -8 v20z',fill:'#d4a27e',stroke:'#14100c'});vt(80,565,'Uhrwerkläufer (Schild)','#e7982b',12);
+ve('path',{d:'M190 540 q-20 -40 10 -70 q30 -20 20 30 q30 -40 30 10 q0 30 -20 30z',fill:'#5a6a2a',stroke:'#14100c'});for(const[x1,y1,x2,y2]of[[195,540,170,560],[215,540,225,565],[235,540,255,558]])ve('line',{x1,y1,x2,y2,stroke:'#5a4a2a','stroke-width':4});vt(210,585,'Wurzler (hält fest)','#7b9a3a',12);
+ve('rect',{x:300,y:450,width:70,height:70,rx:10,fill:'#736734',stroke:'#14100c'});ve('circle',{cx:335,cy:485,r:20,fill:'#e7982b',stroke:'#14100c'});ve('rect',{x:331,y:470,width:8,height:16,fill:'#14100c'});ve('rect',{x:290,y:520,width:20,height:30,fill:'#5a5030',stroke:'#14100c'});ve('rect',{x:360,y:520,width:20,height:30,fill:'#5a5030',stroke:'#14100c'});vt(335,605,'Boss: Volkseigener Koloss','#af4237',12);
+// palette
+const pal=['#d4a27e','#e7982b','#736734','#8a856e','#af4237','#763536'];pal.forEach((c,i)=>ve('rect',{x:30+i*62,y:615,width:56,height:40,fill:c,stroke:'#14100c'}));vt(210,677,'Board-Palette Alexanderplatz','#ead9c0',12);
+['#3a352c','#6e6656','#c8a87a','#7a6a50','#3a4a2a'].forEach((c,i)=>ve('rect',{x:60+i*62,y:695,width:56,height:30,fill:c,stroke:'#666'}));vt(210,745,'Spiel: Boden · Straße · Platte · Dach · Garten','#b8a890',11);
+</script></body></html>
