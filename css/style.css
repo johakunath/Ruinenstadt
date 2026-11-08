@@ -196,3 +196,7 @@ body:not(.inrun) #bufs,body:not(.inrun) #streak{display:none}
 .sgd{display:flex;gap:3px}.sgd i{width:6px;height:6px;border-radius:50%;background:#4a3a2e}.sgd i.f{background:var(--ember)}
 .sgdet{align-self:start}.sgdet .chead svg{flex:none}.pcard>svg{justify-self:center}
 @media (min-width:700px){.segen{grid-template-columns:minmax(0,1fr) minmax(0,340px)}.sgdet{position:sticky;top:0}}
+/* v0.50 S+U network map */
+.bmap.net{background:#14282b}.bmap .line{cursor:pointer}.bmap .line.lock{cursor:default}
+.nett{font:700 11px var(--f-ui);fill:var(--bone)}.netb{font:800 8px var(--f-ui);fill:#fff;text-anchor:middle}.neto{font:600 9px var(--f-ui);fill:#ed9e25;text-anchor:middle}.nets{font:9px var(--f-ui);fill:#a8b8b4}
+.lbadge{display:inline-block;color:#fff;font:800 13px var(--f-ui);padding:0 6px;margin-right:4px;vertical-align:2px}
