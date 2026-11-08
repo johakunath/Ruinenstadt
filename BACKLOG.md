@@ -18,20 +18,21 @@ Problems: environment scale (cars smaller than player), pure top-down props vs s
 
 ## Next
 
-Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pipeline.md`).
+Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pipeline.md`). Style source of truth: `docs/style-bible.md` (Köpenick = default look, U-Bahn, Potsdamer Platz, Alexanderplatz boards).
 
 | # | Item | Notes |
 |---|---|---|
 | 1 | Isometric follow-ups | Playtest v0.40 on the Tab S9 (feel of screen-space joystick, frame rate on the 3600 Köpenick map, building size, silhouettes). Then: Späti interior and sandbags as iso props, landmark towers as real iso sprites (Codex step 4), rebalance with the bot |
 | 2 | Equipment follow-ups | Legendaries and set pieces for head, hands, feet and ring (they top out at rare for now). Implant items with Potsdamer Platz (#4). Codex: painted head, hand and foot parts |
 | 3 | Geographic districts | Köpenick done in v0.40 (`js/geo.js`, data is the source of truth). Next: the other districts on the same system (map data per district: water, roads, zones), one at a time with a mockup each |
-| 4 | Potsdamer Platz cyberpunk district | Mockup D approved: neon, rain, implant clinic, cable enemies |
+| 4 | Potsdamer Platz cyberpunk district | Mockup D approved: neon, rain, implant clinic, cable enemies. Board: `docs/style/potsdamer-platz.png` (bassline underworld, speaker brute) |
 | 7 | Weapon = class | Each weapon type 2 to 3 skills, pick 1 before a run. Touch stays at 4 buttons |
-| 8 | Zones and U-Bahn waypoints | District = 2 to 3 zones of 5 to 10 min, U-Bahn as save point and town portal |
+| 8 | Zones and U-Bahn waypoints | District = 2 to 3 zones of 5 to 10 min, U-Bahn as save point and town portal. Board: `docs/style/ubahn.png`, fight through first, fast travel later |
 | 9 | Controller support | Gamepad API for Xbox and Steam Deck (browser), stick aiming, assists per input device |
 | 10 | AI-maintainability review | Code and docs readable for Claude and Codex with few tokens |
 | 11 | Walkable camp hub | Mockup first. Lives at Lindenstraße in Köpenick |
-| A | Asset pipeline (Codex) | Hand-painted isometric art. Steps, order and prompts in `docs/asset-pipeline.md`. Step 1: 3 to 5 style references, Johannes picks |
+| A | Asset pipeline (Codex) | Step 1 done: four boards, Köpenick default (`docs/style-bible.md`). Next: first Köpenick batch (player, Altbau, Späti, bus, Trabi, zombie), finish style bible step 2 with it, test on the Tab S9 |
+| 12 | Style proposals | From `docs/style-bible.md`, undecided: Spreepark zone in Köpenick, zombie raptor and T-rex, U-Bahn market set piece, lamp gun, per-district palettes in code (mockup first), Alexanderplatz as GDR clockwork district |
 | - | GitHub Pages | When playtesting outside the dev setup |
 
 ## Ideas by theme
@@ -47,7 +48,7 @@ Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pip
 | Quests | Pick up and hand in at NPCs. Quest chains with a light story per district |
 | Base | Barricades and turrets (camp raid event, or placed mid-run). Boss kills unlock camp stations or skills (V Rising) |
 | Day and night | Real cycle with gameplay differences (night: stronger enemies, better loot, need light) |
-| Setting | Cyberpunk-Fallout mix: a neon district, implants as abilities. Keep one coherent style |
+| Setting | Decided in `docs/style-bible.md`: one painted base, district identities (Köpenick dinosaur jungle, U-Bahn, Potsdamer Platz cyberpunk, Alexanderplatz GDR clockwork) |
 | Feel | Hit flash, knockback, per-weapon screen shake, perfect-dodge slow motion, persistent decals |
 | Platforms | Gamepad API (Xbox, Steam Deck in browser), faster pace and aim with the stick on controller, high-detail graphics mode for big screens |
 | Research | Benchmark more games only when ideas run out |
@@ -59,7 +60,8 @@ Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pip
 | Pace | Fast fodder, smart elites: telegraphs and punish windows on elites and some types, calm phases between waves, safe rooms |
 | Builds | Weapon = class (Hades model), blessings stack into strong builds |
 | Structure | Districts of 2 to 3 zones with U-Bahn waypoints, sessions stay short |
-| Still open | Cyberpunk-Fallout elements yes or no (decide with the art mockups). Touch vs controller: one game with assists per input, or a separate desktop version |
+| Style | Köpenick board is the default look, cyberpunk only in Potsdamer Platz (`docs/style-bible.md`) |
+| Still open | Touch vs controller: one game with assists per input, or a separate desktop version |
 
 ## Tech
 

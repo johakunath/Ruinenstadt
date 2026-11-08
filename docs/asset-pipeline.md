@@ -2,13 +2,15 @@
 
 Goal: replace code-drawn art with a hand-painted look. Codex generates images, Johannes decides, Claude or Codex integrates. Floors and ground textures stay code-drawn (they already look good).
 
+Style source of truth: `docs/style-bible.md` and the four boards in `docs/style/`. Step 1 is done (Köpenick is the default look). Where this doc and the style bible disagree on look, palette or mood, the style bible wins. Camera, scale, format and renderer contract below still apply.
+
 ## Fixed decisions
 
 | Topic | Decision |
 |---|---|
-| Look | Hand-painted, like a human painted it. Hades is the closest reference: bold dark ink outlines, painterly fills, warm saturated light, strong rim light. Not pixel art, not 3D renders, not flat vector |
+| Look | Painted comic, see `docs/style-bible.md`. Hades stays the reference for readability: bold dark ink outlines, painterly fills, warm saturated light, strong rim light. Not pixel art, not 3D renders, not flat vector |
 | Camera | Isometric (2:1, Diablo 1/2 angle). Every asset from the same angle, light from top-left |
-| Setting | Post-collapse Berlin, overgrown, fires, improvised barricades. Dark, warm, a bit Fallout. One district (Potsdamer Platz) is cyberpunk: neon, rain, implants |
+| Setting | Post-collapse Berlin, overgrown, fires, improvised barricades. Per district from the boards: Köpenick dinosaur jungle and steampunk noir (default), U-Bahn Metro survival, Potsdamer Platz cyberpunk and techno, Alexanderplatz GDR clockwork gardens |
 | Scale | Realistic proportions, characters exaggerated about ×1.3 for readability. Player 1.8 m, car 4.2 m long, Trabi 3.5 m, BVG bus 12 m, Altbau 5 floors (about 18 m), street tree 10 m |
 | Format | PNG with transparent background, no text in images, no drop shadow baked in (the game draws shadows) |
 | Game constraint | Static web app, no build step. Final sprites are committed PNGs plus `assets/manifest.json` (anchor point, size in world units). Missing sprite = game falls back to current canvas drawing |
@@ -17,8 +19,8 @@ Goal: replace code-drawn art with a hand-painted look. Codex generates images, J
 
 | Step | Output | Done when |
 |---|---|---|
-| 1 Style references | 3 to 5 big key images from the prompts below | Johannes picks one or a mix |
-| 2 Style bible | `docs/style-bible.md`: palette (hex), outline weight, light direction, scale chart image, 2 do and 2 don't examples | Approved |
+| 1 Style references | Done: four boards in `docs/style/` | Köpenick picked as default |
+| 2 Style bible | `docs/style-bible.md` exists (palettes, districts, player). Still open: outline weight, scale chart image, 2 do and 2 don't examples | Approved |
 | 3 Pipeline tooling | Folder layout `assets/<group>/<name>.png`, naming rules, `assets/manifest.json`, a small script in `tools/` that trims and checks PNGs (size, transparency, anchor) | One asset runs end to end and shows in game |
 | 4 Production, big things first | See order below. Batches of about 10 assets, screenshot each batch in game | Each batch approved |
 | 5 Integration | Renderer uses sprites by manifest, canvas fallback stays | No page errors, smoke test passes |
@@ -28,8 +30,8 @@ Goal: replace code-drawn art with a hand-painted look. Codex generates images, J
 1. Buildings: Altbau, Plattenbau, Späti (barricaded, sandbags, roll shutter), ruins, landmarks per district (Rathaus Köpenick, Fernsehturm, Wasserturm, Zitadelle, Hochhaus Marzahn)
 2. Vehicles: car, Trabi, van, BVG bus, tram, plane wreck
 3. Nature: street trees, park trees, bushes, reeds for the Spree and Müggelsee banks
-4. Player: base body plus gear layers per slot (weapon, head, body, hands, feet), so equipment stays visible. Cut-out parts for code animation (torso, head, upper and lower arms, legs)
-5. Enemies: ghoul, brute, spitter, rat, crow, shield bearer, Zünder (bomber), Heuler (howler), Raser (charger)
+4. Player: survivor from the Köpenick board (red scarf, brown long coat), base body plus gear layers per slot (weapon, head, body, hands, feet), so equipment stays visible. Cut-out parts for code animation (torso, head, upper and lower arms, legs)
+5. Enemies: ghoul, brute, spitter, rat, crow, shield bearer, Zünder (bomber), Heuler (howler), Raser (charger). Zombie raptor and T-rex only if the proposals in the style bible are accepted
 6. Bosses: one per district
 7. Props: crates, BSR bins, barrels with fire, lamps, benches, Litfaßsäule, fences
 8. Item icons, effects, UI frames
@@ -41,7 +43,9 @@ Goal: replace code-drawn art with a hand-painted look. Codex generates images, J
 - Scale against the player using the scale chart
 - Collision footprint matches the visible base (note it in the manifest)
 
-## Step 1 prompts
+## Step 1 prompts (historical)
+
+These produced the first round. For new work, describe the look from the boards in `docs/style/` and attach the matching board as image reference.
 
 Shared style block, append to every prompt:
 

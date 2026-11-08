@@ -59,7 +59,7 @@ function drawPlayer(t){
   if(L.collar){ctx.fillStyle=L.collar;ctx.fillRect(-6,-34,12,3);}
   if(L.vest){ctx.fillStyle=L.vest;rr(ctx,-6,-31,12,15,2);if(L.plates){ctx.fillStyle='rgba(0,0,0,.25)';ctx.fillRect(-6,-24,12,1.2);ctx.fillStyle='#b8b0a0';[[-4,-29],[3,-29],[-4,-19],[3,-19]].forEach(q=>ctx.fillRect(q[0],q[1],1.4,1.4));}}
   if(L.stripes){ctx.fillStyle=L.stripes;ctx.fillRect(-8,-24,16,2);ctx.fillRect(-8,-19,16,2);}
-  if(L.scarf){ctx.fillStyle=L.scarf;ctx.fillRect(-6,-35,12,4);ctx.fillRect(-7,-33,3,8);}
+  {ctx.fillStyle=L.scarf||'#9b3328';ctx.fillRect(-6,-35,12,4);ctx.fillRect(-7,-33,3,8);}
   if(!L.coat){ctx.fillStyle='#1a120c';ctx.fillRect(-8,-15,16,2.2);}
   if(A&&A.r>=1){ctx.fillStyle=RAR[A.r].c;ctx.fillRect(-8,-33,16,1.6);}
   if(S.eq.t){ctx.fillStyle=RAR[S.eq.t.r].c;ctx.beginPath();ctx.arc(5,L.coat?-20:-14,2.2,0,7);ctx.fill();}
