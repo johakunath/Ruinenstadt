@@ -88,8 +88,9 @@ const XHAIN={ws:4000,start:[3756,700],land:[],
  marks:[[2278,944,'Spree'],[1278,2278,'Landwehrkanal'],[1889,444,'Stadtbahn']],
  lm:()=>{const K=XHAIN,HB=['Gitschiner Straße','Skalitzer Straße','Oberbaumbrücke','Warschauer Straße'];ostbahnhof(...K.obf);berghain(...K.bh);esg();
   viaduct(segsOf(K.rail),{c:['#7a3a26','#5a2a1a','#4a2216'],pc:'#6b3626',pcap:'#4a2216',ps:22,z0:46,z1:60,d:40,step:72,tc:'#a83228',skip:(x,y)=>Math.hypot(x-K.obf[0],y-K.obf[1])<230,free:(x,y)=>roadD(x,y)<72});
-  viaduct(ROADS.filter(s=>HB.includes(s.n)&&s.n!=='Oberbaumbrücke'&&s.ay>100),{c:['#3f6a4a','#2c4a34','#223a2a'],pc:'#3f6a4a',pcap:'#2c4a34',ps:14,z0:62,z1:74,d:30,step:120,tc:'#d8b830',skip:(x,y)=>lineD(K.rail,x,y)<50,free:(x,y)=>ROADS.some(o=>!HB.includes(o.n)&&segD(o,x,y)<70)});
-  oberbaum();for(const s of K.stations){const p=station(...s);if(s[4]&&p){SX=p[0];SY=p[1]+38;}}}};
+  const o=oberbaum(),Rd=K.roads,sh=p=>[p[0]+o[0],p[1]+o[1]],W=Rd['Warschauer Straße'];// Hochbahn: Gitschiner and Skalitzer, then the last stretch swings sideways onto the arcade; north side the same from Warschauer Straße
+  for(const P_ of [[sh(Rd['Skalitzer Straße'][0]),...Rd['Skalitzer Straße'].slice(1),...Rd['Gitschiner Straße'].slice(1)],[W[1],W[2],sh(W[3])]])
+    viaduct(segsOf(P_),{c:['#3f6a4a','#2c4a34','#223a2a'],pc:'#3f6a4a',pcap:'#2c4a34',ps:14,z0:62,z1:74,d:30,step:120,tc:'#d8b830',skip:(x,y)=>lineD(K.rail,x,y)<50,free:(x,y)=>ROADS.some(o=>!HB.includes(o.n)&&segD(o,x,y)<70)});for(const s of K.stations){const p=station(...s);if(s[4]&&p){SX=p[0];SY=p[1]+38;}}}};
 DIST[1].geo=XHAIN;
 /* ---- Xhain landmarks: custom-drawn iso boxes (b.draw runs inside withRot, so P3 follows b.rot) ---- */
 const ln3=(a,b,c)=>{ctx.strokeStyle=c;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();};
@@ -129,13 +130,13 @@ function drawArcade(b){const{x,y,w,h}=b,Hd=b.hd,c='#8a4430',m='#7a3a26';
     const ax=tx+S/2,ay=ty+S/2,A=P3(ax,ay,z1+52),q=(a,b2)=>P3(a,b2,z1);poly([q(tx+i0-3,ty+S-i0+3),q(tx+S-i0+3,ty+S-i0+3),A],'#4a6a58',INK);poly([q(tx+S-i0+3,ty+S-i0+3),q(tx+S-i0+3,ty+i0-3),A],'#34503f',INK);
     ctx.fillStyle='#c8a040';ctx.beginPath();ctx.arc(A[0],A[1]-3,2.5,0,7);ctx.fill();}
   tur(y+h-8);}
-function oberbaum(){const s=ROADS.find(q=>q.n==='Oberbaumbrücke'),g=gx,a=Math.atan2(s.uy,s.ux);let u0=-1,u1=-1;for(let t=0;t<=s.len;t+=6)if(isWater(s.ax+s.ux*t,s.ay+s.uy*t)){if(u0<0)u0=t;u1=t;}if(u0<0)return;u0-=20;u1+=20;
+function oberbaum(){const s=ROADS.find(q=>q.n==='Oberbaumbrücke'),g=gx,a=Math.atan2(s.uy,s.ux);let u0=-1,u1=-1;for(let t=0;t<=s.len;t+=6)if(isWater(s.ax+s.ux*t,s.ay+s.uy*t)){if(u0<0)u0=t;u1=t;}if(u0<0)return[0,0];u0-=20;u1+=20;
   const L=u1-u0,tot=OBV.reduce((p,q)=>p+q,0),pier=[];let acc=0;for(let i=0;i<OBV.length-1;i++){acc+=OBV[i];pier.push(u0+L*acc/tot);}
   g.save();g.translate(s.ax,s.ay);g.rotate(a);for(const sd of [-1,1]){const v0=sd<0?-68:43;g.fillStyle='#6b3626';g.fillRect(u0,v0,L,25);bricks(g,u0,v0,L,25,5);g.fillStyle='#4a2216';g.fillRect(u0,sd<0?v0:v0+21,L,4);
     let p0=u0;for(const p1 of [...pier,u1]){g.fillStyle='rgba(8,5,4,.55)';g.beginPath();g.ellipse((p0+p1)/2,sd*(sd>0?70:70),(p1-p0)/2-6,10+(p1-p0)*.06,0,sd<0?Math.PI:0,sd<0?0:Math.PI);g.fill();p0=p1;}}g.restore();
-  const rot=rotN(a),ly=[-Math.sin(rot),Math.cos(rot)],sv=(-s.uy*ly[0]+s.ux*ly[1])>0?-1:1,v=sv*80,um=(u0+u1)/2,cx=s.ax+s.ux*um-s.uy*v,cy=s.ay+s.uy*um+s.ux*v,w=L,h=46;
+  const rot=rotN(a),ly=[-Math.sin(rot),Math.cos(rot)],sv=(-s.uy*ly[0]+s.ux*ly[1])>0?-1:1,v=sv*80,um=s.len/2,cx=s.ax+s.ux*um-s.uy*v,cy=s.ay+s.uy*um+s.ux*v,w=s.len,h=46;
   const lx=u=>w/2+(u-um),b={x:cx-w/2,y:cy-h/2,w,h,hd:60,H:220,top:220,R0:0,rot,piers:pier.filter((_,i)=>i!==2&&i!==3).map(lx).concat([12,w-12]),tw:[lx(pier[2]),lx(pier[3])],train:Math.random()<.5,lights:[],draw:drawArcade};
-  blds.push(b);bShadow({...b,H:110});const ow=obWall(b);walls.push(ow);reserved.push({x:ow.x,y:ow.y,w:ow.w,h:ow.h});}
+  blds.push(b);bShadow({...b,H:110});const ow=obWall(b);walls.push(ow);reserved.push({x:ow.x,y:ow.y,w:ow.w,h:ow.h});return[-s.uy*v,s.ux*v];}
 // Ostbahnhof: long station hall along the viaduct with tall windows and a glass barrel roof (hb: wall height, H: ridge for sorting). Closed, no power
 function drawOstbf(b){const{x,y,w,h}=b,H=b.hb,Rf=26,N=8;faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,0,H,'#8a8f96',INK);
   for(let u=10;u<w-20;u+=26)if(Math.abs(u-w/2)>24)faceS(x+u,y,12,h,16,H-10,b.lw[Math.floor(u/26)]?'#c88a3a':'#1a2024');
