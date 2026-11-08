@@ -120,6 +120,22 @@ Sheet format as the portrait batches (3 × 2 cells of 512 × 512, same teal, ID 
 
 Success test: Claude cuts it (`tools/cut_sheets.py H01` → `assets/hero/`), lays the parts over H01 and checks scale and joints. If they fit, next sheets: torso variants per armour piece and hats per head item, each sheet with H01 attached as reference.
 
+**H01 result (three variants, `assets/raw/H01a..c.png`, cut to `assets/hero/`):**
+
+| Check | Result |
+|---|---|
+| Same design across parts | Yes. Variant b even repeats the bandage and glove on the separate arm |
+| Same scale | No. Parts drawn 1.0 to 1.7 times too big, different per part. Fixable: Claude rescales each part once |
+| Fits back together | Yes after rescaling, almost invisible joints |
+| Reads at game size (60 px) | No. Realistic proportions (8 heads tall, slim) turn into a thin stick, see `docs/style/h01-gamesize.png` |
+| Style bible | Coat came out olive cloth, the bible says brown leather |
+| Torso | Has the upper sleeve and a black neck hole baked in (hole is removed by the script, sleeve is not) |
+
+**H02 (retry, same sheet format and IDs H01 to H05, file `assets/raw/H02.png`):** style block plus:
+
+> One sheet, one character: the survivor from the Köpenick board, game-sprite proportions: stocky and readable, about 5 heads tall, big head and hands, broad shoulders, thick limbs, bold dark outline, strong warm rim light on the back edge. Dark brown hair, red scarf, long brown **leather** coat to the knees, harness with pouches, dark trousers, heavy boots, no weapon. Strict side view facing right, flat even light. H01 full figure standing, arms hanging, about 400 px tall. H02 head and hair only, cut at the neck. H03 torso only: coat, scarf and harness, **no head, no arms, no sleeves**, the shoulder ends flat where the arm attaches. H04 one arm: shoulder to fingers, straight and hanging, sleeve with bare hand. H05 one leg: hip to boot, straight. H06 leave empty. Draw every part at exactly the same scale as H01, do not enlarge parts to fill their cells.
+
+
 ## Totals
 
 | Group | Batches | Images |
@@ -142,7 +158,7 @@ Claude ticks a batch here once its sheet is in `assets/raw/`.
 |---|---|
 | B01 to B10 | done, cut into `assets/icons/` (v0.49) |
 | B11, B12, P06 (Mitte) | open |
-| H01 (player test) | open |
+| H01 (player test) | done, see result above. Next: H02 |
 | P01 to P05 | done, cut into `assets/portraits/` (v0.49) |
 
 Cutting: `python3 tools/cut_sheets.py [B01 ...]`. It finds the label strip per cell, keys out the teal (also enclosed holes such as ring centres) and writes WebP. New batches: add their IDs to `IDS` in the script, and the mapping to `ICOI` / `PORTI` in `js/items.js`.

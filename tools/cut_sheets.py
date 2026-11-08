@@ -20,14 +20,15 @@ IDS = {
  'P01': 'S01 S02 S03 S04 S05 S06', 'P02': 'E01 E02 E03 E04 E05 E06', 'P03': 'E07 E08 E09 E10 E11 E12',
  'P04': 'X01 X02 X03 X04 X05 X06', 'P05': 'X07 X08 - - - -',
  'B11': 'I59 I60 I61 I62 I63 I64 I65 I66', 'B12': 'I67 I68 I69 I70 D01 - - -', 'P06': 'E13 E14 X09 - - -',
- 'H01': 'H01 H02 H03 H04 H05 -'}
+ 'H01': 'H01 H02 H03 H04 H05 -', 'H02': 'H01 H02 H03 H04 H05 -'}
 ICON, PORT = 128, 192
 
-def label_top(im, x0, x1, y0, y1):
-    """First row (scanning down from the middle of the cell) that is mostly near-black: the ID strip."""
-    g = im.convert('L')
-    for y in range((y0 + y1) // 2, y1):
-        row = [g.getpixel((x, y)) for x in range(x0 + 20, x1 - 20, 6)]
+def label_top(im, x0, x1, y0, y1, narrow=False):
+    """First row (scanning down from the middle of the cell) that is mostly near-black: the ID strip.
+    narrow: the strip is only a small box under the centre (H sheets), so check the centre band in the lowest quarter."""
+    g = im.convert('L'); c = (x0 + x1) // 2
+    for y in range((y0 + 3 * y1) // 4 if narrow else (y0 + y1) // 2, y1):
+        row = [g.getpixel((x, y)) for x in (range(c - 40, c + 40, 4) if narrow else range(x0 + 20, x1 - 20, 6))]
         if sum(v < 40 for v in row) > .8 * len(row): return y
     return y1
 
@@ -65,7 +66,15 @@ def icon(cell, size=ICON):
     sq.paste(rgba, ((s - rgba.width) // 2, (s - rgba.height) // 2)); return sq.resize((size, size), Image.LANCZOS)
 
 def part(cell):
-    a, _ = key_out(cell); rgba = cell.convert('RGBA'); rgba.putalpha(a); return rgba
+    """Keyed but unscaled. Big near-black blobs (the neck hole ChatGPT leaves in a headless torso) become transparent."""
+    a, _ = key_out(cell); g = cell.convert('L'); w, h = cell.size
+    blk = g.point(lambda v: 255 if v < 22 else 0); pad = Image.new('L', (w + 2, h + 2), 0); pad.paste(blk, (1, 1))
+    for y in range(1, h + 1, 3):
+        for x in range(1, w + 1, 3):
+            if pad.getpixel((x, y)) != 255: continue
+            ImageDraw.floodfill(pad, (x, y), 200); n = pad.histogram()[200]; ImageDraw.floodfill(pad, (x, y), 100 if n > 600 else 50)
+    a = ImageChops.subtract(a, pad.crop((1, 1, w + 1, h + 1)).point(lambda v: 255 if v == 100 else 0))
+    rgba = cell.convert('RGBA'); rgba.putalpha(a); return rgba
 
 def portrait(cell):
     w, h = cell.size; s = min(w, h); x = (w - s) // 2
@@ -75,13 +84,13 @@ def run(b):
     im = Image.open(os.path.join(RAW, b + '.png')).convert('RGB'); W, H = im.size
     cols = 4 if b[0] == 'B' else 3; cw, ch = W // cols, H // 2
     out = os.path.join(ROOT, 'assets', {'B': 'icons', 'P': 'portraits', 'H': 'hero'}[b[0]]); os.makedirs(out, exist_ok=True)
-    for i, idn in enumerate(IDS[b].split()):
+    for i, idn in enumerate(IDS[b[:3]].split()):  # H01a, H01b ...: variants of H01, ids get the suffix
         if idn == '-': continue
         x0, y0 = (i % cols) * cw, (i // cols) * ch
-        lt = label_top(im, x0, x0 + cw, y0, y0 + ch)
+        lt = label_top(im, x0, x0 + cw, y0, y0 + ch, b[0] == 'H')
         m = 6; cell = im.crop((x0 + m, y0 + m, x0 + cw - m, lt - 4))
         img = icon(cell) if b[0] == 'B' else part(cell) if b[0] == 'H' else portrait(cell)
-        img.save(os.path.join(out, idn + '.webp'), 'WEBP', quality=86, method=6)
+        img.save(os.path.join(out, idn + b[3:] + '.webp'), 'WEBP', quality=86, method=6)
         print(b, idn, 'label at', lt - y0)
 
 if __name__ == '__main__':
