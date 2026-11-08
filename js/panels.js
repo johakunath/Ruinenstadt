@@ -8,7 +8,8 @@ let menuOpt=false,menuEnd=false;const mp=m=>Math.round(m.p*(hasS('schmied')?.7:1
 function distCard(i){const d=DIST[i],m=DMAP[i]||{},b=S.best[i],st=b>=WAVES?'<span class="ok">Befreit</span>':b?`Rekord: Welle ${b}/${WAVES}`:'Unerforscht';const w=Object.entries(RES[BK[d.b]]||{}).filter(q=>q[1]>1.2).map(q=>`<span style="color:${ELC[q[0]]}">${ELN[q[0]]}</span>`).join(', ');
   return`<div class="dcard"><div class="dtop"><span class="dn">${d.n}</span><span class="dm">${st}</span></div><div class="sub">${m.d||''}</div>
   <div class="dgrid"><span>Gegnerstufe</span><b>${d.lvl+1+S.threat*3}+</b><span>Endgegner</span><b>${BN[d.b]||'?'}</b><span>Schwäche</span><b>${w||'keine'}</b></div>${d.wet?'<div class="sub" style="color:#43d1cf">Regen: Strom springt weiter, Feuer brennt kürzer. Implantate fallen hier.</div>':''}</div>`;}
-function renderMenu(){refresh();
+function renderMenu(){refresh();if(menuTun!=null&&!lineOpen(menuTun))menuTun=null;// selected tunnel gone (new game, imported save)
+  
   const jd=S.jobs.filter(j=>j.p>=j.t).length,lock=menuTun!=null?!lineOpen(menuTun):S.dist>=S.unlocked;
   const opt=menuOpt?`<div class="opts"><button class="btn sm" data-m="diff">Schwierigkeit: ${DF().n}</button><button class="btn sm" data-m="mute">${S.mute?'Ton aus':'Ton an'}</button><button class="btn sm" data-m="music">${S.music?'Musik an':'Musik aus'}</button>
     <button class="btn sm" data-m="eco">${S.eco?'Akkusparen an':'Akkusparen aus'}</button><button class="btn sm" data-m="auto">${autoAtk()?'Auto-Angriff an':'Auto-Angriff aus'}</button><button class="btn sm" data-m="hap">Vibration: ${['aus','leicht','stark'][S.hap==null?1:S.hap]}</button><button class="btn sm" data-m="fs">${S.fs===0?'Vollbild aus':'Vollbild an'}</button><button class="btn sm" data-m="exp">Spielstand kopieren</button><button class="btn sm" data-m="imp">Spielstand laden</button><button class="btn sm" data-m="new">Neues Spiel</button></div>${cloudLine()}
