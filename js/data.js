@@ -17,12 +17,12 @@ const CAMP=[{k:'turm',n:'Wachturm',d:'+8% Widerstand, dauerhaft',p:150},{k:'sani
   {k:'halle',n:'Lagerhalle',d:'+20 Plätze im Lager',p:180},{k:'funk',n:'Funkmast',d:'Ein zusätzliches Ereignis pro Expedition',p:200},{k:'presse',n:'Schrottpresse',d:'+15% Schrott von Gegnern',p:250},{k:'lampe',n:'Stirnlampen-Werkstatt',d:'Zweihändige Waffen bekommen in Dunkelzonen eine Stirnlampe',p:160}];
 const ACH=[{k:'k100',n:'Aufräumer',d:'Besiege 100 Gegner',r:50,c:()=>S.rec.kills>=100},{k:'k1000',n:'Kiezlegende',d:'Besiege 1.000 Gegner',r:200,c:()=>S.rec.kills>=1000},
   {k:'leg1',n:'Ein Fund fürs Leben',d:'Finde ein legendäres Teil',r:100,c:()=>S.rec.legs>=1},{k:'win1',n:'Befreier',d:'Befreie einen Bezirk',r:100,c:()=>S.rec.wins>=1},
-  {k:'win5',n:'Berlin atmet',d:'Befreie Neukölln',r:400,c:()=>S.best[4]>=10},{k:'th3',n:'Gegen die Übermacht',d:'Schalte Bedrohung 3 frei',r:300,c:()=>S.tmax>=3},
+  {k:'win5',n:'Berlin atmet',d:'Befreie Neukölln',r:400,c:()=>S.best[4]>=WAVES},{k:'th3',n:'Gegen die Übermacht',d:'Schalte Bedrohung 3 frei',r:300,c:()=>S.tmax>=3},
   {k:'set3',n:'Komplett',d:'Trage ein vollständiges Set',r:250,c:()=>['kiez','spree','zit'].some(k=>setCount(S.eq,k)>=3)},{k:'camp',n:'Zuhause',d:'Baue das Lager komplett aus',r:300,c:()=>CAMP.every(x=>S.camp[x.k])},
   {k:'m5',n:'Meisterhand',d:'Erreiche Meisterschaft 5 mit einer Waffe',r:150,c:()=>['blade','hammer','sling','spear'].some(k=>mLvl(k)>=5)},{k:'chest5',n:'Kellerkind',d:'Öffne 5 Kellertruhen',r:150,c:()=>S.rec.chests>=5},
   {k:'surv6',n:'Volles Lager',d:'Befreie alle sechs Gefangenen',r:300,c:()=>SURV.every(s=>hasS(s.k))},{k:'streak50',n:'Kettenreaktion',d:'Erreiche eine Serie von 50',r:150,c:()=>(S.rec.streak||0)>=50},{k:'endl20',n:'Nachtschicht',d:'Erreiche Welle 20 im Endlos-Modus',r:300,c:()=>(S.eb||[]).some(w=>w>=20)},
   {k:'legall',n:'Sammler',d:'Finde alle legendären Teile',r:500,c:()=>Object.keys(LEGP).every(k=>S.found&&S.found[k])},{k:'mods3',n:'Bastler',d:'Baue 3 Aufsätze in Waffen ein',r:100,c:()=>(S.rec.mods||0)>=3},{k:'spear5',n:'Lanzenreiter',d:'Erreiche Speer-Meisterschaft 5',r:150,c:()=>mLvl('spear')>=5},{k:'th5',n:'Unaufhaltsam',d:'Schalte Bedrohung 5 frei',r:500,c:()=>S.tmax>=5},
-  {k:'win8',n:'Ganz Berlin',d:'Befreie Marzahn',r:800,c:()=>S.best[7]>=10},{k:'boss10',n:'Bezwinger',d:'Besiege 10 Endgegner',r:250,c:()=>S.rec.bosses>=10}];
+  {k:'win8',n:'Ganz Berlin',d:'Befreie Marzahn',r:800,c:()=>S.best[7]>=WAVES},{k:'boss10',n:'Bezwinger',d:'Besiege 10 Endgegner',r:250,c:()=>S.rec.bosses>=10}];
 let tipQ=[],tipT=0;function tip(k,txt){if(!S.tips||S.tips[k])return;S.tips[k]=1;tipQ.push(txt);}
 function checkAch(){for(const a of ACH)if(!S.ach[a.k]&&a.c()){S.ach[a.k]=1;S.scrap+=a.r;toast(`Erfolg: <span style="color:var(--ember)">${a.n}</span> · +${a.r} Schrott`);sfx('win');}}
 const SETC='#8fd16a',rc=it=>it.set?SETC:RAR[it.r].c,setCount=(eq,k)=>SLOTS.filter(s=>eq[s]&&eq[s].set===k).length;
@@ -61,7 +61,7 @@ const dayKey=()=>{const t=new Date();return t.getFullYear()*10000+(t.getMonth()+
 function rngFrom(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 function dailyPlan(){const r=rngFrom(dayKey()*7+13),ks=Object.keys(DMODS),a=ks[Math.floor(r()*ks.length)];let b;do{b=ks[Math.floor(r()*ks.length)];}while(b===a);return{d:Math.floor(r()*Math.max(1,S.unlocked)),mods:[a,b]};}
 let RNG0=null;const dm_=k=>run&&run.dmods&&run.dmods.includes(k);
-function endDaily(){if(RNG0){Math.random=RNG0;RNG0=null;}if(run&&run.daily){const sc=run.kills*10+run.wave*100+(P.hp>0&&run.wave>=10?1000:0);run.score=sc;const k=dayKey();if(!S.daily||S.daily.k!==k)S.daily={k,best:0,tries:0};S.daily.tries++;S.daily.best=Math.max(S.daily.best,sc);save();}}
+function endDaily(){if(RNG0){Math.random=RNG0;RNG0=null;}if(run&&run.daily){const sc=run.kills*10+run.wave*50+(P.hp>0&&run.wave>=WAVES?1000:0);run.score=sc;const k=dayKey();if(!S.daily||S.daily.k!==k)S.daily={k,best:0,tries:0};S.daily.tries++;S.daily.best=Math.max(S.daily.best,sc);save();}}
 const MAST_N={blade:'Klingen',hammer:'Hammer',sling:'Schleuder',spear:'Speer'};
 const mLvl=k=>Math.min(10,Math.floor(Math.sqrt(((S.mast&&S.mast[k])||0)/40))),mNext=k=>{const l=mLvl(k);return l>=10?0:40*(l+1)*(l+1);};
 const JOBT=[
@@ -69,7 +69,7 @@ const JOBT=[
  {k:'elite',n:t=>`Besiege ${t} Elite-Gegner`,t:()=>pick([2,3,4])},{k:'props',n:t=>`Zerschlage ${t} Kisten oder Tonnen`,t:()=>pick([12,18])},{k:'spati',n:t=>`Plündere ${t} Kisten in einem Späti`,t:()=>3},
  {k:'fire',n:t=>`Besiege ${t} brennende Gegner`,t:()=>pick([15,25])},{k:'acid',n:t=>`Besiege ${t} verätzte Gegner`,t:()=>pick([15,25])},{k:'shock',n:t=>`Triff ${t} Gegner mit Blitzen`,t:()=>pick([30,50])},
  {k:'chest',n:t=>t>1?`Öffne ${t} Kellertruhen`:'Öffne eine Kellertruhe',t:()=>pick([1,2])},{k:'zone',n:t=>t>1?`Halte ${t} Funksignale`:'Halte ein Funksignal',t:()=>pick([1,2])},{k:'trade',n:t=>`Kaufe ${t} Teile beim Händler`,t:()=>pick([1,2])},
- {k:'boss',n:t=>t>1?`Besiege ${t} Endgegner`:'Besiege einen Endgegner',t:()=>pick([1,2])},{k:'rescue',n:t=>'Befreie eine gefangene Person',t:()=>1},{k:'shrine',n:t=>t>1?`Nutze ${t} Litfaßsäulen`:'Nutze eine Litfaßsäule',t:()=>pick([1,2])},{k:'rat',n:t=>`Besiege ${t} Ratten`,t:()=>pick([30,50])},{k:'bomb',n:t=>`Besiege ${t} Zünder`,t:()=>pick([6,10])},{k:'shield',n:t=>`Besiege ${t} Schildträger`,t:()=>pick([5,8])},{k:'wave',n:t=>`Erreiche Welle ${t} in einem Bezirk`,t:()=>pick([6,8,10])}];
+ {k:'boss',n:t=>t>1?`Besiege ${t} Endgegner`:'Besiege einen Endgegner',t:()=>pick([1,2])},{k:'rescue',n:t=>'Befreie eine gefangene Person',t:()=>1},{k:'shrine',n:t=>t>1?`Nutze ${t} Litfaßsäulen`:'Nutze eine Litfaßsäule',t:()=>pick([1,2])},{k:'rat',n:t=>`Besiege ${t} Ratten`,t:()=>pick([30,50])},{k:'bomb',n:t=>`Besiege ${t} Zünder`,t:()=>pick([6,10])},{k:'shield',n:t=>`Besiege ${t} Schildträger`,t:()=>pick([5,8])},{k:'wave',n:t=>`Erreiche Welle ${t} in einem Bezirk`,t:()=>pick([10,14,18])}];
 const CONS=[{k:'verband',n:'Verband',d:'Heilt 40% Leben über 3 Sekunden',p:15},{k:'molotow',n:'Molotow',d:'Wirft ein Feuerfeld, das Gegner in Brand setzt',p:25}],RZ=[0,.06,.1,.14,.25,.15,.18,.2];
 const DIFF=[{n:'Leicht',hp:.7,dmg:.6,luck:0,sc:1},{n:'Normal',hp:1.15,dmg:1.1,luck:0,sc:1},{n:'Schwer',hp:1.4,dmg:1.35,luck:4,sc:1.3}];
 const DF=()=>DIFF[S.diff==null?1:S.diff];
@@ -94,7 +94,7 @@ const LOOK={none:{j:'#3d3a36',hood:'#2c2926'},leder:{j:'#4a2a1a',collar:'#2a160d
  spaeti:{j:'#3a1a40',coat:1,scarf:'#f2d14b',hair:1},rattenmantel:{j:'#4a3e36',coat:1,scarf:'#97C459',hair:1},ritter:{j:'#383e48',vest:'#8a8f96',plates:1,helmet:'steel',hc:'#8a8f96'},kette:{j:'#4a4e54',vest:'#6a6e76',plates:1,hair:1},panzer:{j:'#3d3a36',vest:'#7a766c',plates:1,helmet:'steel',hc:'#8a8478'}};
 const DIST=[
  {i:0,n:'Köpenick',lvl:0,ground:'#2a211b',road:'#231c17',walls:['#5a3f2e','#4e3a2c','#634634'],roof:['#3a2a22','#45302a','#33261f'],dark:.66,spit:.16,brute:.1,sw:3,bw:4,trees:16,spati:'Späti an der Altstadt'},
- {i:1,n:'Kreuzberg',lvl:8,ground:'#262020',road:'#1f1a1a',walls:['#584540','#4b3c3a','#61493d'],roof:['#2f2826','#3a302b','#2a2321'],dark:.7,spit:.28,brute:.12,sw:1,bw:3,trees:10,spati:'Späti am Wrangelkiez'},
+ {i:1,n:'Xhain',lvl:8,ground:'#262020',road:'#1f1a1a',walls:['#584540','#4b3c3a','#61493d'],roof:['#2f2826','#3a302b','#2a2321'],dark:.7,spit:.28,brute:.12,sw:1,bw:3,trees:10,spati:'Späti am Wrangelkiez'},
  {i:2,n:'Mitte',lvl:18,ground:'#2b1f1a',road:'#241915',walls:['#6a4a38','#5a3d2f','#704d36'],roof:['#3d2a20','#4a3226','#36251d'],dark:.74,spit:.22,brute:.22,sw:1,bw:2,trees:8,spati:'Späti Torstraße'},
  {i:3,n:'Tempelhof',lvl:30,ground:'#2a2418',road:'#241f17',walls:['#5e5040','#504436','#665642'],roof:['#3a3226','#463a2c','#30291f'],dark:.78,spit:.3,brute:.26,sw:1,bw:1,trees:12,spati:'Späti am Feld'},
  {i:4,n:'Neukölln',lvl:42,ground:'#2a2220',road:'#221b19',walls:['#5e4a3e','#54423a','#6a5242'],roof:['#3a2e28','#45362e','#30261f'],dark:.8,spit:.22,brute:.24,sw:1,bw:1,trees:9,spati:'Späti Sonnenallee'},

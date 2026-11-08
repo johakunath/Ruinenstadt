@@ -39,9 +39,9 @@ function update(dt){
   fields=fields.filter(f=>f.t>0);
   if(atkHeld||(autoAtk()&&P.cd<=0&&nearest(ST.kind==='sling'?360:180)))attack();
   for(const m of marks)if(!m.seen&&Math.hypot(m.x-P.x,m.y-P.y)<(m.soft?180:260)){m.seen=1;if(!m.soft&&run.seen[m.n])continue;run.seen[m.n]=1;toast(m.soft?`<span style="color:var(--dim)">${m.n}</span>`:`<span style="color:var(--ember);font-family:var(--f-display);font-size:22px">${m.n}</span>`);}
-  if(run.toSpawn>0){run.spawnT-=dt;if(run.spawnT<=0){spawnOne();run.toSpawn--;run.spawnT=Math.max(.3,1-run.wave*.05);}}
-  else if(!enemies.length&&!run.cleared){run.cleared=true;run.perkDone=false;progWave(run.wave);if(run.wave>=10&&!run.endless){win();return;}if(run.endless&&run.wave>10){const b=Math.round(10*(run.wave-10)*(1+.1*D.i)*DF().sc);S.scrap+=b;run.sg+=b;S.eb[run.d]=Math.max(S.eb[run.d]||0,run.wave);}toast('Welle '+run.wave+' geschafft');S.best[run.d]=Math.max(S.best[run.d],run.wave);save();run.breakT=2;}
-  if(run.cleared){run.breakT-=dt;if(run.breakT<=0){if(!run.perkDone){offerPerks();if(state!=='play')return;}else{run.cleared=false;startWave();}}}
+  if(run.toSpawn>0){run.spawnT-=dt;if(run.spawnT<=0){spawnOne();run.toSpawn--;run.spawnT=Math.max(.3,1-wE()*.05);}}
+  else if(!enemies.length&&!run.cleared){run.cleared=true;run.perkDone=false;progWave(run.wave);if(run.wave>=WAVES&&!run.endless){win();return;}if(run.endless&&run.wave>WAVES){const b=Math.round(5*(run.wave-WAVES)*(1+.1*D.i)*DF().sc);S.scrap+=b;run.sg+=b;S.eb[run.d]=Math.max(S.eb[run.d]||0,run.wave);}toast('Welle '+run.wave+' geschafft');S.best[run.d]=Math.max(S.best[run.d],run.wave);save();run.breakT=2;}
+  if(run.cleared){run.breakT-=dt;if(run.breakT<=0){if(!run.perkDone){if(run.wave%2){run.perkDone=true;return;}offerPerks();if(state!=='play')return;}/* v0.45: blessing after every second wave */else{run.cleared=false;startWave();}}}
   for(const k in SHR)if(SHR[k]>0){SHR[k]-=dt;if(SHR[k]<=0){SHR[k]=0;refresh();toast(`<span style="color:var(--dim)">${SHRN[k][0]} ist verflogen</span>`);}}
   for(const h of shrines)if(!h.used&&Math.hypot(h.x-P.x,h.y+10-P.y)<46){h.used=1;h.o.spr=h.off;h.o.lights=[];const k=pick(Object.keys(SHRN));SHR[k]=45;refresh();toast(`Litfaßsäule · <span style="color:#7dd3ff">${SHRN[k][0]}</span>: ${SHRN[k][1]} (45 s)`);sfx('legend');burst(h.x,h.y-30,'#7dd3ff',24,200);rings.push({x:h.x,y:h.y,r:10,max:120,col:'125,211,255'});prog('shrine');}
   if(run.crateIn>0){run.crateIn-=dt;if(run.crateIn<=0)spawnCrate();}
