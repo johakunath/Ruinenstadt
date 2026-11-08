@@ -50,7 +50,7 @@ const LOTS={
    const nearP=(x,y,m)=>pts.some(p=>Math.hypot(p[0]-x,p[1]-y)<m);
    if(b.w>300&&b.h>260&&Math.random()<.7){for(let t=0;t<20;t++){const rx=R(60,Math.min(130,b.w/4)),ry=rx*R(.5,.75),q=inB(b,rx+30);if(!nearP(q.x,q.y,rx+40)&&!resHit(q.x-rx-10,q.y-ry-10,rx*2+20,ry*2+20)){pond(q.x,q.y,rx,ry);break;}}}
    const n=Math.round(b.w*b.h/9000);for(let i=0,t=0;i<n&&t<n*6;t++){const q=inB(b,24);if(nearP(q.x,q.y,34)||inWall(q.x,q.y,30)||resHit(q.x-28,q.y-60,56,62))continue;makeTree(q.x,q.y,pick(BIOME[D.i].trees));i++;}
-   for(let i=0;i<3;i++){const p=pick(pts);if(!inWall(p[0]+30,p[1],20))makeLamp(p[0]+28,p[1]+4,Math.random()<.6);}},
+   for(let i=0;i<3;i++){const p=pick(pts);if(!inWall(p[0]+30,p[1],20))makeLamp(p[0]+28,p[1]+4,Math.random()<.05);}},
  forest(b){const g=gx;const n=Math.round(b.w*b.h/4200);for(let i=0,t=0;i<n&&t<n*5;t++){const q=inB(b,20);if(inWall(q.x,q.y,26)||resHit(q.x-28,q.y-60,56,62))continue;makeTree(q.x,q.y,pick(['green','green','dark',...BIOME[D.i].trees]));i++;}
    for(let i=0;i<Math.round(b.w*b.h/60000);i++){const q=inB(b,50),w=R(50,80);if(inWall(q.x,q.y,40)||resHit(q.x-4,q.y-4,w+8,18))continue;g.fillStyle='rgba(0,0,0,.35)';g.fillRect(q.x+3,q.y+4,w,10);g.fillStyle='#3a2a1e';g.fillRect(q.x,q.y,w,10);g.fillStyle='#4a3626';g.fillRect(q.x,q.y,w,3);g.fillStyle='#2a1d14';g.beginPath();g.arc(q.x+w,q.y+5,5,0,7);g.fill();walls.push({x:q.x,y:q.y,w,h:10});}
    for(let i=0;i<b.w*b.h/8000;i++){const q=inB(b,10);g.fillStyle=pick(['#c23a2e','#ead9c0','#d8642e']);g.fillRect(q.x,q.y,3,2);g.fillStyle='#ead9c0';g.fillRect(q.x+1,q.y+2,1,2);}},
