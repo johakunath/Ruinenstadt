@@ -3,9 +3,8 @@
 const BIOME=[
  {lots:{houses:3,park:2,forest:2,kleingarten:1,ruins:1},big:{forest:3,water:2,park:1},roads:.5,trees:['green','green','autumn','dead'],grass:['#26301a','#2f3b1c','#3b4a22'],wx:'fireflies'},
  {lots:{houses:3,hinterhof:3,market:2,park:1,ruins:1,parking:1},big:{park:1,hinterhof:1},roads:.7,trees:['green','autumn','dead'],grass:['#283019','#313a1e','#3a4422'],wx:'rain'},
- {lots:{plattenbau:4,construction:2,ruins:2,parking:1,park:1},big:{plattenbau:2,construction:1},roads:.8,trees:['dead','green','dead'],grass:['#2a2c1c','#33361f','#3d4024'],wx:'ash'},
+ {lots:{buero:3,park:2,ruins:1},big:{park:2},roads:.8,trees:['green','dark','green'],grass:['#1f2a22','#26332a','#2c3a2e'],wx:'rain'},
  {lots:{kleingarten:3,houses:1,parking:1,construction:1,airfield:2},big:{airfield:3,kleingarten:1},roads:.35,trees:['dead','autumn'],grass:['#2c2e18','#36381c','#414322'],wx:'dust'},
- {lots:{houses:3,market:3,hinterhof:2,parking:1,park:1},big:{market:1,park:1,hinterhof:1},roads:.65,trees:['green','autumn','dead'],grass:['#283019','#313a1e','#3a4422'],wx:'embers'},
  {lots:{houses:4,hinterhof:3,park:2,market:1,ruins:1},big:{park:2,hinterhof:1},roads:.6,trees:['autumn','autumn','green'],grass:['#2c3019','#363a1e','#40441f'],wx:'leaves'},
  {lots:{houses:2,forest:2,ruins:1,kleingarten:2,water:1},big:{water:2,forest:2},roads:.45,trees:['green','dark','autumn'],grass:['#232c18','#2b3620','#344026'],wx:'fog'},
  {lots:{plattenbau:5,parking:2,park:1,construction:1,ruins:1},big:{plattenbau:2,park:1},roads:.75,trees:['dead','green'],grass:['#2a2c1c','#33361f','#3d4024'],wx:'snow'}];
@@ -57,7 +56,7 @@ const LOTS={
  water(b){const rx=b.w/2-50,ry=b.h/2-50;pond((b.x0+b.x1)/2,(b.y0+b.y1)/2,rx,ry);const g=gx,cx=(b.x0+b.x1)/2,y=(b.y0+b.y1)/2+ry-6;
    g.fillStyle='#4a3424';g.fillRect(cx-10,y-70,20,80);for(let k=0;k<8;k++){g.fillStyle='rgba(0,0,0,.3)';g.fillRect(cx-10,y-66+k*10,20,2);}
    for(let i=0;i<6;i++){const a=R(0,6.28),x=cx+Math.cos(a)*(rx+30),yy=(b.y0+b.y1)/2+Math.sin(a)*(ry+26);if(x>b.x0+20&&x<b.x1-20&&yy>b.y0+40&&yy<b.y1-10&&!inWall(x,yy,24))makeTree(x,yy,pick(BIOME[D.i].trees));}
-   marks.push({x:cx,y:(b.y0+b.y1)/2,n:D.i===0?'Müggelsee':D.i===6?'Havel':'Der See',soft:1});},
+   marks.push({x:cx,y:(b.y0+b.y1)/2,n:D.i===0?'Müggelsee':D.n==='Spandau'?'Havel':'Der See',soft:1});},
  kleingarten(b){const g=gx,k_=1.6,pw=118*k_,ph=96*k_,gap=40;const cols=Math.floor((b.w-30)/(pw+gap)),rows=Math.floor((b.h-30)/(ph+gap));const ox=b.x0+(b.w-cols*(pw+gap)+gap)/2,oy=b.y0+(b.h-rows*(ph+gap)+gap)/2;// k_: plot scale, v0.41 matched to the bigger buildings
    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){const x=ox+c*(pw+gap),y=oy+r*(ph+gap);if(resHit(x,y,pw,ph))continue;
      const wild=Math.random()<.3;g.fillStyle=wild?'#2a3018':'#33301e';g.fillRect(x,y,pw,ph);
@@ -126,7 +125,7 @@ const LOTS={
 const WX=Array.from({length:90},()=>({x:Math.random(),y:Math.random(),s:R(.4,1),w:R(0,6.28),z:R(1,2.6)}));
 function drawWeather(t,dt){const k=BIOME[D.i].wx,n=S.eco?40:WX.length;
   for(let i=0;i<n;i++){const m=WX[i];
-    if(k==='rain'){m.y+=m.s*dt*1.6;m.x-=m.s*dt*.25;if(m.y>1.05){m.y=-.05;m.x=Math.random()*1.2;}ctx.strokeStyle=`rgba(170,190,210,${.12+.12*m.s})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(m.x*VW,m.y*VH);ctx.lineTo(m.x*VW-3,m.y*VH+12*m.s);ctx.stroke();}
+    if(k==='rain'){m.y+=m.s*dt*1.6;m.x-=m.s*dt*.25;if(m.y>1.05){m.y=-.05;m.x=Math.random()*1.2;}ctx.strokeStyle=D.cyber&&i%6===0?(i%12?`rgba(255,79,163,${.2+.15*m.s})`:`rgba(67,209,207,${.2+.15*m.s})`):`rgba(170,190,210,${.12+.12*m.s})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(m.x*VW,m.y*VH);ctx.lineTo(m.x*VW-3,m.y*VH+12*m.s);ctx.stroke();}
     else if(k==='ash'){m.y+=m.s*dt*.05;m.w+=dt;if(m.y>1.02){m.y=-.02;m.x=Math.random();}ctx.fillStyle=`rgba(200,195,185,${.18+.15*m.s})`;ctx.fillRect(m.x*VW+Math.sin(m.w)*14,m.y*VH,m.z,m.z);}
     else if(k==='dust'){m.x+=m.s*dt*.06;m.w+=dt*2;if(m.x>1.02){m.x=-.02;m.y=Math.random();}ctx.fillStyle=`rgba(210,190,140,${.12+.12*m.s})`;ctx.fillRect(m.x*VW,m.y*VH+Math.sin(m.w)*6,m.z*.8,m.z*.8);}
     else if(k==='fireflies'){if(i>30)break;m.w+=dt*m.s;m.x+=Math.cos(m.w*1.3)*dt*.01;m.y+=Math.sin(m.w)*dt*.01;if(m.x<0||m.x>1)m.x=Math.random();if(m.y<0||m.y>1)m.y=Math.random();const a=.3+.3*Math.sin(m.w*3);ctx.fillStyle=`rgba(210,240,120,${a})`;ctx.fillRect(m.x*VW,m.y*VH,2,2);ctx.fillStyle=`rgba(210,240,120,${a*.25})`;ctx.fillRect(m.x*VW-2,m.y*VH-2,6,6);}

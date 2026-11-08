@@ -7,13 +7,14 @@ function prog(k,n){for(const j of S.jobs)if(j.k===k&&j.p<j.t){j.p=Math.min(j.t,j
 function progWave(w){for(const j of S.jobs)if(j.k==='wave'&&j.p<j.t&&w>j.p){j.p=Math.min(j.t,w);if(j.p>=j.t)jobDone(j);}}
 // rarity weights white, blue, yellow, legendary (v0.41: was 60, 26+w+l*3, 8+w*.7+l*2, 1.2+w*.3+l*.8; bot found only 19% white and 5 to 10 legendaries per Köpenick run)
 function rollR(minR){const l=S.upg.luck+DF().luck+(ST?ST.luck:0)+(run?run.th:0)+(dm_('eisen')?3:0),w=run?wE():1;const ws=[60,18+w*.6+l*1.2,4+w*.35+l*.6,.1+w*.04+l*.05];for(let i=0;i<(minR||0);i++)ws[i]=0;let t=ws.reduce((a,b)=>a+b),x=Math.random()*t;for(let i=0;i<4;i++){if((x-=ws[i])<0)return i;}return minR||0;}
-function makeItem(il,minR){
+function makeItem(il,minR,fs){
   // legendaries exist only for weapon, body and talisman; head, hands, feet and ring top out at rare
-  const r=rollR(minR),roll=Math.random(),slot=r===3?(roll<.45?'w':roll<.8?'a':'t'):roll<.3?'w':roll<.46?'a':roll<.56?'h':roll<.66?'g':roll<.76?'f':roll<.88?'t':'r',m=RAR[r].m*R(.85,1.15);let kind,name,val;
-  if(slot==='w'){kind=pick(['blade','blade','hammer','sling','spear']);name=r===3?pick(LEGW[kind]):pick(NW[kind]);val=Math.round((4+il*1.6)*KIND[kind].k*m);}
-  else if(slot==='a'){kind='armor';name=r===3?pick(LEGA):pick(NA);val=Math.round((12+il*6)*m);}
-  else if(slot==='h'){kind='head';name=pick(NH);val=Math.round((2+il*.12)*m);}
+  const cy=D.cyber,r=rollR(minR),roll=Math.random(),slot=fs||(cy&&Math.random()<(r===3?.25:.12)?'i':0)||(r===3?(roll<.45?'w':roll<.8?'a':'t'):roll<.3?'w':roll<.46?'a':roll<.56?'h':roll<.66?'g':roll<.76?'f':roll<.88?'t':'r'),m=RAR[r].m*R(.85,1.15);let kind,name,val;
+  if(slot==='w'){kind=pick(['blade','blade','hammer','sling','spear']);name=r===3?pick(LEGW[kind]):pick(cy&&Math.random()<.45?NWM[kind]:NW[kind]);val=Math.round((4+il*1.6)*KIND[kind].k*m);}
+  else if(slot==='a'){kind='armor';name=r===3?pick(LEGA):pick(cy&&Math.random()<.4?NAM:NA);val=Math.round((12+il*6)*m);}
+  else if(slot==='h'){kind='head';name=pick(cy&&Math.random()<.4?NHM:NH);val=Math.round((2+il*.12)*m);}
   else if(slot==='g'||slot==='f'){kind=slot==='g'?'hand':'feet';name=pick(slot==='g'?NG:NF);val=Math.round((3+il*.12)*m);}
+  else if(slot==='i'){kind=r===3?'tempo':pick(['krit','tempo','heil']);name=r===3?pick(LEGI):pick(NI[kind]);val=+({krit:2.5+il*.3,tempo:3+il*.25,heil:.4+il*.1}[kind]*m).toFixed(kind==='heil'?1:0);}
   else{kind=pick(['krit','tempo','heil']);name=r===3?pick(LEGT):pick((slot==='r'?NR:NT)[kind]);const b={krit:3+il*.35,tempo:4+il*.3,heil:.5+il*.12}[kind]*m;val=kind==='heil'?+b.toFixed(1):Math.round(b);}
   const base=BASES[name];if(r===1||r===2)name+=' '+pick(SUF[r]);
   const it={id:++uid,slot,kind,base,name,r,val,ilvl:il,afx:[]};rollAfx(it);return it;
@@ -28,7 +29,7 @@ function rollAfx(it){const r=it.r,il=it.ilvl,m=Math.sqrt(RAR[r].m);
   if(r===3||(r===2&&Math.random()<.45)){pick(PACTS).forEach(q=>add(q[0],R(q[1],q[2])));n--;}
   const keys=Object.keys(AFX).filter(k=>!it.afx.some(a=>a.k===k));
   for(let i=0;i<n&&keys.length;i++){const k=keys.splice(Math.floor(Math.random()*keys.length),1)[0];add(k,R(AFX[k].a,AFX[k].b));}
-  if(it.slot==='w'){if(r===3)it.el=LEGEL[it.base];else if(r>=1&&Math.random()<(r===1?.3:.5))it.el=pick(['fire','acid','shock']);}
+  if(it.slot==='w'){if(r===3)it.el=LEGEL[it.base];else if(r>=1&&Math.random()<(r===1?.3:.5))it.el=pick(['fire','acid','shock']);if(r>=1&&r<3&&(it.base==='leucht'||it.base==='neonfl')&&Math.random()<.6)it.el='shock';}
   it.afx=it.afx.filter(a=>a.v!==0);}
 const dps=it=>it.val/KIND[it.kind].rate;
 function withItem(it){const e=Object.assign({},S.eq);e[it.slot]=it;return e;}
@@ -102,6 +103,20 @@ const ICO={
  draht:c=>`<circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="4.5" stroke-dasharray="2 2"/>`,
  ehe:c=>`<circle cx="12" cy="13" r="7"/><path d="M10 4l2-2 2 2-2 2z" fill="${c}"/>`,
  kupfer:c=>`<circle cx="12" cy="12" r="7" stroke-width="3"/>`,
+ leucht:c=>`<path d="M5 19L19 5" stroke-width="4.2" stroke-opacity=".45"/><path d="M5 19L19 5" stroke-width="1.6"/><path d="M3.5 20.5l2-2M18.5 5.5l2-2" stroke-width="2.4"/>`,
+ boxh:c=>`<path d="M4 21L12 13" stroke-width="2.6"/><rect x="10" y="3" width="11" height="10" fill="${c}" fill-opacity=".25"/><circle cx="15.5" cy="8" r="2.6"/>`,
+ neonfl:c=>`<path d="M2 14h14l3-3h3v4h-3l-2 2H9l-2 4H4l1-4H2z" fill="${c}" fill-opacity=".25"/><path d="M8 12h6" stroke-width="2.6"/>`,
+ mikro:c=>`<path d="M5 21L16 8" stroke-width="2.2"/><ellipse cx="18" cy="5.5" rx="3" ry="2.4" transform="rotate(-48 18 5.5)" fill="${c}" fill-opacity=".45"/><path d="M3 21h5"/>`,
+ poncho:c=>`<path d="M12 3l-4 3-6 13h20L16 6z" fill="${c}" fill-opacity=".25"/><path d="M5 15h14" stroke-width="1.6"/>`,
+ kmantel:c=>`<path d="M8 3L4 6l2 3 1-1v14h10V8l1 1 2-3-4-3-4 4z" fill="${c}" fill-opacity=".25"/><path d="M9 10q3 4 0 8M15 10q-3 4 0 8" stroke-width="1.3"/>`,
+ nbrille:c=>`<path d="M2 11h20" stroke-width="1.6"/><rect x="4" y="8" width="7" height="6" rx="2" fill="${c}" fill-opacity=".45"/><rect x="13" y="8" width="7" height="6" rx="2" fill="${c}" fill-opacity=".45"/>`,
+ nauge:c=>`<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5" fill="${c}"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke-width="1.4"/>`,
+ zchip:c=>`<rect x="6" y="6" width="12" height="12" rx="1.5" fill="${c}" fill-opacity=".25"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3" stroke-width="1.4"/><circle cx="12" cy="12" r="2"/>`,
+ karm:c=>`<path d="M3 16l7-7 4 1 5-5 2 2-5 5 1 4-7 7z" fill="${c}" fill-opacity=".25"/><path d="M8 13l3 3M11 10l3 3" stroke-width="1.3"/>`,
+ reflex:c=>`<path d="M13 2L5 13h6l-1 9 8-12h-6z" fill="${c}" fill-opacity=".3"/><circle cx="19" cy="5" r="2"/>`,
+ bherz:c=>`<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" fill="${c}" fill-opacity=".25"/><path d="M6 12h3l1.5-3 2 6 1.5-3h4" stroke-width="1.4"/>`,
+ npumpe:c=>`<rect x="8" y="3" width="8" height="18" rx="3" fill="${c}" fill-opacity=".25"/><path d="M8 9h8M8 15h8M12 1v2M12 21v2" stroke-width="1.4"/>`,
+ bassarm:c=>`<path d="M3 16l7-7 4 1 5-5 2 2-5 5 1 4-7 7z" fill="${c}" fill-opacity=".35"/><circle cx="10" cy="14" r="2.5"/><path d="M17 15l2 2 3-1" stroke-width="1.4"/>`,
  herz:c=>`<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" fill="${c}" fill-opacity=".3"/><path d="M8 12q2 2 4 0t4 0" stroke-width="1.2"/>`};
 function icon(it,sz){if(!it)return'';const c=rc(it),f=ICO[baseOf(it)]||ICO.kiesel;
   return`<svg viewBox="0 0 24 24" width="${sz}" height="${sz}" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${f(c)}</svg>`;}

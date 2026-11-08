@@ -39,7 +39,7 @@ const KOEP={ws:3600,start:[1100,1231],
   ['Wald',[[0,3050],[1250,2900],[1300,3600],[0,3600]],{lots:{forest:4,kleingarten:1},fringe:'forest'}]],
  other:{lots:{houses:3,efh:2,reihen:1,park:1,ruins:1,kleingarten:1},fringe:'houses'},
  marks:[[3120,1100,'Müggelsee'],[700,1340,'Spree'],[1560,2700,'Dahme']],
- lm:()=>{legacy(lmRathaus,1050,1230);reserved.push({x:1590,y:1420,w:520,h:360});const p=station('S','Köpenick',1452,760,1);if(p){SX=p[0];SY=p[1]+38;}}};// Rathausplatz stays open, start at S-Bahnhof Köpenick
+ lm:()=>{legacy(lmRathaus,1050,1230);reserved.push({x:1590,y:1420,w:520,h:360});const p=station('U','Köpenick',1452,760,1);if(p){SX=p[0];SY=p[1]+38;}}};// Rathausplatz stays open, start at S-Bahnhof Köpenick
 DIST[0].geo=KOEP;
 /* ---- Xhain = Friedrichshain-Kreuzberg (v0.42, north bank v0.43). World 3600. Kreuzberg south of the Spree with the Landwehrkanal and its bridges, the Friedrichshain bank north of it:
    Ostbahnhof on the Stadtbahn viaduct (start), Stralauer Platz and Mediaspree with modern towers, Berghain, East Side Gallery along the Mühlenstraße.

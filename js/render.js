@@ -19,7 +19,7 @@ function render(t){
   {const x0=clamp(Math.floor(VB.x0),0,WS),y0=clamp(Math.floor(VB.y0),0,WS),x1=clamp(Math.ceil(VB.x1),0,WS),y1=clamp(Math.ceil(VB.y1),0,WS);if(x1>x0&&y1>y0)ctx.drawImage(G,x0,y0,x1-x0,y1-y0,x0,y0,x1-x0,y1-y0);}
   drawWaters(t);
   for(const tl of teles){const p=1-tl.t/tl.max;ctx.fillStyle=`rgba(194,58,46,${.12+.25*p})`;ctx.beginPath();ctx.arc(tl.x,tl.y,tl.r,0,7);ctx.fill();ctx.strokeStyle='rgba(255,140,90,.8)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(tl.x,tl.y,tl.r,0,7);ctx.stroke();ctx.beginPath();ctx.arc(tl.x,tl.y,tl.r*p,0,7);ctx.stroke();}
-  for(const r of rings){ctx.strokeStyle=`rgba(${r.col},${.7*(1-r.r/r.max)})`;ctx.lineWidth=6;ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,7);ctx.stroke();}
+  for(const r of rings){if(r.r<=0)continue;ctx.strokeStyle=`rgba(${r.col},${.7*(1-r.r/r.max)})`;ctx.lineWidth=r.dmg?11:6;ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,7);ctx.stroke();}
   for(const s of shocks){ctx.strokeStyle=s.acid?`rgba(151,196,89,${1-s.r/s.max})`:`rgba(239,159,39,${1-s.r/s.max})`;ctx.lineWidth=10;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,7);ctx.stroke();}
   for(const f of fields){ctx.globalAlpha=Math.min(1,f.t);ctx.drawImage(glow('#ff6a2a'),f.x-f.r*1.2,f.y-f.r*.75,f.r*2.4,f.r*1.5);ctx.globalAlpha=1;}
   for(const e of enemies)if(e.ch>0){ctx.strokeStyle=`rgba(255,80,60,${.3+.6*(1-e.ch/.6)})`;ctx.lineWidth=3;ctx.setLineDash([10,6]);ctx.beginPath();ctx.moveTo(e.x,e.y);ctx.lineTo(e.x+e.rdx*240,e.y+e.rdy*240);ctx.stroke();ctx.setLineDash([]);}
@@ -49,7 +49,7 @@ function render(t){
   for(const p of parts){if(p.ox==null){p.ox=p.x;p.oy=p.y;}ctx.globalAlpha=Math.max(0,p.life/p.max);ctx.fillStyle=p.col;ctx.fillRect(ix(p.ox,p.oy)+p.x-p.ox-p.size/2,iy(p.ox,p.oy)+p.y-p.oy-p.size/2,p.size,p.size);}ctx.globalAlpha=1;
   ctx.restore();
   /* ---- light ---- */
-  lx.setTransform(LS,0,0,LS,0,0);lx.globalCompositeOperation='source-over';lx.clearRect(0,0,VW,VH);lx.fillStyle=`rgba(6,4,3,${P.dark?.95:clamp(D.dark-.12+wE()*.017+(dm_('dunkel')?.12:0),.45,.96)})`;lx.fillRect(0,0,VW,VH);lx.globalCompositeOperation='destination-out';
+  lx.setTransform(LS,0,0,LS,0,0);lx.globalCompositeOperation='source-over';lx.clearRect(0,0,VW,VH);lx.fillStyle=`rgba(${D.nc||'6,4,3'},${P.dark?.95:clamp(D.dark-.12+wE()*.017+(dm_('dunkel')?.12:0),.45,.96)})`;lx.fillRect(0,0,VW,VH);lx.globalCompositeOperation='destination-out';
   const lit=(x,y,r,z)=>{const X=scx(x,y),Y=scy(x,y)-(z||0);if(X<-r||X>VW+r||Y<-r||Y>VH+r)return;lx.drawImage(LSPR,X-r,Y-r*.7,r*2,r*1.4);};
   lit(P.x,P.y,(P.dark?(P.torch?270:P.lamp?200:95):250)+Math.sin(t*.008)*8+Math.sin(t*.021)*4,10);
   for(const b of barrels)lit(b.x,b.y,150+Math.sin(t*.012+b.ph)*12,10);
@@ -85,14 +85,15 @@ function drawDrop(d){const bob=Math.sin(d.t*4)*2;
 /* depth order: boxes (buildings, vehicles) sorted by centre depth; each upright item is drawn just before the first box it stands behind and overlaps on screen, else after all boxes. Buildings in front of the player fade. */
 function drawSorted(t){const BX=[],IT=[],vL=-OX-60,vR=VW-OX+60,vT=-OY-60,vB=VH-OY+80;
   for(const b of blds){if(isBox(b)){let x0=ix(b.x,b.y+b.h),x1=ix(b.x+b.w,b.y),y0=iy(b.x,b.y)-boxTop(b),y1=iy(b.x+b.w,b.y+b.h);
-    if(b.rot){const C=obbC(b).map(p=>[ix(p[0],p[1]),iy(p[0],p[1])]);x0=Math.min(...C.map(p=>p[0]));x1=Math.max(...C.map(p=>p[0]));y0=Math.min(...C.map(p=>p[1]))-boxTop(b);y1=Math.max(...C.map(p=>p[1]));}if(x1<vL||x0>vR||y1<vT||y0>vB)continue;b._s=[x0,x1,y0];b._k=b.x+b.w/2+b.y+b.h/2;BX.push(b);}
+    if(b.rot){const C=obbC(b).map(p=>[ix(p[0],p[1]),iy(p[0],p[1])]);x0=Math.min(...C.map(p=>p[0]));x1=Math.max(...C.map(p=>p[0]));y0=Math.min(...C.map(p=>p[1]))-boxTop(b);y1=Math.max(...C.map(p=>p[1]));}if(x1<vL||x0>vR||y1<vT||y0>vB)continue;b._s=[x0,x1,y0];b._k=b.x+b.w/2+b.y+b.h/2+(b.dk||0);BX.push(b);}
     else{const ax=b.x+b.w/2,X=ix(ax,b.y),Y=iy(ax,b.y),sc=b.sc||1;if(X+b.spr.width*sc<vL||X-b.spr.width*sc>vR||Y<vT||Y-b.top*sc>vB)continue;IT.push({x:ax,y:b.y,k:0,o:b});}}
   for(const b of barrels)IT.push({x:b.x,y:b.y,k:1,o:b});for(const b of brk)IT.push({x:b.x+b.w/2,y:b.y+b.h/2,k:4,o:b});
   for(const e of enemies)IT.push({x:e.x,y:e.y,k:2,o:e});if(npc)IT.push({x:npc.x,y:npc.y,k:5,o:npc});if(captive)IT.push({x:captive.x,y:captive.y,k:6,o:captive});IT.push({x:P.x,y:P.y,k:3});
   BX.sort((a,b)=>a._k-b._k);const PX=ix(P.x,P.y),PY=iy(P.x,P.y);
   for(const it of IT){it.s=1e9;it.d=it.x+it.y;if(it.k!==3&&it.k!==0){const X=ix(it.x,it.y),Y=iy(it.x,it.y);if(X<vL||X>vR||Y<vT||Y-60>vB){it.s=-1;continue;}}const X=ix(it.x,it.y),Y=iy(it.x,it.y);
     for(let j=0;j<BX.length;j++){const b=BX[j];if(X<b._s[0]-12||X>b._s[1]+12||Y<b._s[2]||front(b,it.x,it.y))continue;it.s=j;break;}}
-  for(const b of BX){const occ=!front(b,P.x,P.y)&&PX>b._s[0]-10&&PX<b._s[1]+10&&PY>b._s[2]+10;b.oa=(b.oa==null?1:b.oa)+((occ?.32:1)-(b.oa==null?1:b.oa))*.2;}
+  for(const b of BX){b._o=!front(b,P.x,P.y)&&PX>b._s[0]-10&&PX<b._s[1]+10&&PY>b._s[2]+10;if(b.grp)b.grp.o=0;}for(const b of BX)if(b.grp&&b._o)b.grp.o=1;// grp: parts of one landmark fade together
+  for(const b of BX){const occ=b.grp?b.grp.o:b._o;b.oa=(b.oa==null?1:b.oa)+((occ?.32:1)-(b.oa==null?1:b.oa))*.2;}
   // trees and other tall sprites in front of the player fade too, so the player is never hidden under a canopy
   for(const it of IT)if(it.k===0){const o=it.o,sc=o.sc||1,X=ix(it.x,it.y),Y=iy(it.x,it.y),hw=o.spr.width*sc/2;const occ=it.d>P.x+P.y&&Math.abs(PX-X)<hw+6&&PY<Y+4&&PY>Y-o.top*sc-10;o.oa=(o.oa==null?1:o.oa)+((occ?.3:1)-(o.oa==null?1:o.oa))*.2;}
   const vis=IT.filter(it=>it.s>=0).sort((a,b)=>a.s-b.s||a.d-b.d);let j=0;

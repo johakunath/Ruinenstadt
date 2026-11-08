@@ -1,0 +1,81 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mitte Geografie</title>
+<style>body{margin:0;background:#141820;color:#ead9c0;font:14px system-ui,sans-serif;padding:16px}h1{font-size:20px;margin:0 0 6px}p{margin:0 0 12px;color:#a8a0b0;max-width:900px}
+.g{display:grid;grid-template-columns:minmax(0,760px) minmax(0,420px);gap:16px}.c{background:#1e222a;border:1px solid #33303e;border-radius:8px;padding:10px}.c b{display:block;margin:8px 0 4px}.c span{color:#a8a0b0;font-size:13px}svg{width:100%;height:auto;display:block}
+@media(max-width:900px){.g{grid-template-columns:1fr}}</style></head><body>
+<h1>v0.47: Mitte, vom Reichstag zum Potsdamer Platz</h1><p>World 4000, Maßstab etwa 1,4 Einheiten pro Meter, Norden oben. Spree im Norden mit dem Spreebogen, Tiergarten mit Neuem See im Westen, Regierungsviertel, Brandenburger Tor auf der Achse 17. Juni / Unter den Linden, Potsdamer Platz als Neon-Kern im Süden, Landwehrkanal unten. Start: S+U Potsdamer Platz.</p>
+<div class="g"><div class="c"><svg id="map" viewBox="0 0 4000 4000"></svg><b>A · Karte</b><span>Grün: Tiergarten (Park und Wald). Violett: Neon-Kern Potsdamer Platz (Bürotürme mit Leuchtreklame, Bühne, Klinik, Mauerstücke). Grau: Stadt. Braun: Trümmer. Rauten: Brücken. Kästen: Bahnhöfe, orange umrandet der einzige offene.</span></div>
+<div class="c"><svg id="var" viewBox="0 0 420 760"></svg><b>B · Formen und Palette</b><span>Wahrzeichen als Iso-Boxen wie Oberbaumbrücke und Berghain. Palette aus dem Potsdamer-Platz-Board: Nachtpetrol, Cyan, Magenta auf Creme, Bernstein, Rost. Nacht-Tönung bläulich statt braun.</span></div></div>
+<script>
+const K={
+ spree:[[4000,1060],[3830,1110],[3400,1200],[3050,1250],[2760,1250],[2520,1080],[2280,830],[2000,760],[1740,840],[1420,1060],[1100,1260],[780,1190],[450,1080],[0,1000]],
+ kanal:[[0,3180],[600,3330],[1200,3440],[1900,3500],[2500,3700],[3000,3950],[3080,4000]],
+ lake:[[260,2330],[620,2270],[900,2360],[860,2480],[520,2540],[240,2460]],
+ rail:[[0,700],[900,560],[1700,450],[2400,430],[3000,560],[3500,800],[4000,870]],
+ roads:{'Invalidenstr.':[[0,240],[1500,200],[2600,170],[4000,140]],'Hugo-Preuß-Brücke':[[2150,190],[2150,600],[2160,900],[2170,1200],[2170,1500]],
+  'Scheidemannstr.':[[2880,1640],[2400,1610],[2170,1500]],'J.-F.-Dulles-Allee':[[2170,1500],[1700,1420],[1250,1380]],
+  'Ebertstr.':[[2880,1380],[2880,1640],[2860,1960],[2830,2400],[2760,2800]],'Str. d. 17. Juni':[[300,2050],[1500,1980],[2860,1900]],
+  'Pariser Platz':[[2860,1900],[3150,1870]],'Unter den Linden':[[3150,1870],[3600,1810],[4000,1760]],
+  'Wilhelmstr.':[[3150,140],[3100,1260],[3170,1860],[3200,2300],[3220,2800],[3280,3300],[3320,4000]],'Friedrichstr.':[[3830,140],[3840,1110],[3850,1780],[3870,2720],[3900,4000]],
+  'Leipziger Str.':[[2760,2800],[3050,2820],[3500,2770],[4000,2720]],'Potsdamer Str.':[[2760,2800],[2470,2950],[2180,3150],[1920,3500],[1800,4000]],
+  'Bellevuestr.':[[2760,2800],[2560,2620],[2250,2640]],'Entlastungsstr.':[[2170,1500],[2200,1980],[2230,2400],[2250,2640]],'Tiergartenstr.':[[0,2720],[1300,2700],[2250,2640]],
+  'Stresemannstr.':[[2760,2800],[2980,3150],[3295,3560]]},
+ bridges:[[3840,1110,'Weidendammer Br.'],[3100,1245,'Marschallbr.'],[2155,795,'Hugo-Preuß-Br.'],[1910,3500,'Potsdamer Br.']],
+ zones:[['Tiergarten','#22382a',[[0,1290],[450,1180],[780,1290],[1100,1380],[1400,1470],[2140,1580],[2820,1700],[2800,2560],[2560,2600],[2250,2600],[1300,2620],[0,2640]]],
+  ['Moabit','#3a3640',[[0,0],[1600,0],[1600,600],[900,640],[0,780]]],['Europacity','#4a4656',[[2200,0],[3050,0],[3050,600],[2400,560],[2200,600]]],
+  ['Charité','#3a3640',[[3100,0],[4000,0],[4000,1000],[3300,1120],[3150,700]]],['Regierungsviertel','#2a3a30',[[1800,1250],[2860,1250],[2860,1600],[1800,1500]]],
+  ['Dorotheenstadt','#3a3640',[[2920,1280],[4000,1110],[4000,1720],[3150,1820],[2920,1700]]],['Ministergärten','#2a3a30',[[2900,1960],[3130,1960],[3150,2700],[2880,2700]]],
+  ['Friedrichstadt','#4a4656',[[3260,1880],[4000,1800],[4000,2660],[3260,2740]]],['Potsdamer Platz','#4a2a52',[[2280,2660],[2860,2620],[3200,2650],[3240,3000],[2900,3250],[2550,3150],[2300,2950]]],
+  ['Kulturforum','#3e3a34',[[1500,2740],[2250,2720],[2300,3000],[2050,3330],[1500,3300]]],['Diplomatenviertel','#32383a',[[0,2760],[1450,2760],[1450,3280],[600,3240],[0,3100]]],
+  ['Gleisdreieck','#3e3428',[[0,3320],[1900,3600],[2500,3800],[2900,4000],[0,4000]]],['Anhalter Bahnhof','#3e3428',[[2600,3250],[3300,3100],[4000,2800],[4000,4000],[3150,4000],[2600,3700]]]],
+ lm:[['Reichstag',2680,1450,300,200,'#b8ac94'],['Kanzleramt',1960,1180,220,160,'#e0ddd4'],['Paul-Löbe-Haus',2380,1290,220,110,'#d0ccc0'],['Hauptbahnhof',1880,470,380,110,'#9ab4c4'],
+  ['Philharmonie',2030,2800,200,150,'#d8a838'],['Neue Nationalgalerie',1950,3180,170,170,'#2a2a2a'],['Anhalter Bf (Ruine)',3150,3720,180,50,'#8a4430']]};
+const S=document.getElementById('map'),ns='http://www.w3.org/2000/svg',el=(t,a,p)=>{const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e;},pts=a=>a.map(p=>p.join(',')).join(' '),
+ txt=(x,y,s,c,sz,w,rot,p)=>{const e=el('text',{x,y,fill:c,'font-size':sz,'font-weight':w||400,'text-anchor':'middle',transform:rot?`rotate(${rot} ${x} ${y})`:''},p);e.textContent=s;};
+el('rect',{width:4000,height:4000,fill:'#2a2830'});
+for(const[n,c,p]of K.zones)el('polygon',{points:pts(p),fill:c});
+el('polygon',{points:pts(K.lake),fill:'#1e3a44',stroke:'#4a4038','stroke-width':16});
+el('polyline',{points:pts(K.spree),fill:'none',stroke:'#2a5a74','stroke-width':170,'stroke-linecap':'round','stroke-linejoin':'round'});
+el('polyline',{points:pts(K.kanal),fill:'none',stroke:'#2a5a74','stroke-width':90,'stroke-linecap':'round','stroke-linejoin':'round'});
+for(const n in K.roads)el('polyline',{points:pts(K.roads[n]),fill:'none',stroke:'#5e5a66','stroke-width':110,'stroke-linecap':'round','stroke-linejoin':'round'});
+el('polyline',{points:pts(K.rail),fill:'none',stroke:'#7a3a26','stroke-width':50});el('polyline',{points:pts(K.rail),fill:'none',stroke:'#c0a080','stroke-width':6,'stroke-dasharray':'20 30'});
+for(const[n,x,y,w,h,c]of K.lm){el('rect',{x:x-w/2,y:y-h/2,width:w,height:h,fill:c,stroke:'#0a0a10','stroke-width':10});txt(x,y-h/2-20,n,'#ead9c0',52,700);}
+// Brandenburger Tor
+for(let i=0;i<6;i++)el('rect',{x:2915,y:1790+i*40-(i>2?0:0),width:30,height:16,fill:'#d8c8a0',stroke:'#0a0a10','stroke-width':4});txt(2930,1760,'Brandenburger Tor','#f2d14b',56,800);
+// Siegessäule
+el('circle',{cx:300,cy:2050,r:110,fill:'none',stroke:'#5e5a66','stroke-width':80});el('circle',{cx:300,cy:2050,r:30,fill:'#c9a227',stroke:'#0a0a10','stroke-width':8});txt(300,1900,'Siegessäule','#f2d14b',56,800);
+// Potsdamer Platz core
+el('circle',{cx:2440,cy:2780,r:100,fill:'#bd2b77',opacity:.55,stroke:'#ff5aa8','stroke-width':10});txt(2440,2790,'Sony','#fff',48,800);
+el('circle',{cx:2560,cy:2780,r:45,fill:'#43d1cf',stroke:'#0a0a10','stroke-width':8});txt(2560,2700,'DB','#43d1cf',40,800);
+el('rect',{x:2660,y:2680,width:70,height:70,fill:'#7a3a2a',stroke:'#0a0a10','stroke-width':8});txt(2700,2660,'Kollhoff','#e19142',40,800);
+el('rect',{x:2900,y:2660,width:140,height:70,fill:'#2a1430',stroke:'#ff5aa8','stroke-width':10});txt(2970,2645,'Bühne','#ff5aa8',44,800);
+el('rect',{x:2580,y:3000,width:90,height:60,fill:'#1a2a30',stroke:'#43d1cf','stroke-width':10});txt(2625,3100,'Klinik','#43d1cf',44,800);
+for(let i=0;i<4;i++)el('rect',{x:2900+i*60,y:2950+i*30,width:45,height:12,fill:'#c8c4b8',stroke:'#0a0a10','stroke-width':4});txt(3020,3060,'Mauer + Bär','#c8c4b8',38,700);
+for(const n in K.roads)el('polyline',{points:pts(K.roads[n]),fill:'none',stroke:'#8a8494','stroke-width':5,'stroke-dasharray':'40 50'});
+for(const[x,y]of K.bridges)el('rect',{x:x-55,y:y-55,width:110,height:110,fill:'#d6cfc0',opacity:.85,transform:`rotate(45 ${x} ${y})`});
+for(const[n,c,p]of K.zones){const cx=p.reduce((a,q)=>a+q[0],0)/p.length,cy=p.reduce((a,q)=>a+q[1],0)/p.length;txt(cx,cy+(n==='Tiergarten'?200:0),n,n==='Potsdamer Platz'?'#ff9ad0':'#cfe0b0',n==='Tiergarten'?90:46);}
+txt(3300,1120,'Spree','#cfe8ff',70,700,8);txt(1150,3500,'Landwehrkanal','#cfe8ff',50,700,8);txt(580,2420,'Neuer See','#cfe8ff',44,700);txt(1000,500,'Stadtbahn','#e0b090',44,700,-8);
+for(const[k,n,x,y,v]of[['S+U','Potsdamer Platz',2820,2900,1],['U','Brandenburger Tor',3080,1960],['U','Bundestag',2300,1420],['S+U','Hauptbahnhof',1880,640],['U','Mendelssohn-B.-Park',2200,3250],['U','Mohrenstr.',3400,2850],['S+U','Friedrichstr.',3700,1000],['S','Anhalter Bf',3320,3480],['S','Bellevue',500,880]]){
+ el('rect',{x:x-34,y:y-34,width:68,height:68,fill:k==='S'?'#2a8a3a':'#1d4a8a',stroke:v?'#e0892e':'#ead9c0','stroke-width':v?16:6});txt(x,y+12,k,'#fff',k.length>1?28:46,800);if(v)txt(x,y+90,'Start','#e0892e',52,800);}
+// panel B: forms
+const V=document.getElementById('var'),ve=(t,a)=>el(t,a,V),vt=(x,y,s,c,sz)=>txt(x,y,s,c,sz||11,600,0,V);
+ve('rect',{width:420,height:760,fill:'#1a1d24'});
+const iso=(x,y,w,d,h,cs,ce,ct)=>{const A=[x,y],B=[x+w*.87,y+w*.5],C=[x+w*.87-d*.87,y+w*.5+d*.5],Dd=[x-d*.87,y+d*.5],up=p=>[p[0],p[1]-h],P=a=>a.map(p=>p.join(',')).join(' ');
+ ve('polygon',{points:P([Dd,C,up(C),up(Dd)]),fill:cs,stroke:'#0a0a10'});ve('polygon',{points:P([C,B,up(B),up(C)]),fill:ce,stroke:'#0a0a10'});ve('polygon',{points:P([up(A),up(B),up(C),up(Dd)]),fill:ct,stroke:'#0a0a10'});return{A,B,C,Dd,h};};
+// Reichstag
+let o=iso(110,120,120,80,50,'#b8ac94','#8a806c','#6a6458');for(const[dx,dy]of[[0,0],[104,60],[-70,40],[34,100]])iso(110+dx,112+dy,24,24,66,'#c4b8a0','#968a74','#7a7060');
+ve('ellipse',{cx:118,cy:58,rx:30,ry:24,fill:'#9ad8e8',opacity:.55,stroke:'#0a0a10'});vt(110,215,'Reichstag (Glaskuppel)','#ead9c0',12);
+// Tor
+for(let i=0;i<6;i++)iso(255+i*13,95+i*7.5,6,14,52,'#d8c8a0','#a89870','#c8b890');iso(255,52,80,18,16,'#d8c8a0','#a89870','#c8b890');ve('polygon',{points:'300,40 316,30 324,44 306,50',fill:'#4a6a58',stroke:'#0a0a10'});vt(310,215,'Brandenburger Tor','#ead9c0',12);
+// Sony tent + DB tower + Kollhoff
+for(let a=0;a<12;a++){const x=110+Math.cos(a/12*6.28)*70,y=360+Math.sin(a/12*6.28)*35;ve('line',{x1:110,y1:250,x2:x,y2:y-40,stroke:'#ff5aa8','stroke-width':2});}
+ve('ellipse',{cx:110,cy:320,rx:70,ry:35,fill:'#bd2b77',opacity:.25,stroke:'#ff5aa8'});ve('line',{x1:110,y1:250,x2:110,y2:360,stroke:'#cfc8d8','stroke-width':3});vt(110,410,'Sony-Zeltdach','#ff9ad0',12);
+ve('rect',{x:240,y:250,width:50,height:140,fill:'#2c4a58',stroke:'#0a0a10'});for(let r=0;r<16;r++)ve('rect',{x:242,y:256+r*8,width:46,height:2,fill:Math.random()<.4?'#43d1cf':'#1a3a44'});ve('ellipse',{cx:265,cy:250,rx:25,ry:8,fill:'#3a5a68',stroke:'#0a0a10'});
+o=iso(360,290,30,30,120,'#7a3a2a','#5a2a1e','#4a2418');vt(300,410,'DB-Turm · Kollhoff','#43d1cf',12);
+// stage + clinic
+iso(70,520,110,50,24,'#2a1430','#1a0c20','#3a2040');for(const x of [30,140])ve('rect',{x,y:440,width:26,height:60,fill:'#1a1a1e',stroke:'#ff5aa8','stroke-width':2});for(const x of [43,153])for(const y of [455,480])ve('circle',{cx:x,cy:y,r:8,fill:'#333',stroke:'#ff5aa8'});
+ve('rect',{x:60,y:448,width:70,height:18,fill:'#2a1430',stroke:'#ff5aa8'});for(let i=0;i<8;i++)ve('rect',{x:66+i*8,y:462-(i%3+1)*4,width:5,height:(i%3+1)*4,fill:'#ff5aa8'});vt(95,570,'Soundsystem-Bühne','#ff9ad0',12);
+iso(320,520,80,40,40,'#1a2a30','#10202a','#2a3a44');ve('rect',{x:280,y:450,width:90,height:22,fill:'#0a1a20',stroke:'#43d1cf','stroke-width':2});ve('path',{d:'M292 461h10M297 456v10',stroke:'#43d1cf','stroke-width':3});ve('path',{d:'M315 461h40l6-4',stroke:'#43d1cf','stroke-width':3,fill:'none'});vt(320,570,'Implantat-Klinik','#43d1cf',12);
+// palette
+const pal=['#284652','#43d1cf','#bd2b77','#dfb697','#e19142','#9b3e39','#665b38'];pal.forEach((c,i)=>ve('rect',{x:20+i*56,y:610,width:50,height:40,fill:c,stroke:'#0a0a10'}));vt(210,672,'Board-Palette Potsdamer Platz','#ead9c0',12);
+['#211e26','#1a1a20','#5a5560','#2e2c34','#1f2a22'].forEach((c,i)=>ve('rect',{x:60+i*62,y:690,width:56,height:30,fill:c,stroke:'#555'}));vt(210,740,'Spiel: Boden · Straße · Wand · Dach · Tiergarten','#a8a0b0',11);
+</script></body></html>
