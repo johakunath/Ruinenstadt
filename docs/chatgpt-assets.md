@@ -96,6 +96,18 @@ Zombies are gaunt, grey-green skin, torn Berlin everyday clothes. Same look as t
 | P04 | X01 Der Hauptmann von Köpenick (zombie Prussian captain, spiked helmet, long coat) · X02 Die Spreehexe (river witch, wet hair, acid) · X03 Der Turmwächter (guardian of the TV tower, electric) · X04 Der Fliegerkönig (zombie pilot king, aviator goggles, Tempelhof) · X05 Der Brandmeister (burning fire chief) · X06 Die Rattenmutter (huge rat queen, grey fur) |
 | P05 | X07 Der Zitadellenritter (undead knight with shield) · X08 Der Plattenkönig (giant of Plattenbau concrete slabs) · then four empty cells (leave them as plain background) |
 
+### Player parts (test, not menu art)
+
+One test sheet to see whether ChatGPT keeps one character consistent enough to replace the code-drawn player. The game draws the player from the side, facing right (left is mirrored), about 50 px tall, and animates arms, legs and the held weapon in code. Weapons need no new art: the item icons are already painted on one diagonal and get rotated in the hand.
+
+Sheet format as the portrait batches (3 × 2 cells of 512 × 512, same teal, ID strip). Style block plus: *"All cells show the same survivor from the Köpenick board at the same scale: lean, red scarf, long brown coat, dark trousers, boots. Side view facing right, flat even light, no weapon. Body parts are drawn separately, as if cut out of the full figure in cell H01, so they fit back together."*
+
+| Batch | Cells |
+|---|---|
+| H01 | H01 full figure, standing, arms hanging · H02 head only (with hair, no scarf), side view · H03 torso only: coat and scarf, no head, no arms, no legs · H04 one arm, straight and hanging, sleeve and bare hand · H05 one leg, straight, trousers and boot · then one empty cell |
+
+Success test: Claude cuts it (`tools/cut_sheets.py H01` → `assets/hero/`), lays the parts over H01 and checks scale and joints. If they fit, next batches are torso variants per armour and the hats per head item, same framing.
+
 ## Totals
 
 | Group | Batches | Images |
@@ -114,5 +126,7 @@ Claude ticks a batch here once its sheet is in `assets/raw/`.
 
 | Batch | Status |
 |---|---|
-| B01 to B10 | open |
-| P01 to P05 | open |
+| B01 to B10 | done, cut into `assets/icons/` (v0.49) |
+| P01 to P05 | done, cut into `assets/portraits/` (v0.49) |
+
+Cutting: `python3 tools/cut_sheets.py [B01 ...]`. It finds the label strip per cell, keys out the teal (also enclosed holes such as ring centres) and writes WebP. New batches: add their IDs to `IDS` in the script, and the mapping to `ICOI` / `PORTI` in `js/items.js`.
