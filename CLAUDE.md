@@ -3,7 +3,7 @@
 - `AGENTS.md` only points here. Read `BACKLOG.md` for intent, roadmap and version history. Versions are `v0.N`.
 - Plain HTML/CSS/JS, no build step, no dependencies. Scripts are classic (not modules) and share globals; order in `index.html` matters.
 - View is 2:1 isometric. Logic, collision and map generation use flat world coords; only drawing projects (`js/iso.js`, `render()` in `js/render.js`).
-- Maps: grid districts in `js/world.js` + `js/biomes.js` (2400). Geographic districts (`D.geo`, Köpenick and Kreuzberg so far, 3600; landmarks per district in `K.lm`) in `js/geo.js`; roads are segments (`ROADS`, `roadPt`) for both. Building size: `BSC`/`BHS` in `js/world.js`.
+- Maps: grid districts in `js/world.js` + `js/biomes.js` (2400). Geographic districts (`D.geo`, Köpenick and Xhain so far, 3600; landmarks per district in `K.lm`) in `js/geo.js`; roads are segments (`ROADS`, `roadPt`) for both. Building size: `BSC`/`BHS` in `js/world.js`.
 - Art handover for Codex: `docs/asset-pipeline.md`.
 - Game text is German. Code style is dense one-liners; match it.
 - Release: bump `VERSION` (`js/core.js`) and `CACHE` (`sw.js`) together, update `BACKLOG.md`.

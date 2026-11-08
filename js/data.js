@@ -94,7 +94,7 @@ const LOOK={none:{j:'#3d3a36',hood:'#2c2926'},leder:{j:'#4a2a1a',collar:'#2a160d
  spaeti:{j:'#3a1a40',coat:1,scarf:'#f2d14b',hair:1},rattenmantel:{j:'#4a3e36',coat:1,scarf:'#97C459',hair:1},ritter:{j:'#383e48',vest:'#8a8f96',plates:1,helmet:'steel',hc:'#8a8f96'},kette:{j:'#4a4e54',vest:'#6a6e76',plates:1,hair:1},panzer:{j:'#3d3a36',vest:'#7a766c',plates:1,helmet:'steel',hc:'#8a8478'}};
 const DIST=[
  {i:0,n:'Köpenick',lvl:0,ground:'#2a211b',road:'#231c17',walls:['#5a3f2e','#4e3a2c','#634634'],roof:['#3a2a22','#45302a','#33261f'],dark:.66,spit:.16,brute:.1,sw:3,bw:4,trees:16,spati:'Späti an der Altstadt'},
- {i:1,n:'Kreuzberg',lvl:8,ground:'#262020',road:'#1f1a1a',walls:['#584540','#4b3c3a','#61493d'],roof:['#2f2826','#3a302b','#2a2321'],dark:.7,spit:.28,brute:.12,sw:1,bw:3,trees:10,spati:'Späti am Wrangelkiez'},
+ {i:1,n:'Xhain',lvl:8,ground:'#262020',road:'#1f1a1a',walls:['#584540','#4b3c3a','#61493d'],roof:['#2f2826','#3a302b','#2a2321'],dark:.7,spit:.28,brute:.12,sw:1,bw:3,trees:10,spati:'Späti am Wrangelkiez'},
  {i:2,n:'Mitte',lvl:18,ground:'#2b1f1a',road:'#241915',walls:['#6a4a38','#5a3d2f','#704d36'],roof:['#3d2a20','#4a3226','#36251d'],dark:.74,spit:.22,brute:.22,sw:1,bw:2,trees:8,spati:'Späti Torstraße'},
  {i:3,n:'Tempelhof',lvl:30,ground:'#2a2418',road:'#241f17',walls:['#5e5040','#504436','#665642'],roof:['#3a3226','#463a2c','#30291f'],dark:.78,spit:.3,brute:.26,sw:1,bw:1,trees:12,spati:'Späti am Feld'},
  {i:4,n:'Neukölln',lvl:42,ground:'#2a2220',road:'#221b19',walls:['#5e4a3e','#54423a','#6a5242'],roof:['#3a2e28','#45362e','#30261f'],dark:.8,spit:.22,brute:.24,sw:1,bw:1,trees:9,spati:'Späti Sonnenallee'},

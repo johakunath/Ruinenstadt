@@ -268,7 +268,7 @@ function buildWorld(d){
 }
 const TAGS=['KIEZ','BERLIN','LIEBE','RUINE','WIR BLEIBEN','HALT DURCH','SPREE','B36','HOFFNUNG','KEIN AUSGANG'];
 // Altbau variants (V): 0 Stuck ocker, 1 Klinker mit Balkonen, 2 grau abgeplatzt, 3 pastell mit Erker und Tordurchfahrt, 4 ausgebrannt. EF: Einfamilienhaus/Reihenhaus (gable roof via b.gable)
-function makeB(b,st){
+function makeB(b,st){if(st==='hoch'||st==='buero')return modernB(b,st);
   const c=cnv(b.w,b.h+b.H),g=c.getContext('2d'),P_=st==='platte',L_=st==='laube',RU=st==='ruin',EF=st==='efh'||st==='reihen',AB=!P_&&!L_&&!RU&&!EF,V=AB?wpick({0:3,1:3,2:2,3:2,4:1})|0:-1;
   const wall=P_?pick(['#6e6a62','#625e56','#76705f']):L_?pick(['#6a4a2e','#5a3e26','#7a5a3a']):EF?pick(['#c8b896','#b8a888','#d0c0a0','#a87a5a','#9a9a8a']):V===0?pick(['#a8844e','#b09060','#9a7a58','#b8a07a']):V===2?pick(['#6e6a62','#7a746a']):V===3?pick(['#8a9a80','#a08890','#8a98a8','#b0a080']):V===4?'#4a3a30':pick(D.walls);
   const roof=P_?'#3d3a36':L_?pick(['#8a3a2a','#3a5a3a','#4a4a5a']):RU||V===4?'#2a211b':EF?pick(['#7a3a2a','#5a3a2e','#4a4a50','#8a4a30']):pick(D.roof);b.wc=wall;b.rc=roof;
