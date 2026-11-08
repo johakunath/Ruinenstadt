@@ -104,6 +104,7 @@ Real-world hook: Spreepark Plänterwald (next to Köpenick in Treptow-Köpenick)
 | Brocken (brute), Ratte packs | Orange-vest hulk, mutated dog |
 | Oma Gerda (survivor) | Alexanderplatz gardener |
 | Mitte district with Fernsehturm and Turmwächter | Alexanderplatz board |
+| Xhain (v0.42 to v0.45): Berghain, Hochbahn U1, Warschauer Straße station | Techno details from the Potsdamer board, U-Bahn board for the station |
 
 ### Conflicts to resolve
 

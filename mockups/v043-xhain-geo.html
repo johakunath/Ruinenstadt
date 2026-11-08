@@ -1,0 +1,99 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kreuzberg Geografie</title>
+<style>body{margin:0;background:#1a1512;color:#ead9c0;font:14px system-ui,sans-serif;padding:16px}h1{font-size:20px;margin:0 0 6px}p{margin:0 0 12px;color:#a8957d;max-width:900px}
+.g{display:grid;grid-template-columns:minmax(0,760px) minmax(0,420px);gap:16px}.c{background:#241d18;border:1px solid #3a2e25;border-radius:8px;padding:10px}.c b{display:block;margin:8px 0 4px}.c span{color:#a8957d;font-size:13px}svg{width:100%;height:auto;display:block}
+@media(max-width:900px){.g{grid-template-columns:1fr}}</style></head><body>
+<h1>v0.43: Friedrichshain-Kreuzberg, Ostbahnhof, U-Bahn-Start</h1><p>Kreuzberg wird um 600 nach Süden gestaucht (Faktor 0,83), oben entsteht Platz für das Friedrichshainer Ufer: Ostbahnhof auf dem Stadtbahn-Viadukt, Stralauer Platz und Mediaspree mit modernen Hochhäusern, Berghain, East Side Gallery an der Mühlenstraße. Blaue Quadrate: U- und S-Bahnhöfe (späteres Schnellreisenetz).</p>
+<div class="g"><div class="c"><svg id="map" viewBox="0 0 3600 3600"></svg><b>A · Karte v2</b><span>Kreuzberg-Teil wie v0.42, nur gestaucht. Neu oben: Stadtbahn-Viadukt (Klinker, wie die Hochbahn gebaut), Ostbahnhof als lange Halle, Straße der Pariser Kommune über die Schillingbrücke, Mühlenstraße am Ufer mit der East Side Gallery als bemalte Mauer, Warschauer Straße nach Norden. Startpunkt-Varianten: U Görlitzer Bahnhof (1), S Ostbahnhof (2), S+U Warschauer Straße (3).</span></div>
+<div class="c"><svg id="var" viewBox="0 0 420 760"></svg><b>B · Neue Formen</b><span>Oben: Wohnhochhaus (hell, Balkonraster) und Büroturm (Glas, Lichtbänder) für Stralauer Platz und Mediaspree. Mitte: Berghain (Betonkraftwerk, hohe Mittelhalle) und Ostbahnhof (Halle mit Glasdach auf dem Viadukt). Unten: U-Bahn-Eingang (Treppe nach unten, blaues U) und Hochbahnhof (Station auf dem Viadukt mit Treppe). Du startest an der Treppe und kommst aus dem Bahnhof heraus.</span></div></div>
+<script>
+const K={
+ spree:[[3600,1650],[3300,1330],[2950,1000],[2600,720],[2250,450],[1950,220],[1700,0]],
+ kanal:[[3450,1500],[3200,1760],[2800,1950],[2300,2050],[1900,1960],[1500,1850],[1100,1730],[700,1700],[300,1750],[0,1780]],
+ roads:{
+  'Warschauer Str.':[[3350,450],[3117,814]],'Oberbaumbrücke':[[3117,814],[2783,1186]],
+  'Skalitzer Str.':[[2783,1186],[2400,1280],[2000,1360]],'Gitschiner Str.':[[2000,1360],[1500,1480],[1000,1560],[800,1580],[0,1600]],
+  'Oranienstr.':[[1350,1000],[1800,1040],[2250,1080],[2550,1250]],
+  'Adalbertstr.':[[1950,330],[1980,800],[2000,1360]],'Kottbusser Damm':[[2000,1360],[2150,1700],[2300,2050],[2450,2600],[2550,3600]],
+  'Köpenicker Str.':[[1100,330],[1950,330],[2350,640]],'Schillingbrücke':[[2350,640],[2560,460],[2700,300]],
+  'Prinzenstr.':[[1350,0],[1350,1000],[1400,1500],[1450,1850],[1500,2440]],
+  'Friedrichstr.':[[800,1580],[850,1000],[900,0]],'Mehringdamm':[[800,1580],[820,2000],[800,2420],[780,3000],[800,3600]],
+  'Yorckstr.':[[0,2350],[800,2420]],'Gneisenaustr.':[[800,2420],[1300,2430],[1800,2470],[2440,2560]],
+  'Bergmannstr.':[[780,2850],[1300,2860],[1850,2850]],'Columbiadamm':[[800,3300],[1600,3320],[2500,3250]],
+  'Wiener Str.':[[2550,1250],[2900,1500],[3150,1760],[3350,2150],[3600,2350]],
+  'Schlesische Str.':[[2783,1186],[3050,1380],[3230,1560],[3450,1800],[3600,1950]]},
+ bridges:[[2950,1000,'Oberbaumbrücke'],[2470,560,'Schillingbrücke'],[2280,2040,'Kottbusser Brücke'],[805,1700,'Hallesches Tor'],[1430,1830,'Baerwaldbrücke'],[3165,1790,'Lohmühlenbrücke'],[3300,1640,'Schlesische Brücke']],
+ zones:[['Osthafen, East Side Gallery','#4a3c2e',[[1900,0],[3600,0],[3600,1500],[3250,1200],[2900,880],[2550,600],[2200,330]]],
+  ['Mauerstreifen','#4a3c2e',[[0,0],[1750,0],[1900,200],[1100,280],[0,260]]],
+  ['Kotti (NKZ)','#4a4640',[[1780,1150],[2150,1150],[2200,1500],[1800,1500]]],
+  ['SO36','#5a4636',[[2000,850],[2650,900],[2700,1180],[2150,1150]]],
+  ['Görli','#2f4a2a',[[2650,1290],[2850,1260],[3150,1480],[3150,1680],[2900,1520]]],
+  ['Wrangelkiez','#5a4636',[[2850,1240],[2950,1220],[3200,1450],[3150,1480]]],
+  ['Mariannenplatz','#3e4a2a',[[2050,420],[2300,480],[2600,800],[2050,800]]],
+  ['Mehringplatz','#4a4640',[[620,1330],[1000,1330],[1000,1520],[620,1520]]],
+  ['Gleisdreieck','#3e4a2a',[[0,1850],[700,1820],[720,2280],[0,2300]]],
+  ['Viktoriapark','#2f4a2a',[[100,2500],[730,2490],[720,3200],[100,3200]]],
+  ['Bergmannkiez','#5a4636',[[860,2500],[1800,2520],[1800,3230],[860,3230]]],
+  ['Graefekiez','#5a4636',[[1550,1950],[2200,2100],[2380,2480],[1560,2420]]],
+  ['Hasenheide','#2f4a2a',[[1880,2580],[2420,2620],[2470,3220],[1880,3220]]],
+  ['Friedhöfe','#2f4a2a',[[0,3260],[2500,3320],[2520,3600],[0,3600]]],
+  ['Kreuzkölln','#5a4636',[[2520,2150],[3150,1900],[3600,2450],[3600,3600],[2600,3600]]],
+  ['Treptower Park','#2f4a2a',[[3300,1880],[3600,1700],[3600,2350],[3450,2200]]]],
+ camp:[1350,1080],obb:[2950,1000]};
+
+const T=p=>[p[0],Math.round(600+p[1]*.8333)],TT=a=>a.map(T);
+K.spree=TT(K.spree).concat([[1450,250],[1250,0]]);K.kanal=TT(K.kanal);for(const n in K.roads)K.roads[n]=TT(K.roads[n]);
+K.roads['Warschauer Str.']=[[3450,0],[3380,500],[3117,1278]];
+K.roads['Prinzenstr.'][0]=[1350,250];K.roads['Friedrichstr.'][K.roads['Friedrichstr.'].length-1]=[950,0];
+K.bridges=K.bridges.map(b=>[...T(b),b[2]]);K.zones=K.zones.map(z=>[z[0],z[1],TT(z[2])]);K.camp=T(K.camp);K.obb=T(K.obb);
+K.zones=K.zones.filter(z=>!z[0].startsWith('Osthafen'));
+K.roads['Mühlenstr.']=[[1900,470],[2250,720],[2600,950],[2950,1180],[3117,1278]];
+K.roads['Str. d. Pariser Kommune']=[[2580,880],[2470,500],[2420,0]];
+K.roads['Leipziger Str.']=[[0,300],[1200,330]];
+K.zones.unshift(['Stralauer Platz','#6a7078',[[2520,560],[2950,600],[2980,1080],[2620,930]]],['Mediaspree','#6a7078',[[3000,620],[3330,640],[3200,1180],[3030,1130]]],
+ ['Berghain','#4a4640',[[2600,100],[3300,120],[3300,420],[2600,380]]],['Andreasviertel','#4a4640',[[1700,0],[2400,0],[2420,700],[1950,500]]],
+ ['Friedrichshain Nord','#5a4636',[[2480,0],[3400,0],[3500,100],[2600,90]]],['Boxhagen','#5a4636',[[3420,450],[3600,450],[3600,1700],[3250,1250]]],
+ ['Heinrich-Heine-Viertel','#4a4640',[[0,0],[1200,0],[1300,280],[0,260]]]);
+const ST=[['U','Görlitzer Bhf',[2450,1662],1],['S','Ostbahnhof',[2750,470],2],['S+U','Warschauer Str.',[3330,560],3],['U','Schlesisches Tor',[2783,1588]],['U','Kottbusser Tor',[2000,1733]],['U','Prinzenstr.',[1400,1850]],['U','Hallesches Tor',[800,1908]],['U','Moritzplatz',[1350,1433]],['U','Mehringdamm',[800,2617]],['U','Gneisenaustr.',[1300,2625]],['U','Südstern',[1800,2658]],['U','Schönleinstr.',[2200,2208]],['U','Hermannplatz',[2440,2733]],['S','Jannowitzbr.',[1500,320]]];
+const S=document.getElementById('map'),ns='http://www.w3.org/2000/svg',el=(t,a,p)=>{const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e;},pts=a=>a.map(p=>p.join(',')).join(' '),
+ txt=(x,y,s,c,sz,w,rot,p)=>{const e=el('text',{x,y,fill:c,'font-size':sz,'font-weight':w||400,'text-anchor':'middle',transform:rot?`rotate(${rot} ${x} ${y})`:''},p);e.textContent=s;};
+el('rect',{width:3600,height:3600,fill:'#2a2420'});
+for(const[n,c,p]of K.zones)el('polygon',{points:pts(p),fill:c});
+el('polyline',{points:pts(K.spree),fill:'none',stroke:'#3a6a8a','stroke-width':170,'stroke-linecap':'round','stroke-linejoin':'round'});
+el('polyline',{points:pts(K.kanal),fill:'none',stroke:'#3a6a8a','stroke-width':80,'stroke-linecap':'round','stroke-linejoin':'round'});
+for(const n in K.roads)el('polyline',{points:pts(K.roads[n]),fill:'none',stroke:'#7a7068','stroke-width':110,'stroke-linecap':'round','stroke-linejoin':'round'});
+const hb=[...K.roads['Gitschiner Str.']].reverse().concat(K.roads['Skalitzer Str.'].slice().reverse().slice(1)).concat([[3117,1278],[3330,560]]);
+el('polyline',{points:pts(hb),fill:'none',stroke:'#3f6a4a','stroke-width':34,'stroke-linejoin':'round'});
+const sb=[[1250,330],[1900,400],[2500,470],[3000,500],[3600,540]];el('polyline',{points:pts(sb),fill:'none',stroke:'#7a3a26','stroke-width':60});el('polyline',{points:pts(sb),fill:'none',stroke:'#c0a080','stroke-width':6,'stroke-dasharray':'20 30'});
+el('rect',{x:2560,y:420,width:400,height:110,fill:'#8a8f96',stroke:'#1a0f0a','stroke-width':10,transform:'rotate(3.5 2760 475)'});txt(2760,400,'Ostbahnhof','#ead9c0',56,700);
+el('polyline',{points:pts([[2280,830],[2620,1050],[2960,1270]]),fill:'none',stroke:'#e8a0c8','stroke-width':16,'stroke-dasharray':'60 12'});txt(2560,1110,'East Side Gallery','#e8a0c8',48,700,33);
+el('rect',{x:2860,y:180,width:200,height:150,fill:'#5a5a58',stroke:'#1a0f0a','stroke-width':10});txt(2960,160,'Berghain','#ead9c0',56,700);
+for(const[x,y]of[[2650,700],[2760,640],[2880,760],[2700,860],[3100,760],[3180,900],[3080,1000]])el('rect',{x:x-35,y:y-35,width:70,height:70,fill:'#b8c4d0',stroke:'#1a0f0a','stroke-width':6});
+for(const n in K.roads)el('polyline',{points:pts(K.roads[n]),fill:'none',stroke:'#9a9088','stroke-width':5,'stroke-dasharray':'40 50'});
+for(const[x,y]of K.bridges)el('rect',{x:x-55,y:y-55,width:110,height:110,fill:'#d6cfc0',opacity:.85,transform:`rotate(45 ${x} ${y})`});
+el('rect',{x:K.obb[0]-70,y:K.obb[1]-120,width:140,height:240,fill:'#a0442c',stroke:'#1a0f0a','stroke-width':10,transform:`rotate(42 ${K.obb[0]} ${K.obb[1]})`});
+for(const[n,c,p]of K.zones){if(n==='Berghain')continue;const cx=p.reduce((a,q)=>a+q[0],0)/p.length,cy=p.reduce((a,q)=>a+q[1],0)/p.length;txt(cx,cy,n,'#cfe0b0',n.length>14?46:56);}
+txt(1950,640,'Spree','#cfe8ff',70,700,38);txt(1150,2040,'Landwehrkanal','#cfe8ff',50,700,4);txt(1700,360,'Stadtbahn','#e0b090',44,700,6);
+for(const[k,n,[x,y],v]of ST){el('rect',{x:x-34,y:y-34,width:68,height:68,fill:k==='S'?'#2a8a3a':'#1d4a8a',stroke:v?'#e0892e':'#ead9c0','stroke-width':v?16:6});txt(x,y+16,k,'#fff',k.length>1?30:46,800);txt(x,y-48,n+(v?' ('+v+')':''),v?'#e0892e':'#cfe0ff',v?52:38,v?800:600);}
+// panel B
+const V=document.getElementById('var'),ve=(t,a)=>el(t,a,V),vt=(x,y,s,c,sz)=>txt(x,y,s,c,sz||11,600,0,V);
+ve('rect',{width:420,height:760,fill:'#2a2420'});
+const iso=(x,y,w,d,h,cs,ce,ct)=>{ // footprint w along screen-right-down, d along left-down
+ const A=[x,y],B=[x+w*.87,y+w*.5],C=[x+w*.87-d*.87,y+w*.5+d*.5],Dd=[x-d*.87,y+d*.5],up=p=>[p[0],p[1]-h],P=a=>a.map(p=>p.join(',')).join(' ');
+ ve('polygon',{points:P([Dd,C,up(C),up(Dd)]),fill:cs,stroke:'#120c08'});ve('polygon',{points:P([C,B,up(B),up(C)]),fill:ce,stroke:'#120c08'});ve('polygon',{points:P([up(A),up(B),up(C),up(Dd)]),fill:ct,stroke:'#120c08'});return{Dd,C,B,h};};
+// apartment tower
+let o=iso(95,250,60,60,190,'#d8d4cc','#a8a49c','#6a6660');for(let r=0;r<12;r++)for(let k=0;k<4;k++){const f=k/4+.06,x=o.Dd[0]+(o.C[0]-o.Dd[0])*f,y=o.Dd[1]+(o.C[1]-o.Dd[1])*f-14-r*15;ve('polygon',{points:`${x},${y} ${x+9},${y+5.2} ${x+9},${y-2.8} ${x},${y-8}`,fill:Math.random()<.2?'#e0892e':'#1a1a1e'});if(k%2)ve('line',{x1:x-2,y1:y+3,x2:x+11,y2:y+10,stroke:'#555',['stroke-width']:2});}
+vt(95,330,'Wohnhochhaus','#ead9c0',12);
+o=iso(300,250,70,55,215,'#5a7080','#3e5260','#2c3a44');for(let r=0;r<26;r++){const y0=o.Dd[1]-8-r*8;ve('line',{x1:o.Dd[0],y1:y0,x2:o.C[0],y2:o.C[1]-8-r*8,stroke:r%5===2?'#e8d8a0':'#7a92a2',['stroke-width']:r%5===2?2.2:.8});}
+for(let k=1;k<6;k++){const f=k/6,x=o.Dd[0]+(o.C[0]-o.Dd[0])*f,y=o.Dd[1]+(o.C[1]-o.Dd[1])*f;ve('line',{x1:x,y1:y,x2:x,y2:y-215,stroke:'#2a3842'});}
+vt(300,330,'Büroturm (Glas)','#ead9c0',12);
+// Berghain
+o=iso(130,500,100,70,70,'#7a7672','#5a5652','#4a4642');iso(150,492,45,40,120,'#86827e','#646060','#4e4a46');for(let k=0;k<5;k++){const f=.1+k*.18,x=o.Dd[0]+(o.C[0]-o.Dd[0])*f,y=o.Dd[1]+(o.C[1]-o.Dd[1])*f;ve('rect',{x,y:y-55,width:6,height:28,fill:'#111'});}
+{const x=o.Dd[0]+(o.C[0]-o.Dd[0])*.75,y=o.Dd[1]+(o.C[1]-o.Dd[1])*.75;ve('rect',{x:x-6,y:y-18,width:12,height:16,fill:'#0b0806'});}vt(110,570,'Berghain','#ead9c0',12);
+// Ostbahnhof on viaduct
+o=iso(290,480,120,50,26,'#7a3a26','#5a2a1a','#4a2216');iso(290,454,120,50,46,'#8a8f96','#6a6f76','#a8c0d0');vt(300,570,'Ostbahnhof','#ead9c0',12);
+// U-Bahn entrance
+ve('polygon',{points:'40,660 140,660 170,700 70,700',fill:'#231c17'});ve('polygon',{points:'70,665 130,665 150,692 90,692',fill:'#0b0806'});for(let i=0;i<5;i++)ve('line',{x1:74+i*4,y1:668+i*5,x2:132+i*4,y2:668+i*5,stroke:'#3a302a'});
+ve('rect',{x:150,y:610,width:4,height:60,fill:'#444'});ve('rect',{x:140,y:600,width:24,height:24,fill:'#1d4a8a',stroke:'#ead9c0'});vt(152,618,'U','#fff',16);vt(110,735,'U-Bahn-Eingang','#ead9c0',12);
+// Hochbahn station
+iso(300,640,110,30,14,'#3f6a4a','#2c4a34','#3a3630');iso(300,620,90,30,30,'#c8b890','#a89870','#5a3a2e');ve('polygon',{points:'240,680 270,665 320,715 290,730',fill:'#4a4038',stroke:'#120c08'});vt(300,750,'Hochbahnhof + Treppe','#ead9c0',12);
+</script></body></html>

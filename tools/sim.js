@@ -43,7 +43,7 @@ SIM.run=function(di,opt){opt=opt||{};startRun(di,opt.endless);gridFree();const d
     if(freeze>0){freeze-=dt;continue;}
     thinkT-=dt;if(thinkT<=0){thinkT=.1;SIM.think(.1);}
     update(dt);t+=dt;if(run.wave!==wv){if(t-wt>slow[1])slow=[wv,Math.round(t-wt),slow[2]];wv=run.wave;wt=t;diag='';}if(t-wt>90&&!diag){diag='w'+run.wave+' stuck with '+enemies.length+': '+[...new Set(enemies.map(e=>e.type+(e.fly?'(f)':'')))].join(',')+' toSpawn '+run.toSpawn;}if(P.hp<lastHp)dmgTaken+=lastHp-P.hp;lastHp=P.hp;}
-  const won=run&&S.best[run.d]>=10&&run.wave>=10&&P.hp>0;
+  const won=run&&S.best[run.d]>=WAVES&&run.wave>=WAVES&&P.hp>0;
   const r={d:di,won:!!(state==='over'&&P.hp>0),wave:run.wave,t:Math.round(t),lvl:P.lvl,pw0:p0,pw:power(ST),kills:run.kills,scrap:run.sg,dmg:Math.round(dmgTaken),boss:run.boss?run.boss.name:'',slow:slow[0]+':'+slow[1]+'s '+diag};
   state='menu';run=null;enemies=[];refresh();return r;};
 SIM.equip=function(){let ch=true,n=0;while(ch&&n++<20){ch=false;for(let i=0;i<S.bag.length;i++){const it=S.bag[i];if(better(it)){const old=S.eq[it.slot];S.eq[it.slot]=it;if(old)S.bag[i]=old;else S.bag.splice(i,1);refresh();ch=true;break;}}}};
@@ -55,5 +55,5 @@ SIM.camp=function(){SIM.equip();
   const w=S.eq.w;for(const m of MODS){if(modSlots(w)<=(w.mods||[]).length)break;if((w.mods||[]).includes(m.k))continue;if(Object.entries(m.c).every(([k,v])=>(S.mat[k]||0)>=v)&&S.scrap>=m.p){for(const[k,v]of Object.entries(m.c))S.mat[k]-=v;S.scrap-=m.p;w.mods=(w.mods||[]).concat(m.k);}}
   for(const j of S.jobs)if(j.p>=j.t){S.scrap+=j.sc;}S.jobs=S.jobs.filter(j=>j.p<j.t);fillJobs();refresh();};
 SIM.campaign=function(n,opt){opt=opt||{};const out=[];let fails=0;for(let i=0;i<n;i++){let di=S.unlocked-1;if(fails>=3){di=Math.max(0,di-1);fails=0;}
-    const r=SIM.run(di,opt);out.push(r);if(di===S.unlocked-1)fails=r.won?0:fails+1;SIM.camp();if(S.best[DIST.length-1]>=10&&!opt.all)break;}return out;};
+    const r=SIM.run(di,opt);out.push(r);if(di===S.unlocked-1)fails=r.won?0:fails+1;SIM.camp();if(S.best[DIST.length-1]>=WAVES&&!opt.all)break;}return out;};
 })();

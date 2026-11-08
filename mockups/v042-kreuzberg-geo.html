@@ -1,0 +1,88 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kreuzberg Geografie</title>
+<style>body{margin:0;background:#1a1512;color:#ead9c0;font:14px system-ui,sans-serif;padding:16px}h1{font-size:20px;margin:0 0 6px}p{margin:0 0 12px;color:#a8957d;max-width:900px}
+.g{display:grid;grid-template-columns:minmax(0,760px) minmax(0,420px);gap:16px}.c{background:#241d18;border:1px solid #3a2e25;border-radius:8px;padding:10px}.c b{display:block;margin:8px 0 4px}.c span{color:#a8957d;font-size:13px}svg{width:100%;height:auto;display:block}
+@media(max-width:900px){.g{grid-template-columns:1fr}}</style></head><body>
+<h1>v0.42: Kreuzberg nach Geografie</h1><p>Welt 3600 × 3600 wie Köpenick. Spree im Nordosten, Landwehrkanal quer durch den Bezirk (schmal, viele Brücken), Oberbaumbrücke als Engstelle und Wahrzeichen. Lage aus dem Gedächtnis, stark gestaucht.</p>
+<div class="g"><div class="c"><svg id="map" viewBox="0 0 3600 3600"></svg><b>A · Karte (Weltkoordinaten)</b><span>Nord oben. Spree trennt das Friedrichshainer Ufer (Osthafen, East Side Gallery) ab, Zugang nur über Oberbaumbrücke und Schillingbrücke. Landwehrkanal von Gleisdreieck über Hallesches Tor und Kottbusser Brücke bis zur Spree am Schlesischen Busch. Hochbahn U1 über Gitschiner und Skalitzer Straße. Norden: Mauerstreifen als Trümmerband. Süden: Bergmannkiez, Viktoriapark, Hasenheide, Friedhöfe.</span></div>
+<div class="c"><svg id="var" viewBox="0 0 420 600"></svg><b>B · Wahrzeichen und neue Formen</b><span>Oben Oberbaumbrücke: Klinkerdeck mit Bögen, zwei Zinnentürme mittig, Hochbahn-Viadukt auf dem Oberdeck. Unten Hochbahn U1 über der Skalitzer: grüne Stahlstützen in der Straßenmitte (Kollision, Deckung), Gleisbett als Dach, das vor dem Spieler ausblendet.</span></div></div>
+<script>
+const K={
+ spree:[[3600,1650],[3300,1330],[2950,1000],[2600,720],[2250,450],[1950,220],[1700,0]],
+ kanal:[[3450,1500],[3200,1760],[2800,1950],[2300,2050],[1900,1960],[1500,1850],[1100,1730],[700,1700],[300,1750],[0,1780]],
+ roads:{
+  'Warschauer Str.':[[3350,450],[3117,814]],'Oberbaumbrücke':[[3117,814],[2783,1186]],
+  'Skalitzer Str.':[[2783,1186],[2400,1280],[2000,1360]],'Gitschiner Str.':[[2000,1360],[1500,1480],[1000,1560],[800,1580],[0,1600]],
+  'Oranienstr.':[[1350,1000],[1800,1040],[2250,1080],[2550,1250]],
+  'Adalbertstr.':[[1950,330],[1980,800],[2000,1360]],'Kottbusser Damm':[[2000,1360],[2150,1700],[2300,2050],[2450,2600],[2550,3600]],
+  'Köpenicker Str.':[[1100,330],[1950,330],[2350,640]],'Schillingbrücke':[[2350,640],[2560,460],[2700,300]],
+  'Prinzenstr.':[[1350,0],[1350,1000],[1400,1500],[1450,1850],[1500,2440]],
+  'Friedrichstr.':[[800,1580],[850,1000],[900,0]],'Mehringdamm':[[800,1580],[820,2000],[800,2420],[780,3000],[800,3600]],
+  'Yorckstr.':[[0,2350],[800,2420]],'Gneisenaustr.':[[800,2420],[1300,2430],[1800,2470],[2440,2560]],
+  'Bergmannstr.':[[780,2850],[1300,2860],[1850,2850]],'Columbiadamm':[[800,3300],[1600,3320],[2500,3250]],
+  'Wiener Str.':[[2550,1250],[2900,1500],[3150,1760],[3350,2150],[3600,2350]],
+  'Schlesische Str.':[[2783,1186],[3050,1380],[3230,1560],[3450,1800],[3600,1950]]},
+ bridges:[[2950,1000,'Oberbaumbrücke'],[2470,560,'Schillingbrücke'],[2280,2040,'Kottbusser Brücke'],[805,1700,'Hallesches Tor'],[1430,1830,'Baerwaldbrücke'],[3165,1790,'Lohmühlenbrücke'],[3300,1640,'Schlesische Brücke']],
+ zones:[['Osthafen, East Side Gallery','#4a3c2e',[[1900,0],[3600,0],[3600,1500],[3250,1200],[2900,880],[2550,600],[2200,330]]],
+  ['Mauerstreifen','#4a3c2e',[[0,0],[1750,0],[1900,200],[1100,280],[0,260]]],
+  ['Kotti (NKZ)','#4a4640',[[1780,1150],[2150,1150],[2200,1500],[1800,1500]]],
+  ['SO36','#5a4636',[[2000,850],[2650,900],[2700,1180],[2150,1150]]],
+  ['Görli','#2f4a2a',[[2650,1290],[2850,1260],[3150,1480],[3150,1680],[2900,1520]]],
+  ['Wrangelkiez','#5a4636',[[2850,1240],[2950,1220],[3200,1450],[3150,1480]]],
+  ['Mariannenplatz','#3e4a2a',[[2050,420],[2300,480],[2600,800],[2050,800]]],
+  ['Mehringplatz','#4a4640',[[620,1330],[1000,1330],[1000,1520],[620,1520]]],
+  ['Gleisdreieck','#3e4a2a',[[0,1850],[700,1820],[720,2280],[0,2300]]],
+  ['Viktoriapark','#2f4a2a',[[100,2500],[730,2490],[720,3200],[100,3200]]],
+  ['Bergmannkiez','#5a4636',[[860,2500],[1800,2520],[1800,3230],[860,3230]]],
+  ['Graefekiez','#5a4636',[[1550,1950],[2200,2100],[2380,2480],[1560,2420]]],
+  ['Hasenheide','#2f4a2a',[[1880,2580],[2420,2620],[2470,3220],[1880,3220]]],
+  ['Friedhöfe','#2f4a2a',[[0,3260],[2500,3320],[2520,3600],[0,3600]]],
+  ['Kreuzkölln','#5a4636',[[2520,2150],[3150,1900],[3600,2450],[3600,3600],[2600,3600]]],
+  ['Treptower Park','#2f4a2a',[[3300,1880],[3600,1700],[3600,2350],[3450,2200]]]],
+ camp:[1350,1080],obb:[2950,1000]};
+const S=document.getElementById('map'),ns='http://www.w3.org/2000/svg',el=(t,a,p)=>{const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e;},pts=a=>a.map(p=>p.join(',')).join(' '),
+ txt=(x,y,s,c,sz,w,rot,p)=>{const e=el('text',{x,y,fill:c,'font-size':sz,'font-weight':w||400,'text-anchor':'middle',transform:rot?`rotate(${rot} ${x} ${y})`:''},p);e.textContent=s;};
+el('rect',{width:3600,height:3600,fill:'#2a2420'});
+for(const[n,c,p]of K.zones)el('polygon',{points:pts(p),fill:c});
+el('polyline',{points:pts(K.spree),fill:'none',stroke:'#3a6a8a','stroke-width':170,'stroke-linecap':'round','stroke-linejoin':'round'});
+el('polyline',{points:pts(K.kanal),fill:'none',stroke:'#3a6a8a','stroke-width':80,'stroke-linecap':'round','stroke-linejoin':'round'});
+for(const n in K.roads)el('polyline',{points:pts(K.roads[n]),fill:'none',stroke:'#7a7068','stroke-width':110,'stroke-linecap':'round','stroke-linejoin':'round'});
+// Hochbahn U1
+const hb=[...K.roads['Gitschiner Str.']].reverse().concat(K.roads['Skalitzer Str.'].slice().reverse().slice(1)).concat([[2950,1000]]);
+el('polyline',{points:pts(hb),fill:'none',stroke:'#3f6a4a','stroke-width':34,'stroke-linejoin':'round'});
+el('polyline',{points:pts(hb),fill:'none',stroke:'#9ad0a0','stroke-width':6,'stroke-dasharray':'12 60'});
+for(const n in K.roads)el('polyline',{points:pts(K.roads[n]),fill:'none',stroke:'#9a9088','stroke-width':5,'stroke-dasharray':'40 50'});
+for(const[x,y]of K.bridges)el('rect',{x:x-60,y:y-60,width:120,height:120,fill:'#d6cfc0',opacity:.85,transform:`rotate(45 ${x} ${y})`});
+el('rect',{x:K.obb[0]-70,y:K.obb[1]-140,width:140,height:280,fill:'#a0442c',stroke:'#1a0f0a','stroke-width':10,transform:`rotate(42 ${K.obb[0]} ${K.obb[1]})`});
+for(const[n,c,p]of K.zones){const cx=p.reduce((a,q)=>a+q[0],0)/p.length,cy=p.reduce((a,q)=>a+q[1],0)/p.length;txt(cx,cy,n,'#cfe0b0',n.length>14?52:60);}
+txt(2350,250,'Spree','#cfe8ff',80,700,38);txt(1150,1790,'Landwehrkanal','#cfe8ff',56,700,4);
+for(const[x,y,n]of K.bridges)if(n!=='Oberbaumbrücke')txt(x+170,y-70,n,'#ead9c0',42);
+txt(3330,1070,'Oberbaumbrücke','#ffb08a',60,700);txt(1250,1520,'Hochbahn U1','#9ad0a0',46,700,-10);
+el('circle',{cx:K.camp[0],cy:K.camp[1],r:70,fill:'#e0892e',stroke:'#1a0f0a','stroke-width':14});txt(K.camp[0]-60,K.camp[1]-110,'Lager Moritzplatz','#e0892e',60,700);
+const lab={'Skalitzer Str.':[2450,1230,-14],'Gitschiner Str.':[400,1570,-1],'Oranienstr.':[1700,990,4],'Adalbertstr.':[1900,650,-87],'Kottbusser Damm':[2470,2850,-80],'Prinzenstr.':[1290,600,-90],'Friedrichstr.':[900,650,-87],'Mehringdamm':[730,2150,-88],'Yorckstr.':[400,2330,4],'Gneisenaustr.':[1300,2400,1],'Bergmannstr.':[1300,2830,0],'Columbiadamm':[1300,3290,1],'Wiener Str.':[2880,1440,37],'Köpenicker Str.':[1500,300,0],'Schlesische Str.':[3080,1340,38],'Warschauer Str.':[3330,600,-55]};
+for(const n in lab)txt(lab[n][0],lab[n][1],n,'#ead9c0',42,600,lab[n][2]);
+el('rect',{x:20,y:3480,width:600,height:20,fill:'#ead9c0'});txt(320,3460,'600 Einheiten ≈ 26 m bei Spielermaß','#a8957d',46);
+// panel B: iso sketches
+const V=document.getElementById('var'),ve=(t,a)=>el(t,a,V),vt=(x,y,s,c,sz)=>txt(x,y,s,c,sz||11,600,0,V);
+ve('rect',{width:420,height:600,fill:'#2a2420'});
+// water band
+ve('polygon',{points:'0,190 420,60 420,170 0,300',fill:'#1e3a44'});
+// bridge deck (iso along x)
+ve('polygon',{points:'40,250 360,150 380,160 60,262',fill:'#7a3a26'});
+ve('polygon',{points:'60,262 380,160 380,190 60,292',fill:'#6b3626'});
+for(let i=0;i<7;i++){const x=80+i*44,y=286-i*13.8;ve('path',{d:`M${x} ${y} q 14 -22 28 -9`,fill:'#1e1612'});}
+// viaduct upper deck
+ve('polygon',{points:'40,238 360,138 360,128 40,228',fill:'#4a2216'});
+for(let i=0;i<8;i++){const x=50+i*42,y=235-i*13;ve('rect',{x,y:y-14,width:6,height:14,fill:'#4a2216'});}
+// two towers
+for(const[x,y]of[[180,200],[240,181]]){ve('rect',{x:x-14,y:y-120,width:28,height:120,fill:'#8a4430',stroke:'#1a0f0a'});
+ for(let i=0;i<4;i++)ve('rect',{x:x-14+i*8,y:y-128,width:5,height:8,fill:'#8a4430'});ve('rect',{x:x-3,y:y-100,width:6,height:12,fill:'#e0892e'});ve('rect',{x:x-3,y:y-70,width:6,height:12,fill:'#110b08'});}
+vt(210,40,'Oberbaumbrücke (Spree)','#ffb08a',14);
+// Hochbahn
+vt(210,345,'Hochbahn U1 über der Skalitzer','#9ad0a0',14);
+ve('polygon',{points:'0,520 420,390 420,470 0,600',fill:'#231c17'});
+ve('polygon',{points:'20,470 400,352 400,366 20,484',fill:'#3f6a4a'});
+ve('polygon',{points:'20,484 400,366 400,374 20,492',fill:'#2c4a34'});
+for(let i=0;i<6;i++){const x=40+i*66,y=480-i*20.5;ve('rect',{x:x-4,y,width:8,height:72,fill:'#3f6a4a',stroke:'#1a2a1e'});ve('ellipse',{cx:x,cy:y+74,rx:10,ry:5,fill:'rgba(0,0,0,.4)'});}
+ve('polygon',{points:'120,480 170,464 170,452 120,468',fill:'#e8d84a'});ve('polygon',{points:'170,464 240,442 240,430 170,452',fill:'#e8d84a'});
+vt(210,585,'Stützen = Deckung, Zug als Wrack oben','#a8957d',11);
+</script></body></html>
