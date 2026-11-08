@@ -31,7 +31,7 @@ Focus: gameplay and content. Art runs in parallel through Codex (`docs/asset-pip
 | 9 | Controller support | Gamepad API for Xbox and Steam Deck (browser), stick aiming, assists per input device |
 | 10 | AI-maintainability review | Code and docs readable for Claude and Codex with few tokens |
 | 11 | Walkable camp hub | Mockup first. Lives at Lindenstraße in Köpenick |
-| A | Asset pipeline (Codex) | Step 1 done: four boards, Köpenick default (`docs/style-bible.md`). Next: first Köpenick batch (player, Altbau, Späti, bus, Trabi, zombie), finish style bible step 2 with it, test on the Tab S9 |
+| A | Asset pipeline (Codex) | Menu art via ChatGPT in 15 batches: `docs/chatgpt-assets.md` (icons, survivor, enemy and boss portraits). Step 1 done: four boards, Köpenick default (`docs/style-bible.md`). Next: first Köpenick batch (player, Altbau, Späti, bus, Trabi, zombie), finish style bible step 2 with it, test on the Tab S9 |
 | 12 | Style proposals | From `docs/style-bible.md`, undecided: Spreepark zone in Köpenick, zombie raptor and T-rex, U-Bahn market set piece, lamp gun, per-district palettes in code (mockup first), Alexanderplatz as GDR clockwork district |
 | - | GitHub Pages | When playtesting outside the dev setup |
 

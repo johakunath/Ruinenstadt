@@ -5,6 +5,7 @@
 - View is 2:1 isometric. Logic, collision and map generation use flat world coords; only drawing projects (`js/iso.js`, `render()` in `js/render.js`).
 - Maps: grid districts in `js/world.js` + `js/biomes.js` (2400). Geographic districts (`D.geo`, Köpenick 3600 and Xhain 4000 so far; landmarks per district in `K.lm`) in `js/geo.js`; roads are segments (`ROADS`, `roadPt`) for both. Building size: `BSC`/`BHS` in `js/world.js`.
 - Art: style source of truth is `docs/style-bible.md` + boards in `docs/style/` (Köpenick = default look). Check it before any visual, enemy or district work. Asset handover for Codex: `docs/asset-pipeline.md`.
+- ChatGPT menu art (icons, portraits): batch list `docs/chatgpt-assets.md`, raw sheets land in `assets/raw/`.
 - Game text is German. Code style is dense one-liners; match it.
 - Release: bump `VERSION` (`js/core.js`) and `CACHE` (`sw.js`) together, update `BACKLOG.md`.
 - New visual forms (charts, layouts, scenes): SVG mockup first, let the user choose, then implement.
