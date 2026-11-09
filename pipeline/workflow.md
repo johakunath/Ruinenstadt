@@ -7,8 +7,10 @@ How the painted in-world art is made, plugged in and handed over. Index for ever
 | Who | Does | Does not |
 |---|---|---|
 | Johannes | Picks variants, approves each task, playtests on the Tab S9 | Edit code |
-| Codex | Generates in-world sprites (buildings, vehicles, nature, enemies, bosses, props), cuts and normalises them, writes the manifest entries and the renderer hooks, tests in the browser | Menu art, the player rig (`js/hero.js`, `tools/build_hero.py`) |
-| Claude | Menu art via ChatGPT sheets (`docs/chatgpt-assets.md`, `tools/cut_sheets.py`), the painted player rig, reviews Codex PRs on request | Re-do Codex sprites without a note in `log.md` |
+| Codex | Does the tasks end to end: generates sprites and parts, cuts and normalises them, writes the manifest, hooks the renderer, updates the player rig (`tools/build_hero.py`, `js/hero.js`, `drawHero`) and menu art when a task says so, tests in the browser, opens the PR | Change task scope or the contract on its own: write the question into `log.md` instead |
+| Claude | Plans and writes the tasks, keeps `contract.md` right, reviews and debugs Codex PRs, fixes what is architecturally tricky | Redo Codex work without a note in `log.md` |
+
+Tasks are written so they can be followed step by step: concrete files, functions, numbers and acceptance checks. If a step is unclear or does not work as written, stop at that step and write it into `log.md`.
 
 Both agents may change any code when a task needs it. Keep the change small and say it in `log.md`.
 
