@@ -27,6 +27,7 @@ The exploratory boards (A Prussian Clockwork, B Concrete Orchard, C Bassline Und
 | Nature | Overgrowth everywhere (ivy, ferns, sunflowers). Reclaimed and unsettling, not cosy |
 | Player | One survivor across all districts: dark brown hair, **red scarf**, long brown leather coat, harness with pouches, heavy boots. Districts add one piece (gas tank, cyber arm, clockwork gauntlet) |
 | Readability | Characters, enemies, paths and pickups must read at gameplay scale on the Tab S9. Applies to every asset |
+| Item colour (v0.52) | The first item sets (B01 to B10, H03 to H07) are starter gear and stay rust, brown and ochre. **Everything new is brighter and more saturated**: each item gets one strong signature colour (enamel red, BVG yellow, cobalt blue, bottle green, violet, cyan, magenta, gold) on a clean light base, so items and outfits tell apart at 48 px and on the 60 px player. Rarer items get more colour, legendaries a glow. Rust and dirt stay as a light overlay, not as the main colour |
 
 ## Palettes
 

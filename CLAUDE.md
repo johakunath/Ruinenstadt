@@ -4,7 +4,7 @@
 - Plain HTML/CSS/JS, no build step, no dependencies. Scripts are classic (not modules) and share globals; order in `index.html` matters.
 - View is 2:1 isometric. Logic, collision and map generation use flat world coords; only drawing projects (`js/iso.js`, `render()` in `js/render.js`).
 - Maps: grid districts in `js/world.js` + `js/biomes.js` (2400). Geographic districts (`D.geo`: Köpenick 3600, Xhain 4000 in `js/geo.js`, Mitte 4000 in `js/mitte.js`, Alexanderplatz 4000 in `js/alex.js`; landmarks per district in `K.lm`, optional `K.post` after lots); roads are segments (`ROADS`, `roadPt`) for both. Building size: `BSC`/`BHS` in `js/world.js`. U-Bahn tunnel levels and the S+U network menu map: `js/ubahn.js` (`buildTunnel` instead of `buildWorld`, `run.tun`, `S.ln` cleared lines).
-- Art: style source of truth is `docs/style-bible.md` + boards in `docs/style/` (Köpenick = default look). Check it before any visual, enemy or district work. Asset handover for Codex: `docs/asset-pipeline.md`.
+- Art: style source of truth is `docs/style-bible.md` + boards in `docs/style/` (Köpenick = default look). Check it before any visual, enemy or district work. In-world sprites with Codex: `pipeline/README.md` (tasks, renderer contract, handover log). Painted player rig: `js/hero.js` from `tools/build_hero.py`, drawn by `drawHero` in `js/art.js`; `?debug=hit` shows hitboxes.
 - ChatGPT menu art (icons, portraits): batch list `docs/chatgpt-assets.md`, raw sheets land in `assets/raw/`.
 - Game text is German. Code style is dense one-liners; match it.
 - Release: bump `VERSION` (`js/core.js`) and `CACHE` (`sw.js`) together, update `BACKLOG.md`.

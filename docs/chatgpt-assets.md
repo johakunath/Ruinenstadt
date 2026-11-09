@@ -38,6 +38,8 @@ Paste in front of every batch:
 
 > Painted comic illustration in the style of the attached Köpenick reference board: dark ink outlines, painterly brush texture, stylized not realistic, gritty post-apocalyptic Berlin with a western-steampunk and noir touch. Warm light from the top left, cool teal shadow. Palette: cream `#f0b27a`, ochre `#db8c2b`, olive `#7b6a32`, teal grey `#516a62`, rust `#8b4a35`, oxblood `#591e1e`. Worn, used, improvised, but readable. Every object must still read as a clear silhouette when shrunk to 48 pixels.
 
+New batches from v0.52 on also add: *"Bright, saturated signature colour per object (enamel red, BVG yellow, cobalt blue, bottle green, violet, cyan, magenta, gold) on a clean light base. Rust and dirt only as a light overlay. Objects must look clearly different from each other, not all orange and brown."* (Style bible: Item colour.)
+
 Icon batches add: *"Each cell shows one inventory icon: a single object in 3/4 view from slightly above, all at the same scale and lighting."*
 
 Portrait batches add: *"Each cell shows one bust portrait (head and shoulders, 3/4 view), same framing and eye height in every cell."*
