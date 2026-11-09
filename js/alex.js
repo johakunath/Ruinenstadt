@@ -121,16 +121,16 @@ function aPlaza(){const g=gx,P_=ALEX.plaza;g.save();g.beginPath();P_.forEach((p,
 function aRim(cx,cy,rx,ry){const g=gx;g.strokeStyle='#8a8070';g.lineWidth=10;g.beginPath();g.ellipse(cx,cy,rx+6,ry+5,0,0,7);g.stroke();g.strokeStyle='#a89c84';g.lineWidth=4;g.beginPath();g.ellipse(cx,cy,rx+14,ry+11,0,0,7);g.stroke();
   g.fillStyle='#8a8070';g.beginPath();g.ellipse(cx,cy,rx*.3,ry*.3,0,0,7);g.fill();g.fillStyle='#3a6a6a';g.beginPath();g.ellipse(cx,cy,rx*.2,ry*.2,0,0,7);g.fill();}
 // Fernsehturm: concrete shaft, sphere with a ring of lit windows and a brass gear rim (clockwork), red and white antenna, ivy climbing. Upright sprite on a plinth with the folded pavilion roofs around it
-function fernsehturm(x,y){const W=130,H=1020,c=cnv(W,H),t=c.getContext('2d'),cx=W/2,base=H-6;
+function fernsehturm(x,y){const W=130,H=860,c=cnv(W,H),t=c.getContext('2d'),cx=W/2,base=H-6;
   t.fillStyle='#8a856e';t.beginPath();t.moveTo(cx-56,base);t.lineTo(cx+56,base);t.lineTo(cx+40,base-24);t.lineTo(cx-40,base-24);t.fill();for(let i=0;i<5;i++){t.fillStyle=i%2?'#d8d2bc':'#b8b098';t.beginPath();t.moveTo(cx-56+i*22,base-6);t.lineTo(cx-45+i*22,base-34);t.lineTo(cx-34+i*22,base-6);t.fill();}
-  const sg=t.createLinearGradient(cx-16,0,cx+16,0);sg.addColorStop(0,'#e0dac4');sg.addColorStop(.55,'#c8c2a8');sg.addColorStop(1,'#8a856e');t.fillStyle=sg;t.beginPath();t.moveTo(cx-17,base-24);t.lineTo(cx+17,base-24);t.lineTo(cx+8,base-760);t.lineTo(cx-8,base-760);t.fill();
-  t.strokeStyle='rgba(0,0,0,.12)';t.lineWidth=1;for(let y=base-60;y>base-760;y-=40){t.beginPath();t.moveTo(cx-16,y);t.lineTo(cx+16,y);t.stroke();}
-  t.strokeStyle='#4a7a3a';t.lineWidth=3;t.beginPath();t.moveTo(cx-10,base-30);for(let y=base-30;y>base-420;y-=24)t.lineTo(cx-12+Math.sin(y*.05)*5,y);t.stroke();t.fillStyle='#6a9a4a';for(let y=base-40;y>base-420;y-=18){t.beginPath();t.ellipse(cx-12+Math.sin(y*.05)*5+R(-4,4),y,4,2.4,R(-1,1),0,7);t.fill();}
-  const sy=base-800;for(let a=0;a<24;a++){const q=a/24*6.283;t.save();t.translate(cx+Math.cos(q)*52,sy+Math.sin(q)*52);t.rotate(q);t.fillStyle='#c8902a';t.fillRect(-5,-5,10,10);t.restore();}
+  const sg=t.createLinearGradient(cx-22,0,cx+22,0);sg.addColorStop(0,'#e0dac4');sg.addColorStop(.55,'#c8c2a8');sg.addColorStop(1,'#8a856e');t.fillStyle=sg;t.beginPath();t.moveTo(cx-24,base-24);t.lineTo(cx+24,base-24);t.lineTo(cx+12,base-560);t.lineTo(cx-12,base-560);t.fill();
+  t.strokeStyle='rgba(0,0,0,.12)';t.lineWidth=1;for(let y=base-60;y>base-560;y-=40){t.beginPath();t.moveTo(cx-20,y);t.lineTo(cx+20,y);t.stroke();}
+  t.strokeStyle='#4a7a3a';t.lineWidth=3;t.beginPath();t.moveTo(cx-10,base-30);for(let y=base-30;y>base-320;y-=24)t.lineTo(cx-12+Math.sin(y*.05)*5,y);t.stroke();t.fillStyle='#6a9a4a';for(let y=base-40;y>base-320;y-=18){t.beginPath();t.ellipse(cx-12+Math.sin(y*.05)*5+R(-4,4),y,4,2.4,R(-1,1),0,7);t.fill();}
+  const sy=base-600;for(let a=0;a<24;a++){const q=a/24*6.283;t.save();t.translate(cx+Math.cos(q)*52,sy+Math.sin(q)*52);t.rotate(q);t.fillStyle='#c8902a';t.fillRect(-5,-5,10,10);t.restore();}
   const bg=t.createRadialGradient(cx-14,sy-14,4,cx,sy,46);bg.addColorStop(0,'#b8ccd0');bg.addColorStop(1,'#5a7074');t.fillStyle=bg;t.beginPath();t.arc(cx,sy,46,0,7);t.fill();
   t.fillStyle='#2a3438';t.fillRect(cx-46,sy-6,92,12);for(let i=-5;i<=5;i++){t.fillStyle=Math.random()<.5?'#f2c868':'#3a4448';t.fillRect(cx+i*8-3,sy-4,5,8);}t.strokeStyle='#14100c';t.lineWidth=2;t.beginPath();t.arc(cx,sy,46,0,7);t.stroke();
   t.fillStyle='#c8c2a8';t.fillRect(cx-6,sy-110,12,64);t.fillStyle='#8a856e';t.fillRect(cx+1,sy-110,5,64);for(let i=0;i<9;i++){t.fillStyle=i%2?'#ead9c0':'#af4237';t.fillRect(cx-3,sy-110-(i+1)*14,6,14);}
-  blds.push({x:x-W/2,y,w:W,h:0,top:base,spr:c,sc:1.2,lights:[{x,y,z:960,r:90}]});walls.push({x:x-28,y:y-26,w:56,h:44});neons.push({x,y,z:960,c:'#f2c868',s:60});
+  blds.push({x:x-W/2,y,w:W,h:0,top:base,spr:c,sc:1.2,lights:[{x,y,z:720,r:90}]});walls.push({x:x-28,y:y-26,w:56,h:44});neons.push({x,y,z:720,c:'#f2c868',s:60});
   const g=gx;g.fillStyle='#5a5244';g.beginPath();g.arc(x,y,150,0,7);g.fill();for(let a=0;a<6;a++){g.fillStyle=a%2?'#8a856e':'#a09a80';g.beginPath();g.moveTo(x,y);g.arc(x,y,130,a*1.047,a*1.047+.6);g.fill();}
   reserved.push({x:x-170,y:y-170,w:340,h:340});marks.push({x,y:y+60,n:'Fernsehturm'});}
 // Weltzeituhr: column, ring of city panels, orbit sculpture above with gear teeth and a glowing sun. Upright sprite
@@ -148,7 +148,7 @@ function neptun(x,y){const c=cnv(40,80),t=c.getContext('2d');t.fillStyle='#6a645
 // market on the Alex: stalls with striped awnings, crates
 function drawStall(b){const{x,y,w,h}=b;faceT(x+3,y+3,w,h,0,'rgba(0,0,0,.3)');ibox(x,y+h*.4,w,h*.6,0,20,'#6a4a2e',INK,'#8a6a44');for(const q of [[x,y],[x+w-4,y],[x,y+h-4],[x+w-4,y+h-4]])ibox(q[0],q[1],4,4,0,40,'#3a2a1e');
   for(let u=0;u<w;u+=10)poly([P3(x+u,y-4,46),P3(x+u+10,y-4,46),P3(x+u+10,y+h+4,36),P3(x+u,y+h+4,36)],(u/10)%2?b.c:'#ead9c0',INK);
-  for(let i=0;i<4;i++)ibox(x+6+i*(w-14)/4,y+h*.5,6,6,20,26,pick(['#e7982b','#af4237','#7b9a3a','#f2c230']));}
+  for(let i=0;i<4;i++)ibox(x+6+i*(w-14)/4,y+h*.5,6,6,20,26,(b.gc||(b.gc=Array.from({length:4},()=>pick(['#e7982b','#af4237','#7b9a3a','#f2c230']))))[i]);}// v0.62: goods colours fixed per stall (random per frame flickered)
 function aMarket(cx,cy){for(let i=0;i<8;i++){const x=cx-200+(i%4)*110,y=cy+Math.floor(i/4)*90,o={x,y,w:70,h:40,H:46,top:46,R0:0,c:pick([GRD,'#3a6a8a','#7b6a32',GOC]),lights:[],draw:drawStall};blds.push(o);walls.push({x,y:y+16,w:70,h:24});if(Math.random()<.6)addBrk(x+80,y+20,'crate',false);}marks.push({x:cx-40,y:cy+60,n:'Markt am Alex'});}
 // Bahnhof Alexanderplatz: station hall on the viaduct (same art as the Ostbahnhof), closed
 function aStation(cx,cy){const s=segsOf(ALEX.rail)[3],rot=rotN(Math.atan2(s.uy,s.ux)),w=360,h=96,b={x:cx-w/2,y:cy-h/2,w,h,hb:70,H:96,top:96,R0:0,rot,lw:Array.from({length:16},()=>Math.random()<.05),lights:[],draw:drawOstbf};

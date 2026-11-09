@@ -47,7 +47,7 @@ function enterBase(){initAudio();immerse();run=null;buildBase();newPlayer();ST=s
 function leaveBase(){document.body.classList.remove('base');clearInput();state='menu';buildWorld(DIST[S.dist]);newPlayer();ST=stats();P.hp=ST.maxHp;cam.x=null;renderMenu();$('menu').hidden=false;}
 function baseMenu(tab){clearInput();invTab=tab;state='baseinv';openInv('base');}
 function baseUpdate(dt){padPoll();let mx=joy.x+pad.mx,my=joy.y+pad.my;if(keys.KeyA||keys.ArrowLeft)mx-=1;if(keys.KeyD||keys.ArrowRight)mx+=1;if(keys.KeyW||keys.ArrowUp)my-=1;if(keys.KeyS||keys.ArrowDown)my+=1;
-  let ml=Math.hypot(mx,my);if(ml>1){mx/=ml;my/=ml;ml=1;}if(ml>0){const q=s2w(mx,my),l=Math.hypot(q[0],q[1]);mx=q[0]/l*ml;my=q[1]/l*ml;}P.mvx=mx;P.mvy=my;
+  let ml=Math.hypot(mx,my);if(ml>1){mx/=ml;my/=ml;ml=1;}if(ml>0){const q=s2w(mx,my);mx=q[0];my=q[1];}/* v0.62: constant SCREEN speed (vertical used to be half as fast in 2:1 iso) */P.mvx=mx;P.mvy=my;
   P.x+=mx*ST.spd*dt;P.y+=my*ST.spd*dt;if(ml>.15){P.walk+=dt*13*Math.min(1,ml);P.face=Math.atan2(my,mx);}collide(P);P.swingT-=dt;dashReq=false;skillReq=false;
   for(const z of BZ){const d=Math.hypot(z.x-P.x,z.y-P.y);if(d<z.r&&!z.near){z.near=true;sfx('bell');z.act();return;}if(d>z.r+30)z.near=false;}}
 // ground rings for the places (ground layer, world coords)

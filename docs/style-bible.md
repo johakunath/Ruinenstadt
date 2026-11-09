@@ -132,6 +132,10 @@ Real-world hook: Spreepark Plänterwald (next to Köpenick in Treptow-Köpenick)
 | District palette per biome in code (ground, walls, light tint) taken from the swatches | Quick visual alignment before painted assets exist. Needs a mockup first |
 | Alexanderplatz enemies: clockwork walkers as armoured or shield types, root creatures that root the player | Different answers instead of more HP (pacing pillar) |
 
+## Design source for new characters and props (v0.62)
+
+New enemies, NPCs and props are designed from the **style boards** (`docs/style/`) and this bible, not from the code-drawn placeholders in `js/` (the canvas/SVG drawings made by Claude limit the result: same bodies, same proportions). Each batch starts with a **style canvas** (palette, materials, line weight, lighting, 3 to 5 silhouette thumbnails per family) that Johannes approves, then Codex paints new designs from it. The old drawing only supplies gameplay data (footprint, anchor, telegraph origin). See `pipeline/workflow.md` step 3.
+
 ## Production order
 
 1. Köpenick: player, representative environment (Altbau, Späti, Döner, bus, Trabi), zombie, then dinosaurs.

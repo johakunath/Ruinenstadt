@@ -28,7 +28,13 @@ const SR=22050,FX={
  ignite:[{w:3,f:900,fe:300,a:.03,s:.05,d:.2,lp:.3,v:.4}],
  coin:[{w:0,f:988,ar:1.5,at:.05,s:.06,d:.15,v:.16}],
  ui:[{w:0,f:720,d:.05,v:.09}],
- heal:[{w:2,f:520,fe:1000,a:.02,s:.05,d:.2,vd:.05,vs:12,v:.25}]};
+ heal:[{w:2,f:520,fe:1000,a:.02,s:.05,d:.2,vd:.05,vs:12,v:.25}],
+ // enemy voices (v0.62), played with distance volume through sfxAt/voice
+ growl:[{w:1,f:95,fe:55,a:.03,s:.18,d:.3,vd:.25,vs:28,lp:.35,v:.5},{w:3,f:300,fe:120,s:.1,d:.25,lp:.25,v:.3}],
+ snarl:[{w:1,f:170,fe:90,s:.1,d:.22,vd:.35,vs:34,lp:.5,v:.4},{w:3,f:900,fe:300,d:.2,lp:.4,hp:.2,v:.2}],
+ screech:[{w:1,f:1200,fe:2400,a:.01,s:.05,d:.18,vd:.15,vs:40,lp:.7,v:.28}],
+ hiss:[{w:3,f:5000,fe:2500,s:.05,d:.3,hp:.4,lp:.8,v:.3}],
+ robo:[{w:0,f:440,fe:440,ar:1.5,at:.06,s:.1,d:.12,du:.25,vd:.05,vs:30,v:.2},{w:1,f:110,fe:70,d:.2,lp:.3,v:.2}]};
 let FXB={};
 function fxRender(L){const n=Math.ceil(Math.max(...L.map(l=>(l.a||0)+(l.s||0)+(l.d||.1)))*SR)+1,out=new Float32Array(n);
   for(const l of L){const a=l.a||0,su=l.s||0,de=l.d||.1,T=a+su+de,fe=l.fe||l.f,du=l.du||.5;let ph=0,nz=0,lo=0,hi=0,prev=0;
@@ -37,7 +43,12 @@ function fxRender(L){const n=Math.ceil(Math.max(...L.map(l=>(l.a||0)+(l.s||0)+(l
       if(l.lp!=null){const c=l.lp+((l.lpe!=null?l.lpe:l.lp)-l.lp)*t/T;lo+=(x-lo)*c*c;x=lo;}if(l.hp){hi=l.hp*(hi+x-prev);prev=x;x=hi;}
       const e=t<a?t/a:t<a+su?1+(l.p||0)*(1-(t-a)/Math.max(su,.001)):Math.max(0,1-(t-a-su)/de);out[i]+=x*e*l.v;}}
   const b=AC.createBuffer(1,n,SR);b.copyToChannel?b.copyToChannel(out,0):b.getChannelData(0).set(out);return b;}
-function fxPlay(k){const b=FXB[k]||(FXB[k]=fxRender(FX[k])),s=AC.createBufferSource();s.buffer=b;s.playbackRate.value=R(.93,1.07);s.connect(master);s.start();}
+function fxPlay(k,vol,rate,pan){const b=FXB[k]||(FXB[k]=fxRender(FX[k])),s=AC.createBufferSource();s.buffer=b;s.playbackRate.value=rate||R(.93,1.07);let o=s;if(vol!=null&&vol<1){const g=AC.createGain();g.gain.value=vol;o.connect(g);o=g;}if(pan&&AC.createStereoPanner){const p=AC.createStereoPanner();p.pan.value=pan;o.connect(p);o=p;}o.connect(master);s.start();}
+/* v0.62: positional effects. Volume falls with the distance to the player (full at 0, silent at 650), pan follows the screen side. voice() = enemy growl, screech, hiss or beep by type, at most one every 90 ms */
+let lastVox=0;
+function sfxAt(n,x,y,rate,gain){if(!AC||S.mute||!FX[n])return;const dx=ix(x,y)-ix(P.x,P.y),dy=(iy(x,y)-iy(P.x,P.y))*2,d=Math.hypot(dx,dy),v=clamp(1-d/650,0,1);if(v<.06)return;if(n==='hit'||n==='pop'){const now=performance.now();if(now-lastHit<45)return;lastHit=now;}try{fxPlay(n,v*v*(gain||1),rate,clamp(dx/500,-.8,.8));}catch(e){}}
+const VOX={ghoul:['growl',1],brute:['growl',.7],wurz:['growl',.85],shield:['growl',.9],boss:['growl',.55],rat:['screech',1.2],crow:['screech',.8],spitter:['hiss',1],kern:['hiss',.8],kabel:['robo',1.2],bass:['robo',.6],uhr:['robo',.9],bomb:['robo',1.5],raser:['snarl',1.1],howl:['snarl',.7]};
+function voice(e,atk){const m=VOX[e.type];if(!m)return;const now=performance.now();if(now-lastVox<90)return;lastVox=now;sfxAt(m[0],e.x,e.y,m[1]*R(.92,1.08),atk?1:.7);}
 // melodic cues stay on the synth
 const SFX={
  pick:r=>{if(r===3)[523,659,784,1047].forEach((f,i)=>tone(f,.3,'triangle',.14,0,i*.08));else{const b=[440,520,660][r];tone(b,.1,'triangle',.14);if(r>=1)tone(b*1.5,.14,'triangle',.11,0,.07);}},

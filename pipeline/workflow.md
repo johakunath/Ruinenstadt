@@ -18,7 +18,8 @@ Both agents may change any code when a task needs it. Keep the change small and 
 
 1. Read the task file in `tasks/`, then `contract.md`.
 2. Set the task status to `in progress (Codex, date)` and commit that alone, so the other agent sees it.
-3. Generate 2 to 3 variants per asset. Put raw output in `assets/raw/codex/<task>/`, never into game folders.
+3. **Design source (v0.62 rule).** Do not trace or restyle the canvas/SVG drawings in `js/`. They are placeholders and limit the design (they came from Claude's code art, not from the style). Take the look from `docs/style-bible.md` and the boards in `docs/style/` (Köpenick board as default), first generate one **style canvas** per task (a single sheet with the district's palette, material language, line weight, lighting and 3 to 5 silhouette thumbnails for the asset family), put it into `assets/raw/codex/<task>/` and show it to Johannes. Then create completely new designs from that canvas. The old drawing is only a gameplay reference: footprint `r`, anchor, telegraph origin and hitbox (see `contract.md`). Silhouette must differ clearly between types.
+3b. Generate 2 to 3 variants per asset. Put raw output in `assets/raw/codex/<task>/`, never into game folders.
 4. Show Johannes a comparison sheet (PNG, one row per asset, variants side by side, plus a game-size row at 64 px). He picks design variants. If variants differ only in colour, Codex chooses within the style bible and records the choice in `log.md`; do not pause or ask Johannes for colour-only choices. Animation poses derived from an already selected design do not require another variant selection.
 5. Normalise the picks (`tools/` script, see task 00), write `assets/manifest.json` entries, hook the renderer with canvas fallback.
 6. Test (below). Screenshot every asset in game at default zoom and at 2x.

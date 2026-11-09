@@ -1,5 +1,5 @@
 // Bump CACHE with every release so installed copies pick up the new files.
-const CACHE='ruinenstadt-0.61';
+const CACHE='ruinenstadt-0.62';
 const SHELL=['./','index.html','css/style.css','manifest.webmanifest','icons/icon.svg','icons/icon-192.png','icons/icon-512.png',
   ...['core','save','canvas','iso','data','items','audio','world','biomes','geo','mitte','alex','ubahn','base','state','feedback','combat','input','panels','update','hero','sprites','art','render','main'].map(n=>`js/${n}.js`),
   'assets/manifest.json',...['idle','walk-a','walk-b','attack-a','attack-b','hit'].map(n=>`assets/enemies/ghoul-${n}.webp`),

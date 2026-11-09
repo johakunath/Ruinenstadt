@@ -7,9 +7,9 @@ function prog(k,n){for(const j of S.jobs)if(j.k===k&&j.p<j.t){j.p=Math.min(j.t,j
 function progWave(w){for(const j of S.jobs)if(j.k==='wave'&&j.p<j.t&&w>j.p){j.p=Math.min(j.t,w);if(j.p>=j.t)jobDone(j);}}
 // rarity weights white, blue, yellow, legendary (v0.41: was 60, 26+w+l*3, 8+w*.7+l*2, 1.2+w*.3+l*.8; bot found only 19% white and 5 to 10 legendaries per Köpenick run)
 function rollR(minR){const l=S.upg.luck+DF().luck+(ST?ST.luck:0)+(run?run.th:0)+(dm_('eisen')?3:0),w=run?wE():1;const ws=[60,18+w*.6+l*.8,4+w*.35+l*.4,.1+w*.04+l*.03];for(let i=0;i<(minR||0);i++)ws[i]=0;let t=ws.reduce((a,b)=>a+b),x=Math.random()*t;for(let i=0;i<4;i++){if((x-=ws[i])<0)return i;}return minR||0;}
-function makeItem(il,minR,fs){
+function makeItem(il,minR,fs){il+=3*D.i;// v0.62: item level +3 per district so the first drops of the next district beat the end of the last one
   // legendaries exist only for weapon, body and talisman; head, hands, feet and ring top out at rare
-  const cy=D.cyber,gd=D.gdr,r=rollR(minR),roll=Math.random(),slot=fs||(cy&&Math.random()<(r===3?.25:.12)?'i':0)||(r===3?(roll<.45?'w':roll<.8?'a':'t'):roll<.3?'w':roll<.46?'a':roll<.56?'h':roll<.66?'g':roll<.76?'f':roll<.88?'t':'r'),m=RAR[r].m*R(.85,1.15);let kind,name,val;
+  const cy=D.cyber,gd=D.gdr,r=rollR(minR),roll=Math.random(),slot=fs||(cy&&Math.random()<(r===3?.25:.12)?'i':0)||(r===3?(roll<.45?'w':roll<.8?'a':'t'):roll<.3?'w':roll<.46?'a':roll<.56?'h':roll<.66?'g':roll<.76?'f':roll<.88?'t':'r'),m=RAR[r].m*R(.85,1.15)*.9;let kind,name,val;
   if(slot==='w'){kind=pick(['blade','blade','hammer','sling','spear']);name=r===3?pick(LEGW[kind]):pick(cy&&Math.random()<.45?NWM[kind]:gd&&Math.random()<.45?NWG[kind]:NW[kind]);val=Math.round((4+il*1.6)*KIND[kind].k*m);}
   else if(slot==='a'){kind='armor';name=r===3?pick(LEGA):pick(cy&&Math.random()<.4?NAM:gd&&Math.random()<.4?NAG:NA);val=Math.round((12+il*6)*m);}
   else if(slot==='h'){kind='head';name=pick(cy&&Math.random()<.4?NHM:gd&&Math.random()<.4?NHG:NH);val=Math.round((2+il*.12)*m);}
