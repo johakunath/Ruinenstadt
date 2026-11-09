@@ -1,4 +1,4 @@
-// Task 01. Serve this checkout on 8767 and an unchanged v0.61 on 8765.
+// Task 01. Serve this checkout on 8767 and an unchanged v0.63 on 8765.
 // Run: node tools/proof_enemies.cjs. ENEMY_PROOF_PHASE=visual|perf can isolate a phase.
 // Performance runs in a fresh browser only after all visual/offline contexts close.
 const {chromium}=require('playwright');
