@@ -4,7 +4,8 @@ addEventListener('keydown',e=>{keys[e.code]=true;if(e.code==='Space'){atkHeld=tr
   if(e.code==='Escape'&&!$('optv').hidden){closeOpts();return;}
   if(e.code==='Escape'||e.code==='KeyP'){if(state==='play')pauseGame();else if(state==='paused')resume();else if(state==='base')baseMenu('bag');else if(state==='baseinv')$('invbox').querySelector('[data-a=close]').click();}
   // v0.57 menu keys: Tab or I inventory, M map, J jobs, B blessings, K Kodex. The same key again closes
-  const KT={Tab:'bag',KeyI:'bag',KeyM:'map',KeyJ:'jobs',KeyB:'segen',KeyK:'kodex'}[e.code];if(KT){e.preventDefault();
+  const KT={Tab:'bag',KeyI:'bag',KeyM:'map',KeyJ:'jobs',KeyB:'segen',KeyK:'kodex'}[e.code];if(KT&&!$('optv').hidden){e.preventDefault();return;}// options window open: menu keys do nothing
+  if(KT){e.preventDefault();
     if(state==='play')pauseGame(KT);else if(state==='paused'){if(invTab===KT)resume();else{invTab=KT;renderInv();}}
     else if(state==='base'&&KT!=='map'&&KT!=='segen')baseMenu(KT==='kodex'?'kodex':KT);else if(state==='baseinv'){if(invTab===KT)$('invbox').querySelector('[data-a=close]').click();else{invTab=KT;renderInv();}}}});
 addEventListener('keyup',e=>{keys[e.code]=false;if(e.code==='Space')atkHeld=false;});

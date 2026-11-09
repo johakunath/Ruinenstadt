@@ -14,7 +14,7 @@ const TW=16000,TH=2400,TX0=200,TX1=15800,HW=310,PW=580,cy=x=>1200+420*Math.sin(M
   at=(x,o)=>{const a=ang(x);return[x-o*Math.sin(a),cy(x)+o*Math.cos(a)];};
 // stations (x ranges with platforms on both sides), side rooms and special stretches
 const TST=[[TX0,1900],[5600,7400],[13400,TX1]],inSt=x=>TST.some(s=>x>=s[0]&&x<=s[1]),hwAt=x=>{let h=HW;for(const s of TST){const d=Math.max(s[0]-x,x-s[1]);if(d<450)h=Math.max(h,PW-(PW-HW)*Math.max(0,d)/450);}return h;};
-const ROOM=[2380,0,700,420],RUBX=[4250,4700],BYP=[4000,4950],FLOOD=[9300,10800],GEN={x:14800,y:0,r:260,need:55};// y of ROOM and GEN set in buildTunnel
+const ROOM=[2380,0,700,420],RUBX=[4250,4700],BYP=[4000,4950],FLOOD=[9300,10800],GENX=14800,GEN={x:GENX,y:0,r:260,need:55}// GENX: route coordinate of the generator, GEN.x/y are projected from it on every build;// y of ROOM and GEN set in buildTunnel
 // sections: n name ({a} start, {b} target, {g} ghost station), packs (t: trigger x, sp: spawn x range ahead, ty types), gate x. Types: g ghoul, s spitter, b brute, r rat pack, w bomb, h howl (or ghoul), x district special, E elite ghoul, B elite brute
 const TSEC=[{n:'Bahnsteig {a}',packs:[],end:1750},
   {n:'Tunnel',packs:[{t:2000,sp:[2500,2800],ty:'gggggrs'},{t:2600,sp:[3000,3300],ty:'gggsxbg'},{t:3200,sp:[3500,3750],ty:'ggsrxg'}],gate:3800},
@@ -77,7 +77,7 @@ function tunMapTab(c){const g=c.getContext('2d'),k=600/TW,oy=300-TH*k/2,T=(x,y)=
 function buildTunnel(k){const L=LINES[k];D=Object.assign({},DIST[k],{n:L.l+' · '+DIST[k].n+' → '+DIST[k+1].n,tun:1,lvl:DIST[k].lvl+6,geo:null,wet:0,day:0,cyber:0,dark:.93,nc:'5,6,7'});
   WS=TW;WH=TH;const sp=at(700,-440);[SX,SY]=sp;G=cnv(TW/2,TH/2);G.k=.5;gx=G.getContext('2d');gx.scale(.5,.5);walls=[];blds=[];barrels=[];reserved=[];marks=[];brk=[];spati=null;darks=[{x:0,y:0,w:TW,h:TH,seen:1}];waters=[];neons=[];shrines=[];ROADS=[];BLK=[];
   TUN={k,sec:0,live:[],gates:[],gen:null,lit:0,hold:0,boss:0,done:0};
-  {const rc=cy(2730)-HW-420;ROOM[1]=Math.round(rc/20)*20;ROOM[3]=540;const g_=at(GEN.x,-450);GEN.y=g_[1];GEN.x=g_[0];}
+  {const rc=cy(2730)-HW-420;ROOM[1]=Math.round(rc/20)*20;ROOM[3]=540;const g_=at(GENX,-450);GEN.y=g_[1];GEN.x=g_[0];}
   // walkable mask (20 px cells) -> merged solid rects as invisible collision walls
   const C=20,NX=TW/C,NY=TH/C,M=new Uint8Array(NX*NY),at_=(i,j)=>i>=0&&j>=0&&i<NX&&j<NY&&M[j*NX+i];
   for(let i=0;i<NX;i++){const x=i*C+C/2,c=cy(x),ca=Math.cos(ang(x)),h=hwAt(x);for(let j=0;j<NY;j++){const y=j*C+C/2,d=(y-c)*ca;let w=x>=TX0&&x<=TX1&&Math.abs(d)<=h;

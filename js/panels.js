@@ -197,13 +197,13 @@ function renderOpts(){const row=(n,d,c)=>`<div class="orow"><div class="ot"><div
   <div class="osec">Bild und Ton</div>${row('Ton','',tg('mute',!S.mute))}${row('Musik','',tg('music',!!S.music))}${row('Vibration','Kurze Stöße bei Treffern.',seg('hap',['Aus','Leicht','Stark'],S.hap==null?1:S.hap))}
   ${row('Akkusparen','Weniger Lichter und Bilder pro Sekunde, schont Akku und Wärme.',tg('eco',!!S.eco))}${row('Vollbild','Blendet die Browserleiste während Expeditionen aus.',tg('fs',S.fs!==0))}
   <div class="osec">Steuerung</div><div class="ctl">${seg('dev',['Touch','Tastatur und Maus','Controller'],{touch:0,key:1,pad:2}[dv])}${{touch:touchSVG,key:keySVG,pad:padSVG}[dv]()}</div>
-  <div class="osec">Spielstand</div>${cloudLine()}${row('Spielstand kopieren','Als Code in die Zwischenablage, zum Sichern oder für ein anderes Gerät.',`<button class="btn sm" data-o="exp">Kopieren</button>`)}${row('Spielstand laden','Einen kopierten Code einfügen.',`<button class="btn sm" data-o="imp">Laden</button>`)}
+  <div class="osec">Spielstand</div>${cloudLine()}${row('Spielstand kopieren','Als Code in die Zwischenablage, zum Sichern oder für ein anderes Gerät.',`<button class="btn sm" data-o="exp">Kopieren</button>`)}${inRun?'':row('Spielstand laden','Einen kopierten Code einfügen.',`<button class="btn sm" data-o="imp">Laden</button>`)}
   ${inRun?'':row('Neues Spiel','Löscht Fortschritt, Ausrüstung, Lager und Schrott. Einstellungen bleiben.',`<button class="btn sm danger" data-o="new">Neues Spiel</button>`)}
   <p class="hint">Version ${VERSION}</p>`;}
 $('optv').addEventListener('click',e=>{const t=e.target.closest('[data-o]');if(!t||t.disabled)return;const k=t.dataset.o,v=+t.dataset.v;
   if(k==='close')return closeOpts();if(k==='diff')S.diff=v;if(k==='auto')S.auto=!autoAtk();if(k==='tips'){S.tips={};toast('Tipps werden wieder gezeigt');}if(k==='mute')setMute(!S.mute);
   if(k==='music'){S.music=!S.music;if(S.music)startMusic();else stopMusic();}if(k==='hap'){S.hap=v;buzz(12);}if(k==='eco')setEco(!S.eco);if(k==='fs'){S.fs=S.fs===0?1:0;if(S.fs===0&&document.fullscreenElement)document.exitFullscreen().catch(()=>{});}
-  if(k==='dev')optDev=['touch','key','pad'][v];if(k==='exp')exportSave();if(k==='imp'){importSave();return;}if(k==='new'){newGame();if(state==='menu'){$('optv').hidden=true;$('menu').hidden=false;}return;}save();renderOpts();});
+  if(k==='dev')optDev=['touch','key','pad'][v];if(k==='exp')exportSave();if(k==='imp'){if(optFrom!=='menu')return;importSave();return;}if(k==='new'){newGame();if(state==='menu'){$('optv').hidden=true;$('menu').hidden=false;}return;}save();renderOpts();});
 // controls graphics (inline SVG, German labels)
 const SVGT=(x,y,s,a)=>`<text x="${x}" y="${y}"${a?` text-anchor="${a}"`:''}>${s}</text>`,SVGL=(p)=>`<path d="${p}" class="ln"/>`;
 function padSVG(){const bt=(x,y,c,l)=>`<circle cx="${x}" cy="${y}" r="13" fill="${c}"/><text x="${x}" y="${y+5}" class="bk">${l}</text>`;
