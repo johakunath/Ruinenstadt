@@ -53,6 +53,10 @@ def refine(t, gx, gy, r=22):
                 best = (len(b), (x0 + x1) / 2, (y0 + y1) / 2)
     return (best[1], best[2]) if best else (gx, gy)
 
+def body_x(T):
+    """Horizontal centre of the torso's lower 40% (the coat body; the scarf ends hang higher and further left)."""
+    a = np.asarray(T)[int(T.height * .6):, :, 3] > 100; xs = np.nonzero(a.any(0))[0]; return (xs.min() + xs.max()) / 2
+
 def sc(P, f, fy=None):
     return P.resize((max(1, round(P.width * f)), max(1, round(P.height * (fy or f)))), Image.LANCZOS)
 
@@ -73,13 +77,21 @@ def fit_head(hat, base):
 
 WEAP = 'I01 I02 I03 I04 I05 I06 I07 I08 I09 I10 I11 I12 I13 I14 I15 I16 I32 I48 I51 I52 I53 I56 I59 I60 I61 I62'.split()
 
+# per icon fixes, checked by eye on a sheet with the found grip and axis drawn in (see weapon()):
+# 'flip' = the sharp end points down-left on the sheet, so the grip is the upper end; or a fixed [grip x, grip y, head x, head y] in icon px
+WFIX = {'I51': 'flip', 'I56': 'flip', 'I61': 'flip', 'I62': 'flip', 'I32': 'flip', 'I10': [30, 118, 67, 15], 'I11': [65, 8, 47, 92]}
+
 def weapon(idn):
     """Main axis of a weapon icon: angle (rad, image y down) from the grip towards the head, grip point and length in icon px.
     The sheets draw every weapon with the grip bottom left and the head top right, so the axis is turned to point up."""
     a = np.asarray(Image.open(os.path.join(ROOT, 'assets', 'icons', idn + '.webp')).convert('RGBA'))[..., 3].astype(np.float32)
     ys, xs = np.nonzero(a > 100); P = np.stack([xs, ys], 1).astype(np.float32); c = P.mean(0)
     w, v = np.linalg.eigh(np.cov((P - c).T)); u = v[:, 1]; t = (P - c) @ u
-    if u[1] > 0: u, t = -u, -t                                   # point u up, at the head
+    fx = WFIX.get(idn)
+    if isinstance(fx, list):
+        g, h = np.array(fx[:2], np.float32), np.array(fx[2:], np.float32); v = h - g
+        return [round(float(np.arctan2(v[1], v[0])), 3), float(g[0]), float(g[1]), round(float(np.hypot(*v)), 1)]
+    if (u[1] > 0) != (fx == 'flip'): u, t = -u, -t              # point u up at the head, or down for 'flip'
     g = c + u * (t.min() + .08 * (t.max() - t.min()))              # grip a little inside the handle end
     return [round(float(np.arctan2(u[1], u[0])), 3), round(float(g[0]), 1), round(float(g[1]), 1), round(float(t.max() - t.min()), 1)]
 
@@ -100,18 +112,19 @@ def build():
     ax, ay, aw, ah = BASE['arm']; arm0 = sc(load('H02a-H04'), aw / load('H02a-H04').width)
     lx, ly, lw, lh = BASE['leg']; leg0 = sc(load('H02a-H05'), lw / load('H02a-H05').width)
     tx, ty, tw, th = BASE['torso']; tor0 = sc(load('H02a-H03'), tw / load('H02a-H03').width)
-    out = {'none': (tor0, tx, ty, arm0, ax, ay)}
+    BODYX = tx + body_x(tor0); out = {'none': (tor0, tx, ty, arm0, ax, ay, 0)}
     for k, (tc, ac) in ARMS.items():
         T, A, tu = load(tc), load(ac), TUNE.get(k, {}); hx_, hy_ = refine(T, *HOLE[k])
         f = ah / A.height * tu.get('ts', 1)                      # torso and arm share the sheet scale; the arm length fixes it
         T, A = sc(T, f), sc(A, f * tu.get('as', 1)); hx_, hy_ = hx_ * f, hy_ * f
         tX, tY = SH[0] - hx_ + tu.get('tx', 0), SH[1] - hy_ + tu.get('ty', 0)
         aX, aY = SH[0] - A.width / 2 + tu.get('ax', 0), SH[1] - A.width * .45 + tu.get('ay', 0)
-        out[k] = (T, tX, tY, A, aX, aY)
-    for k, (T, tX, tY, A, aX, aY) in out.items():
+        dx = BODYX - (tX + body_x(T)); tX += dx; aX += dx  # centre the body (not the scarf) over the legs; arm and pivot move along
+        out[k] = (T, tX, tY, A, aX, aY, dx)
+    for k, (T, tX, tY, A, aX, aY, dx) in out.items():
         save(T, 't-' + k); save(A, 'a-' + k, True)
         hip = min(HIP, tY + T.height - 26)                     # short jackets: hip moves up so the legs touch the torso
-        R[k] = {'t': place(T, tX, tY), 'a': place(A, aX, aY), 'sh': [round((SH[0] - OX) * U, 2), round((SH[1] - OY) * U, 2)],
+        R[k] = {'t': place(T, tX, tY), 'a': place(A, aX, aY), 'sh': [round((SH[0] + dx - OX) * U, 2), round((SH[1] - OY) * U, 2)],
                 'hip': round((hip - OY) * U, 2)}
     leg = save(leg0, 'leg', True); R['leg'] = [round((lx + lw / 2 - OX) * U, 2), round(lw * U, 2), round(lh * U, 2)]
     R['hand'] = round((ah - 14) * U, 2)  # shoulder to hand distance along the arm

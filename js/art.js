@@ -58,7 +58,7 @@ function heroPre(){for(const k in HR)if(HR[k].t){himg('t-'+k);himg('a-'+k);himg(
 function hpart(img,x,y,w,h){ctx.drawImage(img,x,y,w,h);}
 function drawHero(t,sw,aa,wa,W,GC,CY){const{o,h}=heroKeys(),R=HR[o],T=himg('t-'+o),A=himg('a-'+o),Ad=himg('a-'+o+'-d'),Lg=himg('leg'),Ld=himg('leg-d'),Hd=himg(h);
   if(!T||!A||!Ad||!Lg||!Ld||!Hd)return false;
-  if(W.kind==='hammer'&&!(P.swingT>0)&&!(P.spin>0))wa=-2.55;// the long painted hammer rests across the back, steeper it hides the face
+  if(W.kind==='hammer'&&!(P.swingT>0)&&!(P.spin>0))wa=.42;// the long painted hammer is dragged, head on the ground in front; held upright it hides the face
   const[lx,lw]=HR.leg,hip=R.hip,ll=-hip,[sx,sy]=R.sh,a=R.a,hd=HR[h];
   const leg=(img,x,r)=>{ctx.save();ctx.translate(x,hip);ctx.rotate(r);ctx.drawImage(img,-lw/2,-1,lw,ll+1);ctx.restore();};
   const arm=(img,r,dx)=>{ctx.save();ctx.translate(sx+dx,sy);ctx.rotate(r);ctx.drawImage(img,a[0]-sx,a[1]-sy,a[2],a[3]);ctx.restore();};

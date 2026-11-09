@@ -113,7 +113,7 @@ Real-world hook: Spreepark Plänterwald (next to Köpenick in Treptow-Köpenick)
 
 | Conflict | Handling |
 |---|---|
-| Boards are eye-level illustrations with front/back character views. The game is 2:1 isometric | Boards define look, palette, materials and design. Camera, scale and anchors stay as in `docs/asset-pipeline.md` |
+| Boards are eye-level illustrations with front/back character views. The game is 2:1 isometric | Boards define look, palette, materials and design. Camera, scale and anchors stay as in `pipeline/workflow.md` |
 | Boards are very detailed and textured | Simplify for sprites: keep silhouette, ink outline and main colour blocks, drop small texture. Check every asset at 64 px |
 | Pipeline doc used Hades as the closest reference | Hades stays the reference for outline and readability. The boards replace it for palette, mood and Berlin detail |
 | "Mitte" appears for both Potsdamer Platz and Alexanderplatz | Decided v0.47: in-game Mitte is the government district from Reichstag to Potsdamer Platz with the Potsdamer Platz board (cyberpunk). Alexanderplatz becomes its own future district with the GDR clockwork board |
@@ -139,7 +139,7 @@ Real-world hook: Spreepark Plänterwald (next to Köpenick in Treptow-Köpenick)
 3. U-Bahn on the same base, keep the combat-to-travel role.
 4. Potsdamer Platz and Alexanderplatz later from their boards.
 
-Asset rules, folder layout and renderer contract: `docs/asset-pipeline.md`.
+Asset rules, folder layout and renderer contract: `pipeline/workflow.md`.
 
 ## Still open
 

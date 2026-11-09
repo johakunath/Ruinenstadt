@@ -1,6 +1,6 @@
 # ChatGPT asset batches
 
-Work order for generating menu art (item icons, portraits) with ChatGPT image generation. One batch = one image = one step. Johannes hands the finished sheets to Claude, who cuts and integrates them. In-world sprites (player, enemies, buildings, vehicles) are not part of this; they follow `docs/asset-pipeline.md` with Codex.
+Work order for generating menu art (item icons, portraits) with ChatGPT image generation. One batch = one image = one step. Johannes hands the finished sheets to Claude, who cuts and integrates them. In-world sprites (player, enemies, buildings, vehicles) are not part of this; they follow `pipeline/workflow.md` with Codex.
 
 ## How to work
 

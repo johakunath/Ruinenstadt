@@ -56,9 +56,9 @@ function slotBtn(k){const lbl=SLOTN[k];if(k==='i'&&!S.eq.i&&S.unlocked<=DI('Mitt
 // paper doll: draws the player with current gear into the inventory canvas by borrowing the art functions
 function drawDoll(){const c=$('dollc');if(!c)return;const g=c.getContext('2d'),W=c.width,H=c.height,o=ctx,keep={};for(const k of ['x','y','face','mvx','mvy','swingT','spin','dashT','inv','torch','walk'])keep[k]=P[k];
   g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,W,H);const gr=g.createRadialGradient(W/2,H*.62,0,W/2,H*.62,W*.5);gr.addColorStop(0,rc(S.eq.w)+'33');gr.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=gr;g.fillRect(0,0,W,H);
-  g.fillStyle='rgba(0,0,0,.35)';g.beginPath();g.ellipse(W/2,H*.83,W*.22,H*.05,0,0,7);g.fill();
+  g.fillStyle='rgba(0,0,0,.35)';g.beginPath();g.ellipse(W*(S.eq.w.kind==='hammer'?.36:.5),H*.83,W*.22,H*.05,0,0,7);g.fill();
   ctx=g;Object.assign(P,{x:0,y:0,face:.25,mvx:0,mvy:0,swingT:0,spin:0,dashT:0,inv:0,torch:false});
-  try{g.setTransform(W/72,0,0,W/72,W/2,H*.8);drawPlayer(performance.now());}catch(e){}ctx=o;Object.assign(P,keep);}
+  try{g.setTransform(W/72,0,0,W/72,W*(S.eq.w.kind==='hammer'?.36:.5),H*.8);drawPlayer(performance.now());}catch(e){}ctx=o;Object.assign(P,keep);}
 // map turned 45° like the minimap so screen-up while walking is map-up; labels stay upright. N arrow shows real north
 function drawMapTab(){const c=$('mapc');if(!c||!MB2)return;const g=c.getContext('2d'),k=600/WS,T=(x,y)=>{const a=x*k-300,b=y*k-300;return[300+(a-b)/2,300+(a+b)/2];};
   g.setTransform(1,0,0,1,0,0);g.fillStyle='#120d0a';g.fillRect(0,0,600,600);g.save();g.translate(300,300);g.rotate(Math.PI/4);g.scale(IS,IS);g.translate(-300,-300);g.drawImage(MB2,0,0);

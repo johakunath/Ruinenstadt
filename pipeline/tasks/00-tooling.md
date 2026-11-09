@@ -12,4 +12,4 @@ Goal: the pipeline works once from raw image to game, with the ghoul as test obj
 | Ghoul | Painted ghoul (style bible, Köpenick board; zombies gaunt, grey-green skin, torn Berlin clothes). Upright, facing right, parts or frames per `contract.md`. Hooked into `drawEnemy` for `type==='ghoul'`, canvas fallback kept |
 | Proof | Screenshots: ghoul group in Köpenick at default zoom and 2x, plus `?debug=hit` showing feet and body on the ring and the bite reaching the player ring |
 
-Acceptance: definition of done in `pipeline/README.md`.
+Acceptance: definition of done in `pipeline/workflow.md`.

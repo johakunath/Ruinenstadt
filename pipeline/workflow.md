@@ -1,16 +1,6 @@
-# Asset pipeline (Codex and Claude)
+# Asset pipeline workflow
 
-Start here. This folder is the shared working language for the painted in-world art of Ruinenstadt: what to make, how it plugs into the game, how to test it, and how to hand over. Codex produces and integrates in-world sprites; Claude does menu art (icons, portraits) and the player rig; Johannes decides.
-
-| File | What |
-|---|---|
-| `README.md` | Roles, workflow, conventions, definition of done (this file) |
-| `contract.md` | Renderer contract: units, camera, anchors, manifest format, hitbox rules, how a sprite replaces code drawing |
-| `tasks/` | One file per work package, in order. Take the first one whose status is `open` |
-| `log.md` | Handover log between Codex, Claude and Johannes. Append, never rewrite |
-| `history.md` | Earlier prompts and decisions, for context only |
-
-Also read before any visual work: `CLAUDE.md` (project rules), `docs/style-bible.md` (look, palettes, districts), the boards in `docs/style/` (Köpenick is the default look).
+How the painted in-world art is made, plugged in and handed over. Index for everything is `CLAUDE.md`; this file is one of its topics. Related: `contract.md` (renderer contract and hitbox rules), `tasks/` (work packages, take the first `open` one), `log.md` (handover log, append only), `history.md` (old prompts, context only). Before visual work also read `docs/style-bible.md` and the boards in `docs/style/`.
 
 ## Roles
 

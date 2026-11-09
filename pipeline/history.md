@@ -1,6 +1,6 @@
 # History
 
-From `docs/asset-pipeline.md` (before v0.52). Context only; the current rules are in `README.md` and `contract.md`.
+From `docs/asset-pipeline.md` (before v0.52). Context only; the current rules are in `workflow.md` and `contract.md`.
 
 ## Fixed decisions
 
