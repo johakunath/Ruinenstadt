@@ -1,6 +1,6 @@
 # 01 Enemies
 
-Status: open (after 00)
+Status: in progress (Codex, 2026-11-09)
 
 Same pattern as the ghoul. Look: style bible and boards, the Kodex portraits in `assets/portraits/` (E01 to E14) are the agreed designs, match them.
 
