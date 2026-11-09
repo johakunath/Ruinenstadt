@@ -10,11 +10,11 @@ function stats(eq){eq=eq||S.eq;const w=eq.w,K=KIND[w.kind],A=gear(eq),lv=P?P.lvl
   const ml=run&&run.meal;if(dm_('glas'))A.dmg+=50;if(ml==='kaffee'){A.as+=10;A.spd+=10;}if(ml==='soljanka')A.regen+=1.5;if(ml==='gurke')A.luck+=2;if(ml==='curry')A.dmg+=12;
   const asF=Math.max(.4,1+.12*pk('rate')+A.as/100+(SHR.as>0?.3:0)),cdr=clamp(A.cdr/100,0,.5);
   return{kind:w.kind,K,A,els,elp:Math.max(0,1+A.el/100+.25*pk('elp')),dmg:Math.max(1,(w.val+(lv-1)*2*K.k)*(1+.07*S.upg.dmg+.15*pk('dmg')+A.dmg/100+.04*mLvl(w.kind))),
-    maxHp:Math.max(20,Math.round((100+(lv-1)*10+15*S.upg.hp+25*pk('hp')+A.hp)*(run&&run.meal==='suppe'?1.2:1)*(dm_('glas')?.6:1))),crit:clamp(.08+.08*pk('crit')+A.crit/100,0,.75),spd:165*clamp(1+.1*pk('spd')+A.spd/100+(SHR.spd>0?.25:0),.5,1.8),
+    maxHp:Math.max(20,Math.round((100+(lv-1)*10+15*S.upg.hp+25*pk('hp')+A.hp)*(run&&run.meal==='suppe'?1.2:1)*(dm_('glas')?.6:1))),crit:clamp(.08+.08*pk('crit')+A.crit/100,0,.75),spd:182*clamp(1+.1*pk('spd')+A.spd/100+(SHR.spd>0?.25:0),.5,1.8),
     regen:Math.max(0,A.regen),res:clamp(A.res/100+.06*pk('res')+(SHR.res>0?.25:0),-.5,.75),leech:Math.max(0,A.leech)+2*pk('leech'),luck:A.luck+(hasS('spaeher')?1:0),
     rate:K.rate/asF,reach:(K.reach||0)*(1+.2*pk('reach')),pspd:560*(1+.2*pk('reach')),
     dashCd:Math.max(.4,1.4*(1-.08*S.upg.dash)*(1-.2*pk('dashcd'))*(1-cdr)*(hasS('mechaniker')?.9:1)),skCd:{blade:7,hammer:8,sling:6,spear:7}[w.kind]*(1-.2*pk('skill'))*(1-cdr)*(mLvl(w.kind)>=5?.85:1)};}
-function power(st){const dps=st.dmg*(1+st.crit)/st.rate*(1+(st.els.length?.18*st.elp:0)),ehp=st.maxHp/(1-st.res)*(1+st.regen*.04);return Math.round(Math.sqrt(dps*ehp)*(1+(st.spd/165-1)*.4)*(1+st.luck*.01));}
+function power(st){const dps=st.dmg*(1+st.crit)/st.rate*(1+(st.els.length?.18*st.elp:0)),ehp=st.maxHp/(1-st.res)*(1+st.regen*.04);return Math.round(Math.sqrt(dps*ehp)*(1+(st.spd/182-1)*.4)*(1+st.luck*.01));}
 function refresh(){if(!P){ST=stats();return;}const pct=ST?P.hp/ST.maxHp:1;ST=stats();P.hp=Math.min(ST.maxHp,Math.max(1,Math.round(ST.maxHp*pct)));}
 const ilvl=()=>D.lvl+(run?Math.max(1,Math.ceil(wE()))+run.th*3:1);
 function startRun(di,endless,daily,tun){// tun: line index for a U-Bahn tunnel run (js/ubahn.js)

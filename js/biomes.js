@@ -26,7 +26,7 @@ function lotGround(b){const g=gx,B=BIOME[D.i];
   else if(b.lot==='ruins'){for(let i=0;i<b.w*b.h/120;i++){g.fillStyle=pick(['#3a2e25','#4a3a2e','#2a211b','#55443a','rgba(0,0,0,.25)']);g.fillRect(R(b.x0+8,b.x1-10),R(b.y0+8,b.y1-10),R(2,8),R(2,6));}}
   else if(b.lot==='hochhaus'||b.lot==='buero'){g.fillStyle='#2e2b28';g.fillRect(b.x0+8,b.y0+8,b.w-16,b.h-16);g.strokeStyle='rgba(255,240,220,.05)';g.lineWidth=1;for(let x=b.x0+8;x<b.x1-8;x+=30){g.beginPath();g.moveTo(x,b.y0+8);g.lineTo(x,b.y1-8);g.stroke();}for(let y=b.y0+8;y<b.y1-8;y+=30){g.beginPath();g.moveTo(b.x0+8,y);g.lineTo(b.x1-8,y);g.stroke();}}
   else if(b.lot==='hinterhof'){g.fillStyle='#2e2620';g.fillRect(b.x0+8,b.y0+8,b.w-16,b.h-16);}}
-function lotFill(b){if(b.center)return;const f=LOTS[b.lot];if(f)f(b);if(b.lot!=='houses'&&b.lot!=='plaza'&&LOTN[b.lot]&&Math.random()<.5){const q=inB(b,60);if(!inWall(q.x,q.y,20))marks.push({x:q.x,y:q.y,n:LOTN[b.lot],soft:1});}}
+function lotFill(b){if(b.center)return;const f=LOTS[b.lot];if(f)f(b);}// v0.57: no generic lot-type labels (Hinterhof, Bürotürme ...): the map should feel empty, only real places are named
 function tryB(x,y,w,h,H,st,force){const gb=st==='efh'?R(.55,.7)*h:st==='reihen'?R(.45,.55)*h:0;H+=gb*.5;const T=D.geo?20:H;// geo maps check the footprint only (iso facades rise on screen, not into the street north of the house)
   if(w<30||h<20||resHit(x,y-T,w,h+T)||!force&&blds.some(o=>o.h>0&&!o.fe&&x<o.x+o.w+BGAP&&x+w+BGAP>o.x&&y-T<o.y+o.h+BGAP&&y+h+BGAP>o.y-(D.geo?0:o.top)))return null;const bb={x,y,w,h,H:Math.round((H-gb*.5)*(st==='laube'?1.2:2)),top:H,R0:0,gable:gb};makeB(bb,st);blds.push(bb);walls.push(bb);return bb;}
 // towers on a paved plaza, 1 to 3 per lot, a few trees in planters
@@ -115,8 +115,7 @@ const LOTS={
    const g=gx;g.fillStyle='#3a3029';g.fillRect(gc-30,y1,60,d+m);
    const cx=(b.x0+b.x1)/2,cy=(wy+y1)/2;if(!inWall(cx,cy,30))makeTree(cx,cy,pick(BIOME[D.i].trees));
    for(let i=0;i<4;i++){const q={x:cx+R(-80,80),y:cy+R(-50,50)};if(!inWall(q.x,q.y,24))addBrk(q.x,q.y,Math.random()<.6?'bin':'crate',false);}
-   for(let i=0;i<5;i++){g.strokeStyle='#2a2522';g.lineWidth=1.5;const x=b.x0+m+d+20+i*14,y=wy+16;g.beginPath();g.arc(x,y,5,0,7);g.arc(x+9,y,5,0,7);g.stroke();}
-   marks.push({x:cx,y:cy,n:'Hinterhof',soft:1});},
+   for(let i=0;i<5;i++){g.strokeStyle='#2a2522';g.lineWidth=1.5;const x=b.x0+m+d+20+i*14,y=wy+16;g.beginPath();g.arc(x,y,5,0,7);g.arc(x+9,y,5,0,7);g.stroke();}},
  // Einfamilienhäuser: plots with fence, garden and a gabled house. Reihenhäuser: rows of 3 to 6 units under one gable roof
  efh(b){const pw=Math.max(240,R(.9,1.1)*290),ph=290,cols=Math.max(1,Math.floor((b.w-20)/pw)),rows=Math.max(1,Math.floor((b.h-20)/ph));
    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){const x=b.x0+10+c*pw,y=b.y0+10+r*ph;if(Math.random()<.15||resHit(x,y,pw-10,ph-10))continue;

@@ -38,7 +38,7 @@ body{font-family:var(--f-ui)}
 #toasts{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 168px);display:grid;justify-items:center;gap:5px;pointer-events:none;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .toast{font-size:18px;background:rgba(13,9,7,.88);border:1px solid var(--edge);padding:5px 14px;border-radius:3px;animation:t 5.4s forwards;max-width:100%;text-align:center}
 @keyframes t{0%{opacity:0;transform:translateY(-6px)}4%{opacity:1;transform:none}90%{opacity:1}100%{opacity:0}}
-#banner{position:fixed;left:0;right:0;top:38%;text-align:center;font:52px/1.1 var(--f-display);color:var(--ember);pointer-events:none;opacity:0;transition:opacity .5s;padding:0 16px}
+#banner{position:fixed;left:0;right:0;top:38%;text-align:center;font:52px/1.1 var(--f-display);color:var(--ember);pointer-events:none;opacity:0;transition:opacity 1s ease-in,transform 1.2s ease-in;padding:0 16px}
 .ov{position:fixed;inset:0;overflow-y:auto;background:rgba(14,10,7,.94);display:grid;justify-items:center;align-content:start;padding-top:calc(env(safe-area-inset-top,0px) + 22px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 24px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 #menu{background:rgba(14,10,7,.78)}
 body:not(.inrun) .cbtn,body:not(.inrun) #hud,body:not(.inrun) #pause{display:none}
@@ -239,3 +239,5 @@ body.mouse #atk,body.mouse #dash{display:none}
 #toasts.low,body.tab #toasts.low{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 84px)}
 body.mouse #skill::after,body.mouse #c1::after,body.mouse #c2::after{position:absolute;bottom:-4px;right:-4px;font:700 12px var(--f-ui);background:#120d0a;border:1px solid var(--edge);border-radius:3px;padding:1px 5px;color:var(--bone)}body.mouse #skill::after{content:"E"}body.mouse #c1::after{content:"Q"}body.mouse #c2::after{content:"F"}
 body.base:not(.inrun) #pause{display:grid}
+/* v0.57 small banner: waves, levels, tunnel sections, events (half size, a bit higher) */
+#banner.sm{font-size:28px;top:30%}body.tab #banner.sm{font-size:40px}@media (orientation:landscape) and (max-height:540px){#banner.sm,body.tab #banner.sm{font-size:24px;top:12%}}

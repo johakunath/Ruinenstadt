@@ -46,7 +46,7 @@ function cmpRows(it,other,diff){const A=it?afxMap(it):{},B=other?afxMap(other):{
     h+=`<div class="crow">${a!=null?`<span style="color:${a>0?'var(--bone)':'var(--bad)'}">${fmtA({k,v:a})}</span>`:'<span class="cnone">–</span>'}${diff?dc(d,nfD(X.neg?-d:d,X.d)+X.u+(B[k]==null?' neu':'')):''}</div>`;}
   return h;}
 const SROWS=[['Kampfkraft',s=>power(s),0],['Schaden pro Treffer',s=>s.dmg,0],['Angriffe pro Sekunde',s=>1/s.rate,1],['Krit-Chance',s=>s.crit*100,0,'%'],['Leben',s=>s.maxHp,0],['Widerstand',s=>s.res*100,0,'%'],
-  ['Lauftempo',s=>s.spd/1.65,0,'%'],['Leben pro Sekunde',s=>s.regen,1],['Elementarschaden',s=>s.els.length?s.elp*100:0,0,'%'],['Leben pro Kill',s=>s.leech,0],['Beuteglück',s=>s.luck,0],['Sprint-Abklingzeit',s=>s.dashCd,1,' s',1]];
+  ['Lauftempo',s=>s.spd/1.82,0,'%'],['Leben pro Sekunde',s=>s.regen,1],['Elementarschaden',s=>s.els.length?s.elp*100:0,0,'%'],['Leben pro Kill',s=>s.leech,0],['Beuteglück',s=>s.luck,0],['Sprint-Abklingzeit',s=>s.dashCd,1,' s',1]];
 function cmpBlock(it){const a=stats(),b=stats(withItem(it));let h='';
   for(const[n,f,d,u,inv]of SROWS){const fx=v=>v.toFixed(d)+(u||''),x=fx(f(a)),y=fx(f(b));if(x===y)continue;const good=inv?f(b)<f(a):f(b)>f(a);
     h+=`<div class="cmp"><span>${n}</span><span>${x} → <b style="color:${good?'var(--good)':'var(--bad)'}">${y}</b></span></div>`;}

@@ -14,15 +14,15 @@ const TW=16000,TH=2400,TX0=200,TX1=15800,HW=310,PW=580,cy=x=>1200+420*Math.sin(M
   at=(x,o)=>{const a=ang(x);return[x-o*Math.sin(a),cy(x)+o*Math.cos(a)];};
 // stations (x ranges with platforms on both sides), side rooms and special stretches
 const TST=[[TX0,1900],[5600,7400],[13400,TX1]],inSt=x=>TST.some(s=>x>=s[0]&&x<=s[1]),hwAt=x=>{let h=HW;for(const s of TST){const d=Math.max(s[0]-x,x-s[1]);if(d<450)h=Math.max(h,PW-(PW-HW)*Math.max(0,d)/450);}return h;};
-const ROOM=[2380,0,700,420],RUBX=[4250,4700],BYP=[4000,4950],FLOOD=[9300,10800],GEN={x:14800,y:0,r:260,need:35};// y of ROOM and GEN set in buildTunnel
+const ROOM=[2380,0,700,420],RUBX=[4250,4700],BYP=[4000,4950],FLOOD=[9300,10800],GEN={x:14800,y:0,r:260,need:55};// y of ROOM and GEN set in buildTunnel
 // sections: n name ({a} start, {b} target, {g} ghost station), packs (t: trigger x, sp: spawn x range ahead, ty types), gate x. Types: g ghoul, s spitter, b brute, r rat pack, w bomb, h howl (or ghoul), x district special, E elite ghoul, B elite brute
 const TSEC=[{n:'Bahnsteig {a}',packs:[],end:1750},
-  {n:'Tunnel',packs:[{t:2000,sp:[2600,3000],ty:'gggggrs'},{t:2900,sp:[3300,3650],ty:'gggsxb'}],gate:3800},
-  {n:'Einsturz · Wartungsgang',packs:[{t:3900,sp:[4000,4200],ty:'rggs'},{t:4600,sp:[4900,5250],ty:'bgggx'}],gate:5400},
-  {n:'Geisterbahnhof {g}',packs:[{t:5500,sp:[6000,6500],ty:'Essggx'},{t:6500,sp:[6900,7350],ty:'ggghs'}],gate:7600},
-  {n:'Kehrgleis',packs:[{t:7700,sp:[8100,8500],ty:'rrggsx'},{t:8500,sp:[8800,9100],ty:'Bggw'}],gate:9200},
-  {n:'Geflutete Strecke',packs:[{t:9300,sp:[9700,10100],ty:'rrwgg'},{t:10200,sp:[10500,10900],ty:'sggxs'}],gate:11000},
-  {n:'Zugwrack',packs:[{t:11100,sp:[11500,12000],ty:'gggxs'},{t:12100,sp:[12600,13100],ty:'bgBsg'}],gate:13200},
+  {n:'Tunnel',packs:[{t:2000,sp:[2500,2800],ty:'gggggrs'},{t:2600,sp:[3000,3300],ty:'gggsxbg'},{t:3200,sp:[3500,3750],ty:'ggsrxg'}],gate:3800},
+  {n:'Einsturz · Wartungsgang',packs:[{t:3900,sp:[4000,4200],ty:'rggsg'},{t:4500,sp:[4750,5000],ty:'gggsx'},{t:4800,sp:[5050,5300],ty:'bgggxs'}],gate:5400},
+  {n:'Geisterbahnhof {g}',packs:[{t:5500,sp:[5900,6300],ty:'Essggxg'},{t:6200,sp:[6600,6950],ty:'ggghsgr'},{t:6800,sp:[7100,7450],ty:'bggxsE'}],gate:7600},
+  {n:'Kehrgleis',packs:[{t:7700,sp:[8000,8300],ty:'rrggsxg'},{t:8200,sp:[8500,8800],ty:'Bggwg'},{t:8700,sp:[8900,9150],ty:'gggsrx'}],gate:9200},
+  {n:'Geflutete Strecke',packs:[{t:9300,sp:[9600,9900],ty:'rrwggg'},{t:9900,sp:[10200,10500],ty:'sggxsg'},{t:10400,sp:[10700,10950],ty:'bggwrs'}],gate:11000},
+  {n:'Zugwrack',packs:[{t:11100,sp:[11400,11800],ty:'gggxsg'},{t:11800,sp:[12100,12500],ty:'bgBsgg'},{t:12500,sp:[12800,13150],ty:'ggxsbE'}],gate:13200},
   {n:'Bahnsteig {b}',packs:[]}];
 const tunName=(k,s)=>s.replace('{a}',STN[k].slice(2)).replace('{b}',STN[k+1].slice(2)).replace('{g}',LINES[k].g);
 const lineOpen=k=>k<LINES.length&&S.best[k]>=WAVES,lineFree=k=>!!(S.ln&&S.ln[k]);
@@ -125,12 +125,12 @@ function tunUpdate(dt){const T=TUN;if(!T||T.done)return;P.wet=P.x>=FLOOD[0]&&P.x
   // current section: trigger packs when you pass x = t, they spawn ahead in small groups; the gate opens when everything the section spawned is down
   const s=TSEC[T.sec];if(s){for(const[i,p]of s.packs.entries()){if(T['p'+T.sec+'_'+i]||P.x<p.t)continue;T['p'+T.sec+'_'+i]=1;let q=null;[...p.ty].forEach((c,j)=>{if(j%3===0){const x=R(p.sp[0],p.sp[1]);q=at(x,R(-HW*.6,HW*.6));}tunSpawn(c,q[0]+R(-40,40),q[1]+R(-40,40),T.sec);});sfx('horn');}
     const all=s.packs.every((p,i)=>T['p'+T.sec+'_'+i]),alive=enemies.some(e=>e.sec===T.sec&&e.hp>0);
-    if(all&&!alive&&T.sec<TSEC.length-1&&!(T.sec===0&&P.x<s.end)){if(s.gate)openGate(TSEC.filter((q,i)=>q.gate&&i<=T.sec).length-1);T.sec++;run.wave=T.sec+1;banner(tunName(T.k,TSEC[T.sec].n));}}
+    if(all&&!alive&&T.sec<TSEC.length-1&&!(T.sec===0&&P.x<s.end)){if(s.gate)openGate(TSEC.filter((q,i)=>q.gate&&i<=T.sec).length-1);T.sec++;run.wave=T.sec+1;banner(tunName(T.k,TSEC[T.sec].n),1);}}
   // generator: walk to it to start, charge while you stay close, waves come out of the tunnel mouth, then Der Schaffner
-  if(T.sec===TSEC.length-1){const d=Math.hypot(P.x-GEN.x,P.y-GEN.y),mouth=()=>at(TX1-120,R(-HW+60,HW-60));if(!T.hold&&d<90){T.hold=1;T.p=0;T.sp=1;banner('Generator anwerfen');toast('Bleib beim Generator, bis der Strom fließt');sfx('zap');}
+  if(T.sec===TSEC.length-1){const d=Math.hypot(P.x-GEN.x,P.y-GEN.y),mouth=()=>at(TX1-120,R(-HW+60,HW-60));if(!T.hold&&d<90){T.hold=1;T.p=0;T.sp=1;banner('Generator anwerfen',1);toast('Bleib beim Generator, bis der Strom fließt');sfx('zap');}
     if(T.hold&&!T.lit){if(d<GEN.r){T.p+=dt;T.sp-=dt;}if(T.sp<=0){T.sp=R(1.6,2.4);const q=mouth();tunSpawn(pick('ggsgxr'),q[0],q[1],9);if(T.p>GEN.need*.5&&!T.el){T.el=1;const e=mouth();tunSpawn('B',e[0],e[1],9);}}
       if(T.p>=GEN.need){T.lit=1;T.gen.lights.push({x:GEN.x,y:GEN.y,z:40,r:260});for(const b of blds)if(b.draw===drawCol&&b.x>TST[2][0])b.lights.push({x:b.x+13,y:b.y+26,z:110,r:150});neons.push({x:GEN.x,y:GEN.y,z:70,c:'#f2d14b',s:70});
-        sfx('win');flashT=.2;banner('Strom!');const q=at(TX1-260,0),b=mkEnemy('boss',q[0],q[1],false);b.st=run.tl?run.tl.t:0;b.name='Der Schaffner';b.v=-1;b.col='#3a4a5a';enemies.push(b);run.boss=b;T.boss=1;for(let i=0;i<3;i++){const e=mouth();tunSpawn('g',e[0],e[1],9);}toast('Aus dem Tunnel kommt etwas Großes');}}
+        sfx('win');flashT=.2;banner('Strom!',1);const q=at(TX1-260,0),b=mkEnemy('boss',q[0],q[1],false);b.st=run.tl?run.tl.t:0;b.name='Der Schaffner';b.v=-1;b.col='#3a4a5a';enemies.push(b);run.boss=b;T.boss=1;for(let i=0;i<3;i++){const e=mouth();tunSpawn('g',e[0],e[1],9);}toast('Aus dem Tunnel kommt etwas Großes');}}
     if(T.boss&&!run.boss&&!enemies.length){T.done=1;tunWin();}}}
 // generator ring on the ground (charge), drawn in the ground layer
 function tunDraw(t){const T=TUN;if(!T||!T.hold||T.lit)return;const p=T.p/GEN.need;ctx.fillStyle='rgba(242,209,75,.06)';ctx.beginPath();ctx.arc(GEN.x,GEN.y,GEN.r,0,7);ctx.fill();ctx.strokeStyle='rgba(242,209,75,.45)';ctx.lineWidth=2;ctx.setLineDash([8,8]);ctx.beginPath();ctx.arc(GEN.x,GEN.y,GEN.r,0,7);ctx.stroke();ctx.setLineDash([]);

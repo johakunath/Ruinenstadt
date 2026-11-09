@@ -1,7 +1,7 @@
 /* ================= update ================= */
 function update(dt){
   if(run&&run.tl&&state==='play'){run.tl.t+=dt;run.tl.fr++;if(dt>.034)run.tl.sl++;}
-  if(bannerT>0){bannerT-=dt;if(bannerT<=0)$('banner').style.opacity=0;}
+  if(bannerT>0){bannerT-=dt;if(bannerT<=0){const b=$('banner');b.style.opacity=0;b.style.transform='translateY(-48px)';}}
   for(const p of parts){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=.9;p.vy*=.9;p.life-=dt;}parts=parts.filter(p=>p.life>0);
   for(const n of nums){n.y-=32*dt;n.life-=dt;}nums=nums.filter(n=>n.life>0);
   for(const s of swings)s.life-=dt;swings=swings.filter(s=>s.life>0);
@@ -39,7 +39,8 @@ function update(dt){
     for(const e of enemies)if(e.hp>0&&Math.hypot(e.x-f.x,(e.y-f.y)*1.6)<f.r){const W=ER(e,'fire');if(W>0){e.bdps=Math.max(e.burn>0?e.bdps||0:0,ST.dmg*.9*W);e.burn=Math.max(e.burn||0,.7);}}}
   fields=fields.filter(f=>f.t>0);
   if(atkHeld||pad.atk||(autoAtk()&&P.cd<=0&&nearest(ST.kind==='sling'?360:180)))attack();
-  for(const m of marks)if(!m.seen&&Math.hypot(m.x-P.x,m.y-P.y)<(m.soft?180:260)){m.seen=1;if(!m.soft&&run.seen[m.n])continue;run.seen[m.n]=1;toast(m.soft?`<span style="color:var(--dim)">${m.n}</span>`:`<span style="color:var(--ember);font-family:var(--f-display);font-size:22px">${m.n}</span>`);}
+  for(const m of marks)if(!m.seen&&Math.hypot(m.x-P.x,m.y-P.y)<(m.soft?180:260)){m.seen=1;if(run.seen[m.n])continue;run.seen[m.n]=1;const t=run.tl?run.tl.t:0;
+    if(m.soft||m.br){if(t-(run.areaT||-99)<40)continue;run.areaT=t;toast(`<span style="color:var(--dim)">${m.n}</span>`);}else if(bannerT<=0&&t>4&&t-(run.lmT||-99)>20){run.lmT=t;banner(m.n);}else if(t-(run.areaT||-99)>=12){run.areaT=t;toast(`<span style="color:var(--ember)">${m.n}</span>`);}}// v0.57: fewer area messages
   if(run.tun){tunUpdate(dt);if(state!=='play')return;}// U-Bahn tunnel: sections instead of waves
   else if(run.toSpawn>0){run.spawnT-=dt;if(run.spawnT<=0){spawnOne();run.toSpawn--;run.spawnT=Math.max(.3,1-wE()*.05);}}
   else if(!enemies.length&&!run.cleared){run.cleared=true;run.perkDone=false;progWave(run.wave);if(run.wave>=WAVES&&!run.endless){win();return;}if(run.endless&&run.wave>WAVES){const b=Math.round(5*(run.wave-WAVES)*(1+.1*D.i)*DF().sc);S.scrap+=b;run.sg+=b;S.eb[run.d]=Math.max(S.eb[run.d]||0,run.wave);}toast('Welle '+run.wave+' geschafft');S.best[run.d]=Math.max(S.best[run.d],run.wave);save();run.breakT=2;}
@@ -99,7 +100,7 @@ function update(dt){
     const f=Math.pow(.002,dt);const ox=e.x,oy=e.y;e.x+=vx*sp*dt+e.kx*dt;e.y+=vy*sp*dt+e.ky*dt;e.kx*=f;e.ky*=f;if(e.fly){e.x=clamp(e.x,10,WS-10);e.y=clamp(e.y,10,WH-10);}else collide(e);e.mv=Math.hypot(e.x-ox,e.y-oy)/Math.max(dt,.001);
     if(!e.fly&&e.type!=='boss'){e.sto=(e.sto||0)+dt;if(e.sto>6){const pd=Math.hypot(e.x-P.x,e.y-P.y);if(pd>=(e.lpd||1e9)-40&&pd>260){const q=freeSpot(Math.max(300,VIEWR()),Math.max(340,VIEWR()+120),e.r+6);e.x=q.x;e.y=q.y;}e.sto=0;e.lpd=Math.hypot(e.x-P.x,e.y-P.y);}}
     e.chk+=dt;if(e.chk>.5){if(sp>0&&!e.fly&&e.det<=0&&Math.hypot(e.x-e.lx,e.y-e.ly)<sp*.12){e.det=.8;e.detA=pick([-1.4,1.4]);}e.chk=0;e.lx=e.x;e.ly=e.y;}
-    if(e.type==='boss'){if(!e.rage&&e.hp<e.max*.5){e.rage=1;e.spd*=1.3;banner(e.name+' tobt');flashT=.35;shake=10;sfx('horn');}const rg=e.rage?1.35:1;e.slam-=dt*rg;e.ring-=dt*rg;
+    if(e.type==='boss'){if(!e.rage&&e.hp<e.max*.5){e.rage=1;e.spd*=1.3;banner(e.name+' tobt',1);flashT=.35;shake=10;sfx('horn');}const rg=e.rage?1.35:1;e.slam-=dt*rg;e.ring-=dt*rg;
       if(e.slam<=0&&d<320){e.slam=e.big?3.3:4.2;teles.push({x:P.x,y:P.y,r:e.big?96:80,t:.95,max:.95,dmg:Math.round(e.dmg*1.3)});}
       if(e.ring<=0){e.ring=e.big?5:7.5;const n=e.big?16:12;for(let i=0;i<n;i++)fireGlob(e,i/n*6.283+e.t,165);sfx('spit');}
       if(e.big){e.sum-=dt*rg;const v=e.v;

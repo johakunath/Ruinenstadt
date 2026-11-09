@@ -1,7 +1,11 @@
 /* ================= input ================= */
 const keys={};let atkHeld=false,dashReq=false,skillReq=false;const joy={id:null,ox:0,oy:0,x:0,y:0};let rightId=null;
 addEventListener('keydown',e=>{keys[e.code]=true;if(e.code==='Space'){atkHeld=true;e.preventDefault();}if(e.code==='ShiftLeft'||e.code==='ShiftRight')dashReq=true;if(e.code==='KeyE'){if(manA!=null)aimA=manA;skillReq=true;}if(state==='play'&&!e.repeat){if(e.code==='KeyQ'||e.code==='Digit1')useCons('verband');if(e.code==='KeyF'||e.code==='Digit2')useCons('molotow',manTgt());}
-  if(e.code==='Escape'||e.code==='KeyP'){if(state==='play')pauseGame();else if(state==='paused')resume();else if(state==='base')baseMenu('bag');}});
+  if(e.code==='Escape'||e.code==='KeyP'){if(state==='play')pauseGame();else if(state==='paused')resume();else if(state==='base')baseMenu('bag');else if(state==='baseinv')$('invbox').querySelector('[data-a=close]').click();}
+  // v0.57 menu keys: Tab or I inventory, M map, J jobs, B blessings, K Kodex. The same key again closes
+  const KT={Tab:'bag',KeyI:'bag',KeyM:'map',KeyJ:'jobs',KeyB:'segen',KeyK:'kodex'}[e.code];if(KT){e.preventDefault();
+    if(state==='play')pauseGame(KT);else if(state==='paused'){if(invTab===KT)resume();else{invTab=KT;renderInv();}}
+    else if(state==='base'&&KT!=='map'&&KT!=='segen')baseMenu(KT==='kodex'?'kodex':KT);else if(state==='baseinv'){if(invTab===KT)$('invbox').querySelector('[data-a=close]').click();else{invTab=KT;renderInv();}}}});
 addEventListener('keyup',e=>{keys[e.code]=false;if(e.code==='Space')atkHeld=false;});
 cv.addEventListener('pointerdown',e=>{if(state!=='play'&&state!=='base')return;
   if(e.pointerType==='mouse'){mouse.on=true;mouse.x=e.clientX;mouse.y=e.clientY;document.body.classList.add('mouse');if(e.button===2)dashReq=true;else if(rightId===null){rightId=e.pointerId;atkHeld=true;}try{cv.setPointerCapture(e.pointerId);}catch(_){}return;}
@@ -29,14 +33,15 @@ const mouse={on:false,x:0,y:0};let manA=null;
 addEventListener('pointermove',e=>{if(e.pointerType==='mouse'){mouse.x=e.clientX;mouse.y=e.clientY;}},{passive:true});cv.addEventListener('contextmenu',e=>e.preventDefault());
 const mouseW=()=>{const q=s2w(mouse.x/Z-OX,mouse.y/Z-OY);return{x:q[0],y:q[1]};};
 const manTgt=()=>{if(manA==null)return null;if(mouse.on){const m=mouseW(),d=clamp(Math.hypot(m.x-P.x,m.y-P.y),60,320);return{x:P.x+Math.cos(manA)*d,y:P.y+Math.sin(manA)*d};}return{x:P.x+Math.cos(manA)*220,y:P.y+Math.sin(manA)*220};};
-/* gamepad (v0.54, standard mapping, gameplay only, menus stay touch or mouse): left stick moves, right stick aims, A or RT attack, B or RB dash, X skill, Y Verband, LB Molotov, Start pause */
+/* gamepad (standard mapping, gameplay only, menus stay touch or mouse). v0.57 Hades-style: A sprint, X attack (hold), Y skill, B Molotov (throw), RB Verband, RT attack too, LB skill too,
+   left stick moves, right stick aims, Start pause, View (Back) map */
 const pad={on:false,mx:0,my:0,aim:null,atk:false};let padPrev=[];
 function padPoll(){const gs=navigator.getGamepads?navigator.getGamepads():[],gp=[...gs].find(g=>g&&g.connected);pad.on=!!gp;if(!gp){pad.mx=pad.my=0;pad.aim=null;pad.atk=false;return;}
   const dz=v=>Math.abs(v||0)<.2?0:v,b=i=>!!(gp.buttons[i]&&gp.buttons[i].pressed),pr=i=>b(i)&&!padPrev[i];pad.mx=dz(gp.axes[0]);pad.my=dz(gp.axes[1]);
-  const rx=dz(gp.axes[2]),ry=dz(gp.axes[3]);pad.aim=Math.hypot(rx,ry)>.35?wAng(Math.atan2(ry,rx)):null;pad.atk=b(0)||b(7);
+  const rx=dz(gp.axes[2]),ry=dz(gp.axes[3]);pad.aim=Math.hypot(rx,ry)>.35?wAng(Math.atan2(ry,rx)):null;pad.atk=b(2)||b(7);
   if(pad.mx||pad.my||pad.atk){mouse.on=false;document.body.classList.add('mouse');}
-  if(pr(9)){if(state==='play')pauseGame();else if(state==='paused')resume();}
-  if(state==='play'){if(pr(1)||pr(5))dashReq=true;if(pr(2)){if(manA!=null)aimA=manA;skillReq=true;}if(pr(3))useCons('verband');if(pr(4))useCons('molotow',manTgt());}
+  if(pr(9)){if(state==='play')pauseGame();else if(state==='paused')resume();}if(pr(8)){if(state==='play')pauseGame('map');else if(state==='paused')resume();}
+  if(state==='play'){if(pr(0))dashReq=true;if(pr(3)||pr(4)){if(manA!=null)aimA=manA;skillReq=true;}if(pr(5))useCons('verband');if(pr(1))useCons('molotow',manTgt());}
   padPrev=gp.buttons.map(x=>x.pressed);}
 // manual aim this frame: cursor (mouse) or right stick (pad); null = auto-aim
 function manAim(){manA=pad.aim!=null?pad.aim:mouse.on&&state==='play'?(()=>{const m=mouseW();return Math.atan2(m.y-P.y,m.x-P.x);})():null;}
@@ -47,7 +52,7 @@ let hapT=0;function buzz(ms){const h=S.hap==null?1:S.hap;if(!h||!navigator.vibra
 $('pause').addEventListener('click',()=>{if(state==='play')pauseGame();else if(state==='base')baseMenu('bag');});
 document.addEventListener('visibilitychange',()=>{try{if(AC){if(document.hidden)AC.suspend();else AC.resume();}}catch(e){}if(document.hidden){if(state==='play')pauseGame();if(cloud.dirty){clearTimeout(cloud.timer);cloudPush();}}});
 function clearInput(){joy.id=null;joy.x=joy.y=0;rightId=null;aim.id=null;atkHeld=false;dashReq=false;skillReq=false;atkB.classList.remove('on');}
-function pauseGame(){state='paused';clearInput();openInv('run');}
+function pauseGame(t){state='paused';clearInput();invTab=t||'bag';openInv('run');}
 function resume(){$('inv').hidden=true;$('toasts').classList.remove('low');state='play';last=performance.now();updateHot();}
 /* tablet comfort: fullscreen and keep the screen on during expeditions */
 let wake=null;function immerse(){try{if(S.fs!==0&&!document.fullscreenElement&&document.documentElement.requestFullscreen)document.documentElement.requestFullscreen({navigationUI:'hide'}).catch(()=>{});}catch(e){}

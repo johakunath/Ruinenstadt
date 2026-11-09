@@ -208,9 +208,13 @@ function geoRoads(K,d){const g=gx;
   for(const s of ROADS)for(let t=0;t<s.len;t+=8){const cx=s.ax+s.ux*t,cy=s.ay+s.uy*t;if(!isWater(cx,cy))continue;g.fillStyle='rgba(107,54,38,.12)';g.fillRect(cx-40,cy-40,80,80);
     for(const sd of [-1,1]){const x=cx-s.uy*56*sd,y=cy+s.ux*56*sd;g.fillStyle='#2a221c';g.fillRect(x-3,y-3,6,6);if(t%32<8){g.fillStyle='#4a3a2e';g.fillRect(x-2,y-6,4,8);}}}
   for(let i=0;i<120;i++){const q=roadPt(),o=R(-40,40);g.fillStyle='rgba(8,5,4,.5)';g.beginPath();g.ellipse(q.x+q.nx*o,q.y+q.ny*o,R(6,16),R(4,10),R(0,3),0,7);g.fill();}
-  for(const n in K.roads){const p=K.roads[n],m=p[Math.floor(p.length/2)];marks.push({x:m[0],y:m[1],n,soft:1});}
-  for(const b of K.bridges)marks.push({x:b[0],y:b[1],n:b[2]});for(const m of K.marks)marks.push({x:m[0],y:m[1],n:m[2],soft:1});
-  for(const z of K.zones){const P_=z[1],cx=P_.reduce((a,q)=>a+q[0],0)/P_.length,cy=P_.reduce((a,q)=>a+q[1],0)/P_.length;marks.push({x:cx,y:cy,n:z[0],soft:1});}}
+  // v0.57: only the main streets keep a name (K.main, else the 4 longest), bridges are labelled but no banner (br)
+  {const len=n=>{const p=K.roads[n];let l=0;for(let i=1;i<p.length;i++)l+=Math.hypot(p[i][0]-p[i-1][0],p[i][1]-p[i-1][1]);return l;},mn=K.main||Object.keys(K.roads).filter(n=>!/^(tram|rail|hb)/.test(n)).sort((a,b)=>len(b)-len(a)).slice(0,4);
+   for(const n of mn){const p=K.roads[n];if(!p)continue;const m=p[Math.floor(p.length/2)];marks.push({x:m[0],y:m[1],n,soft:1});}}
+  for(const b of K.bridges)marks.push({x:b[0],y:b[1],n:b[2],br:1});for(const m of K.marks)marks.push({x:m[0],y:m[1],n:m[2],soft:1});
+  // v0.57: only the 6 biggest quarters keep a name (map and arrival message)
+  const ar=P_=>Math.abs(P_.reduce((a,q,i)=>{const r=P_[(i+1)%P_.length];return a+q[0]*r[1]-r[0]*q[1];},0)/2);
+  for(const z of [...K.zones].sort((a,b)=>ar(b[1])-ar(a[1])).slice(0,6)){const P_=z[1],cx=P_.reduce((a,q)=>a+q[0],0)/P_.length,cy=P_.reduce((a,q)=>a+q[1],0)/P_.length;marks.push({x:cx,y:cy,n:z[0],soft:1});}}
 // rotated building at centre cx,cy (rot in (-45°,45°]): free if footprint plus 30 margin is off water, roads, walls and reserved areas
 const ptRes=(x,y)=>reserved.some(r=>!r.road&&x>r.x&&x<r.x+r.w&&y>r.y&&y<r.y+r.h),rotN=a=>{while(a>Math.PI/4)a-=Math.PI/2;while(a<=-Math.PI/4)a+=Math.PI/2;return a;};
 function tryBR(cx,cy,w,h,rot,H,st){const b0={x:cx-w/2,y:cy-h/2,w,h,rot};
