@@ -58,5 +58,1565 @@
     "h": 111,
     "units": 3,
     "w": 68
+  },
+  "hero/rig/body": {
+    "anchor": [
+      43.5,
+      81.0
+    ],
+    "for": "drawHero body",
+    "h": 162,
+    "units": 6,
+    "w": 87
+  },
+  "hero/rig/boot-gummi": {
+    "anchor": [
+      24.0,
+      29.5
+    ],
+    "for": "drawHero boot-gummi",
+    "h": 59,
+    "units": 6,
+    "w": 48
+  },
+  "hero/rig/boot-gummi-d": {
+    "anchor": [
+      24.0,
+      29.5
+    ],
+    "for": "drawHero boot-gummi-d",
+    "h": 59,
+    "units": 6,
+    "w": 48
+  },
+  "hero/rig/boot-stiefel": {
+    "anchor": [
+      24.0,
+      17.5
+    ],
+    "for": "drawHero boot-stiefel",
+    "h": 35,
+    "units": 6,
+    "w": 48
+  },
+  "hero/rig/boot-stiefel-d": {
+    "anchor": [
+      24.0,
+      17.5
+    ],
+    "for": "drawHero boot-stiefel-d",
+    "h": 35,
+    "units": 6,
+    "w": 48
+  },
+  "hero/rig/boot-turnsch": {
+    "anchor": [
+      24.0,
+      11.5
+    ],
+    "for": "drawHero boot-turnsch",
+    "h": 23,
+    "units": 6,
+    "w": 48
+  },
+  "hero/rig/boot-turnsch-d": {
+    "anchor": [
+      24.0,
+      11.5
+    ],
+    "for": "drawHero boot-turnsch-d",
+    "h": 23,
+    "units": 6,
+    "w": 48
+  },
+  "hero/rig/fingers": {
+    "anchor": [
+      7.5,
+      13.0
+    ],
+    "for": "drawHero fingers",
+    "h": 26,
+    "units": 6,
+    "w": 15
+  },
+  "hero/rig/g-bandage-fingers": {
+    "anchor": [
+      8.5,
+      13.5
+    ],
+    "for": "drawHero g-bandage-fingers",
+    "h": 27,
+    "units": 6,
+    "w": 17
+  },
+  "hero/rig/g-bandage-palm": {
+    "anchor": [
+      11.0,
+      16.0
+    ],
+    "for": "drawHero g-bandage-palm",
+    "h": 32,
+    "units": 6,
+    "w": 22
+  },
+  "hero/rig/g-gartenh-fingers": {
+    "anchor": [
+      8.5,
+      13.5
+    ],
+    "for": "drawHero g-gartenh-fingers",
+    "h": 27,
+    "units": 6,
+    "w": 17
+  },
+  "hero/rig/g-gartenh-palm": {
+    "anchor": [
+      11.0,
+      16.0
+    ],
+    "for": "drawHero g-gartenh-palm",
+    "h": 32,
+    "units": 6,
+    "w": 22
+  },
+  "hero/rig/g-handsch-fingers": {
+    "anchor": [
+      8.5,
+      13.5
+    ],
+    "for": "drawHero g-handsch-fingers",
+    "h": 27,
+    "units": 6,
+    "w": 17
+  },
+  "hero/rig/g-handsch-palm": {
+    "anchor": [
+      11.0,
+      16.0
+    ],
+    "for": "drawHero g-handsch-palm",
+    "h": 32,
+    "units": 6,
+    "w": 22
+  },
+  "hero/rig/g-schweiss-fingers": {
+    "anchor": [
+      8.5,
+      13.5
+    ],
+    "for": "drawHero g-schweiss-fingers",
+    "h": 27,
+    "units": 6,
+    "w": 17
+  },
+  "hero/rig/g-schweiss-palm": {
+    "anchor": [
+      11.0,
+      16.0
+    ],
+    "for": "drawHero g-schweiss-palm",
+    "h": 32,
+    "units": 6,
+    "w": 22
+  },
+  "hero/rig/hat-helm": {
+    "anchor": [
+      40.0,
+      21.0
+    ],
+    "for": "drawHero hat-helm",
+    "h": 42,
+    "units": 6,
+    "w": 80
+  },
+  "hero/rig/hat-maske": {
+    "anchor": [
+      39.0,
+      31.0
+    ],
+    "for": "drawHero hat-maske",
+    "h": 62,
+    "units": 6,
+    "w": 78
+  },
+  "hero/rig/hat-muetze": {
+    "anchor": [
+      34.0,
+      22.0
+    ],
+    "for": "drawHero hat-muetze",
+    "h": 44,
+    "units": 6,
+    "w": 68
+  },
+  "hero/rig/hat-nbrille": {
+    "anchor": [
+      37.0,
+      12.0
+    ],
+    "for": "drawHero hat-nbrille",
+    "h": 24,
+    "units": 6,
+    "w": 74
+  },
+  "hero/rig/hat-schieber": {
+    "anchor": [
+      41.0,
+      16.0
+    ],
+    "for": "drawHero hat-schieber",
+    "h": 32,
+    "units": 6,
+    "w": 82
+  },
+  "hero/rig/hat-stroh": {
+    "anchor": [
+      48.0,
+      24.0
+    ],
+    "for": "drawHero hat-stroh",
+    "h": 48,
+    "units": 6,
+    "w": 96
+  },
+  "hero/rig/head": {
+    "anchor": [
+      32.0,
+      29.0
+    ],
+    "for": "drawHero head",
+    "h": 58,
+    "units": 6,
+    "w": 64
+  },
+  "hero/rig/l-blaumann": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-blaumann",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-blaumann-d": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-blaumann-d",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-bvg": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-bvg",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-bvg-d": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-bvg-d",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-feuer": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-feuer",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-feuer-d": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-feuer-d",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-khemd": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-khemd",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-khemd-d": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-khemd-d",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-kmantel": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-kmantel",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-kmantel-d": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-kmantel-d",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-leder": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-leder",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-leder-d": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-leder-d",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-mantel": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-mantel",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-mantel-d": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-mantel-d",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-none": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-none",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-none-d": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-none-d",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-panzer": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-panzer",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-panzer-d": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-panzer-d",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-poncho": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-poncho",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-poncho-d": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-poncho-d",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-rattenmantel": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-rattenmantel",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-rattenmantel-d": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-rattenmantel-d",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-ritter": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-ritter",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-ritter-d": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-ritter-d",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-spaeti": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-spaeti",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-spaeti-d": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-spaeti-d",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-weste": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-weste",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/l-weste-d": {
+    "anchor": [
+      15.0,
+      37.0
+    ],
+    "for": "drawHero l-weste-d",
+    "h": 74,
+    "units": 6,
+    "w": 30
+  },
+  "hero/rig/leg": {
+    "anchor": [
+      21.5,
+      51.0
+    ],
+    "for": "drawHero leg",
+    "h": 102,
+    "units": 6,
+    "w": 43
+  },
+  "hero/rig/leg-d": {
+    "anchor": [
+      21.5,
+      51.0
+    ],
+    "for": "drawHero leg-d",
+    "h": 102,
+    "units": 6,
+    "w": 43
+  },
+  "hero/rig/lower": {
+    "anchor": [
+      13.0,
+      36.0
+    ],
+    "for": "drawHero lower",
+    "h": 72,
+    "units": 6,
+    "w": 26
+  },
+  "hero/rig/lower-d": {
+    "anchor": [
+      13.0,
+      36.0
+    ],
+    "for": "drawHero lower-d",
+    "h": 72,
+    "units": 6,
+    "w": 26
+  },
+  "hero/rig/palm": {
+    "anchor": [
+      10.0,
+      15.0
+    ],
+    "for": "drawHero palm",
+    "h": 30,
+    "units": 6,
+    "w": 20
+  },
+  "hero/rig/t-blaumann": {
+    "anchor": [
+      63.0,
+      90.0
+    ],
+    "for": "drawHero t-blaumann",
+    "h": 180,
+    "units": 6,
+    "w": 126
+  },
+  "hero/rig/t-bvg": {
+    "anchor": [
+      69.0,
+      102.0
+    ],
+    "for": "drawHero t-bvg",
+    "h": 204,
+    "units": 6,
+    "w": 138
+  },
+  "hero/rig/t-feuer": {
+    "anchor": [
+      69.0,
+      102.0
+    ],
+    "for": "drawHero t-feuer",
+    "h": 204,
+    "units": 6,
+    "w": 138
+  },
+  "hero/rig/t-khemd": {
+    "anchor": [
+      69.0,
+      102.0
+    ],
+    "for": "drawHero t-khemd",
+    "h": 204,
+    "units": 6,
+    "w": 138
+  },
+  "hero/rig/t-kmantel": {
+    "anchor": [
+      75.0,
+      105.0
+    ],
+    "for": "drawHero t-kmantel",
+    "h": 210,
+    "units": 6,
+    "w": 150
+  },
+  "hero/rig/t-leder": {
+    "anchor": [
+      66.0,
+      75.0
+    ],
+    "for": "drawHero t-leder",
+    "h": 150,
+    "units": 6,
+    "w": 132
+  },
+  "hero/rig/t-mantel": {
+    "anchor": [
+      69.0,
+      102.0
+    ],
+    "for": "drawHero t-mantel",
+    "h": 204,
+    "units": 6,
+    "w": 138
+  },
+  "hero/rig/t-none": {
+    "anchor": [
+      69.0,
+      102.0
+    ],
+    "for": "drawHero t-none",
+    "h": 204,
+    "units": 6,
+    "w": 138
+  },
+  "hero/rig/t-panzer": {
+    "anchor": [
+      69.0,
+      99.0
+    ],
+    "for": "drawHero t-panzer",
+    "h": 198,
+    "units": 6,
+    "w": 138
+  },
+  "hero/rig/t-poncho": {
+    "anchor": [
+      78.0,
+      105.0
+    ],
+    "for": "drawHero t-poncho",
+    "h": 210,
+    "units": 6,
+    "w": 156
+  },
+  "hero/rig/t-rattenmantel": {
+    "anchor": [
+      75.0,
+      105.0
+    ],
+    "for": "drawHero t-rattenmantel",
+    "h": 210,
+    "units": 6,
+    "w": 150
+  },
+  "hero/rig/t-ritter": {
+    "anchor": [
+      69.0,
+      99.0
+    ],
+    "for": "drawHero t-ritter",
+    "h": 198,
+    "units": 6,
+    "w": 138
+  },
+  "hero/rig/t-spaeti": {
+    "anchor": [
+      69.0,
+      102.0
+    ],
+    "for": "drawHero t-spaeti",
+    "h": 204,
+    "units": 6,
+    "w": 138
+  },
+  "hero/rig/t-weste": {
+    "anchor": [
+      66.0,
+      75.0
+    ],
+    "for": "drawHero t-weste",
+    "h": 150,
+    "units": 6,
+    "w": 132
+  },
+  "hero/rig/trousers": {
+    "anchor": [
+      17.5,
+      48.0
+    ],
+    "for": "drawHero trousers",
+    "h": 96,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/trousers-blaumann": {
+    "anchor": [
+      17.5,
+      48.0
+    ],
+    "for": "drawHero trousers-blaumann",
+    "h": 96,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/trousers-blaumann-d": {
+    "anchor": [
+      17.5,
+      48.0
+    ],
+    "for": "drawHero trousers-blaumann-d",
+    "h": 96,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/trousers-d": {
+    "anchor": [
+      17.5,
+      48.0
+    ],
+    "for": "drawHero trousers-d",
+    "h": 96,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-blaumann": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-blaumann",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-blaumann-d": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-blaumann-d",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-bvg": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-bvg",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-bvg-d": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-bvg-d",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-feuer": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-feuer",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-feuer-d": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-feuer-d",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-khemd": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-khemd",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-khemd-d": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-khemd-d",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-kmantel": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-kmantel",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-kmantel-d": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-kmantel-d",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-leder": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-leder",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-leder-d": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-leder-d",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-mantel": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-mantel",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-mantel-d": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-mantel-d",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-none": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-none",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-none-d": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-none-d",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-panzer": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-panzer",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-panzer-d": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-panzer-d",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-poncho": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-poncho",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-poncho-d": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-poncho-d",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-rattenmantel": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-rattenmantel",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-rattenmantel-d": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-rattenmantel-d",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-ritter": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-ritter",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-ritter-d": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-ritter-d",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-spaeti": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-spaeti",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-spaeti-d": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-spaeti-d",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-weste": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-weste",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/u-weste-d": {
+    "anchor": [
+      17.5,
+      38.5
+    ],
+    "for": "drawHero u-weste-d",
+    "h": 77,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/upper": {
+    "anchor": [
+      15.5,
+      37.5
+    ],
+    "for": "drawHero upper",
+    "h": 75,
+    "units": 6,
+    "w": 31
+  },
+  "hero/rig/upper-d": {
+    "anchor": [
+      15.5,
+      37.5
+    ],
+    "for": "drawHero upper-d",
+    "h": 75,
+    "units": 6,
+    "w": 31
+  },
+  "hero/rig/weapon-i01": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i01",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        30,
+        108
+      ],
+      "tip": [
+        111,
+        19
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i02": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i02",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        23,
+        108
+      ],
+      "tip": [
+        105,
+        17
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i03": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i03",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        17,
+        115
+      ],
+      "tip": [
+        105,
+        22
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i04": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i04",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        25,
+        108
+      ],
+      "tip": [
+        108,
+        16
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i05": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i05",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        17,
+        109
+      ],
+      "tip": [
+        108,
+        17
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i06": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i06",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        22,
+        113
+      ],
+      "tip": [
+        105,
+        24
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i07": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i07",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        39,
+        108
+      ],
+      "tip": [
+        107,
+        22
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i08": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i08",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        19,
+        108
+      ],
+      "tip": [
+        105,
+        20
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i09": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i09",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        25,
+        102
+      ],
+      "tip": [
+        64,
+        27
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i10": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i10",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        30,
+        118
+      ],
+      "tip": [
+        67,
+        15
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i11": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i11",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        82,
+        17
+      ],
+      "tip": [
+        51,
+        94
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i12": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i12",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        29,
+        112
+      ],
+      "tip": [
+        106,
+        15
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i13": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i13",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        19,
+        111
+      ],
+      "tip": [
+        109,
+        9
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i14": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i14",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        18,
+        110
+      ],
+      "tip": [
+        111,
+        13
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i15": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i15",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        29,
+        111
+      ],
+      "tip": [
+        111,
+        16
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i16": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i16",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        29,
+        113
+      ],
+      "tip": [
+        105,
+        20
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i32": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i32",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        55,
+        59
+      ],
+      "tip": [
+        19,
+        111
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i48": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i48",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        30,
+        111
+      ],
+      "tip": [
+        103,
+        25
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i51": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i51",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        94,
+        32
+      ],
+      "tip": [
+        22,
+        111
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i52": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i52",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        30,
+        112
+      ],
+      "tip": [
+        108,
+        20
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i53": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i53",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        55,
+        105
+      ],
+      "tip": [
+        59,
+        39
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i56": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i56",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        80,
+        47
+      ],
+      "tip": [
+        21,
+        114
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i59": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i59",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        31,
+        112
+      ],
+      "tip": [
+        105,
+        20
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i60": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i60",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        30,
+        112
+      ],
+      "tip": [
+        105,
+        20
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i61": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i61",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        77,
+        77
+      ],
+      "tip": [
+        12,
+        64
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i62": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i62",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        78,
+        54
+      ],
+      "tip": [
+        22,
+        113
+      ]
+    },
+    "units": 6,
+    "w": 128
   }
 }

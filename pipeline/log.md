@@ -37,3 +37,48 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Performance, 40-ghoul seeded scenes and three paired samples: median of render medians Köpenick 33.9 → 31.6 ms, Mitte 53.2 → 51.2 ms (headless desktop, not a tablet performance claim). Repro scripts: `tools/proof_ghoul.cjs`, `tools/check_ghoul_offline.cjs`; results and method in the proof README.
 - Next pipeline task per Claude's priority note: 07 player rig v2, then 01 enemies. Tab S9 playtest remains with Johannes. No other task started.
 - Review PR: https://github.com/johakunath/Ruinenstadt/pull/17 (screenshots and validation evidence attached; not merged).
+
+## 2026-11-09 · Codex · task 07 complete, v0.61
+
+- Task 00 PR #17 is merged; this work starts from `a94f7f1`. Claimed task 07
+  on `codex/07-player-rig-v2` with pushed status-only commit `25c164b`.
+- Rebuilt the player around one opaque charcoal mannequin. H02a and the
+  H03–H07 outfit designs remain the selected identities; regenerated layer
+  derivatives rather than new character designs. Colour-only choices:
+  mannequin A (charcoal), Blaumann A (cobalt). Comparison and raw sheets are
+  in `assets/raw/codex/07-player-rig-v2/`. Corrected a baked sleeve in the
+  default torso before integration.
+- All fourteen outfit looks use the same shoulder/hip and two arm segments;
+  clothes do not move the body. Added six independent hat overlays including
+  Strohhut, four palm/finger glove layers, three boot layers and blue trousers.
+  Weapons sit between palm and front fingers. All twenty-six use authored
+  grip/tip pivots in the manifest; no PCA or WFIX guesses. The spear idle angle
+  clears the face. Gameplay radii, reaches, sorting and drawHero signature stay
+  as before. Static registered layer combinations are cached at rig resolution.
+- Rewrote `tools/build_hero.py`, preserving the player's 6 px/local-unit
+  resolution and documenting it in the contract; world sprites remain 3 px/unit.
+  Manifest checker supports the explicit player entries. Removed superseded
+  v1 arm files. Bumped VERSION/CACHE to 0.61; all 130 rig assets are in SHELL.
+  Legacy ghoul offline proof now derives the cache name from VERSION.
+- Validation: six Python and six JS tests pass; manifest alpha/size/pivots,
+  shell paths and JS syntax pass. Builder rerun is byte-identical across 132
+  generated files. Browser sheets cover all outfits, weapons and wearables in
+  idle/step/swing at large and game size. Actual inventory drawDoll passes.
+  Visible default/2x hitbox shots cover seven districts and the S3 tunnel,
+  without tall-building occlusion. Deliberate image HTTP 404 uses visible
+  canvas fallback. Separate fully offline reload starts a run, waits 3 s,
+  loads 130/130 parts and has no page errors. Proof scripts/results/images and
+  reproduction notes: `pipeline/proof/07-player-rig-v2/`.
+- Performance against unchanged v0.60, seven alternating-order pairs with
+  fifteen warmups and fifty timed full renders each: Köpenick median
+  50.8 → 50.3 ms; Mitte 45.1 → 45.3 ms (0.2 ms within paired timing spread).
+  No material desktop regression; Tab S9 remains Johannes's hardware check.
+- Johannes authorized continuous PR → Codex review → fixes → direct merge
+  sessions. Added that loop to `workflow.md`, retaining design selections,
+  completed review and required checks as merge gates. No forced chat clearing
+  is available; durable handoff notes preserve progress across compaction.
+- Worker trial: a cheaper Luna worker prepared metadata and proof scaffolding,
+  but parent review caught wrong spear directions and several test-harness
+  mistakes. Keep high effort for rig/integration/visual review; medium effort
+  is suitable for mechanical batches. Do not treat worker output as verified.
+- Next task: 01 enemies. No new task is included in this PR.

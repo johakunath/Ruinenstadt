@@ -1,139 +1,133 @@
 #!/usr/bin/env python3
-"""Build the painted player rig from the cut parts in assets/hero/ (see docs/chatgpt-assets.md, H02 to H07).
+"""Build player rig v2 from selected component sheets, without anatomy inference.
 
-Rig space = pixels of the H02a full figure (441 px from head to sole), origin at the feet centre, x forward (facing right).
-Every outfit torso is placed by its arm hole (the dark opening ChatGPT leaves where the arm attaches): the arm hole
-centre goes onto the shoulder pivot, so the swinging arm always covers it. Short jackets pull the hip up, legs are
-stretched down to the floor. Hat heads are fitted onto the base head by the face. Fine tuning per outfit: TUNE.
-Output: assets/hero/rig/*.webp (RS px per game unit) and js/hero.js (HR table, read by drawPlayer in js/art.js).
-Run: python3 tools/build_hero.py [--preview out.png]
+Run without arguments; --check checks the committed files without rebuilding.
+Source rectangles and shared placements are explicit in the recipe below. All
+clothes dress one opaque mannequin and share its shoulder, elbow, wrist and hip.
+Weapon grip/tip coordinates are authored in the task's weapons.json. Generated
+parts use 6 px/local unit (the existing player rig resolution); world sprites
+continue to use 3. No arm-hole detection, PCA or per-outfit shoulder shifts.
 """
-import os, sys, json
+import argparse
+import json
+import math
+from pathlib import Path
+
 import numpy as np
-from PIL import Image, ImageDraw, ImageFilter, ImageEnhance
+from PIL import Image, ImageEnhance
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-HERO = os.path.join(ROOT, 'assets', 'hero'); OUT = os.path.join(HERO, 'rig')
-FIG = 441.0; UNITS = 48.0; RS = 6  # figure height in rig px, in game units, rig image px per unit
-U = UNITS / FIG                     # game units per rig px
-# base layout of H02a parts inside the full figure (x, y, w, h), found by fitting the parts onto H02a-H01
-BASE = {'head': (40, 1, 82, 70), 'torso': (7, 51, 137, 267), 'arm': (50, 82, 48, 195), 'leg': (58, 295, 48, 143)}
-OX, OY = 82, 441                    # feet centre in figure px
-SH = (74, 98)                       # shoulder pivot
-HIP = 300                           # default hip height (leg pivot)
-ARMS = {  # item base -> (torso cell, arm cell)
- 'leder': ('H03-K01', 'H03-K02'), 'mantel': ('H03-K03', 'H03-K04'), 'weste': ('H03-K05', 'H03-K06'),
- 'feuer': ('H04-K07', 'H04-K08'), 'bvg': ('H04-K09', 'H04-K10'), 'spaeti': ('H04-K11', 'H04-K12'),
- 'panzer': ('H05-K13', 'H05-K14'), 'rattenmantel': ('H05-K15', 'H05-K16'), 'ritter': ('H05-K17', 'H05-K18'),
- 'khemd': ('H06-K19', 'H06-K20'), 'poncho': ('H06-K21', 'H06-K22'), 'kmantel': ('H06-K23', 'H06-K24')}
-HATS = {'helm': 'H07-K25', 'schieber': 'H07-K26', 'muetze': 'H07-K27', 'maske': 'H07-K28', 'nbrille': 'H07-K29'}
-# per outfit: ts torso scale, tx/ty torso shift, as arm scale, ax/ay arm shift (figure px)
-TUNE = {}
-
-def load(n):
-    im = Image.open(os.path.join(HERO, n + '.webp')).convert('RGBA')
-    return im.crop(im.getchannel('A').point(lambda v: 255 if v > 40 else 0).getbbox())
-
-# arm hole centres read off a grid (torso image px after trimming); refine() snaps to the dark blob around them
-HOLE = {'leder': (52, 85), 'mantel': (60, 70), 'weste': (67, 88), 'feuer': (45, 80), 'bvg': (47, 75), 'spaeti': (40, 78),
-        'panzer': (34, 75), 'rattenmantel': (47, 68), 'ritter': (35, 70), 'khemd': (75, 72), 'poncho': (87, 60), 'kmantel': (52, 72)}
-
-def refine(t, gx, gy, r=22):
-    """Centre of the dark or see-through blob around a guessed arm hole centre; the guess if nothing fits."""
-    a = np.asarray(t).astype(np.float32); al = a[..., 3]
-    lum = np.asarray(Image.fromarray(a[..., :3].mean(2).astype(np.uint8)).filter(ImageFilter.BoxBlur(3))).astype(np.float32)
-    m = (al < 60) | (lum < 52); img = Image.fromarray((m * 255).astype(np.uint8)).copy()  # copy: floodfill on a fromarray view is not seen by asarray
-    best = None
-    for y in range(int(gy - r), int(gy + r), 2):
-        for x in range(int(gx - r), int(gx + r), 2):
-            if not (0 <= x < t.width and 0 <= y < t.height) or img.getpixel((x, y)) != 255: continue
-            ImageDraw.floodfill(img, (x, y), 100); b = np.argwhere(np.asarray(img) == 100); ImageDraw.floodfill(img, (x, y), 50)
-            (y0, x0), (y1, x1) = b.min(0), b.max(0)
-            if 300 < len(b) and x0 > 0 and x1 < t.width - 1 and y1 - y0 < 140 and x1 - x0 < 90 and (best is None or len(b) > best[0]):
-                best = (len(b), (x0 + x1) / 2, (y0 + y1) / 2)
-    return (best[1], best[2]) if best else (gx, gy)
-
-def body_x(T):
-    """Horizontal centre of the torso's lower 40% (the coat body; the scarf ends hang higher and further left)."""
-    a = np.asarray(T)[int(T.height * .6):, :, 3] > 100; xs = np.nonzero(a.any(0))[0]; return (xs.min() + xs.max()) / 2
-
-def sc(P, f, fy=None):
-    return P.resize((max(1, round(P.width * f)), max(1, round(P.height * (fy or f)))), Image.LANCZOS)
-
-def fit_head(hat, base):
-    """Scale and offset that put the hat head's face onto the base head (masked SSD on the lower half of the base head)."""
-    def arr(im): a = np.asarray(im).astype(np.float32) / 255; return a[..., :3].mean(2) * a[..., 3], a[..., 3]
-    def corr(A, B):
-        H, W = A.shape; h, w = B.shape; s = (H + h, W + w)
-        return np.fft.irfft2(np.fft.rfft2(A, s) * np.conj(np.fft.rfft2(B, s)), s)[:H - h + 1, :W - w + 1]
-    face = base.crop((base.width // 3, base.height // 3, base.width, base.height)); p, m = arr(face); m = (m > .5).astype(np.float32)
-    best = None
-    for f in np.arange(.85, 1.35, .02):
-        H = sc(hat, base.width * f / hat.width); I, _ = arr(H)
-        if I.shape[0] < p.shape[0] or I.shape[1] < p.shape[1]: continue
-        S = ((m * p * p).sum() - 2 * corr(I, m * p) + corr(I * I, m)) / m.sum(); i = np.unravel_index(np.argmin(S), S.shape)
-        if best is None or S[i] < best[0]: best = (S[i], H, i[1] - base.width // 3, i[0] - base.height // 3)
-    return best[1], best[2], best[3]   # scaled hat image, its offset relative to the base head's top-left
-
+ROOT = Path(__file__).resolve().parents[1]
+RAW = ROOT / 'assets/raw/codex/07-player-rig-v2'
+OUT = ROOT / 'assets/hero/rig'
+RS = 6
 WEAP = 'I01 I02 I03 I04 I05 I06 I07 I08 I09 I10 I11 I12 I13 I14 I15 I16 I32 I48 I51 I52 I53 I56 I59 I60 I61 I62'.split()
 
-# per icon fixes, checked by eye on a sheet with the found grip and axis drawn in (see weapon()):
-# 'flip' = the sharp end points down-left on the sheet, so the grip is the upper end; or a fixed [grip x, grip y, head x, head y] in icon px
-WFIX = {'I51': 'flip', 'I56': 'flip', 'I61': 'flip', 'I62': 'flip', 'I32': 'flip', 'I10': [30, 118, 67, 15], 'I11': [65, 8, 47, 92]}
+# Every rectangle is in source-sheet pixels. The placement [x,y,w,h] is in
+# shared rig coordinates, or relative to the named joint for articulated parts.
+BASE = {
+ 'body': ('mannequin.png', [748,350,976,785], [-7,-41.5,14.5,27]),
+ 'upper': ('mannequin.png', [1060,185,1175,435], [-2.6,-1.2,5.2,12.5]),
+ 'lower': ('mannequin.png', [1070,475,1145,677], [-2.2,-1.2,4.4,12]),
+ 'leg': ('mannequin.png', [1250,100,1415,725], [-2.6,-1,7.2,17]),
+ 'head': ('mannequin.png', [740,90,990,310], [-4.6,-48,10.6,9.7]),
+ 'palm': ('mannequin.png', [1075,800,1180,955], [-2.9,-2.5,3.3,5]),
+ 'fingers': ('mannequin.png', [1195,800,1278,955], [-.3,-2.2,2.5,4.4]),
+ 'trousers': ('boots-trousers.png', [170,520,370,990], [-2.8,-1.1,5.8,16]),
+ 'trousers-blaumann': ('boots-trousers.png', [1190,520,1370,990], [-2.8,-1.1,5.8,16]),
+}
+# garment source, column, hem, width; shared y/centre and identical limb lengths
+CLOTHES = {
+ 'leder': ('outfits-a.png',0,25,22), 'mantel': ('outfits-a.png',1,34,23), 'weste': ('outfits-a.png',2,25,22),
+ 'feuer': ('outfits-b.png',0,34,23), 'bvg': ('outfits-b.png',1,34,23), 'spaeti': ('outfits-b.png',2,34,23),
+ 'panzer': ('outfits-c.png',0,33,23), 'rattenmantel': ('outfits-c.png',1,35,25), 'ritter': ('outfits-c.png',2,33,23),
+ 'khemd': ('outfits-d.png',0,34,23), 'poncho': ('outfits-d.png',1,35,26), 'kmantel': ('outfits-d.png',2,35,25),
+ 'none': ('outfits-e.png',0,34,23), 'blaumann': ('outfits-e.png',1,30,21),
+}
+HATS = {
+ 'helm': ([40,50,490,420], [-5.8,-50.4,13.3,7]),
+ 'schieber': ([535,50,1000,420], [-6,-49.2,13.6,5.4]),
+ 'muetze': ([1040,50,1500,420], [-5.3,-50.3,11.4,7.3]),
+ 'maske': ([40,530,490,950], [-5.5,-47.5,13,10.4]),
+ 'nbrille': ([535,530,1000,950], [-5.7,-45.8,12.4,4]),
+ 'stroh': ([1015,520,1515,950], [-7,-50.2,16,8]),
+}
+GLOVES = ['handsch','bandage','schweiss','gartenh']
+BOOTS = {
+ 'turnsch': ([150,160,390,410], [-3,-3.6,8,3.8]),
+ 'stiefel': ([650,160,890,410], [-3,-5.6,8,5.8]),
+ 'gummi': ([1160,60,1390,420], [-3,-9.6,8,9.8]),
+}
 
-def weapon(idn):
-    """Main axis of a weapon icon: angle (rad, image y down) from the grip towards the head, grip point and length in icon px.
-    The sheets draw every weapon with the grip bottom left and the head top right, so the axis is turned to point up."""
-    a = np.asarray(Image.open(os.path.join(ROOT, 'assets', 'icons', idn + '.webp')).convert('RGBA'))[..., 3].astype(np.float32)
-    ys, xs = np.nonzero(a > 100); P = np.stack([xs, ys], 1).astype(np.float32); c = P.mean(0)
-    w, v = np.linalg.eigh(np.cov((P - c).T)); u = v[:, 1]; t = (P - c) @ u
-    fx = WFIX.get(idn)
-    if isinstance(fx, list):
-        g, h = np.array(fx[:2], np.float32), np.array(fx[2:], np.float32); v = h - g
-        return [round(float(np.arctan2(v[1], v[0])), 3), float(g[0]), float(g[1]), round(float(np.hypot(*v)), 1)]
-    if (u[1] > 0) != (fx == 'flip'): u, t = -u, -t              # point u up at the head, or down for 'flip'
-    g = c + u * (t.min() + .08 * (t.max() - t.min()))              # grip a little inside the handle end
-    return [round(float(np.arctan2(u[1], u[0])), 3), round(float(g[0]), 1), round(float(g[1]), 1), round(float(t.max() - t.min()), 1)]
+
+def write_json(path, obj):
+    path.write_text(json.dumps(obj, indent=2, sort_keys=True, ensure_ascii=False) + '\n')
+
 
 def build():
-    os.makedirs(OUT, exist_ok=True); R = {}
-    def save(img, key, dark=False):
-        img = sc(img, RS * U); img.save(os.path.join(OUT, key + '.webp'), 'WEBP', quality=88, method=6)
-        if dark:  # far arm and leg: darker copy, canvas filter is not reliable on older iPads
-            d = img.copy(); d.paste(ImageEnhance.Brightness(img.convert('RGB')).enhance(.58), (0, 0)); d.putalpha(img.getchannel('A'))
-            d.save(os.path.join(OUT, key + '-d.webp'), 'WEBP', quality=88, method=6)
-        return img
-    def place(img, x, y):  # rig entry: image key with its top-left in game units relative to the feet
-        return [round((x - OX) * U, 2), round((y - OY) * U, 2), round(img.width * U, 2), round(img.height * U, 2)]
-    hx, hy, hw, hh = BASE['head']; head = sc(load('H02a-H02'), hw / load('H02a-H02').width)
-    save(head, 'head'); R['head'] = place(head, hx, hy)
-    for k, cell in HATS.items():
-        H, dx, dy = fit_head(load(cell), head); save(H, 'hat-' + k); R['hat-' + k] = place(H, hx + dx, hy + dy)
-    ax, ay, aw, ah = BASE['arm']; arm0 = sc(load('H02a-H04'), aw / load('H02a-H04').width)
-    lx, ly, lw, lh = BASE['leg']; leg0 = sc(load('H02a-H05'), lw / load('H02a-H05').width)
-    tx, ty, tw, th = BASE['torso']; tor0 = sc(load('H02a-H03'), tw / load('H02a-H03').width)
-    BODYX = tx + body_x(tor0); out = {'none': (tor0, tx, ty, arm0, ax, ay, 0)}
-    for k, (tc, ac) in ARMS.items():
-        T, A, tu = load(tc), load(ac), TUNE.get(k, {}); hx_, hy_ = refine(T, *HOLE[k])
-        f = ah / A.height * tu.get('ts', 1)                      # torso and arm share the sheet scale; the arm length fixes it
-        T, A = sc(T, f), sc(A, f * tu.get('as', 1)); hx_, hy_ = hx_ * f, hy_ * f
-        tX, tY = SH[0] - hx_ + tu.get('tx', 0), SH[1] - hy_ + tu.get('ty', 0)
-        aX, aY = SH[0] - A.width / 2 + tu.get('ax', 0), SH[1] - A.width * .45 + tu.get('ay', 0)
-        dx = BODYX - (tX + body_x(T)); tX += dx; aX += dx  # centre the body (not the scarf) over the legs; arm and pivot move along
-        out[k] = (T, tX, tY, A, aX, aY, dx)
-    for k, (T, tX, tY, A, aX, aY, dx) in out.items():
-        save(T, 't-' + k); save(A, 'a-' + k, True)
-        hip = min(HIP, tY + T.height - 26)                     # short jackets: hip moves up so the legs touch the torso
-        R[k] = {'t': place(T, tX, tY), 'a': place(A, aX, aY), 'sh': [round((SH[0] + dx - OX) * U, 2), round((SH[1] - OY) * U, 2)],
-                'hip': round((hip - OY) * U, 2)}
-    leg = save(leg0, 'leg', True); R['leg'] = [round((lx + lw / 2 - OX) * U, 2), round(lw * U, 2), round(lh * U, 2)]
-    R['hand'] = round((ah - 14) * U, 2)  # shoulder to hand distance along the arm
-    W = {i: weapon(i) for i in WEAP}
-    js = ('// generated by tools/build_hero.py from assets/hero (painted player rig), do not edit by hand\n'
-          '// HR: rig parts in game units, feet at 0,0, facing right. HW: weapon icon axis [angle, grip x, grip y, length] in icon px\n'
-          'const HR=' + json.dumps(R, separators=(',', ':')) + ';\nconst HW=' + json.dumps(W, separators=(',', ':')) + ';\n')
-    open(os.path.join(ROOT, 'js', 'hero.js'), 'w').write(js)
-    return R
+    OUT.mkdir(parents=True, exist_ok=True)
+    manifest = json.loads((ROOT/'assets/manifest.json').read_text())
+    for k in list(manifest):
+        if k.startswith('hero/rig/'): del manifest[k]
+    R = {'v':2,'parts':{},'outfits':{},'hats':{},'gloves':{},'boots':{},
+         'sh':[-.87,-37.33], 'hip':-16, 'upper':10, 'lower':10, 'hand':20}
 
-if __name__ == '__main__':
-    R = build(); print('outfits', [k for k in R if isinstance(R[k], dict)])
+    def save(name, im, rect, dark=False, pivots=None):
+        im = im.resize((max(1,round(rect[2]*RS)), max(1,round(rect[3]*RS))), Image.Resampling.LANCZOS)
+        # Generations encode fully opaque colour as alpha 253/254; remove only
+        # near-invisible guide noise and restore opaque interiors, preserving edges.
+        a = np.array(im); a[:,:,3][a[:,:,3]<8]=0; a[:,:,3][a[:,:,3]>245]=255; im=Image.fromarray(a)
+        im.save(OUT/(name+'.webp'),'WEBP',quality=88,method=6,exact=True)
+        R['parts'][name]=rect
+        m={'w':im.width,'h':im.height,'anchor':[im.width/2,im.height/2],
+           'units':RS,'for':'drawHero '+name}
+        if pivots: m['pivots']=pivots
+        manifest['hero/rig/'+name]=m
+        if dark:
+            d=ImageEnhance.Brightness(im.convert('RGB')).enhance(.58).convert('RGBA'); d.putalpha(im.getchannel('A'))
+            save(name+'-d',d,rect)
+
+    def cut(source, crop):
+        im=Image.open(RAW/source).convert('RGBA').crop(crop)
+        box=im.getchannel('A').point(lambda a:255 if a>40 else 0).getbbox()
+        if not box: raise ValueError(f'empty source: {source} {crop}')
+        return im.crop(box)
+
+    for name,(src,crop,rect) in BASE.items(): save(name,cut(src,crop),rect,dark=name in ['upper','lower','leg','trousers','trousers-blaumann'])
+    for key,(src,col,height,width) in CLOTHES.items():
+        x=col*512
+        # The Blaumann shares a column with a separately drawn trouser guide.
+        uc=[x+35,615,x+240,1010] if src=='outfits-e.png' and col else [x+30,610,x+255,1010]
+        lc=[x+175,660,x+285,970] if src=='outfits-e.png' and col else [x+265,610,x+475,1010]
+        for suffix,crop,rect in [('t',[x+30,5,x+485,605],[-width*.48,-43,width,height]),
+                                 ('u',uc,[-2.9,-1.4,5.8,12.8]),('l',lc,[-2.5,-1.4,5,12.4])]:
+            name=suffix+'-'+key; save(name,cut(src,crop),rect,dark=suffix in ['u','l'])
+        R['outfits'][key]={'t':'t-'+key,'u':'u-'+key,'l':'l-'+key,
+                             'leg':'trousers-blaumann' if key=='blaumann' else 'trousers'}
+    for k,(crop,rect) in HATS.items():
+        name='hat-'+k; save(name,cut('hats.png',crop),rect); R['hats'][k]=name
+    for i,k in enumerate(GLOVES):
+        for piece,y0,y1,rect in [('palm',10,540,[-3.1,-2.5,3.7,5.3]),('fingers',550,1015,[-.3,-2.2,2.8,4.5])]:
+            name='g-'+k+'-'+piece; save(name,cut('gloves.png',[i*384+5,y0,(i+1)*384-5,y1]),rect); R['gloves'].setdefault(k,{})[piece]=name
+    for k,(crop,rect) in BOOTS.items():
+        name='boot-'+k; save(name,cut('boots-trousers.png',crop),rect,dark=True); R['boots'][k]=name
+    W={}
+    for key,spec in json.loads((RAW/'weapons.json').read_text()).items():
+        im=Image.open(ROOT/spec['source']).convert('RGBA'); g=spec['pivots']['grip']; t=spec['pivots']['tip']; dx,dy=t[0]-g[0],t[1]-g[1]
+        name='weapon-'+key.lower(); save(name,im,[0,0,im.width/RS,im.height/RS],pivots=spec['pivots'])
+        W[key]=[round(math.atan2(dy,dx),6),*g,round(math.hypot(dx,dy),6)]
+    write_json(ROOT/'assets/manifest.json',manifest)
+    (ROOT/'js/hero.js').write_text('// Generated by tools/build_hero.py. Shared mannequin, explicit layer placements and weapon pivots.\nconst HR='+json.dumps(R,separators=(',',':'))+';\nconst HW='+json.dumps(W,separators=(',',':'))+';\n')
+    print(f'Built {len(R["outfits"])} outfits, {len(R["parts"])} parts, {len(W)} weapons.')
+
+
+def check():
+    import sprites
+    errors=sprites.check(json.loads((ROOT/'assets/manifest.json').read_text()))
+    if errors: raise ValueError('\n'.join(errors))
+    print('Rig and sprite manifest checked.')
+
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__); parser.add_argument('--check',action='store_true'); args=parser.parse_args()
+    if not args.check: build()
+    check()

@@ -49,29 +49,29 @@ function drawHead(L,t){
   else if(L.helmet==='goggles'){ctx.fillStyle='#2a1c14';ctx.beginPath();ctx.arc(0,-42,7.2,Math.PI*.95,Math.PI*1.95);ctx.fill();ctx.fillStyle='#1a1a1e';ctx.fillRect(-7,-43,15,3);ctx.fillStyle=L.hc;ctx.fillRect(2,-43.5,6,3.4);ctx.globalCompositeOperation='lighter';ctx.drawImage(glow(L.hc),-2,-50,16,14);ctx.globalCompositeOperation='source-over';}
   else if(L.helmet==='steel'){ctx.fillStyle=L.hc;ctx.beginPath();ctx.arc(1,-41.5,8.6,Math.PI,0);ctx.fill();ctx.fillStyle='#5a5650';ctx.fillRect(-8,-42,18,2);ctx.fillStyle='rgba(255,255,255,.18)';ctx.fillRect(-3,-49,3,5);}
 }
-/* painted player rig (v0.53): parts from assets/hero/rig, layout in HR and weapon axes in HW (js/hero.js, built by tools/build_hero.py).
-   Same pivots and angles as the code figure below, so swing arcs and hit areas stay where they were. Falls back to the code figure until the images are loaded. */
-const HIMG={},HHAT={helm:1,schieber:1,muetze:1,maske:1,nbrille:1},HWL={blade:22,hammer:34,spear:48,sling:16};
+/* Painted player rig v2: one opaque mannequin; registered clothing and two-part fists.
+   Generated HR/HW in js/hero.js, with source grip/tip pivots in the manifest. */
+const HIMG={},HHAT={helm:1,schieber:1,muetze:1,maske:1,nbrille:1,stroh:1},HWL={blade:22,hammer:34,spear:48,sling:16};
 function himg(k){let i=HIMG[k];if(!i){i=HIMG[k]=new Image();i.src='assets/hero/rig/'+k+'.webp';}return i.complete&&i.naturalWidth?i:null;}
-function heroKeys(){const A=S.eq.a,b=A?baseOf(A):'none',o=b==='kette'?'khemd':HR[b]&&HR[b].t?b:'none',h=S.eq.h&&HHAT[baseOf(S.eq.h)]?'hat-'+baseOf(S.eq.h):'head';return{o,h};}
-function heroPre(){for(const k in HR)if(HR[k].t){himg('t-'+k);himg('a-'+k);himg('a-'+k+'-d');}['leg','leg-d','head',...Object.keys(HHAT).map(k=>'hat-'+k)].forEach(himg);Object.keys(HW).forEach(himgI);}
+function heroKeys(){const A=S.eq.a,b=A?baseOf(A):'none',o=b==='kette'?'khemd':HR.outfits[b]?b:'none',h=S.eq.h&&HR.hats[baseOf(S.eq.h)]||null;return{o,h};}
+function heroPre(){Object.keys(HR.parts).forEach(himg);}
 function hpart(img,x,y,w,h){ctx.drawImage(img,x,y,w,h);}
-function drawHero(t,sw,aa,wa,W,GC,CY){const{o,h}=heroKeys(),R=HR[o],T=himg('t-'+o),A=himg('a-'+o),Ad=himg('a-'+o+'-d'),Lg=himg('leg'),Ld=himg('leg-d'),Hd=himg(h);
-  if(!T||!A||!Ad||!Lg||!Ld||!Hd)return false;
-  if(W.kind==='hammer'&&!(P.swingT>0)&&!(P.spin>0))wa=.42;// the long painted hammer is dragged, head on the ground in front; held upright it hides the face
-  const[lx,lw]=HR.leg,hip=R.hip,ll=-hip,[sx,sy]=R.sh,a=R.a,hd=HR[h];
-  const leg=(img,x,r)=>{ctx.save();ctx.translate(x,hip);ctx.rotate(r);ctx.drawImage(img,-lw/2,-1,lw,ll+1);ctx.restore();};
-  const arm=(img,r,dx)=>{ctx.save();ctx.translate(sx+dx,sy);ctx.rotate(r);ctx.drawImage(img,a[0]-sx,a[1]-sy,a[2],a[3]);ctx.restore();};
-  const ba=.1-sw*.5;leg(Ld,lx-1.4,-sw*.4);arm(Ad,ba,-1.6);
-  if(P.torch){const tx=sx-1.6-Math.sin(ba)*HR.hand,ty=sy+Math.cos(ba)*HR.hand;ctx.fillStyle='#5a4030';ctx.fillRect(tx-1.5,ty-15,3,15);ctx.fillStyle='#EF9F27';ctx.beginPath();ctx.moveTo(tx-3.5,ty-15);ctx.lineTo(tx+3.5,ty-15);ctx.lineTo(tx+Math.sin(t*.03)*1.5,ty-25-Math.sin(t*.02)*2);ctx.fill();}
-  leg(Lg,lx+.6,sw*.4);ctx.drawImage(T,R.t[0],R.t[1],R.t[2],R.t[3]);ctx.drawImage(Hd,hd[0],hd[1],hd[2],hd[3]);
-  arm(A,aa-Math.PI/2,0);if(CY){ctx.save();ctx.translate(sx,sy);ctx.rotate(aa);ctx.fillStyle='#43d1cf';ctx.fillRect(4,-.5,HR.hand-6,1);ctx.restore();}
-  const hx=sx+Math.cos(aa)*HR.hand,hy=sy+Math.sin(aa)*HR.hand,id=ICOI[baseOf(W)],q=id&&HW[id],ic=q&&himgI(id);
-  ctx.save();ctx.translate(hx,hy);ctx.rotate(wa);
-  if(ic){const s=HWL[W.kind]/q[3];ctx.save();ctx.rotate(-q[0]);ctx.drawImage(ic,-q[1]*s,-q[2]*s,128*s,128*s);ctx.restore();if(W.r===3||W.el){ctx.globalCompositeOperation='lighter';ctx.drawImage(glow(W.el?ELC[W.el]:RAR[3].c),HWL[W.kind]*.4,-13,26,26);ctx.globalCompositeOperation='source-over';}}
+// Compose registered base/clothing pairs once at rig resolution; joints remain animated.
+const HCOMP={};
+function heroLayer(key,names){if(HCOMP[key])return HCOMP[key];const rs=6,rr=names.map(k=>HR.parts[k]),x=Math.floor(Math.min(...rr.map(r=>r[0]))*rs)/rs,y=Math.floor(Math.min(...rr.map(r=>r[1]))*rs)/rs,w=Math.ceil((Math.max(...rr.map(r=>r[0]+r[2]))-x)*rs),h=Math.ceil((Math.max(...rr.map(r=>r[1]+r[3]))-y)*rs),i=cnv(w,h),c=i.getContext('2d');for(let j=0;j<names.length;j++){const r=rr[j];c.drawImage(HIMG[names[j]],(r[0]-x)*rs,(r[1]-y)*rs,r[2]*rs,r[3]*rs);}return HCOMP[key]={i,r:[x,y,w/rs,h/rs]};}
+function drawHero(t,sw,aa,wa,W,GC,CY){const{o,h}=heroKeys(),R=HR.outfits[o],gl=S.eq.g&&HR.gloves[baseOf(S.eq.g)],boot=HR.boots[S.eq.f&&baseOf(S.eq.f)]||HR.boots.stiefel,pa=gl?gl.palm:'palm',fi=gl?gl.fingers:'fingers',id=ICOI[baseOf(W)],q=id&&HW[id],wk=q?'weapon-'+id.toLowerCase():null;
+  const keys=['body','upper','upper-d','lower','lower-d','leg','leg-d','head',R.t,R.u,R.u+'-d',R.l,R.l+'-d',R.leg,R.leg+'-d',boot,boot+'-d',pa,fi,...(h?[h]:[]),...(wk?[wk]:[])],im={};for(const k of keys){im[k]=himg(k);if(!im[k])return false;}
+  if(W.kind==='hammer'&&!(P.swingT>0)&&!(P.spin>0))wa=.42;
+  const [sx,sy]=HR.sh,part=k=>{const r=HR.parts[k];ctx.drawImage(im[k],...r);},layer=(k,names)=>{const g=heroLayer(k,names);ctx.drawImage(g.i,...g.r);},leg=(far,angle)=>{ctx.save();ctx.translate(far?-2.4:1.2,HR.hip);ctx.rotate(angle);layer(R.leg+(far?'-d':''),[far?'leg-d':'leg',R.leg+(far?'-d':'')]);ctx.translate(0,-HR.hip);part(boot+(far?'-d':''));ctx.restore();},bend=P.swingT>0?.16:.08,arm=(far,angle)=>{const d=far?'-d':'';ctx.save();ctx.translate(sx+(far?-1.6:0),sy);ctx.rotate(angle-Math.PI/2);layer(R.u+d,['upper'+d,R.u+d]);ctx.translate(0,HR.upper);ctx.rotate(far?0:bend);layer(R.l+d,['lower'+d,R.l+d]);ctx.restore();};
+  const ba=Math.PI/2+.1-sw*.5;leg(true,-sw*.4);arm(true,ba);
+  if(P.torch){const tx=sx-1.6+Math.cos(ba)*HR.hand,ty=sy+Math.sin(ba)*HR.hand;ctx.fillStyle='#5a4030';ctx.fillRect(tx-1.5,ty-15,3,15);ctx.fillStyle='#EF9F27';ctx.beginPath();ctx.moveTo(tx-3.5,ty-15);ctx.lineTo(tx+3.5,ty-15);ctx.lineTo(tx+Math.sin(t*.03)*1.5,ty-25-Math.sin(t*.02)*2);ctx.fill();}
+  layer(R.t,['body',R.t]);leg(false,sw*.4);layer(h||'head',h?['head',h]:['head']);arm(false,aa);
+  const hx=sx+Math.cos(aa)*HR.upper+Math.cos(aa+bend)*HR.lower,hy=sy+Math.sin(aa)*HR.upper+Math.sin(aa+bend)*HR.lower;
+  if(CY){ctx.save();ctx.translate(sx,sy);ctx.rotate(aa);ctx.fillStyle='#43d1cf';ctx.fillRect(4,-.5,HR.hand-6,1);ctx.restore();}
+  ctx.save();ctx.translate(hx,hy);ctx.rotate(wa);part(pa);
+  if(q){const sc=HWL[W.kind]/q[3];ctx.save();ctx.rotate(-q[0]);ctx.drawImage(im[wk],-q[1]*sc,-q[2]*sc,im[wk].naturalWidth*sc,im[wk].naturalHeight*sc);ctx.restore();if(W.r===3||W.el){ctx.globalCompositeOperation='lighter';ctx.drawImage(glow(W.el?ELC[W.el]:RAR[3].c),HWL[W.kind]*.4,-13,26,26);ctx.globalCompositeOperation='source-over';}}
   else drawWeaponModel(W);
-  ctx.restore();if(GC){ctx.fillStyle=GC;ctx.beginPath();ctx.arc(hx,hy,1.7,0,7);ctx.fill();}
-  return true;}
+  part(fi);ctx.restore();return true;}
 const IIMG={};function himgI(id){let i=IIMG[id];if(!i){i=IIMG[id]=new Image();i.src='assets/icons/'+id+'.webp';}return i.complete&&i.naturalWidth?i:null;}
 function drawPlayer(t){
   if(state==='over'&&P.hp<=0)return;
@@ -83,7 +83,7 @@ function drawPlayer(t){
   let wa,aa;
   if(P.spin>0){wa=t*.03;aa=wa;}
   else if(P.swingT>0){if(P.swingKind==='sling'){wa=aa=toL(P.atkA);}else if(P.swingKind==='spear'){wa=aa=toL(P.atkA);}else{const p=1-P.swingT/P.swingDur,arc=KIND[P.swingKind].arc,e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;wa=aa=toL(P.atkA-arc+2*arc*e);}}
-  else{aa=Math.PI/2-.45+sw*.35;wa=W.kind==='sling'?-.2:W.kind==='hammer'?-2.1:W.kind==='spear'?-1.45:-1.2;}
+  else{aa=Math.PI/2-.45+sw*.35;wa=W.kind==='sling'?-.2:W.kind==='hammer'?-2.1:W.kind==='spear'?-1.05:-1.2;}
   if(drawHero(t,sw,aa,wa,W,GC,!!S.eq.i)){ctx.restore();return;}
   limb(-4,-30,.25-sw*.5,12,4.5,dark(J,.7));ctx.fillStyle=GC?dark(GC,.8):'#b8946f';ctx.beginPath();ctx.arc(-4+Math.sin(-(.25-sw*.5))*12,-30+Math.cos(.25-sw*.5)*12,2.3,0,7);ctx.fill();
   if(P.torch){const tx=-4-Math.sin(.25-sw*.5)*12,ty=-30+Math.cos(.25-sw*.5)*12;ctx.fillStyle='#5a4030';ctx.fillRect(tx-1.5,ty-15,3,15);ctx.fillStyle='#EF9F27';ctx.beginPath();ctx.moveTo(tx-3.5,ty-15);ctx.lineTo(tx+3.5,ty-15);ctx.lineTo(tx+Math.sin(t*.03)*1.5,ty-25-Math.sin(t*.02)*2);ctx.fill();ctx.fillStyle='#FAC775';ctx.beginPath();ctx.moveTo(tx-1.8,ty-15);ctx.lineTo(tx+1.8,ty-15);ctx.lineTo(tx,ty-20);ctx.fill();}
