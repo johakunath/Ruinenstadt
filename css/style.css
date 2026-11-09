@@ -238,3 +238,4 @@ body.mouse #atk,body.mouse #dash{display:none}
 }
 #toasts.low,body.tab #toasts.low{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 84px)}
 body.mouse #skill::after,body.mouse #c1::after,body.mouse #c2::after{position:absolute;bottom:-4px;right:-4px;font:700 12px var(--f-ui);background:#120d0a;border:1px solid var(--edge);border-radius:3px;padding:1px 5px;color:var(--bone)}body.mouse #skill::after{content:"E"}body.mouse #c1::after{content:"Q"}body.mouse #c2::after{content:"F"}
+body.base:not(.inrun) #pause{display:grid}

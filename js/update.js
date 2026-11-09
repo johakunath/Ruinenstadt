@@ -14,6 +14,7 @@ function update(dt){
       for(const e of enemies)if(e.type!=='boss'&&inSp(e,e.fly?20:0)){e.x=spati.x+spati.dx+spati.dw/2+R(-60,60);e.y=spati.y+spati.h+60;}}
       else if(c0>0){toast('<span style="color:#c23a2e">Das Gitter gibt nach!</span>');sfx('crash');shake=Math.max(shake,8);}}
     if(inS&&!spati.seen&&state==='play'){spati.seen=true;toast(`<span style="color:var(--ember);font-family:var(--f-display);font-size:22px">${spati.name}</span>`);sfx('bell');}}
+  if(state==='base'){baseUpdate(dt);return;}// walkable camp (js/base.js)
   if(state!=='play')return;
   S.rec.time+=dt;tipT-=dt;
   if(streak.n){streak.t-=dt;if(streak.t<=0){if(streak.n>=10){const b=Math.round(streak.n*.6*(1+.1*D.i)*DF().sc);S.scrap+=b;run.sg+=b;toast(`Serie ${streak.n} · <span style="color:var(--ember)">+${b} Schrott</span>`);}streak.n=0;}}

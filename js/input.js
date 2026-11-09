@@ -1,9 +1,9 @@
 /* ================= input ================= */
 const keys={};let atkHeld=false,dashReq=false,skillReq=false;const joy={id:null,ox:0,oy:0,x:0,y:0};let rightId=null;
 addEventListener('keydown',e=>{keys[e.code]=true;if(e.code==='Space'){atkHeld=true;e.preventDefault();}if(e.code==='ShiftLeft'||e.code==='ShiftRight')dashReq=true;if(e.code==='KeyE'){if(manA!=null)aimA=manA;skillReq=true;}if(state==='play'&&!e.repeat){if(e.code==='KeyQ'||e.code==='Digit1')useCons('verband');if(e.code==='KeyF'||e.code==='Digit2')useCons('molotow',manTgt());}
-  if(e.code==='Escape'||e.code==='KeyP'){if(state==='play')pauseGame();else if(state==='paused')resume();}});
+  if(e.code==='Escape'||e.code==='KeyP'){if(state==='play')pauseGame();else if(state==='paused')resume();else if(state==='base')baseMenu('bag');}});
 addEventListener('keyup',e=>{keys[e.code]=false;if(e.code==='Space')atkHeld=false;});
-cv.addEventListener('pointerdown',e=>{if(state!=='play')return;
+cv.addEventListener('pointerdown',e=>{if(state!=='play'&&state!=='base')return;
   if(e.pointerType==='mouse'){mouse.on=true;mouse.x=e.clientX;mouse.y=e.clientY;document.body.classList.add('mouse');if(e.button===2)dashReq=true;else if(rightId===null){rightId=e.pointerId;atkHeld=true;}try{cv.setPointerCapture(e.pointerId);}catch(_){}return;}
   if(mouse.on){mouse.on=false;document.body.classList.remove('mouse');}
   if(e.clientX<SW*.55&&joy.id===null){joy.id=e.pointerId;joy.ox=e.clientX;joy.oy=e.clientY;joy.x=joy.y=0;}
@@ -44,7 +44,7 @@ function manAim(){manA=pad.aim!=null?pad.aim:mouse.on&&state==='play'?(()=>{cons
 const autoAtk=()=>S.auto==null?matchMedia('(pointer:coarse)').matches:!!S.auto;
 /* haptics: S.hap 0 off, 1 light (default), 2 strong; short pulses only */
 let hapT=0;function buzz(ms){const h=S.hap==null?1:S.hap;if(!h||!navigator.vibrate)return;const n=performance.now();if(n<hapT)return;hapT=n+120;try{navigator.vibrate(Math.round(ms*(h===2?2:1)));}catch(_){}}
-$('pause').addEventListener('click',()=>{if(state==='play')pauseGame();});
+$('pause').addEventListener('click',()=>{if(state==='play')pauseGame();else if(state==='base')baseMenu('bag');});
 document.addEventListener('visibilitychange',()=>{try{if(AC){if(document.hidden)AC.suspend();else AC.resume();}}catch(e){}if(document.hidden){if(state==='play')pauseGame();if(cloud.dirty){clearTimeout(cloud.timer);cloudPush();}}});
 function clearInput(){joy.id=null;joy.x=joy.y=0;rightId=null;aim.id=null;atkHeld=false;dashReq=false;skillReq=false;atkB.classList.remove('on');}
 function pauseGame(){state='paused';clearInput();openInv('run');}
@@ -59,6 +59,7 @@ let backN=0,backT=0;const armBack=()=>{try{if(!(history.state&&history.state.rs)
 addEventListener('pointerdown',armBack,true);
 addEventListener('popstate',()=>{
   if(state==='play'){pauseGame();return armBack();}
+  if(state==='base'){leaveBase();return armBack();}
   if(!$('inv').hidden){const b=document.querySelector('#inv [data-a=close]');if(b)b.click();return armBack();}
   if(state!=='menu'||!$('trade').hidden||!$('perk').hidden||!$('end').hidden)return armBack();
   const n=performance.now();backN=n-backT<2000?backN+1:1;backT=n;
