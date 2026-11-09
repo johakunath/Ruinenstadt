@@ -21,3 +21,12 @@ test('network, HTTP and invalid JSON failures leave fallback available',async()=
     const env=setup(fetch);await env.run('spriteReady');assert.equal(env.run("spr('enemies/ghoul-idle')"),null);
   }
 });
+test('ghoul poses follow contact, walk, stun and hit timers without replacing the Brigadeghul',()=>{
+  const art=readFileSync(new URL('../js/art.js',import.meta.url),'utf8'),code=art.slice(art.indexOf('function ghoulSprite('),art.indexOf('const GFLASH='));
+  const ctx=vm.createContext({P:{x:100,y:100,r:12},D:{},SPRITES:{},spr:()=>({})});vm.runInContext(code,ctx);
+  const pose=e=>{ctx.e={type:'ghoul',x:0,y:0,r:10,hcd:1,t:0,...e};return vm.runInContext('ghoulSprite(e)?.key',ctx);};
+  assert.equal(pose({}),'enemies/ghoul-idle');assert.equal(pose({mv:60,t:0}),'enemies/ghoul-walk-a');assert.equal(pose({mv:60,t:.2}),'enemies/ghoul-walk-b');
+  assert.equal(pose({x:100,y:80,hcd:.1}),'enemies/ghoul-attack-a');assert.equal(pose({atk:.24}),'enemies/ghoul-attack-b');assert.equal(pose({atk:.05}),'enemies/ghoul-attack-a');
+  assert.equal(pose({atk:.24,flash:.1}),'enemies/ghoul-hit');assert.equal(pose({stun:1,mv:60}),'enemies/ghoul-hit');assert.equal(pose({type:'shield'}),undefined);
+  ctx.D.gdr=1;assert.equal(pose({}),undefined);ctx.D.gdr=0;ctx.spr=()=>null;assert.equal(pose({}),undefined);
+});

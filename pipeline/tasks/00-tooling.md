@@ -1,6 +1,6 @@
 # 00 Tooling and first sprite end to end
 
-Status: in progress (Codex, 2026-11-09)
+Status: done (v0.60)
 
 Goal: the pipeline works once from raw image to game, with the ghoul as test object.
 

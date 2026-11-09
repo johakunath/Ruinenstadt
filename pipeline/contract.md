@@ -18,7 +18,7 @@ How a painted sprite has to look and where it plugs in. If something here is wro
 | Building, Späti, landmark | `drawBox` / `drawBB` in `js/iso.js`, landmark functions in the district files (`drawRathaus`, `drawReichstag`, ...) | Full iso render of the building at the game angle, footprint `w` x `h` in world units | Footprint south corner `(x, y+h)` on the ground |
 | Vehicle | `drawVehBox` in `js/iso.js` (`b.veh.k`: car, trabi, van, bus, tram; `V.v` vertical) | Two renders: long axis along world x and along world y | Footprint centre on the ground |
 | Tree, lamp, Litfaßsäule, crane | Upright sprite via `drawBB` (`b.spr`, `b.sc`) | Upright PNG | Bottom centre at the footprint centre |
-| Enemy | `drawEnemy(e,t)` in `js/art.js` (district enemies in `js/alex.js` etc.), animated in code | Upright, facing right (the game mirrors), as parts with pivots or as a small set of frames (idle, walk 2 to 4, attack 2 to 3, hit) | Feet centre at `(e.x, e.y + e.r*.75)` screen-space, see `drawEnemy` |
+| Enemy | `drawEnemy(e,t)` in `js/art.js` (district enemies in `js/alex.js` etc.), animated in code | Upright, facing right (the game mirrors), as parts with pivots or as a small set of frames (idle, walk 2 to 4, attack 2 to 3, hit) | Painted ghoul: feet centre at `(e.x, e.y + e.r*.4)` screen-space, so soles stay inside the projected collision ring. Legacy canvas enemies use `e.r*.75`; see `drawEnemy` |
 | Boss | Same as enemy, `type:'boss'`, `e.big` | Same | Same |
 | Player | `drawPlayer` / `drawHero` in `js/art.js`, rig from `js/hero.js` | Not Codex (Claude) | Feet at `(P.x, P.y+9)` |
 

@@ -1,0 +1,24 @@
+{
+  "fallback": {
+    "state": "play",
+    "canvasFallback": true,
+    "failedImage": true,
+    "errors": []
+  },
+  "offline": {
+    "state": "play",
+    "version": "0.60",
+    "loaded": 6,
+    "cached": [
+      "/js/sprites.js",
+      "/assets/manifest.json",
+      "/assets/enemies/ghoul-idle.webp",
+      "/assets/enemies/ghoul-walk-a.webp",
+      "/assets/enemies/ghoul-walk-b.webp",
+      "/assets/enemies/ghoul-attack-a.webp",
+      "/assets/enemies/ghoul-attack-b.webp",
+      "/assets/enemies/ghoul-hit.webp"
+    ],
+    "errors": []
+  }
+}

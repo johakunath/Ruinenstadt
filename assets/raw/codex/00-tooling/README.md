@@ -1,7 +1,7 @@
 # Task 00 ghoul review
 
-No variant has been selected yet. Do not create `picks.json` until Johannes
-chooses A, B or C, as required by `pipeline/workflow.md` steps 3–5.
+Johannes selected **B (bottle green)** on 2026-11-09. He also delegated future
+colour-only choices to Codex; see `pipeline/workflow.md` step 4.
 
 - `ghoul-variants.png`: original transparent image generation, 2026-11-09.
   References: `docs/style/koepenick.png` and `assets/portraits/E01.webp`.
@@ -11,11 +11,13 @@ chooses A, B or C, as required by `pipeline/workflow.md` steps 3–5.
   height. Each alternative is cropped from its third of the original image,
   trimmed to alpha > 40, resized with Lanczos, and composited on dark teal.
 
-After the pick, generate the selected design's animation parts or frames
-(idle, walk, attack, hit) before normalising and hooking `drawEnemy`.
-The current image is a design comparison, not an animation sheet.
+- `ghoul-b-frames.png`: generated animation sheet based on B, 3 columns × 2
+  rows: idle, walk A, walk B, wind-up/recovery, bite contact, hit recoil.
+- `picks.json`: selected frame crops and measured foot anchors in source
+  coordinates. Every pose shares the idle frame's source scale (463 px =
+  36.5 local drawing units); the crouched bite is shorter, not stretched.
 
-Tooling prepared in this change:
+Tooling:
 
 ```sh
 python3 tools/sprites.py        # normalise all approved */picks.json selections
@@ -29,8 +31,7 @@ anchor and pivot coordinates. Transparent sources preserve alpha; opaque
 sources can specify a border colour and tolerance. Game outputs use 3 px per
 world unit, WebP quality 88 and 1 px transparent padding.
 
-`assets/manifest.json` is deliberately empty pending selection. The prepared
-`js/sprites.js` loader has been smoke-tested by injecting it into the page;
-it is not yet referenced by `index.html` or the offline shell. Hooking those,
-the version/cache bump and the release backlog entry belong to the completed
-ghoul integration.
+`assets/manifest.json` contains the six normalised frames. `js/sprites.js`
+is loaded before `js/art.js`; the loader, manifest and frames are in the
+offline shell. Proof screenshots and validation results live in
+`pipeline/proof/00-tooling/`.
