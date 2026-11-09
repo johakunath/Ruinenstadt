@@ -60,7 +60,7 @@ function drawDoll(){const c=$('dollc');if(!c)return;const g=c.getContext('2d'),W
   ctx=g;Object.assign(P,{x:0,y:0,face:.25,mvx:0,mvy:0,swingT:0,spin:0,dashT:0,inv:0,torch:false});
   try{g.setTransform(W/90,0,0,W/90,W/2,H*.8);drawPlayer(performance.now());}catch(e){}ctx=o;Object.assign(P,keep);}
 // map turned 45° like the minimap so screen-up while walking is map-up; labels stay upright. N arrow shows real north
-function drawMapTab(){const c=$('mapc');if(!c||!MB2)return;const g=c.getContext('2d'),k=600/WS,T=(x,y)=>{const a=x*k-300,b=y*k-300;return[300+(a-b)/2,300+(a+b)/2];};
+function drawMapTab(){const c=$('mapc');if(!c||!MB2)return;if(D.tun)return tunMapTab(c);const g=c.getContext('2d'),k=600/WS,T=(x,y)=>{const a=x*k-300,b=y*k-300;return[300+(a-b)/2,300+(a+b)/2];};
   g.setTransform(1,0,0,1,0,0);g.fillStyle='#120d0a';g.fillRect(0,0,600,600);g.save();g.translate(300,300);g.rotate(Math.PI/4);g.scale(IS,IS);g.translate(-300,-300);g.drawImage(MB2,0,0);
   g.fillStyle='rgba(0,0,0,.55)';for(const z of darks)g.fillRect(z.x*k,z.y*k,z.w*k,z.h*k);g.fillStyle='#1d4a8a';for(const z of darks)g.fillRect(z.x*k,z.y*k-6,8,8);
   if(spati){g.strokeStyle='#f2d14b';g.lineWidth=2;g.strokeRect(spati.x*k,spati.y*k,spati.w*k,spati.h*k);}g.restore();
