@@ -82,3 +82,40 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   mistakes. Keep high effort for rig/integration/visual review; medium effort
   is suitable for mechanical batches. Do not treat worker output as verified.
 - Next task: 01 enemies. No new task is included in this PR.
+
+## 2026-11-09 · Claude · motion and light foundation, v0.62
+
+- New `js/vfx.js` (effects, daylight, shadows) and `js/anim.js` (generic enemy
+  driver). `ghoulSprite`/`drawGhoulSprite` are gone: any `enemies/<type>-<pose>`
+  manifest key is drawn without a hook, only `<type>-idle` is required. Details
+  in the new last section of `contract.md`. Task 01 no longer needs renderer
+  work per enemy, and frames must come without painted ground shadows.
+- Wired examples only: melee swing crescents and spear thrust, hit and kill
+  impacts, lightning, projectile trails, Molotow pulse. Everything else is task
+  08 (`tasks/08-vfx-rollout.md`), written for a cheaper model with exact call
+  sites and acceptance checks. Spot-check its screenshots.
+- Looks were decided without a variant sheet (palette taken from the existing
+  districts). All strengths are constants in `js/vfx.js`; Johannes has not
+  playtested on the Tab S9 yet.
+- Frame time: `tools/perf_vfx.cjs`, busy scene, 1280x800 at DPR 2, headless
+  software raster. Median before/after in ms: Köpenick 122/113 and 125/122,
+  Mitte 95/102 and 100/101, Alexanderplatz 113/95 and 84/89. Inside run-to-run
+  noise. A hardware check on the tablet is still open.
+
+## 2026-11-09 · Claude · sound, coloured light, game feel, pack movement, v0.63
+
+- `js/audio.js` rebuilt (bus with compressor and generated reverb, new `FX`
+  recipes, modal and filtered-noise layers, `mal` voice, `audioTick`). Checked
+  by script only (no errors, levels, lengths). Nobody has listened to it yet:
+  Johannes judges by ear, recipes are data in `FX`.
+- `steer()` in `js/update.js` changes difficulty: enemies no longer stack and
+  chasers surround the player. Not balance-tested. In a 30-enemy script test
+  they covered 7 to 8 of 8 directions with no overlapping pairs.
+- Bot balance pass by a Sonnet worker on v0.62 (before `steer`), few runs per
+  district so anecdotal: Köpenick, Xhain, Alexanderplatz won almost always,
+  Mitte 1 of 3, Tempelhof 0 of 2; tunnel wave 8 stuck twice with 1 to 2
+  spitters left and nothing to spawn. No numbers changed.
+- `?debug=perf` shows frame time and script time per phase on the device.
+  Coloured light measured A/B in one page (Mitte, 26 tinted lights): 95.5 ms
+  on, 96.8 ms off, so no measurable cost.
+

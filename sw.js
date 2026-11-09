@@ -1,7 +1,7 @@
 // Bump CACHE with every release so installed copies pick up the new files.
-const CACHE='ruinenstadt-0.61';
+const CACHE='ruinenstadt-0.63';
 const SHELL=['./','index.html','css/style.css','manifest.webmanifest','icons/icon.svg','icons/icon-192.png','icons/icon-512.png',
-  ...['core','save','canvas','iso','data','items','audio','world','biomes','geo','mitte','alex','ubahn','base','state','feedback','combat','input','panels','update','hero','sprites','art','render','main'].map(n=>`js/${n}.js`),
+  ...['core','save','canvas','iso','data','items','audio','world','biomes','geo','mitte','alex','ubahn','base','state','feedback','vfx','anim','combat','input','panels','update','hero','sprites','art','render','main'].map(n=>`js/${n}.js`),
   'assets/manifest.json',...['idle','walk-a','walk-b','attack-a','attack-b','hit'].map(n=>`assets/enemies/ghoul-${n}.webp`),
   // painted icons and portraits, so menus work offline from the first start
   ...[...Array(70)].map((_,i)=>'I'+String(i+1).padStart(2,'0')).concat('C01 C02 C03 C04 C05 C06 C07 M01 M02 M03 M04 M05 M06 M07 R01 R02 R03 R04 R05 D01'.split(' ')).map(n=>`assets/icons/${n}.webp`),

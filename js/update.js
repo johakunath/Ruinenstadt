@@ -1,8 +1,12 @@
 /* ================= update ================= */
-function update(dt){
+// v0.63 pack movement: enemies push apart instead of stacking on one spot, and chasers drift to their side (e.side) so a pack closes in from around the player.
+// Only bends the direction, never speeds an enemy up. Committed charges and dives (e.ru, e.dive) are not steered, they keep the telegraphed line. vx,vy: wanted direction, d: distance to the player
+function steer(e,vx,vy,d){let sx=0,sy=0;for(const o of enemies){if(o===e||o.fly!==e.fly)continue;const ax=e.x-o.x,ay=e.y-o.y,m=e.r+o.r+6;if(ax>m||ax<-m||ay>m||ay<-m)continue;const q=Math.hypot(ax,ay)||.01;if(q<m){const w=(1-q/m)*(o.r>e.r?1.5:1);sx+=ax/q*w;sy+=ay/q*w;}}
+  const ch=(vx*(P.x-e.x)+vy*(P.y-e.y))/d>.8&&d>60&&d<300&&!e.fly&&e.type!=='boss'?.4*e.side*Math.min(1,(d-60)/80):0,X=vx+sx*1.3-vy*ch,Y=vy+sy*1.3+vx*ch,n=Math.max(1,Math.hypot(X,Y));return[X/n,Y/n];}
+function update(dt){dt=fxTime(dt);
   if(run&&run.tl&&state==='play'){run.tl.t+=dt;run.tl.fr++;if(dt>.034)run.tl.sl++;}
   if(bannerT>0){bannerT-=dt;if(bannerT<=0){const b=$('banner');b.style.opacity=0;b.style.transform='translateY(-48px)';}}
-  for(const p of parts){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=.9;p.vy*=.9;p.life-=dt;}parts=parts.filter(p=>p.life>0);
+  for(const p of parts){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=.9;p.vy*=.9;p.life-=dt;}parts=parts.filter(p=>p.life>0);fxUpdate(dt);audioTick(dt);
   for(const n of nums){n.y-=32*dt;n.life-=dt;}nums=nums.filter(n=>n.life>0);
   for(const s of swings)s.life-=dt;swings=swings.filter(s=>s.life>0);
   for(const b of bolts)b.life-=dt;bolts=bolts.filter(b=>b.life>0);
@@ -34,7 +38,7 @@ function update(dt){
   if(ST.regen)P.hp=Math.min(ST.maxHp,P.hp+ST.regen*dt);
   if(P.spin>0){P.spin-=dt;P.spinTick-=dt;if(P.spinTick<=0){P.spinTick=.15;const sr=80*(1+.2*pk('reach'));for(const e of enemies)if(Math.hypot(e.x-P.x,e.y-P.y)<sr+e.r){const c=Math.random()<ST.crit;hit(e,ST.dmg*.6*(c?2:1),c,{knock:160});}propsInRadius(P.x,P.y,sr,ST.dmg*.6);sfx('swing');}}
   if(P.hot>0){P.hot-=dt;P.hp=Math.min(ST.maxHp,P.hp+ST.maxHp*.4/3*dt);}if(P.fed>0)P.fed-=dt;
-  for(const m of mols){m.t+=dt;if(m.t>=m.dur){fields.push({x:m.x1,y:m.y1,r:65*(pk('blast')?1.5:1),t:4});sfx('ignite');sfx('crash');burst(m.x1,m.y1,'#ff6a2a',24,200);propsInRadius(m.x1,m.y1,60,ST.dmg*2);m.done=1;}}mols=mols.filter(m=>!m.done);
+  for(const m of mols){m.t+=dt;if(m.t>=m.dur){fxPulse(m.x1,m.y1,'#ff6a2a',70);fields.push({x:m.x1,y:m.y1,r:65*(pk('blast')?1.5:1),t:4});sfx('ignite');sfx('crash');burst(m.x1,m.y1,'#ff6a2a',24,200);propsInRadius(m.x1,m.y1,60,ST.dmg*2);m.done=1;}}mols=mols.filter(m=>!m.done);
   for(const f of fields){f.t-=dt;if(Math.random()<dt*22)parts.push({x:f.x+R(-f.r,f.r)*.8,y:f.y+R(-f.r,f.r)*.4,vx:R(-8,8),vy:R(-70,-30),life:.5,max:.5,col:pick(['#ff6a2a','#FAC775','#EF9F27']),size:R(2,4)});
     for(const e of enemies)if(e.hp>0&&Math.hypot(e.x-f.x,(e.y-f.y)*1.6)<f.r){const W=ER(e,'fire');if(W>0){e.bdps=Math.max(e.burn>0?e.bdps||0:0,ST.dmg*.9*W);e.burn=Math.max(e.burn||0,.7);}}}
   fields=fields.filter(f=>f.t>0);
@@ -97,7 +101,7 @@ function update(dt){
     if(e.open>0){e.open-=dt;sp=0;}
     if(e.det>0){e.det-=dt;const a=Math.atan2(vy,vx)+e.detA;vx=Math.cos(a);vy=Math.sin(a);}
     if(e.elite==='schnell'&&e.type!=='raser'&&e.ru>0){vx=e.rdx;vy=e.rdy;sp=e.stun>0?0:480;}// lunge keeps its telegraphed direction over type steering (spitter, howl)
-    const f=Math.pow(.002,dt);const ox=e.x,oy=e.y;e.x+=vx*sp*dt+e.kx*dt;e.y+=vy*sp*dt+e.ky*dt;e.kx*=f;e.ky*=f;if(e.fly){e.x=clamp(e.x,10,WS-10);e.y=clamp(e.y,10,WH-10);}else collide(e);e.mv=Math.hypot(e.x-ox,e.y-oy)/Math.max(dt,.001);
+    const f=Math.pow(.002,dt);const ox=e.x,oy=e.y;if(sp>0&&!(e.ru>0)&&!(e.dive>0)){const q=steer(e,vx,vy,d);vx=q[0];vy=q[1];}e.x+=vx*sp*dt+e.kx*dt;e.y+=vy*sp*dt+e.ky*dt;e.kx*=f;e.ky*=f;if(e.fly){e.x=clamp(e.x,10,WS-10);e.y=clamp(e.y,10,WH-10);}else collide(e);e.mv=Math.hypot(e.x-ox,e.y-oy)/Math.max(dt,.001);
     if(!e.fly&&e.type!=='boss'){e.sto=(e.sto||0)+dt;if(e.sto>6){const pd=Math.hypot(e.x-P.x,e.y-P.y);if(pd>=(e.lpd||1e9)-40&&pd>260){const q=freeSpot(Math.max(300,VIEWR()),Math.max(340,VIEWR()+120),e.r+6);e.x=q.x;e.y=q.y;}e.sto=0;e.lpd=Math.hypot(e.x-P.x,e.y-P.y);}}
     e.chk+=dt;if(e.chk>.5){if(sp>0&&!e.fly&&e.det<=0&&Math.hypot(e.x-e.lx,e.y-e.ly)<sp*.12){e.det=.8;e.detA=pick([-1.4,1.4]);}e.chk=0;e.lx=e.x;e.ly=e.y;}
     if(e.type==='boss'){if(!e.rage&&e.hp<e.max*.5){e.rage=1;e.spd*=1.3;banner(e.name+' tobt',1);flashT=.35;shake=10;sfx('horn');}const rg=e.rage?1.35:1;e.slam-=dt*rg;e.ring-=dt*rg;
