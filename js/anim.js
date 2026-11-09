@@ -9,7 +9,7 @@ const eNear=e=>Math.hypot(P.x-e.x,P.y-e.y)<e.r+P.r+14,eWind=e=>e.tw>0?1-e.tw/e.t
 const ENEMY_ART={ghoul:{r:10,h:36.5},brute:{r:17,h:52},spitter:{r:11,h:40},rat:{r:6,h:6.1},crow:{r:8,h:16},shield:{r:13,h:44},bomb:{r:11,h:40},howl:{r:11,h:44},raser:{r:11,h:36},schrottkoloss:{r:34,h:83},kabel:{r:9,h:35},bass:{r:15,h:56},uhr:{r:13,h:44},wurz:{r:12,h:55},kern:{r:11,h:42},brigadeghoul:{r:10,h:36.5}};
 const ENEMYPRE={},ENEMY_POSES=['idle','walk-a','walk-b','attack-a','attack-b','hit'];
 for(const [k,v]of Object.entries(ENEMY_ART))EANI[k]={radius:v.r,life:.45};
-function enemyPose(e){const A=EANI[e.type]||EANI._;return e.flash>0||e.stun>0?'hit':e.cast>0||e.ru>0||e.dive>0||e.atk>.1?'attack-b':e.atk>0||eWind(e)>0||e.fuse>0||(e.type==='spitter'||e.type==='howl')&&e.fire<.45?'attack-a':(e.mv||0)>8?'walk-'+'abcd'[Math.floor(e.t*(A.fps||6))%(A.walk||2)]:'idle';}
+function enemyPose(e){const A=EANI[enemyVariant(e)]||EANI[e.type]||EANI._;return e.flash>0||e.stun>0?'hit':e.cast>0||e.ru>0||e.dive>0||e.atk>.1?'attack-b':e.atk>0||eWind(e)>0||e.fuse>0||(e.type==='spitter'||e.type==='howl')&&e.fire<.45?'attack-a':(e.mv||0)>8?'walk-'+'abcd'[Math.floor(e.t*(A.fps||6))%(A.walk||2)]:'idle';}
 function enemyVariant(e){return e.type==='boss'?(e.big?null:'schrottkoloss'):e.type==='ghoul'&&D.gdr?'brigadeghoul':e.type;}
 function enemySprite(e){const variant=enemyVariant(e),b='enemies/'+variant+'-';if(!variant||!SPRITES[b+'idle'])return null;if(!ENEMYPRE[variant]){ENEMYPRE[variant]=1;for(const p of ENEMY_POSES)spr(b+p);}const p=enemyPose(e);let key=b+p,i=spr(key);if(!i)for(const q of POSEFB[p]||[]){key=b+q;if((i=spr(key)))break;}const idle=SPRITES[b+'idle'],spec=ENEMY_ART[variant]||{r:(EANI[e.type]||EANI._).radius||10,h:idle.anchor[1]/idle.units};return i?{i,m:SPRITES[key],key,variant,spec,H:spec.h}:null;}
 function enemyFlip(e){return(e.ru>0||e.ch>0||e.dive>0)&&Number.isFinite(e.rdx)&&Number.isFinite(e.rdy)?(e.rdx-e.rdy<0?-1:1):(P.x-P.y<e.x-e.y?-1:1);}
@@ -26,7 +26,7 @@ function drawEnemyShield(e,fy){if(e.type!=='shield')return false;const key='enem
 // Mouth launch follows the same pose/life transform as the drawn frame; physics stays unchanged.
 function enemyMuzzle(e){const g=enemySprite(e),p=g&&g.m.pivots&&g.m.pivots.mouth;if(!p)return null;const m=g.m,fl=enemyFlip(e),L=enemyLife(e,fl),s=e.r/g.spec.r*1.15,hop=e.type==='kern'&&(e.mv||0)>8?Math.abs(Math.sin(e.t*9))*3:0,x=fl*(p[0]-m.anchor[0])/m.units*s*L[0],y=((p[1]-m.anchor[1])/m.units-hop)*s*L[1],c=Math.cos(L[2]),n=Math.sin(L[2]);return{x:L[3]+c*x-n*y,y:e.r*.4+L[4]+n*x+c*y};}
 // squash/stretch around the feet: returns [sx, sy, lean (radians, + = away from the player), ox (px towards the player), oy]
-function enemyLife(e,fl){const k=(EANI[e.type]||EANI._).life||1;let sx=1,sy=1,ln=0,ox=0,oy=0;
+function enemyLife(e,fl){const k=(EANI[enemyVariant(e)]||EANI[e.type]||EANI._).life||1;let sx=1,sy=1,ln=0,ox=0,oy=0;
   if(e.t<.22){const q=e.t/.22,b=1+2.2*Math.pow(q-1,3)+1.2*Math.pow(q-1,2);sx*=b;sy*=b;}// spawn pop (ease out back)
   if(e.flash>0){const q=Math.min(1,e.flash/.1)*k;sx+=.16*q;sy-=.16*q;ln+=.14*q;ox-=2.5*q;}
   else if(e.stun>0)ln+=.07*Math.sin(e.t*14);

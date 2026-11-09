@@ -1,7 +1,7 @@
 {
   "targetPort": 8767,
   "baselinePort": 8765,
-  "started": "2026-11-09T17:13:01.431Z",
+  "started": "2026-11-09T21:54:02.264Z",
   "errors": [],
   "failedImages": [],
   "gallery": [
@@ -15,7 +15,7 @@
           "key": "enemies/ghoul-idle",
           "painted": true,
           "edge": 0,
-          "body": 494
+          "body": 523
         },
         {
           "variant": "ghoul",
@@ -24,7 +24,7 @@
           "key": "enemies/ghoul-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 498
+          "body": 527
         },
         {
           "variant": "ghoul",
@@ -33,7 +33,7 @@
           "key": "enemies/ghoul-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 521
+          "body": 536
         },
         {
           "variant": "ghoul",
@@ -42,7 +42,7 @@
           "key": "enemies/ghoul-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 508
+          "body": 541
         },
         {
           "variant": "ghoul",
@@ -51,7 +51,7 @@
           "key": "enemies/ghoul-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 488
+          "body": 528
         },
         {
           "variant": "ghoul",
@@ -60,7 +60,7 @@
           "key": "enemies/ghoul-hit",
           "painted": true,
           "edge": 0,
-          "body": 586
+          "body": 615
         },
         {
           "variant": "ghoul",
@@ -69,7 +69,7 @@
           "key": "enemies/ghoul-idle",
           "painted": true,
           "edge": 0,
-          "body": 494
+          "body": 525
         },
         {
           "variant": "ghoul",
@@ -78,7 +78,7 @@
           "key": "enemies/ghoul-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 498
+          "body": 527
         },
         {
           "variant": "ghoul",
@@ -87,7 +87,7 @@
           "key": "enemies/ghoul-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 521
+          "body": 536
         },
         {
           "variant": "ghoul",
@@ -96,7 +96,7 @@
           "key": "enemies/ghoul-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 508
+          "body": 541
         },
         {
           "variant": "ghoul",
@@ -105,7 +105,7 @@
           "key": "enemies/ghoul-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 488
+          "body": 529
         },
         {
           "variant": "ghoul",
@@ -114,7 +114,7 @@
           "key": "enemies/ghoul-hit",
           "painted": true,
           "edge": 0,
-          "body": 586
+          "body": 610
         }
       ]
     },
@@ -128,7 +128,7 @@
           "key": "enemies/ghoul-idle",
           "painted": true,
           "edge": 0,
-          "body": 1916
+          "body": 1938
         },
         {
           "variant": "ghoul",
@@ -137,7 +137,7 @@
           "key": "enemies/ghoul-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 1987
+          "body": 2017
         },
         {
           "variant": "ghoul",
@@ -146,7 +146,7 @@
           "key": "enemies/ghoul-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 2020
+          "body": 2035
         },
         {
           "variant": "ghoul",
@@ -155,7 +155,7 @@
           "key": "enemies/ghoul-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 1937
+          "body": 2001
         },
         {
           "variant": "ghoul",
@@ -164,7 +164,7 @@
           "key": "enemies/ghoul-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 1919
+          "body": 2006
         },
         {
           "variant": "ghoul",
@@ -173,7 +173,7 @@
           "key": "enemies/ghoul-hit",
           "painted": true,
           "edge": 0,
-          "body": 2343
+          "body": 2386
         },
         {
           "variant": "ghoul",
@@ -182,7 +182,7 @@
           "key": "enemies/ghoul-idle",
           "painted": true,
           "edge": 0,
-          "body": 1916
+          "body": 1940
         },
         {
           "variant": "ghoul",
@@ -191,7 +191,7 @@
           "key": "enemies/ghoul-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 1987
+          "body": 2023
         },
         {
           "variant": "ghoul",
@@ -200,7 +200,7 @@
           "key": "enemies/ghoul-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 2019
+          "body": 2045
         },
         {
           "variant": "ghoul",
@@ -209,7 +209,7 @@
           "key": "enemies/ghoul-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 1938
+          "body": 2003
         },
         {
           "variant": "ghoul",
@@ -218,7 +218,7 @@
           "key": "enemies/ghoul-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 1919
+          "body": 2010
         },
         {
           "variant": "ghoul",
@@ -227,7 +227,7 @@
           "key": "enemies/ghoul-hit",
           "painted": true,
           "edge": 0,
-          "body": 2343
+          "body": 2381
         }
       ]
     },
@@ -241,7 +241,7 @@
           "key": "enemies/brute-idle",
           "painted": true,
           "edge": 0,
-          "body": 1607
+          "body": 1686
         },
         {
           "variant": "brute",
@@ -250,7 +250,7 @@
           "key": "enemies/brute-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 1622
+          "body": 1658
         },
         {
           "variant": "brute",
@@ -259,7 +259,7 @@
           "key": "enemies/brute-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 1490
+          "body": 1478
         },
         {
           "variant": "brute",
@@ -268,7 +268,7 @@
           "key": "enemies/brute-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 1787
+          "body": 1833
         },
         {
           "variant": "brute",
@@ -277,7 +277,7 @@
           "key": "enemies/brute-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 1835
+          "body": 1894
         },
         {
           "variant": "brute",
@@ -286,7 +286,7 @@
           "key": "enemies/brute-hit",
           "painted": true,
           "edge": 0,
-          "body": 1875
+          "body": 1902
         },
         {
           "variant": "brute",
@@ -295,7 +295,7 @@
           "key": "enemies/brute-idle",
           "painted": true,
           "edge": 0,
-          "body": 1607
+          "body": 1692
         },
         {
           "variant": "brute",
@@ -304,7 +304,7 @@
           "key": "enemies/brute-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 1623
+          "body": 1654
         },
         {
           "variant": "brute",
@@ -313,7 +313,7 @@
           "key": "enemies/brute-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 1490
+          "body": 1467
         },
         {
           "variant": "brute",
@@ -322,7 +322,7 @@
           "key": "enemies/brute-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 1788
+          "body": 1830
         },
         {
           "variant": "brute",
@@ -331,7 +331,7 @@
           "key": "enemies/brute-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 1835
+          "body": 1897
         },
         {
           "variant": "brute",
@@ -340,7 +340,7 @@
           "key": "enemies/brute-hit",
           "painted": true,
           "edge": 0,
-          "body": 1875
+          "body": 1901
         }
       ]
     },
@@ -354,7 +354,7 @@
           "key": "enemies/brute-idle",
           "painted": true,
           "edge": 0,
-          "body": 6389
+          "body": 6559
         },
         {
           "variant": "brute",
@@ -363,7 +363,7 @@
           "key": "enemies/brute-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 6404
+          "body": 6443
         },
         {
           "variant": "brute",
@@ -372,7 +372,7 @@
           "key": "enemies/brute-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 5808
+          "body": 5675
         },
         {
           "variant": "brute",
@@ -381,7 +381,7 @@
           "key": "enemies/brute-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 7012
+          "body": 7115
         },
         {
           "variant": "brute",
@@ -390,7 +390,7 @@
           "key": "enemies/brute-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 7251
+          "body": 7414
         },
         {
           "variant": "brute",
@@ -399,7 +399,7 @@
           "key": "enemies/brute-hit",
           "painted": true,
           "edge": 0,
-          "body": 7492
+          "body": 7557
         },
         {
           "variant": "brute",
@@ -408,7 +408,7 @@
           "key": "enemies/brute-idle",
           "painted": true,
           "edge": 0,
-          "body": 6389
+          "body": 6553
         },
         {
           "variant": "brute",
@@ -417,7 +417,7 @@
           "key": "enemies/brute-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 6404
+          "body": 6418
         },
         {
           "variant": "brute",
@@ -426,7 +426,7 @@
           "key": "enemies/brute-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 5809
+          "body": 5649
         },
         {
           "variant": "brute",
@@ -435,7 +435,7 @@
           "key": "enemies/brute-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 7013
+          "body": 7111
         },
         {
           "variant": "brute",
@@ -444,7 +444,7 @@
           "key": "enemies/brute-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 7251
+          "body": 7405
         },
         {
           "variant": "brute",
@@ -453,7 +453,7 @@
           "key": "enemies/brute-hit",
           "painted": true,
           "edge": 0,
-          "body": 7492
+          "body": 7541
         }
       ]
     },
@@ -467,7 +467,7 @@
           "key": "enemies/spitter-idle",
           "painted": true,
           "edge": 0,
-          "body": 880
+          "body": 953
         },
         {
           "variant": "spitter",
@@ -476,7 +476,7 @@
           "key": "enemies/spitter-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 881
+          "body": 926
         },
         {
           "variant": "spitter",
@@ -485,7 +485,7 @@
           "key": "enemies/spitter-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 865
+          "body": 902
         },
         {
           "variant": "spitter",
@@ -494,7 +494,7 @@
           "key": "enemies/spitter-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 1030
+          "body": 1102
         },
         {
           "variant": "spitter",
@@ -503,7 +503,7 @@
           "key": "enemies/spitter-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 1063
+          "body": 1165
         },
         {
           "variant": "spitter",
@@ -512,7 +512,7 @@
           "key": "enemies/spitter-hit",
           "painted": true,
           "edge": 0,
-          "body": 1033
+          "body": 1090
         },
         {
           "variant": "spitter",
@@ -521,7 +521,7 @@
           "key": "enemies/spitter-idle",
           "painted": true,
           "edge": 0,
-          "body": 880
+          "body": 959
         },
         {
           "variant": "spitter",
@@ -530,7 +530,7 @@
           "key": "enemies/spitter-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 881
+          "body": 923
         },
         {
           "variant": "spitter",
@@ -539,7 +539,7 @@
           "key": "enemies/spitter-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 865
+          "body": 900
         },
         {
           "variant": "spitter",
@@ -548,7 +548,7 @@
           "key": "enemies/spitter-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 1030
+          "body": 1103
         },
         {
           "variant": "spitter",
@@ -557,7 +557,7 @@
           "key": "enemies/spitter-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 1063
+          "body": 1160
         },
         {
           "variant": "spitter",
@@ -566,7 +566,7 @@
           "key": "enemies/spitter-hit",
           "painted": true,
           "edge": 0,
-          "body": 1033
+          "body": 1089
         }
       ]
     },
@@ -580,7 +580,7 @@
           "key": "enemies/spitter-idle",
           "painted": true,
           "edge": 0,
-          "body": 3444
+          "body": 3668
         },
         {
           "variant": "spitter",
@@ -589,7 +589,7 @@
           "key": "enemies/spitter-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 3462
+          "body": 3619
         },
         {
           "variant": "spitter",
@@ -598,7 +598,7 @@
           "key": "enemies/spitter-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 3414
+          "body": 3519
         },
         {
           "variant": "spitter",
@@ -607,7 +607,7 @@
           "key": "enemies/spitter-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 3971
+          "body": 4269
         },
         {
           "variant": "spitter",
@@ -616,7 +616,7 @@
           "key": "enemies/spitter-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 4138
+          "body": 4494
         },
         {
           "variant": "spitter",
@@ -625,7 +625,7 @@
           "key": "enemies/spitter-hit",
           "painted": true,
           "edge": 0,
-          "body": 4168
+          "body": 4355
         },
         {
           "variant": "spitter",
@@ -634,7 +634,7 @@
           "key": "enemies/spitter-idle",
           "painted": true,
           "edge": 0,
-          "body": 3445
+          "body": 3673
         },
         {
           "variant": "spitter",
@@ -643,7 +643,7 @@
           "key": "enemies/spitter-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 3463
+          "body": 3597
         },
         {
           "variant": "spitter",
@@ -652,7 +652,7 @@
           "key": "enemies/spitter-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 3415
+          "body": 3509
         },
         {
           "variant": "spitter",
@@ -661,7 +661,7 @@
           "key": "enemies/spitter-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 3971
+          "body": 4258
         },
         {
           "variant": "spitter",
@@ -670,7 +670,7 @@
           "key": "enemies/spitter-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 4137
+          "body": 4489
         },
         {
           "variant": "spitter",
@@ -679,7 +679,7 @@
           "key": "enemies/spitter-hit",
           "painted": true,
           "edge": 0,
-          "body": 4168
+          "body": 4351
         }
       ]
     },
@@ -702,7 +702,7 @@
           "key": "enemies/rat-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 97
+          "body": 95
         },
         {
           "variant": "rat",
@@ -711,7 +711,7 @@
           "key": "enemies/rat-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 98
+          "body": 102
         },
         {
           "variant": "rat",
@@ -720,7 +720,7 @@
           "key": "enemies/rat-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 91
+          "body": 89
         },
         {
           "variant": "rat",
@@ -729,7 +729,7 @@
           "key": "enemies/rat-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 96
+          "body": 110
         },
         {
           "variant": "rat",
@@ -738,7 +738,7 @@
           "key": "enemies/rat-hit",
           "painted": true,
           "edge": 0,
-          "body": 104
+          "body": 113
         },
         {
           "variant": "rat",
@@ -756,7 +756,7 @@
           "key": "enemies/rat-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 96
+          "body": 93
         },
         {
           "variant": "rat",
@@ -765,7 +765,7 @@
           "key": "enemies/rat-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 97
+          "body": 99
         },
         {
           "variant": "rat",
@@ -774,7 +774,7 @@
           "key": "enemies/rat-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 90
+          "body": 89
         },
         {
           "variant": "rat",
@@ -783,7 +783,7 @@
           "key": "enemies/rat-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 96
+          "body": 109
         },
         {
           "variant": "rat",
@@ -792,7 +792,7 @@
           "key": "enemies/rat-hit",
           "painted": true,
           "edge": 0,
-          "body": 103
+          "body": 108
         }
       ]
     },
@@ -806,7 +806,7 @@
           "key": "enemies/rat-idle",
           "painted": true,
           "edge": 0,
-          "body": 361
+          "body": 335
         },
         {
           "variant": "rat",
@@ -815,7 +815,7 @@
           "key": "enemies/rat-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 390
+          "body": 348
         },
         {
           "variant": "rat",
@@ -824,7 +824,7 @@
           "key": "enemies/rat-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 382
+          "body": 346
         },
         {
           "variant": "rat",
@@ -833,7 +833,7 @@
           "key": "enemies/rat-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 348
+          "body": 314
         },
         {
           "variant": "rat",
@@ -842,7 +842,7 @@
           "key": "enemies/rat-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 390
+          "body": 375
         },
         {
           "variant": "rat",
@@ -851,7 +851,7 @@
           "key": "enemies/rat-hit",
           "painted": true,
           "edge": 0,
-          "body": 429
+          "body": 401
         },
         {
           "variant": "rat",
@@ -860,7 +860,7 @@
           "key": "enemies/rat-idle",
           "painted": true,
           "edge": 0,
-          "body": 361
+          "body": 327
         },
         {
           "variant": "rat",
@@ -869,7 +869,7 @@
           "key": "enemies/rat-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 390
+          "body": 343
         },
         {
           "variant": "rat",
@@ -878,7 +878,7 @@
           "key": "enemies/rat-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 382
+          "body": 340
         },
         {
           "variant": "rat",
@@ -887,7 +887,7 @@
           "key": "enemies/rat-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 348
+          "body": 310
         },
         {
           "variant": "rat",
@@ -896,7 +896,7 @@
           "key": "enemies/rat-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 390
+          "body": 372
         },
         {
           "variant": "rat",
@@ -905,7 +905,7 @@
           "key": "enemies/rat-hit",
           "painted": true,
           "edge": 0,
-          "body": 429
+          "body": 392
         }
       ]
     },
@@ -919,7 +919,7 @@
           "key": "enemies/crow-idle",
           "painted": true,
           "edge": 0,
-          "body": 183
+          "body": 202
         },
         {
           "variant": "crow",
@@ -928,7 +928,7 @@
           "key": "enemies/crow-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 240
+          "body": 259
         },
         {
           "variant": "crow",
@@ -937,7 +937,7 @@
           "key": "enemies/crow-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 213
+          "body": 236
         },
         {
           "variant": "crow",
@@ -946,7 +946,7 @@
           "key": "enemies/crow-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 222
+          "body": 247
         },
         {
           "variant": "crow",
@@ -955,7 +955,7 @@
           "key": "enemies/crow-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 185
+          "body": 206
         },
         {
           "variant": "crow",
@@ -964,7 +964,7 @@
           "key": "enemies/crow-hit",
           "painted": true,
           "edge": 0,
-          "body": 251
+          "body": 273
         },
         {
           "variant": "crow",
@@ -973,7 +973,7 @@
           "key": "enemies/crow-idle",
           "painted": true,
           "edge": 0,
-          "body": 183
+          "body": 202
         },
         {
           "variant": "crow",
@@ -982,7 +982,7 @@
           "key": "enemies/crow-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 240
+          "body": 259
         },
         {
           "variant": "crow",
@@ -991,7 +991,7 @@
           "key": "enemies/crow-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 213
+          "body": 236
         },
         {
           "variant": "crow",
@@ -1000,7 +1000,7 @@
           "key": "enemies/crow-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 222
+          "body": 247
         },
         {
           "variant": "crow",
@@ -1009,7 +1009,7 @@
           "key": "enemies/crow-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 185
+          "body": 206
         },
         {
           "variant": "crow",
@@ -1018,7 +1018,7 @@
           "key": "enemies/crow-hit",
           "painted": true,
           "edge": 0,
-          "body": 251
+          "body": 273
         }
       ]
     },
@@ -1032,7 +1032,7 @@
           "key": "enemies/crow-idle",
           "painted": true,
           "edge": 0,
-          "body": 693
+          "body": 759
         },
         {
           "variant": "crow",
@@ -1041,7 +1041,7 @@
           "key": "enemies/crow-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 890
+          "body": 964
         },
         {
           "variant": "crow",
@@ -1050,7 +1050,7 @@
           "key": "enemies/crow-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 812
+          "body": 881
         },
         {
           "variant": "crow",
@@ -1059,7 +1059,7 @@
           "key": "enemies/crow-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 837
+          "body": 924
         },
         {
           "variant": "crow",
@@ -1068,7 +1068,7 @@
           "key": "enemies/crow-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 695
+          "body": 780
         },
         {
           "variant": "crow",
@@ -1077,7 +1077,7 @@
           "key": "enemies/crow-hit",
           "painted": true,
           "edge": 0,
-          "body": 980
+          "body": 1061
         },
         {
           "variant": "crow",
@@ -1086,7 +1086,7 @@
           "key": "enemies/crow-idle",
           "painted": true,
           "edge": 0,
-          "body": 693
+          "body": 759
         },
         {
           "variant": "crow",
@@ -1095,7 +1095,7 @@
           "key": "enemies/crow-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 890
+          "body": 964
         },
         {
           "variant": "crow",
@@ -1104,7 +1104,7 @@
           "key": "enemies/crow-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 812
+          "body": 881
         },
         {
           "variant": "crow",
@@ -1113,7 +1113,7 @@
           "key": "enemies/crow-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 837
+          "body": 924
         },
         {
           "variant": "crow",
@@ -1122,7 +1122,7 @@
           "key": "enemies/crow-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 695
+          "body": 780
         },
         {
           "variant": "crow",
@@ -1131,7 +1131,7 @@
           "key": "enemies/crow-hit",
           "painted": true,
           "edge": 0,
-          "body": 980
+          "body": 1061
         }
       ]
     },
@@ -1145,7 +1145,7 @@
           "key": "enemies/shield-idle",
           "painted": true,
           "edge": 0,
-          "body": 817
+          "body": 816
         },
         {
           "variant": "shield",
@@ -1154,7 +1154,7 @@
           "key": "enemies/shield-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 794
+          "body": 771
         },
         {
           "variant": "shield",
@@ -1163,7 +1163,7 @@
           "key": "enemies/shield-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 778
+          "body": 782
         },
         {
           "variant": "shield",
@@ -1172,7 +1172,7 @@
           "key": "enemies/shield-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 896
+          "body": 897
         },
         {
           "variant": "shield",
@@ -1181,7 +1181,7 @@
           "key": "enemies/shield-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 907
+          "body": 903
         },
         {
           "variant": "shield",
@@ -1190,7 +1190,7 @@
           "key": "enemies/shield-hit",
           "painted": true,
           "edge": 0,
-          "body": 974
+          "body": 972
         },
         {
           "variant": "shield",
@@ -1199,7 +1199,7 @@
           "key": "enemies/shield-idle",
           "painted": true,
           "edge": 0,
-          "body": 817
+          "body": 818
         },
         {
           "variant": "shield",
@@ -1208,7 +1208,7 @@
           "key": "enemies/shield-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 794
+          "body": 769
         },
         {
           "variant": "shield",
@@ -1217,7 +1217,7 @@
           "key": "enemies/shield-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 777
+          "body": 785
         },
         {
           "variant": "shield",
@@ -1235,7 +1235,7 @@
           "key": "enemies/shield-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 906
+          "body": 903
         },
         {
           "variant": "shield",
@@ -1244,7 +1244,7 @@
           "key": "enemies/shield-hit",
           "painted": true,
           "edge": 0,
-          "body": 974
+          "body": 973
         }
       ]
     },
@@ -1258,7 +1258,7 @@
           "key": "enemies/shield-idle",
           "painted": true,
           "edge": 0,
-          "body": 3139
+          "body": 3092
         },
         {
           "variant": "shield",
@@ -1267,7 +1267,7 @@
           "key": "enemies/shield-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 3021
+          "body": 2937
         },
         {
           "variant": "shield",
@@ -1276,7 +1276,7 @@
           "key": "enemies/shield-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 2959
+          "body": 2887
         },
         {
           "variant": "shield",
@@ -1285,7 +1285,7 @@
           "key": "enemies/shield-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 3424
+          "body": 3374
         },
         {
           "variant": "shield",
@@ -1294,7 +1294,7 @@
           "key": "enemies/shield-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 3423
+          "body": 3358
         },
         {
           "variant": "shield",
@@ -1303,7 +1303,7 @@
           "key": "enemies/shield-hit",
           "painted": true,
           "edge": 0,
-          "body": 3922
+          "body": 3860
         },
         {
           "variant": "shield",
@@ -1312,7 +1312,7 @@
           "key": "enemies/shield-idle",
           "painted": true,
           "edge": 0,
-          "body": 3139
+          "body": 3103
         },
         {
           "variant": "shield",
@@ -1321,7 +1321,7 @@
           "key": "enemies/shield-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 3020
+          "body": 2927
         },
         {
           "variant": "shield",
@@ -1330,7 +1330,7 @@
           "key": "enemies/shield-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 2959
+          "body": 2878
         },
         {
           "variant": "shield",
@@ -1339,7 +1339,7 @@
           "key": "enemies/shield-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 3424
+          "body": 3369
         },
         {
           "variant": "shield",
@@ -1348,7 +1348,7 @@
           "key": "enemies/shield-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 3423
+          "body": 3354
         },
         {
           "variant": "shield",
@@ -1357,7 +1357,7 @@
           "key": "enemies/shield-hit",
           "painted": true,
           "edge": 0,
-          "body": 3922
+          "body": 3848
         }
       ]
     },
@@ -1371,7 +1371,7 @@
           "key": "enemies/bomb-idle",
           "painted": true,
           "edge": 0,
-          "body": 549
+          "body": 571
         },
         {
           "variant": "bomb",
@@ -1380,7 +1380,7 @@
           "key": "enemies/bomb-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 592
+          "body": 576
         },
         {
           "variant": "bomb",
@@ -1389,7 +1389,7 @@
           "key": "enemies/bomb-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 557
+          "body": 544
         },
         {
           "variant": "bomb",
@@ -1398,7 +1398,7 @@
           "key": "enemies/bomb-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 606
+          "body": 622
         },
         {
           "variant": "bomb",
@@ -1407,7 +1407,7 @@
           "key": "enemies/bomb-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 684
+          "body": 735
         },
         {
           "variant": "bomb",
@@ -1416,7 +1416,7 @@
           "key": "enemies/bomb-hit",
           "painted": true,
           "edge": 0,
-          "body": 801
+          "body": 810
         },
         {
           "variant": "bomb",
@@ -1425,7 +1425,7 @@
           "key": "enemies/bomb-idle",
           "painted": true,
           "edge": 0,
-          "body": 549
+          "body": 573
         },
         {
           "variant": "bomb",
@@ -1434,7 +1434,7 @@
           "key": "enemies/bomb-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 592
+          "body": 581
         },
         {
           "variant": "bomb",
@@ -1443,7 +1443,7 @@
           "key": "enemies/bomb-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 557
+          "body": 541
         },
         {
           "variant": "bomb",
@@ -1452,7 +1452,7 @@
           "key": "enemies/bomb-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 606
+          "body": 622
         },
         {
           "variant": "bomb",
@@ -1461,7 +1461,7 @@
           "key": "enemies/bomb-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 684
+          "body": 740
         },
         {
           "variant": "bomb",
@@ -1470,7 +1470,7 @@
           "key": "enemies/bomb-hit",
           "painted": true,
           "edge": 0,
-          "body": 801
+          "body": 808
         }
       ]
     },
@@ -1484,7 +1484,7 @@
           "key": "enemies/bomb-idle",
           "painted": true,
           "edge": 0,
-          "body": 2167
+          "body": 2178
         },
         {
           "variant": "bomb",
@@ -1493,7 +1493,7 @@
           "key": "enemies/bomb-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 2311
+          "body": 2232
         },
         {
           "variant": "bomb",
@@ -1502,7 +1502,7 @@
           "key": "enemies/bomb-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 2166
+          "body": 2119
         },
         {
           "variant": "bomb",
@@ -1511,7 +1511,7 @@
           "key": "enemies/bomb-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 2416
+          "body": 2443
         },
         {
           "variant": "bomb",
@@ -1520,7 +1520,7 @@
           "key": "enemies/bomb-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 2736
+          "body": 2787
         },
         {
           "variant": "bomb",
@@ -1529,7 +1529,7 @@
           "key": "enemies/bomb-hit",
           "painted": true,
           "edge": 0,
-          "body": 3189
+          "body": 3202
         },
         {
           "variant": "bomb",
@@ -1538,7 +1538,7 @@
           "key": "enemies/bomb-idle",
           "painted": true,
           "edge": 0,
-          "body": 2166
+          "body": 2186
         },
         {
           "variant": "bomb",
@@ -1547,7 +1547,7 @@
           "key": "enemies/bomb-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 2311
+          "body": 2232
         },
         {
           "variant": "bomb",
@@ -1556,7 +1556,7 @@
           "key": "enemies/bomb-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 2166
+          "body": 2109
         },
         {
           "variant": "bomb",
@@ -1565,7 +1565,7 @@
           "key": "enemies/bomb-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 2415
+          "body": 2451
         },
         {
           "variant": "bomb",
@@ -1574,7 +1574,7 @@
           "key": "enemies/bomb-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 2735
+          "body": 2791
         },
         {
           "variant": "bomb",
@@ -1583,7 +1583,7 @@
           "key": "enemies/bomb-hit",
           "painted": true,
           "edge": 0,
-          "body": 3190
+          "body": 3193
         }
       ]
     },
@@ -1597,7 +1597,7 @@
           "key": "enemies/howl-idle",
           "painted": true,
           "edge": 0,
-          "body": 684
+          "body": 728
         },
         {
           "variant": "howl",
@@ -1606,7 +1606,7 @@
           "key": "enemies/howl-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 745
+          "body": 756
         },
         {
           "variant": "howl",
@@ -1615,7 +1615,7 @@
           "key": "enemies/howl-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 720
+          "body": 736
         },
         {
           "variant": "howl",
@@ -1624,7 +1624,7 @@
           "key": "enemies/howl-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 752
+          "body": 802
         },
         {
           "variant": "howl",
@@ -1633,7 +1633,7 @@
           "key": "enemies/howl-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 859
+          "body": 899
         },
         {
           "variant": "howl",
@@ -1642,7 +1642,7 @@
           "key": "enemies/howl-hit",
           "painted": true,
           "edge": 0,
-          "body": 831
+          "body": 859
         },
         {
           "variant": "howl",
@@ -1651,7 +1651,7 @@
           "key": "enemies/howl-idle",
           "painted": true,
           "edge": 0,
-          "body": 684
+          "body": 733
         },
         {
           "variant": "howl",
@@ -1660,7 +1660,7 @@
           "key": "enemies/howl-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 745
+          "body": 748
         },
         {
           "variant": "howl",
@@ -1669,7 +1669,7 @@
           "key": "enemies/howl-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 720
+          "body": 731
         },
         {
           "variant": "howl",
@@ -1678,7 +1678,7 @@
           "key": "enemies/howl-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 751
+          "body": 801
         },
         {
           "variant": "howl",
@@ -1687,7 +1687,7 @@
           "key": "enemies/howl-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 859
+          "body": 897
         },
         {
           "variant": "howl",
@@ -1696,7 +1696,7 @@
           "key": "enemies/howl-hit",
           "painted": true,
           "edge": 0,
-          "body": 831
+          "body": 858
         }
       ]
     },
@@ -1710,7 +1710,7 @@
           "key": "enemies/howl-idle",
           "painted": true,
           "edge": 0,
-          "body": 2625
+          "body": 2705
         },
         {
           "variant": "howl",
@@ -1719,7 +1719,7 @@
           "key": "enemies/howl-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 2848
+          "body": 2853
         },
         {
           "variant": "howl",
@@ -1728,7 +1728,7 @@
           "key": "enemies/howl-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 2756
+          "body": 2753
         },
         {
           "variant": "howl",
@@ -1737,7 +1737,7 @@
           "key": "enemies/howl-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 2908
+          "body": 3023
         },
         {
           "variant": "howl",
@@ -1746,7 +1746,7 @@
           "key": "enemies/howl-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 3284
+          "body": 3421
         },
         {
           "variant": "howl",
@@ -1755,7 +1755,7 @@
           "key": "enemies/howl-hit",
           "painted": true,
           "edge": 0,
-          "body": 3332
+          "body": 3388
         },
         {
           "variant": "howl",
@@ -1764,7 +1764,7 @@
           "key": "enemies/howl-idle",
           "painted": true,
           "edge": 0,
-          "body": 2624
+          "body": 2710
         },
         {
           "variant": "howl",
@@ -1773,7 +1773,7 @@
           "key": "enemies/howl-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 2850
+          "body": 2841
         },
         {
           "variant": "howl",
@@ -1782,7 +1782,7 @@
           "key": "enemies/howl-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 2755
+          "body": 2738
         },
         {
           "variant": "howl",
@@ -1791,7 +1791,7 @@
           "key": "enemies/howl-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 2909
+          "body": 3030
         },
         {
           "variant": "howl",
@@ -1800,7 +1800,7 @@
           "key": "enemies/howl-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 3282
+          "body": 3415
         },
         {
           "variant": "howl",
@@ -1809,7 +1809,7 @@
           "key": "enemies/howl-hit",
           "painted": true,
           "edge": 0,
-          "body": 3332
+          "body": 3394
         }
       ]
     },
@@ -1823,7 +1823,7 @@
           "key": "enemies/raser-idle",
           "painted": true,
           "edge": 0,
-          "body": 764
+          "body": 783
         },
         {
           "variant": "raser",
@@ -1832,7 +1832,7 @@
           "key": "enemies/raser-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 775
+          "body": 783
         },
         {
           "variant": "raser",
@@ -1841,7 +1841,7 @@
           "key": "enemies/raser-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 775
+          "body": 772
         },
         {
           "variant": "raser",
@@ -1850,7 +1850,7 @@
           "key": "enemies/raser-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 768
+          "body": 803
         },
         {
           "variant": "raser",
@@ -1859,7 +1859,7 @@
           "key": "enemies/raser-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 721
+          "body": 776
         },
         {
           "variant": "raser",
@@ -1868,7 +1868,7 @@
           "key": "enemies/raser-hit",
           "painted": true,
           "edge": 0,
-          "body": 812
+          "body": 815
         },
         {
           "variant": "raser",
@@ -1877,7 +1877,7 @@
           "key": "enemies/raser-idle",
           "painted": true,
           "edge": 0,
-          "body": 763
+          "body": 785
         },
         {
           "variant": "raser",
@@ -1886,7 +1886,7 @@
           "key": "enemies/raser-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 775
+          "body": 776
         },
         {
           "variant": "raser",
@@ -1895,7 +1895,7 @@
           "key": "enemies/raser-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 775
+          "body": 773
         },
         {
           "variant": "raser",
@@ -1904,7 +1904,7 @@
           "key": "enemies/raser-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 768
+          "body": 805
         },
         {
           "variant": "raser",
@@ -1913,7 +1913,7 @@
           "key": "enemies/raser-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 721
+          "body": 776
         },
         {
           "variant": "raser",
@@ -1922,7 +1922,7 @@
           "key": "enemies/raser-hit",
           "painted": true,
           "edge": 0,
-          "body": 812
+          "body": 817
         }
       ]
     },
@@ -1936,7 +1936,7 @@
           "key": "enemies/raser-idle",
           "painted": true,
           "edge": 0,
-          "body": 2902
+          "body": 2988
         },
         {
           "variant": "raser",
@@ -1945,7 +1945,7 @@
           "key": "enemies/raser-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 2977
+          "body": 2983
         },
         {
           "variant": "raser",
@@ -1954,7 +1954,7 @@
           "key": "enemies/raser-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 3012
+          "body": 3005
         },
         {
           "variant": "raser",
@@ -1963,7 +1963,7 @@
           "key": "enemies/raser-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 2935
+          "body": 3060
         },
         {
           "variant": "raser",
@@ -1972,7 +1972,7 @@
           "key": "enemies/raser-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 2785
+          "body": 2882
         },
         {
           "variant": "raser",
@@ -1981,7 +1981,7 @@
           "key": "enemies/raser-hit",
           "painted": true,
           "edge": 0,
-          "body": 3234
+          "body": 3289
         },
         {
           "variant": "raser",
@@ -1990,7 +1990,7 @@
           "key": "enemies/raser-idle",
           "painted": true,
           "edge": 0,
-          "body": 2902
+          "body": 2986
         },
         {
           "variant": "raser",
@@ -1999,7 +1999,7 @@
           "key": "enemies/raser-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 2977
+          "body": 2966
         },
         {
           "variant": "raser",
@@ -2008,7 +2008,7 @@
           "key": "enemies/raser-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 3013
+          "body": 2994
         },
         {
           "variant": "raser",
@@ -2017,7 +2017,7 @@
           "key": "enemies/raser-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 2936
+          "body": 3062
         },
         {
           "variant": "raser",
@@ -2026,7 +2026,7 @@
           "key": "enemies/raser-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 2787
+          "body": 2895
         },
         {
           "variant": "raser",
@@ -2035,7 +2035,7 @@
           "key": "enemies/raser-hit",
           "painted": true,
           "edge": 0,
-          "body": 3234
+          "body": 3289
         }
       ]
     },
@@ -2049,7 +2049,7 @@
           "key": "enemies/schrottkoloss-idle",
           "painted": true,
           "edge": 0,
-          "body": 5248
+          "body": 5263
         },
         {
           "variant": "schrottkoloss",
@@ -2058,7 +2058,7 @@
           "key": "enemies/schrottkoloss-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 5375
+          "body": 5391
         },
         {
           "variant": "schrottkoloss",
@@ -2067,7 +2067,7 @@
           "key": "enemies/schrottkoloss-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 5106
+          "body": 5024
         },
         {
           "variant": "schrottkoloss",
@@ -2076,7 +2076,7 @@
           "key": "enemies/schrottkoloss-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 5349
+          "body": 5264
         },
         {
           "variant": "schrottkoloss",
@@ -2085,7 +2085,7 @@
           "key": "enemies/schrottkoloss-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 5288
+          "body": 5313
         },
         {
           "variant": "schrottkoloss",
@@ -2094,7 +2094,7 @@
           "key": "enemies/schrottkoloss-hit",
           "painted": true,
           "edge": 0,
-          "body": 5947
+          "body": 5836
         },
         {
           "variant": "schrottkoloss",
@@ -2103,7 +2103,7 @@
           "key": "enemies/schrottkoloss-idle",
           "painted": true,
           "edge": 0,
-          "body": 5248
+          "body": 5274
         },
         {
           "variant": "schrottkoloss",
@@ -2112,7 +2112,7 @@
           "key": "enemies/schrottkoloss-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 5375
+          "body": 5385
         },
         {
           "variant": "schrottkoloss",
@@ -2121,7 +2121,7 @@
           "key": "enemies/schrottkoloss-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 5106
+          "body": 5019
         },
         {
           "variant": "schrottkoloss",
@@ -2130,7 +2130,7 @@
           "key": "enemies/schrottkoloss-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 5349
+          "body": 5262
         },
         {
           "variant": "schrottkoloss",
@@ -2139,7 +2139,7 @@
           "key": "enemies/schrottkoloss-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 5288
+          "body": 5306
         },
         {
           "variant": "schrottkoloss",
@@ -2148,7 +2148,7 @@
           "key": "enemies/schrottkoloss-hit",
           "painted": true,
           "edge": 0,
-          "body": 5947
+          "body": 5824
         }
       ]
     },
@@ -2162,7 +2162,7 @@
           "key": "enemies/schrottkoloss-idle",
           "painted": true,
           "edge": 0,
-          "body": 21492
+          "body": 21479
         },
         {
           "variant": "schrottkoloss",
@@ -2171,7 +2171,7 @@
           "key": "enemies/schrottkoloss-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 21889
+          "body": 21827
         },
         {
           "variant": "schrottkoloss",
@@ -2180,7 +2180,7 @@
           "key": "enemies/schrottkoloss-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 20908
+          "body": 20567
         },
         {
           "variant": "schrottkoloss",
@@ -2189,7 +2189,7 @@
           "key": "enemies/schrottkoloss-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 21687
+          "body": 21354
         },
         {
           "variant": "schrottkoloss",
@@ -2198,7 +2198,7 @@
           "key": "enemies/schrottkoloss-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 21616
+          "body": 21519
         },
         {
           "variant": "schrottkoloss",
@@ -2207,7 +2207,7 @@
           "key": "enemies/schrottkoloss-hit",
           "painted": true,
           "edge": 0,
-          "body": 23838
+          "body": 23297
         },
         {
           "variant": "schrottkoloss",
@@ -2216,7 +2216,7 @@
           "key": "enemies/schrottkoloss-idle",
           "painted": true,
           "edge": 0,
-          "body": 21493
+          "body": 21486
         },
         {
           "variant": "schrottkoloss",
@@ -2225,7 +2225,7 @@
           "key": "enemies/schrottkoloss-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 21889
+          "body": 21838
         },
         {
           "variant": "schrottkoloss",
@@ -2234,7 +2234,7 @@
           "key": "enemies/schrottkoloss-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 20908
+          "body": 20546
         },
         {
           "variant": "schrottkoloss",
@@ -2243,7 +2243,7 @@
           "key": "enemies/schrottkoloss-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 21687
+          "body": 21325
         },
         {
           "variant": "schrottkoloss",
@@ -2252,7 +2252,7 @@
           "key": "enemies/schrottkoloss-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 21615
+          "body": 21506
         },
         {
           "variant": "schrottkoloss",
@@ -2261,7 +2261,7 @@
           "key": "enemies/schrottkoloss-hit",
           "painted": true,
           "edge": 0,
-          "body": 23838
+          "body": 23212
         }
       ]
     },
@@ -2275,7 +2275,7 @@
           "key": "enemies/kabel-idle",
           "painted": true,
           "edge": 0,
-          "body": 410
+          "body": 433
         },
         {
           "variant": "kabel",
@@ -2284,7 +2284,7 @@
           "key": "enemies/kabel-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 428
+          "body": 450
         },
         {
           "variant": "kabel",
@@ -2293,7 +2293,7 @@
           "key": "enemies/kabel-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 432
+          "body": 442
         },
         {
           "variant": "kabel",
@@ -2302,7 +2302,7 @@
           "key": "enemies/kabel-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 484
+          "body": 515
         },
         {
           "variant": "kabel",
@@ -2311,7 +2311,7 @@
           "key": "enemies/kabel-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 557
+          "body": 592
         },
         {
           "variant": "kabel",
@@ -2320,7 +2320,7 @@
           "key": "enemies/kabel-hit",
           "painted": true,
           "edge": 0,
-          "body": 527
+          "body": 542
         },
         {
           "variant": "kabel",
@@ -2329,7 +2329,7 @@
           "key": "enemies/kabel-idle",
           "painted": true,
           "edge": 0,
-          "body": 410
+          "body": 433
         },
         {
           "variant": "kabel",
@@ -2338,7 +2338,7 @@
           "key": "enemies/kabel-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 428
+          "body": 456
         },
         {
           "variant": "kabel",
@@ -2347,7 +2347,7 @@
           "key": "enemies/kabel-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 433
+          "body": 443
         },
         {
           "variant": "kabel",
@@ -2356,7 +2356,7 @@
           "key": "enemies/kabel-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 484
+          "body": 520
         },
         {
           "variant": "kabel",
@@ -2365,7 +2365,7 @@
           "key": "enemies/kabel-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 557
+          "body": 594
         },
         {
           "variant": "kabel",
@@ -2374,7 +2374,7 @@
           "key": "enemies/kabel-hit",
           "painted": true,
           "edge": 0,
-          "body": 527
+          "body": 545
         }
       ]
     },
@@ -2388,7 +2388,7 @@
           "key": "enemies/kabel-idle",
           "painted": true,
           "edge": 0,
-          "body": 1576
+          "body": 1579
         },
         {
           "variant": "kabel",
@@ -2397,7 +2397,7 @@
           "key": "enemies/kabel-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 1676
+          "body": 1688
         },
         {
           "variant": "kabel",
@@ -2406,7 +2406,7 @@
           "key": "enemies/kabel-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 1688
+          "body": 1661
         },
         {
           "variant": "kabel",
@@ -2415,7 +2415,7 @@
           "key": "enemies/kabel-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 1855
+          "body": 1877
         },
         {
           "variant": "kabel",
@@ -2424,7 +2424,7 @@
           "key": "enemies/kabel-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 2077
+          "body": 2085
         },
         {
           "variant": "kabel",
@@ -2433,7 +2433,7 @@
           "key": "enemies/kabel-hit",
           "painted": true,
           "edge": 0,
-          "body": 2137
+          "body": 2138
         },
         {
           "variant": "kabel",
@@ -2442,7 +2442,7 @@
           "key": "enemies/kabel-idle",
           "painted": true,
           "edge": 0,
-          "body": 1576
+          "body": 1586
         },
         {
           "variant": "kabel",
@@ -2451,7 +2451,7 @@
           "key": "enemies/kabel-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 1675
+          "body": 1687
         },
         {
           "variant": "kabel",
@@ -2460,7 +2460,7 @@
           "key": "enemies/kabel-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 1688
+          "body": 1650
         },
         {
           "variant": "kabel",
@@ -2469,7 +2469,7 @@
           "key": "enemies/kabel-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 1855
+          "body": 1878
         },
         {
           "variant": "kabel",
@@ -2478,7 +2478,7 @@
           "key": "enemies/kabel-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 2078
+          "body": 2090
         },
         {
           "variant": "kabel",
@@ -2487,7 +2487,7 @@
           "key": "enemies/kabel-hit",
           "painted": true,
           "edge": 0,
-          "body": 2138
+          "body": 2140
         }
       ]
     },
@@ -2510,7 +2510,7 @@
           "key": "enemies/bass-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 1019
+          "body": 1027
         },
         {
           "variant": "bass",
@@ -2519,7 +2519,7 @@
           "key": "enemies/bass-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 971
+          "body": 952
         },
         {
           "variant": "bass",
@@ -2528,7 +2528,7 @@
           "key": "enemies/bass-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 1091
+          "body": 1121
         },
         {
           "variant": "bass",
@@ -2537,7 +2537,7 @@
           "key": "enemies/bass-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 1208
+          "body": 1235
         },
         {
           "variant": "bass",
@@ -2546,7 +2546,7 @@
           "key": "enemies/bass-hit",
           "painted": true,
           "edge": 0,
-          "body": 1378
+          "body": 1377
         },
         {
           "variant": "bass",
@@ -2555,7 +2555,7 @@
           "key": "enemies/bass-idle",
           "painted": true,
           "edge": 0,
-          "body": 997
+          "body": 1000
         },
         {
           "variant": "bass",
@@ -2564,7 +2564,7 @@
           "key": "enemies/bass-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 1020
+          "body": 1024
         },
         {
           "variant": "bass",
@@ -2573,7 +2573,7 @@
           "key": "enemies/bass-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 971
+          "body": 949
         },
         {
           "variant": "bass",
@@ -2582,7 +2582,7 @@
           "key": "enemies/bass-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 1090
+          "body": 1123
         },
         {
           "variant": "bass",
@@ -2591,7 +2591,7 @@
           "key": "enemies/bass-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 1208
+          "body": 1236
         },
         {
           "variant": "bass",
@@ -2600,7 +2600,7 @@
           "key": "enemies/bass-hit",
           "painted": true,
           "edge": 0,
-          "body": 1378
+          "body": 1379
         }
       ]
     },
@@ -2614,7 +2614,7 @@
           "key": "enemies/bass-idle",
           "painted": true,
           "edge": 0,
-          "body": 3977
+          "body": 3893
         },
         {
           "variant": "bass",
@@ -2623,7 +2623,7 @@
           "key": "enemies/bass-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 4083
+          "body": 4011
         },
         {
           "variant": "bass",
@@ -2632,7 +2632,7 @@
           "key": "enemies/bass-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 3899
+          "body": 3687
         },
         {
           "variant": "bass",
@@ -2641,7 +2641,7 @@
           "key": "enemies/bass-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 4407
+          "body": 4442
         },
         {
           "variant": "bass",
@@ -2650,7 +2650,7 @@
           "key": "enemies/bass-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 4895
+          "body": 4938
         },
         {
           "variant": "bass",
@@ -2659,7 +2659,7 @@
           "key": "enemies/bass-hit",
           "painted": true,
           "edge": 0,
-          "body": 5501
+          "body": 5479
         },
         {
           "variant": "bass",
@@ -2668,7 +2668,7 @@
           "key": "enemies/bass-idle",
           "painted": true,
           "edge": 0,
-          "body": 3977
+          "body": 3908
         },
         {
           "variant": "bass",
@@ -2677,7 +2677,7 @@
           "key": "enemies/bass-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 4085
+          "body": 3993
         },
         {
           "variant": "bass",
@@ -2686,7 +2686,7 @@
           "key": "enemies/bass-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 3900
+          "body": 3667
         },
         {
           "variant": "bass",
@@ -2695,7 +2695,7 @@
           "key": "enemies/bass-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 4407
+          "body": 4436
         },
         {
           "variant": "bass",
@@ -2704,7 +2704,7 @@
           "key": "enemies/bass-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 4895
+          "body": 4927
         },
         {
           "variant": "bass",
@@ -2713,7 +2713,7 @@
           "key": "enemies/bass-hit",
           "painted": true,
           "edge": 0,
-          "body": 5501
+          "body": 5465
         }
       ]
     },
@@ -2727,7 +2727,7 @@
           "key": "enemies/uhr-idle",
           "painted": true,
           "edge": 0,
-          "body": 789
+          "body": 779
         },
         {
           "variant": "uhr",
@@ -2736,7 +2736,7 @@
           "key": "enemies/uhr-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 809
+          "body": 775
         },
         {
           "variant": "uhr",
@@ -2745,7 +2745,7 @@
           "key": "enemies/uhr-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 817
+          "body": 796
         },
         {
           "variant": "uhr",
@@ -2754,7 +2754,7 @@
           "key": "enemies/uhr-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 780
+          "body": 778
         },
         {
           "variant": "uhr",
@@ -2763,7 +2763,7 @@
           "key": "enemies/uhr-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 845
+          "body": 850
         },
         {
           "variant": "uhr",
@@ -2772,7 +2772,7 @@
           "key": "enemies/uhr-hit",
           "painted": true,
           "edge": 0,
-          "body": 928
+          "body": 905
         },
         {
           "variant": "uhr",
@@ -2781,7 +2781,7 @@
           "key": "enemies/uhr-idle",
           "painted": true,
           "edge": 0,
-          "body": 789
+          "body": 779
         },
         {
           "variant": "uhr",
@@ -2790,7 +2790,7 @@
           "key": "enemies/uhr-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 808
+          "body": 778
         },
         {
           "variant": "uhr",
@@ -2799,7 +2799,7 @@
           "key": "enemies/uhr-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 817
+          "body": 800
         },
         {
           "variant": "uhr",
@@ -2808,7 +2808,7 @@
           "key": "enemies/uhr-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 781
+          "body": 778
         },
         {
           "variant": "uhr",
@@ -2817,7 +2817,7 @@
           "key": "enemies/uhr-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 844
+          "body": 854
         },
         {
           "variant": "uhr",
@@ -2826,7 +2826,7 @@
           "key": "enemies/uhr-hit",
           "painted": true,
           "edge": 0,
-          "body": 921
+          "body": 884
         }
       ]
     },
@@ -2840,7 +2840,7 @@
           "key": "enemies/uhr-idle",
           "painted": true,
           "edge": 0,
-          "body": 3081
+          "body": 2995
         },
         {
           "variant": "uhr",
@@ -2849,7 +2849,7 @@
           "key": "enemies/uhr-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 3100
+          "body": 2912
         },
         {
           "variant": "uhr",
@@ -2858,7 +2858,7 @@
           "key": "enemies/uhr-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 3115
+          "body": 2969
         },
         {
           "variant": "uhr",
@@ -2867,7 +2867,7 @@
           "key": "enemies/uhr-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 3035
+          "body": 2909
         },
         {
           "variant": "uhr",
@@ -2876,7 +2876,7 @@
           "key": "enemies/uhr-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 3254
+          "body": 3138
         },
         {
           "variant": "uhr",
@@ -2885,7 +2885,7 @@
           "key": "enemies/uhr-hit",
           "painted": true,
           "edge": 0,
-          "body": 3700
+          "body": 3620
         },
         {
           "variant": "uhr",
@@ -2894,7 +2894,7 @@
           "key": "enemies/uhr-idle",
           "painted": true,
           "edge": 0,
-          "body": 3081
+          "body": 2995
         },
         {
           "variant": "uhr",
@@ -2903,7 +2903,7 @@
           "key": "enemies/uhr-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 3100
+          "body": 2902
         },
         {
           "variant": "uhr",
@@ -2912,7 +2912,7 @@
           "key": "enemies/uhr-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 3115
+          "body": 2963
         },
         {
           "variant": "uhr",
@@ -2921,7 +2921,7 @@
           "key": "enemies/uhr-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 3034
+          "body": 2911
         },
         {
           "variant": "uhr",
@@ -2930,7 +2930,7 @@
           "key": "enemies/uhr-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 3254
+          "body": 3141
         },
         {
           "variant": "uhr",
@@ -2939,7 +2939,7 @@
           "key": "enemies/uhr-hit",
           "painted": true,
           "edge": 0,
-          "body": 3673
+          "body": 3576
         }
       ]
     },
@@ -2953,7 +2953,7 @@
           "key": "enemies/wurz-idle",
           "painted": true,
           "edge": 0,
-          "body": 855
+          "body": 897
         },
         {
           "variant": "wurz",
@@ -2962,7 +2962,7 @@
           "key": "enemies/wurz-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 874
+          "body": 892
         },
         {
           "variant": "wurz",
@@ -2971,7 +2971,7 @@
           "key": "enemies/wurz-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 800
+          "body": 821
         },
         {
           "variant": "wurz",
@@ -2980,7 +2980,7 @@
           "key": "enemies/wurz-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 928
+          "body": 958
         },
         {
           "variant": "wurz",
@@ -2989,7 +2989,7 @@
           "key": "enemies/wurz-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 958
+          "body": 1030
         },
         {
           "variant": "wurz",
@@ -2998,7 +2998,7 @@
           "key": "enemies/wurz-hit",
           "painted": true,
           "edge": 0,
-          "body": 1173
+          "body": 1213
         },
         {
           "variant": "wurz",
@@ -3007,7 +3007,7 @@
           "key": "enemies/wurz-idle",
           "painted": true,
           "edge": 0,
-          "body": 855
+          "body": 902
         },
         {
           "variant": "wurz",
@@ -3016,7 +3016,7 @@
           "key": "enemies/wurz-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 874
+          "body": 881
         },
         {
           "variant": "wurz",
@@ -3025,7 +3025,7 @@
           "key": "enemies/wurz-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 800
+          "body": 828
         },
         {
           "variant": "wurz",
@@ -3034,7 +3034,7 @@
           "key": "enemies/wurz-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 928
+          "body": 959
         },
         {
           "variant": "wurz",
@@ -3043,7 +3043,7 @@
           "key": "enemies/wurz-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 958
+          "body": 1029
         },
         {
           "variant": "wurz",
@@ -3052,7 +3052,7 @@
           "key": "enemies/wurz-hit",
           "painted": true,
           "edge": 0,
-          "body": 1173
+          "body": 1217
         }
       ]
     },
@@ -3066,7 +3066,7 @@
           "key": "enemies/wurz-idle",
           "painted": true,
           "edge": 0,
-          "body": 3232
+          "body": 3307
         },
         {
           "variant": "wurz",
@@ -3075,7 +3075,7 @@
           "key": "enemies/wurz-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 3240
+          "body": 3233
         },
         {
           "variant": "wurz",
@@ -3084,7 +3084,7 @@
           "key": "enemies/wurz-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 3015
+          "body": 3018
         },
         {
           "variant": "wurz",
@@ -3093,7 +3093,7 @@
           "key": "enemies/wurz-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 3454
+          "body": 3496
         },
         {
           "variant": "wurz",
@@ -3102,7 +3102,7 @@
           "key": "enemies/wurz-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 3535
+          "body": 3648
         },
         {
           "variant": "wurz",
@@ -3111,7 +3111,7 @@
           "key": "enemies/wurz-hit",
           "painted": true,
           "edge": 0,
-          "body": 4651
+          "body": 4740
         },
         {
           "variant": "wurz",
@@ -3120,7 +3120,7 @@
           "key": "enemies/wurz-idle",
           "painted": true,
           "edge": 0,
-          "body": 3232
+          "body": 3321
         },
         {
           "variant": "wurz",
@@ -3129,7 +3129,7 @@
           "key": "enemies/wurz-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 3240
+          "body": 3218
         },
         {
           "variant": "wurz",
@@ -3138,7 +3138,7 @@
           "key": "enemies/wurz-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 3015
+          "body": 3025
         },
         {
           "variant": "wurz",
@@ -3147,7 +3147,7 @@
           "key": "enemies/wurz-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 3454
+          "body": 3490
         },
         {
           "variant": "wurz",
@@ -3156,7 +3156,7 @@
           "key": "enemies/wurz-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 3535
+          "body": 3644
         },
         {
           "variant": "wurz",
@@ -3165,7 +3165,7 @@
           "key": "enemies/wurz-hit",
           "painted": true,
           "edge": 0,
-          "body": 4651
+          "body": 4731
         }
       ]
     },
@@ -3179,7 +3179,7 @@
           "key": "enemies/kern-idle",
           "painted": true,
           "edge": 0,
-          "body": 720
+          "body": 755
         },
         {
           "variant": "kern",
@@ -3188,7 +3188,7 @@
           "key": "enemies/kern-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 741
+          "body": 769
         },
         {
           "variant": "kern",
@@ -3197,7 +3197,7 @@
           "key": "enemies/kern-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 768
+          "body": 758
         },
         {
           "variant": "kern",
@@ -3206,7 +3206,7 @@
           "key": "enemies/kern-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 754
+          "body": 806
         },
         {
           "variant": "kern",
@@ -3215,7 +3215,7 @@
           "key": "enemies/kern-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 793
+          "body": 842
         },
         {
           "variant": "kern",
@@ -3224,7 +3224,7 @@
           "key": "enemies/kern-hit",
           "painted": true,
           "edge": 0,
-          "body": 759
+          "body": 782
         },
         {
           "variant": "kern",
@@ -3233,7 +3233,7 @@
           "key": "enemies/kern-idle",
           "painted": true,
           "edge": 0,
-          "body": 720
+          "body": 755
         },
         {
           "variant": "kern",
@@ -3242,7 +3242,7 @@
           "key": "enemies/kern-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 741
+          "body": 770
         },
         {
           "variant": "kern",
@@ -3251,7 +3251,7 @@
           "key": "enemies/kern-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 768
+          "body": 756
         },
         {
           "variant": "kern",
@@ -3260,7 +3260,7 @@
           "key": "enemies/kern-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 754
+          "body": 804
         },
         {
           "variant": "kern",
@@ -3269,7 +3269,7 @@
           "key": "enemies/kern-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 793
+          "body": 837
         },
         {
           "variant": "kern",
@@ -3278,7 +3278,7 @@
           "key": "enemies/kern-hit",
           "painted": true,
           "edge": 0,
-          "body": 759
+          "body": 785
         }
       ]
     },
@@ -3292,7 +3292,7 @@
           "key": "enemies/kern-idle",
           "painted": true,
           "edge": 0,
-          "body": 2769
+          "body": 2814
         },
         {
           "variant": "kern",
@@ -3301,7 +3301,7 @@
           "key": "enemies/kern-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 2813
+          "body": 2866
         },
         {
           "variant": "kern",
@@ -3310,7 +3310,7 @@
           "key": "enemies/kern-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 2927
+          "body": 2862
         },
         {
           "variant": "kern",
@@ -3319,7 +3319,7 @@
           "key": "enemies/kern-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 2895
+          "body": 2987
         },
         {
           "variant": "kern",
@@ -3328,7 +3328,7 @@
           "key": "enemies/kern-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 3026
+          "body": 3184
         },
         {
           "variant": "kern",
@@ -3337,7 +3337,7 @@
           "key": "enemies/kern-hit",
           "painted": true,
           "edge": 0,
-          "body": 3028
+          "body": 3057
         },
         {
           "variant": "kern",
@@ -3346,7 +3346,7 @@
           "key": "enemies/kern-idle",
           "painted": true,
           "edge": 0,
-          "body": 2769
+          "body": 2816
         },
         {
           "variant": "kern",
@@ -3355,7 +3355,7 @@
           "key": "enemies/kern-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 2813
+          "body": 2863
         },
         {
           "variant": "kern",
@@ -3364,7 +3364,7 @@
           "key": "enemies/kern-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 2927
+          "body": 2863
         },
         {
           "variant": "kern",
@@ -3373,7 +3373,7 @@
           "key": "enemies/kern-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 2895
+          "body": 2982
         },
         {
           "variant": "kern",
@@ -3382,7 +3382,7 @@
           "key": "enemies/kern-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 3026
+          "body": 3186
         },
         {
           "variant": "kern",
@@ -3391,7 +3391,7 @@
           "key": "enemies/kern-hit",
           "painted": true,
           "edge": 0,
-          "body": 3028
+          "body": 3056
         }
       ]
     },
@@ -3405,7 +3405,7 @@
           "key": "enemies/brigadeghoul-idle",
           "painted": true,
           "edge": 0,
-          "body": 500
+          "body": 526
         },
         {
           "variant": "brigadeghoul",
@@ -3414,7 +3414,7 @@
           "key": "enemies/brigadeghoul-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 523
+          "body": 541
         },
         {
           "variant": "brigadeghoul",
@@ -3423,7 +3423,7 @@
           "key": "enemies/brigadeghoul-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 541
+          "body": 578
         },
         {
           "variant": "brigadeghoul",
@@ -3432,7 +3432,7 @@
           "key": "enemies/brigadeghoul-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 543
+          "body": 566
         },
         {
           "variant": "brigadeghoul",
@@ -3441,7 +3441,7 @@
           "key": "enemies/brigadeghoul-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 528
+          "body": 557
         },
         {
           "variant": "brigadeghoul",
@@ -3450,7 +3450,7 @@
           "key": "enemies/brigadeghoul-hit",
           "painted": true,
           "edge": 0,
-          "body": 602
+          "body": 627
         },
         {
           "variant": "brigadeghoul",
@@ -3459,7 +3459,7 @@
           "key": "enemies/brigadeghoul-idle",
           "painted": true,
           "edge": 0,
-          "body": 500
+          "body": 527
         },
         {
           "variant": "brigadeghoul",
@@ -3468,7 +3468,7 @@
           "key": "enemies/brigadeghoul-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 523
+          "body": 543
         },
         {
           "variant": "brigadeghoul",
@@ -3477,7 +3477,7 @@
           "key": "enemies/brigadeghoul-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 540
+          "body": 578
         },
         {
           "variant": "brigadeghoul",
@@ -3486,7 +3486,7 @@
           "key": "enemies/brigadeghoul-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 543
+          "body": 567
         },
         {
           "variant": "brigadeghoul",
@@ -3495,7 +3495,7 @@
           "key": "enemies/brigadeghoul-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 528
+          "body": 558
         },
         {
           "variant": "brigadeghoul",
@@ -3504,7 +3504,7 @@
           "key": "enemies/brigadeghoul-hit",
           "painted": true,
           "edge": 0,
-          "body": 602
+          "body": 625
         }
       ]
     },
@@ -3518,7 +3518,7 @@
           "key": "enemies/brigadeghoul-idle",
           "painted": true,
           "edge": 0,
-          "body": 1948
+          "body": 1976
         },
         {
           "variant": "brigadeghoul",
@@ -3527,7 +3527,7 @@
           "key": "enemies/brigadeghoul-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 2007
+          "body": 2035
         },
         {
           "variant": "brigadeghoul",
@@ -3536,7 +3536,7 @@
           "key": "enemies/brigadeghoul-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 2099
+          "body": 2125
         },
         {
           "variant": "brigadeghoul",
@@ -3545,7 +3545,7 @@
           "key": "enemies/brigadeghoul-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 2048
+          "body": 2116
         },
         {
           "variant": "brigadeghoul",
@@ -3554,7 +3554,7 @@
           "key": "enemies/brigadeghoul-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 2029
+          "body": 2106
         },
         {
           "variant": "brigadeghoul",
@@ -3563,7 +3563,7 @@
           "key": "enemies/brigadeghoul-hit",
           "painted": true,
           "edge": 0,
-          "body": 2414
+          "body": 2458
         },
         {
           "variant": "brigadeghoul",
@@ -3572,7 +3572,7 @@
           "key": "enemies/brigadeghoul-idle",
           "painted": true,
           "edge": 0,
-          "body": 1948
+          "body": 1979
         },
         {
           "variant": "brigadeghoul",
@@ -3581,7 +3581,7 @@
           "key": "enemies/brigadeghoul-walk-a",
           "painted": true,
           "edge": 0,
-          "body": 2007
+          "body": 2045
         },
         {
           "variant": "brigadeghoul",
@@ -3590,7 +3590,7 @@
           "key": "enemies/brigadeghoul-walk-b",
           "painted": true,
           "edge": 0,
-          "body": 2098
+          "body": 2136
         },
         {
           "variant": "brigadeghoul",
@@ -3599,7 +3599,7 @@
           "key": "enemies/brigadeghoul-attack-a",
           "painted": true,
           "edge": 0,
-          "body": 2048
+          "body": 2119
         },
         {
           "variant": "brigadeghoul",
@@ -3608,7 +3608,7 @@
           "key": "enemies/brigadeghoul-attack-b",
           "painted": true,
           "edge": 0,
-          "body": 2029
+          "body": 2110
         },
         {
           "variant": "brigadeghoul",
@@ -3617,7 +3617,7 @@
           "key": "enemies/brigadeghoul-hit",
           "painted": true,
           "edge": 0,
-          "body": 2414
+          "body": 2457
         }
       ]
     }
@@ -5021,11 +5021,11 @@
     },
     "crow": {
       "bodyY": [
-        148,
-        155
+        147,
+        154
       ],
       "ringY": 180,
-      "airGap": 25
+      "airGap": 26
     },
     "mouth": [
       {
@@ -5033,17 +5033,17 @@
         "face": 1,
         "key": "enemies/spitter-attack-b",
         "expected": {
-          "x": 21.672516666666663,
-          "y": -32.35706666666667
+          "x": 25.067002445419128,
+          "y": -33.28500174093006
         },
         "actual": {
-          "x": 21.672516666666663,
-          "y": -32.35706666666667
+          "x": 25.06700318711759,
+          "y": -33.28500201874159
         },
-        "delta": 0,
+        "delta": 7.920201065859325e-7,
         "initial": {
-          "x": 21.672516666666663,
-          "y": -32.35706666666667
+          "x": 25.06700318711759,
+          "y": -33.28500201874159
         },
         "initialDelta": 0,
         "logical": {
@@ -5062,8 +5062,8 @@
           "r": 6,
           "dmg": 11,
           "life": 3.5,
-          "mx": 11.773021730054998,
-          "my": -17.407319198360835,
+          "mx": 15.167508250505923,
+          "my": -18.335254550435753,
           "ml": 3.5
         }
       },
@@ -5072,17 +5072,17 @@
         "face": -1,
         "key": "enemies/spitter-attack-b",
         "expected": {
-          "x": -21.672516666666663,
-          "y": -32.35706666666667
+          "x": -25.067002445419128,
+          "y": -33.28500174093006
         },
         "actual": {
-          "x": -21.672516666666663,
-          "y": -32.35706666666667
+          "x": -25.06700318711759,
+          "y": -33.28500201874159
         },
-        "delta": 0,
+        "delta": 7.920201065859325e-7,
         "initial": {
-          "x": -21.67251666666666,
-          "y": -32.35706666666667
+          "x": -25.067003187117585,
+          "y": -33.28500201874159
         },
         "initialDelta": 3.552713678800501e-15,
         "logical": {
@@ -5101,8 +5101,8 @@
           "r": 6,
           "dmg": 11,
           "life": 3.5,
-          "mx": -31.572011603278327,
-          "my": -17.407319198360835,
+          "mx": -34.96649812372925,
+          "my": -18.335254550435753,
           "ml": 3.5
         }
       },
@@ -5111,17 +5111,17 @@
         "face": 1,
         "key": "enemies/kern-attack-b",
         "expected": {
-          "x": 15.572916666666664,
-          "y": -30.575716666666665
+          "x": 19.088628203580612,
+          "y": -31.71127713434221
         },
         "actual": {
-          "x": 15.572916666666664,
-          "y": -30.575716666666665
+          "x": 19.088628715093176,
+          "y": -31.711277413174642
         },
-        "delta": 0,
+        "delta": 5.825741390773328e-7,
         "initial": {
-          "x": 15.572916666666664,
-          "y": -30.575716666666665
+          "x": 19.088628715093176,
+          "y": -31.711277413174642
         },
         "initialDelta": 0,
         "logical": {
@@ -5140,8 +5140,8 @@
           "r": 6,
           "dmg": 10,
           "life": 3.5,
-          "mx": 5.673421730054999,
-          "my": -15.625969198360831,
+          "mx": 9.18913377848151,
+          "my": -16.76152994486881,
           "ml": 3.5
         }
       },
@@ -5150,19 +5150,19 @@
         "face": -1,
         "key": "enemies/kern-attack-b",
         "expected": {
-          "x": -15.572916666666664,
-          "y": -30.575716666666665
+          "x": -19.088628203580612,
+          "y": -31.71127713434221
         },
         "actual": {
-          "x": -15.572916666666664,
-          "y": -30.575716666666665
+          "x": -19.088628715093176,
+          "y": -31.711277413174642
         },
-        "delta": 0,
+        "delta": 5.825741390773328e-7,
         "initial": {
-          "x": -15.572916666666666,
-          "y": -30.575716666666665
+          "x": -19.088628715093172,
+          "y": -31.711277413174642
         },
-        "initialDelta": 1.7763568394002505e-15,
+        "initialDelta": 3.552713678800501e-15,
         "logical": {
           "x": 0,
           "y": -14,
@@ -5179,8 +5179,8 @@
           "r": 6,
           "dmg": 10,
           "life": 3.5,
-          "mx": -25.47241160327833,
-          "my": -15.625969198360831,
+          "mx": -28.98812365170484,
+          "my": -16.76152994486881,
           "ml": 3.5
         }
       }
@@ -5286,7 +5286,7 @@
     "bigBoss": {
       "painted": false,
       "big": true,
-      "canvasBodyPixels": 18556
+      "canvasBodyPixels": 21634
     },
     "action": {
       "charge": {
@@ -5295,16 +5295,16 @@
           1001.2167747730646
         ],
         "projected": [
-          117.50000000000003,
-          181
+          124.7973419818452,
+          184.6486709909226
         ],
         "key": "enemies/raser-attack-a"
       },
       "mouth": {
         "enemy": "spitter",
         "offset": {
-          "x": -21.672516666666663,
-          "y": -32.35706666666667
+          "x": -25.06700318711759,
+          "y": -33.28500201874159
         },
         "projectile": {
           "x": 1042.681240867132,
@@ -5314,8 +5314,8 @@
           "r": 6,
           "dmg": 11,
           "life": 3.5,
-          "mx": -31.572011603278327,
-          "my": -17.407319198360824,
+          "mx": -34.96649812372925,
+          "my": -18.335254550435707,
           "ml": 3.5
         }
       },
@@ -5336,8 +5336,8 @@
   ],
   "smoke": {
     "state": "play",
-    "version": "0.62",
-    "enemyCount": 1
+    "version": "0.64",
+    "enemyCount": 0
   },
   "schema": {
     "count": 97,
@@ -5445,7 +5445,7 @@
     "key": "enemies/brute-idle",
     "failed": true,
     "choice": null,
-    "bodyPixels": 4670,
+    "bodyPixels": 4541,
     "errors": [],
     "failedImages": [],
     "expected": [
@@ -5456,24 +5456,24 @@
     ]
   },
   "offline": {
+    "errors": [],
+    "failedImages": [],
+    "expected": 97,
     "state": "play",
-    "version": "0.62",
+    "version": "0.64",
     "url": "http://localhost:8767/index.html?debug=hit",
     "controller": true,
-    "expected": [],
     "decoded": 97,
     "missing": [],
     "caches": [
       {
-        "name": "ruinenstadt-0.62",
-        "entries": 381
+        "name": "ruinenstadt-0.64",
+        "entries": 383
       }
-    ],
-    "errors": [],
-    "failedImages": []
+    ]
   },
-  "finished": "2026-11-09T17:15:55.159Z",
-  "status": "failed",
+  "finished": "2026-11-09T21:57:19.556Z",
+  "status": "passed",
   "performance": {
     "method": "Same seeded 40 mixed enemies, maps, viewport, camera and DPR. Seven alternating pairs; 15 warmup and 50 timed full renders each. Visual/offline browser closed before timing.",
     "viewport": {
@@ -5486,168 +5486,167 @@
     "districts": [
       {
         "district": "Köpenick",
-        "baselineVersion": "0.61",
-        "paintedVersion": "0.62",
+        "baselineVersion": "0.63",
+        "paintedVersion": "0.64",
         "enemies": 40,
         "samples": [
           {
             "baseline": {
-              "median": 63.299999999813735,
+              "median": 55.19999999925494,
+              "p95": 63.30000000074506
+            },
+            "painted": {
+              "median": 53.19999999925494,
+              "p95": 60.400000002235174
+            }
+          },
+          {
+            "painted": {
+              "median": 54.599999997764826,
+              "p95": 68.5
+            },
+            "baseline": {
+              "median": 55.599999997764826,
+              "p95": 63.5
+            }
+          },
+          {
+            "baseline": {
+              "median": 55.69999999925494,
+              "p95": 63.70000000298023
+            },
+            "painted": {
+              "median": 53.19999999925494,
+              "p95": 58.5
+            }
+          },
+          {
+            "painted": {
+              "median": 52.5,
+              "p95": 57.399999998509884
+            },
+            "baseline": {
+              "median": 55.30000000074506,
+              "p95": 63.80000000074506
+            }
+          },
+          {
+            "baseline": {
+              "median": 55.599999997764826,
+              "p95": 67.60000000149012
+            },
+            "painted": {
+              "median": 53.599999997764826,
+              "p95": 58.100000001490116
+            }
+          },
+          {
+            "painted": {
+              "median": 52.70000000298023,
               "p95": 71
             },
-            "painted": {
-              "median": 58.799999999813735,
-              "p95": 64.5
-            }
-          },
-          {
-            "painted": {
-              "median": 59.3000000002794,
-              "p95": 72.79999999981374
-            },
             "baseline": {
-              "median": 62.299999999813735,
-              "p95": 66.79999999981374
+              "median": 55.30000000074506,
+              "p95": 61.600000001490116
             }
           },
           {
             "baseline": {
-              "median": 62.8000000002794,
-              "p95": 65.29999999981374
+              "median": 54.79999999701977,
+              "p95": 60.5
             },
             "painted": {
-              "median": 59,
-              "p95": 64.79999999981374
-            }
-          },
-          {
-            "painted": {
-              "median": 58.5,
-              "p95": 63.200000000186265
-            },
-            "baseline": {
-              "median": 62.299999999813735,
-              "p95": 79.8000000002794
-            }
-          },
-          {
-            "baseline": {
-              "median": 61.60000000009313,
-              "p95": 71.40000000037253
-            },
-            "painted": {
-              "median": 58.60000000009313,
-              "p95": 67.39999999990687
-            }
-          },
-          {
-            "painted": {
-              "median": 58.10000000009313,
-              "p95": 61.89999999990687
-            },
-            "baseline": {
-              "median": 61.60000000009313,
-              "p95": 64.8000000002794
-            }
-          },
-          {
-            "baseline": {
-              "median": 61.39999999990687,
-              "p95": 66.8000000002794
-            },
-            "painted": {
-              "median": 58.09999999962747,
-              "p95": 61.700000000186265
+              "median": 52.30000000074506,
+              "p95": 56.899999998509884
             }
           }
         ],
-        "medianBaseline": 62.299999999813735,
-        "medianPainted": 58.60000000009313,
-        "ratio": 0.940609951850214
+        "medianBaseline": 55.30000000074506,
+        "medianPainted": 53.19999999925494,
+        "ratio": 0.9620253164292618
       },
       {
         "district": "Mitte",
-        "baselineVersion": "0.61",
-        "paintedVersion": "0.62",
+        "baselineVersion": "0.63",
+        "paintedVersion": "0.64",
         "enemies": 40,
         "samples": [
           {
             "baseline": {
-              "median": 55.5,
-              "p95": 59.799999999813735
+              "median": 56.900000002235174,
+              "p95": 62.599999997764826
             },
             "painted": {
-              "median": 52.5,
-              "p95": 57.10000000009313
+              "median": 53.900000002235174,
+              "p95": 57.80000000074506
             }
           },
           {
             "painted": {
-              "median": 51.5,
-              "p95": 55.8000000002794
+              "median": 54.19999999925494,
+              "p95": 57.099999997764826
             },
             "baseline": {
-              "median": 55.299999999813735,
-              "p95": 62.8000000002794
+              "median": 56.599999997764826,
+              "p95": 61.100000001490116
             }
           },
           {
             "baseline": {
-              "median": 54.60000000009313,
-              "p95": 58
+              "median": 56.900000002235174,
+              "p95": 60.900000002235174
             },
             "painted": {
-              "median": 51.89999999990687,
-              "p95": 54.90000000037253
+              "median": 54.100000001490116,
+              "p95": 58.20000000298023
             }
           },
           {
             "painted": {
-              "median": 51.200000000186265,
-              "p95": 57
+              "median": 53.100000001490116,
+              "p95": 58.19999999925494
             },
             "baseline": {
-              "median": 55,
-              "p95": 58.90000000037253
+              "median": 56,
+              "p95": 61.69999999925494
             }
           },
           {
             "baseline": {
-              "median": 54.5,
-              "p95": 58.10000000009313
+              "median": 55.399999998509884,
+              "p95": 60.600000001490116
             },
             "painted": {
-              "median": 51.39999999990687,
-              "p95": 53.89999999990687
+              "median": 52.69999999925494,
+              "p95": 58.20000000298023
             }
           },
           {
             "painted": {
-              "median": 51.89999999990687,
-              "p95": 96.60000000009313
+              "median": 52.899999998509884,
+              "p95": 57.30000000074506
             },
             "baseline": {
-              "median": 55,
-              "p95": 63.200000000186265
+              "median": 55.30000000074506,
+              "p95": 58.19999999925494
             }
           },
           {
             "baseline": {
-              "median": 55.700000000186265,
-              "p95": 64.79999999981374
+              "median": 55.19999999925494,
+              "p95": 57.899999998509884
             },
             "painted": {
-              "median": 53.200000000186265,
-              "p95": 58.09999999962747
+              "median": 53.399999998509884,
+              "p95": 66.90000000223517
             }
           }
         ],
-        "medianBaseline": 55,
-        "medianPainted": 51.89999999990687,
-        "ratio": 0.9436363636346703
+        "medianBaseline": 56,
+        "medianPainted": 53.399999998509884,
+        "ratio": 0.9535714285448194
       }
     ],
     "errors": []
-  },
-  "failure": "page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:8765/index.html\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:8765/index.html\", waiting until \"load\"\u001b[22m\n\n    at performanceProof (/workspace/Ruinenstadt-enemies/tools/proof_enemies.cjs:128:227)\n    at async /workspace/Ruinenstadt-enemies/tools/proof_enemies.cjs:139:361"
+  }
 }

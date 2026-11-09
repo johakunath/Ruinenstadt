@@ -1,17 +1,17 @@
 {
+  "errors": [],
+  "failedImages": [],
+  "expected": 97,
   "state": "play",
-  "version": "0.62",
+  "version": "0.64",
   "url": "http://localhost:8767/index.html?debug=hit",
   "controller": true,
-  "expected": [],
   "decoded": 97,
   "missing": [],
   "caches": [
     {
-      "name": "ruinenstadt-0.62",
-      "entries": 381
+      "name": "ruinenstadt-0.64",
+      "entries": 383
     }
-  ],
-  "errors": [],
-  "failedImages": []
+  ]
 }

@@ -119,3 +119,42 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   Coloured light measured A/B in one page (Mitte, 26 tinted lights): 95.5 ms
   on, 96.8 ms off, so no measurable cost.
 
+
+## 2026-11-09 · Codex · task 01, v0.64
+
+- Task 07 PR #18 merged after Codex review completed without findings on
+  `c59d764`; merge commit `1f8d791`. The continuous-session loop was exercised
+  end to end. Task 01 claim `a1b416d` was pushed on `codex/01-enemies`.
+- Added fifteen portrait/code-derived variants, six frames each, plus a separate
+  shield panel. Existing ghoul retained: 97 enemy assets total. The raw source
+  sheets, crops, anchors and mouth pivots are under `assets/raw/codex/01-enemies/`.
+  No new design selection: portrait identities and the existing GDR code/board
+  designs remain the references. Corrected crow alpha and a clipped Raser pose
+  before normalizing. One scale per family keeps pose proportions consistent.
+- Integrated the v0.63 foundation from PR #19 instead of replacing it: generic
+  driver, breathing/wind-up/hit/spawn life, cast shadows, coloured light, VFX,
+  audio and committed-charge steering remain. Driver metadata supplies each
+  authored reference radius (3 source pixels per world unit) and selects
+  Schrottkoloss/Brigadeghul variants. District bosses stay canvas for task 06.
+  Painted `life: .45` complements the authored poses.
+- Shield art follows the same `e.fa` transform and existing blocking arc; white
+  hit flash is cached through its alpha mask. Crow body is above its ground
+  ring; committed charges/dives face their projected travel direction. Mitte
+  cable overlays remain. Required image failures fall back to the canvas body;
+  optional missing poses retain the generic driver's pose fallback.
+- Spitter/Kernspeier mouth pivots include the actual life/mirror transform.
+  Projectiles and their VFX trails start at that visible point, then ease to
+  the old ground-plane path over .18 s. Logical spawn x/y, velocity, damage,
+  radius and lifetime are unchanged. Visual cast timers do not change attacks.
+- Checks: six Python tests and eleven JS tests; manifest/alpha/size/pivots;
+  byte-identical normalization across 98 files; all 378 shell files exist.
+  Browser: 32 family pose sheets, 40 district/tunnel debug-hit screenshots,
+  real shield damage at either side of the block arc, actual canvas-matrix
+  mouth checks, crow flight, charge/elite/HUD, HTTP404 canvas fallback and
+  fully offline reload/run with 97/97 enemy assets. No page/image errors.
+  Full methods and results: `pipeline/proof/01-enemies/`.
+- User requested wrap-up and production publication; no additional task was
+  started. Release is 0.64 because upstream shipped 0.62/0.63 during the pause.
+  GitHub Pages publishes main at `https://johakunath.github.io/Ruinenstadt/`.
+  Tab S9 hardware playtesting remains Johannes's step.
+- Final isolated performance against v0.63, forty mixed enemies: Köpenick: 55.3 → 53.2 ms (-3.8%); Mitte: 56.0 → 53.4 ms (-4.6%). No desktop regression.
