@@ -15,6 +15,7 @@ test('every selected enemy family has six authored, anchored, cached frames',()=
  const {run}=setup(),specs=run('ENEMY_ART');
  for(const variant of variants){
   assert.ok(specs[variant],variant+' spec');assert.ok(specs[variant].r>0&&specs[variant].h>0,variant+' base dimensions');
+  if(variant!=='crow')assert.ok(Math.abs(manifest[`enemies/${variant}-idle`].h/3-specs[variant].h)<1.5,variant+' authored idle height keeps bars and stun ring aligned');
   for(const pose of poses){const key=`enemies/${variant}-${pose}`,m=manifest[key];assert.ok(m,key);assert.equal(m.units,3,key+' units');assert.ok(m.w>0&&m.h>0,key+' dimensions');assert.equal(m.anchor.length,2);assert.ok(m.anchor[0]>=0&&m.anchor[0]<m.w&&m.anchor[1]>=0&&m.anchor[1]<m.h,key+' anchor');assert.ok(fs.existsSync(new URL('../assets/'+key+'.webp',import.meta.url)),key+' image');}
  }
  const ctx=vm.createContext({self:{addEventListener(){}},caches:{}});vm.runInContext(read('sw.js'),ctx);const shell=Array.from(vm.runInContext('SHELL',ctx));

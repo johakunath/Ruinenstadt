@@ -1,0 +1,638 @@
+{
+  "enemies/bomb-attack-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      256.5,
+      962
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy bomb attack-a",
+    "height": 28.657277,
+    "height_class": "short",
+    "outline_family": "round-boiler",
+    "reason": "Round boiler body separates the explosive enemy from upright humanoids.",
+    "selected_variant": "01",
+    "source": "bomb.png"
+  },
+  "enemies/bomb-attack-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      765.5,
+      962
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy bomb attack-b",
+    "height": 27.539906,
+    "height_class": "short",
+    "outline_family": "round-boiler",
+    "reason": "Round boiler body separates the explosive enemy from upright humanoids.",
+    "selected_variant": "01",
+    "source": "bomb.png"
+  },
+  "enemies/bomb-hit": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1264.5,
+      962
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy bomb hit",
+    "height": 28.460094,
+    "height_class": "short",
+    "outline_family": "round-boiler",
+    "reason": "Round boiler body separates the explosive enemy from upright humanoids.",
+    "selected_variant": "01",
+    "source": "bomb.png"
+  },
+  "enemies/bomb-idle": {
+    "alpha_threshold": 128,
+    "anchor": [
+      255.0,
+      451
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy bomb idle",
+    "height": 28.0,
+    "height_class": "short",
+    "outline_family": "round-boiler",
+    "reason": "Round boiler body separates the explosive enemy from upright humanoids.",
+    "selected_variant": "01",
+    "source": "bomb.png"
+  },
+  "enemies/bomb-walk-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      765.5,
+      451
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy bomb walk-a",
+    "height": 28.065728,
+    "height_class": "short",
+    "outline_family": "round-boiler",
+    "reason": "Round boiler body separates the explosive enemy from upright humanoids.",
+    "selected_variant": "01",
+    "source": "bomb.png"
+  },
+  "enemies/bomb-walk-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1242.0,
+      451
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy bomb walk-b",
+    "height": 28.131455,
+    "height_class": "short",
+    "outline_family": "round-boiler",
+    "reason": "Round boiler body separates the explosive enemy from upright humanoids.",
+    "selected_variant": "01",
+    "source": "bomb.png"
+  },
+  "enemies/ghoul-attack-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      262.0,
+      963
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy ghoul attack-a",
+    "height": 34.848168,
+    "height_class": "medium",
+    "outline_family": "crooked-longarm",
+    "reason": "Crooked spine and dangling long arms distinguish the medium scavenger.",
+    "selected_variant": "01",
+    "source": "ghoul.png"
+  },
+  "enemies/ghoul-attack-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      743.0,
+      964
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy ghoul attack-b",
+    "height": 31.413613,
+    "height_class": "medium",
+    "outline_family": "crooked-longarm",
+    "reason": "Crooked spine and dangling long arms distinguish the medium scavenger.",
+    "selected_variant": "01",
+    "source": "ghoul.png"
+  },
+  "enemies/ghoul-hit": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1255.0,
+      963
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy ghoul hit",
+    "height": 30.492147,
+    "height_class": "medium",
+    "outline_family": "crooked-longarm",
+    "reason": "Crooked spine and dangling long arms distinguish the medium scavenger.",
+    "selected_variant": "01",
+    "source": "ghoul.png"
+  },
+  "enemies/ghoul-idle": {
+    "alpha_threshold": 128,
+    "anchor": [
+      237.5,
+      448
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy ghoul idle",
+    "height": 32.0,
+    "height_class": "medium",
+    "outline_family": "crooked-longarm",
+    "reason": "Crooked spine and dangling long arms distinguish the medium scavenger.",
+    "selected_variant": "01",
+    "source": "ghoul.png"
+  },
+  "enemies/ghoul-walk-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      766.0,
+      449
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy ghoul walk-a",
+    "height": 31.664921,
+    "height_class": "medium",
+    "outline_family": "crooked-longarm",
+    "reason": "Crooked spine and dangling long arms distinguish the medium scavenger.",
+    "selected_variant": "01",
+    "source": "ghoul.png"
+  },
+  "enemies/ghoul-walk-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1314.5,
+      449
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy ghoul walk-b",
+    "height": 31.664921,
+    "height_class": "medium",
+    "outline_family": "crooked-longarm",
+    "reason": "Crooked spine and dangling long arms distinguish the medium scavenger.",
+    "selected_variant": "01",
+    "source": "ghoul.png"
+  },
+  "enemies/howl-attack-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      253.0,
+      990
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy howl attack-a",
+    "height": 51.644737,
+    "height_class": "tall",
+    "outline_family": "arched-trumpet",
+    "reason": "Tall arched trumpet silhouette makes the caller identifiable without colour.",
+    "selected_variant": "01",
+    "source": "howl.png"
+  },
+  "enemies/howl-attack-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      721.0,
+      991
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy howl attack-b",
+    "height": 44.95614,
+    "height_class": "tall",
+    "outline_family": "arched-trumpet",
+    "reason": "Tall arched trumpet silhouette makes the caller identifiable without colour.",
+    "selected_variant": "01",
+    "source": "howl.png"
+  },
+  "enemies/howl-hit": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1245.0,
+      990
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy howl hit",
+    "height": 40.131579,
+    "height_class": "tall",
+    "outline_family": "arched-trumpet",
+    "reason": "Tall arched trumpet silhouette makes the caller identifiable without colour.",
+    "selected_variant": "01",
+    "source": "howl.png"
+  },
+  "enemies/howl-idle": {
+    "alpha_threshold": 128,
+    "anchor": [
+      235.0,
+      475
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy howl idle",
+    "height": 50.0,
+    "height_class": "tall",
+    "outline_family": "arched-trumpet",
+    "reason": "Tall arched trumpet silhouette makes the caller identifiable without colour.",
+    "selected_variant": "01",
+    "source": "howl.png"
+  },
+  "enemies/howl-walk-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      738.0,
+      475
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy howl walk-a",
+    "height": 49.451754,
+    "height_class": "tall",
+    "outline_family": "arched-trumpet",
+    "reason": "Tall arched trumpet silhouette makes the caller identifiable without colour.",
+    "selected_variant": "01",
+    "source": "howl.png"
+  },
+  "enemies/howl-walk-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1241.5,
+      474
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy howl walk-b",
+    "height": 49.890351,
+    "height_class": "tall",
+    "outline_family": "arched-trumpet",
+    "reason": "Tall arched trumpet silhouette makes the caller identifiable without colour.",
+    "selected_variant": "01",
+    "source": "howl.png"
+  },
+  "enemies/raser-attack-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      272.5,
+      899
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy raser attack-a",
+    "height": 23.363636,
+    "height_class": "low",
+    "outline_family": "horizontal-tail",
+    "reason": "Low horizontal runner with a raised long tail reads distinctly during a charge.",
+    "selected_variant": "01",
+    "source": "raser.png"
+  },
+  "enemies/raser-attack-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      775.5,
+      899
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy raser attack-b",
+    "height": 19.454545,
+    "height_class": "low",
+    "outline_family": "horizontal-tail",
+    "reason": "Low horizontal runner with a raised long tail reads distinctly during a charge.",
+    "selected_variant": "01",
+    "source": "raser.png"
+  },
+  "enemies/raser-hit": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1295.0,
+      899
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy raser hit",
+    "height": 20.181818,
+    "height_class": "low",
+    "outline_family": "horizontal-tail",
+    "reason": "Low horizontal runner with a raised long tail reads distinctly during a charge.",
+    "selected_variant": "01",
+    "source": "raser.png"
+  },
+  "enemies/raser-idle": {
+    "alpha_threshold": 128,
+    "anchor": [
+      262.0,
+      388
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy raser idle",
+    "height": 18.0,
+    "height_class": "low",
+    "outline_family": "horizontal-tail",
+    "reason": "Low horizontal runner with a raised long tail reads distinctly during a charge.",
+    "selected_variant": "01",
+    "source": "raser.png"
+  },
+  "enemies/raser-walk-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      787.0,
+      389
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy raser walk-a",
+    "height": 18.090909,
+    "height_class": "low",
+    "outline_family": "horizontal-tail",
+    "reason": "Low horizontal runner with a raised long tail reads distinctly during a charge.",
+    "selected_variant": "01",
+    "source": "raser.png"
+  },
+  "enemies/raser-walk-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1294.5,
+      389
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy raser walk-b",
+    "height": 18.090909,
+    "height_class": "low",
+    "outline_family": "horizontal-tail",
+    "reason": "Low horizontal runner with a raised long tail reads distinctly during a charge.",
+    "selected_variant": "01",
+    "source": "raser.png"
+  },
+  "enemies/spitter-attack-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      252.5,
+      926
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy spitter attack-a",
+    "height": 29.577465,
+    "height_class": "short",
+    "outline_family": "balloon-throat",
+    "pivots": {
+      "mouth": [
+        435,
+        596
+      ]
+    },
+    "reason": "Low inflated throat and long snout give the ranged enemy a broad nonhuman outline.",
+    "selected_variant": "01",
+    "source": "spitter.png"
+  },
+  "enemies/spitter-attack-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      745.0,
+      926
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy spitter attack-b",
+    "height": 24.0,
+    "height_class": "short",
+    "outline_family": "balloon-throat",
+    "pivots": {
+      "mouth": [
+        991,
+        690
+      ]
+    },
+    "reason": "Low inflated throat and long snout give the ranged enemy a broad nonhuman outline.",
+    "selected_variant": "01",
+    "source": "spitter.png"
+  },
+  "enemies/spitter-hit": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1263.0,
+      927
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy spitter hit",
+    "height": 26.788732,
+    "height_class": "short",
+    "outline_family": "balloon-throat",
+    "pivots": {
+      "mouth": [
+        1467,
+        710
+      ]
+    },
+    "reason": "Low inflated throat and long snout give the ranged enemy a broad nonhuman outline.",
+    "selected_variant": "01",
+    "source": "spitter.png"
+  },
+  "enemies/spitter-idle": {
+    "alpha_threshold": 128,
+    "anchor": [
+      206.5,
+      416
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy spitter idle",
+    "height": 24.0,
+    "height_class": "short",
+    "outline_family": "balloon-throat",
+    "pivots": {
+      "mouth": [
+        448,
+        180
+      ]
+    },
+    "reason": "Low inflated throat and long snout give the ranged enemy a broad nonhuman outline.",
+    "selected_variant": "01",
+    "source": "spitter.png"
+  },
+  "enemies/spitter-walk-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      733.5,
+      413
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy spitter walk-a",
+    "height": 24.507042,
+    "height_class": "short",
+    "outline_family": "balloon-throat",
+    "pivots": {
+      "mouth": [
+        967,
+        176
+      ]
+    },
+    "reason": "Low inflated throat and long snout give the ranged enemy a broad nonhuman outline.",
+    "selected_variant": "01",
+    "source": "spitter.png"
+  },
+  "enemies/spitter-walk-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1252.5,
+      412
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy spitter walk-b",
+    "height": 24.507042,
+    "height_class": "short",
+    "outline_family": "balloon-throat",
+    "pivots": {
+      "mouth": [
+        1479,
+        176
+      ]
+    },
+    "reason": "Low inflated throat and long snout give the ranged enemy a broad nonhuman outline.",
+    "selected_variant": "01",
+    "source": "spitter.png"
+  }
+}

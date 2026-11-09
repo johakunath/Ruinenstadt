@@ -6,7 +6,7 @@
 const EANI={_:{fps:6,walk:2}};// per-type overrides, e.g. rat:{fps:10}, brute:{fps:4,life:.6} (life scales squash and stretch)
 const POSEFB={'attack-b':['attack-a','idle'],'attack-a':['idle'],'walk-a':['idle'],'walk-b':['walk-a','idle'],'walk-c':['walk-a','idle'],'walk-d':['walk-b','walk-a','idle'],hit:['idle'],idle:[]};
 const eNear=e=>Math.hypot(P.x-e.x,P.y-e.y)<e.r+P.r+14,eWind=e=>e.tw>0?1-e.tw/e.twm:e.ch>0?1-e.ch/.6:eNear(e)&&e.hcd<.16?Math.min(1,1-e.hcd/.16):0;// 0..1 progress of a wind-up (telegraph, charge, melee about to land)
-const ENEMY_ART={ghoul:{r:10,h:36.5},brute:{r:17,h:52},spitter:{r:11,h:40},rat:{r:6,h:6.1},crow:{r:8,h:16},shield:{r:13,h:44},bomb:{r:11,h:40},howl:{r:11,h:44},raser:{r:11,h:36},schrottkoloss:{r:34,h:83},kabel:{r:9,h:35},bass:{r:15,h:56},uhr:{r:13,h:44},wurz:{r:12,h:55},kern:{r:11,h:42},brigadeghoul:{r:10,h:36.5}};
+const ENEMY_ART={ghoul:{r:10,h:32},brute:{r:17,h:52},spitter:{r:11,h:24},rat:{r:6,h:6.1},crow:{r:8,h:16},shield:{r:13,h:44},bomb:{r:11,h:28},howl:{r:11,h:50},raser:{r:11,h:18},schrottkoloss:{r:34,h:83},kabel:{r:9,h:35},bass:{r:15,h:56},uhr:{r:13,h:44},wurz:{r:12,h:55},kern:{r:11,h:42},brigadeghoul:{r:10,h:36.5}};
 const ENEMYPRE={},ENEMY_POSES=['idle','walk-a','walk-b','attack-a','attack-b','hit'];
 for(const [k,v]of Object.entries(ENEMY_ART))EANI[k]={radius:v.r,life:.45};
 function enemyPose(e){const A=EANI[enemyVariant(e)]||EANI[e.type]||EANI._;return e.flash>0||e.stun>0?'hit':e.cast>0||e.ru>0||e.dive>0||e.atk>.1?'attack-b':e.atk>0||eWind(e)>0||e.fuse>0||(e.type==='spitter'||e.type==='howl')&&e.fire<.45?'attack-a':(e.mv||0)>8?'walk-'+'abcd'[Math.floor(e.t*(A.fps||6))%(A.walk||2)]:'idle';}

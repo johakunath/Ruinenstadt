@@ -1,0 +1,121 @@
+{
+  "display_height_px": 64,
+  "failing_pairs": [],
+  "gate_complete": true,
+  "sprites": [
+    {
+      "height_class": "tall",
+      "key": "enemies/bass-idle",
+      "outline_family": "speaker-column",
+      "source_sha256": "8bf1057599d75cba874f9adb7b146a3f35617965686d11d816a8472064e7a51b",
+      "world_height": 56.33
+    },
+    {
+      "height_class": "short",
+      "key": "enemies/bomb-idle",
+      "outline_family": "round-boiler",
+      "source_sha256": "5e98ed4950ee8806c43d5c15bbb4a82ed46a7438d41a14650cd1139cf61bab1c",
+      "world_height": 28.0
+    },
+    {
+      "height_class": "medium",
+      "key": "enemies/brigadeghoul-idle",
+      "outline_family": "hunched-humanoid",
+      "source_sha256": "6deea52f3b1f80c5a34202f14b11543a64306fc70f4905542b05ff6868f082d9",
+      "world_height": 36.67
+    },
+    {
+      "height_class": "tall",
+      "key": "enemies/brute-idle",
+      "outline_family": "bulky-humanoid",
+      "source_sha256": "adf5c841c06ccceaf2dc3dae692e1fcd94781ab584ff696997babcda149957f1",
+      "world_height": 52.33
+    },
+    {
+      "height_class": "low",
+      "key": "enemies/crow-idle",
+      "outline_family": "wings",
+      "source_sha256": "d74a12cdc46580d333137c4b9206544e9d09b0b688e351b0f88cd0cbdc8eceb0",
+      "world_height": 6.33
+    },
+    {
+      "height_class": "medium",
+      "key": "enemies/ghoul-idle",
+      "outline_family": "crooked-longarm",
+      "source_sha256": "8b06210934f79aa9fcf5c906e7ba860f02dcce689c2c8466041039fdf209a1de",
+      "world_height": 32.0
+    },
+    {
+      "height_class": "tall",
+      "key": "enemies/howl-idle",
+      "outline_family": "arched-trumpet",
+      "source_sha256": "ef302c2e1a726a6c7d54024cdc274365d8e328363ea040e74ecb72237e339db1",
+      "world_height": 50.0
+    },
+    {
+      "height_class": "medium",
+      "key": "enemies/kabel-idle",
+      "outline_family": "upright-humanoid",
+      "source_sha256": "e95bd283459610f55c52a9d00daed0750ccd9d095029ad5c8364e53db8664722",
+      "world_height": 35.0
+    },
+    {
+      "height_class": "medium",
+      "key": "enemies/kern-idle",
+      "outline_family": "bulb-head",
+      "source_sha256": "65f797f69ade2de26bda5d27fcaffe8b863d7e1c52b9d9402fffcb3501f86c6b",
+      "world_height": 42.33
+    },
+    {
+      "height_class": "low",
+      "key": "enemies/raser-idle",
+      "outline_family": "horizontal-tail",
+      "source_sha256": "2f3986b9654eafaa367b04e4c8c683b33f01ee753e4c0d781914032e64871841",
+      "world_height": 18.0
+    },
+    {
+      "height_class": "low",
+      "key": "enemies/rat-idle",
+      "outline_family": "horizontal-rodent",
+      "source_sha256": "1baff8951d8a3fe09d11b22a7fc041764c0f0525d57f8d17460475e464bd6c16",
+      "world_height": 6.0
+    },
+    {
+      "height_class": "giant",
+      "key": "enemies/schrottkoloss-idle",
+      "outline_family": "heavy-golem",
+      "source_sha256": "836b71e72fa17ca25887f509d2c262d446af9fddac8e75297e1dc5bd2af241dd",
+      "world_height": 83.33
+    },
+    {
+      "height_class": "medium",
+      "key": "enemies/shield-idle",
+      "outline_family": "bent-humanoid",
+      "source_sha256": "9355331ddbb8304b1f360e11809409aa1ddbb57a12eea69f350efbd334eca41c",
+      "world_height": 44.0
+    },
+    {
+      "height_class": "short",
+      "key": "enemies/spitter-idle",
+      "outline_family": "balloon-throat",
+      "source_sha256": "b587ff552907f187023bf270ec9ddaa532ed855cd183628f7bfe9e66aaa032ca",
+      "world_height": 24.0
+    },
+    {
+      "height_class": "medium",
+      "key": "enemies/uhr-idle",
+      "outline_family": "clock-robot",
+      "source_sha256": "25f419236770f6dffc85806181e31c9654f2a02f0e895b38fc139ff28d4b7945",
+      "world_height": 44.67
+    },
+    {
+      "height_class": "tall",
+      "key": "enemies/wurz-idle",
+      "outline_family": "root-fan",
+      "source_sha256": "2d6fdc92467c250815a2f57f48884df2ebf75e0277cb3607997a23a1c56bdf61",
+      "world_height": 55.33
+    }
+  ],
+  "title": "Enemy silhouettes - current idle frames",
+  "unannotated": []
+}

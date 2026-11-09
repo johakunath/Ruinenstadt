@@ -6,6 +6,8 @@ stretched back upright. Feet centres use the lowest solid sole strip, excluding
 rat tails and crow wings. Source anchors/pivots are committed in picks.json.
 Run without arguments, then tools/sprites.py. Crop/anchor decisions are checked
 visually on the in-game proof sheets; they do not change collision radii.
+Keys owned by task 01b are skipped so rerunning this legacy selector preserves
+the redesign recipe's ownership.
 """
 import json
 from pathlib import Path
@@ -28,7 +30,10 @@ def cell(im,i):
 
 def run():
     picks={}
+    redesign=RAW.parent/'01b-enemy-redesign/picks.json'
+    owned=set(json.loads(redesign.read_text())) if redesign.exists() else set()
     for key in [*HEIGHT,'rat','crow']:
+        if all('enemies/'+key+'-'+pose in owned for pose in POSES):continue
         im=Image.open(RAW/(key+'.png')).convert('RGBA');cells=[]
         assert im.size==(1536,1024),(key,im.size)
         for i in range(6):
@@ -39,6 +44,7 @@ def run():
         idle=cells[0][4]
         scale=(13.5/(idle[2]-idle[0]) if key=='rat' else 16/(idle[2]-idle[0]) if key=='crow' else HEIGHT[key]/(idle[3]-idle[1]))
         for i,(pic,x,y,a,box) in enumerate(cells):
+            if 'enemies/'+key+'-'+POSES[i] in owned:continue
             # Frame dimensions use the same alpha threshold as the normalizer.
             ys,xs=np.nonzero(a>16);height=int(ys.max()-ys.min()+1)
             if key=='crow':anchor=CROW[i]

@@ -1,10 +1,12 @@
-// Task 01. Serve this checkout on 8767 and an unchanged v0.63 on 8765.
+// Enemy asset proof. Serve this checkout on 8767 and the unchanged baseline on 8765.
 // Run: node tools/proof_enemies.cjs. ENEMY_PROOF_PHASE=visual|perf can isolate a phase.
 // Performance runs in a fresh browser only after all visual/offline contexts close.
 const {chromium}=require('playwright');
 const fs=require('fs'),path=require('path');
-const root=path.resolve(__dirname,'..'),out=path.join(root,'pipeline/proof/01-enemies');
+const root=path.resolve(__dirname,'..'),out=process.env.ENEMY_PROOF_OUT?path.resolve(process.env.ENEMY_PROOF_OUT):path.join(root,'pipeline/proof/01-enemies');
 const port=Number(process.env.ENEMY_PROOF_PORT||8767),baselinePort=Number(process.env.ENEMY_BASELINE_PORT||8765);
+const perfDistricts=(process.env.ENEMY_PERF_DISTRICTS||'0,3').split(',').map(s=>Number(s.trim()));
+if(perfDistricts.some(n=>!Number.isInteger(n)||n<0||n>6))throw Error('ENEMY_PERF_DISTRICTS must contain district indices 0..6');
 const variants='ghoul brute spitter rat crow shield bomb howl raser schrottkoloss kabel bass uhr wurz kern brigadeghoul'.split(' ');
 const poses='idle walk-a walk-b attack-a attack-b hit'.split(' ');
 const launch=()=>chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
@@ -128,7 +130,7 @@ async function performanceProof(){
  let browser;try{
   browser=await launch();const context=await browser.newContext(settings),pages=[],errors=[];for(const pport of [baselinePort,port]){const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(`http://127.0.0.1:${pport}/index.html`);await page.evaluate(async()=>{window.requestAnimationFrame=()=>0;heroPre();await spriteReady;for(const key of Object.keys(SPRITES).filter(k=>k.startsWith('enemies/')))spr(key);await Promise.all(Object.values(SPRIMG).map(i=>i.decode()));await Promise.all(Object.values(HIMG).map(i=>i.decode()));});pages.push(page);}
   const result={method:'Same seeded 40 mixed enemies, maps, viewport, camera and DPR. Seven alternating pairs; 15 warmup and 50 timed full renders each. Visual/offline browser closed before timing.',viewport:settings.viewport,dpr:2,baselinePort,targetPort:port,districts:[],errors};
-  for(const di of [0,3]){
+  for(const di of perfDistricts){
    const setups=[];for(const page of pages)setups.push(await page.evaluate(di=>{Math.random=rngFrom(12345);startRun(di,false);resize();state='paused';P.x=SX;P.y=SY;cam.x=P.x;cam.y=P.y;P.inv=P.swingT=P.walk=P.mvx=P.mvy=P.spin=0;const types=['ghoul','brute','spitter','rat','crow','shield','bomb','howl','raser','boss','kabel','bass','uhr','wurz','kern'];enemies=[];for(let j=0;j<40;j++){const q=s2w((j%8-3.5)*34,Math.floor(j/8)*23-32),e=mkEnemy(types[j%types.length],P.x+q[0],P.y+q[1]);e.big=false;e.hcd=1;e.mv=60;e.t=j*.17;e.fire=4;enemies.push(e);}return{version:VERSION,Z,WS,WH,name:D.n,types:enemies.map(e=>e.type),positions:enemies.map(e=>[e.x,e.y,e.r])};},di));
    if(JSON.stringify({...setups[0],version:undefined})!==JSON.stringify({...setups[1],version:undefined}))throw Error('Performance scenes differ: '+JSON.stringify(setups));
    const samples=[];for(let j=0;j<7;j++){const pair={};for(const index of j%2?[1,0]:[0,1])pair[index?'painted':'baseline']=await pages[index].evaluate(()=>{for(let k=0;k<15;k++)render(1200);const times=[];for(let k=0;k<50;k++){const begin=performance.now();render(1200);times.push(performance.now()-begin);}times.sort((a,b)=>a-b);return{median:times[25],p95:times[47]};});samples.push(pair);}

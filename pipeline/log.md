@@ -158,3 +158,52 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   GitHub Pages publishes main at `https://johakunath.github.io/Ruinenstadt/`.
   Tab S9 hardware playtesting remains Johannes's step.
 - Final isolated performance against v0.63, forty mixed enemies: Köpenick: 55.3 → 53.2 ms (-3.8%); Mitte: 56.0 → 53.4 ms (-4.6%). No desktop regression.
+
+
+## 2026-11-09 · Codex · task 01b batch 1, v0.66
+
+- Continuous session explicitly authorized by Johannes: autonomous design
+  selection, batches of 30 images, completed Codex review, fixes, then merge;
+  independent work continues during review. Claim `49e1efe` pushed on
+  `codex/01b-enemies-batch-1`. This is the first 30 frames, not task completion.
+- Four board-first family canvases are saved under the task raw folder. Pick
+  01 for Ghul (crooked long arms), Speier (balloon throat), Zünder (round
+  boiler), Heuler (arched trumpet) and Raser (horizontal skeletal runner).
+  Reasons and source-space anchors/mouths are in `picks.json`. The baseline
+  silhouette gate finds seven similar height/outline pairs; all sixteen
+  current idles are annotated with no remaining pairs. The required weak
+  Schildträger, Brigadeghul and Schrottkoloss still need their second batch.
+- Repaired source alpha and wide planted stances after internal review. Idle
+  candidate sole envelopes are now about +/-5.4 units, within actual projected
+  ring half-widths 10/11. Inspected six-pose/both-facing browser galleries,
+  contact drawings and default/2x world proof. Rejected sources remain raw.
+- Five visual height metadata values follow the new bodies; renderer
+  algorithms, r, damage, attack ranges, shield arc and projectile physics stay
+  unchanged. Existing keys and shell paths are reused; VERSION/CACHE 0.66.
+  Recipe ownership migration and legacy selector skip avoid duplicate keys
+  and accidental restoration of the old paint.
+- Validation: six Python and eleven JS tests; 227-entry manifest validation;
+  31 byte-identical outputs after a complete builder rerun; 378 shell paths
+  exist. Final browser run passed: 32 galleries, 40 world captures, actual
+  shield/mouth/crow/elite/boss checks, deliberate HTTP404 canvas fallback,
+  fully offline v0.66 reload/run with 97/97 enemy images; no unexpected page
+  or image errors. Reproduction and evidence: `pipeline/proof/01b-enemy-redesign/`.
+- Final isolated seeded 40-enemy A/B vs v0.65 (headless desktop):
+
+  | District | Before ms | After ms | Change |
+  |---|---:|---:|---:|
+  | Köpenick | 54.1 | 53.4 | -1.3% |
+  | Alexanderplatz | 43.8 | 43.6 | -0.5% |
+  | Mitte | 52.6 | 49.1 | -6.7% |
+
+  Thirty-frame decoded bytes 1,027,536 (0.98 MiB), all enemy textures
+  4,835,468 bytes (4.61 MiB), below the 40 MB task budget. Tab S9 hardware
+  thermal/battery verification remains Johannes's check.
+- Preparation for task 03 found a real constraint: most geographic vehicles
+  have arbitrary `b.rot`, while the task/contract supplies two flat views.
+  `withRot` rotates 3D P3 vertices, not the canvas. A 2D ground affine tilts
+  painted verticals; ignoring rotation or using old art leaves geographic
+  vehicles incomplete. Question for Johannes/Claude: authorize extra authored
+  angles or a layered vehicle construction? Do not change the contract
+  silently. Skip this dependent step and continue other tasks under the
+  autonomous-run stop rule. No vehicle runtime changes made.
