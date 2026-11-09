@@ -1,0 +1,92 @@
+{
+  "enemies/ghoul-idle": {
+    "source": "ghoul-b-frames.png",
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "height": 36.5,
+    "anchor": [
+      224,
+      477
+    ],
+    "for": "drawEnemy ghoul idle"
+  },
+  "enemies/ghoul-walk-a": {
+    "source": "ghoul-b-frames.png",
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "height": 36.263499,
+    "anchor": [
+      748,
+      477
+    ],
+    "for": "drawEnemy ghoul walk-a"
+  },
+  "enemies/ghoul-walk-b": {
+    "source": "ghoul-b-frames.png",
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "height": 36.263499,
+    "anchor": [
+      1264,
+      477
+    ],
+    "for": "drawEnemy ghoul walk-b"
+  },
+  "enemies/ghoul-attack-a": {
+    "source": "ghoul-b-frames.png",
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "height": 36.105832,
+    "anchor": [
+      258,
+      989
+    ],
+    "for": "drawEnemy ghoul attack-a"
+  },
+  "enemies/ghoul-attack-b": {
+    "source": "ghoul-b-frames.png",
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "height": 33.898488,
+    "anchor": [
+      730,
+      989
+    ],
+    "for": "drawEnemy ghoul attack-b"
+  },
+  "enemies/ghoul-hit": {
+    "source": "ghoul-b-frames.png",
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "height": 35.00216,
+    "anchor": [
+      1268,
+      989
+    ],
+    "for": "drawEnemy ghoul hit"
+  }
+}

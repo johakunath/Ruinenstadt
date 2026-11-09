@@ -6,7 +6,7 @@ How the painted in-world art is made, plugged in and handed over. Index for ever
 
 | Who | Does | Does not |
 |---|---|---|
-| Johannes | Picks variants, approves each task, playtests on the Tab S9 | Edit code |
+| Johannes | Picks design variants (colour-only choices delegated to Codex), approves each task, playtests on the Tab S9 | Edit code |
 | Codex | Does the tasks end to end: generates sprites and parts, cuts and normalises them, writes the manifest, hooks the renderer, updates the player rig (`tools/build_hero.py`, `js/hero.js`, `drawHero`) and menu art when a task says so, tests in the browser, opens the PR | Change task scope or the contract on its own: write the question into `log.md` instead |
 | Claude | Plans and writes the tasks, keeps `contract.md` right, reviews and debugs Codex PRs, fixes what is architecturally tricky | Redo Codex work without a note in `log.md` |
 
@@ -19,7 +19,7 @@ Both agents may change any code when a task needs it. Keep the change small and 
 1. Read the task file in `tasks/`, then `contract.md`.
 2. Set the task status to `in progress (Codex, date)` and commit that alone, so the other agent sees it.
 3. Generate 2 to 3 variants per asset. Put raw output in `assets/raw/codex/<task>/`, never into game folders.
-4. Show Johannes a comparison sheet (PNG, one row per asset, variants side by side, plus a game-size row at 64 px). He picks.
+4. Show Johannes a comparison sheet (PNG, one row per asset, variants side by side, plus a game-size row at 64 px). He picks design variants. If variants differ only in colour, Codex chooses within the style bible and records the choice in `log.md`; do not pause or ask Johannes for colour-only choices. Animation poses derived from an already selected design do not require another variant selection.
 5. Normalise the picks (`tools/` script, see task 00), write `assets/manifest.json` entries, hook the renderer with canvas fallback.
 6. Test (below). Screenshot every asset in game at default zoom and at 2x.
 7. Bump `VERSION` (`js/core.js`) and `CACHE` (`sw.js`) together, add a row to `BACKLOG.md`, add new files to the `SHELL` list in `sw.js`.
@@ -51,7 +51,7 @@ Both agents may change any code when a task needs it. Keep the change small and 
 
 ## Definition of done
 
-- Johannes picked the variants.
+- Johannes picked the design variants, or Codex recorded a colour-only choice under step 4.
 - Manifest entries complete, fallback works (rename the file, game still runs).
 - Hitbox screenshots attached to the PR, no visible mismatch.
 - No page errors, smoke test passes, version and backlog updated.

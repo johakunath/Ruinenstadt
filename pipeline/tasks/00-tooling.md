@@ -1,6 +1,6 @@
 # 00 Tooling and first sprite end to end
 
-Status: open
+Status: done (v0.60)
 
 Goal: the pipeline works once from raw image to game, with the ghoul as test object.
 

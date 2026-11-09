@@ -1,0 +1,62 @@
+{
+  "enemies/ghoul-attack-a": {
+    "anchor": [
+      32.594,
+      107.821
+    ],
+    "for": "drawEnemy ghoul attack-a",
+    "h": 110,
+    "units": 3,
+    "w": 64
+  },
+  "enemies/ghoul-attack-b": {
+    "anchor": [
+      23.547,
+      101.814
+    ],
+    "for": "drawEnemy ghoul attack-b",
+    "h": 104,
+    "units": 3,
+    "w": 91
+  },
+  "enemies/ghoul-hit": {
+    "anchor": [
+      28.943,
+      105.054
+    ],
+    "for": "drawEnemy ghoul hit",
+    "h": 107,
+    "units": 3,
+    "w": 60
+  },
+  "enemies/ghoul-idle": {
+    "anchor": [
+      19.872,
+      109.812
+    ],
+    "for": "drawEnemy ghoul idle",
+    "h": 112,
+    "units": 3,
+    "w": 48
+  },
+  "enemies/ghoul-walk-a": {
+    "anchor": [
+      27.584,
+      109.052
+    ],
+    "for": "drawEnemy ghoul walk-a",
+    "h": 111,
+    "units": 3,
+    "w": 63
+  },
+  "enemies/ghoul-walk-b": {
+    "anchor": [
+      31.643,
+      108.815
+    ],
+    "for": "drawEnemy ghoul walk-b",
+    "h": 111,
+    "units": 3,
+    "w": 68
+  }
+}

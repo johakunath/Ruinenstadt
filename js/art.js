@@ -109,14 +109,21 @@ function drawCaptive(c,t){const x=c.x,y=c.y+9;ctx.fillStyle='rgba(0,0,0,.45)';ct
   ctx.fillStyle='#d9b48f';ctx.beginPath();ctx.arc(x,y-29,5.5,0,7);ctx.fill();ctx.strokeStyle='#a8957d';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x-8,y-18);ctx.lineTo(x+8,y-14);ctx.moveTo(x-8,y-14);ctx.lineTo(x+8,y-18);ctx.stroke();
   if(!c.free&&Math.sin(t*.006)>0){ctx.font='600 13px "Barlow Condensed",sans-serif';ctx.textAlign='center';ctx.fillStyle='#ead9c0';ctx.fillText('Hilfe!',x,y-44);}
   if(c.free){ctx.strokeStyle='rgba(143,209,106,.6)';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(x,y,22,8,0,0,7);ctx.stroke();}}
+// The Brigadeghul keeps its Blaumann/cap canvas variant until task 01 supplies that art.
+function ghoulSprite(e){if(e.type!=='ghoul'||D.gdr)return null;const near=Math.hypot(P.x-e.x,P.y-e.y)<e.r+P.r+14,pose=e.flash>0||e.stun>0?'hit':e.atk>0?(e.atk>.1?'attack-b':'attack-a'):near&&e.hcd<.16?'attack-a':(e.mv||0)>8?((Math.floor(e.t*6)&1)?'walk-b':'walk-a'):'idle',key='enemies/ghoul-'+pose,i=spr(key);return i?{i,m:SPRITES[key],key}:null;}
+const GFLASH={};
+function drawGhoulSprite(g,e,C){const m=g.m,s=e.r/10;ctx.save();ctx.scale(s,s);let i=g.i;if(e.flash>0){i=GFLASH[g.key];if(!i){i=GFLASH[g.key]=cnv(m.w,m.h);const c=i.getContext('2d');c.drawImage(g.i,0,0);c.globalCompositeOperation='source-in';c.fillStyle='#ead9c0';c.fillRect(0,0,m.w,m.h);}}
+  ctx.drawImage(i,-m.anchor[0]/m.units,-m.anchor[1]/m.units,m.w/m.units,m.h/m.units);
+  if(D.cyber){ctx.strokeStyle=C('#d6409a');ctx.lineWidth=1.1;for(let k=0;k<3;k++){ctx.beginPath();ctx.moveTo(1,-26);ctx.quadraticCurveTo(-10-k*2,-30+k*3,-8-k*2,-15+k*2);ctx.stroke();}ctx.fillStyle=C('#ff4fa3');ctx.fillRect(2,-24,2,2);}ctx.restore();return 36.5*s;}
 function drawEnemy(e,t){
-  const fl=P.x-P.y<e.x-e.y?-1:1,f=e.flash>0,C=c=>f?'#ead9c0':c,mv=(e.mv||0)>8&&e.stun<=0,sw=mv?Math.sin(e.t*10):0,fy=e.y+e.r*.75,near=e.atk>0||Math.hypot(P.x-e.x,P.y-e.y)<e.r+34;
+  const g=ghoulSprite(e),fl=P.x-P.y<e.x-e.y?-1:1,f=e.flash>0,C=c=>f?'#ead9c0':c,mv=(e.mv||0)>8&&e.stun<=0,sw=mv?Math.sin(e.t*10):0,fy=e.y+e.r*(g?.4:.75),near=e.atk>0||Math.hypot(P.x-e.x,P.y-e.y)<e.r+34;
   ctx.fillStyle='rgba(0,0,0,.42)';ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.1,e.r*.36,0,0,7);ctx.fill();
   if(e.elite){ctx.strokeStyle=EMC[e.elite];ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.45,e.r*.5,0,0,7);ctx.stroke();}
   if(e.tw>0){const p=1-e.tw/e.twm;ctx.strokeStyle=`rgba(255,80,60,${.4+.5*p})`;ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(e.x,fy,e.r*(1.2+p),e.r*(.45+.35*p),0,0,7);ctx.stroke();}
   if(e.open>0){ctx.strokeStyle='#f2d14b';ctx.lineWidth=3;ctx.setLineDash([6,4]);ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.9,e.r*.7,0,0,7);ctx.stroke();ctx.setLineDash([]);}
   ctx.save();ctx.translate(e.x,fy);ctx.scale(fl*1.15,1.15);let H=34;
-  if(e.type==='ghoul'||e.type==='shield'){const s=e.r/10;ctx.scale(s,s);H=36*s;const reach=near?8:0;
+  if(g)H=drawGhoulSprite(g,e,C);
+  else if(e.type==='ghoul'||e.type==='shield'){const s=e.r/10;ctx.scale(s,s);H=36*s;const reach=near?8:0;
     limb(-2,-12,sw*.5,12,3,C('#3d1d12'));limb(3,-12,-sw*.5,12,3,C('#4a2414'));
     stick(0,-22,9+reach,-6-sw*3-reach*1.2,3,C('#4a2010'));
     ctx.save();ctx.translate(1,-18);ctx.rotate(.35);ctx.fillStyle=C(e.col);ctx.beginPath();ctx.ellipse(0,0,6.5,9,0,0,7);ctx.fill();ctx.strokeStyle='rgba(0,0,0,.3)';ctx.lineWidth=1;for(let i=-4;i<5;i+=3){ctx.beginPath();ctx.moveTo(-1,i);ctx.lineTo(4,i);ctx.stroke();}ctx.restore();
