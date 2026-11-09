@@ -12,9 +12,9 @@ const AFX={dmg:{n:'Schaden',u:'%',a:6,b:14},as:{n:'Angriffstempo',u:'%',a:5,b:10
 const PACTS=[[['dmg',25,40],['as',-15,-10]],[['as',15,22],['dmg',-12,-8]],[['dmg',25,35],['hp',-30,-15]],[['res',15,22],['spd',-12,-8]],[['spd',14,20],['res',-12,-8]],[['crit',10,15],['hp',-20,-10]],[['luck',3,4],['dmg',-10,-8]],[['el',40,60],['crit',-6,-4]]];
 const IMP={leder:[['spd',4]],helm:[['res',4]],mantel:[['regen',.5]],weste:[['res',7],['spd',-4]],feuer:[['res',5],['el',8]],bvg:[['spd',6]],spaeti:[['luck',2],['regen',.8]],panzer:[['res',12],['spd',-8]],herz:[['regen',1]],
  poncho:[['res',5],['spd',3]],kmantel:[['el',10]],nbrille:[['crit',2]],nauge:[['el',10]],zchip:[['crit',3]],karm:[['dmg',6]],reflex:[['cdr',6]],bherz:[['hp',25]],npumpe:[['leech',1]],bassarm:[['as',8],['el',15]],sichel:[['crit',3]],werkh:[['dmg',6]],aufzieh:[['as',6]],zeiger:[['crit',2],['as',4]],blaumann:[['res',4],['regen',.4]],stroh:[['luck',1]],gartenh:[['leech',1]]};
-const SETS={kiez:{n:'Kiezwache',p:{w:['Brechstange der Kiezwache','blade','brech'],a:['Weste der Kiezwache','armor','weste'],t:['Abzeichen der Kiezwache','krit','abzeichen']},b2:'+15% Widerstand',b3:'+30% Schaden'},
-  spree:{n:'Spreegeist',p:{w:['Zwille des Spreegeists','sling','zwille'],a:['Mantel des Spreegeists','armor','mantel'],t:['Kiesel des Spreegeists','tempo','kiesel']},b2:'+15% Angriffstempo',b3:'Strom-Element und +40% Elementarschaden'},
-  zit:{n:'Zitadelle',p:{w:['Morgenstern der Zitadelle','hammer','morgen'],a:['Kettenhemd der Zitadelle','armor','kette'],t:['Wappen der Zitadelle','krit','wappen']},b2:'+60 Leben',b3:'+25% Schaden und +10% Widerstand'}};
+const SETS={kiez:{n:'Kiezwache',p:{w:['Brechstange der Kiezwache','blade','brech'],a:['Weste der Kiezwache','armor','weste'],t:['Abzeichen der Kiezwache','krit','abzeichen']},b2:'+20% Widerstand',b3:'+45% Schaden'},
+  spree:{n:'Spreegeist',p:{w:['Zwille des Spreegeists','sling','zwille'],a:['Mantel des Spreegeists','armor','mantel'],t:['Kiesel des Spreegeists','tempo','kiesel']},b2:'+20% Angriffstempo',b3:'Strom-Element und +60% Elementarschaden'},
+  zit:{n:'Zitadelle',p:{w:['Morgenstern der Zitadelle','hammer','morgen'],a:['Kettenhemd der Zitadelle','armor','kette'],t:['Wappen der Zitadelle','krit','wappen']},b2:'+90 Leben',b3:'+40% Schaden und +15% Widerstand'}};
 const stashMax=()=>40+(S.camp&&S.camp.halle?20:0);
 const CAMP=[{k:'turm',n:'Wachturm',d:'+8% Widerstand, dauerhaft',p:150},{k:'sani',n:'Sanitätszelt',d:'Jede Expedition startet mit mindestens 2 Verbänden',p:140},{k:'garten',n:'Gemüsegarten',d:'Du startest jede Expedition satt (+10% Schaden für 60 Sekunden)',p:120},
   {k:'halle',n:'Lagerhalle',d:'+20 Plätze im Lager',p:180},{k:'funk',n:'Funkmast',d:'Ein zusätzliches Ereignis pro Expedition',p:200},{k:'presse',n:'Schrottpresse',d:'+15% Schrott von Gegnern',p:250},{k:'lampe',n:'Stirnlampen-Werkstatt',d:'Zweihändige Waffen bekommen in Dunkelzonen eine Stirnlampe',p:160}];
@@ -30,6 +30,8 @@ let tipQ=[],tipT=0;function tip(k,txt){if(!S.tips||S.tips[k])return;S.tips[k]=1;
 function checkAch(){for(const a of ACH)if(!S.ach[a.k]&&a.c()){S.ach[a.k]=1;S.scrap+=a.r;toast(`Erfolg: <span style="color:var(--ember)">${a.n}</span> · +${a.r} Schrott`);sfx('win');}}
 const SETC='#8fd16a',rc=it=>it.set?SETC:RAR[it.r].c,setCount=(eq,k)=>SLOTS.filter(s=>eq[s]&&eq[s].set===k).length;
 const rfCost=it=>Math.round((20+it.ilvl*4+it.r*20)*Math.pow(1.4,it.rr||0));
+// v0.65: Umschmieden also costs material (weapon metal, armour cloth, jewellery cable). Weapon mods open after Xhain, reforging after Potsdamer Platz (Mitte)
+const rfMat=it=>[({w:'metall',a:'stoff',h:'stoff',g:'stoff',f:'stoff'})[it.slot]||'kabel',it.r+(it.rr||0)],modsOpen=()=>(S.best[1]||0)>=WAVES,forgeOpen=()=>(S.best[3]||0)>=WAVES;
 const LOCK='<svg class="lk" width="10" height="11" viewBox="0 0 10 11" aria-hidden="true"><rect x="1" y="5" width="8" height="6" fill="#a8957d"/><path d="M3 5V3a2 2 0 0 1 4 0v2" stroke="#a8957d" fill="none" stroke-width="1.4"/></svg>';
 const LEGP={turm:'Krits lösen eine Feuerexplosion aus',mauer:'Jeder vierte Treffer erzeugt eine Säurewelle',ring:'Geschosse springen auf einen weiteren Gegner über',
   spaeti:'Gegner und Kisten lassen doppelt so oft Döner und Vorräte fallen',panzer:'20% Chance, einen Treffer komplett abzublocken',herz:'Einmal pro Expedition überlebst du einen tödlichen Treffer mit 40% Leben',

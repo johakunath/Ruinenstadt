@@ -1,8 +1,26 @@
 # 02 Buildings, Köpenick first
 
-Status: open
+Status: open (start with step 0)
 
 Köpenick is the default look (board `docs/style/koepenick.png`). Building boxes are drawn by `drawBox` (`js/iso.js`) from footprint `x,y,w,h` and height; size factors `BSC`/`BHS` in `js/world.js`; landmarks per district in `K.lm` (`js/geo.js` for Köpenick and Xhain).
+
+## Step 0: decide the method with a proof (do this first, one building)
+
+Johannes' question: "Do we need four sides plus roof per building type?" No. The camera is fixed 2:1 isometric, so only **three faces are ever visible: south facade, east facade, roof** (see `drawBox`: south and east faces are textured from the sprite, the roof goes on the top face). Two methods:
+
+| | A: texture kit (recommended default) | B: full iso render per building |
+|---|---|---|
+| What Codex paints | Flat, straight-on textures: facade strips (ground floor with shopfront, upper floor, corner pier, gable), roof tops, damage overlays (broken windows, ivy, collapsed corner), all tileable or with defined stretch zones. The engine already maps them onto the faces | One finished iso picture per building |
+| Variety | High (combine kit pieces, many footprints) | One look per painting, repeats show quickly |
+| Fit to footprint | Automatic, any `w x h` | Must be made for one footprint, else gaps at the collision box |
+| Cost | Medium, reused everywhere | High per building |
+| Look | Slight "box with wallpaper" feel, fixed by painted shading, edge breaks, rooftop props, overlays | Most painterly |
+
+Proof: Codex makes **one** Köpenick Altbau with method A (south and east facade textures, roof, 2 damage overlays), hooks it into `drawBox` with the current drawing as fallback, screenshots it in game next to the old and a method B mock of the same building, and measures `?debug=perf`. Johannes decides in the morning. Until then continue with 03, 04, 05 (they do not depend on this).
+
+Rule for both methods: the painted texture must carry the light from the top left, no baked shadow on the ground, windows keep lit-window positions so the lights in `lpos` still sit on windows.
+
+## Assets (after the decision)
 
 | Asset | Notes |
 |---|---|
@@ -10,6 +28,6 @@ Köpenick is the default look (board `docs/style/koepenick.png`). Building boxes
 | Plattenbau block | grey panels, balconies |
 | Späti | barricaded, sandbags, half-open roll shutter, BVG yellow accents |
 | Ruin | half-collapsed Altbau |
-| Rathaus Köpenick | landmark, check its footprint in `js/geo.js` |
+| Rathaus Köpenick | landmark, see task 08 |
 
-The sprite replaces the box faces, the footprint stays the collision box. Check that walls line up with the footprint (walking along a wall in game must not show a gap or overlap). Lights stored per building (`lpos` in `js/iso.js`) must still sit on windows or lamps.
+The sprite replaces the box faces, the footprint stays the collision box. Check that walls line up with the footprint (walking along a wall in game must not show a gap or overlap).

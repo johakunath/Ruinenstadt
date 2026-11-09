@@ -142,7 +142,7 @@ body.tab #banner{font-size:76px}
   .mleft{grid-template-columns:1fr}
 }
 /* ---- inventory ---- */
-.ihead{display:grid;gap:8px;grid-template-columns:minmax(0,1fr) auto;align-items:center}.ihead .tabs{min-width:0;overflow-x:auto}.iclose{grid-column:2;grid-row:1;width:auto;min-width:120px}.ires{grid-column:1/-1;display:flex;gap:14px;align-items:center;justify-content:flex-end;flex-wrap:wrap;font-size:17px;color:var(--dim)}.ires b{color:var(--bone)}
+.ihead{display:grid;gap:8px;grid-template-columns:minmax(0,1fr) auto;align-items:center}.ihead .tabs{min-width:0;overflow-x:auto}.iclose{grid-column:2;grid-row:1;width:auto;min-width:120px}.ibtns{display:flex;gap:8px;justify-content:flex-end}.ibtns .btn{width:auto;min-width:0}.ibtns .main{min-width:96px}.cog{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px}.cog svg{display:block}.ires{grid-column:1/-1;display:flex;gap:14px;align-items:center;justify-content:flex-end;flex-wrap:wrap;font-size:17px;color:var(--dim)}.ires b{color:var(--bone)}
 .inv3{display:grid;gap:14px}.inv3 section{display:grid;gap:10px;align-content:start;min-width:0}
 /* paper doll: Kopf, Körper, Füße left; Waffe, Hände, Talisman right; Ring and Implantat below */
 .doll{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px;width:100%;max-width:400px;margin:0 auto;align-items:start}
@@ -203,7 +203,7 @@ body:not(.inrun) #bufs,body:not(.inrun) #streak{display:none}
 /* painted icons and portraits (assets/icons, assets/portraits) */
 .ico{display:block;object-fit:contain;pointer-events:none;filter:drop-shadow(0 2px 2px rgba(0,0,0,.6))}
 .cell .ico{width:86%;height:86%}.slot .ic .ico{width:58px;height:58px}.doll .slot .ic .ico{width:52px;height:52px}.dic .ico{width:54px;height:54px}.kico .ico{width:56px;height:56px}.kset .kico .ico{width:38px;height:38px}
-img.kimg{object-fit:cover;display:block}
+img.kimg{object-fit:cover;display:block}.ksil{position:relative;overflow:hidden}.ksil img{width:100%;height:100%;object-fit:cover;filter:brightness(0) opacity(.5)}.ksil b{position:absolute;inset:0;display:grid;place-items:center;font:30px/1 var(--f-display);color:var(--dim)}
 .mico{width:28px;height:28px;object-fit:contain;vertical-align:middle;margin-right:6px}.mats span{display:inline-flex;align-items:center;gap:6px}.mats .mico{margin-right:0}.ires .mico{width:22px;height:22px;margin-right:4px}
 .cons span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 #c1{background:url(../assets/icons/C01.webp) center/40px no-repeat,rgba(13,9,7,.6)}#c2{background:url(../assets/icons/C02.webp) center/40px no-repeat,rgba(13,9,7,.6)}

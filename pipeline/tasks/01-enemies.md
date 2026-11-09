@@ -1,6 +1,6 @@
 # 01 Enemies
 
-Status: done (v0.64)
+Status: done (v0.64). Second pass for silhouette variety and board-first design: `01b-enemy-redesign.md`
 
 Same pattern as the ghoul. Look: style bible and boards, the Kodex portraits in `assets/portraits/` (E01 to E14) are the agreed designs, match them.
 
@@ -18,6 +18,6 @@ Same pattern as the ghoul. Look: style bible and boards, the Kodex portraits in 
 | boss (wave 10) | Schrottkoloss | 34 / 42 | E10 | |
 | kabel | Kabelghul (Mitte) | 9 | E13 | cyan cables |
 | bass | Boxenkopf (Mitte) | 15 | E14 | bass ring starts at the speaker |
-| uhr, wurz, kern | Uhrwerkläufer, Wurzler, Kernspeier (Alexanderplatz) | 13, 12, 11 | none yet | design from the drawn versions in `js/alex.js` and the Alexanderplatz board |
+| uhr, wurz, kern | Uhrwerkläufer, Wurzler, Kernspeier (Alexanderplatz) | 13, 12, 11 | none yet | done from the Alexanderplatz board and the code drawings in `js/alex.js` |
 
 Elite variants (`e.elite`) keep their coloured ring, no extra art.

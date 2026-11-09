@@ -64,7 +64,7 @@ const SFX={
  bell:()=>{mal(1320,.25,.08);mal(1760,.3,.06,.08);},
  win:()=>[262,330,392,523,659].forEach((f,i)=>mal(f,.5,.12,i*.12))};
 // a: rarity for 'pick', or a world position {x,y} for stereo placement of an effect. v: volume factor
-function sfx(n,a,v){if(!AC||S.mute)return;if(n==='hit'||n==='crit'||n==='pop'||n==='wood'||n==='zap'||n==='ignite'){const now=performance.now();if(now-lastHit<45)return;lastHit=now;}try{if(FX[n])fxPlay(n,a&&a.x!=null?clamp((scx(a.x,a.y)-VW/2)/(VW/2),-1,1)*.6:0,v);else SFX[n](a);}catch(e){}}
+function sfx(n,a,v){if(!AC||S.mute)return;if(n==='hit'||n==='crit'||n==='pop'||n==='wood'||n==='zap'||n==='ignite'){const now=performance.now();if(now-lastHit<45)return;lastHit=now;}try{if(FX[n]){let dv=1;if(a&&a.x!=null){const q=Math.hypot(ix(a.x,a.y)-ix(P.x,P.y),(iy(a.x,a.y)-iy(P.x,P.y))*2);dv=clamp(1-q/650,0,1);dv*=dv;if(dv<.05)return;}fxPlay(n,a&&a.x!=null?clamp((scx(a.x,a.y)-VW/2)/(VW/2),-1,1)*.6:0,(v||1)*dv);}else SFX[n](a);}catch(e){}}
 function setMute(m){S.mute=m;save();if(master)master.gain.value=m?0:.5;if(m)stopMusic();else startMusic();}
 let mus=null;const CH=[[220,261.6,329.6],[174.6,220,261.6],[261.6,329.6,392],[196,246.9,293.7]];
 // progressions and melody scales per district index D.i (falls back to CH). v0.49: Alexanderplatz in C major, a march

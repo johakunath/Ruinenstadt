@@ -26,7 +26,7 @@ function breakProp(b){const i=walls.indexOf(b);if(i>=0)walls.splice(i,1);gridDel
   if(Math.random()<.15*(hasL('spaeti')?2:1)){const k=pick(['verband','molotow']);if((S.cons[k]||0)<3){S.cons[k]=(S.cons[k]||0)+1;toast(`+1 ${k==='verband'?'Verband':'Molotow'}`);}}
   if(b.type==='akku'){sfx('zap');shake=Math.max(shake,5);rings.push({x:cx,y:cy,r:10,max:170,col:'125,211,255'});for(const e of enemies)if(e.hp>0&&Math.hypot(e.x-cx,e.y-cy)<170){const W=ER(e,'shock');if(W>0){bolts.push({x0:cx,y0:cy-10,x1:e.x,y1:e.y-14,life:.2});hit(e,ST.dmg*1.6*W,false,{knock:200},true,ELC.shock);prog('shock');}}}// battery pack: shock nova
   if(Math.random()<.1)drops.push({x:cx+10,y:cy,food:true,t:0});if(run&&Math.random()<(b.inside?.6:.3)*(pk('loot')?1.6:1)*(1+.5*pk('mat')))drops.push({x:cx-8,y:cy,mat:pick(Object.keys(MATS)),t:0});
-  if(Math.random()<(b.inside?.45:.14))drops.push({x:cx,y:cy,item:makeItem(ilvl(),b.inside?1:0),t:0});else if(Math.random()<.12)drops.push({x:cx,y:cy,heal:true,t:0});
+  if(Math.random()<(b.inside?.3:.07))drops.push({x:cx,y:cy,item:makeItem(ilvl(),b.inside?1:0),t:0});else if(Math.random()<.12)drops.push({x:cx,y:cy,heal:true,t:0});
   if(b.type==='chest'&&run){prog('chest');S.rec.chests++;drops.push({x:cx+14,y:cy,item:lootItem(ilvl()+1,2,.1),t:0});drops.push({x:cx-14,y:cy,item:makeItem(ilvl()+1,1),t:0});const cs=Math.round(20*DF().sc);S.scrap+=cs;run.sg+=cs;sfx('pick',2);toast('<span style="color:#c9a227">Kellertruhe</span> geöffnet');}}
 function propsInArc(a,arc,reach,dmg){for(const p of brk.slice()){const dx=p.x+p.w/2-P.x,dy=p.y+p.h/2-P.y,d=Math.hypot(dx,dy);if(d>reach+12)continue;let da=Math.atan2(dy,dx)-a;da=Math.atan2(Math.sin(da),Math.cos(da));if(Math.abs(da)<arc||d<P.r+16)hitProp(p,dmg);}}
 function propsInRadius(x,y,r,dmg){for(const p of brk.slice())if(Math.hypot(p.x+p.w/2-x,p.y+p.h/2-y)<r+12)hitProp(p,dmg);}
@@ -70,6 +70,7 @@ function hit(e,dmg,crit,K,noproc,col){if(e.hp<=0)return;if(e.open>0)dmg*=1.3;els
 function chain(src,d,n){const dd=t=>Math.hypot(t.x-src.x,t.y-src.y),ts=enemies.filter(t=>t!==src&&t.hp>0&&dd(t)<(D.wet?190:140)).sort((a,b)=>dd(a)-dd(b)).slice(0,n+(D.wet?1:0));// rain: shock jumps further and once more
   let px=src.x,py=src.y-14;for(const t of ts){bolts.push({x0:px,y0:py,x1:t.x,y1:t.y-14,life:.16});px=t.x;py=t.y-14;const W=ER(t,'shock');if(W>0){hit(t,d*W,false,{knock:60},true,ELC.shock);prog('shock');}}if(ts.length)sfx('zap');}
 function kill(e){fxKill(e);
+  {const kk=e.type==='boss'&&e.big?'b'+e.v:e.type;S.kx=S.kx||{};if(!S.kx[kk]){S.kx[kk]=1;if(!run||!run.tun)toast('<span style="color:var(--ember)">Neu im Kodex</span>');}if(e.elite&&!S.kx['e'+e.elite])S.kx['e'+e.elite]=1;}// v0.65: Kodex entries fill on the first kill
   e.dead=true;if(streak.n+1>(S.rec.streak||0))S.rec.streak=streak.n+1;if(hasL('zitklinge'))P.skCd-=1;if(hasL('pbrecher')&&e.lc&&e.type!=='boss')shocks.push({x:e.x,y:e.y,r:10,max:95,hit:[],small:1});streak.n++;streak.t=2.6;const sc=Math.round(e.sc*(1+.5*pk('scrap'))*DF().sc*(1+.15*run.th)*(S.camp.presse?1.15:1)*(SHR.gold>0?2:1)*(dm_('gold')?2:1));run.kills++;S.rec.kills++;S.scrap+=sc;run.sg+=sc;burst(e.x,e.y,'#EF9F27',10,160);burst(e.x,e.y,'#3d3027',8,90);stamp(e.x,e.y+e.r*.6,'rgba(40,12,6,.35)',e.r*1.6);sfx('kill',e);gainXp(e.xp);
   if(ST.leech)P.hp=Math.min(ST.maxHp,P.hp+ST.leech);
   if(pk('spread')&&e.burn>0)for(const t of enemies)if(t!==e&&t.hp>0&&Math.hypot(t.x-e.x,t.y-e.y)<90&&ER(t,'fire')>0){t.burn=2;t.bdps=Math.max(t.bdps||0,e.bdps*.8);burst(t.x,t.y-10,ELC.fire,6,90);}
@@ -78,13 +79,13 @@ function kill(e){fxKill(e);
   corpses.push({x:e.x,y:e.y+e.r*.6,r:e.r,col:e.col,t:7,fl:P.x<e.x?-1:1});if(corpses.length>40)corpses.shift();
   const mk=S.eq.w.kind,ml=mLvl(mk);S.mast[mk]=(S.mast[mk]||0)+e.xp;if(mLvl(mk)>ml){toast(`${MAST_N[mk]}-Meisterschaft <span style="color:var(--ember)">Stufe ${mLvl(mk)}</span>`);sfx('lvl');refresh();}
   prog(e.type);if(e.burn>0)prog('fire');if(e.acid>0)prog('acid');if(e.type==='boss'){freeze=.25;S.rec.bosses++;}
-  if(e.elite){prog('elite');freeze=Math.max(freeze,.08);shake=Math.max(shake,8);drops.push({x:e.x,y:e.y,item:lootItem(ilvl()+1,Math.random()<.25?1:0),t:0});if(Math.random()<.1)drops.push({x:e.x+16,y:e.y,item:lootItem(ilvl()+1,0),t:0});// elites are common late in a wave (up to 25%), so only 25% of their drops are forced blue+ (v0.52)
+  if(e.elite){prog('elite');freeze=Math.max(freeze,.08);shake=Math.max(shake,8);drops.push({x:e.x,y:e.y,item:lootItem(ilvl()+1,Math.random()<.25?1:0),t:0});if(Math.random()<.05)drops.push({x:e.x+16,y:e.y,item:lootItem(ilvl()+1,0),t:0});// elites are common late in a wave (up to 25%), so only 25% of their drops are forced blue+ (v0.52)
     if(e.elite==='spaltend')for(let i=0;i<2;i++){const m=mkEnemy('ghoul',e.x+R(-16,16),e.y+R(-16,16));m.r=7;m.hp=m.max=m.max*.4;m.xp=1;m.sc=0;enemies.push(m);}}
   const il=ilvl();
   // district boss (big): legendary guaranteed on the first kill per district (S.lb), afterwards 30%
   if(e.type==='boss'){if(run.tl&&e.st!=null)run.tl.bt.push(Math.round(run.tl.t-e.st));for(let i=0;i<(e.big?3:2);i++)drops.push({x:e.x+R(-40,40),y:e.y+R(-40,40),item:lootItem(il+2,e.big?2:1,.12),t:R(0,3)});if(e.big){const fl=!(S.lb||{})[D.i];S.lb=Object.assign(S.lb||{},{[D.i]:1});drops.push({x:e.x,y:e.y-24,item:makeItem(il+3,fl||Math.random()<.3?3:2),t:0});}drops.push({x:e.x,y:e.y+20,heal:true,t:0});run.boss=null;shake=12;sfx('boom');}
   if(Math.random()<(e.type==='boss'?1:e.elite?.8:e.type==='rat'?.08:.22)*(1+.5*pk('mat'))){const n=e.type==='boss'?5:e.elite?2:1;for(let i=0;i<n;i++)drops.push({x:e.x,y:e.y,mat:i&&e.type==='boss'?pick(Object.keys(MATS)):EMAT[e.type]||pick(Object.keys(MATS)),t:0});}
-  else{const ch={ghoul:.15,spitter:.21,brute:.55,raser:.24,rat:.03,bomb:.22,shield:.4,crow:.13,howl:.45,kabel:.12,bass:.45,uhr:.4,wurz:.3,kern:.2}[e.type]||.15;if(Math.random()<.03*(hasL('spaeti')?2:1)*(hasS('koechin')?2:1))drops.push({x:e.x-10,y:e.y,food:true,t:0});if(Math.random()<ch*.65)drops.push({x:e.x,y:e.y,item:makeItem(il,0),t:R(0,3)});else if(Math.random()<.1)drops.push({x:e.x,y:e.y,heal:true,t:0});}}
+  else{const ch={ghoul:.15,spitter:.21,brute:.55,raser:.24,rat:.03,bomb:.22,shield:.4,crow:.13,howl:.45,kabel:.12,bass:.45,uhr:.4,wurz:.3,kern:.2}[e.type]||.15;if(Math.random()<.03*(hasL('spaeti')?2:1)*(hasS('koechin')?2:1))drops.push({x:e.x-10,y:e.y,food:true,t:0});if(Math.random()<ch*.4)drops.push({x:e.x,y:e.y,item:makeItem(il,0),t:R(0,3)});else if(Math.random()<.1)drops.push({x:e.x,y:e.y,heal:true,t:0});}}
 function gainXp(n){P.xp+=n;while(P.xp>=20+P.lvl*15){P.xp-=20+P.lvl*15;P.lvl++;refresh();P.hp=ST.maxHp;banner('Stufe '+P.lvl,1);burst(P.x,P.y,'#f2d14b',26,210);sfx('lvl');}}
 function hurt(dmg,sh){if(P.inv>0||state!=='play'||spSafe())return false;if(hasL('panzer')&&Math.random()<.2){P.inv=.3;nums.push({x:P.x,y:P.y-40,t:'geblockt',col:'#d6cfc0',life:.8});sfx('wood');return false;}dmg=Math.max(1,Math.round(dmg*(1-ST.res)));P.hp-=dmg;if(run&&run.tl){run.tl.dmg+=dmg;run.tl.hm=Math.min(run.tl.hm,Math.max(0,P.hp)/ST.maxHp);}if(hasL('rattenmantel')&&!(P.ratT>0)){P.ratT=1.5;shocks.push({x:P.x,y:P.y,r:10,max:120,hit:[],acid:true});sfx('ignite');}P.inv=.4;shake=Math.max(shake,sh);sfx('hurt');buzz(dmg>ST.maxHp*.15?18:8);burst(P.x,P.y-10,'#c23a2e',8,140);
   nums.push({x:P.x,y:P.y-40,t:'-'+dmg,col:'#ff6b5a',life:.8});
@@ -92,11 +93,10 @@ function hurt(dmg,sh){if(P.inv>0||state!=='play'||spSafe())return false;if(hasL(
 function dash(){if(state!=='play'||P.dashCd>0)return;if(run&&run.tl)run.tl.da++;P.root=0;if(pk('breath'))P.hp=Math.min(ST.maxHp,P.hp+ST.maxHp*.03*pk('breath'));let dx=P.mvx,dy=P.mvy;const l=Math.hypot(dx,dy);if(l<.2){dx=Math.cos(P.face);dy=Math.sin(P.face);}else{dx/=l;dy/=l;}
   P.ddx=dx;P.ddy=dy;P.dashT=.18;P.inv=Math.max(P.inv,.32);P.dashCd=ST.dashCd;P.ramHit=[];sfx('dash');}
 function fireGlob(e,a,sp){if(e.type==='spitter'||e.type==='kern')e.cast=.22;const p={x:e.x,y:e.y-(e.type==='boss'?30:14),vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,r:e.type==='boss'?8:6,dmg:Math.round(e.dmg*(e.type==='boss'?.6:1)),life:3.5},m=enemyMuzzle(e);if(m){p.mx=m.x+ix(e.x,e.y)-ix(p.x,p.y);p.my=m.y+iy(e.x,e.y)-iy(p.x,p.y)+10;p.ml=p.life;}eproj.push(p);}
-function addToBag(it){if(run&&run.tl)run.tl.lo[it.r]++;
+function addToBag(it){if(S.bag.length>=BAG)return false;if(run&&run.tl)run.tl.lo[it.r]++;
   if(it.r===3)S.rec.legs++;if(it.r===3||it.set){S.found=S.found||{};if(!S.found[baseOf(it)]){S.found[baseOf(it)]=1;toast('<span style="color:var(--ember)">Neu im Kodex</span>');}}tip('loot','Beute landet im Rucksack. Über Pause vergleichst und legst du sie an. ▲ heißt stärker.');if(it.set)tip('set','Grüne Set-Teile geben Boni, wenn du mehrere davon trägst.');
   if(S.bag.length<BAG){S.bag.push(it);const b=better(it);toast(`<span style="color:${rc(it)}">${it.name}</span>${b===true?' <span style="color:var(--good)">▲</span>':''}`);}
-  else{const v=scrapVal(it);S.scrap+=v;toast(`Rucksack voll · <span style="color:${RAR[it.r].c}">${it.name}</span> verschrottet +${v}`);}
-  sfx('pick',it.r);if(it.r>=2)burst(P.x,P.y,RAR[it.r].c,18,180);save();updateHot();}
+  sfx('pick',it.r);if(it.r>=2)burst(P.x,P.y,RAR[it.r].c,18,180);save();updateHot();return true;}
 function spawnCrate(){let x,y,t=0;do{const a=R(0,6.28),d=R(360,600);x=clamp(P.x+Math.cos(a)*d,70,WS-70);y=clamp(P.y+Math.sin(a)*d,70,WH-70);}while(inWall(x,y,30)&&t++<60);
   tip('arrow','Farbige Pfeile am Rand zeigen auf Ziele außerhalb des Bildschirms.');crate={x,y,t:28};toast('<span style="color:#f2d14b">Nachschub abgeworfen</span> · folge dem Pfeil');sfx('horn');}
 function freeSpot(a0,a1,r){let x,y,t=0;do{const a=R(0,6.28),d=R(a0,a1);x=clamp(P.x+Math.cos(a)*d,70,WS-70);y=clamp(P.y+Math.sin(a)*d,70,WH-70);}while(inWall(x,y,r)&&t++<60);return{x,y};}
@@ -110,7 +110,7 @@ function startEvent(k){
   else if(k==='horde'){banner('Rattenflut!',1);sfx('horn');const a=R(0,6.28),n=18+run.wave;for(let i=0;i<n;i++){const q={x:clamp(P.x+Math.cos(a)*(420+R(0,120))+R(-60,60),30,WS-30),y:clamp(P.y+Math.sin(a)*(420+R(0,120))+R(-60,60),30,WH-30)};if(inWall(q.x,q.y,8))continue;enemies.push(mkEnemy('rat',q.x,q.y));}run.cleared=false;}
   else{const q=freeSpot(240,420,60);zone={x:q.x,y:q.y,r:70,p:0,need:8,t:45,sp:0};toast('<span style="color:#7dd3ff">Funksignal</span> · halte die Zone 8 Sekunden');sfx('horn');}}
 // trader stock: rare or better, item level above both the current wave and the best equipped piece, so it is worth the scrap
-const tradeLvl=()=>Math.max(ilvl(),...Object.values(S.eq).filter(Boolean).map(it=>it.ilvl||0))+2;
+const tradeLvl=()=>Math.max(0,Math.max(ilvl(),...Object.values(S.eq).filter(Boolean).map(it=>it.ilvl||0))+2-3*D.i);
 const healP=()=>20+wE()*4;
 function openTrade(){state='trade';clearInput();renderTrade();$('trade').hidden=false;sfx('bell');}
 function renderTrade(msg){$('tradebox').innerHTML=`<h2>Händler</h2><p class="hint">„Schrott gegen Ware. Kein Feilschen.“ · Schrott <b style="color:var(--bone)">${S.scrap}</b></p>`+
