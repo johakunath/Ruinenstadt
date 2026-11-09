@@ -102,3 +102,20 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   Mitte 95/102 and 100/101, Alexanderplatz 113/95 and 84/89. Inside run-to-run
   noise. A hardware check on the tablet is still open.
 
+## 2026-11-09 · Claude · sound, coloured light, game feel, pack movement, v0.63
+
+- `js/audio.js` rebuilt (bus with compressor and generated reverb, new `FX`
+  recipes, modal and filtered-noise layers, `mal` voice, `audioTick`). Checked
+  by script only (no errors, levels, lengths). Nobody has listened to it yet:
+  Johannes judges by ear, recipes are data in `FX`.
+- `steer()` in `js/update.js` changes difficulty: enemies no longer stack and
+  chasers surround the player. Not balance-tested. In a 30-enemy script test
+  they covered 7 to 8 of 8 directions with no overlapping pairs.
+- Bot balance pass by a Sonnet worker on v0.62 (before `steer`), few runs per
+  district so anecdotal: Köpenick, Xhain, Alexanderplatz won almost always,
+  Mitte 1 of 3, Tempelhof 0 of 2; tunnel wave 8 stuck twice with 1 to 2
+  spitters left and nothing to spawn. No numbers changed.
+- `?debug=perf` shows frame time and script time per phase on the device.
+  Coloured light measured A/B in one page (Mitte, 26 tinted lights): 95.5 ms
+  on, 96.8 ms off, so no measurable cost.
+

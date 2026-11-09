@@ -4,7 +4,7 @@
    k 0 flash (glow sprite), 1 ground ring, 2 spark (streak with gravity; D.cyber: square pixel without gravity).
    Colours come from FXC(): warm embers by default, cyan/magenta in D.cyber, sun-bleached in D.day. Spawn through the fx* helpers, never push raw.
    How to add an effect: pipeline/tasks/08-vfx-rollout.md */
-let fx=[],SWN=0;
+let fx=[],SWN=0,KX=0,KY=0,SLOW=0;
 const FXP={warm:{sw:'#FAC775',fin:'#ffe68c',hv:'#EF9F27',hit:'#ffd9a0',crit:'#fff3c4',kill:'#ff8a3d',alt:null},cyber:{sw:'#43d1ff',fin:'#e8fbff',hv:'#b48cff',hit:'#8fe6ff',crit:'#ffffff',kill:'#ff4fa3',alt:'#ff4fa3'}},FXC=()=>D.cyber?FXP.cyber:FXP.warm,FXN=n=>S.eco?Math.ceil(n/2):n;
 function fxAdd(f){f.max=f.life;fx.push(f);if(fx.length>260)fx.splice(0,fx.length-260);return f;}
 // flash: glow from s0 to s1 px radius. l: light radius punched into the darkness
@@ -13,11 +13,14 @@ function fxRing(x,y,col,r1,life,w){return fxAdd({k:1,x,y,z:0,col,r1,life,w:w||4}
 // sparks: n streaks from (x,y,z); a: world direction, spr: spread in radians (6.3 = all round), sp: speed
 function fxSparks(x,y,z,col,n,sp,a,spr){n=FXN(n);for(let i=0;i<n;i++){const q=(a||0)+R(-.5,.5)*(spr==null?6.3:spr),s=R(.35,1)*sp;fxAdd({k:2,x,y,z,col,vx:Math.cos(q)*s,vy:Math.sin(q)*s,vz:R(20,150),life:R(.18,.42),s:R(1.2,2.4)});}}
 // example effects: weapon impact, kill burst, cast/explosion pulse
-function fxHit(e,crit,col){const c=FXC(),a=Math.atan2(e.y-P.y,e.x-P.x),k=crit?1.5:1;fxFlash(e.x,e.y,e.r+8,col||(crit?c.crit:c.hit),e.r*.8*k,e.r*2.6*k,crit?.16:.11,crit?90:50);fxSparks(e.x,e.y,e.r+8,col||c.hit,crit?10:5,crit?320:230,a,1.5);if(crit)fxRing(e.x,e.y,col||c.crit,e.r*3.2,.2,3);}
-function fxKill(e){const c=FXC();fxFlash(e.x,e.y,e.r,c.kill,e.r,e.r*3.4,.2,80);fxRing(e.x,e.y,c.kill,e.r*3.6,.28,3);fxSparks(e.x,e.y,e.r,c.kill,e.type==='boss'?26:8,260);}
+// game feel (v0.63): fxKick pushes the camera along a blow (world angle a, m px) and it springs back; fxTime stretches time after a boss or elite kill; heavy hits stop the frame for a moment
+function fxKick(a,m){const c=Math.cos(a),s=Math.sin(a),n=Math.hypot(KX,KY);KX+=ix(c,s)*m;KY+=iy(c,s)*m;const q=Math.hypot(KX,KY);if(q>9){KX*=9/q;KY*=9/q;}}
+function fxTime(dt){const f=Math.pow(1e-5,dt);KX*=f;KY*=f;if(SLOW>0){SLOW-=dt;return dt*(SLOW>.25?.3:.3+.7*(1-SLOW/.25));}return dt;}
+function fxHit(e,crit,col,dmg){const c=FXC(),a=Math.atan2(e.y-P.y,e.x-P.x),k=crit?1.5:1;if(!col){const sh=clamp((dmg||0)/e.max,0,1);fxKick(a,crit?4:1.5+3*sh);if(sh>.3&&e.type!=='boss')freeze=Math.max(freeze,.015+.03*sh);}fxFlash(e.x,e.y,e.r+8,col||(crit?c.crit:c.hit),e.r*.8*k,e.r*2.6*k,crit?.16:.11,crit?90:50);fxSparks(e.x,e.y,e.r+8,col||c.hit,crit?10:5,crit?320:230,a,1.5);if(crit)fxRing(e.x,e.y,col||c.crit,e.r*3.2,.2,3);}
+function fxKill(e){const c=FXC();if(e.type==='boss')SLOW=1.1;else if(e.elite)SLOW=Math.max(SLOW,.35);fxFlash(e.x,e.y,e.r,c.kill,e.r,e.r*3.4,.2,80);fxRing(e.x,e.y,c.kill,e.r*3.6,.28,3);fxSparks(e.x,e.y,e.r,c.kill,e.type==='boss'?26:8,260);}
 function fxPulse(x,y,col,r){fxFlash(x,y,10,col,r*.3,r*1.1,.22,r*1.4);fxRing(x,y,col,r,.3,5);fxSparks(x,y,8,col,10,r*2.4);}
 function fxUpdate(dt){for(const f of fx){f.life-=dt;if(f.k===2){f.x+=f.vx*dt;f.y+=f.vy*dt;if(D.cyber){f.vx*=.9;f.vy*=.9;}else{f.z+=f.vz*dt;f.vz-=520*dt;if(f.z<0){f.z=0;f.vz*=-.35;f.vx*=.5;f.vy*=.5;}}}}fx=fx.filter(f=>f.life>0);}
-function fxLight(lit){for(const f of fx)if(f.l)lit(f.x,f.y,f.l*f.life/f.max,f.z);if(swings.length)lit(P.x,P.y,90,12);}
+function fxLight(lit){for(const f of fx)if(f.l)lit(f.x,f.y,f.l*f.life/f.max,f.z,f.col);if(swings.length)lit(P.x,P.y,90,12);}
 /* swings: crescent that sweeps the hit arc and fades from behind (sword, hammer), thrust wedge (spear). Drawn on the ground plane at weapon height.
    D.cyber adds a magenta fringe. The hit arc itself is unchanged (attack() in js/combat.js), the crescent stays inside it. */
 function fxSwings(){if(!swings.length)return;const c=FXC();ctx.save();ctx.translate(OX,OY-12);isoGround();

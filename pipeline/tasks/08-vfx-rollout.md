@@ -59,6 +59,12 @@ Find the sites with `grep -n "shocks.push\|rings.push\|fields.push\|sfx('boom')\
 | U-Bahn tunnel, base camp | no errors, effects visible in near-black | none expected |
 | Trees and lamps (`drawBB`), props (`drawProp`), NPC, captive | optional: `fxShadow` instead of their fixed ellipse where one is drawn in code. Skip baked ground shadows |
 
+## Batch E: sound placement and light colour (v0.63)
+
+1. `sfx(name,pos,vol)` takes a world position for stereo placement. Only `hit`, `crit` and `kill` pass one. For every other effect call with an obvious source (`grep -n "sfx('boom')\|sfx('pop')\|sfx('spit')\|sfx('wood')\|sfx('crash')\|sfx('zap')\|sfx('ignite')" js/*.js`), pass the object or `{x,y}` already used on that line. Calls about the player (`swing`, `dash`, `hurt`, `heal`) and all menu sounds stay centred. Never pass a position to `pick` (its argument is the rarity).
+2. Lights take a colour: `lit(x,y,r,z,col)` in `render()`, building lights use `l.c` or `LCOL()`. Give landmark lights in `js/geo.js`, `js/mitte.js`, `js/alex.js` a fitting `c` where the lamp has an obvious colour (neon signs: their neon colour). Do not change `r`.
+3. Do not edit the recipes in `FX` (`js/audio.js`). Johannes judges sound by ear.
+
 ## Acceptance
 
 - `node --test tools/test_sprites.mjs` passes. `for f in js/*.js; do node --check $f; done` is silent.
