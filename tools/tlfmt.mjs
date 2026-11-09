@@ -1,0 +1,3 @@
+// Shared telemetry line for tools/telemetry.mjs (Johannes' runs) and tools/balance.mjs (bot runs): fields from v0.53 on
+export function extra(r) { if (!r || !r.lo) return ''; return `      loot w/b/y/L ${r.lo.join('/')} · lowest life ${Math.round(r.hm * 100)}% · consumables ${r.cu} · boss fights ${r.bt.join(', ') || '-'} s · Schrott +${r.sg} · ${r.wk} · ${r.dev}${r.au ? ' auto' : ''}${r.tk != null ? ' tunnel ' + r.tk : ''}`
+  + (r.fps != null ? ` · ${r.fps} fps, ${r.slow}% slow frames · dashes ${r.da} · equips ${r.eq} · paused ${r.pt}s · upgrades ${r.up} · ${r.inp} ${r.vw}` : '') + ` · blessings ${r.pk.join(' ')}`; }

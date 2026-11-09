@@ -108,7 +108,7 @@ const ALEX={ws:4000,start:[2520,1300],land:[],
   mBox(2450,880,110,110,drawHotel,'Hotel Stadt Berlin',330);mBox(3200,1560,150,70,drawKino,'Kino International',64);mBox(2050,560,140,100,drawVolks,'Volksbühne',96);
   mBox(2600,3030,160,90,drawMMus,'Märkisches Museum',150);strausberg(3480,1835);
   for(const q of [[640,1290],[620,1700],[1060,2020],[720,2040]])glashaus(q[0],q[1],R(110,140),70);
-  for(const s of K.stations){const p=station(...s);if(s[4]&&p){SX=p[0];SY=p[1]+38;}}},
+  for(const s of K.stations){const p=station(...s);if(s[4]&&p){SX=p[0];SY=p[1]+60;}}},
  post:()=>aBanners()};
 DIST[DI('Alexanderplatz')].geo=ALEX;
 // paved plaza with a slab grid, kept clear of lots and street fronts

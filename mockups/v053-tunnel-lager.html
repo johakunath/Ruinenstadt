@@ -1,0 +1,90 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tunnel und Lager Mockup</title>
+<style>body{margin:0;background:#120d0a;color:#ead9c0;font:15px system-ui,sans-serif;padding:16px}h1{font-size:22px}h2{font-size:18px;color:#ef9f27;margin:28px 0 6px}p{color:#a8957d;margin:0 0 10px;max-width:980px}svg{width:100%;max-width:1000px;height:auto;display:block;border:1px solid #3a2e26;background:#0b0a09}</style></head><body>
+<h1>U-Bahn-Tunnel neu und begehbares Lager (Beispielwerte, Draufsicht)</h1>
+
+<h2>1 · Maßstab: heute gegen neu (×3)</h2>
+<p>Heute ist die Spurweite so breit wie die Figur, der Zug nur gut doppelt so breit. Neu: Spurweite etwa 3 Figuren, Zug etwa 4,5 Figuren breit (wie Trams an der Oberfläche), zweigleisiger Tunnel etwa 600 breit statt 200.</p>
+<svg viewBox="0 0 1000 330" font-family="system-ui,sans-serif">
+<text x="20" y="28" fill="#a8957d" font-size="14">HEUTE · Gleisbett 200</text>
+<rect x="20" y="40" width="440" height="200" fill="#1d1a17"/>
+<g fill="#6a6258"><rect x="20" y="82" width="440" height="3"/><rect x="20" y="106" width="440" height="3"/><rect x="20" y="174" width="440" height="3"/><rect x="20" y="198" width="440" height="3"/></g>
+<rect x="250" y="160" width="190" height="56" fill="#ed9e25" opacity=".85"/><text x="345" y="193" fill="#1a1410" font-size="12" text-anchor="middle">Zug 56 breit</text>
+<circle cx="120" cy="95" r="12" fill="#ead9c0"/><text x="120" y="130" fill="#ead9c0" font-size="12" text-anchor="middle">Figur 24</text>
+<text x="520" y="28" fill="#ef9f27" font-size="14">NEU · Gleisbett 600 (Ausschnitt, halbe Größe)</text>
+<rect x="520" y="40" width="460" height="300" fill="#1d1a17"/>
+<g fill="#6a6258"><rect x="520" y="90" width="460" height="4"/><rect x="520" y="126" width="460" height="4"/><rect x="520" y="230" width="460" height="4"/><rect x="520" y="266" width="460" height="4"/></g>
+
+<rect x="700" y="220" width="270" height="85" fill="#ed9e25" opacity=".85"/><text x="835" y="268" fill="#1a1410" font-size="12" text-anchor="middle">Zug 170 breit (≈ 4,5 Figuren)</text>
+<circle cx="600" cy="110" r="6" fill="#ead9c0"/><text x="600" y="165" fill="#ead9c0" font-size="12" text-anchor="middle">Figur (gleich groß)</text>
+</svg>
+
+<h2>2 · Streckenform (drei Varianten)</h2>
+<p>Alle mit runden Gleisbögen (Gleise folgen einer Kurve statt Rechteck-Ecken) und etwa 3× so langer Strecke wie heute. Grün = Bahnhof, rot = Abschnittstor, gelb = Generator am Ziel.</p>
+<svg viewBox="0 0 1000 1020" font-family="system-ui,sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#a8957d"/></marker></defs>
+<!-- A -->
+<text x="20" y="30" fill="#ef9f27" font-size="16" font-weight="700">A · Ein langer Bogen, rechteckige Karte (9000 × 2200)</text>
+<text x="20" y="50" fill="#a8957d" font-size="13">Eine durchgehende Röhre mit sanfter Kurve. Braucht eine nicht-quadratische Welt (Engine-Umbau, mittel). Am natürlichsten.</text>
+<rect x="20" y="62" width="960" height="235" fill="#141210" stroke="#3a2e26"/>
+<path d="M60 230 C 250 230 300 110 500 110 S 760 220 940 140" stroke="#1d1a17" stroke-width="64" fill="none" stroke-linecap="round"/>
+<path d="M60 230 C 250 230 300 110 500 110 S 760 220 940 140" stroke="#6a6258" stroke-width="1.5" fill="none" stroke-dasharray="1 0" transform="translate(0,-14)"/>
+<path d="M60 230 C 250 230 300 110 500 110 S 760 220 940 140" stroke="#6a6258" stroke-width="1.5" fill="none" transform="translate(0,14)"/>
+<rect x="44" y="196" width="80" height="70" fill="#2a8a3a" opacity=".6"/><text x="84" y="285" fill="#8fd16a" font-size="12" text-anchor="middle">Start</text>
+<g fill="#c23a2e"><rect x="225" y="190" width="6" height="64"/><rect x="390" y="100" width="6" height="64" transform="rotate(-20 393 132)"/><rect x="560" y="95" width="6" height="64" transform="rotate(15 563 127)"/><rect x="720" y="150" width="6" height="64"/></g>
+<rect x="470" y="70" width="70" height="26" fill="#2a8a3a" opacity=".45"/><text x="505" y="88" fill="#8fd16a" font-size="11" text-anchor="middle">Geisterbhf.</text>
+<rect x="880" y="104" width="80" height="70" fill="#2a8a3a" opacity=".6"/><circle cx="920" cy="190" r="8" fill="#f2d14b"/><text x="920" y="215" fill="#f2d14b" font-size="12" text-anchor="middle">Ziel</text>
+<rect x="300" y="236" width="70" height="40" fill="#34302a" stroke="#5a4636"/><text x="335" y="290" fill="#a8957d" font-size="11" text-anchor="middle">Betriebsraum</text>
+<!-- B -->
+<text x="20" y="345" fill="#ef9f27" font-size="16" font-weight="700">B · S-Schleife in quadratischer Karte (4000 × 4000)</text>
+<text x="20" y="362" fill="#a8957d" font-size="12">Röhre windet sich in zwei weiten Bögen. Kein Engine-Umbau,</text><text x="20" y="374" fill="#a8957d" font-size="12">wirkt aber eher wie eine Schlange als wie eine Linie.</text>
+<rect x="20" y="380" width="400" height="400" fill="#141210" stroke="#3a2e26"/>
+<path d="M60 430 L 330 430 A 70 70 0 0 1 330 570 L 120 570 A 70 70 0 0 0 120 710 L 380 710" stroke="#1d1a17" stroke-width="54" fill="none"/>
+<path d="M60 430 L 330 430 A 70 70 0 0 1 330 570 L 120 570 A 70 70 0 0 0 120 710 L 380 710" stroke="#6a6258" stroke-width="1.2" fill="none" stroke-dasharray="6 3"/>
+<rect x="40" y="400" width="60" height="60" fill="#2a8a3a" opacity=".6"/><rect x="340" y="680" width="60" height="60" fill="#2a8a3a" opacity=".6"/><circle cx="370" cy="755" r="7" fill="#f2d14b"/>
+<g fill="#c23a2e"><rect x="200" y="404" width="5" height="54"/><rect x="230" y="544" width="5" height="54"/><rect x="220" y="684" width="5" height="54"/></g>
+<!-- C -->
+<text x="460" y="345" fill="#ef9f27" font-size="16" font-weight="700">C · Zwei Etappen, je ein Bogen (2 Karten)</text>
+<text x="460" y="362" fill="#a8957d" font-size="12">Tunnel 1 endet im Geisterbahnhof (Händler), Tunnel 2 führt zum Ziel.</text><text x="460" y="374" fill="#a8957d" font-size="12">Kein Engine-Umbau, natürlicher Bogen, aber ein Kartenwechsel.</text>
+<rect x="460" y="377" width="250" height="250" fill="#141210" stroke="#3a2e26"/><rect x="730" y="377" width="250" height="250" fill="#141210" stroke="#3a2e26"/>
+<path d="M480 600 Q 560 420 690 400" stroke="#1d1a17" stroke-width="46" fill="none"/><path d="M750 600 Q 900 580 960 400" stroke="#1d1a17" stroke-width="46" fill="none"/>
+<rect x="470" y="575" width="44" height="44" fill="#2a8a3a" opacity=".6"/><rect x="660" y="385" width="44" height="44" fill="#2a8a3a" opacity=".45"/><rect x="740" y="575" width="44" height="44" fill="#2a8a3a" opacity=".45"/><rect x="930" y="385" width="44" height="44" fill="#2a8a3a" opacity=".6"/><circle cx="952" cy="440" r="6" fill="#f2d14b"/>
+<path d="M712 410 L 742 590" stroke="#a8957d" stroke-dasharray="4 4" marker-end="url(#a)"/><text x="727" y="650" fill="#a8957d" font-size="12" text-anchor="middle">Geisterbahnhof</text>
+<text x="460" y="700" fill="#ead9c0" font-size="14" font-weight="700">Empfehlung: A</text>
+<text x="460" y="722" fill="#a8957d" font-size="13">Passt am besten zu „länger, leicht gebogen“. Der Umbau auf eine</text>
+<text x="460" y="740" fill="#a8957d" font-size="13">rechteckige Welt hilft später auch langen Bezirken (Spree-Ufer, Bahntrassen).</text>
+<!-- curve detail -->
+<text x="20" y="815" fill="#ef9f27" font-size="16" font-weight="700">Gleisbogen im Detail (für alle Varianten)</text>
+<text x="20" y="835" fill="#a8957d" font-size="13">Schienen und Schwellen folgen der Kurve, Schwellen radial. Tunnelwand als Kette kurzer gefliester Segmente entlang des Bogens.</text>
+<path d="M60 990 Q 300 990 420 870" stroke="#1d1a17" stroke-width="120" fill="none"/>
+<g stroke="#2e2219" stroke-width="8"><line x1="100" y1="960" x2="100" y2="1018"/><line x1="160" y1="958" x2="162" y2="1016"/><line x1="220" y1="954" x2="226" y2="1012"/><line x1="280" y1="944" x2="292" y2="1000"/><line x1="334" y1="928" x2="354" y2="980"/><line x1="380" y1="906" x2="408" y2="952"/></g>
+<path d="M60 975 Q 300 975 410 862" stroke="#8a8278" stroke-width="3" fill="none"/><path d="M60 1003 Q 310 1003 432 880" stroke="#8a8278" stroke-width="3" fill="none"/>
+<g fill="#647872" stroke="#2e2a26"><rect x="60" y="922" width="60" height="10"/><rect x="122" y="921" width="60" height="10"/><rect x="184" y="918" width="60" height="10" transform="rotate(-3 214 923)"/><rect x="244" y="910" width="56" height="10" transform="rotate(-12 272 915)"/><rect x="296" y="892" width="52" height="10" transform="rotate(-25 322 897)"/><rect x="338" y="866" width="48" height="10" transform="rotate(-40 362 871)"/></g>
+</svg>
+
+<h2>3 · Lager als begehbare Untergrund-Basis</h2>
+<p>Das Lager wird ein stillgelegter U-Bahnhof, den du betrittst wie eine Karte. Die Stationen, die du heute im Menü freischaltest, stehen dort als Orte, zu denen du hinläufst. Der Netzplan bleibt der Weg in die Bezirke: am Bahnsteig einsteigen = Schnellreise. Später gibt jede befreite Linie eine eigene Basis (z. B. Köpenick, Alexanderplatz).</p>
+<svg viewBox="0 0 1000 560" font-family="system-ui,sans-serif">
+<rect width="1000" height="560" fill="#0b0a09"/>
+<text x="20" y="28" fill="#ef9f27" font-size="16" font-weight="700">Basis „Lindenstraße“ (Beispiel, eine Karte, etwa 2400 × 1400)</text>
+<rect x="40" y="60" width="920" height="120" fill="#1d1a17"/><text x="60" y="84" fill="#a8957d" font-size="12">GLEIS · Zug zur Schnellreise (Netzplan öffnet sich)</text>
+<rect x="420" y="100" width="300" height="60" fill="#ed9e25" opacity=".8"/><text x="570" y="136" fill="#1a1410" font-size="13" text-anchor="middle">Zug „Abfahrt“</text>
+<rect x="40" y="180" width="920" height="12" fill="#ed9e25"/>
+<rect x="40" y="192" width="920" height="330" fill="#3e3d38"/>
+<g fill="#3f6a4a"><rect x="200" y="210" width="16" height="16"/><rect x="400" y="210" width="16" height="16"/><rect x="600" y="210" width="16" height="16"/><rect x="800" y="210" width="16" height="16"/><rect x="200" y="480" width="16" height="16"/><rect x="400" y="480" width="16" height="16"/><rect x="600" y="480" width="16" height="16"/><rect x="800" y="480" width="16" height="16"/></g>
+<g font-size="13" text-anchor="middle">
+<circle cx="500" cy="350" r="34" fill="#4a3020"/><circle cx="500" cy="350" r="14" fill="#ef9f27"/><text x="500" y="405" fill="#ead9c0">Lagerfeuer · Mahlzeit</text>
+<rect x="90" y="250" width="140" height="80" fill="#5a4636"/><text x="160" y="295" fill="#ead9c0">Werkstatt</text><text x="160" y="345" fill="#a8957d" font-size="11">Verbesserungen, Aufsätze</text>
+<rect x="90" y="380" width="140" height="80" fill="#4a4038"/><text x="160" y="425" fill="#ead9c0">Lager-Kisten</text><text x="160" y="475" fill="#a8957d" font-size="11">40 Plätze</text>
+<rect x="300" y="250" width="110" height="70" fill="#3a6a8a"/><text x="355" y="290" fill="#ead9c0">Funkmast</text>
+<rect x="620" y="250" width="120" height="70" fill="#3B6D11"/><text x="680" y="290" fill="#ead9c0">Gemüsegarten</text><text x="680" y="335" fill="#a8957d" font-size="11">unter Pflanzlampen</text>
+<rect x="780" y="250" width="150" height="80" fill="#7a3a2e"/><text x="855" y="290" fill="#ead9c0">Sanitätsraum</text>
+<rect x="780" y="380" width="150" height="80" fill="#2a2622" stroke="#ef9f27"/><text x="855" y="415" fill="#ef9f27">Ilse · Aufträge</text><text x="855" y="435" fill="#a8957d" font-size="11">Tafel mit Jobs</text>
+<rect x="300" y="420" width="110" height="60" fill="#3a3632"/><text x="355" y="455" fill="#ead9c0">Schießstand</text><text x="355" y="495" fill="#a8957d" font-size="11">Waffen testen</text>
+<g fill="#ead9c0"><circle cx="460" cy="320" r="7"/><circle cx="545" cy="318" r="7"/><circle cx="525" cy="385" r="7"/></g><text x="580" y="370" fill="#a8957d" font-size="11" text-anchor="start">Überlebende am Feuer</text>
+<circle cx="650" cy="430" r="9" fill="#fff"/><text x="650" y="455" fill="#fff" font-size="12">Du</text>
+<rect x="455" y="500" width="90" height="22" fill="#5a5650"/><text x="500" y="516" fill="#ead9c0" font-size="12">Treppe hoch</text>
+</g>
+<text x="20" y="555" fill="#6a5a4a" font-size="11">Gesperrte Gebäude stehen als Bauplatz mit Schrott-Preis da. Inventar, Kodex und Optionen bleiben Menüs (Pause-Knopf).</text>
+</svg>
+<p>Offen zur Wahl beim Lager: <b>L1</b> eine Basis jetzt, weitere Basen später pro Linie · <b>L2</b> erst die Basis bauen, das Menü-Lager bleibt parallel als Schnellzugriff (empfohlen für den Übergang).</p>
+</body></html>

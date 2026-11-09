@@ -6,7 +6,7 @@ function jobDone(j){toast(`Auftrag erledigt: <span style="color:var(--ember)">${
 function prog(k,n){for(const j of S.jobs)if(j.k===k&&j.p<j.t){j.p=Math.min(j.t,j.p+(n||1));if(j.p>=j.t)jobDone(j);}}
 function progWave(w){for(const j of S.jobs)if(j.k==='wave'&&j.p<j.t&&w>j.p){j.p=Math.min(j.t,w);if(j.p>=j.t)jobDone(j);}}
 // rarity weights white, blue, yellow, legendary (v0.41: was 60, 26+w+l*3, 8+w*.7+l*2, 1.2+w*.3+l*.8; bot found only 19% white and 5 to 10 legendaries per Köpenick run)
-function rollR(minR){const l=S.upg.luck+DF().luck+(ST?ST.luck:0)+(run?run.th:0)+(dm_('eisen')?3:0),w=run?wE():1;const ws=[60,18+w*.6+l*1.2,4+w*.35+l*.6,.1+w*.04+l*.05];for(let i=0;i<(minR||0);i++)ws[i]=0;let t=ws.reduce((a,b)=>a+b),x=Math.random()*t;for(let i=0;i<4;i++){if((x-=ws[i])<0)return i;}return minR||0;}
+function rollR(minR){const l=S.upg.luck+DF().luck+(ST?ST.luck:0)+(run?run.th:0)+(dm_('eisen')?3:0),w=run?wE():1;const ws=[60,18+w*.6+l*.8,4+w*.35+l*.4,.1+w*.04+l*.03];for(let i=0;i<(minR||0);i++)ws[i]=0;let t=ws.reduce((a,b)=>a+b),x=Math.random()*t;for(let i=0;i<4;i++){if((x-=ws[i])<0)return i;}return minR||0;}
 function makeItem(il,minR,fs){
   // legendaries exist only for weapon, body and talisman; head, hands, feet and ring top out at rare
   const cy=D.cyber,gd=D.gdr,r=rollR(minR),roll=Math.random(),slot=fs||(cy&&Math.random()<(r===3?.25:.12)?'i':0)||(r===3?(roll<.45?'w':roll<.8?'a':'t'):roll<.3?'w':roll<.46?'a':roll<.56?'h':roll<.66?'g':roll<.76?'f':roll<.88?'t':'r'),m=RAR[r].m*R(.85,1.15);let kind,name,val;
@@ -35,10 +35,18 @@ const dps=it=>it.val/KIND[it.kind].rate;
 function withItem(it){const e=Object.assign({},S.eq);e[it.slot]=it;return e;}
 function better(it){return power(stats(withItem(it)))>power(stats())*1.01;}
 function fmtA(f){const A=AFX[f.k];let v=A.neg?-f.v:f.v;return(v>0?'+':'−')+(A.d?Math.abs(v).toFixed(1):Math.abs(v))+A.u+' '+A.n;}
-function afxLines(it){let h='';if(it.set){const Q=SETS[it.set],n=setCount(S.eq,it.set);h+=`<div class="af" style="color:${SETC}">Set ${Q.n} · ${n}/3 angelegt</div><div class="af" style="color:${n>=2?SETC:'var(--dim)'}">(2) ${Q.b2}</div><div class="af" style="color:${n>=3?SETC:'var(--dim)'}">(3) ${Q.b3}</div>`;}if(LEGP[baseOf(it)])h+=`<div class="af" style="color:${RAR[3].c};font-style:italic">${LEGP[baseOf(it)]}</div>`;if(it.el)h+=`<div class="st" style="color:${ELC[it.el]}">Element: ${ELN[it.el]}</div>`;if(modSlots(it)){const ms=it.mods||[];h+=`<div class="af" style="color:#f2a04b">Aufsätze ${ms.length}/${modSlots(it)}${ms.length?': '+ms.map(k=>(MODS.find(m=>m.k===k)||{}).n).join(', '):''}</div>`;}
-  [...(IMP[baseOf(it)]||[]).map(q=>({k:q[0],v:q[1]})),...(it.afx||[])].forEach(f=>{h+=`<div class="af" style="color:${f.v>0?'var(--bone)':'var(--bad)'}">${fmtA(f)}</div>`;});return h;}
+function extraLines(it){let h='';if(it.set){const Q=SETS[it.set],n=setCount(S.eq,it.set);h+=`<div class="af" style="color:${SETC}">Set ${Q.n} · ${n}/3 angelegt</div><div class="af" style="color:${n>=2?SETC:'var(--dim)'}">(2) ${Q.b2}</div><div class="af" style="color:${n>=3?SETC:'var(--dim)'}">(3) ${Q.b3}</div>`;}if(LEGP[baseOf(it)])h+=`<div class="af" style="color:${RAR[3].c};font-style:italic">${LEGP[baseOf(it)]}</div>`;if(it.el)h+=`<div class="st" style="color:${ELC[it.el]}">Element: ${ELN[it.el]}</div>`;if(modSlots(it)){const ms=it.mods||[];h+=`<div class="af" style="color:#f2a04b">Aufsätze ${ms.length}/${modSlots(it)}${ms.length?': '+ms.map(k=>(MODS.find(m=>m.k===k)||{}).n).join(', '):''}</div>`;}return h;}
+const afxAll=it=>[...(IMP[baseOf(it)]||[]).map(q=>({k:q[0],v:q[1]})),...(it.afx||[])];
+function afxLines(it){let h=extraLines(it);afxAll(it).forEach(f=>{h+=`<div class="af" style="color:${f.v>0?'var(--bone)':'var(--bad)'}">${fmtA(f)}</div>`;});return h;}
+// item comparison (v0.53): aligned rows, same affix on the same row in both cards. diff: show the change against o (the equipped item) next to each row
+const afxMap=it=>{const m={};afxAll(it).forEach(f=>m[f.k]=(m[f.k]||0)+f.v);return m;},nfD=(v,d)=>(v>0?'+':'−')+(d?Math.abs(v).toFixed(1):Math.round(Math.abs(v)));
+function cmpRows(it,other,diff){const A=it?afxMap(it):{},B=other?afxMap(other):{},bv=x=>x.slot==='w'?dps(x):x.val,dc=(d,t)=>Math.abs(d)<1e-9?'':`<b style="color:${d>0?'var(--good)':'var(--bad)'}">${t}</b>`;
+  const base=it?statLine(it):'Nichts angelegt',bd=diff&&it&&other?dc(bv(it)-bv(other),nfD(bv(it)-bv(other),bv(it)%1||bv(other)%1)+(it.slot==='w'?' DPS':'')):'';let h=`<div class="crow cbase"><span>${base}</span>${bd}</div>`;
+  for(const k of Object.keys(AFX)){if(!(k in A)&&!(k in B))continue;const a=A[k],X=AFX[k],d=(a||0)-(B[k]||0);
+    h+=`<div class="crow">${a!=null?`<span style="color:${a>0?'var(--bone)':'var(--bad)'}">${fmtA({k,v:a})}</span>`:'<span class="cnone">–</span>'}${diff?dc(d,nfD(X.neg?-d:d,X.d)+X.u+(B[k]==null?' neu':'')):''}</div>`;}
+  return h;}
 const SROWS=[['Kampfkraft',s=>power(s),0],['Schaden pro Treffer',s=>s.dmg,0],['Angriffe pro Sekunde',s=>1/s.rate,1],['Krit-Chance',s=>s.crit*100,0,'%'],['Leben',s=>s.maxHp,0],['Widerstand',s=>s.res*100,0,'%'],
-  ['Lauftempo',s=>s.spd/1.65,0,'%'],['Leben pro Sekunde',s=>s.regen,1],['Elementarschaden',s=>s.els.length?s.elp*100:0,0,'%'],['Leben pro Kill',s=>s.leech,0],['Beuteglück',s=>s.luck,0],['Sprint-Abklingzeit',s=>s.dashCd,1,' s',1]];
+  ['Lauftempo',s=>s.spd/1.82,0,'%'],['Leben pro Sekunde',s=>s.regen,1],['Elementarschaden',s=>s.els.length?s.elp*100:0,0,'%'],['Leben pro Kill',s=>s.leech,0],['Beuteglück',s=>s.luck,0],['Sprint-Abklingzeit',s=>s.dashCd,1,' s',1]];
 function cmpBlock(it){const a=stats(),b=stats(withItem(it));let h='';
   for(const[n,f,d,u,inv]of SROWS){const fx=v=>v.toFixed(d)+(u||''),x=fx(f(a)),y=fx(f(b));if(x===y)continue;const good=inv?f(b)<f(a):f(b)>f(a);
     h+=`<div class="cmp"><span>${n}</span><span>${x} → <b style="color:${good?'var(--good)':'var(--bad)'}">${y}</b></span></div>`;}

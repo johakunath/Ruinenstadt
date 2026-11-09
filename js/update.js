@@ -1,7 +1,7 @@
 /* ================= update ================= */
 function update(dt){
-  if(run&&run.tl&&state==='play')run.tl.t+=dt;
-  if(bannerT>0){bannerT-=dt;if(bannerT<=0)$('banner').style.opacity=0;}
+  if(run&&run.tl&&state==='play'){run.tl.t+=dt;run.tl.fr++;if(dt>.034)run.tl.sl++;}
+  if(bannerT>0){bannerT-=dt;if(bannerT<=0){const b=$('banner');b.style.opacity=0;b.style.transform='translateY(-48px)';}}
   for(const p of parts){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=.9;p.vy*=.9;p.life-=dt;}parts=parts.filter(p=>p.life>0);
   for(const n of nums){n.y-=32*dt;n.life-=dt;}nums=nums.filter(n=>n.life>0);
   for(const s of swings)s.life-=dt;swings=swings.filter(s=>s.life>0);
@@ -14,6 +14,7 @@ function update(dt){
       for(const e of enemies)if(e.type!=='boss'&&inSp(e,e.fly?20:0)){e.x=spati.x+spati.dx+spati.dw/2+R(-60,60);e.y=spati.y+spati.h+60;}}
       else if(c0>0){toast('<span style="color:#c23a2e">Das Gitter gibt nach!</span>');sfx('crash');shake=Math.max(shake,8);}}
     if(inS&&!spati.seen&&state==='play'){spati.seen=true;toast(`<span style="color:var(--ember);font-family:var(--f-display);font-size:22px">${spati.name}</span>`);sfx('bell');}}
+  if(state==='base'){baseUpdate(dt);return;}// walkable camp (js/base.js)
   if(state!=='play')return;
   S.rec.time+=dt;tipT-=dt;
   if(streak.n){streak.t-=dt;if(streak.t<=0){if(streak.n>=10){const b=Math.round(streak.n*.6*(1+.1*D.i)*DF().sc);S.scrap+=b;run.sg+=b;toast(`Serie ${streak.n} · <span style="color:var(--ember)">+${b} Schrott</span>`);}streak.n=0;}}
@@ -21,7 +22,7 @@ function update(dt){
   if(Math.hypot(P.mvx,P.mvy)>.3&&P.dashT<=0){stepT-=dt;if(stepT<=0){stepT=.22;parts.push({x:P.x+R(-4,4),y:P.y+8,vx:R(-12,12),vy:R(-8,-2),life:.4,max:.4,col:'rgba(120,100,80,.35)',size:R(3,5)});}}if(tipQ.length&&tipT<=0){toast('<span style="color:#7dd3ff">Tipp</span> · '+tipQ.shift());tipT=3.2;}
   {const dz=darks.find(z=>P.x>z.x&&P.x<z.x+z.w&&P.y>z.y&&P.y<z.y+z.h);P.dark=!!dz;P.torch=P.dark&&ST.kind!=='hammer'&&ST.kind!=='spear';P.lamp=P.dark&&!P.torch&&S.camp.lampe;
    if(dz&&!dz.seen){dz.seen=true;toast(P.torch?'<span style="color:#f2d14b">Dunkelzone</span> · Fackel entzündet':S.camp.lampe?'<span style="color:#f2d14b">Dunkelzone</span> · Stirnlampe an':'<span style="color:#f2d14b">Dunkelzone</span> · Zweihändige Waffe, keine Fackel');sfx('ignite');}}
-  let mx=joy.x,my=joy.y;if(keys.KeyA||keys.ArrowLeft)mx-=1;if(keys.KeyD||keys.ArrowRight)mx+=1;if(keys.KeyW||keys.ArrowUp)my-=1;if(keys.KeyS||keys.ArrowDown)my+=1;
+  padPoll();manAim();let mx=joy.x+pad.mx,my=joy.y+pad.my;if(keys.KeyA||keys.ArrowLeft)mx-=1;if(keys.KeyD||keys.ArrowRight)mx+=1;if(keys.KeyW||keys.ArrowUp)my-=1;if(keys.KeyS||keys.ArrowDown)my+=1;
   let ml=Math.hypot(mx,my);if(ml>1){mx/=ml;my/=ml;ml=1;}if(ml>0){const q=s2w(mx,my),l=Math.hypot(q[0],q[1]);mx=q[0]/l*ml;my=q[1]/l*ml;}P.mvx=mx;P.mvy=my;
   if(dashReq){dashReq=false;dash();}if(skillReq){skillReq=false;skill();}
   if(P.ratT>0)P.ratT-=dt;if(P.root>0)P.root-=dt;if(P.rootI>0)P.rootI-=dt;
@@ -37,8 +38,9 @@ function update(dt){
   for(const f of fields){f.t-=dt;if(Math.random()<dt*22)parts.push({x:f.x+R(-f.r,f.r)*.8,y:f.y+R(-f.r,f.r)*.4,vx:R(-8,8),vy:R(-70,-30),life:.5,max:.5,col:pick(['#ff6a2a','#FAC775','#EF9F27']),size:R(2,4)});
     for(const e of enemies)if(e.hp>0&&Math.hypot(e.x-f.x,(e.y-f.y)*1.6)<f.r){const W=ER(e,'fire');if(W>0){e.bdps=Math.max(e.burn>0?e.bdps||0:0,ST.dmg*.9*W);e.burn=Math.max(e.burn||0,.7);}}}
   fields=fields.filter(f=>f.t>0);
-  if(atkHeld||(autoAtk()&&P.cd<=0&&nearest(ST.kind==='sling'?360:180)))attack();
-  for(const m of marks)if(!m.seen&&Math.hypot(m.x-P.x,m.y-P.y)<(m.soft?180:260)){m.seen=1;if(!m.soft&&run.seen[m.n])continue;run.seen[m.n]=1;toast(m.soft?`<span style="color:var(--dim)">${m.n}</span>`:`<span style="color:var(--ember);font-family:var(--f-display);font-size:22px">${m.n}</span>`);}
+  if(atkHeld||pad.atk||(autoAtk()&&P.cd<=0&&nearest(ST.kind==='sling'?360:180)))attack();
+  for(const m of marks)if(!m.seen&&Math.hypot(m.x-P.x,m.y-P.y)<(m.soft?180:260)){m.seen=1;if(run.seen[m.n])continue;run.seen[m.n]=1;const t=run.tl?run.tl.t:0;
+    if(m.soft||m.br){if(t-(run.areaT||-99)<40)continue;run.areaT=t;toast(`<span style="color:var(--dim)">${m.n}</span>`);}else if(bannerT<=0&&t>4&&t-(run.lmT||-99)>20){run.lmT=t;banner(m.n);}else if(t-(run.areaT||-99)>=12){run.areaT=t;toast(`<span style="color:var(--ember)">${m.n}</span>`);}}// v0.57: fewer area messages
   if(run.tun){tunUpdate(dt);if(state!=='play')return;}// U-Bahn tunnel: sections instead of waves
   else if(run.toSpawn>0){run.spawnT-=dt;if(run.spawnT<=0){spawnOne();run.toSpawn--;run.spawnT=Math.max(.3,1-wE()*.05);}}
   else if(!enemies.length&&!run.cleared){run.cleared=true;run.perkDone=false;progWave(run.wave);if(run.wave>=WAVES&&!run.endless){win();return;}if(run.endless&&run.wave>WAVES){const b=Math.round(5*(run.wave-WAVES)*(1+.1*D.i)*DF().sc);S.scrap+=b;run.sg+=b;S.eb[run.d]=Math.max(S.eb[run.d]||0,run.wave);}toast('Welle '+run.wave+' geschafft');S.best[run.d]=Math.max(S.best[run.d],run.wave);save();run.breakT=2;}
@@ -95,10 +97,10 @@ function update(dt){
     if(e.open>0){e.open-=dt;sp=0;}
     if(e.det>0){e.det-=dt;const a=Math.atan2(vy,vx)+e.detA;vx=Math.cos(a);vy=Math.sin(a);}
     if(e.elite==='schnell'&&e.type!=='raser'&&e.ru>0){vx=e.rdx;vy=e.rdy;sp=e.stun>0?0:480;}// lunge keeps its telegraphed direction over type steering (spitter, howl)
-    const f=Math.pow(.002,dt);const ox=e.x,oy=e.y;e.x+=vx*sp*dt+e.kx*dt;e.y+=vy*sp*dt+e.ky*dt;e.kx*=f;e.ky*=f;if(e.fly){e.x=clamp(e.x,10,WS-10);e.y=clamp(e.y,10,WS-10);}else collide(e);e.mv=Math.hypot(e.x-ox,e.y-oy)/Math.max(dt,.001);
+    const f=Math.pow(.002,dt);const ox=e.x,oy=e.y;e.x+=vx*sp*dt+e.kx*dt;e.y+=vy*sp*dt+e.ky*dt;e.kx*=f;e.ky*=f;if(e.fly){e.x=clamp(e.x,10,WS-10);e.y=clamp(e.y,10,WH-10);}else collide(e);e.mv=Math.hypot(e.x-ox,e.y-oy)/Math.max(dt,.001);
     if(!e.fly&&e.type!=='boss'){e.sto=(e.sto||0)+dt;if(e.sto>6){const pd=Math.hypot(e.x-P.x,e.y-P.y);if(pd>=(e.lpd||1e9)-40&&pd>260){const q=freeSpot(Math.max(300,VIEWR()),Math.max(340,VIEWR()+120),e.r+6);e.x=q.x;e.y=q.y;}e.sto=0;e.lpd=Math.hypot(e.x-P.x,e.y-P.y);}}
     e.chk+=dt;if(e.chk>.5){if(sp>0&&!e.fly&&e.det<=0&&Math.hypot(e.x-e.lx,e.y-e.ly)<sp*.12){e.det=.8;e.detA=pick([-1.4,1.4]);}e.chk=0;e.lx=e.x;e.ly=e.y;}
-    if(e.type==='boss'){if(!e.rage&&e.hp<e.max*.5){e.rage=1;e.spd*=1.3;banner(e.name+' tobt');flashT=.35;shake=10;sfx('horn');}const rg=e.rage?1.35:1;e.slam-=dt*rg;e.ring-=dt*rg;
+    if(e.type==='boss'){if(!e.rage&&e.hp<e.max*.5){e.rage=1;e.spd*=1.3;banner(e.name+' tobt',1);flashT=.35;shake=10;sfx('horn');}const rg=e.rage?1.35:1;e.slam-=dt*rg;e.ring-=dt*rg;
       if(e.slam<=0&&d<320){e.slam=e.big?3.3:4.2;teles.push({x:P.x,y:P.y,r:e.big?96:80,t:.95,max:.95,dmg:Math.round(e.dmg*1.3)});}
       if(e.ring<=0){e.ring=e.big?5:7.5;const n=e.big?16:12;for(let i=0;i<n;i++)fireGlob(e,i/n*6.283+e.t,165);sfx('spit');}
       if(e.big){e.sum-=dt*rg;const v=e.v;

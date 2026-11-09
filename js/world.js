@@ -184,7 +184,7 @@ function makeLayout(d){const B=BIOME[d.i],ex=B.roads;RX=[920,1480];RY=[920,1480]
 function wpick(o){let t=0;for(const k in o)t+=o[k];let r=Math.random()*t;for(const k in o){r-=o[k];if(r<=0)return k;}return Object.keys(o)[0];}
 function lotCands(){return BLK.filter(b=>!b.center&&['houses','hinterhof','ruins','plattenbau','market','parking','construction','kleingarten'].includes(b.lot)&&b.w>=330&&b.h>=300).sort(()=>Math.random()-.5);}
 function buildWorld(d){
-  D=d;const K=d.geo;WS=K?K.ws:2400;[SX,SY]=K?K.start:[1200,1220];const A=WS*WS/5.76e6;// A: area relative to the 2400 grid map, scales scatter counts
+  D=d;const K=d.geo;WS=WH=K?K.ws:2400;[SX,SY]=K?K.start:[1200,1220];const A=WS*WS/5.76e6;// A: area relative to the 2400 grid map, scales scatter counts
   G=cnv(WS,WS);gx=G.getContext('2d');walls=[];blds=[];barrels=[];reserved=[];marks=[];brk=[];spati=null;darks=[];waters=[];neons=[];const g=gx;
   if(K)geoLayout(K);else{makeLayout(d);roadsFromGrid();}
   g.fillStyle=d.ground;g.fillRect(0,0,WS,WS);
@@ -241,8 +241,8 @@ function buildWorld(d){
   let bt=0,bn=0;while(bn<28*A&&bt++<800*A){const x=R(40,WS-40),y=R(40,WS-40),ty=D.cyber&&Math.random()<.3?'akku':Math.random()<.45?'bin':'crate';if(inWall(x,y,26)||resHit(x-12,y-12,24,24,1)||onRoad(x,y,-20)||!far(x,y,120))continue;addBrk(x,y,ty,false);bn++;}
   if(K&&K.post)K.post();
   decorate();gridBuild();
-  const k2=600/WS;MB2=cnv(600,600);const m2=MB2.getContext('2d');m2.drawImage(G,0,0,600,600);m2.fillStyle='rgba(0,0,0,.25)';m2.fillRect(0,0,600,600);m2.fillStyle='rgba(234,217,192,.38)';for(const b of blds)if(b.h>0&&!b.veh){m2.beginPath();(b.rot?obbC(b):[[b.x,b.y],[b.x+b.w,b.y],[b.x+b.w,b.y+b.h],[b.x,b.y+b.h]]).forEach((p,i)=>m2[i?'lineTo':'moveTo'](p[0]*k2,p[1]*k2));m2.fill();}
-  const k=192/WS;MB=cnv(192,192);const mg=MB.getContext('2d');mg.drawImage(G,0,0,192,192);mg.fillStyle='rgba(0,0,0,.3)';mg.fillRect(0,0,192,192);mg.fillStyle='rgba(234,217,192,.32)';for(const b of blds)if(b.h>0&&!b.veh){mg.beginPath();(b.rot?obbC(b):[[b.x,b.y],[b.x+b.w,b.y],[b.x+b.w,b.y+b.h],[b.x,b.y+b.h]]).forEach((p,i)=>mg[i?'lineTo':'moveTo'](p[0]*k,p[1]*k));mg.fill();}mg.fillStyle='rgba(0,0,0,.65)';for(const z of darks)mg.fillRect(z.x*k,z.y*k,z.w*k,z.h*k);mg.fillStyle='#1d4a8a';for(const z of darks)mg.fillRect(z.x*k,z.y*k-3,4,4);
+  const k2=600/WS;MB2=cnv(600,600);const m2=MB2.getContext('2d');m2.drawImage(G,0,0,600,600);m2.fillStyle='rgba(0,0,0,.25)';m2.fillRect(0,0,600,600);m2.fillStyle='rgba(234,217,192,.38)';for(const b of blds)if(b.h>0&&!b.veh&&!b.fe){m2.beginPath();(b.rot?obbC(b):[[b.x,b.y],[b.x+b.w,b.y],[b.x+b.w,b.y+b.h],[b.x,b.y+b.h]]).forEach((p,i)=>m2[i?'lineTo':'moveTo'](p[0]*k2,p[1]*k2));m2.fill();}
+  const k=192/WS;MB=cnv(192,192);const mg=MB.getContext('2d');mg.drawImage(G,0,0,192,192);mg.fillStyle='rgba(0,0,0,.3)';mg.fillRect(0,0,192,192);mg.fillStyle='rgba(234,217,192,.32)';for(const b of blds)if(b.h>0&&!b.veh&&!b.fe){mg.beginPath();(b.rot?obbC(b):[[b.x,b.y],[b.x+b.w,b.y],[b.x+b.w,b.y+b.h],[b.x,b.y+b.h]]).forEach((p,i)=>mg[i?'lineTo':'moveTo'](p[0]*k,p[1]*k));mg.fill();}mg.fillStyle='rgba(0,0,0,.65)';for(const z of darks)mg.fillRect(z.x*k,z.y*k,z.w*k,z.h*k);mg.fillStyle='#1d4a8a';for(const z of darks)mg.fillRect(z.x*k,z.y*k-3,4,4);
 }
 const TAGS=['KIEZ','BERLIN','LIEBE','RUINE','WIR BLEIBEN','HALT DURCH','SPREE','B36','HOFFNUNG','KEIN AUSGANG'];
 // Altbau variants (V): 0 Stuck ocker, 1 Klinker mit Balkonen, 2 grau abgeplatzt, 3 pastell mit Erker und Tordurchfahrt, 4 ausgebrannt. EF: Einfamilienhaus/Reihenhaus (gable roof via b.gable)
@@ -329,4 +329,4 @@ function collide(o){
     if(d2<o.r*o.r){if(d2===0){const l=o.x-r.x,ri=r.x+r.w-o.x,t=o.y-r.y,b=r.y+r.h-o.y,m=Math.min(l,ri,t,b);
         if(m===l)o.x=r.x-o.r;else if(m===ri)o.x=r.x+r.w+o.r;else if(m===t)o.y=r.y-o.r;else o.y=r.y+r.h+o.r;}
       else{const d=Math.sqrt(d2);o.x=cx+dx/d*o.r;o.y=cy+dy/d*o.r;}}}
-  o.x=clamp(o.x,o.r,WS-o.r);o.y=clamp(o.y,o.r,WS-o.r);}
+  o.x=clamp(o.x,o.r,WS-o.r);o.y=clamp(o.y,o.r,WH-o.r);}
