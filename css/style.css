@@ -215,3 +215,26 @@ img.kimg{object-fit:cover;display:block}
 .cbase{color:var(--bone)}.cnone{color:#5a4a3c}.ceq{opacity:.92;background:#17110d}
 .ckp{font-size:17px}.ckp span:first-child{color:var(--dim)}.cdet summary{cursor:pointer;color:var(--dim);font-size:14px;padding:2px 0}.cdet[open] summary{margin-bottom:4px}
 @media (min-width:900px){.inv3.wide{grid-template-columns:minmax(0,250px) minmax(0,1fr) minmax(0,600px)}.inv3.wide .grid{grid-template-columns:repeat(5,minmax(0,1fr))}.cmp2{grid-template-columns:1fr 1fr}}
+body.mouse #atk,body.mouse #dash{display:none}
+/* v0.54 phone landscape (short screens, e.g. 6.3" phones held sideways): use the width, keep icons at portrait size, less scrolling */
+@media (orientation:landscape) and (max-height:540px){
+  .ov{padding-top:calc(env(safe-area-inset-top,0px) + 8px);padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px))}
+  #toasts,body.tab #toasts{top:calc(env(safe-area-inset-top,0px) + 50px)}.toast,body.tab .toast{font-size:15px;padding:3px 12px}
+  #banner,body.tab #banner{top:14%;font-size:40px}
+  /* camp menu: scene and network map left, district card and buttons right */
+  #menubox{max-width:100%;gap:8px}.mhead{grid-template-columns:auto 1fr;justify-items:start;align-items:center}.mhead h1{font-size:34px;margin:0}.mres{justify-self:end}
+  .mgrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}#campc{max-height:150px;object-fit:cover}
+  /* inventory: doll | backpack | comparison, header in one row */
+  #invbox{max-width:100%}.ihead{grid-template-columns:minmax(0,1fr) auto auto;gap:4px 14px;align-items:center}.ires{grid-column:auto;font-size:14px;gap:10px}.iclose{grid-column:3;min-width:96px;padding:8px 10px}
+  .tabs{gap:10px}button.tab{font-size:15px;padding:6px 0}
+  .inv3,.inv3.wide{grid-template-columns:minmax(0,190px) minmax(0,1fr) minmax(0,400px);gap:12px;align-items:start}.ichar{order:0}.idet{order:0;position:sticky;top:0}.ibag{order:0}
+  .doll{max-width:190px;gap:4px}.doll .slot{width:46px;font-size:11px}.doll .slot .ic{width:44px;height:44px}.doll .slot .ic .ico{width:38px;height:38px}.doll .slot .ic svg{width:28px;height:28px}
+  .stab{grid-template-columns:1fr auto;font-size:12px;padding:6px 8px;gap:0 8px}.mast{font-size:13px}.mast .sub{font-size:12px}
+  .inv3.wide .grid,.grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}.chips .chip{font-size:13px}.hint{font-size:13px}
+  .cmp2{grid-template-columns:1fr 1fr;gap:6px}.cmp2 .card{padding:8px;gap:4px}.cmp2 .chead{min-height:48px;gap:6px}.cmp2 .dic{width:40px;height:40px}.cmp2 .dic .ico{width:34px;height:34px}.cmp2 .nm{font-size:16px}.cmp2 .sub,.clab{font-size:11px}
+  .crow{font-size:13px;min-height:21px;line-height:21px}.ckp{font-size:13px}.cmp2 .af,.cmp2 .st{font-size:13px}.cmp2 .btn.sm{padding:7px 4px;font-size:12px}
+  /* blessing cards side by side */
+  #perkbox{max-width:100%}.pcards{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.pcard{padding:10px 12px;align-content:start}.pcard>svg{width:44px;height:44px}
+}
+#toasts.low,body.tab #toasts.low{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 84px)}
+body.mouse #skill::after,body.mouse #c1::after,body.mouse #c2::after{position:absolute;bottom:-4px;right:-4px;font:700 12px var(--f-ui);background:#120d0a;border:1px solid var(--edge);border-radius:3px;padding:1px 5px;color:var(--bone)}body.mouse #skill::after{content:"E"}body.mouse #c1::after{content:"Q"}body.mouse #c2::after{content:"F"}

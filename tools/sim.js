@@ -35,7 +35,7 @@ SIM.think=function(dt){
   if(st.t>.8){if(Math.hypot(mx,my)>.4&&Math.hypot(P.x-st.x,P.y-st.y)<10){const a=Math.atan2(my,mx)+(Math.random()<.5?1.6:-1.6);st.ax=Math.cos(a)*1.5;st.ay=Math.sin(a)*1.5;st.at=.7;}st.t=0;st.x=P.x;st.y=P.y;}
   // joystick is in screen space (iso view): project the world direction
   const sx=(mx-my)*IS,sy=(mx+my)*IS/2,l=Math.hypot(mx,my),sl=Math.hypot(sx,sy);joy.x=l>.05?sx/sl:0;joy.y=l>.05?sy/sl:0;atkHeld=true;};
-SIM.run=function(di,opt){opt=opt||{};startRun(di,opt.endless);gridFree();const dt=1/30;let t=0,thinkT=0,hp0=0,dmgTaken=0,lastHp=P.hp,wv=0,wt=0,slow=[0,0,''],diag='';const p0=power(ST);
+SIM.run=function(di,opt){opt=opt||{};const tl0=(S.tlog||[]).slice(-1)[0];startRun(di,opt.endless);gridFree();const dt=1/30;let t=0,thinkT=0,hp0=0,dmgTaken=0,lastHp=P.hp,wv=0,wt=0,slow=[0,0,''],diag='';const p0=power(ST);
   while(state!=='over'&&t<(opt.maxT||1500)){
     if(state==='perk'){SIM.equip();const cs=[...document.querySelectorAll('#perkbox .pcard')];const c=cs.find(b=>b.classList.contains('ep'))||cs.find(b=>b.classList.contains('ra'))||cs[Math.floor(Math.random()*cs.length)];c.click();continue;}
     if(state==='trade'){if(npc)npc.offers.forEach((o,i)=>{if(o&&S.scrap>=o.price&&better(o.it)&&S.bag.length<BAG){S.scrap-=o.price;S.bag.push(o.it);npc.offers[i]=null;}});$('trade').hidden=true;state='play';continue;}
@@ -44,7 +44,7 @@ SIM.run=function(di,opt){opt=opt||{};startRun(di,opt.endless);gridFree();const d
     thinkT-=dt;if(thinkT<=0){thinkT=.1;SIM.think(.1);}
     update(dt);t+=dt;if(run.wave!==wv){if(t-wt>slow[1])slow=[wv,Math.round(t-wt),slow[2]];wv=run.wave;wt=t;diag='';}if(t-wt>90&&!diag){diag='w'+run.wave+' stuck with '+enemies.length+': '+[...new Set(enemies.map(e=>e.type+(e.fly?'(f)':'')))].join(',')+' toSpawn '+run.toSpawn;}if(P.hp<lastHp)dmgTaken+=lastHp-P.hp;lastHp=P.hp;}
   const won=run&&S.best[run.d]>=WAVES&&run.wave>=WAVES&&P.hp>0;
-  const r={d:di,won:!!(state==='over'&&P.hp>0),wave:run.wave,t:Math.round(t),lvl:P.lvl,pw0:p0,pw:power(ST),kills:run.kills,scrap:run.sg,dmg:Math.round(dmgTaken),boss:run.boss?run.boss.name:'',slow:slow[0]+':'+slow[1]+'s '+diag};
+  const r={d:di,won:!!(state==='over'&&P.hp>0),wave:run.wave,t:Math.round(t),lvl:P.lvl,pw0:p0,pw:power(ST),kills:run.kills,scrap:run.sg,dmg:Math.round(dmgTaken),boss:run.boss?run.boss.name:'',slow:slow[0]+':'+slow[1]+'s '+diag,tl:(S.tlog||[]).slice(-1)[0]!==tl0?S.tlog[S.tlog.length-1]:null};// tl: the same telemetry entry the game logs for Johannes (v0.54)
   state='menu';run=null;enemies=[];refresh();return r;};
 SIM.equip=function(){let ch=true,n=0;while(ch&&n++<20){ch=false;for(let i=0;i<S.bag.length;i++){const it=S.bag[i];if(better(it)){const old=S.eq[it.slot];S.eq[it.slot]=it;if(old)S.bag[i]=old;else S.bag.splice(i,1);refresh();ch=true;break;}}}};
 SIM.camp=function(){SIM.equip();
