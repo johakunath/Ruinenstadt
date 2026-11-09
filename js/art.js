@@ -109,11 +109,10 @@ function drawCaptive(c,t){const x=c.x,y=c.y+9;ctx.fillStyle='rgba(0,0,0,.45)';ct
   ctx.fillStyle='#d9b48f';ctx.beginPath();ctx.arc(x,y-29,5.5,0,7);ctx.fill();ctx.strokeStyle='#a8957d';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x-8,y-18);ctx.lineTo(x+8,y-14);ctx.moveTo(x-8,y-14);ctx.lineTo(x+8,y-18);ctx.stroke();
   if(!c.free&&Math.sin(t*.006)>0){ctx.font='600 13px "Barlow Condensed",sans-serif';ctx.textAlign='center';ctx.fillStyle='#ead9c0';ctx.fillText('Hilfe!',x,y-44);}
   if(c.free){ctx.strokeStyle='rgba(143,209,106,.6)';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(x,y,22,8,0,0,7);ctx.stroke();}}
-// The Brigadeghul keeps its Blaumann/cap canvas variant until task 01 supplies that art.
-// painted enemies: generic driver in js/anim.js (enemySprite, drawEnemySprite, enemyLife)
+// Generic painted enemy driver, motion and launch pivots: js/anim.js.
 function drawEnemy(e,t){
-  const g=enemySprite(e),fl=P.x-P.y<e.x-e.y?-1:1,f=e.flash>0,C=c=>f?'#ead9c0':c,mv=(e.mv||0)>8&&e.stun<=0,sw=mv?Math.sin(e.t*10):0,fy=e.y+e.r*(g?.4:.75),near=e.atk>0||Math.hypot(P.x-e.x,P.y-e.y)<e.r+34;
-  if(g)fxSil(g.key,g.i,g.m,e.x,fy,1.15*e.r/10,fl);else fxShadow(e.x,fy,e.r,e.fly?e.r:e.r*3.2);
+  const g=enemySprite(e),fl=enemyFlip(e),f=e.flash>0,C=c=>f?'#ead9c0':c,mv=(e.mv||0)>8&&e.stun<=0,sw=mv?Math.sin(e.t*10):0,fy=e.y+e.r*(g?.4:.75),near=e.atk>0||Math.hypot(P.x-e.x,P.y-e.y)<e.r+34;
+  if(g&&e.type!=='crow')fxSil(g.key,g.i,g.m,e.x,fy,1.15*e.r/g.spec.r,fl);else fxShadow(e.x,fy,e.r,e.fly?e.r:e.r*3.2);
   if(e.elite){ctx.strokeStyle=EMC[e.elite];ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.45,e.r*.5,0,0,7);ctx.stroke();}
   if(e.tw>0){const p=1-e.tw/e.twm;ctx.strokeStyle=`rgba(255,80,60,${.4+.5*p})`;ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(e.x,fy,e.r*(1.2+p),e.r*(.45+.35*p),0,0,7);ctx.stroke();}
   if(e.open>0){ctx.strokeStyle='#f2d14b';ctx.lineWidth=3;ctx.setLineDash([6,4]);ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.9,e.r*.7,0,0,7);ctx.stroke();ctx.setLineDash([]);}
@@ -190,7 +189,7 @@ function drawEnemy(e,t){
     if(boss)H+=10*s;}
   ctx.restore();H*=1.15;
   if(e.type==='uhr')gdrShield(e,fy,C);
-  else if(SHD(e)){const fa=e.fa,sr=e.r+(e.type==='boss'?6:4),cx=e.x+Math.cos(fa)*sr,cy=fy-14+Math.sin(fa)*sr*.6,px=-Math.sin(fa),py=Math.cos(fa)*.6,L=e.type==='boss'?26:15,op=e.guard>0;
+  else if(SHD(e)&&!drawEnemyShield(e,fy)){const fa=e.fa,sr=e.r+(e.type==='boss'?6:4),cx=e.x+Math.cos(fa)*sr,cy=fy-14+Math.sin(fa)*sr*.6,px=-Math.sin(fa),py=Math.cos(fa)*.6,L=e.type==='boss'?26:15,op=e.guard>0;
     ctx.lineCap='round';ctx.strokeStyle=op?'rgba(120,110,100,.6)':C('#5a6470');ctx.lineWidth=e.type==='boss'?11:8;ctx.beginPath();ctx.moveTo(cx-px*L,cy-py*L-(op?-6:0));ctx.lineTo(cx+px*L,cy+py*L-(op?-6:0));ctx.stroke();
     if(!op){ctx.strokeStyle=C('#9aa4b0');ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx-px*L*.8,cy-py*L*.8-3);ctx.lineTo(cx+px*L*.8,cy+py*L*.8-3);ctx.stroke();}ctx.lineCap='butt';}
   if(e.buff>0&&e.type!=='howl'){ctx.strokeStyle='rgba(214,90,140,.55)';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.25,e.r*.45,0,0,7);ctx.stroke();}

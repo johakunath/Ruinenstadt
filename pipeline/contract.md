@@ -85,10 +85,12 @@ no inferred axis or per-icon flip list. A missing required component returns
 Enemy frames need no renderer hook any more. `js/anim.js` picks them up from the manifest:
 
 - Keys `enemies/<e.type>-<pose>`. `<type>-idle` is required and defines the head height (bars, stun ring). Optional poses: `walk-a` to `walk-d`, `attack-a` (wind-up), `attack-b` (strike), `hit`. Missing poses fall back (`POSEFB`), so one idle frame is a valid first delivery.
-- Per-type tuning in `EANI` (`fps`, `walk` frame count, `life` strength of squash and stretch). Nothing else is per type.
-- Feet centre stays at `(e.x, e.y + e.r*.4)` for painted enemies, sprite scale is `e.r/10` on top of `units`, so author every enemy at the ghoul's scale for `r = 10`.
+- Per-type tuning in `EANI` (`fps`, `walk` frame count, `life` strength of squash and stretch, `radius` authored reference hit radius). Nothing else is per type.
+- Feet centre stays at `(e.x, e.y + e.r*.4)` for painted enemies, sprite scale is `e.r/(EANI[type].radius || 10)` on top of `units`. The default reference radius is 10; task 01 supplies explicit reference radii for its authored families so all frames retain 3 source pixels per world unit.
 - `enemyLife` adds motion in code for painted and canvas enemies alike: breathing, walk bob, wind-up squash (telegraph `e.tw`, charge `e.ch`, melee about to land), strike stretch and lunge (`e.atk`), hit squash (`e.flash`), spawn pop. Frames must not bake in a lunge beyond the hit reach; code adds 5 px.
 - Shadows are drawn by code (`fxSil` from the frame, `fxShadow` blob). Deliver frames without a painted ground shadow.
-- Bosses (`e.type==='boss'`) and the Brigadeghul keep their own drawing.
+- Task 01 maps the ordinary boss to `schrottkoloss` and Alexanderplatz ghouls to `brigadeghoul`. District bosses (`e.big`) keep their own drawing until task 06. Selected families prefetch their six frames; missing poses still use `POSEFB`.
 
 Effects: spawn only through the `fx*` helpers in `js/vfx.js` (`fxFlash`, `fxRing`, `fxSparks`, `fxHit`, `fxKill`, `fxPulse`), colours from `FXC()` or an element colour (`ELC`). They are visual only: never change hit areas, timings or damage for an effect. A ring or pulse radius equals the real hit radius.
+
+Task 01 uses `life: .45` for painted families to complement the authored poses without adding a second large lunge. Explicit mouth pivots follow this same life transform; projectile launch offsets ease to the existing ground-plane path over 0.18 s, leaving collision positions and travel unchanged.
