@@ -207,3 +207,5 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   angles or a layered vehicle construction? Do not change the contract
   silently. Skip this dependent step and continue other tasks under the
   autonomous-run stop rule. No vehicle runtime changes made.
+
+- Batch 1 ready PR #23 opened, reviewed candidate `ec80d2de5fb5bf5e3bd07fa9b296d53d51e12899`, all above validation complete. Codex review pending. Independent remaining 18-frame generation prepared for `codex/01b-enemies-batch-2`; batch 1 branch stays unchanged during review.

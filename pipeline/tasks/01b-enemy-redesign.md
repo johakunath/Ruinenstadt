@@ -1,6 +1,6 @@
 # 01b Enemy redesign (second pass of task 01)
 
-Status: in progress (Codex, 2026-11-09; 30-image batches, user-authorized review and merge)
+Status: in progress (Codex, 2026-11-09; batch 1 PR #23 under review; batch 2 in progress; user-authorized review and merge)
 
 ## Why
 
