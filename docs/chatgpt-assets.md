@@ -1,6 +1,6 @@
 # ChatGPT asset batches
 
-Work order for generating menu art (item icons, portraits) with ChatGPT image generation. One batch = one image = one step. Johannes hands the finished sheets to Claude, who cuts and integrates them. In-world sprites (player, enemies, buildings, vehicles) are not part of this; they follow `docs/asset-pipeline.md` with Codex.
+Work order for generating menu art (item icons, portraits) with ChatGPT image generation. One batch = one image = one step. Johannes hands the finished sheets to Claude, who cuts and integrates them. In-world sprites (player, enemies, buildings, vehicles) are not part of this; they follow `pipeline/workflow.md` with Codex.
 
 ## How to work
 
@@ -37,6 +37,8 @@ Claude cuts the sheets with `tools/cut_sheets.py`, integrates them and marks the
 Paste in front of every batch:
 
 > Painted comic illustration in the style of the attached Köpenick reference board: dark ink outlines, painterly brush texture, stylized not realistic, gritty post-apocalyptic Berlin with a western-steampunk and noir touch. Warm light from the top left, cool teal shadow. Palette: cream `#f0b27a`, ochre `#db8c2b`, olive `#7b6a32`, teal grey `#516a62`, rust `#8b4a35`, oxblood `#591e1e`. Worn, used, improvised, but readable. Every object must still read as a clear silhouette when shrunk to 48 pixels.
+
+New batches from v0.52 on also add: *"Bright, saturated signature colour per object (enamel red, BVG yellow, cobalt blue, bottle green, violet, cyan, magenta, gold) on a clean light base. Rust and dirt only as a light overlay. Objects must look clearly different from each other, not all orange and brown."* (Style bible: Item colour.)
 
 Icon batches add: *"Each cell shows one inventory icon: a single object in 3/4 view from slightly above, all at the same scale and lighting."*
 
@@ -143,14 +145,14 @@ Open batches in order, each with its complete prompt. ChatGPT takes the first op
 
 | Order | Batch | Content | Status |
 |---|---|---|---|
-| 1 | B11 | Mitte icons: weapons, armour, head, implant | open |
-| 2 | B12 | Mitte implant icons, Döner | open |
-| 3 | P06 | Mitte portraits: Kabelghul, Boxenkopf, Bassprediger | open |
-| 4 | H03 | Player outfits 1: Lederjacke, Arbeitsmantel, Schutzweste | open |
-| 5 | H04 | Player outfits 2: Feuerwehrjacke, BVG-Uniform, Mantel des letzten Späti | open |
-| 6 | H05 | Player outfits 3: Tempelhof armour, Rattenmutter coat, Zitadellenritter armour | open |
-| 7 | H06 | Player outfits 4: Kettenhemd, Regenponcho, Kabelmantel | open |
-| 8 | H07 | Player headwear | open |
+| 1 | B11 | Mitte icons: weapons, armour, head, implant | done (v0.52) |
+| 2 | B12 | Mitte implant icons, Döner | done (v0.52) |
+| 3 | P06 | Mitte portraits: Kabelghul, Boxenkopf, Bassprediger | done (v0.52) |
+| 4 | H03 | Player outfits 1: Lederjacke, Arbeitsmantel, Schutzweste | done (v0.52) |
+| 5 | H04 | Player outfits 2: Feuerwehrjacke, BVG-Uniform, Mantel des letzten Späti | done (v0.52) |
+| 6 | H05 | Player outfits 3: Tempelhof armour, Rattenmutter coat, Zitadellenritter armour | done (v0.52) |
+| 7 | H06 | Player outfits 4: Kettenhemd, Regenponcho, Kabelmantel | done (v0.52) |
+| 8 | H07 | Player headwear | done (v0.52) |
 
 **B11** · attach: koepenick.png, potsdamer-platz.png
 
@@ -291,6 +293,7 @@ Claude ticks a batch here once its sheet is in `assets/raw/`.
 |---|---|
 | B01 to B10 | done, cut into `assets/icons/` (v0.51) |
 | H01, H02 (player test) | done. Pick: H02 variant A, plain proportions (Johannes prefers it over the exaggerated build) |
+| B11 (variant b), B12, P06 (variant c), H03 to H07 | done (v0.52). Other variants stay in `assets/raw/` |
 | Everything else | see Queue |
 | P01 to P05 | done, cut into `assets/portraits/` (v0.51) |
 

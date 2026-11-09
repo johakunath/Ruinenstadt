@@ -144,6 +144,6 @@ function update(dt){
     if(d.vh!==null){d.h+=d.vh*dt;d.vh-=620*dt;d.x+=d.vx*dt;d.y+=d.vy*dt;if(inWall(d.x,d.y,4)){d.x-=d.vx*dt;d.y-=d.vy*dt;d.vx=d.vy=0;}if(d.h<=0){d.h=0;d.vh=null;if(d.item&&d.item.r>=1)sfx('coin');}continue;}
     const dx=P.x-d.x,dy=P.y-d.y,dd=Math.hypot(dx,dy);
     if(dd>1&&(run.cleared||dd<mr)){const sp=run.cleared?520:280;d.x+=dx/dd*Math.min(dd,sp*dt);d.y+=dy/dd*Math.min(dd,sp*dt);}
-    if(dd<pr){d.taken=true;if(d.mat){S.mat[d.mat]=(S.mat[d.mat]||0)+1;nums.push({x:P.x,y:P.y-46,t:'+1 '+MATS[d.mat][0],col:MATS[d.mat][1],life:.9});sfx('coin');}else if(d.food){P.hp=Math.min(ST.maxHp,P.hp+ST.maxHp*.25);P.fed=30;toast('Döner · <span style="color:var(--good)">satt: +10% Schaden für 30 Sekunden</span>');sfx('heal');}else if(d.heal){const h=Math.round(ST.maxHp*.3);P.hp=Math.min(ST.maxHp,P.hp+h);nums.push({x:P.x,y:P.y-40,t:'+'+h,col:'#8fd16a',life:.9});sfx('heal');}else addToBag(d.item);}}
+    if(dd<pr){d.taken=true;if(d.mat){S.mat[d.mat]=(S.mat[d.mat]||0)+1;nums.push({x:P.x,y:P.y-46,t:'+1 '+MATS[d.mat][0],col:MATS[d.mat][1],life:.9});sfx('coin');}else if(d.food){P.hp=Math.min(ST.maxHp,P.hp+ST.maxHp*.25);P.fed=30;toast(img('doener',26,'mico')+'Döner · <span style="color:var(--good)">satt: +10% Schaden für 30 Sekunden</span>');sfx('heal');}else if(d.heal){const h=Math.round(ST.maxHp*.3);P.hp=Math.min(ST.maxHp,P.hp+h);nums.push({x:P.x,y:P.y-40,t:'+'+h,col:'#8fd16a',life:.9});sfx('heal');}else addToBag(d.item);}}
   drops=drops.filter(d=>!d.taken);
 }

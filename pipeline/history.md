@@ -1,8 +1,6 @@
-# Asset pipeline: handover for Codex
+# History
 
-Goal: replace code-drawn art with a hand-painted look. Codex generates images, Johannes decides, Claude or Codex integrates. Floors and ground textures stay code-drawn (they already look good).
-
-Style source of truth: `docs/style-bible.md` and the four boards in `docs/style/`. Step 1 is done (Köpenick is the default look). Where this doc and the style bible disagree on look, palette or mood, the style bible wins. Camera, scale, format and renderer contract below still apply.
+From `docs/asset-pipeline.md` (before v0.52). Context only; the current rules are in `workflow.md` and `contract.md`.
 
 ## Fixed decisions
 
@@ -57,15 +55,3 @@ Shared style block, append to every prompt:
 4. **Buildings and vehicles sheet:** Asset sheet on a neutral background: Berlin Altbau corner building, grey Plattenbau block, barricaded Späti, ruined building, Trabant car, VW van, yellow BVG bus, tram, all at the same isometric angle and consistent scale.
 5. **Cyberpunk district:** Potsdamer Platz after the collapse, rain at night, magenta and cyan neon signs ("Klinik", "Implantate"), wet reflections, a survivor with a glowing cybernetic arm against cable-covered cyborg mutants, still hand-painted and gritty, not clean sci-fi. Wide 16:9.
 
-## Renderer contract (since v0.37)
-
-The game is 2:1 isometric. World coords are flat (x right-down, y left-down on screen); `js/iso.js` projects with `screen = ((x-y)·0.707, (x+y)·0.354 − z)`.
-
-| Object | How it is drawn today | What a sprite must provide |
-|---|---|---|
-| Building, Späti, landmark | Box over the footprint `x,y,w,h`. Roof art on the top face, facade on the south face (+y), shaded facade on the east face (+x) | Full iso render of the building. Anchor = footprint's south corner `(x, y+h)` on the ground. Footprint size in world units in the manifest |
-| Vehicle | Iso boxes (body, cabin, wheels), `veh` field on the object | Two renders: long axis along world x and along world y |
-| Tree, lamp, Litfaßsäule, crane | Upright sprite, bottom centre at the footprint centre, scaled by `sc` | Upright PNG, anchor bottom centre |
-| Characters | Upright, code-animated at the projected feet position | Cut-out parts as in production step 4 |
-
-Shadows are painted on the ground canvas along world +x (light from screen top-left). Sprites carry no shadow.
