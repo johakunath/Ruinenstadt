@@ -109,20 +109,36 @@ function drawCaptive(c,t){const x=c.x,y=c.y+9;ctx.fillStyle='rgba(0,0,0,.45)';ct
   ctx.fillStyle='#d9b48f';ctx.beginPath();ctx.arc(x,y-29,5.5,0,7);ctx.fill();ctx.strokeStyle='#a8957d';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x-8,y-18);ctx.lineTo(x+8,y-14);ctx.moveTo(x-8,y-14);ctx.lineTo(x+8,y-18);ctx.stroke();
   if(!c.free&&Math.sin(t*.006)>0){ctx.font='600 13px "Barlow Condensed",sans-serif';ctx.textAlign='center';ctx.fillStyle='#ead9c0';ctx.fillText('Hilfe!',x,y-44);}
   if(c.free){ctx.strokeStyle='rgba(143,209,106,.6)';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(x,y,22,8,0,0,7);ctx.stroke();}}
-// The Brigadeghul keeps its Blaumann/cap canvas variant until task 01 supplies that art.
+// Painted enemies retain the original canvas branches as loading/missing-file fallbacks.
+const ENEMY_ART={ghoul:{r:10,h:36.5},brute:{r:17,h:52},spitter:{r:11,h:40},rat:{r:6,h:6.1},crow:{r:8,h:16},shield:{r:13,h:44},bomb:{r:11,h:40},howl:{r:11,h:44},raser:{r:11,h:36},schrottkoloss:{r:34,h:83},kabel:{r:9,h:35},bass:{r:15,h:56},uhr:{r:13,h:44},wurz:{r:12,h:55},kern:{r:11,h:42},brigadeghoul:{r:10,h:36.5}};
+const ENEMYPRE={},ENEMY_POSES=['idle','walk-a','walk-b','attack-a','attack-b','hit'];
 function ghoulSprite(e){if(e.type!=='ghoul'||D.gdr)return null;const near=Math.hypot(P.x-e.x,P.y-e.y)<e.r+P.r+14,pose=e.flash>0||e.stun>0?'hit':e.atk>0?(e.atk>.1?'attack-b':'attack-a'):near&&e.hcd<.16?'attack-a':(e.mv||0)>8?((Math.floor(e.t*6)&1)?'walk-b':'walk-a'):'idle',key='enemies/ghoul-'+pose,i=spr(key);return i?{i,m:SPRITES[key],key}:null;}
 const GFLASH={};
 function drawGhoulSprite(g,e,C){const m=g.m,s=e.r/10;ctx.save();ctx.scale(s,s);let i=g.i;if(e.flash>0){i=GFLASH[g.key];if(!i){i=GFLASH[g.key]=cnv(m.w,m.h);const c=i.getContext('2d');c.drawImage(g.i,0,0);c.globalCompositeOperation='source-in';c.fillStyle='#ead9c0';c.fillRect(0,0,m.w,m.h);}}
   ctx.drawImage(i,-m.anchor[0]/m.units,-m.anchor[1]/m.units,m.w/m.units,m.h/m.units);
   if(D.cyber){ctx.strokeStyle=C('#d6409a');ctx.lineWidth=1.1;for(let k=0;k<3;k++){ctx.beginPath();ctx.moveTo(1,-26);ctx.quadraticCurveTo(-10-k*2,-30+k*3,-8-k*2,-15+k*2);ctx.stroke();}ctx.fillStyle=C('#ff4fa3');ctx.fillRect(2,-24,2,2);}ctx.restore();return 36.5*s;}
+function enemyVariant(e){return e.type==='boss'?(e.big?null:'schrottkoloss'):e.type==='ghoul'?(D.gdr?'brigadeghoul':'ghoul'):ENEMY_ART[e.type]?e.type:null;}
+function enemySprite(e){const variant=enemyVariant(e);if(!variant)return null;if(!ENEMYPRE[variant]&&SPRITES['enemies/'+variant+'-idle']){ENEMYPRE[variant]=1;for(const p of ENEMY_POSES)spr('enemies/'+variant+'-'+p);}if(variant==='ghoul'){const g=ghoulSprite(e);return g?Object.assign(g,{variant,spec:ENEMY_ART.ghoul}):null;}
+  const near=Math.hypot(P.x-e.x,P.y-e.y)<e.r+P.r+14,pose=e.flash>0||e.stun>0?'hit':e.cast>0||e.ru>0||e.dive>0||e.atk>.1?'attack-b':e.atk>0||e.tw>0||e.ch>0||e.fuse>0||(e.type==='spitter'||e.type==='howl')&&e.fire<.45||near&&e.hcd<.16?'attack-a':(e.mv||0)>8?((Math.floor(e.t*6)&1)?'walk-b':'walk-a'):'idle',key='enemies/'+variant+'-'+pose,i=spr(key);return i?{i,m:SPRITES[key],key,variant,spec:ENEMY_ART[variant]}:null;}
+function enemyFlip(e){return(e.ru>0||e.ch>0||e.dive>0)&&Number.isFinite(e.rdx)&&Number.isFinite(e.rdy)?(e.rdx-e.rdy<0?-1:1):(P.x-P.y<e.x-e.y?-1:1);}
+function drawEnemySprite(g,e,C){if(g.variant==='ghoul')return drawGhoulSprite(g,e,C);const m=g.m,s=e.r/g.spec.r;ctx.save();ctx.scale(s,s);let i=g.i,flight=e.type==='crow'?28-(e.dive>0?14:e.rest>0?16:-Math.sin(e.t*3)*4):0;
+  if(flight)ctx.translate(0,-flight/(1.15*s));if(e.type==='kern'&&(e.mv||0)>8)ctx.translate(0,-Math.abs(Math.sin(e.t*9))*3);if(e.type==='bomb'&&e.fuse>0)ctx.scale(1+.08*Math.sin(e.t*40),1);
+  if(e.flash>0){i=GFLASH[g.key];if(!i){i=GFLASH[g.key]=cnv(m.w,m.h);const c=i.getContext('2d');c.drawImage(g.i,0,0);c.globalCompositeOperation='source-in';c.fillStyle='#ead9c0';c.fillRect(0,0,m.w,m.h);}}
+  ctx.drawImage(i,-m.anchor[0]/m.units,-m.anchor[1]/m.units,m.w/m.units,m.h/m.units);
+  if(D.cyber&&g.variant==='brute'){ctx.strokeStyle=C('#d6409a');ctx.lineWidth=1.5;for(let k=0;k<4;k++){ctx.beginPath();ctx.moveTo(-6+k*4,-40);ctx.quadraticCurveTo(-18+k*3,-52+Math.sin(e.t*3+k)*3,-14-k*2,-23);ctx.stroke();}}
+  ctx.restore();return g.spec.h*s+flight/1.15;}
+function drawEnemyShield(e,fy){if(e.type!=='shield')return false;const key='enemies/shield-panel',i=spr(key),m=SPRITES[key];if(!i||!m)return false;const fa=e.fa,sr=e.r+4,op=e.guard>0,s=e.r/13;
+  let img=i;if(e.flash>0){img=GFLASH[key];if(!img){img=GFLASH[key]=cnv(m.w,m.h);const c=img.getContext('2d');c.drawImage(i,0,0);c.globalCompositeOperation='source-in';c.fillStyle='#ead9c0';c.fillRect(0,0,m.w,m.h);}}ctx.save();ctx.translate(e.x+Math.cos(fa)*sr,fy-14+Math.sin(fa)*sr*.6+(op?6:0));ctx.transform(-Math.sin(fa)||.01,Math.cos(fa)*.6,0,op?.5:1,0,0);ctx.scale(s,s);ctx.globalAlpha*=op?.65:1;ctx.drawImage(img,-m.anchor[0]/m.units,-m.anchor[1]/m.units,m.w/m.units,m.h/m.units);ctx.restore();return true;}
+// Screen-space launch point only; projectile collision and travel stay on the existing ground plane.
+function enemyMuzzle(e){const g=enemySprite(e),p=g&&g.m.pivots&&g.m.pivots.mouth;if(!p)return null;const s=e.r/g.spec.r*1.15,m=g.m;return{x:enemyFlip(e)*(p[0]-m.anchor[0])/m.units*s,y:e.r*.4+(p[1]-m.anchor[1])/m.units*s};}
 function drawEnemy(e,t){
-  const g=ghoulSprite(e),fl=P.x-P.y<e.x-e.y?-1:1,f=e.flash>0,C=c=>f?'#ead9c0':c,mv=(e.mv||0)>8&&e.stun<=0,sw=mv?Math.sin(e.t*10):0,fy=e.y+e.r*(g?.4:.75),near=e.atk>0||Math.hypot(P.x-e.x,P.y-e.y)<e.r+34;
+  const g=enemySprite(e),fl=enemyFlip(e),f=e.flash>0,C=c=>f?'#ead9c0':c,mv=(e.mv||0)>8&&e.stun<=0,sw=mv?Math.sin(e.t*10):0,fy=e.y+e.r*(g?.4:.75),near=e.atk>0||Math.hypot(P.x-e.x,P.y-e.y)<e.r+34;
   ctx.fillStyle='rgba(0,0,0,.42)';ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.1,e.r*.36,0,0,7);ctx.fill();
   if(e.elite){ctx.strokeStyle=EMC[e.elite];ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.45,e.r*.5,0,0,7);ctx.stroke();}
   if(e.tw>0){const p=1-e.tw/e.twm;ctx.strokeStyle=`rgba(255,80,60,${.4+.5*p})`;ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(e.x,fy,e.r*(1.2+p),e.r*(.45+.35*p),0,0,7);ctx.stroke();}
   if(e.open>0){ctx.strokeStyle='#f2d14b';ctx.lineWidth=3;ctx.setLineDash([6,4]);ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.9,e.r*.7,0,0,7);ctx.stroke();ctx.setLineDash([]);}
   ctx.save();ctx.translate(e.x,fy);ctx.scale(fl*1.15,1.15);let H=34;
-  if(g)H=drawGhoulSprite(g,e,C);
+  if(g)H=drawEnemySprite(g,e,C);
   else if(e.type==='ghoul'||e.type==='shield'){const s=e.r/10;ctx.scale(s,s);H=36*s;const reach=near?8:0;
     limb(-2,-12,sw*.5,12,3,C('#3d1d12'));limb(3,-12,-sw*.5,12,3,C('#4a2414'));
     stick(0,-22,9+reach,-6-sw*3-reach*1.2,3,C('#4a2010'));
@@ -194,7 +210,7 @@ function drawEnemy(e,t){
     if(boss)H+=10*s;}
   ctx.restore();H*=1.15;
   if(e.type==='uhr')gdrShield(e,fy,C);
-  else if(SHD(e)){const fa=e.fa,sr=e.r+(e.type==='boss'?6:4),cx=e.x+Math.cos(fa)*sr,cy=fy-14+Math.sin(fa)*sr*.6,px=-Math.sin(fa),py=Math.cos(fa)*.6,L=e.type==='boss'?26:15,op=e.guard>0;
+  else if(SHD(e)&&!drawEnemyShield(e,fy)){const fa=e.fa,sr=e.r+(e.type==='boss'?6:4),cx=e.x+Math.cos(fa)*sr,cy=fy-14+Math.sin(fa)*sr*.6,px=-Math.sin(fa),py=Math.cos(fa)*.6,L=e.type==='boss'?26:15,op=e.guard>0;
     ctx.lineCap='round';ctx.strokeStyle=op?'rgba(120,110,100,.6)':C('#5a6470');ctx.lineWidth=e.type==='boss'?11:8;ctx.beginPath();ctx.moveTo(cx-px*L,cy-py*L-(op?-6:0));ctx.lineTo(cx+px*L,cy+py*L-(op?-6:0));ctx.stroke();
     if(!op){ctx.strokeStyle=C('#9aa4b0');ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx-px*L*.8,cy-py*L*.8-3);ctx.lineTo(cx+px*L*.8,cy+py*L*.8-3);ctx.stroke();}ctx.lineCap='butt';}
   if(e.buff>0&&e.type!=='howl'){ctx.strokeStyle='rgba(214,90,140,.55)';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.25,e.r*.45,0,0,7);ctx.stroke();}

@@ -61,7 +61,7 @@ function update(dt){
   if(crate){crate.t-=dt;if(Math.hypot(crate.x-P.x,crate.y-P.y)<30){const it=makeItem(ilvl()+1,2),s=Math.round(15*(1+D.lvl*.1)*(1+.5*pk('scrap'))*DF().sc);S.scrap+=s;run.sg+=s;burst(crate.x,crate.y,'#f2d14b',30,220);
       toast(`Nachschub geborgen · +${s} Schrott`);addToBag(it);crate=null;}else if(crate.t<=0){crate=null;toast('Der Nachschub ist verloren');}}
   for(const e of enemies){
-    e.t+=dt;e.flash-=dt;e.hcd-=dt;const dx=P.x-e.x,dy=P.y-e.y,d=Math.hypot(dx,dy)||1;let vx=dx/d,vy=dy/d,sp=e.spd;
+    e.t+=dt;e.flash-=dt;e.hcd-=dt;if(e.cast>0)e.cast-=dt;const dx=P.x-e.x,dy=P.y-e.y,d=Math.hypot(dx,dy)||1;let vx=dx/d,vy=dy/d,sp=e.spd;
     if(e.stun>0){e.stun-=dt;sp=0;}if(e.hold>0){e.hold-=dt;sp=0;}
     if(e.burn>0){e.burn-=dt;const bd=e.bdps*dt;e.hp-=bd;e.bacc=(e.bacc||0)+bd;if(Math.random()<dt*14)parts.push({x:e.x+R(-6,6),y:e.y-R(4,24),vx:R(-10,10),vy:R(-60,-30),life:.4,max:.4,col:pick(['#ff6a2a','#FAC775']),size:R(2,3.5)});
       if(e.bacc>=4||(e.burn<=0&&e.bacc>=1)){nums.push({x:e.x+R(-8,8),y:e.y-e.r-18,t:''+Math.round(e.bacc),col:ELC.fire,life:.6});e.bacc=0;}
@@ -77,7 +77,7 @@ function update(dt){
         else{e.tw=e.twm=k==='spaltend'?.6:k==='brennend'?.9:.95;if(k==='brennend')teles.push({x:e.x,y:e.y,r:95,t:.9,max:.9,dmg:Math.round(e.dmg*1.2)});else if(k!=='spaltend')teles.push({x:P.x,y:P.y,r:k==='brute'?60:70,t:.95,max:.95,dmg:Math.round(e.dmg*(k==='brute'?1:1.3))});sfx(k==='brute'?'swing':'horn');}}}
     if(e.type==='raser'||e.type==='kabel'){const kb=e.type==='kabel';e.cc=(e.cc==null?R(1,2):e.cc)-dt;if(e.ch>0){e.ch-=dt;sp=0;if(e.ch<=0)e.ru=kb?.3:.45;}else if(e.ru>0){e.ru-=dt;vx=e.rdx;vy=e.rdy;sp=e.stun>0?0:kb?440:520;if(e.ru<=0)e.open=kb?.5:TACO.raser;}else if(e.cc<=0&&d<(kb?200:260)&&e.stun<=0&&!(e.open>0)){e.ch=kb?.4:.6;e.cc=kb?R(2.2,3):2.4;e.rdx=dx/d;e.rdy=dy/d;}}
     // Boxenkopf: wind-up (red ring), then a bass wave (pink ring, hurts unless you dash through) that buffs nearby enemies, then open
-    if(e.type==='bass'){e.pc=(e.pc==null?R(2,4):e.pc)-dt;if(e.tw>0){e.tw-=dt;sp=0;if(e.tw<=0){rings.push({x:e.x,y:e.y,r:12,max:270,col:'255,79,163',dmg:Math.round(e.dmg*.9)});for(const o of enemies)if(o!==e&&Math.hypot(o.x-e.x,o.y-e.y)<220)o.buff=3;sfx('boom');shake=Math.max(shake,4);e.open=1.1;}}
+    if(e.type==='bass'){e.pc=(e.pc==null?R(2,4):e.pc)-dt;if(e.tw>0){e.tw-=dt;sp=0;if(e.tw<=0){rings.push({x:e.x,y:e.y,r:12,max:270,col:'255,79,163',dmg:Math.round(e.dmg*.9)});for(const o of enemies)if(o!==e&&Math.hypot(o.x-e.x,o.y-e.y)<220)o.buff=3;sfx('boom');shake=Math.max(shake,4);e.open=1.1;e.cast=.24;}}
       else if(e.pc<=0&&d<300&&e.stun<=0&&!(e.open>0)){e.pc=R(5,6.5);e.tw=e.twm=.8;sfx('horn');}}
     // Wurzler: wind-up, then roots burst under the player (green circle). Caught: hurt and rooted .8 s (dash breaks free), then 2.5 s immune. Then open
     if(e.type==='wurz'){e.pc=(e.pc==null?R(2,3.5):e.pc)-dt;if(e.tw>0){e.tw-=dt;sp=0;if(e.tw<=0)e.open=.9;}else if(e.pc<=0&&d<320&&e.stun<=0&&!(e.open>0)){e.pc=R(4.5,6);e.tw=e.twm=.9;teles.push({x:P.x,y:P.y,r:48,t:.95,max:.95,dmg:Math.round(e.dmg*.6),root:1});sfx('wood');}else if(d<120)sp*=.7;}
@@ -91,7 +91,7 @@ function update(dt){
     if(SHD(e)){if(e.guard>0)e.guard-=dt;let da=Math.atan2(dy,dx)-e.fa;da=Math.atan2(Math.sin(da),Math.cos(da));const tr=(e.type==='boss'?1.1:1.6)*dt;e.fa+=clamp(da,-tr,tr);if(e.guard>0)sp*=.4;}
     if(e.type==='bomb'){if(e.fuse>0){e.fuse-=dt;sp=0;if(e.fuse<=0){e.selfx=1;e.hp=0;kill(e);continue;}}else if(d<58&&e.stun<=0){e.fuse=.85;sfx('zap');}}
     if(e.type==='howl'){if(d<180){vx=-vx;vy=-vy;}else if(d<260){const tx=-vy*e.side,ty=vx*e.side;vx=tx;vy=ty;sp*=.6;}
-      e.fire-=dt;if(e.fire<=0&&d<460&&e.stun<=0){e.fire=R(4.5,6);rings.push({x:e.x,y:e.y-14,r:10,max:220,col:'214,90,140'});for(const o of enemies)if(o!==e&&Math.hypot(o.x-e.x,o.y-e.y)<220)o.buff=4;sfx('horn');}}
+      e.fire-=dt;if(e.fire<=0&&d<460&&e.stun<=0){e.fire=R(4.5,6);e.cast=.24;rings.push({x:e.x,y:e.y-14,r:10,max:220,col:'214,90,140'});for(const o of enemies)if(o!==e&&Math.hypot(o.x-e.x,o.y-e.y)<220)o.buff=4;sfx('horn');}}
     if(e.fly){if(e.dive>0){e.dive-=dt;vx=e.rdx;vy=e.rdy;sp=e.stun>0?0:380;if(e.dive<=0)e.rest=1.3;}else if(e.rest>0){e.rest-=dt;sp=e.stun>0?0:40;}else{e.dcd-=dt;e.orb+=dt*1.5*e.side;const tx=P.x+Math.cos(e.orb)*150,ty=P.y+Math.sin(e.orb)*110,ddx=tx-e.x,ddy=ty-e.y,dl=Math.hypot(ddx,ddy)||1;vx=ddx/dl;vy=ddy/dl;sp=e.stun>0?0:e.spd*Math.min(1,dl/40+.3);
       if(e.dcd<=0&&d<280&&e.stun<=0){e.dive=.6;e.dcd=R(2.5,3.8);e.rdx=dx/d;e.rdy=dy/d;sfx('swing');}}}
     if(e.open>0){e.open-=dt;sp=0;}

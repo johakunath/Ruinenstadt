@@ -1,0 +1,5653 @@
+{
+  "targetPort": 8767,
+  "baselinePort": 8765,
+  "started": "2026-11-09T17:13:01.431Z",
+  "errors": [],
+  "failedImages": [],
+  "gallery": [
+    {
+      "file": "gallery-ghoul-1x.png",
+      "seen": [
+        {
+          "variant": "ghoul",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/ghoul-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 494
+        },
+        {
+          "variant": "ghoul",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/ghoul-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 498
+        },
+        {
+          "variant": "ghoul",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/ghoul-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 521
+        },
+        {
+          "variant": "ghoul",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/ghoul-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 508
+        },
+        {
+          "variant": "ghoul",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/ghoul-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 488
+        },
+        {
+          "variant": "ghoul",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/ghoul-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 586
+        },
+        {
+          "variant": "ghoul",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/ghoul-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 494
+        },
+        {
+          "variant": "ghoul",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/ghoul-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 498
+        },
+        {
+          "variant": "ghoul",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/ghoul-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 521
+        },
+        {
+          "variant": "ghoul",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/ghoul-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 508
+        },
+        {
+          "variant": "ghoul",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/ghoul-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 488
+        },
+        {
+          "variant": "ghoul",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/ghoul-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 586
+        }
+      ]
+    },
+    {
+      "file": "gallery-ghoul-2x.png",
+      "seen": [
+        {
+          "variant": "ghoul",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/ghoul-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 1916
+        },
+        {
+          "variant": "ghoul",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/ghoul-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1987
+        },
+        {
+          "variant": "ghoul",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/ghoul-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2020
+        },
+        {
+          "variant": "ghoul",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/ghoul-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1937
+        },
+        {
+          "variant": "ghoul",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/ghoul-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 1919
+        },
+        {
+          "variant": "ghoul",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/ghoul-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 2343
+        },
+        {
+          "variant": "ghoul",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/ghoul-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 1916
+        },
+        {
+          "variant": "ghoul",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/ghoul-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1987
+        },
+        {
+          "variant": "ghoul",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/ghoul-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2019
+        },
+        {
+          "variant": "ghoul",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/ghoul-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1938
+        },
+        {
+          "variant": "ghoul",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/ghoul-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 1919
+        },
+        {
+          "variant": "ghoul",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/ghoul-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 2343
+        }
+      ]
+    },
+    {
+      "file": "gallery-brute-1x.png",
+      "seen": [
+        {
+          "variant": "brute",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/brute-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 1607
+        },
+        {
+          "variant": "brute",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/brute-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1622
+        },
+        {
+          "variant": "brute",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/brute-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 1490
+        },
+        {
+          "variant": "brute",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/brute-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1787
+        },
+        {
+          "variant": "brute",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/brute-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 1835
+        },
+        {
+          "variant": "brute",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/brute-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 1875
+        },
+        {
+          "variant": "brute",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/brute-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 1607
+        },
+        {
+          "variant": "brute",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/brute-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1623
+        },
+        {
+          "variant": "brute",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/brute-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 1490
+        },
+        {
+          "variant": "brute",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/brute-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1788
+        },
+        {
+          "variant": "brute",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/brute-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 1835
+        },
+        {
+          "variant": "brute",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/brute-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 1875
+        }
+      ]
+    },
+    {
+      "file": "gallery-brute-2x.png",
+      "seen": [
+        {
+          "variant": "brute",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/brute-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 6389
+        },
+        {
+          "variant": "brute",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/brute-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 6404
+        },
+        {
+          "variant": "brute",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/brute-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 5808
+        },
+        {
+          "variant": "brute",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/brute-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 7012
+        },
+        {
+          "variant": "brute",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/brute-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 7251
+        },
+        {
+          "variant": "brute",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/brute-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 7492
+        },
+        {
+          "variant": "brute",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/brute-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 6389
+        },
+        {
+          "variant": "brute",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/brute-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 6404
+        },
+        {
+          "variant": "brute",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/brute-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 5809
+        },
+        {
+          "variant": "brute",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/brute-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 7013
+        },
+        {
+          "variant": "brute",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/brute-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 7251
+        },
+        {
+          "variant": "brute",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/brute-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 7492
+        }
+      ]
+    },
+    {
+      "file": "gallery-spitter-1x.png",
+      "seen": [
+        {
+          "variant": "spitter",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/spitter-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 880
+        },
+        {
+          "variant": "spitter",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/spitter-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 881
+        },
+        {
+          "variant": "spitter",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/spitter-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 865
+        },
+        {
+          "variant": "spitter",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/spitter-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1030
+        },
+        {
+          "variant": "spitter",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/spitter-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 1063
+        },
+        {
+          "variant": "spitter",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/spitter-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 1033
+        },
+        {
+          "variant": "spitter",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/spitter-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 880
+        },
+        {
+          "variant": "spitter",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/spitter-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 881
+        },
+        {
+          "variant": "spitter",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/spitter-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 865
+        },
+        {
+          "variant": "spitter",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/spitter-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1030
+        },
+        {
+          "variant": "spitter",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/spitter-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 1063
+        },
+        {
+          "variant": "spitter",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/spitter-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 1033
+        }
+      ]
+    },
+    {
+      "file": "gallery-spitter-2x.png",
+      "seen": [
+        {
+          "variant": "spitter",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/spitter-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 3444
+        },
+        {
+          "variant": "spitter",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/spitter-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 3462
+        },
+        {
+          "variant": "spitter",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/spitter-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3414
+        },
+        {
+          "variant": "spitter",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/spitter-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 3971
+        },
+        {
+          "variant": "spitter",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/spitter-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 4138
+        },
+        {
+          "variant": "spitter",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/spitter-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 4168
+        },
+        {
+          "variant": "spitter",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/spitter-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 3445
+        },
+        {
+          "variant": "spitter",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/spitter-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 3463
+        },
+        {
+          "variant": "spitter",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/spitter-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3415
+        },
+        {
+          "variant": "spitter",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/spitter-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 3971
+        },
+        {
+          "variant": "spitter",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/spitter-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 4137
+        },
+        {
+          "variant": "spitter",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/spitter-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 4168
+        }
+      ]
+    },
+    {
+      "file": "gallery-rat-1x.png",
+      "seen": [
+        {
+          "variant": "rat",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/rat-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 96
+        },
+        {
+          "variant": "rat",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/rat-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 97
+        },
+        {
+          "variant": "rat",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/rat-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 98
+        },
+        {
+          "variant": "rat",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/rat-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 91
+        },
+        {
+          "variant": "rat",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/rat-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 96
+        },
+        {
+          "variant": "rat",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/rat-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 104
+        },
+        {
+          "variant": "rat",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/rat-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 95
+        },
+        {
+          "variant": "rat",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/rat-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 96
+        },
+        {
+          "variant": "rat",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/rat-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 97
+        },
+        {
+          "variant": "rat",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/rat-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 90
+        },
+        {
+          "variant": "rat",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/rat-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 96
+        },
+        {
+          "variant": "rat",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/rat-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 103
+        }
+      ]
+    },
+    {
+      "file": "gallery-rat-2x.png",
+      "seen": [
+        {
+          "variant": "rat",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/rat-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 361
+        },
+        {
+          "variant": "rat",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/rat-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 390
+        },
+        {
+          "variant": "rat",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/rat-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 382
+        },
+        {
+          "variant": "rat",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/rat-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 348
+        },
+        {
+          "variant": "rat",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/rat-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 390
+        },
+        {
+          "variant": "rat",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/rat-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 429
+        },
+        {
+          "variant": "rat",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/rat-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 361
+        },
+        {
+          "variant": "rat",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/rat-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 390
+        },
+        {
+          "variant": "rat",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/rat-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 382
+        },
+        {
+          "variant": "rat",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/rat-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 348
+        },
+        {
+          "variant": "rat",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/rat-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 390
+        },
+        {
+          "variant": "rat",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/rat-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 429
+        }
+      ]
+    },
+    {
+      "file": "gallery-crow-1x.png",
+      "seen": [
+        {
+          "variant": "crow",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/crow-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 183
+        },
+        {
+          "variant": "crow",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/crow-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 240
+        },
+        {
+          "variant": "crow",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/crow-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 213
+        },
+        {
+          "variant": "crow",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/crow-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 222
+        },
+        {
+          "variant": "crow",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/crow-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 185
+        },
+        {
+          "variant": "crow",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/crow-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 251
+        },
+        {
+          "variant": "crow",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/crow-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 183
+        },
+        {
+          "variant": "crow",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/crow-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 240
+        },
+        {
+          "variant": "crow",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/crow-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 213
+        },
+        {
+          "variant": "crow",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/crow-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 222
+        },
+        {
+          "variant": "crow",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/crow-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 185
+        },
+        {
+          "variant": "crow",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/crow-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 251
+        }
+      ]
+    },
+    {
+      "file": "gallery-crow-2x.png",
+      "seen": [
+        {
+          "variant": "crow",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/crow-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 693
+        },
+        {
+          "variant": "crow",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/crow-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 890
+        },
+        {
+          "variant": "crow",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/crow-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 812
+        },
+        {
+          "variant": "crow",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/crow-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 837
+        },
+        {
+          "variant": "crow",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/crow-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 695
+        },
+        {
+          "variant": "crow",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/crow-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 980
+        },
+        {
+          "variant": "crow",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/crow-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 693
+        },
+        {
+          "variant": "crow",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/crow-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 890
+        },
+        {
+          "variant": "crow",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/crow-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 812
+        },
+        {
+          "variant": "crow",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/crow-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 837
+        },
+        {
+          "variant": "crow",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/crow-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 695
+        },
+        {
+          "variant": "crow",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/crow-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 980
+        }
+      ]
+    },
+    {
+      "file": "gallery-shield-1x.png",
+      "seen": [
+        {
+          "variant": "shield",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/shield-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 817
+        },
+        {
+          "variant": "shield",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/shield-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 794
+        },
+        {
+          "variant": "shield",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/shield-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 778
+        },
+        {
+          "variant": "shield",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/shield-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 896
+        },
+        {
+          "variant": "shield",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/shield-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 907
+        },
+        {
+          "variant": "shield",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/shield-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 974
+        },
+        {
+          "variant": "shield",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/shield-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 817
+        },
+        {
+          "variant": "shield",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/shield-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 794
+        },
+        {
+          "variant": "shield",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/shield-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 777
+        },
+        {
+          "variant": "shield",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/shield-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 896
+        },
+        {
+          "variant": "shield",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/shield-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 906
+        },
+        {
+          "variant": "shield",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/shield-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 974
+        }
+      ]
+    },
+    {
+      "file": "gallery-shield-2x.png",
+      "seen": [
+        {
+          "variant": "shield",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/shield-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 3139
+        },
+        {
+          "variant": "shield",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/shield-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 3021
+        },
+        {
+          "variant": "shield",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/shield-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2959
+        },
+        {
+          "variant": "shield",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/shield-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 3424
+        },
+        {
+          "variant": "shield",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/shield-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3423
+        },
+        {
+          "variant": "shield",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/shield-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 3922
+        },
+        {
+          "variant": "shield",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/shield-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 3139
+        },
+        {
+          "variant": "shield",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/shield-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 3020
+        },
+        {
+          "variant": "shield",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/shield-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2959
+        },
+        {
+          "variant": "shield",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/shield-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 3424
+        },
+        {
+          "variant": "shield",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/shield-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3423
+        },
+        {
+          "variant": "shield",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/shield-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 3922
+        }
+      ]
+    },
+    {
+      "file": "gallery-bomb-1x.png",
+      "seen": [
+        {
+          "variant": "bomb",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/bomb-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 549
+        },
+        {
+          "variant": "bomb",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/bomb-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 592
+        },
+        {
+          "variant": "bomb",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/bomb-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 557
+        },
+        {
+          "variant": "bomb",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/bomb-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 606
+        },
+        {
+          "variant": "bomb",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/bomb-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 684
+        },
+        {
+          "variant": "bomb",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/bomb-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 801
+        },
+        {
+          "variant": "bomb",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/bomb-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 549
+        },
+        {
+          "variant": "bomb",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/bomb-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 592
+        },
+        {
+          "variant": "bomb",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/bomb-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 557
+        },
+        {
+          "variant": "bomb",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/bomb-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 606
+        },
+        {
+          "variant": "bomb",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/bomb-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 684
+        },
+        {
+          "variant": "bomb",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/bomb-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 801
+        }
+      ]
+    },
+    {
+      "file": "gallery-bomb-2x.png",
+      "seen": [
+        {
+          "variant": "bomb",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/bomb-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 2167
+        },
+        {
+          "variant": "bomb",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/bomb-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2311
+        },
+        {
+          "variant": "bomb",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/bomb-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2166
+        },
+        {
+          "variant": "bomb",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/bomb-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2416
+        },
+        {
+          "variant": "bomb",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/bomb-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2736
+        },
+        {
+          "variant": "bomb",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/bomb-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 3189
+        },
+        {
+          "variant": "bomb",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/bomb-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 2166
+        },
+        {
+          "variant": "bomb",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/bomb-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2311
+        },
+        {
+          "variant": "bomb",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/bomb-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2166
+        },
+        {
+          "variant": "bomb",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/bomb-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2415
+        },
+        {
+          "variant": "bomb",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/bomb-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2735
+        },
+        {
+          "variant": "bomb",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/bomb-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 3190
+        }
+      ]
+    },
+    {
+      "file": "gallery-howl-1x.png",
+      "seen": [
+        {
+          "variant": "howl",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/howl-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 684
+        },
+        {
+          "variant": "howl",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/howl-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 745
+        },
+        {
+          "variant": "howl",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/howl-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 720
+        },
+        {
+          "variant": "howl",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/howl-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 752
+        },
+        {
+          "variant": "howl",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/howl-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 859
+        },
+        {
+          "variant": "howl",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/howl-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 831
+        },
+        {
+          "variant": "howl",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/howl-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 684
+        },
+        {
+          "variant": "howl",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/howl-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 745
+        },
+        {
+          "variant": "howl",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/howl-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 720
+        },
+        {
+          "variant": "howl",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/howl-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 751
+        },
+        {
+          "variant": "howl",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/howl-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 859
+        },
+        {
+          "variant": "howl",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/howl-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 831
+        }
+      ]
+    },
+    {
+      "file": "gallery-howl-2x.png",
+      "seen": [
+        {
+          "variant": "howl",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/howl-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 2625
+        },
+        {
+          "variant": "howl",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/howl-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2848
+        },
+        {
+          "variant": "howl",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/howl-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2756
+        },
+        {
+          "variant": "howl",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/howl-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2908
+        },
+        {
+          "variant": "howl",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/howl-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3284
+        },
+        {
+          "variant": "howl",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/howl-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 3332
+        },
+        {
+          "variant": "howl",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/howl-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 2624
+        },
+        {
+          "variant": "howl",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/howl-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2850
+        },
+        {
+          "variant": "howl",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/howl-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2755
+        },
+        {
+          "variant": "howl",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/howl-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2909
+        },
+        {
+          "variant": "howl",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/howl-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3282
+        },
+        {
+          "variant": "howl",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/howl-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 3332
+        }
+      ]
+    },
+    {
+      "file": "gallery-raser-1x.png",
+      "seen": [
+        {
+          "variant": "raser",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/raser-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 764
+        },
+        {
+          "variant": "raser",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/raser-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 775
+        },
+        {
+          "variant": "raser",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/raser-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 775
+        },
+        {
+          "variant": "raser",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/raser-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 768
+        },
+        {
+          "variant": "raser",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/raser-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 721
+        },
+        {
+          "variant": "raser",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/raser-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 812
+        },
+        {
+          "variant": "raser",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/raser-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 763
+        },
+        {
+          "variant": "raser",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/raser-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 775
+        },
+        {
+          "variant": "raser",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/raser-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 775
+        },
+        {
+          "variant": "raser",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/raser-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 768
+        },
+        {
+          "variant": "raser",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/raser-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 721
+        },
+        {
+          "variant": "raser",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/raser-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 812
+        }
+      ]
+    },
+    {
+      "file": "gallery-raser-2x.png",
+      "seen": [
+        {
+          "variant": "raser",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/raser-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 2902
+        },
+        {
+          "variant": "raser",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/raser-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2977
+        },
+        {
+          "variant": "raser",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/raser-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3012
+        },
+        {
+          "variant": "raser",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/raser-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2935
+        },
+        {
+          "variant": "raser",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/raser-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2785
+        },
+        {
+          "variant": "raser",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/raser-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 3234
+        },
+        {
+          "variant": "raser",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/raser-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 2902
+        },
+        {
+          "variant": "raser",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/raser-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2977
+        },
+        {
+          "variant": "raser",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/raser-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3013
+        },
+        {
+          "variant": "raser",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/raser-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2936
+        },
+        {
+          "variant": "raser",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/raser-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2787
+        },
+        {
+          "variant": "raser",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/raser-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 3234
+        }
+      ]
+    },
+    {
+      "file": "gallery-schrottkoloss-1x.png",
+      "seen": [
+        {
+          "variant": "schrottkoloss",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/schrottkoloss-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 5248
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/schrottkoloss-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 5375
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/schrottkoloss-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 5106
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/schrottkoloss-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 5349
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/schrottkoloss-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 5288
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/schrottkoloss-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 5947
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/schrottkoloss-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 5248
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/schrottkoloss-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 5375
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/schrottkoloss-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 5106
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/schrottkoloss-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 5349
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/schrottkoloss-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 5288
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/schrottkoloss-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 5947
+        }
+      ]
+    },
+    {
+      "file": "gallery-schrottkoloss-2x.png",
+      "seen": [
+        {
+          "variant": "schrottkoloss",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/schrottkoloss-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 21492
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/schrottkoloss-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 21889
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/schrottkoloss-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 20908
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/schrottkoloss-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 21687
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/schrottkoloss-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 21616
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/schrottkoloss-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 23838
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/schrottkoloss-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 21493
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/schrottkoloss-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 21889
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/schrottkoloss-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 20908
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/schrottkoloss-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 21687
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/schrottkoloss-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 21615
+        },
+        {
+          "variant": "schrottkoloss",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/schrottkoloss-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 23838
+        }
+      ]
+    },
+    {
+      "file": "gallery-kabel-1x.png",
+      "seen": [
+        {
+          "variant": "kabel",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/kabel-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 410
+        },
+        {
+          "variant": "kabel",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/kabel-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 428
+        },
+        {
+          "variant": "kabel",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/kabel-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 432
+        },
+        {
+          "variant": "kabel",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/kabel-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 484
+        },
+        {
+          "variant": "kabel",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/kabel-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 557
+        },
+        {
+          "variant": "kabel",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/kabel-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 527
+        },
+        {
+          "variant": "kabel",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/kabel-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 410
+        },
+        {
+          "variant": "kabel",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/kabel-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 428
+        },
+        {
+          "variant": "kabel",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/kabel-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 433
+        },
+        {
+          "variant": "kabel",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/kabel-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 484
+        },
+        {
+          "variant": "kabel",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/kabel-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 557
+        },
+        {
+          "variant": "kabel",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/kabel-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 527
+        }
+      ]
+    },
+    {
+      "file": "gallery-kabel-2x.png",
+      "seen": [
+        {
+          "variant": "kabel",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/kabel-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 1576
+        },
+        {
+          "variant": "kabel",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/kabel-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1676
+        },
+        {
+          "variant": "kabel",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/kabel-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 1688
+        },
+        {
+          "variant": "kabel",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/kabel-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1855
+        },
+        {
+          "variant": "kabel",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/kabel-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2077
+        },
+        {
+          "variant": "kabel",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/kabel-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 2137
+        },
+        {
+          "variant": "kabel",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/kabel-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 1576
+        },
+        {
+          "variant": "kabel",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/kabel-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1675
+        },
+        {
+          "variant": "kabel",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/kabel-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 1688
+        },
+        {
+          "variant": "kabel",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/kabel-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1855
+        },
+        {
+          "variant": "kabel",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/kabel-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2078
+        },
+        {
+          "variant": "kabel",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/kabel-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 2138
+        }
+      ]
+    },
+    {
+      "file": "gallery-bass-1x.png",
+      "seen": [
+        {
+          "variant": "bass",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/bass-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 996
+        },
+        {
+          "variant": "bass",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/bass-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1019
+        },
+        {
+          "variant": "bass",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/bass-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 971
+        },
+        {
+          "variant": "bass",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/bass-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1091
+        },
+        {
+          "variant": "bass",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/bass-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 1208
+        },
+        {
+          "variant": "bass",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/bass-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 1378
+        },
+        {
+          "variant": "bass",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/bass-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 997
+        },
+        {
+          "variant": "bass",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/bass-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1020
+        },
+        {
+          "variant": "bass",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/bass-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 971
+        },
+        {
+          "variant": "bass",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/bass-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 1090
+        },
+        {
+          "variant": "bass",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/bass-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 1208
+        },
+        {
+          "variant": "bass",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/bass-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 1378
+        }
+      ]
+    },
+    {
+      "file": "gallery-bass-2x.png",
+      "seen": [
+        {
+          "variant": "bass",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/bass-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 3977
+        },
+        {
+          "variant": "bass",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/bass-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 4083
+        },
+        {
+          "variant": "bass",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/bass-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3899
+        },
+        {
+          "variant": "bass",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/bass-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 4407
+        },
+        {
+          "variant": "bass",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/bass-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 4895
+        },
+        {
+          "variant": "bass",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/bass-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 5501
+        },
+        {
+          "variant": "bass",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/bass-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 3977
+        },
+        {
+          "variant": "bass",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/bass-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 4085
+        },
+        {
+          "variant": "bass",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/bass-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3900
+        },
+        {
+          "variant": "bass",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/bass-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 4407
+        },
+        {
+          "variant": "bass",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/bass-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 4895
+        },
+        {
+          "variant": "bass",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/bass-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 5501
+        }
+      ]
+    },
+    {
+      "file": "gallery-uhr-1x.png",
+      "seen": [
+        {
+          "variant": "uhr",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/uhr-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 789
+        },
+        {
+          "variant": "uhr",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/uhr-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 809
+        },
+        {
+          "variant": "uhr",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/uhr-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 817
+        },
+        {
+          "variant": "uhr",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/uhr-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 780
+        },
+        {
+          "variant": "uhr",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/uhr-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 845
+        },
+        {
+          "variant": "uhr",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/uhr-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 928
+        },
+        {
+          "variant": "uhr",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/uhr-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 789
+        },
+        {
+          "variant": "uhr",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/uhr-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 808
+        },
+        {
+          "variant": "uhr",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/uhr-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 817
+        },
+        {
+          "variant": "uhr",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/uhr-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 781
+        },
+        {
+          "variant": "uhr",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/uhr-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 844
+        },
+        {
+          "variant": "uhr",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/uhr-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 921
+        }
+      ]
+    },
+    {
+      "file": "gallery-uhr-2x.png",
+      "seen": [
+        {
+          "variant": "uhr",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/uhr-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 3081
+        },
+        {
+          "variant": "uhr",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/uhr-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 3100
+        },
+        {
+          "variant": "uhr",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/uhr-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3115
+        },
+        {
+          "variant": "uhr",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/uhr-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 3035
+        },
+        {
+          "variant": "uhr",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/uhr-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3254
+        },
+        {
+          "variant": "uhr",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/uhr-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 3700
+        },
+        {
+          "variant": "uhr",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/uhr-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 3081
+        },
+        {
+          "variant": "uhr",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/uhr-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 3100
+        },
+        {
+          "variant": "uhr",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/uhr-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3115
+        },
+        {
+          "variant": "uhr",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/uhr-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 3034
+        },
+        {
+          "variant": "uhr",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/uhr-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3254
+        },
+        {
+          "variant": "uhr",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/uhr-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 3673
+        }
+      ]
+    },
+    {
+      "file": "gallery-wurz-1x.png",
+      "seen": [
+        {
+          "variant": "wurz",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/wurz-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 855
+        },
+        {
+          "variant": "wurz",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/wurz-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 874
+        },
+        {
+          "variant": "wurz",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/wurz-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 800
+        },
+        {
+          "variant": "wurz",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/wurz-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 928
+        },
+        {
+          "variant": "wurz",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/wurz-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 958
+        },
+        {
+          "variant": "wurz",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/wurz-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 1173
+        },
+        {
+          "variant": "wurz",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/wurz-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 855
+        },
+        {
+          "variant": "wurz",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/wurz-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 874
+        },
+        {
+          "variant": "wurz",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/wurz-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 800
+        },
+        {
+          "variant": "wurz",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/wurz-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 928
+        },
+        {
+          "variant": "wurz",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/wurz-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 958
+        },
+        {
+          "variant": "wurz",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/wurz-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 1173
+        }
+      ]
+    },
+    {
+      "file": "gallery-wurz-2x.png",
+      "seen": [
+        {
+          "variant": "wurz",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/wurz-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 3232
+        },
+        {
+          "variant": "wurz",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/wurz-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 3240
+        },
+        {
+          "variant": "wurz",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/wurz-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3015
+        },
+        {
+          "variant": "wurz",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/wurz-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 3454
+        },
+        {
+          "variant": "wurz",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/wurz-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3535
+        },
+        {
+          "variant": "wurz",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/wurz-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 4651
+        },
+        {
+          "variant": "wurz",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/wurz-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 3232
+        },
+        {
+          "variant": "wurz",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/wurz-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 3240
+        },
+        {
+          "variant": "wurz",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/wurz-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3015
+        },
+        {
+          "variant": "wurz",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/wurz-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 3454
+        },
+        {
+          "variant": "wurz",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/wurz-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3535
+        },
+        {
+          "variant": "wurz",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/wurz-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 4651
+        }
+      ]
+    },
+    {
+      "file": "gallery-kern-1x.png",
+      "seen": [
+        {
+          "variant": "kern",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/kern-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 720
+        },
+        {
+          "variant": "kern",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/kern-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 741
+        },
+        {
+          "variant": "kern",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/kern-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 768
+        },
+        {
+          "variant": "kern",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/kern-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 754
+        },
+        {
+          "variant": "kern",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/kern-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 793
+        },
+        {
+          "variant": "kern",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/kern-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 759
+        },
+        {
+          "variant": "kern",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/kern-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 720
+        },
+        {
+          "variant": "kern",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/kern-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 741
+        },
+        {
+          "variant": "kern",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/kern-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 768
+        },
+        {
+          "variant": "kern",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/kern-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 754
+        },
+        {
+          "variant": "kern",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/kern-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 793
+        },
+        {
+          "variant": "kern",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/kern-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 759
+        }
+      ]
+    },
+    {
+      "file": "gallery-kern-2x.png",
+      "seen": [
+        {
+          "variant": "kern",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/kern-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 2769
+        },
+        {
+          "variant": "kern",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/kern-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2813
+        },
+        {
+          "variant": "kern",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/kern-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2927
+        },
+        {
+          "variant": "kern",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/kern-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2895
+        },
+        {
+          "variant": "kern",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/kern-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3026
+        },
+        {
+          "variant": "kern",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/kern-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 3028
+        },
+        {
+          "variant": "kern",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/kern-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 2769
+        },
+        {
+          "variant": "kern",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/kern-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2813
+        },
+        {
+          "variant": "kern",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/kern-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2927
+        },
+        {
+          "variant": "kern",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/kern-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2895
+        },
+        {
+          "variant": "kern",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/kern-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 3026
+        },
+        {
+          "variant": "kern",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/kern-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 3028
+        }
+      ]
+    },
+    {
+      "file": "gallery-brigadeghoul-1x.png",
+      "seen": [
+        {
+          "variant": "brigadeghoul",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/brigadeghoul-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 500
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/brigadeghoul-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 523
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/brigadeghoul-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 541
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/brigadeghoul-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 543
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/brigadeghoul-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 528
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/brigadeghoul-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 602
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/brigadeghoul-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 500
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/brigadeghoul-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 523
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/brigadeghoul-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 540
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/brigadeghoul-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 543
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/brigadeghoul-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 528
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/brigadeghoul-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 602
+        }
+      ]
+    },
+    {
+      "file": "gallery-brigadeghoul-2x.png",
+      "seen": [
+        {
+          "variant": "brigadeghoul",
+          "pose": "idle",
+          "face": 1,
+          "key": "enemies/brigadeghoul-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 1948
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "walk-a",
+          "face": 1,
+          "key": "enemies/brigadeghoul-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2007
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "walk-b",
+          "face": 1,
+          "key": "enemies/brigadeghoul-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2099
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "attack-a",
+          "face": 1,
+          "key": "enemies/brigadeghoul-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2048
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "attack-b",
+          "face": 1,
+          "key": "enemies/brigadeghoul-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2029
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "hit",
+          "face": 1,
+          "key": "enemies/brigadeghoul-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 2414
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "idle",
+          "face": -1,
+          "key": "enemies/brigadeghoul-idle",
+          "painted": true,
+          "edge": 0,
+          "body": 1948
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "walk-a",
+          "face": -1,
+          "key": "enemies/brigadeghoul-walk-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2007
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "walk-b",
+          "face": -1,
+          "key": "enemies/brigadeghoul-walk-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2098
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "attack-a",
+          "face": -1,
+          "key": "enemies/brigadeghoul-attack-a",
+          "painted": true,
+          "edge": 0,
+          "body": 2048
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "attack-b",
+          "face": -1,
+          "key": "enemies/brigadeghoul-attack-b",
+          "painted": true,
+          "edge": 0,
+          "body": 2029
+        },
+        {
+          "variant": "brigadeghoul",
+          "pose": "hit",
+          "face": -1,
+          "key": "enemies/brigadeghoul-hit",
+          "painted": true,
+          "edge": 0,
+          "body": 2414
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "file": "koepenick-1-1x-debug-hit.png",
+      "district": "Köpenick",
+      "open": {
+        "x": 955,
+        "y": 910,
+        "d": 603.7458074388591
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "ghoul",
+        "brute",
+        "spitter",
+        "raser"
+      ],
+      "enemies": [
+        {
+          "type": "ghoul",
+          "key": "enemies/ghoul-idle",
+          "r": 10
+        },
+        {
+          "type": "brute",
+          "key": "enemies/brute-walk-b",
+          "r": 17
+        },
+        {
+          "type": "spitter",
+          "key": "enemies/spitter-idle",
+          "r": 11
+        },
+        {
+          "type": "raser",
+          "key": "enemies/raser-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "koepenick-1-2x-debug-hit.png",
+      "district": "Köpenick",
+      "open": {
+        "x": 955,
+        "y": 910,
+        "d": 603.7458074388591
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "ghoul",
+        "brute",
+        "spitter",
+        "raser"
+      ],
+      "enemies": [
+        {
+          "type": "ghoul",
+          "key": "enemies/ghoul-idle",
+          "r": 10
+        },
+        {
+          "type": "brute",
+          "key": "enemies/brute-walk-b",
+          "r": 17
+        },
+        {
+          "type": "spitter",
+          "key": "enemies/spitter-idle",
+          "r": 11
+        },
+        {
+          "type": "raser",
+          "key": "enemies/raser-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "koepenick-2-1x-debug-hit.png",
+      "district": "Köpenick",
+      "open": {
+        "x": 1000,
+        "y": 910,
+        "d": 559.2888341456496
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "boss",
+        "crow"
+      ],
+      "enemies": [
+        {
+          "type": "boss",
+          "key": "enemies/schrottkoloss-idle",
+          "r": 34
+        },
+        {
+          "type": "crow",
+          "key": "enemies/crow-walk-b",
+          "r": 8
+        }
+      ]
+    },
+    {
+      "file": "koepenick-2-2x-debug-hit.png",
+      "district": "Köpenick",
+      "open": {
+        "x": 1000,
+        "y": 910,
+        "d": 559.2888341456496
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "boss",
+        "crow"
+      ],
+      "enemies": [
+        {
+          "type": "boss",
+          "key": "enemies/schrottkoloss-idle",
+          "r": 34
+        },
+        {
+          "type": "crow",
+          "key": "enemies/crow-walk-b",
+          "r": 8
+        }
+      ]
+    },
+    {
+      "file": "xhain-1-1x-debug-hit.png",
+      "district": "Xhain",
+      "open": {
+        "x": 3835,
+        "y": 775,
+        "d": 30.07449863086071
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "ghoul",
+        "brute",
+        "spitter",
+        "raser"
+      ],
+      "enemies": [
+        {
+          "type": "ghoul",
+          "key": "enemies/ghoul-idle",
+          "r": 10
+        },
+        {
+          "type": "brute",
+          "key": "enemies/brute-walk-b",
+          "r": 17
+        },
+        {
+          "type": "spitter",
+          "key": "enemies/spitter-idle",
+          "r": 11
+        },
+        {
+          "type": "raser",
+          "key": "enemies/raser-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "xhain-1-2x-debug-hit.png",
+      "district": "Xhain",
+      "open": {
+        "x": 3835,
+        "y": 775,
+        "d": 30.07449863086071
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "ghoul",
+        "brute",
+        "spitter",
+        "raser"
+      ],
+      "enemies": [
+        {
+          "type": "ghoul",
+          "key": "enemies/ghoul-idle",
+          "r": 10
+        },
+        {
+          "type": "brute",
+          "key": "enemies/brute-walk-b",
+          "r": 17
+        },
+        {
+          "type": "spitter",
+          "key": "enemies/spitter-idle",
+          "r": 11
+        },
+        {
+          "type": "raser",
+          "key": "enemies/raser-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "xhain-2-1x-debug-hit.png",
+      "district": "Xhain",
+      "open": {
+        "x": 3835,
+        "y": 775,
+        "d": 30.07449863086071
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "boss",
+        "rat",
+        "bomb"
+      ],
+      "enemies": [
+        {
+          "type": "boss",
+          "key": "enemies/schrottkoloss-idle",
+          "r": 34
+        },
+        {
+          "type": "rat",
+          "key": "enemies/rat-walk-b",
+          "r": 6
+        },
+        {
+          "type": "bomb",
+          "key": "enemies/bomb-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "xhain-2-2x-debug-hit.png",
+      "district": "Xhain",
+      "open": {
+        "x": 3835,
+        "y": 775,
+        "d": 30.07449863086071
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "boss",
+        "rat",
+        "bomb"
+      ],
+      "enemies": [
+        {
+          "type": "boss",
+          "key": "enemies/schrottkoloss-idle",
+          "r": 34
+        },
+        {
+          "type": "rat",
+          "key": "enemies/rat-walk-b",
+          "r": 6
+        },
+        {
+          "type": "bomb",
+          "key": "enemies/bomb-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "alexanderplatz-1-1x-debug-hit.png",
+      "district": "Alexanderplatz",
+      "open": {
+        "x": 2395,
+        "y": 1495,
+        "d": 25.495097567963924
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "ghoul",
+        "brute",
+        "spitter",
+        "raser"
+      ],
+      "enemies": [
+        {
+          "type": "ghoul",
+          "key": "enemies/brigadeghoul-idle",
+          "r": 10
+        },
+        {
+          "type": "brute",
+          "key": "enemies/brute-walk-b",
+          "r": 17
+        },
+        {
+          "type": "spitter",
+          "key": "enemies/spitter-idle",
+          "r": 11
+        },
+        {
+          "type": "raser",
+          "key": "enemies/raser-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "alexanderplatz-1-2x-debug-hit.png",
+      "district": "Alexanderplatz",
+      "open": {
+        "x": 2395,
+        "y": 1495,
+        "d": 25.495097567963924
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "ghoul",
+        "brute",
+        "spitter",
+        "raser"
+      ],
+      "enemies": [
+        {
+          "type": "ghoul",
+          "key": "enemies/brigadeghoul-idle",
+          "r": 10
+        },
+        {
+          "type": "brute",
+          "key": "enemies/brute-walk-b",
+          "r": 17
+        },
+        {
+          "type": "spitter",
+          "key": "enemies/spitter-idle",
+          "r": 11
+        },
+        {
+          "type": "raser",
+          "key": "enemies/raser-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "alexanderplatz-2-1x-debug-hit.png",
+      "district": "Alexanderplatz",
+      "open": {
+        "x": 2395,
+        "y": 1495,
+        "d": 25.495097567963924
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "boss",
+        "bomb",
+        "crow",
+        "uhr"
+      ],
+      "enemies": [
+        {
+          "type": "boss",
+          "key": "enemies/schrottkoloss-idle",
+          "r": 34
+        },
+        {
+          "type": "bomb",
+          "key": "enemies/bomb-walk-b",
+          "r": 11
+        },
+        {
+          "type": "crow",
+          "key": "enemies/crow-idle",
+          "r": 8
+        },
+        {
+          "type": "uhr",
+          "key": "enemies/uhr-idle",
+          "r": 13
+        }
+      ]
+    },
+    {
+      "file": "alexanderplatz-2-2x-debug-hit.png",
+      "district": "Alexanderplatz",
+      "open": {
+        "x": 2395,
+        "y": 1495,
+        "d": 25.495097567963924
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "boss",
+        "bomb",
+        "crow",
+        "uhr"
+      ],
+      "enemies": [
+        {
+          "type": "boss",
+          "key": "enemies/schrottkoloss-idle",
+          "r": 34
+        },
+        {
+          "type": "bomb",
+          "key": "enemies/bomb-walk-b",
+          "r": 11
+        },
+        {
+          "type": "crow",
+          "key": "enemies/crow-idle",
+          "r": 8
+        },
+        {
+          "type": "uhr",
+          "key": "enemies/uhr-idle",
+          "r": 13
+        }
+      ]
+    },
+    {
+      "file": "alexanderplatz-3-1x-debug-hit.png",
+      "district": "Alexanderplatz",
+      "open": {
+        "x": 2395,
+        "y": 1495,
+        "d": 25.495097567963924
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "wurz",
+        "kern"
+      ],
+      "enemies": [
+        {
+          "type": "wurz",
+          "key": "enemies/wurz-idle",
+          "r": 12
+        },
+        {
+          "type": "kern",
+          "key": "enemies/kern-walk-b",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "alexanderplatz-3-2x-debug-hit.png",
+      "district": "Alexanderplatz",
+      "open": {
+        "x": 2395,
+        "y": 1495,
+        "d": 25.495097567963924
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "wurz",
+        "kern"
+      ],
+      "enemies": [
+        {
+          "type": "wurz",
+          "key": "enemies/wurz-idle",
+          "r": 12
+        },
+        {
+          "type": "kern",
+          "key": "enemies/kern-walk-b",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "mitte-1-1x-debug-hit.png",
+      "district": "Mitte",
+      "open": {
+        "x": 1765,
+        "y": 3475,
+        "d": 478.7010752447572
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "ghoul",
+        "brute",
+        "spitter",
+        "raser"
+      ],
+      "enemies": [
+        {
+          "type": "ghoul",
+          "key": "enemies/ghoul-idle",
+          "r": 10
+        },
+        {
+          "type": "brute",
+          "key": "enemies/brute-walk-b",
+          "r": 17
+        },
+        {
+          "type": "spitter",
+          "key": "enemies/spitter-idle",
+          "r": 11
+        },
+        {
+          "type": "raser",
+          "key": "enemies/raser-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "mitte-1-2x-debug-hit.png",
+      "district": "Mitte",
+      "open": {
+        "x": 1765,
+        "y": 3475,
+        "d": 478.7010752447572
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "ghoul",
+        "brute",
+        "spitter",
+        "raser"
+      ],
+      "enemies": [
+        {
+          "type": "ghoul",
+          "key": "enemies/ghoul-idle",
+          "r": 10
+        },
+        {
+          "type": "brute",
+          "key": "enemies/brute-walk-b",
+          "r": 17
+        },
+        {
+          "type": "spitter",
+          "key": "enemies/spitter-idle",
+          "r": 11
+        },
+        {
+          "type": "raser",
+          "key": "enemies/raser-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "mitte-2-1x-debug-hit.png",
+      "district": "Mitte",
+      "open": {
+        "x": 2215,
+        "y": 3070,
+        "d": 200.97531413577104
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "boss",
+        "bomb",
+        "shield",
+        "kabel"
+      ],
+      "enemies": [
+        {
+          "type": "boss",
+          "key": "enemies/schrottkoloss-idle",
+          "r": 34
+        },
+        {
+          "type": "bomb",
+          "key": "enemies/bomb-walk-b",
+          "r": 11
+        },
+        {
+          "type": "shield",
+          "key": "enemies/shield-idle",
+          "r": 13
+        },
+        {
+          "type": "kabel",
+          "key": "enemies/kabel-idle",
+          "r": 9
+        }
+      ]
+    },
+    {
+      "file": "mitte-2-2x-debug-hit.png",
+      "district": "Mitte",
+      "open": {
+        "x": 2215,
+        "y": 3070,
+        "d": 200.97531413577104
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "boss",
+        "bomb",
+        "shield",
+        "kabel"
+      ],
+      "enemies": [
+        {
+          "type": "boss",
+          "key": "enemies/schrottkoloss-idle",
+          "r": 34
+        },
+        {
+          "type": "bomb",
+          "key": "enemies/bomb-walk-b",
+          "r": 11
+        },
+        {
+          "type": "shield",
+          "key": "enemies/shield-idle",
+          "r": 13
+        },
+        {
+          "type": "kabel",
+          "key": "enemies/kabel-idle",
+          "r": 9
+        }
+      ]
+    },
+    {
+      "file": "mitte-3-1x-debug-hit.png",
+      "district": "Mitte",
+      "open": {
+        "x": 1945,
+        "y": 3160,
+        "d": 116.48694831629761
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "bass"
+      ],
+      "enemies": [
+        {
+          "type": "bass",
+          "key": "enemies/bass-idle",
+          "r": 15
+        }
+      ]
+    },
+    {
+      "file": "mitte-3-2x-debug-hit.png",
+      "district": "Mitte",
+      "open": {
+        "x": 1945,
+        "y": 3160,
+        "d": 116.48694831629761
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "bass"
+      ],
+      "enemies": [
+        {
+          "type": "bass",
+          "key": "enemies/bass-idle",
+          "r": 15
+        }
+      ]
+    },
+    {
+      "file": "tempelhof-1-1x-debug-hit.png",
+      "district": "Tempelhof",
+      "open": {
+        "x": 1180,
+        "y": 1270,
+        "d": 53.851648071345046
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "ghoul",
+        "brute",
+        "spitter",
+        "raser"
+      ],
+      "enemies": [
+        {
+          "type": "ghoul",
+          "key": "enemies/ghoul-idle",
+          "r": 10
+        },
+        {
+          "type": "brute",
+          "key": "enemies/brute-walk-b",
+          "r": 17
+        },
+        {
+          "type": "spitter",
+          "key": "enemies/spitter-idle",
+          "r": 11
+        },
+        {
+          "type": "raser",
+          "key": "enemies/raser-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "tempelhof-1-2x-debug-hit.png",
+      "district": "Tempelhof",
+      "open": {
+        "x": 1180,
+        "y": 1270,
+        "d": 53.851648071345046
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "ghoul",
+        "brute",
+        "spitter",
+        "raser"
+      ],
+      "enemies": [
+        {
+          "type": "ghoul",
+          "key": "enemies/ghoul-idle",
+          "r": 10
+        },
+        {
+          "type": "brute",
+          "key": "enemies/brute-walk-b",
+          "r": 17
+        },
+        {
+          "type": "spitter",
+          "key": "enemies/spitter-idle",
+          "r": 11
+        },
+        {
+          "type": "raser",
+          "key": "enemies/raser-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "tempelhof-2-1x-debug-hit.png",
+      "district": "Tempelhof",
+      "open": {
+        "x": 1180,
+        "y": 1225,
+        "d": 20.615528128088304
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "boss",
+        "bomb",
+        "crow"
+      ],
+      "enemies": [
+        {
+          "type": "boss",
+          "key": "enemies/schrottkoloss-idle",
+          "r": 34
+        },
+        {
+          "type": "bomb",
+          "key": "enemies/bomb-walk-b",
+          "r": 11
+        },
+        {
+          "type": "crow",
+          "key": "enemies/crow-idle",
+          "r": 8
+        }
+      ]
+    },
+    {
+      "file": "tempelhof-2-2x-debug-hit.png",
+      "district": "Tempelhof",
+      "open": {
+        "x": 1180,
+        "y": 1225,
+        "d": 20.615528128088304
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "boss",
+        "bomb",
+        "crow"
+      ],
+      "enemies": [
+        {
+          "type": "boss",
+          "key": "enemies/schrottkoloss-idle",
+          "r": 34
+        },
+        {
+          "type": "bomb",
+          "key": "enemies/bomb-walk-b",
+          "r": 11
+        },
+        {
+          "type": "crow",
+          "key": "enemies/crow-idle",
+          "r": 8
+        }
+      ]
+    },
+    {
+      "file": "spandau-1-1x-debug-hit.png",
+      "district": "Spandau",
+      "open": {
+        "x": 1180,
+        "y": 1225,
+        "d": 20.615528128088304
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "ghoul",
+        "brute",
+        "spitter",
+        "raser"
+      ],
+      "enemies": [
+        {
+          "type": "ghoul",
+          "key": "enemies/ghoul-idle",
+          "r": 10
+        },
+        {
+          "type": "brute",
+          "key": "enemies/brute-walk-b",
+          "r": 17
+        },
+        {
+          "type": "spitter",
+          "key": "enemies/spitter-idle",
+          "r": 11
+        },
+        {
+          "type": "raser",
+          "key": "enemies/raser-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "spandau-1-2x-debug-hit.png",
+      "district": "Spandau",
+      "open": {
+        "x": 1180,
+        "y": 1225,
+        "d": 20.615528128088304
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "ghoul",
+        "brute",
+        "spitter",
+        "raser"
+      ],
+      "enemies": [
+        {
+          "type": "ghoul",
+          "key": "enemies/ghoul-idle",
+          "r": 10
+        },
+        {
+          "type": "brute",
+          "key": "enemies/brute-walk-b",
+          "r": 17
+        },
+        {
+          "type": "spitter",
+          "key": "enemies/spitter-idle",
+          "r": 11
+        },
+        {
+          "type": "raser",
+          "key": "enemies/raser-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "spandau-2-1x-debug-hit.png",
+      "district": "Spandau",
+      "open": {
+        "x": 1180,
+        "y": 1225,
+        "d": 20.615528128088304
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "boss",
+        "bomb",
+        "shield",
+        "crow"
+      ],
+      "enemies": [
+        {
+          "type": "boss",
+          "key": "enemies/schrottkoloss-idle",
+          "r": 34
+        },
+        {
+          "type": "bomb",
+          "key": "enemies/bomb-walk-b",
+          "r": 11
+        },
+        {
+          "type": "shield",
+          "key": "enemies/shield-idle",
+          "r": 13
+        },
+        {
+          "type": "crow",
+          "key": "enemies/crow-idle",
+          "r": 8
+        }
+      ]
+    },
+    {
+      "file": "spandau-2-2x-debug-hit.png",
+      "district": "Spandau",
+      "open": {
+        "x": 1180,
+        "y": 1225,
+        "d": 20.615528128088304
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "boss",
+        "bomb",
+        "shield",
+        "crow"
+      ],
+      "enemies": [
+        {
+          "type": "boss",
+          "key": "enemies/schrottkoloss-idle",
+          "r": 34
+        },
+        {
+          "type": "bomb",
+          "key": "enemies/bomb-walk-b",
+          "r": 11
+        },
+        {
+          "type": "shield",
+          "key": "enemies/shield-idle",
+          "r": 13
+        },
+        {
+          "type": "crow",
+          "key": "enemies/crow-idle",
+          "r": 8
+        }
+      ]
+    },
+    {
+      "file": "spandau-3-1x-debug-hit.png",
+      "district": "Spandau",
+      "open": {
+        "x": 1180,
+        "y": 1225,
+        "d": 20.615528128088304
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "howl"
+      ],
+      "enemies": [
+        {
+          "type": "howl",
+          "key": "enemies/howl-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "spandau-3-2x-debug-hit.png",
+      "district": "Spandau",
+      "open": {
+        "x": 1180,
+        "y": 1225,
+        "d": 20.615528128088304
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "howl"
+      ],
+      "enemies": [
+        {
+          "type": "howl",
+          "key": "enemies/howl-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "marzahn-1-1x-debug-hit.png",
+      "district": "Marzahn",
+      "open": {
+        "x": 1135,
+        "y": 1180,
+        "d": 76.32168761236875
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "ghoul",
+        "brute",
+        "spitter",
+        "raser"
+      ],
+      "enemies": [
+        {
+          "type": "ghoul",
+          "key": "enemies/ghoul-idle",
+          "r": 10
+        },
+        {
+          "type": "brute",
+          "key": "enemies/brute-walk-b",
+          "r": 17
+        },
+        {
+          "type": "spitter",
+          "key": "enemies/spitter-idle",
+          "r": 11
+        },
+        {
+          "type": "raser",
+          "key": "enemies/raser-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "marzahn-1-2x-debug-hit.png",
+      "district": "Marzahn",
+      "open": {
+        "x": 1135,
+        "y": 1180,
+        "d": 76.32168761236875
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "ghoul",
+        "brute",
+        "spitter",
+        "raser"
+      ],
+      "enemies": [
+        {
+          "type": "ghoul",
+          "key": "enemies/ghoul-idle",
+          "r": 10
+        },
+        {
+          "type": "brute",
+          "key": "enemies/brute-walk-b",
+          "r": 17
+        },
+        {
+          "type": "spitter",
+          "key": "enemies/spitter-idle",
+          "r": 11
+        },
+        {
+          "type": "raser",
+          "key": "enemies/raser-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "marzahn-2-1x-debug-hit.png",
+      "district": "Marzahn",
+      "open": {
+        "x": 1135,
+        "y": 1180,
+        "d": 76.32168761236875
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "boss",
+        "rat",
+        "bomb",
+        "shield"
+      ],
+      "enemies": [
+        {
+          "type": "boss",
+          "key": "enemies/schrottkoloss-idle",
+          "r": 34
+        },
+        {
+          "type": "rat",
+          "key": "enemies/rat-walk-b",
+          "r": 6
+        },
+        {
+          "type": "bomb",
+          "key": "enemies/bomb-idle",
+          "r": 11
+        },
+        {
+          "type": "shield",
+          "key": "enemies/shield-idle",
+          "r": 13
+        }
+      ]
+    },
+    {
+      "file": "marzahn-2-2x-debug-hit.png",
+      "district": "Marzahn",
+      "open": {
+        "x": 1135,
+        "y": 1180,
+        "d": 76.32168761236875
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "boss",
+        "rat",
+        "bomb",
+        "shield"
+      ],
+      "enemies": [
+        {
+          "type": "boss",
+          "key": "enemies/schrottkoloss-idle",
+          "r": 34
+        },
+        {
+          "type": "rat",
+          "key": "enemies/rat-walk-b",
+          "r": 6
+        },
+        {
+          "type": "bomb",
+          "key": "enemies/bomb-idle",
+          "r": 11
+        },
+        {
+          "type": "shield",
+          "key": "enemies/shield-idle",
+          "r": 13
+        }
+      ]
+    },
+    {
+      "file": "marzahn-3-1x-debug-hit.png",
+      "district": "Marzahn",
+      "open": {
+        "x": 1180,
+        "y": 1225,
+        "d": 20.615528128088304
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "crow",
+        "howl"
+      ],
+      "enemies": [
+        {
+          "type": "crow",
+          "key": "enemies/crow-idle",
+          "r": 8
+        },
+        {
+          "type": "howl",
+          "key": "enemies/howl-walk-b",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "marzahn-3-2x-debug-hit.png",
+      "district": "Marzahn",
+      "open": {
+        "x": 1180,
+        "y": 1225,
+        "d": 20.615528128088304
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "crow",
+        "howl"
+      ],
+      "enemies": [
+        {
+          "type": "crow",
+          "key": "enemies/crow-idle",
+          "r": 8
+        },
+        {
+          "type": "howl",
+          "key": "enemies/howl-walk-b",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "s3-1-1x-debug-hit.png",
+      "district": "S3 · Köpenick → Xhain",
+      "open": {
+        "x": 775,
+        "y": 865,
+        "d": 30.646350856202385
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "ghoul",
+        "brute",
+        "spitter",
+        "raser"
+      ],
+      "enemies": [
+        {
+          "type": "ghoul",
+          "key": "enemies/ghoul-idle",
+          "r": 10
+        },
+        {
+          "type": "brute",
+          "key": "enemies/brute-walk-b",
+          "r": 17
+        },
+        {
+          "type": "spitter",
+          "key": "enemies/spitter-idle",
+          "r": 11
+        },
+        {
+          "type": "raser",
+          "key": "enemies/raser-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "s3-1-2x-debug-hit.png",
+      "district": "S3 · Köpenick → Xhain",
+      "open": {
+        "x": 775,
+        "y": 865,
+        "d": 30.646350856202385
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "ghoul",
+        "brute",
+        "spitter",
+        "raser"
+      ],
+      "enemies": [
+        {
+          "type": "ghoul",
+          "key": "enemies/ghoul-idle",
+          "r": 10
+        },
+        {
+          "type": "brute",
+          "key": "enemies/brute-walk-b",
+          "r": 17
+        },
+        {
+          "type": "spitter",
+          "key": "enemies/spitter-idle",
+          "r": 11
+        },
+        {
+          "type": "raser",
+          "key": "enemies/raser-idle",
+          "r": 11
+        }
+      ]
+    },
+    {
+      "file": "s3-2-1x-debug-hit.png",
+      "district": "S3 · Köpenick → Xhain",
+      "open": {
+        "x": 775,
+        "y": 865,
+        "d": 30.646350856202385
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 1.1851851851851851,
+      "types": [
+        "boss",
+        "crow"
+      ],
+      "enemies": [
+        {
+          "type": "boss",
+          "key": "enemies/schrottkoloss-idle",
+          "r": 34
+        },
+        {
+          "type": "crow",
+          "key": "enemies/crow-walk-b",
+          "r": 8
+        }
+      ]
+    },
+    {
+      "file": "s3-2-2x-debug-hit.png",
+      "district": "S3 · Köpenick → Xhain",
+      "open": {
+        "x": 775,
+        "y": 865,
+        "d": 30.646350856202385
+      },
+      "baseZ": 1.1851851851851851,
+      "Z": 2.3703703703703702,
+      "types": [
+        "boss",
+        "crow"
+      ],
+      "enemies": [
+        {
+          "type": "boss",
+          "key": "enemies/schrottkoloss-idle",
+          "r": 34
+        },
+        {
+          "type": "crow",
+          "key": "enemies/crow-walk-b",
+          "r": 8
+        }
+      ]
+    }
+  ],
+  "behavior": {
+    "shield": {
+      "front": {
+        "lost": 20,
+        "guard": 0
+      },
+      "rear": {
+        "lost": 100,
+        "guard": 0
+      },
+      "insideArc": {
+        "lost": 20,
+        "guard": 0
+      },
+      "outsideArc": {
+        "lost": 100,
+        "guard": 0
+      },
+      "open": {
+        "lost": 100,
+        "guard": 1
+      },
+      "hammer": {
+        "lost": 100,
+        "guard": 2.2
+      }
+    },
+    "crow": {
+      "bodyY": [
+        148,
+        155
+      ],
+      "ringY": 180,
+      "airGap": 25
+    },
+    "mouth": [
+      {
+        "variant": "spitter",
+        "face": 1,
+        "key": "enemies/spitter-attack-b",
+        "expected": {
+          "x": 21.672516666666663,
+          "y": -32.35706666666667
+        },
+        "actual": {
+          "x": 21.672516666666663,
+          "y": -32.35706666666667
+        },
+        "delta": 0,
+        "initial": {
+          "x": 21.672516666666663,
+          "y": -32.35706666666667
+        },
+        "initialDelta": 0,
+        "logical": {
+          "x": 0,
+          "y": -14,
+          "vx": 193.42280874060586,
+          "vy": 81.77785188481661,
+          "r": 6,
+          "life": 3.5
+        },
+        "projectile": {
+          "x": 0,
+          "y": -14,
+          "vx": 193.42280874060586,
+          "vy": 81.77785188481661,
+          "r": 6,
+          "dmg": 11,
+          "life": 3.5,
+          "mx": 11.773021730054998,
+          "my": -17.407319198360835,
+          "ml": 3.5
+        }
+      },
+      {
+        "variant": "spitter",
+        "face": -1,
+        "key": "enemies/spitter-attack-b",
+        "expected": {
+          "x": -21.672516666666663,
+          "y": -32.35706666666667
+        },
+        "actual": {
+          "x": -21.672516666666663,
+          "y": -32.35706666666667
+        },
+        "delta": 0,
+        "initial": {
+          "x": -21.67251666666666,
+          "y": -32.35706666666667
+        },
+        "initialDelta": 3.552713678800501e-15,
+        "logical": {
+          "x": 0,
+          "y": -14,
+          "vx": 193.42280874060586,
+          "vy": 81.77785188481661,
+          "r": 6,
+          "life": 3.5
+        },
+        "projectile": {
+          "x": 0,
+          "y": -14,
+          "vx": 193.42280874060586,
+          "vy": 81.77785188481661,
+          "r": 6,
+          "dmg": 11,
+          "life": 3.5,
+          "mx": -31.572011603278327,
+          "my": -17.407319198360835,
+          "ml": 3.5
+        }
+      },
+      {
+        "variant": "kern",
+        "face": 1,
+        "key": "enemies/kern-attack-b",
+        "expected": {
+          "x": 15.572916666666664,
+          "y": -30.575716666666665
+        },
+        "actual": {
+          "x": 15.572916666666664,
+          "y": -30.575716666666665
+        },
+        "delta": 0,
+        "initial": {
+          "x": 15.572916666666664,
+          "y": -30.575716666666665
+        },
+        "initialDelta": 0,
+        "logical": {
+          "x": 0,
+          "y": -14,
+          "vx": 193.42280874060586,
+          "vy": 81.77785188481661,
+          "r": 6,
+          "life": 3.5
+        },
+        "projectile": {
+          "x": 0,
+          "y": -14,
+          "vx": 193.42280874060586,
+          "vy": 81.77785188481661,
+          "r": 6,
+          "dmg": 10,
+          "life": 3.5,
+          "mx": 5.673421730054999,
+          "my": -15.625969198360831,
+          "ml": 3.5
+        }
+      },
+      {
+        "variant": "kern",
+        "face": -1,
+        "key": "enemies/kern-attack-b",
+        "expected": {
+          "x": -15.572916666666664,
+          "y": -30.575716666666665
+        },
+        "actual": {
+          "x": -15.572916666666664,
+          "y": -30.575716666666665
+        },
+        "delta": 0,
+        "initial": {
+          "x": -15.572916666666666,
+          "y": -30.575716666666665
+        },
+        "initialDelta": 1.7763568394002505e-15,
+        "logical": {
+          "x": 0,
+          "y": -14,
+          "vx": 193.42280874060586,
+          "vy": 81.77785188481661,
+          "r": 6,
+          "life": 3.5
+        },
+        "projectile": {
+          "x": 0,
+          "y": -14,
+          "vx": 193.42280874060586,
+          "vy": 81.77785188481661,
+          "r": 6,
+          "dmg": 10,
+          "life": 3.5,
+          "mx": -25.47241160327833,
+          "my": -15.625969198360831,
+          "ml": 3.5
+        }
+      }
+    ],
+    "contacts": [
+      {
+        "variant": "ghoul",
+        "distance": 22,
+        "required": 22,
+        "key": "enemies/ghoul-attack-b"
+      },
+      {
+        "variant": "brute",
+        "distance": 29,
+        "required": 29,
+        "key": "enemies/brute-attack-b"
+      },
+      {
+        "variant": "spitter",
+        "distance": 23,
+        "required": 23,
+        "key": "enemies/spitter-attack-b"
+      },
+      {
+        "variant": "rat",
+        "distance": 18,
+        "required": 18,
+        "key": "enemies/rat-attack-b"
+      },
+      {
+        "variant": "crow",
+        "distance": 20,
+        "required": 20,
+        "key": "enemies/crow-attack-b"
+      },
+      {
+        "variant": "shield",
+        "distance": 25,
+        "required": 25,
+        "key": "enemies/shield-attack-b"
+      },
+      {
+        "variant": "bomb",
+        "distance": 23,
+        "required": 23,
+        "key": "enemies/bomb-attack-b"
+      },
+      {
+        "variant": "howl",
+        "distance": 23,
+        "required": 23,
+        "key": "enemies/howl-attack-b"
+      },
+      {
+        "variant": "raser",
+        "distance": 23,
+        "required": 23,
+        "key": "enemies/raser-attack-b"
+      },
+      {
+        "variant": "schrottkoloss",
+        "distance": 46,
+        "required": 46,
+        "key": "enemies/schrottkoloss-attack-b"
+      },
+      {
+        "variant": "kabel",
+        "distance": 21,
+        "required": 21,
+        "key": "enemies/kabel-attack-b"
+      },
+      {
+        "variant": "bass",
+        "distance": 27,
+        "required": 27,
+        "key": "enemies/bass-attack-b"
+      },
+      {
+        "variant": "uhr",
+        "distance": 25,
+        "required": 25,
+        "key": "enemies/uhr-attack-b"
+      },
+      {
+        "variant": "wurz",
+        "distance": 24,
+        "required": 24,
+        "key": "enemies/wurz-attack-b"
+      },
+      {
+        "variant": "kern",
+        "distance": 23,
+        "required": 23,
+        "key": "enemies/kern-attack-b"
+      },
+      {
+        "variant": "brigadeghoul",
+        "distance": 22,
+        "required": 22,
+        "key": "enemies/brigadeghoul-attack-b"
+      }
+    ],
+    "bigBoss": {
+      "painted": false,
+      "big": true,
+      "canvasBodyPixels": 18556
+    },
+    "action": {
+      "charge": {
+        "start": [
+          926.0086219713515,
+          1001.2167747730646
+        ],
+        "projected": [
+          117.50000000000003,
+          181
+        ],
+        "key": "enemies/raser-attack-a"
+      },
+      "mouth": {
+        "enemy": "spitter",
+        "offset": {
+          "x": -21.672516666666663,
+          "y": -32.35706666666667
+        },
+        "projectile": {
+          "x": 1042.681240867132,
+          "y": 884.6862915010153,
+          "vx": -208.2733519931453,
+          "vy": 26.873980902341223,
+          "r": 6,
+          "dmg": 11,
+          "life": 3.5,
+          "mx": -31.572011603278327,
+          "my": -17.407319198360824,
+          "ml": 3.5
+        }
+      },
+      "eliteText": [
+        "Elite · Flink",
+        "Elite · Gepanzert"
+      ],
+      "hud": {
+        "hp": "100 / 100",
+        "district": "Köpenick",
+        "remaining": "4"
+      }
+    }
+  },
+  "completedPhases": [
+    "visual",
+    "perf"
+  ],
+  "smoke": {
+    "state": "play",
+    "version": "0.62",
+    "enemyCount": 1
+  },
+  "schema": {
+    "count": 97,
+    "keys": [
+      "enemies/bass-attack-a",
+      "enemies/bass-attack-b",
+      "enemies/bass-hit",
+      "enemies/bass-idle",
+      "enemies/bass-walk-a",
+      "enemies/bass-walk-b",
+      "enemies/bomb-attack-a",
+      "enemies/bomb-attack-b",
+      "enemies/bomb-hit",
+      "enemies/bomb-idle",
+      "enemies/bomb-walk-a",
+      "enemies/bomb-walk-b",
+      "enemies/brigadeghoul-attack-a",
+      "enemies/brigadeghoul-attack-b",
+      "enemies/brigadeghoul-hit",
+      "enemies/brigadeghoul-idle",
+      "enemies/brigadeghoul-walk-a",
+      "enemies/brigadeghoul-walk-b",
+      "enemies/brute-attack-a",
+      "enemies/brute-attack-b",
+      "enemies/brute-hit",
+      "enemies/brute-idle",
+      "enemies/brute-walk-a",
+      "enemies/brute-walk-b",
+      "enemies/crow-attack-a",
+      "enemies/crow-attack-b",
+      "enemies/crow-hit",
+      "enemies/crow-idle",
+      "enemies/crow-walk-a",
+      "enemies/crow-walk-b",
+      "enemies/ghoul-attack-a",
+      "enemies/ghoul-attack-b",
+      "enemies/ghoul-hit",
+      "enemies/ghoul-idle",
+      "enemies/ghoul-walk-a",
+      "enemies/ghoul-walk-b",
+      "enemies/howl-attack-a",
+      "enemies/howl-attack-b",
+      "enemies/howl-hit",
+      "enemies/howl-idle",
+      "enemies/howl-walk-a",
+      "enemies/howl-walk-b",
+      "enemies/kabel-attack-a",
+      "enemies/kabel-attack-b",
+      "enemies/kabel-hit",
+      "enemies/kabel-idle",
+      "enemies/kabel-walk-a",
+      "enemies/kabel-walk-b",
+      "enemies/kern-attack-a",
+      "enemies/kern-attack-b",
+      "enemies/kern-hit",
+      "enemies/kern-idle",
+      "enemies/kern-walk-a",
+      "enemies/kern-walk-b",
+      "enemies/raser-attack-a",
+      "enemies/raser-attack-b",
+      "enemies/raser-hit",
+      "enemies/raser-idle",
+      "enemies/raser-walk-a",
+      "enemies/raser-walk-b",
+      "enemies/rat-attack-a",
+      "enemies/rat-attack-b",
+      "enemies/rat-hit",
+      "enemies/rat-idle",
+      "enemies/rat-walk-a",
+      "enemies/rat-walk-b",
+      "enemies/schrottkoloss-attack-a",
+      "enemies/schrottkoloss-attack-b",
+      "enemies/schrottkoloss-hit",
+      "enemies/schrottkoloss-idle",
+      "enemies/schrottkoloss-walk-a",
+      "enemies/schrottkoloss-walk-b",
+      "enemies/shield-attack-a",
+      "enemies/shield-attack-b",
+      "enemies/shield-hit",
+      "enemies/shield-idle",
+      "enemies/shield-panel",
+      "enemies/shield-walk-a",
+      "enemies/shield-walk-b",
+      "enemies/spitter-attack-a",
+      "enemies/spitter-attack-b",
+      "enemies/spitter-hit",
+      "enemies/spitter-idle",
+      "enemies/spitter-walk-a",
+      "enemies/spitter-walk-b",
+      "enemies/uhr-attack-a",
+      "enemies/uhr-attack-b",
+      "enemies/uhr-hit",
+      "enemies/uhr-idle",
+      "enemies/uhr-walk-a",
+      "enemies/uhr-walk-b",
+      "enemies/wurz-attack-a",
+      "enemies/wurz-attack-b",
+      "enemies/wurz-hit",
+      "enemies/wurz-idle",
+      "enemies/wurz-walk-a",
+      "enemies/wurz-walk-b"
+    ]
+  },
+  "fallback": {
+    "key": "enemies/brute-idle",
+    "failed": true,
+    "choice": null,
+    "bodyPixels": 4670,
+    "errors": [],
+    "failedImages": [],
+    "expected": [
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8767/assets/enemies/brute-idle.webp"
+      }
+    ]
+  },
+  "offline": {
+    "state": "play",
+    "version": "0.62",
+    "url": "http://localhost:8767/index.html?debug=hit",
+    "controller": true,
+    "expected": [],
+    "decoded": 97,
+    "missing": [],
+    "caches": [
+      {
+        "name": "ruinenstadt-0.62",
+        "entries": 381
+      }
+    ],
+    "errors": [],
+    "failedImages": []
+  },
+  "finished": "2026-11-09T17:15:55.159Z",
+  "status": "failed",
+  "performance": {
+    "method": "Same seeded 40 mixed enemies, maps, viewport, camera and DPR. Seven alternating pairs; 15 warmup and 50 timed full renders each. Visual/offline browser closed before timing.",
+    "viewport": {
+      "width": 960,
+      "height": 640
+    },
+    "dpr": 2,
+    "baselinePort": 8765,
+    "targetPort": 8767,
+    "districts": [
+      {
+        "district": "Köpenick",
+        "baselineVersion": "0.61",
+        "paintedVersion": "0.62",
+        "enemies": 40,
+        "samples": [
+          {
+            "baseline": {
+              "median": 63.299999999813735,
+              "p95": 71
+            },
+            "painted": {
+              "median": 58.799999999813735,
+              "p95": 64.5
+            }
+          },
+          {
+            "painted": {
+              "median": 59.3000000002794,
+              "p95": 72.79999999981374
+            },
+            "baseline": {
+              "median": 62.299999999813735,
+              "p95": 66.79999999981374
+            }
+          },
+          {
+            "baseline": {
+              "median": 62.8000000002794,
+              "p95": 65.29999999981374
+            },
+            "painted": {
+              "median": 59,
+              "p95": 64.79999999981374
+            }
+          },
+          {
+            "painted": {
+              "median": 58.5,
+              "p95": 63.200000000186265
+            },
+            "baseline": {
+              "median": 62.299999999813735,
+              "p95": 79.8000000002794
+            }
+          },
+          {
+            "baseline": {
+              "median": 61.60000000009313,
+              "p95": 71.40000000037253
+            },
+            "painted": {
+              "median": 58.60000000009313,
+              "p95": 67.39999999990687
+            }
+          },
+          {
+            "painted": {
+              "median": 58.10000000009313,
+              "p95": 61.89999999990687
+            },
+            "baseline": {
+              "median": 61.60000000009313,
+              "p95": 64.8000000002794
+            }
+          },
+          {
+            "baseline": {
+              "median": 61.39999999990687,
+              "p95": 66.8000000002794
+            },
+            "painted": {
+              "median": 58.09999999962747,
+              "p95": 61.700000000186265
+            }
+          }
+        ],
+        "medianBaseline": 62.299999999813735,
+        "medianPainted": 58.60000000009313,
+        "ratio": 0.940609951850214
+      },
+      {
+        "district": "Mitte",
+        "baselineVersion": "0.61",
+        "paintedVersion": "0.62",
+        "enemies": 40,
+        "samples": [
+          {
+            "baseline": {
+              "median": 55.5,
+              "p95": 59.799999999813735
+            },
+            "painted": {
+              "median": 52.5,
+              "p95": 57.10000000009313
+            }
+          },
+          {
+            "painted": {
+              "median": 51.5,
+              "p95": 55.8000000002794
+            },
+            "baseline": {
+              "median": 55.299999999813735,
+              "p95": 62.8000000002794
+            }
+          },
+          {
+            "baseline": {
+              "median": 54.60000000009313,
+              "p95": 58
+            },
+            "painted": {
+              "median": 51.89999999990687,
+              "p95": 54.90000000037253
+            }
+          },
+          {
+            "painted": {
+              "median": 51.200000000186265,
+              "p95": 57
+            },
+            "baseline": {
+              "median": 55,
+              "p95": 58.90000000037253
+            }
+          },
+          {
+            "baseline": {
+              "median": 54.5,
+              "p95": 58.10000000009313
+            },
+            "painted": {
+              "median": 51.39999999990687,
+              "p95": 53.89999999990687
+            }
+          },
+          {
+            "painted": {
+              "median": 51.89999999990687,
+              "p95": 96.60000000009313
+            },
+            "baseline": {
+              "median": 55,
+              "p95": 63.200000000186265
+            }
+          },
+          {
+            "baseline": {
+              "median": 55.700000000186265,
+              "p95": 64.79999999981374
+            },
+            "painted": {
+              "median": 53.200000000186265,
+              "p95": 58.09999999962747
+            }
+          }
+        ],
+        "medianBaseline": 55,
+        "medianPainted": 51.89999999990687,
+        "ratio": 0.9436363636346703
+      }
+    ],
+    "errors": []
+  },
+  "failure": "page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:8765/index.html\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:8765/index.html\", waiting until \"load\"\u001b[22m\n\n    at performanceProof (/workspace/Ruinenstadt-enemies/tools/proof_enemies.cjs:128:227)\n    at async /workspace/Ruinenstadt-enemies/tools/proof_enemies.cjs:139:361"
+}
