@@ -9,7 +9,7 @@ const variants='ghoul brute spitter rat crow shield bomb howl raser schrottkolos
 const poses='idle walk-a walk-b attack-a attack-b hit'.split(' ');
 function setup(){
  const env=vm.createContext({Math,Image:class{},D:{},P:{x:100,y:100,r:12},SPRITES:manifest,spr:key=>manifest[key]?{naturalWidth:manifest[key].w}:null});
- vm.runInContext(read('js/art.js'),env);return{env,run:s=>vm.runInContext(s,env)};
+ vm.runInContext(read('js/anim.js'),env);vm.runInContext(read('js/art.js'),env);return{env,run:s=>vm.runInContext(s,env)};
 }
 test('every selected enemy family has six authored, anchored, cached frames',()=>{
  const {run}=setup(),specs=run('ENEMY_ART');
