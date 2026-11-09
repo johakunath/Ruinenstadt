@@ -2,7 +2,7 @@
 function update(dt){
   if(run&&run.tl&&state==='play'){run.tl.t+=dt;run.tl.fr++;if(dt>.034)run.tl.sl++;}
   if(bannerT>0){bannerT-=dt;if(bannerT<=0){const b=$('banner');b.style.opacity=0;b.style.transform='translateY(-48px)';}}
-  for(const p of parts){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=.9;p.vy*=.9;p.life-=dt;}parts=parts.filter(p=>p.life>0);
+  for(const p of parts){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=.9;p.vy*=.9;p.life-=dt;}parts=parts.filter(p=>p.life>0);fxUpdate(dt);
   for(const n of nums){n.y-=32*dt;n.life-=dt;}nums=nums.filter(n=>n.life>0);
   for(const s of swings)s.life-=dt;swings=swings.filter(s=>s.life>0);
   for(const b of bolts)b.life-=dt;bolts=bolts.filter(b=>b.life>0);
@@ -34,7 +34,7 @@ function update(dt){
   if(ST.regen)P.hp=Math.min(ST.maxHp,P.hp+ST.regen*dt);
   if(P.spin>0){P.spin-=dt;P.spinTick-=dt;if(P.spinTick<=0){P.spinTick=.15;const sr=80*(1+.2*pk('reach'));for(const e of enemies)if(Math.hypot(e.x-P.x,e.y-P.y)<sr+e.r){const c=Math.random()<ST.crit;hit(e,ST.dmg*.6*(c?2:1),c,{knock:160});}propsInRadius(P.x,P.y,sr,ST.dmg*.6);sfx('swing');}}
   if(P.hot>0){P.hot-=dt;P.hp=Math.min(ST.maxHp,P.hp+ST.maxHp*.4/3*dt);}if(P.fed>0)P.fed-=dt;
-  for(const m of mols){m.t+=dt;if(m.t>=m.dur){fields.push({x:m.x1,y:m.y1,r:65*(pk('blast')?1.5:1),t:4});sfx('ignite');sfx('crash');burst(m.x1,m.y1,'#ff6a2a',24,200);propsInRadius(m.x1,m.y1,60,ST.dmg*2);m.done=1;}}mols=mols.filter(m=>!m.done);
+  for(const m of mols){m.t+=dt;if(m.t>=m.dur){fxPulse(m.x1,m.y1,'#ff6a2a',70);fields.push({x:m.x1,y:m.y1,r:65*(pk('blast')?1.5:1),t:4});sfx('ignite');sfx('crash');burst(m.x1,m.y1,'#ff6a2a',24,200);propsInRadius(m.x1,m.y1,60,ST.dmg*2);m.done=1;}}mols=mols.filter(m=>!m.done);
   for(const f of fields){f.t-=dt;if(Math.random()<dt*22)parts.push({x:f.x+R(-f.r,f.r)*.8,y:f.y+R(-f.r,f.r)*.4,vx:R(-8,8),vy:R(-70,-30),life:.5,max:.5,col:pick(['#ff6a2a','#FAC775','#EF9F27']),size:R(2,4)});
     for(const e of enemies)if(e.hp>0&&Math.hypot(e.x-f.x,(e.y-f.y)*1.6)<f.r){const W=ER(e,'fire');if(W>0){e.bdps=Math.max(e.burn>0?e.bdps||0:0,ST.dmg*.9*W);e.burn=Math.max(e.burn||0,.7);}}}
   fields=fields.filter(f=>f.t>0);

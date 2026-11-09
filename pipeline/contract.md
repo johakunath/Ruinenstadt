@@ -79,3 +79,16 @@ rotation puts the grip at the fist and the tip along the requested weapon
 angle. Weapon scaling still uses the existing per-kind `HWL` reach. There is
 no inferred axis or per-icon flip list. A missing required component returns
 `false` before drawing any painted part, so `drawPlayer` uses its canvas figure.
+
+## Enemy animation driver and VFX (v0.62)
+
+Enemy frames need no renderer hook any more. `js/anim.js` picks them up from the manifest:
+
+- Keys `enemies/<e.type>-<pose>`. `<type>-idle` is required and defines the head height (bars, stun ring). Optional poses: `walk-a` to `walk-d`, `attack-a` (wind-up), `attack-b` (strike), `hit`. Missing poses fall back (`POSEFB`), so one idle frame is a valid first delivery.
+- Per-type tuning in `EANI` (`fps`, `walk` frame count, `life` strength of squash and stretch). Nothing else is per type.
+- Feet centre stays at `(e.x, e.y + e.r*.4)` for painted enemies, sprite scale is `e.r/10` on top of `units`, so author every enemy at the ghoul's scale for `r = 10`.
+- `enemyLife` adds motion in code for painted and canvas enemies alike: breathing, walk bob, wind-up squash (telegraph `e.tw`, charge `e.ch`, melee about to land), strike stretch and lunge (`e.atk`), hit squash (`e.flash`), spawn pop. Frames must not bake in a lunge beyond the hit reach; code adds 5 px.
+- Shadows are drawn by code (`fxSil` from the frame, `fxShadow` blob). Deliver frames without a painted ground shadow.
+- Bosses (`e.type==='boss'`) and the Brigadeghul keep their own drawing.
+
+Effects: spawn only through the `fx*` helpers in `js/vfx.js` (`fxFlash`, `fxRing`, `fxSparks`, `fxHit`, `fxKill`, `fxPulse`), colours from `FXC()` or an element colour (`ELC`). They are visual only: never change hit areas, timings or damage for an effect. A ring or pulse radius equals the real hit radius.

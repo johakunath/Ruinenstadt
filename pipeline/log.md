@@ -82,3 +82,23 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   mistakes. Keep high effort for rig/integration/visual review; medium effort
   is suitable for mechanical batches. Do not treat worker output as verified.
 - Next task: 01 enemies. No new task is included in this PR.
+
+## 2026-11-09 · Claude · motion and light foundation, v0.62
+
+- New `js/vfx.js` (effects, daylight, shadows) and `js/anim.js` (generic enemy
+  driver). `ghoulSprite`/`drawGhoulSprite` are gone: any `enemies/<type>-<pose>`
+  manifest key is drawn without a hook, only `<type>-idle` is required. Details
+  in the new last section of `contract.md`. Task 01 no longer needs renderer
+  work per enemy, and frames must come without painted ground shadows.
+- Wired examples only: melee swing crescents and spear thrust, hit and kill
+  impacts, lightning, projectile trails, Molotow pulse. Everything else is task
+  08 (`tasks/08-vfx-rollout.md`), written for a cheaper model with exact call
+  sites and acceptance checks. Spot-check its screenshots.
+- Looks were decided without a variant sheet (palette taken from the existing
+  districts). All strengths are constants in `js/vfx.js`; Johannes has not
+  playtested on the Tab S9 yet.
+- Frame time: `tools/perf_vfx.cjs`, busy scene, 1280x800 at DPR 2, headless
+  software raster. Median before/after in ms: Köpenick 122/113 and 125/122,
+  Mitte 95/102 and 100/101, Alexanderplatz 113/95 and 84/89. Inside run-to-run
+  noise. A hardware check on the tablet is still open.
+

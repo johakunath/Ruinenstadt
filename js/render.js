@@ -34,7 +34,7 @@ function render(t){
   if(trove){const a=.5+.3*Math.sin(t*.008);ctx.strokeStyle=`rgba(242,209,75,${a})`;ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(trove.x-14,trove.y-14);ctx.lineTo(trove.x+14,trove.y+14);ctx.moveTo(trove.x+14,trove.y-14);ctx.lineTo(trove.x-14,trove.y+14);ctx.stroke();ctx.strokeStyle='#f2d14b';ctx.lineWidth=3;ctx.beginPath();ctx.arc(trove.x,trove.y,26,-1.57,-1.57+6.283*trove.t/50);ctx.stroke();}
   if(crate){ctx.strokeStyle='#f2d14b';ctx.lineWidth=3;ctx.beginPath();ctx.arc(crate.x,crate.y,26,-1.57,-1.57+6.283*crate.t/28);ctx.stroke();}
   if(P.spin>0){ctx.strokeStyle='rgba(250,199,117,.75)';ctx.lineWidth=5;const a=t*.03,rr_=72*(1+.2*pk('reach'));for(let k=0;k<3;k++){ctx.beginPath();ctx.arc(P.x,P.y,rr_,a+k*2.09,a+k*2.09+1.1);ctx.stroke();}}
-  for(const s of swings){const a=s.life/s.max;if(s.kind==='spear'){const c=Math.cos(s.a),sn=Math.sin(s.a),p=1-a,r0=20+p*20;ctx.strokeStyle=s.fin?`rgba(255,230,140,${a})`:`rgba(250,199,117,${a})`;ctx.lineWidth=s.fin?7:4;ctx.beginPath();ctx.moveTo(P.x+c*r0,P.y+sn*r0);ctx.lineTo(P.x+c*s.reach,P.y+sn*s.reach);ctx.stroke();continue;}ctx.strokeStyle=s.fin?`rgba(255,230,140,${a})`:s.kind==='hammer'?`rgba(239,159,39,${a*.8})`:`rgba(250,199,117,${a})`;ctx.lineWidth=(s.kind==='hammer'?9:5)+(s.fin?5:0);ctx.beginPath();ctx.arc(P.x,P.y,s.reach-10,s.a-s.arc,s.a+s.arc);ctx.stroke();}
+  // swings: fxSwings() in js/vfx.js, drawn additively after the darkness
   ctx.lineWidth=2;for(const b of bolts){ctx.strokeStyle=`rgba(125,211,255,${b.life/.16})`;ctx.beginPath();ctx.moveTo(b.x0,b.y0);for(let i=1;i<6;i++){const f=i/6;ctx.lineTo(b.x0+(b.x1-b.x0)*f+R(-6,6),b.y0+(b.y1-b.y0)*f+R(-6,6));}ctx.lineTo(b.x1,b.y1);ctx.stroke();}
   ctx.restore();
   /* ---- upright layer ---- */
@@ -57,9 +57,10 @@ function render(t){
   for(const b of barrels)lit(b.x,b.y,150+Math.sin(t*.012+b.ph)*12,10);
   for(const b of blds)for(const l of b.lights){if(l.inner&&!b.inside)continue;const q=lpos(b,l);if(l.inner){lit(q[0],q[1],150);continue;}if(l.r||!S.eco)lit(q[0],q[1],(l.r||34)*(l.fl&&Math.sin(t*.031+l.x)*Math.sin(t*.017+l.y)>.55?.35:1),q[2]);}
   for(const p of eproj)lit(p.x,p.y,46,10);for(const b of bolts)lit(b.x1,b.y1,60);if(!S.eco)for(const h of hazards)lit(h.x,h.y,50);for(const d of drops)if(d.item&&d.item.r>=2)lit(d.x,d.y,60);for(const f of fields)lit(f.x,f.y,f.r+50);
-  if(crate)lit(crate.x,crate.y,110);if(trove)lit(trove.x,trove.y,110);if(captive)lit(captive.x,captive.y,90);if(npc)lit(npc.x,npc.y,110,10);if(zone)lit(zone.x,zone.y,zone.r+50);if(D.tun&&TUN&&TUN.hold&&!TUN.lit)lit(GEN.x,GEN.y,GEN.r);for(const tl of teles)lit(tl.x,tl.y,tl.r*1.3);for(const s of shocks)lit(s.x,s.y,s.r+40);
-  ctx.drawImage(lc,0,0,VW,VH);if(flashT>0){ctx.fillStyle=`rgba(255,90,40,${flashT*.6})`;ctx.fillRect(0,0,VW,VH);}if(goldT>0){ctx.fillStyle=`rgba(255,200,90,${goldT*.45})`;ctx.fillRect(0,0,VW,VH);}if(state==='play'&&P.hp<ST.maxHp*.3){ctx.globalAlpha=.5+.3*Math.sin(t*.008);ctx.drawImage(VIG,0,0,VW,VH);ctx.globalAlpha=1;}
+  if(crate)lit(crate.x,crate.y,110);if(trove)lit(trove.x,trove.y,110);if(captive)lit(captive.x,captive.y,90);if(npc)lit(npc.x,npc.y,110,10);if(zone)lit(zone.x,zone.y,zone.r+50);if(D.tun&&TUN&&TUN.hold&&!TUN.lit)lit(GEN.x,GEN.y,GEN.r);for(const tl of teles)lit(tl.x,tl.y,tl.r*1.3);for(const s of shocks)lit(s.x,s.y,s.r+40);fxLight(lit);
+  fxDay(t);ctx.drawImage(lc,0,0,VW,VH);if(flashT>0){ctx.fillStyle=`rgba(255,90,40,${flashT*.6})`;ctx.fillRect(0,0,VW,VH);}if(goldT>0){ctx.fillStyle=`rgba(255,200,90,${goldT*.45})`;ctx.fillRect(0,0,VW,VH);}if(state==='play'&&P.hp<ST.maxHp*.3){ctx.globalAlpha=.5+.3*Math.sin(t*.008);ctx.drawImage(VIG,0,0,VW,VH);ctx.globalAlpha=1;}
   ctx.globalCompositeOperation='lighter';
+  fxDraw(t);ctx.globalCompositeOperation='lighter';
   if(!S.eco)for(const n of neons){const x=scx(n.x,n.y)+(n.dx||0),y=scy(n.x,n.y)-(n.z||0);if(x<-n.s||x>VW+n.s||y<-n.s||y>VH+n.s)continue;ctx.globalAlpha=D.day?.25:.55;ctx.drawImage(glow(n.c),x-n.s,y-n.s*.7,n.s*2,n.s*1.4);}ctx.globalAlpha=1;
   if(P.torch)ctx.drawImage(FIRE,scx(P.x,P.y)-110,scy(P.x,P.y)-40-110,220,220);
   if(D.day)ctx.globalAlpha=.1;for(const b of barrels){const x=scx(b.x,b.y),y=scy(b.x,b.y)-10;if(x<-130||x>VW+130||y<-130||y>VH+130)continue;ctx.drawImage(FIRE,x-120,y-120,240,240);}ctx.globalAlpha=1;// daylight: fire glow much weaker
