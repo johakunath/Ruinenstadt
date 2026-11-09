@@ -64,7 +64,7 @@ Johannes starts Codex and goes to sleep. Rules for such a run:
 
 | Topic | Rule |
 |---|---|
-| Order | 01b (enemy redesign), 03 (vehicles), 05 (props and fire), 04 (nature), 02 step 0 (one building proof), then 08 (landmarks, Fernsehturm first). Stop after 02 step 0 until Johannes decides the method. 09 is parked |
+| Order | 01b (enemy redesign), 03 (vehicles), 05 (props and fire), 04 (nature), 09 step 1 (player knees and elbows, no new paint), 02 step 0 (one building proof), 08 (landmarks, Fernsehturm first), 09 steps 2 to 4 (secondary motion, four directions), 10 (ground, mockup first). Stop after 02 step 0 until Johannes decides the method, skip what depends on it and continue |
 | Sync first | `git fetch origin main` and merge before every task. Other agents ship versions in parallel (v0.62 to v0.64 landed during task 01). Read `js/core.js` on main and take the next free number for `VERSION` and `CACHE` |
 | Decisions | Codex decides design picks and colour picks itself using the style canvas and the silhouette/readability checks, records pick and reason in `picks.json` and `log.md`, and never waits for an answer. Anything that needs a game design decision (balance, new mechanic) goes into `log.md` as a question and is skipped |
 | Merging | Not authorized by default. Open **draft PRs**, one per task, with the comparison sheet (old vs new) and proof images. Merge only if Johannes wrote "merge" for this run, then follow "Continuous asset sessions" |
