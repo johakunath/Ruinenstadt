@@ -1,6 +1,6 @@
 # 07 Player rig v2: mannequin, fists, clothing as layers
 
-Status: in progress (Codex, 2026-11-09)
+Status: done (v0.61)
 
 v1 (v0.52) puts ChatGPT parts together: `tools/build_hero.py` → `assets/hero/rig/` and `js/hero.js`, drawn by `drawHero` in `js/art.js`. It works, but every outfit was painted with its own body inside, so shoulders, scale and the hands differ per outfit and need hand-placed fixes (`HOLE`, `WFIX`, body centring in `build_hero.py`). Johannes' feedback on v1:
 

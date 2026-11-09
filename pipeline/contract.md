@@ -20,7 +20,7 @@ How a painted sprite has to look and where it plugs in. If something here is wro
 | Tree, lamp, Litfaßsäule, crane | Upright sprite via `drawBB` (`b.spr`, `b.sc`) | Upright PNG | Bottom centre at the footprint centre |
 | Enemy | `drawEnemy(e,t)` in `js/art.js` (district enemies in `js/alex.js` etc.), animated in code | Upright, facing right (the game mirrors), as parts with pivots or as a small set of frames (idle, walk 2 to 4, attack 2 to 3, hit) | Painted ghoul: feet centre at `(e.x, e.y + e.r*.4)` screen-space, so soles stay inside the projected collision ring. Legacy canvas enemies use `e.r*.75`; see `drawEnemy` |
 | Boss | Same as enemy, `type:'boss'`, `e.big` | Same | Same |
-| Player | `drawPlayer` / `drawHero` in `js/art.js`, rig from `js/hero.js` | Not Codex (Claude) | Feet at `(P.x, P.y+9)` |
+| Player | `drawPlayer` / `drawHero` in `js/art.js`, rig from `js/hero.js` | Shared opaque mannequin, clothing overlays, separate arm segments, rear palm / weapon / front fingers; Codex task 07 | Feet at `(P.x, P.y+9)` |
 
 Enemy sizes are their hit radius `r` (world units) in `mkEnemy`, `js/combat.js`: ghoul 10, raser 11, brute 17, spitter 11, rat 6, bomb 11, shield 13, crow 8, howl 11, kabel 9, bass 15, uhr 13, wurz 12, kern 11, boss 34 (big 42). Their code drawings: `drawEnemy` in `js/art.js`, Alexanderplatz ones in `js/alex.js`.
 
@@ -62,3 +62,20 @@ Known limit: characters are upright, hits are decided on the ground plane, so a 
 - Load lazily, keep the canvas drawing as fallback: see `himg()` and `drawHero()` in `js/art.js` (returns `false` until loaded, caller then draws the old way).
 - Draw in the same transform the old code uses, so collisions, sorting (`drawSorted` in `js/render.js`) and lights stay correct.
 - New script files go into `index.html` before the files that use them and into `SHELL` in `sw.js`.
+
+## Player rig v2 (v0.61)
+
+`tools/build_hero.py` builds the selected task 07 sheets into `assets/hero/rig/`
+and generates `HR`/`HW`. All fourteen outfits share shoulder `[-.87,-37.33]`,
+hip `-16`, and two 10-unit arm segments. Clothing never moves the joints.
+`HR.parts` placements are in local game units (articulated parts are relative
+to their joint); `drawPlayer` retains its existing 1.2 character scale. The
+player rig retains v1's 6 pixels per local unit, while world sprites use 3.
+The manifest checker validates the two explicit resolutions.
+
+Every weapon is copied to a rig WebP with authored `pivots.grip` and
+`pivots.tip` in image pixels. `HW` is derived from those coordinates; runtime
+rotation puts the grip at the fist and the tip along the requested weapon
+angle. Weapon scaling still uses the existing per-kind `HWL` reach. There is
+no inferred axis or per-icon flip list. A missing required component returns
+`false` before drawing any painted part, so `drawPlayer` uses its canvas figure.

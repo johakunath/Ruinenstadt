@@ -56,3 +56,37 @@ Both agents may change any code when a task needs it. Keep the change small and 
 - Hitbox screenshots attached to the PR, no visible mismatch.
 - No page errors, smoke test passes, version and backlog updated.
 - `log.md` entry written.
+
+## Continuous asset sessions
+
+When Johannes explicitly authorizes a session that includes merging, Codex may
+repeat the following loop without asking for merge approval again. Design
+selection in step 4 still applies; previously selected designs and their
+animation/layer derivatives do not need a new selection.
+
+1. Take the next open task in the documented priority order; claim it in a
+   status-only commit and push the claim. Keep one task per branch and PR.
+2. Complete the task, all required tests and visual inspection, version/cache,
+   backlog and handover log before opening a ready-for-review PR. Attach proof
+   images and reproducible validation commands.
+3. Opening the ready PR triggers the configured Codex review. Verify that it
+   started; use `@codex review` if a review must be requested explicitly.
+4. While it runs, record the branch, PR, head commit, validation, decisions and
+   remaining work in the handover log. Context compaction is optional and must
+   preserve that record; do not claim to clear chat if the client cannot do it.
+   Independent generation for another task may use a separate worktree/branch.
+5. Read review comments, review threads and required checks. Fix applicable
+   findings, repeat affected validation, push, and obtain a completed review
+   for the resulting code changes. A queued review or absence of comments is
+   not a completed review.
+6. Once review is complete, findings are resolved and required checks pass,
+   merge the reviewed head SHA without bypassing repository protections. Sync
+   main before the next task and record the merged PR in the log.
+
+Use higher reasoning effort for rig/renderer changes, hitboxes, visual
+inspection and final review. Routine scripted generation, file normalization
+and metadata can use medium effort. A cheaper worker may prepare narrowly
+specified metadata or scripts when delegation is authorized, but its output
+needs parent review and actual execution. Image-generation latency does not
+automatically improve when the coding model is smaller. No model choice
+replaces visual or browser validation.

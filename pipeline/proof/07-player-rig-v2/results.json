@@ -1,0 +1,314 @@
+{
+  "schema": {
+    "version": 2,
+    "partCount": 130,
+    "outfitKeys": [
+      "leder",
+      "mantel",
+      "weste",
+      "feuer",
+      "bvg",
+      "spaeti",
+      "panzer",
+      "rattenmantel",
+      "ritter",
+      "khemd",
+      "poncho",
+      "kmantel",
+      "none",
+      "blaumann"
+    ],
+    "hatKeys": [
+      "helm",
+      "schieber",
+      "muetze",
+      "maske",
+      "nbrille",
+      "stroh"
+    ],
+    "gloveKeys": [
+      "handsch",
+      "bandage",
+      "schweiss",
+      "gartenh"
+    ],
+    "bootKeys": [
+      "turnsch",
+      "stiefel",
+      "gummi"
+    ],
+    "fail": []
+  },
+  "outfits": 14,
+  "largeOutfitCells": 42,
+  "gameOutfitCells": 42,
+  "weaponGearCells": 156,
+  "wearableGearCells": 78,
+  "weaponIds": [
+    {
+      "id": "I01",
+      "kind": "blade"
+    },
+    {
+      "id": "I02",
+      "kind": "blade"
+    },
+    {
+      "id": "I03",
+      "kind": "blade"
+    },
+    {
+      "id": "I04",
+      "kind": "blade"
+    },
+    {
+      "id": "I05",
+      "kind": "blade"
+    },
+    {
+      "id": "I06",
+      "kind": "hammer"
+    },
+    {
+      "id": "I07",
+      "kind": "hammer"
+    },
+    {
+      "id": "I08",
+      "kind": "hammer"
+    },
+    {
+      "id": "I09",
+      "kind": "sling"
+    },
+    {
+      "id": "I10",
+      "kind": "sling"
+    },
+    {
+      "id": "I11",
+      "kind": "sling"
+    },
+    {
+      "id": "I12",
+      "kind": "spear"
+    },
+    {
+      "id": "I13",
+      "kind": "spear"
+    },
+    {
+      "id": "I14",
+      "kind": "spear"
+    },
+    {
+      "id": "I15",
+      "kind": "blade"
+    },
+    {
+      "id": "I16",
+      "kind": "hammer"
+    },
+    {
+      "id": "I32",
+      "kind": "sling"
+    },
+    {
+      "id": "I48",
+      "kind": "hammer"
+    },
+    {
+      "id": "I51",
+      "kind": "blade"
+    },
+    {
+      "id": "I52",
+      "kind": "hammer"
+    },
+    {
+      "id": "I53",
+      "kind": "sling"
+    },
+    {
+      "id": "I56",
+      "kind": "spear"
+    },
+    {
+      "id": "I59",
+      "kind": "blade"
+    },
+    {
+      "id": "I60",
+      "kind": "hammer"
+    },
+    {
+      "id": "I61",
+      "kind": "sling"
+    },
+    {
+      "id": "I62",
+      "kind": "spear"
+    }
+  ],
+  "inventory": {
+    "open": true,
+    "doll": true,
+    "calls": [
+      true
+    ],
+    "caught": [],
+    "drawn": true,
+    "canvasSize": [
+      360,
+      360
+    ]
+  },
+  "sceneShots": [
+    {
+      "file": "koepenick-1x-debug-hit.png",
+      "district": "Köpenick",
+      "WS": 3600,
+      "WH": 3600,
+      "Z": 1.1851851851851851,
+      "factor": 1
+    },
+    {
+      "file": "koepenick-2x-debug-hit.png",
+      "district": "Köpenick",
+      "WS": 3600,
+      "WH": 3600,
+      "Z": 1.1851851851851851,
+      "factor": 2
+    },
+    {
+      "file": "xhain-1x-debug-hit.png",
+      "district": "Xhain",
+      "WS": 4000,
+      "WH": 4000,
+      "Z": 1.1851851851851851,
+      "factor": 1
+    },
+    {
+      "file": "xhain-2x-debug-hit.png",
+      "district": "Xhain",
+      "WS": 4000,
+      "WH": 4000,
+      "Z": 1.1851851851851851,
+      "factor": 2
+    },
+    {
+      "file": "alexanderplatz-1x-debug-hit.png",
+      "district": "Alexanderplatz",
+      "WS": 4000,
+      "WH": 4000,
+      "Z": 1.1851851851851851,
+      "factor": 1
+    },
+    {
+      "file": "alexanderplatz-2x-debug-hit.png",
+      "district": "Alexanderplatz",
+      "WS": 4000,
+      "WH": 4000,
+      "Z": 1.1851851851851851,
+      "factor": 2
+    },
+    {
+      "file": "mitte-1x-debug-hit.png",
+      "district": "Mitte",
+      "WS": 4000,
+      "WH": 4000,
+      "Z": 1.1851851851851851,
+      "factor": 1
+    },
+    {
+      "file": "mitte-2x-debug-hit.png",
+      "district": "Mitte",
+      "WS": 4000,
+      "WH": 4000,
+      "Z": 1.1851851851851851,
+      "factor": 2
+    },
+    {
+      "file": "tempelhof-1x-debug-hit.png",
+      "district": "Tempelhof",
+      "WS": 2400,
+      "WH": 2400,
+      "Z": 1.1851851851851851,
+      "factor": 1
+    },
+    {
+      "file": "tempelhof-2x-debug-hit.png",
+      "district": "Tempelhof",
+      "WS": 2400,
+      "WH": 2400,
+      "Z": 1.1851851851851851,
+      "factor": 2
+    },
+    {
+      "file": "spandau-1x-debug-hit.png",
+      "district": "Spandau",
+      "WS": 2400,
+      "WH": 2400,
+      "Z": 1.1851851851851851,
+      "factor": 1
+    },
+    {
+      "file": "spandau-2x-debug-hit.png",
+      "district": "Spandau",
+      "WS": 2400,
+      "WH": 2400,
+      "Z": 1.1851851851851851,
+      "factor": 2
+    },
+    {
+      "file": "marzahn-1x-debug-hit.png",
+      "district": "Marzahn",
+      "WS": 2400,
+      "WH": 2400,
+      "Z": 1.1851851851851851,
+      "factor": 1
+    },
+    {
+      "file": "marzahn-2x-debug-hit.png",
+      "district": "Marzahn",
+      "WS": 2400,
+      "WH": 2400,
+      "Z": 1.1851851851851851,
+      "factor": 2
+    },
+    {
+      "file": "ubahn-1x-debug-hit.png",
+      "district": "S3 · Köpenick → Xhain",
+      "WS": 16000,
+      "WH": 2400,
+      "Z": 1.1851851851851851,
+      "factor": 1
+    },
+    {
+      "file": "ubahn-2x-debug-hit.png",
+      "district": "S3 · Köpenick → Xhain",
+      "WS": 16000,
+      "WH": 2400,
+      "Z": 1.1851851851851851,
+      "factor": 2
+    }
+  ],
+  "fallback": {
+    "expectedMissingPart": "t-leder",
+    "sourceFailed": true,
+    "drawHeroResult": false,
+    "visibleFallbackPixels": 7077
+  },
+  "offline": {
+    "url": "http://localhost:8765/index.html?debug=hit",
+    "hr": 2,
+    "partCount": 130,
+    "loadedParts": 130,
+    "missing": [],
+    "controller": true,
+    "state": "play"
+  },
+  "errors": [],
+  "failed": [],
+  "offlineErrors": []
+}

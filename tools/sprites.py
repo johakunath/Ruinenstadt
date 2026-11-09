@@ -25,7 +25,7 @@ from PIL import Image, ImageDraw
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / 'assets/raw/codex'
 MANIFEST = ROOT / 'assets/manifest.json'
-KEY = re.compile(r'^(buildings|vehicles|nature|enemies|bosses|props)/[a-z0-9]+(?:-[a-z0-9]+)*$')
+KEY = re.compile(r'^(?:(?:buildings|vehicles|nature|enemies|bosses|props)/|hero/rig/)[a-z0-9]+(?:-[a-z0-9]+)*$')
 UNITS = 3
 LIMIT = 400 * 1024
 
@@ -166,8 +166,9 @@ def check(manifest, root=ROOT):
             for name, p in pts.items():
                 if not point(p) or not 0 <= p[0] < w or not 0 <= p[1] < h:
                     errors.append(f'{key}: {name} outside image or invalid')
-        if entry.get('units') != UNITS:
-            errors.append(f'{key}: units must be {UNITS}')
+        expected_units = 6 if key.startswith('hero/rig/') else UNITS
+        if entry.get('units') != expected_units:
+            errors.append(f'{key}: units must be {expected_units}')
         if not isinstance(entry.get('for'), str) or not entry['for'].strip():
             errors.append(f'{key}: missing for')
         if 'footprint' in entry and (not point(entry['footprint']) or min(entry['footprint']) <= 0):

@@ -1,0 +1,9 @@
+{
+  "url": "http://localhost:8765/index.html?debug=hit",
+  "hr": 2,
+  "partCount": 130,
+  "loadedParts": 130,
+  "missing": [],
+  "controller": true,
+  "state": "play"
+}

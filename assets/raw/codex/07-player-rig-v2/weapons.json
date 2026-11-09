@@ -1,0 +1,450 @@
+{
+  "I01": {
+    "source": "assets/icons/I01.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        30,
+        108
+      ],
+      "tip": [
+        111,
+        19
+      ]
+    }
+  },
+  "I02": {
+    "source": "assets/icons/I02.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        23,
+        108
+      ],
+      "tip": [
+        105,
+        17
+      ]
+    }
+  },
+  "I03": {
+    "source": "assets/icons/I03.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        17,
+        115
+      ],
+      "tip": [
+        105,
+        22
+      ]
+    }
+  },
+  "I04": {
+    "source": "assets/icons/I04.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        25,
+        108
+      ],
+      "tip": [
+        108,
+        16
+      ]
+    }
+  },
+  "I05": {
+    "source": "assets/icons/I05.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        17,
+        109
+      ],
+      "tip": [
+        108,
+        17
+      ]
+    }
+  },
+  "I06": {
+    "source": "assets/icons/I06.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        22,
+        113
+      ],
+      "tip": [
+        105,
+        24
+      ]
+    }
+  },
+  "I07": {
+    "source": "assets/icons/I07.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        39,
+        108
+      ],
+      "tip": [
+        107,
+        22
+      ]
+    }
+  },
+  "I08": {
+    "source": "assets/icons/I08.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        19,
+        108
+      ],
+      "tip": [
+        105,
+        20
+      ]
+    }
+  },
+  "I09": {
+    "source": "assets/icons/I09.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        25,
+        102
+      ],
+      "tip": [
+        64,
+        27
+      ]
+    }
+  },
+  "I10": {
+    "source": "assets/icons/I10.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        30,
+        118
+      ],
+      "tip": [
+        67,
+        15
+      ]
+    }
+  },
+  "I11": {
+    "source": "assets/icons/I11.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        82,
+        17
+      ],
+      "tip": [
+        51,
+        94
+      ]
+    },
+    "note": "The strap loop is the only handhold; the pouch is the throwing end."
+  },
+  "I12": {
+    "source": "assets/icons/I12.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        29,
+        112
+      ],
+      "tip": [
+        106,
+        15
+      ]
+    }
+  },
+  "I13": {
+    "source": "assets/icons/I13.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        19,
+        111
+      ],
+      "tip": [
+        109,
+        9
+      ]
+    }
+  },
+  "I14": {
+    "source": "assets/icons/I14.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        18,
+        110
+      ],
+      "tip": [
+        111,
+        13
+      ]
+    }
+  },
+  "I15": {
+    "source": "assets/icons/I15.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        29,
+        111
+      ],
+      "tip": [
+        111,
+        16
+      ]
+    }
+  },
+  "I16": {
+    "source": "assets/icons/I16.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        29,
+        113
+      ],
+      "tip": [
+        105,
+        20
+      ]
+    }
+  },
+  "I32": {
+    "source": "assets/icons/I32.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        55,
+        59
+      ],
+      "tip": [
+        19,
+        111
+      ]
+    },
+    "note": "Grip is the wrapped central hilt; blade tip points down-left."
+  },
+  "I48": {
+    "source": "assets/icons/I48.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        30,
+        111
+      ],
+      "tip": [
+        103,
+        25
+      ]
+    }
+  },
+  "I51": {
+    "source": "assets/icons/I51.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        94,
+        32
+      ],
+      "tip": [
+        22,
+        111
+      ]
+    }
+  },
+  "I52": {
+    "source": "assets/icons/I52.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        30,
+        112
+      ],
+      "tip": [
+        108,
+        20
+      ]
+    }
+  },
+  "I53": {
+    "source": "assets/icons/I53.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        55,
+        105
+      ],
+      "tip": [
+        59,
+        39
+      ]
+    },
+    "note": "The handle is the lower-right wrapped shaft; fork is the active end."
+  },
+  "I56": {
+    "source": "assets/icons/I56.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        80,
+        47
+      ],
+      "tip": [
+        21,
+        114
+      ]
+    },
+    "note": "Grip on shaft below eagle ornament; spear point is lower-left, matching its gameplay role."
+  },
+  "I59": {
+    "source": "assets/icons/I59.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        31,
+        112
+      ],
+      "tip": [
+        105,
+        20
+      ]
+    }
+  },
+  "I60": {
+    "source": "assets/icons/I60.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        30,
+        112
+      ],
+      "tip": [
+        105,
+        20
+      ]
+    }
+  },
+  "I61": {
+    "source": "assets/icons/I61.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        77,
+        77
+      ],
+      "tip": [
+        12,
+        64
+      ]
+    },
+    "note": "Grip is on the downward handgrip; tip is the left-facing muzzle."
+  },
+  "I62": {
+    "source": "assets/icons/I62.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        78,
+        54
+      ],
+      "tip": [
+        22,
+        113
+      ]
+    },
+    "note": "Grip on shaft below microphone; the pointed lower-left stand end is the spear tip (the selected v1 orientation)."
+  }
+}
