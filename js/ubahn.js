@@ -10,10 +10,10 @@ const STN=['S Köpenick','U Warschauer Straße','U Alexanderplatz','U Potsdamer 
 const NETP=[[340,190],[250,140],[215,90],[165,115],[190,185],[45,120],[330,60]],NETL=[[[340,190],[300,190],[250,140]],[[250,140],[250,125],[215,90]],[[215,90],[190,90],[165,115]],[[165,115],[165,160],[190,185]],[[190,185],[110,185],[45,120]],[[45,120],[45,40],[310,40],[330,60]]],NETB=[[301,202],[265,120],[193,76],[148,140],[120,197],[180,32]];
 /* v0.55 route A (playtest 2: bigger, longer, curved): world 16000 x 2400, one gentle S-curve. Scale about 2.5x the old tunnel: track bed 620 wide with two tracks 300 apart,
    rails 72 apart (3 player widths), trains 150 wide. Everything is placed along the centre line: cy(x) is its y, ang(x) its angle, at(x,off) a point off to the side (negative = north) */
-const TW=16000,TH=2400,TX0=200,TX1=15800,HW=310,PW=580,cy=x=>1200+420*Math.sin(Math.PI*(x-300)/7700),ang=x=>Math.atan(420*Math.PI/7700*Math.cos(Math.PI*(x-300)/7700)),
+const TW=16000,TH=2400,TX0=200,TX1=15800,THW=310,PW=580,cy=x=>1200+420*Math.sin(Math.PI*(x-300)/7700),ang=x=>Math.atan(420*Math.PI/7700*Math.cos(Math.PI*(x-300)/7700)),
   at=(x,o)=>{const a=ang(x);return[x-o*Math.sin(a),cy(x)+o*Math.cos(a)];};
 // stations (x ranges with platforms on both sides), side rooms and special stretches
-const TST=[[TX0,1900],[5600,7400],[13400,TX1]],inSt=x=>TST.some(s=>x>=s[0]&&x<=s[1]),hwAt=x=>{let h=HW;for(const s of TST){const d=Math.max(s[0]-x,x-s[1]);if(d<450)h=Math.max(h,PW-(PW-HW)*Math.max(0,d)/450);}return h;};
+const TST=[[TX0,1900],[5600,7400],[13400,TX1]],inSt=x=>TST.some(s=>x>=s[0]&&x<=s[1]),hwAt=x=>{let h=THW;for(const s of TST){const d=Math.max(s[0]-x,x-s[1]);if(d<450)h=Math.max(h,PW-(PW-THW)*Math.max(0,d)/450);}return h;};
 const ROOM=[2380,0,700,420],RUBX=[4250,4700],BYP=[4000,4950],FLOOD=[9300,10800],GENX=14800,GEN={x:GENX,y:0,r:260,need:55}// GENX: route coordinate of the generator, GEN.x/y are projected from it on every build;// y of ROOM and GEN set in buildTunnel
 // sections: n name ({a} start, {b} target, {g} ghost station), packs (t: trigger x, sp: spawn x range ahead, ty types), gate x. Types: g ghoul, s spitter, b brute, r rat pack, w bomb, h howl (or ghoul), x district special, E elite ghoul, B elite brute
 const TSEC=[{n:'Bahnsteig {a}',packs:[],end:1750},
@@ -53,19 +53,19 @@ const tLine=(g,o,x0,x1,st)=>{g.beginPath();for(let x=x0;x<=x1;x+=st){const p=at(
 function tunGround(){const g=gx;g.fillStyle='#0b0a09';g.fillRect(0,0,TW,TH);for(let i=0;i<14000;i++){g.fillStyle=pick(['rgba(255,240,220,.03)','rgba(0,0,0,.4)']);const s=R(2,6);g.fillRect(R(0,TW),R(0,TH),s,s);}
   // track bed and platforms
   g.beginPath();for(let x=TX0;x<=TX1;x+=40){const p=at(x,-hwAt(x));x===TX0?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}for(let x=TX1;x>=TX0;x-=40){const p=at(x,hwAt(x));g.lineTo(p[0],p[1]);}g.closePath();g.fillStyle='#3e3d38';g.fill();
-  g.beginPath();for(let x=TX0;x<=TX1;x+=40){const p=at(x,-HW);x===TX0?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}for(let x=TX1;x>=TX0;x-=40){const p=at(x,HW);g.lineTo(p[0],p[1]);}g.closePath();g.fillStyle='#1d1a17';g.fill();
-  for(let x=TX0;x<TX1;x+=40){const h=hwAt(x);if(h<=HW+20)continue;for(const sd of [-1,1])for(let o=HW+20;o<h-10;o+=40){const p=at(x,sd*(o+20));g.fillStyle=pick(['#46453f','#3a3934','#42413b','#4a4842']);g.fillRect(p[0]-19,p[1]-19,38,38);}}
-  g.lineWidth=14;for(const s of TST)for(const sd of [-1,1]){g.strokeStyle='#ed9e25';g.setLineDash([]);tLine(g,sd*(HW+8),s[0]+60,s[1]-60,40);g.strokeStyle='rgba(0,0,0,.35)';g.setLineDash([8,20]);tLine(g,sd*(HW+8),s[0]+60,s[1]-60,40);}g.setLineDash([]);
-  for(let i=0;i<16000;i++){const x=R(TX0,TX1),p=at(x,R(-HW,HW));g.fillStyle=pick(['#26221e','#16130f','#2c2722']);g.fillRect(p[0],p[1],R(3,8),R(3,6));}
+  g.beginPath();for(let x=TX0;x<=TX1;x+=40){const p=at(x,-THW);x===TX0?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}for(let x=TX1;x>=TX0;x-=40){const p=at(x,THW);g.lineTo(p[0],p[1]);}g.closePath();g.fillStyle='#1d1a17';g.fill();
+  for(let x=TX0;x<TX1;x+=40){const h=hwAt(x);if(h<=THW+20)continue;for(const sd of [-1,1])for(let o=THW+20;o<h-10;o+=40){const p=at(x,sd*(o+20));g.fillStyle=pick(['#46453f','#3a3934','#42413b','#4a4842']);g.fillRect(p[0]-19,p[1]-19,38,38);}}
+  g.lineWidth=14;for(const s of TST)for(const sd of [-1,1]){g.strokeStyle='#ed9e25';g.setLineDash([]);tLine(g,sd*(THW+8),s[0]+60,s[1]-60,40);g.strokeStyle='rgba(0,0,0,.35)';g.setLineDash([8,20]);tLine(g,sd*(THW+8),s[0]+60,s[1]-60,40);}g.setLineDash([]);
+  for(let i=0;i<16000;i++){const x=R(TX0,TX1),p=at(x,R(-THW,THW));g.fillStyle=pick(['#26221e','#16130f','#2c2722']);g.fillRect(p[0],p[1],R(3,8),R(3,6));}
   // sleepers across, then rails (gauge 72), two tracks 300 apart
   for(const o of [-150,150]){g.strokeStyle='#2e2219';g.lineWidth=16;for(let x=TX0+20;x<TX1;x+=46){const p=at(x,o-62),q=at(x,o+62);g.beginPath();g.moveTo(p[0],p[1]);g.lineTo(q[0],q[1]);g.stroke();}
     for(const r of [-36,36]){g.strokeStyle='#6a6258';g.lineWidth=6;tLine(g,o+r,TX0,TX1,40);g.strokeStyle='rgba(255,240,220,.14)';g.lineWidth=2;tLine(g,o+r-2,TX0,TX1,40);}}
   // side room, maintenance bypass, water, rubble, blotches
-  g.fillStyle='#34302a';g.fillRect(...ROOM);g.fillStyle='#2b2926';for(let x=BYP[0];x<BYP[1];x+=40){const y=cy(x)+HW-60;g.fillRect(x,y,42,230);}
+  g.fillStyle='#34302a';g.fillRect(...ROOM);g.fillStyle='#2b2926';for(let x=BYP[0];x<BYP[1];x+=40){const y=cy(x)+THW-60;g.fillRect(x,y,42,230);}
   g.strokeStyle='rgba(0,0,0,.4)';g.lineWidth=2;for(let i=0;i<60;i++){let a=R(ROOM[0],ROOM[0]+ROOM[2]),b=R(ROOM[1],ROOM[1]+ROOM[3]);g.beginPath();g.moveTo(a,b);for(let j=0;j<3;j++){a+=R(-20,20);b+=R(-20,20);g.lineTo(a,b);}g.stroke();}
-  g.beginPath();for(let x=FLOOD[0];x<=FLOOD[1];x+=40){const p=at(x,-HW);x===FLOOD[0]?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}for(let x=FLOOD[1];x>=FLOOD[0];x-=40){const p=at(x,HW);g.lineTo(p[0],p[1]);}g.closePath();g.fillStyle='rgba(30,58,68,.84)';g.fill();
-  g.strokeStyle='rgba(140,190,200,.2)';g.lineWidth=3;for(let i=0;i<200;i++){const x=R(FLOOD[0],FLOOD[1]-60),p=at(x,R(-HW+20,HW-20));g.beginPath();g.moveTo(p[0],p[1]);g.quadraticCurveTo(p[0]+20,p[1]-6,p[0]+R(30,70),p[1]);g.stroke();}
-  for(let i=0;i<160;i++){const p=at(R(RUBX[0]-60,RUBX[1]+60),R(-HW,HW));g.fillStyle=pick(['#4a4038','#3a322a','#5a5048']);g.beginPath();g.ellipse(p[0],p[1],R(10,34),R(6,20),R(0,3),0,7);g.fill();}
+  g.beginPath();for(let x=FLOOD[0];x<=FLOOD[1];x+=40){const p=at(x,-THW);x===FLOOD[0]?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}for(let x=FLOOD[1];x>=FLOOD[0];x-=40){const p=at(x,THW);g.lineTo(p[0],p[1]);}g.closePath();g.fillStyle='rgba(30,58,68,.84)';g.fill();
+  g.strokeStyle='rgba(140,190,200,.2)';g.lineWidth=3;for(let i=0;i<200;i++){const x=R(FLOOD[0],FLOOD[1]-60),p=at(x,R(-THW+20,THW-20));g.beginPath();g.moveTo(p[0],p[1]);g.quadraticCurveTo(p[0]+20,p[1]-6,p[0]+R(30,70),p[1]);g.stroke();}
+  for(let i=0;i<160;i++){const p=at(R(RUBX[0]-60,RUBX[1]+60),R(-THW,THW));g.fillStyle=pick(['#4a4038','#3a322a','#5a5048']);g.beginPath();g.ellipse(p[0],p[1],R(10,34),R(6,20),R(0,3),0,7);g.fill();}
   for(let i=0;i<220;i++){const x=R(TX0,TX1),p=at(x,R(-PW,PW)),r=R(40,120),gr=g.createRadialGradient(p[0],p[1],0,p[0],p[1],r);gr.addColorStop(0,'rgba(0,0,0,.4)');gr.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=gr;g.fillRect(p[0]-r,p[1]-r,r*2,r*2);}}
 // pause map tab for the long tunnel: the whole route as an unrotated strip with sections, gates, you and enemies
 function tunMapTab(c){const g=c.getContext('2d'),k=600/TW,oy=300-TH*k/2,T=(x,y)=>[x*k,oy+y*k];g.setTransform(1,0,0,1,0,0);g.fillStyle='#120d0a';g.fillRect(0,0,600,600);g.drawImage(MB2,0,oy);
@@ -77,11 +77,11 @@ function tunMapTab(c){const g=c.getContext('2d'),k=600/TW,oy=300-TH*k/2,T=(x,y)=
 function buildTunnel(k){const L=LINES[k];D=Object.assign({},DIST[k],{n:L.l+' · '+DIST[k].n+' → '+DIST[k+1].n,tun:1,lvl:DIST[k].lvl+6,geo:null,wet:0,day:0,cyber:0,dark:.93,nc:'5,6,7'});
   WS=TW;WH=TH;const sp=at(700,-440);[SX,SY]=sp;G=cnv(TW/2,TH/2);G.k=.5;gx=G.getContext('2d');gx.scale(.5,.5);walls=[];blds=[];barrels=[];reserved=[];marks=[];brk=[];spati=null;darks=[{x:0,y:0,w:TW,h:TH,seen:1}];waters=[];neons=[];shrines=[];ROADS=[];BLK=[];
   TUN={k,sec:0,live:[],gates:[],gen:null,lit:0,hold:0,boss:0,done:0};
-  {const rc=cy(2730)-HW-420;ROOM[1]=Math.round(rc/20)*20;ROOM[3]=540;const g_=at(GENX,-450);GEN.y=g_[1];GEN.x=g_[0];}
+  {const rc=cy(2730)-THW-420;ROOM[1]=Math.round(rc/20)*20;ROOM[3]=540;const g_=at(GENX,-450);GEN.y=g_[1];GEN.x=g_[0];}
   // walkable mask (20 px cells) -> merged solid rects as invisible collision walls
   const C=20,NX=TW/C,NY=TH/C,M=new Uint8Array(NX*NY),at_=(i,j)=>i>=0&&j>=0&&i<NX&&j<NY&&M[j*NX+i];
   for(let i=0;i<NX;i++){const x=i*C+C/2,c=cy(x),ca=Math.cos(ang(x)),h=hwAt(x);for(let j=0;j<NY;j++){const y=j*C+C/2,d=(y-c)*ca;let w=x>=TX0&&x<=TX1&&Math.abs(d)<=h;
-      if(x>=RUBX[0]&&x<=RUBX[1]&&Math.abs(d)<=HW)w=false;if(x>=BYP[0]&&x<=BYP[1]&&d>=HW-60&&d<=HW+170)w=true;if(inR(ROOM,x,y))w=true;M[j*NX+i]=w?1:0;}}
+      if(x>=RUBX[0]&&x<=RUBX[1]&&Math.abs(d)<=THW)w=false;if(x>=BYP[0]&&x<=BYP[1]&&d>=THW-60&&d<=THW+170)w=true;if(inR(ROOM,x,y))w=true;M[j*NX+i]=w?1:0;}}
   let open={};for(let j=0;j<=NY;j++){const runs={};if(j<NY)for(let i=0;i<NX;){if(M[j*NX+i]){i++;continue;}const s=i;while(i<NX&&!M[j*NX+i])i++;runs[s+','+i]=1;}
     for(const q in open)if(!runs[q]){walls.push(open[q]);delete open[q];}for(const q in runs){if(open[q])open[q].h+=C;else{const[a,b]=q.split(',').map(Number);open[q]={x:a*C,y:j*C,w:(b-a)*C,h:C};}}}
   tunGround();
@@ -101,7 +101,7 @@ function buildTunnel(k){const L=LINES[k];D=Object.assign({},DIST[k],{n:L.l+' · 
   {const p=at(1100,-470);TUN.npc={x:p[0],y:p[1],r:12,t:1e9,near:false,offers:[0,1,2].map(i=>{const it=makeItem(tradeLvl()+(i===2?2:0),i===2&&Math.random()<.3?3:2,0);return{it,price:scrapVal(it)*5+15};})};}
   // Betriebsraum: chests and crates; ghost station shrine; rubble stones; two wrecked trains along the curve
   {const[x,y,w]=ROOM;addBrk(x+120,y+60,'chest',true);addBrk(x+w-160,y+60,'chest',true);for(const q of [[x+60,y+200],[x+w-80,y+220],[x+w/2,y+70]])addBrk(q[0],q[1],'crate',true);}
-  {const p=at(6500,-480);makeLitfass(p[0],p[1]);}for(let i=0;i<14;i++){const x=R(RUBX[0],RUBX[1]-60),p=at(x,R(-HW,HW-60)),w=R(50,110),h=R(50,100);solid({x:p[0],y:p[1],w,h,H:R(30,110),c:pick(['#4a4038','#5a5048','#3e362e'])},drawStone);}
+  {const p=at(6500,-480);makeLitfass(p[0],p[1]);}for(let i=0;i<14;i++){const x=R(RUBX[0],RUBX[1]-60),p=at(x,R(-THW,THW-60)),w=R(50,110),h=R(50,100);solid({x:p[0],y:p[1],w,h,H:R(30,110),c:pick(['#4a4038','#5a5048','#3e362e'])},drawStone);}
   for(const[x,o]of[[11650,-150],[12550,150]]){const p=at(x,o);solid({x:p[0]-300,y:p[1]-75,w:600,h:150,H:110,TH:110,rot:ang(x)},drawTrain);}
   {const p=[GEN.x,GEN.y];TUN.gen=solid({x:p[0]-45,y:p[1]-27,w:90,h:54,H:90,lights:[]},drawGen);}
   for(const s of TSEC)if(s.gate){const h=hwAt(s.gate)+60;addGate([s.gate,cy(s.gate)-h,40,2*h]);}
@@ -119,15 +119,15 @@ function tunSpawn(c,x,y,sec){const out=[],add=(t,el)=>{const e=mkEnemy(t,x+R(-14
   const t={g:'ghoul',s:'spitter',b:'brute',w:'bomb',h:(MIX[D.i]||[])[4]?'howl':'ghoul',x:tunSpecial(),E:'ghoul',B:'brute',r:'rat'}[c];
   if(t==='rat')for(let i=0;i<5;i++)add('rat');else add(t,c==='E'||c==='B'?pick(['schnell','brennend','spaltend','gepanzert']):0);return out;}
 const inR=(r,x,y)=>x>=r[0]&&x<r[0]+r[2]&&y>=r[1]&&y<r[1]+r[3];
-function tunUpdate(dt){const T=TUN;if(!T||T.done)return;P.wet=P.x>=FLOOD[0]&&P.x<=FLOOD[1]&&Math.abs(P.y-cy(P.x))<HW;
+function tunUpdate(dt){const T=TUN;if(!T||T.done)return;P.wet=P.x>=FLOOD[0]&&P.x<=FLOOD[1]&&Math.abs(P.y-cy(P.x))<THW;
   // side room: optional elite guard
   if(!T.room&&inR(ROOM,P.x,P.y)&&P.y<ROOM[1]+ROOM[3]-140){T.room=1;const x=ROOM[0]+ROOM[2]/2,y=ROOM[1]+120;tunSpawn('B',x,y,-1);tunSpawn('g',x-160,y+100,-1);tunSpawn('g',x+160,y+100,-1);toast('Der Betriebsraum ist bewacht');sfx('horn');}
   // current section: trigger packs when you pass x = t, they spawn ahead in small groups; the gate opens when everything the section spawned is down
-  const s=TSEC[T.sec];if(s){for(const[i,p]of s.packs.entries()){if(T['p'+T.sec+'_'+i]||P.x<p.t)continue;T['p'+T.sec+'_'+i]=1;let q=null;[...p.ty].forEach((c,j)=>{if(j%3===0){const x=R(p.sp[0],p.sp[1]);q=at(x,R(-HW*.6,HW*.6));}tunSpawn(c,q[0]+R(-40,40),q[1]+R(-40,40),T.sec);});sfx('horn');}
+  const s=TSEC[T.sec];if(s){for(const[i,p]of s.packs.entries()){if(T['p'+T.sec+'_'+i]||P.x<p.t)continue;T['p'+T.sec+'_'+i]=1;let q=null;[...p.ty].forEach((c,j)=>{if(j%3===0){const x=R(p.sp[0],p.sp[1]);q=at(x,R(-THW*.6,THW*.6));}tunSpawn(c,q[0]+R(-40,40),q[1]+R(-40,40),T.sec);});sfx('horn');}
     const all=s.packs.every((p,i)=>T['p'+T.sec+'_'+i]),alive=enemies.some(e=>e.sec===T.sec&&e.hp>0);
     if(all&&!alive&&T.sec<TSEC.length-1&&!(T.sec===0&&P.x<s.end)){if(s.gate)openGate(TSEC.filter((q,i)=>q.gate&&i<=T.sec).length-1);T.sec++;run.wave=T.sec+1;banner(tunName(T.k,TSEC[T.sec].n),1);}}
   // generator: walk to it to start, charge while you stay close, waves come out of the tunnel mouth, then Der Schaffner
-  if(T.sec===TSEC.length-1){const d=Math.hypot(P.x-GEN.x,P.y-GEN.y),mouth=()=>at(TX1-120,R(-HW+60,HW-60));if(!T.hold&&d<90){T.hold=1;T.p=0;T.sp=1;banner('Generator anwerfen',1);toast('Bleib beim Generator, bis der Strom fließt');sfx('zap');}
+  if(T.sec===TSEC.length-1){const d=Math.hypot(P.x-GEN.x,P.y-GEN.y),mouth=()=>at(TX1-120,R(-THW+60,THW-60));if(!T.hold&&d<90){T.hold=1;T.p=0;T.sp=1;banner('Generator anwerfen',1);toast('Bleib beim Generator, bis der Strom fließt');sfx('zap');}
     if(T.hold&&!T.lit){if(d<GEN.r){T.p+=dt;T.sp-=dt;}if(T.sp<=0){T.sp=R(1.6,2.4);const q=mouth();tunSpawn(pick('ggsgxr'),q[0],q[1],9);if(T.p>GEN.need*.5&&!T.el){T.el=1;const e=mouth();tunSpawn('B',e[0],e[1],9);}}
       if(T.p>=GEN.need){T.lit=1;T.gen.lights.push({x:GEN.x,y:GEN.y,z:40,r:260});for(const b of blds)if(b.draw===drawCol&&b.x>TST[2][0])b.lights.push({x:b.x+13,y:b.y+26,z:110,r:150});neons.push({x:GEN.x,y:GEN.y,z:70,c:'#f2d14b',s:70});
         sfx('win');flashT=.2;banner('Strom!',1);const q=at(TX1-260,0),b=mkEnemy('boss',q[0],q[1],false);b.st=run.tl?run.tl.t:0;b.name='Der Schaffner';b.v=-1;b.col='#3a4a5a';enemies.push(b);run.boss=b;T.boss=1;for(let i=0;i<3;i++){const e=mouth();tunSpawn('g',e[0],e[1],9);}toast('Aus dem Tunnel kommt etwas Großes');}}

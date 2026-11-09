@@ -9,6 +9,7 @@ function pathTo(tx,ty){if(!GB)return null;const W=GW,s=Math.floor(P.y/GC)*W+Math
   const prev=new Int32Array(W*GHt).fill(-1),q=[s];prev[s]=s;let h=0,found=false;while(h<q.length){const c=q[h++];if(c===g){found=true;break;}const cx=c%W,cy=(c-cx)/W;
     for(const[dx,dy]of[[1,0],[-1,0],[0,1],[0,-1]]){const nx=cx+dx,ny=cy+dy;if(nx<0||ny<0||nx>=W||ny>=GHt)continue;const n=ny*W+nx;if(prev[n]!==-1||(GB[n]&&n!==g))continue;prev[n]=c;q.push(n);}}
   if(!found)return null;let c=g,p=[];while(c!==s){p.push(c);c=prev[c];}p.reverse();const k=p[Math.min(2,p.length-1)];return{x:(k%W)*GC+GC/2,y:Math.floor(k/W)*GC+GC/2};}
+SIM.gridFree=()=>gridFree();
 SIM.goto=function(tx,ty){const d=Math.hypot(tx-P.x,ty-P.y);if(d<60||!SIM.blocked(tx,ty))return{x:(tx-P.x)/Math.max(1,d),y:(ty-P.y)/Math.max(1,d)};const w=pathTo(tx,ty);if(!w)return{x:(tx-P.x)/d,y:(ty-P.y)/d};const e=Math.max(1,Math.hypot(w.x-P.x,w.y-P.y));return{x:(w.x-P.x)/e,y:(w.y-P.y)/e};};
 SIM.blocked=function(tx,ty){const n=Math.ceil(Math.hypot(tx-P.x,ty-P.y)/20);for(let i=1;i<n;i++){const x=P.x+(tx-P.x)*i/n,y=P.y+(ty-P.y)*i/n;if(inWall(x,y,10))return true;}return false;};
 SIM.think=function(dt){
@@ -27,7 +28,7 @@ SIM.think=function(dt){
     if(S.cons.molotow>0&&es.filter(e=>dist(e,near)<90).length>=5&&Math.random()<.02)useCons('molotow');}
   else{let tg=null;
     if(captive)tg=captive;else if(trove)tg=trove;else if(crate)tg=crate;else if(zone)tg=zone;
-    else{let bd=1e9;for(const d of drops){const q=dist(d,P);if(q<bd&&q<900){bd=q;tg=d;}}for(const h of shrines)if(!h.used){const q=dist(h,P);if(q<500&&q<bd){bd=q;tg={x:h.x,y:h.y+10};}}}
+    else{let bd=1e9;for(const d of drops){if(d.botSkip)continue;const q=dist(d,P);if(q<bd&&q<900){bd=q;tg=d;}}if(tg&&tg===SIM.dropT){SIM.dropS+=dt;if(SIM.dropS>6){tg.botSkip=1;tg=null;}}else{SIM.dropT=tg;SIM.dropS=0;}/* unreachable drop (in a wall): give up after 6 s */for(const h of shrines)if(!h.used){const q=dist(h,P);if(q<500&&q<bd){bd=q;tg={x:h.x,y:h.y+10};}}}
     if(!tg&&run&&run.tun&&TUN){if(TUN.sec===TSEC.length-1&&!TUN.lit)tg={x:GEN.x,y:GEN.y+30};else{const x=Math.min(TX1-200,P.x+500),q=at(x,0);tg={x:q[0],y:q[1]};}}// tunnel: walk the route east, then hold the generator
     if(!tg)tg={x:SX,y:SY};const d=Math.max(1,dist(tg,P));if(d>8){const g=SIM.goto(tg.x,tg.y);mx+=g.x;my+=g.y;}}
   if(run&&run.tun&&TUN&&TUN.hold&&!TUN.lit){const d=Math.hypot(GEN.x-P.x,GEN.y-P.y);if(d>GEN.r*.55){mx+=(GEN.x-P.x)/d*2;my+=(GEN.y-P.y)/d*2;}}// keep charging

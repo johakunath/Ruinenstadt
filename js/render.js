@@ -123,6 +123,11 @@ function drawMini(){if(!MB)return;const k=WS>WH?192/3200:192/WS,dot=(x,y,r,c)=>{
   for(const e of enemies)dot(e.x,e.y,e.type==='boss'?7:e.elite?4:3,e.elite?EMC[e.elite]:e.type==='boss'?'#ff6a2a':'#c23a2e');
   if(crate)dot(crate.x,crate.y,5,'#f2d14b');if(npc)dot(npc.x,npc.y,5,'#8fd16a');if(zone){mx_.strokeStyle='#7dd3ff';mx_.lineWidth=2;mx_.beginPath();mx_.arc(zone.x*k,zone.y*k,zone.r*k,0,7);mx_.stroke();}
   const c=[[0,0],[VW,0],[VW,VH],[0,VH]].map(q=>s2w(q[0]-OX,q[1]-OY));mx_.strokeStyle='rgba(255,255,255,.4)';mx_.lineWidth=1.5;mx_.beginPath();c.forEach((q,i)=>i?mx_.lineTo(q[0]*k,q[1]*k):mx_.moveTo(q[0]*k,q[1]*k));mx_.closePath();mx_.stroke();dot(P.x,P.y,4.5,'#ffffff');mx_.restore();}
+// ?debug=hit: hit areas over the scene (player radius, current melee sector, enemy radii), for checking sprites against hitboxes (pipeline/contract.md)
+const DBG=/[?&]debug=hit\b/.test(location.search);
+function drawDebug(){if(!P)return;ctx.setTransform(DPR*Z,0,0,DPR*Z,0,0);ctx.lineWidth=1.5;const ring=(x,y,r,c)=>{ctx.strokeStyle=c;ctx.beginPath();for(let i=0;i<=24;i++){const a=i/24*7,X=scx(x+Math.cos(a)*r,y+Math.sin(a)*r),Y=scy(x+Math.cos(a)*r,y+Math.sin(a)*r);i?ctx.lineTo(X,Y):ctx.moveTo(X,Y);}ctx.stroke();};
+  ring(P.x,P.y,P.r,'#ff3366');for(const e of enemies)ring(e.x,e.y,e.r,'#ffd23f');
+  const K=ST&&KIND[ST.kind];if(K&&K.reach&&P.swingT>0){ctx.strokeStyle='#00ff88';ctx.beginPath();ctx.moveTo(scx(P.x,P.y),scy(P.x,P.y));for(let i=0;i<=24;i++){const a=P.atkA-K.arc+2*K.arc*i/24,x=P.x+Math.cos(a)*ST.reach,y=P.y+Math.sin(a)*ST.reach;ctx.lineTo(scx(x,y),scy(x,y));}ctx.closePath();ctx.stroke();}}
 function loop(t){requestAnimationFrame(loop);const minF=S.eco?1000/31:1000/61;if(t-last<minF)return;const dt=Math.min(.05,(t-last)/1000);last=t;
   if(state==='menu'){P.walk+=dt*6;P.mvx=.6;P.face=Math.sin(t*.0004)>0?0:Math.PI;}
-  if(freeze>0&&state==='play'){freeze-=dt;render(t);hud();return;}update(dt);if(state==='paused'){padPoll();if(run&&run.tl)run.tl.pt+=dt;}render(t);hud();const mh=!run;if(cache.mh!==mh){cache.mh=mh;mini.hidden=mh;document.body.classList.toggle('inrun',!mh);}if(run&&(++mf%(S.eco?6:3)===0))drawMini();if(state==='menu')P.mvx=0;}
+  if(freeze>0&&state==='play'){freeze-=dt;render(t);hud();return;}update(dt);if(state==='paused'){padPoll();if(run&&run.tl)run.tl.pt+=dt;}render(t);if(DBG)drawDebug();hud();const mh=!run;if(cache.mh!==mh){cache.mh=mh;mini.hidden=mh;document.body.classList.toggle('inrun',!mh);}if(run&&(++mf%(S.eco?6:3)===0))drawMini();if(state==='menu')P.mvx=0;}
