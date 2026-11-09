@@ -215,7 +215,7 @@ function buildWorld(d){
   if(K){K.lm();reserved.push({x:SX-80,y:SY-80,w:160,h:160});}// landmarks of a geo district (js/geo.js), clear start
   else ({Tempelhof:()=>legacy(lmTempelhof),Spandau:lmZitadelle,Marzahn:lmMarzahn}[d.n]||(()=>{}))();// grid districts (v0.47: Neukölln removed, v0.49: Prenzlauer Berg removed)
   if(K)geoStreets(K);
-  makeSpati();// v0.62: Dunkelzonen (makeDark) switched off, the U-Bahn network replaces them; an arena with a reward is on the backlog
+  makeSpati();// v0.65: Dunkelzonen (makeDark) switched off, the U-Bahn network replaces them; an arena with a reward is on the backlog
   for(const b of BLK)lotFill(b);
   // vehicles at real scale: car about 4 x player width (44 x 96), bus 46 x 230, tram 44 x 250. Boxes stay axis-aligned, on diagonal roads they stand askew like abandoned wrecks
   const side=(q,o)=>({x:q.x+q.nx*o,y:q.y+q.ny*o}),far=(x,y,r)=>Math.hypot(x-SX,y-SY)>=r;

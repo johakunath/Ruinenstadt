@@ -148,7 +148,7 @@ function neptun(x,y){const c=cnv(40,80),t=c.getContext('2d');t.fillStyle='#6a645
 // market on the Alex: stalls with striped awnings, crates
 function drawStall(b){const{x,y,w,h}=b;faceT(x+3,y+3,w,h,0,'rgba(0,0,0,.3)');ibox(x,y+h*.4,w,h*.6,0,20,'#6a4a2e',INK,'#8a6a44');for(const q of [[x,y],[x+w-4,y],[x,y+h-4],[x+w-4,y+h-4]])ibox(q[0],q[1],4,4,0,40,'#3a2a1e');
   for(let u=0;u<w;u+=10)poly([P3(x+u,y-4,46),P3(x+u+10,y-4,46),P3(x+u+10,y+h+4,36),P3(x+u,y+h+4,36)],(u/10)%2?b.c:'#ead9c0',INK);
-  for(let i=0;i<4;i++)ibox(x+6+i*(w-14)/4,y+h*.5,6,6,20,26,(b.gc||(b.gc=Array.from({length:4},()=>pick(['#e7982b','#af4237','#7b9a3a','#f2c230']))))[i]);}// v0.62: goods colours fixed per stall (random per frame flickered)
+  for(let i=0;i<4;i++)ibox(x+6+i*(w-14)/4,y+h*.5,6,6,20,26,(b.gc||(b.gc=Array.from({length:4},()=>pick(['#e7982b','#af4237','#7b9a3a','#f2c230']))))[i]);}// v0.65: goods colours fixed per stall (random per frame flickered)
 function aMarket(cx,cy){for(let i=0;i<8;i++){const x=cx-200+(i%4)*110,y=cy+Math.floor(i/4)*90,o={x,y,w:70,h:40,H:46,top:46,R0:0,c:pick([GRD,'#3a6a8a','#7b6a32',GOC]),lights:[],draw:drawStall};blds.push(o);walls.push({x,y:y+16,w:70,h:24});if(Math.random()<.6)addBrk(x+80,y+20,'crate',false);}marks.push({x:cx-40,y:cy+60,n:'Markt am Alex'});}
 // Bahnhof Alexanderplatz: station hall on the viaduct (same art as the Ostbahnhof), closed
 function aStation(cx,cy){const s=segsOf(ALEX.rail)[3],rot=rotN(Math.atan2(s.uy,s.ux)),w=360,h=96,b={x:cx-w/2,y:cy-h/2,w,h,hb:70,H:96,top:96,R0:0,rot,lw:Array.from({length:16},()=>Math.random()<.05),lights:[],draw:drawOstbf};

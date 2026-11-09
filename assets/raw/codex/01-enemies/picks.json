@@ -1,0 +1,1524 @@
+{
+  "enemies/bass-attack-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      238.0,
+      1005
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy bass attack-a",
+    "height": 49.070994,
+    "source": "bass.png"
+  },
+  "enemies/bass-attack-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      729.0,
+      1004
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy bass attack-b",
+    "height": 47.935091,
+    "source": "bass.png"
+  },
+  "enemies/bass-hit": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1288.0,
+      1005
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy bass hit",
+    "height": 54.864097,
+    "source": "bass.png"
+  },
+  "enemies/bass-idle": {
+    "alpha_threshold": 16,
+    "anchor": [
+      260.5,
+      501
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy bass idle",
+    "height": 56.227181,
+    "source": "bass.png"
+  },
+  "enemies/bass-walk-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      778.0,
+      502
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy bass walk-a",
+    "height": 55.432049,
+    "source": "bass.png"
+  },
+  "enemies/bass-walk-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1289.0,
+      499
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy bass walk-b",
+    "height": 54.636917,
+    "source": "bass.png"
+  },
+  "enemies/bomb-attack-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      239.0,
+      1005
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy bomb attack-a",
+    "height": 33.99177,
+    "source": "bomb.png"
+  },
+  "enemies/bomb-attack-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      731.0,
+      1003
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy bomb attack-b",
+    "height": 34.814815,
+    "source": "bomb.png"
+  },
+  "enemies/bomb-hit": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1291.5,
+      1004
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy bomb hit",
+    "height": 39.176955,
+    "source": "bomb.png"
+  },
+  "enemies/bomb-idle": {
+    "alpha_threshold": 16,
+    "anchor": [
+      267.0,
+      496
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy bomb idle",
+    "height": 40.164609,
+    "source": "bomb.png"
+  },
+  "enemies/bomb-walk-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      761.5,
+      496
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy bomb walk-a",
+    "height": 40.164609,
+    "source": "bomb.png"
+  },
+  "enemies/bomb-walk-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1280.0,
+      495
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy bomb walk-b",
+    "height": 39.917695,
+    "source": "bomb.png"
+  },
+  "enemies/brigadeghoul-attack-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      258.5,
+      995
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy brigadeghoul attack-a",
+    "height": 36.5,
+    "source": "brigadeghoul.png"
+  },
+  "enemies/brigadeghoul-attack-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      719.0,
+      995
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy brigadeghoul attack-b",
+    "height": 34.795117,
+    "source": "brigadeghoul.png"
+  },
+  "enemies/brigadeghoul-hit": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1276.0,
+      995
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy brigadeghoul hit",
+    "height": 35.647558,
+    "source": "brigadeghoul.png"
+  },
+  "enemies/brigadeghoul-idle": {
+    "alpha_threshold": 16,
+    "anchor": [
+      226.5,
+      483
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy brigadeghoul idle",
+    "height": 36.577495,
+    "source": "brigadeghoul.png"
+  },
+  "enemies/brigadeghoul-walk-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      743.5,
+      479
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy brigadeghoul walk-a",
+    "height": 36.267516,
+    "source": "brigadeghoul.png"
+  },
+  "enemies/brigadeghoul-walk-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1264.5,
+      480
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy brigadeghoul walk-b",
+    "height": 36.190021,
+    "source": "brigadeghoul.png"
+  },
+  "enemies/brute-attack-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      235.5,
+      996
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy brute attack-a",
+    "height": 50.734513,
+    "source": "brute.png"
+  },
+  "enemies/brute-attack-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      733.5,
+      994
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy brute attack-b",
+    "height": 50.159292,
+    "source": "brute.png"
+  },
+  "enemies/brute-hit": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1291.0,
+      994
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy brute hit",
+    "height": 51.424779,
+    "source": "brute.png"
+  },
+  "enemies/brute-idle": {
+    "alpha_threshold": 16,
+    "anchor": [
+      248.5,
+      483
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy brute idle",
+    "height": 52.230088,
+    "source": "brute.png"
+  },
+  "enemies/brute-walk-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      755.5,
+      483
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy brute walk-a",
+    "height": 52.115044,
+    "source": "brute.png"
+  },
+  "enemies/brute-walk-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1269.5,
+      483
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy brute walk-b",
+    "height": 51.884956,
+    "source": "brute.png"
+  },
+  "enemies/crow-attack-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      270,
+      767
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy crow attack-a",
+    "height": 10.762148,
+    "source": "crow.png"
+  },
+  "enemies/crow-attack-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      772,
+      757
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy crow attack-b",
+    "height": 6.915601,
+    "source": "crow.png"
+  },
+  "enemies/crow-hit": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1294,
+      787
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy crow hit",
+    "height": 12.235294,
+    "source": "crow.png"
+  },
+  "enemies/crow-idle": {
+    "alpha_threshold": 16,
+    "anchor": [
+      270,
+      275
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy crow idle",
+    "height": 6.383632,
+    "source": "crow.png"
+  },
+  "enemies/crow-walk-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      782,
+      275
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy crow walk-a",
+    "height": 12.194373,
+    "source": "crow.png"
+  },
+  "enemies/crow-walk-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1294,
+      275
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy crow walk-b",
+    "height": 10.230179,
+    "source": "crow.png"
+  },
+  "enemies/howl-attack-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      255.5,
+      991
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy howl attack-a",
+    "height": 44.0,
+    "source": "howl.png"
+  },
+  "enemies/howl-attack-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      770.5,
+      992
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy howl attack-b",
+    "height": 44.315789,
+    "source": "howl.png"
+  },
+  "enemies/howl-hit": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1294.5,
+      991
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy howl hit",
+    "height": 44.631579,
+    "source": "howl.png"
+  },
+  "enemies/howl-idle": {
+    "alpha_threshold": 16,
+    "anchor": [
+      263.0,
+      478
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy howl idle",
+    "height": 44.315789,
+    "source": "howl.png"
+  },
+  "enemies/howl-walk-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      765.5,
+      478
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy howl walk-a",
+    "height": 43.789474,
+    "source": "howl.png"
+  },
+  "enemies/howl-walk-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1270.5,
+      478
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy howl walk-b",
+    "height": 43.894737,
+    "source": "howl.png"
+  },
+  "enemies/kabel-attack-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      225.5,
+      1004
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy kabel attack-a",
+    "height": 33.752621,
+    "source": "kabel.png"
+  },
+  "enemies/kabel-attack-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      725.5,
+      1001
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy kabel attack-b",
+    "height": 31.404612,
+    "source": "kabel.png"
+  },
+  "enemies/kabel-hit": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1280.0,
+      1003
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy kabel hit",
+    "height": 34.339623,
+    "source": "kabel.png"
+  },
+  "enemies/kabel-idle": {
+    "alpha_threshold": 16,
+    "anchor": [
+      257.5,
+      493
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy kabel idle",
+    "height": 35.146751,
+    "source": "kabel.png"
+  },
+  "enemies/kabel-walk-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      760.0,
+      492
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy kabel walk-a",
+    "height": 34.853249,
+    "source": "kabel.png"
+  },
+  "enemies/kabel-walk-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1288.0,
+      492
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy kabel walk-b",
+    "height": 34.853249,
+    "source": "kabel.png"
+  },
+  "enemies/kern-attack-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      255.0,
+      999
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy kern attack-a",
+    "height": 42.090517,
+    "pivots": {
+      "mouth": [
+        365,
+        662
+      ]
+    },
+    "source": "kern.png"
+  },
+  "enemies/kern-attack-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      767.0,
+      999
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy kern attack-b",
+    "height": 41.456897,
+    "pivots": {
+      "mouth": [
+        917,
+        662
+      ]
+    },
+    "source": "kern.png"
+  },
+  "enemies/kern-hit": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1279.5,
+      999
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy kern hit",
+    "height": 41.185345,
+    "pivots": {
+      "mouth": [
+        1369,
+        667
+      ]
+    },
+    "source": "kern.png"
+  },
+  "enemies/kern-idle": {
+    "alpha_threshold": 16,
+    "anchor": [
+      254.5,
+      487
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy kern idle",
+    "height": 42.181034,
+    "pivots": {
+      "mouth": [
+        318,
+        128
+      ]
+    },
+    "source": "kern.png"
+  },
+  "enemies/kern-walk-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      766.5,
+      487
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy kern walk-a",
+    "height": 38.017241,
+    "pivots": {
+      "mouth": [
+        877,
+        180
+      ]
+    },
+    "source": "kern.png"
+  },
+  "enemies/kern-walk-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1279.5,
+      487
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy kern walk-b",
+    "height": 42.99569,
+    "pivots": {
+      "mouth": [
+        1389,
+        100
+      ]
+    },
+    "source": "kern.png"
+  },
+  "enemies/raser-attack-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      253.5,
+      929
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy raser attack-a",
+    "height": 30.132597,
+    "source": "raser.png"
+  },
+  "enemies/raser-attack-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      712.0,
+      925
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy raser attack-b",
+    "height": 29.734807,
+    "source": "raser.png"
+  },
+  "enemies/raser-hit": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1312.0,
+      931
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy raser hit",
+    "height": 34.209945,
+    "source": "raser.png"
+  },
+  "enemies/raser-idle": {
+    "alpha_threshold": 16,
+    "anchor": [
+      250.5,
+      445
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy raser idle",
+    "height": 36.099448,
+    "source": "raser.png"
+  },
+  "enemies/raser-walk-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      765.5,
+      445
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy raser walk-a",
+    "height": 36.497238,
+    "source": "raser.png"
+  },
+  "enemies/raser-walk-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1259.5,
+      446
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy raser walk-b",
+    "height": 36.497238,
+    "source": "raser.png"
+  },
+  "enemies/rat-attack-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      240.5,
+      897
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy rat attack-a",
+    "height": 6.096774,
+    "source": "rat.png"
+  },
+  "enemies/rat-attack-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      769.5,
+      894
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy rat attack-b",
+    "height": 5.835484,
+    "source": "rat.png"
+  },
+  "enemies/rat-hit": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1236.0,
+      897
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy rat hit",
+    "height": 6.996774,
+    "source": "rat.png"
+  },
+  "enemies/rat-idle": {
+    "alpha_threshold": 16,
+    "anchor": [
+      208.5,
+      389
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy rat idle",
+    "height": 6.154839,
+    "source": "rat.png"
+  },
+  "enemies/rat-walk-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      759.5,
+      389
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy rat walk-a",
+    "height": 6.212903,
+    "source": "rat.png"
+  },
+  "enemies/rat-walk-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1251.0,
+      392
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy rat walk-b",
+    "height": 6.270968,
+    "source": "rat.png"
+  },
+  "enemies/schrottkoloss-attack-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      260.0,
+      943
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy schrottkoloss attack-a",
+    "height": 83.682192,
+    "source": "schrottkoloss.png"
+  },
+  "enemies/schrottkoloss-attack-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      746.5,
+      943
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy schrottkoloss attack-b",
+    "height": 78.906849,
+    "source": "schrottkoloss.png"
+  },
+  "enemies/schrottkoloss-hit": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1286.5,
+      943
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy schrottkoloss hit",
+    "height": 83.0,
+    "source": "schrottkoloss.png"
+  },
+  "enemies/schrottkoloss-idle": {
+    "alpha_threshold": 16,
+    "anchor": [
+      277.5,
+      439
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy schrottkoloss idle",
+    "height": 83.454795,
+    "source": "schrottkoloss.png"
+  },
+  "enemies/schrottkoloss-walk-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      763.5,
+      440
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy schrottkoloss walk-a",
+    "height": 83.227397,
+    "source": "schrottkoloss.png"
+  },
+  "enemies/schrottkoloss-walk-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1269.5,
+      439
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy schrottkoloss walk-b",
+    "height": 83.227397,
+    "source": "schrottkoloss.png"
+  },
+  "enemies/shield-attack-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      245.5,
+      996
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy shield attack-a",
+    "height": 42.974576,
+    "source": "shield.png"
+  },
+  "enemies/shield-attack-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      732.5,
+      996
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy shield attack-b",
+    "height": 42.788136,
+    "source": "shield.png"
+  },
+  "enemies/shield-hit": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1268.0,
+      996
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy shield hit",
+    "height": 42.881356,
+    "source": "shield.png"
+  },
+  "enemies/shield-idle": {
+    "alpha_threshold": 16,
+    "anchor": [
+      239.5,
+      481
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy shield idle",
+    "height": 44.09322,
+    "source": "shield.png"
+  },
+  "enemies/shield-panel": {
+    "alpha_threshold": 16,
+    "anchor": [
+      760.0,
+      513.0
+    ],
+    "for": "drawEnemy shield directional panel",
+    "height": 30,
+    "source": "shield-panel.png"
+  },
+  "enemies/shield-walk-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      749.0,
+      481
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy shield walk-a",
+    "height": 43.627119,
+    "source": "shield.png"
+  },
+  "enemies/shield-walk-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1262.5,
+      481
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy shield walk-b",
+    "height": 43.347458,
+    "source": "shield.png"
+  },
+  "enemies/spitter-attack-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      261.5,
+      995
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy spitter attack-a",
+    "height": 40.8,
+    "pivots": {
+      "mouth": [
+        284,
+        587
+      ]
+    },
+    "source": "spitter.png"
+  },
+  "enemies/spitter-attack-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      742.5,
+      995
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy spitter attack-b",
+    "height": 38.044444,
+    "pivots": {
+      "mouth": [
+        955,
+        635
+      ]
+    },
+    "source": "spitter.png"
+  },
+  "enemies/spitter-hit": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1322.0,
+      994
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy spitter hit",
+    "height": 40.266667,
+    "pivots": {
+      "mouth": [
+        1227,
+        585
+      ]
+    },
+    "source": "spitter.png"
+  },
+  "enemies/spitter-idle": {
+    "alpha_threshold": 16,
+    "anchor": [
+      227.0,
+      480
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy spitter idle",
+    "height": 40.088889,
+    "pivots": {
+      "mouth": [
+        335,
+        101
+      ]
+    },
+    "source": "spitter.png"
+  },
+  "enemies/spitter-walk-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      747.0,
+      480
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy spitter walk-a",
+    "height": 40.177778,
+    "pivots": {
+      "mouth": [
+        845,
+        101
+      ]
+    },
+    "source": "spitter.png"
+  },
+  "enemies/spitter-walk-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1276.5,
+      480
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy spitter walk-b",
+    "height": 40.088889,
+    "pivots": {
+      "mouth": [
+        1354,
+        103
+      ]
+    },
+    "source": "spitter.png"
+  },
+  "enemies/uhr-attack-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      248.0,
+      978
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy uhr attack-a",
+    "height": 39.859956,
+    "source": "uhr.png"
+  },
+  "enemies/uhr-attack-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      767.0,
+      977
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy uhr attack-b",
+    "height": 43.229759,
+    "source": "uhr.png"
+  },
+  "enemies/uhr-hit": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1306.0,
+      977
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy uhr hit",
+    "height": 43.037199,
+    "source": "uhr.png"
+  },
+  "enemies/uhr-idle": {
+    "alpha_threshold": 16,
+    "anchor": [
+      259.5,
+      482
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy uhr idle",
+    "height": 44.577681,
+    "source": "uhr.png"
+  },
+  "enemies/uhr-walk-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      772.5,
+      480
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy uhr walk-a",
+    "height": 43.61488,
+    "source": "uhr.png"
+  },
+  "enemies/uhr-walk-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1292.0,
+      479
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy uhr walk-b",
+    "height": 43.5186,
+    "source": "uhr.png"
+  },
+  "enemies/wurz-attack-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      257.0,
+      989
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy wurz attack-a",
+    "height": 54.065817,
+    "source": "wurz.png"
+  },
+  "enemies/wurz-attack-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      690.0,
+      988
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy wurz attack-b",
+    "height": 51.963907,
+    "source": "wurz.png"
+  },
+  "enemies/wurz-hit": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1259.0,
+      988
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy wurz hit",
+    "height": 53.481953,
+    "source": "wurz.png"
+  },
+  "enemies/wurz-idle": {
+    "alpha_threshold": 16,
+    "anchor": [
+      249.5,
+      482
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy wurz idle",
+    "height": 55.233546,
+    "source": "wurz.png"
+  },
+  "enemies/wurz-walk-a": {
+    "alpha_threshold": 16,
+    "anchor": [
+      760.0,
+      480
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy wurz walk-a",
+    "height": 54.766454,
+    "source": "wurz.png"
+  },
+  "enemies/wurz-walk-b": {
+    "alpha_threshold": 16,
+    "anchor": [
+      1266.0,
+      480
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy wurz walk-b",
+    "height": 55.350318,
+    "source": "wurz.png"
+  }
+}

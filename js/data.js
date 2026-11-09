@@ -30,7 +30,7 @@ let tipQ=[],tipT=0;function tip(k,txt){if(!S.tips||S.tips[k])return;S.tips[k]=1;
 function checkAch(){for(const a of ACH)if(!S.ach[a.k]&&a.c()){S.ach[a.k]=1;S.scrap+=a.r;toast(`Erfolg: <span style="color:var(--ember)">${a.n}</span> · +${a.r} Schrott`);sfx('win');}}
 const SETC='#8fd16a',rc=it=>it.set?SETC:RAR[it.r].c,setCount=(eq,k)=>SLOTS.filter(s=>eq[s]&&eq[s].set===k).length;
 const rfCost=it=>Math.round((20+it.ilvl*4+it.r*20)*Math.pow(1.4,it.rr||0));
-// v0.62: Umschmieden also costs material (weapon metal, armour cloth, jewellery cable). Weapon mods open after Xhain, reforging after Potsdamer Platz (Mitte)
+// v0.65: Umschmieden also costs material (weapon metal, armour cloth, jewellery cable). Weapon mods open after Xhain, reforging after Potsdamer Platz (Mitte)
 const rfMat=it=>[({w:'metall',a:'stoff',h:'stoff',g:'stoff',f:'stoff'})[it.slot]||'kabel',it.r+(it.rr||0)],modsOpen=()=>(S.best[1]||0)>=WAVES,forgeOpen=()=>(S.best[3]||0)>=WAVES;
 const LOCK='<svg class="lk" width="10" height="11" viewBox="0 0 10 11" aria-hidden="true"><rect x="1" y="5" width="8" height="6" fill="#a8957d"/><path d="M3 5V3a2 2 0 0 1 4 0v2" stroke="#a8957d" fill="none" stroke-width="1.4"/></svg>';
 const LEGP={turm:'Krits lösen eine Feuerexplosion aus',mauer:'Jeder vierte Treffer erzeugt eine Säurewelle',ring:'Geschosse springen auf einen weiteren Gegner über',

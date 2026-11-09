@@ -1,0 +1,11 @@
+# Development sources and review evidence stay in Git, not in the published game.
+exclude:
+  - assets/raw
+  - pipeline
+  - tools
+  - docs
+  - mockups
+  - AGENTS.md
+  - CLAUDE.md
+  - BACKLOG.md
+  - README.md

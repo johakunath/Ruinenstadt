@@ -10,7 +10,8 @@ source is relative to picks.json. Optional crop [left,top,right,bottom], anchor
 and pivots use ORIGINAL source pixels. height is the trimmed height in world
 units. Optional background [r,g,b] removes only matching border-connected
 pixels (tolerance defaults to 24); existing alpha is preserved. Transparent
-sources need no background. Output is trimmed, padded by 1 px, at 3 px/unit.
+sources need no background. Optional alpha_threshold (0..254) discards faint
+generation noise before trimming. Output is trimmed, padded by 1 px, at 3 px/unit.
 Only approved selections belong in picks.json; review sheets are never input.
 """
 import argparse
@@ -96,6 +97,13 @@ def normalise(key, spec, recipe):
     im = im.crop(crop)
     if 'background' in spec:
         im = remove_background(im, spec['background'], spec.get('tolerance', 24))
+    if 'alpha_threshold' in spec:
+        threshold = spec['alpha_threshold']
+        if type(threshold) is not int or not 0 <= threshold <= 254:
+            raise ValueError(f'{key}: alpha_threshold must be 0..254')
+        a = np.array(im)
+        a[:, :, 3][a[:, :, 3] <= threshold] = 0
+        im = Image.fromarray(a)
     box = im.getchannel('A').point(lambda a: 255 if a > 8 else 0).getbbox()
     if not box:
         raise ValueError(f'{key}: empty sprite after background removal')

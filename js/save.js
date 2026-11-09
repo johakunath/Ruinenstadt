@@ -8,7 +8,7 @@ function fix(s){const u5=!s.u50,w10=!s.w20,nk=!s.d7,n8=!s.d8;s=Object.assign(def
     if(s.unlocked===3)s.unlocked=4;else if(s.unlocked===4)s.unlocked=5;s.dist=s.dist===4?4:Math.max(0,f(s.dist));
     if(s.lb){const n={};for(const k in s.lb){const i=f(+k);if(i>=0)n[i]=1;}s.lb=n;}for(const t of s.tlog||[]){if(t.d==null||t.d<0)continue;const i=f(t.d);if(i<0){t.d=-1;t.dn='Prenzlauer Berg';}else t.d=i;}s.d8=1;}
   /* v0.50: districts open through U-Bahn tunnels (S.ln[k]: line k to k+1 cleared). Lines to districts already open count as cleared */if(u5){s.ln=[];for(let k=0;k<s.unlocked-1;k++)s.ln[k]=1;s.u50=1;}if(!Array.isArray(s.ln))s.ln=[];
-  /* v0.62: Kodex discoveries (S.kx). Old saves: everything from districts already reached counts as met */if(!s.kx){s.kx={};if(s.rec&&s.rec.runs>0){const late={uhr:3,wurz:3,kern:3,kabel:4,bass:4};for(const k of KODEX){const t=k[3];if(!late[t]||s.unlocked>=late[t])s.kx[t]=1;}for(const k in EMN)s.kx['e'+k]=1;DIST.forEach((d,j)=>{if((s.best[j]||0)>=WAVES)s.kx['b'+d.b]=1;});}}
+  /* v0.65: Kodex discoveries (S.kx). Old saves: everything from districts already reached counts as met */if(!s.kx){s.kx={};if(s.rec&&s.rec.runs>0){const late={uhr:3,wurz:3,kern:3,kabel:4,bass:4};for(const k of KODEX){const t=k[3];if(!late[t]||s.unlocked>=late[t])s.kx[t]=1;}for(const k in EMN)s.kx['e'+k]=1;DIST.forEach((d,j)=>{if((s.best[j]||0)>=WAVES)s.kx['b'+d.b]=1;});}}
   s.unlocked=Math.min(s.unlocked,DIST.length);for(const k of SLOTS)if(!(k in s.eq))s.eq[k]=null;return s;}
 function load(){S=null;try{const s=JSON.parse(localStorage.getItem('rs2'));if(s&&s.upg&&s.eq)S=fix(s);}catch(e){}if(!S)S=defSave();}
 const cloud={ref:null,state:'off',busy:false,dirty:false,timer:0};
