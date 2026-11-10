@@ -257,3 +257,44 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   decision is still open. Continue independent GDR banners/crests/landmarks
   while it is reviewed. Earlier non-GDR prop studies remain local generated
   drafts and are not integrated into this enemy release.
+
+
+## 2026-11-10 · Codex · user feedback on GDR proportions and wear
+
+- PR #24 merged as `7b7d70b45b8d6ed806616ffe677fffcd9263aec5` after completed clean Codex review of `12415b7f2762bf12815f489e159c1f516a0f6f89`, no remaining threads/checks.
+- Johannes likes the colour setting but asks for a larger Uhrwerkläufer and a believable taller/wider Brigadeghul. He explicitly authorizes matching functionality and hitbox changes. Add more rust, chips, cracks and broken/torn parts while preserving clear blue/yellow. Apply this to pending building/asset work too.
+- Task 11 source/decor drafts are safely preserved in local WIP `ff85e62` on `codex/11-alexanderplatz-pioneer`; no unreviewed runtime integration or method choice has shipped. Task 12 corrects enemy proportions first on `codex/12-gdr-enemy-proportions`.
+
+
+## 2026-11-10 · Codex · task 12 complete, v0.68, session wrap
+
+- Twelve repainted frames enlarge Uhrwerkläufer to the humanoid clockwork
+  design (height 64/radius 22, speed 34, walk 4 fps) and Brigadeghul to
+  believable worker armour (height 44/radius 20). Other districts' ghouls
+  retain radius 10. HP/damage/ghoul speed and constructor RNG draws are
+  unchanged. Explicit sole anchors and recipe ownership preserve rebuilds.
+- Real colliders, elite-safe spawn/event probes, wall/crowd/contact behavior,
+  clock shield and overlays/fallbacks follow the larger bodies. New semantic
+  tests exercise actual collision/contact, shield/elite and fallback paths.
+  Keep missing-image Uhr's older canvas design as the temporary fallback.
+- Rust, chipped enamel, cracks, torn cloth and exposed/broken covers preserve
+  the bright blue/yellow and hammer-and-sickle direction. Active style board
+  and durable style bible extend the wear requirement to future buildings.
+- Initial Alexanderplatz timing exceeded the 5% budget. Cache only these two
+  families' projected shadows by frame/light/facing (max 2.76 MiB); retain
+  size and rendering quality. Semantic cache/padding tests and one-off
+  144-case pixel comparison cover the change. Final isolated seven-pair full
+  render comparison vs v0.67: Köpenick 51.4→51.3 ms (-0.2%), Alexanderplatz
+  43.7→42.9 (-1.8%), Mitte 51.0→50.7 (-0.6%). All pass the enforced budget.
+- Validation: 6 Python + 22 JS tests, all 227 manifest entries; twelve images
+  reproduce byte-for-byte and decode to 1,162,352 bytes. Final Chromium proof
+  includes 32 galleries, 40 world views, real-player scale at default/2x,
+  shield/open-guard views, actual 3-second GDR combat/circle-wall clearance,
+  required-image failures and fresh offline v0.68 with 97/97 enemy images.
+  No unexpected page/image errors. Evidence and reproduction commands:
+  `pipeline/proof/12-gdr-enemy-proportions/`. Tablet thermal playtest remains.
+- Johannes asked to finish the current task and wrap the session. No new
+  tasks started. Preserve task 11 building studies on their separate branch,
+  including the newer weathered sources, with a paused handoff. Generic
+  texture-kit vs full-building method is still undecided; full-building
+  footprint fit is unresolved and its rejected studies must not ship.
