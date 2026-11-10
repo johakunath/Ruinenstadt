@@ -1,0 +1,70 @@
+{
+  "comparisons": [
+    {
+      "st": "altbau",
+      "rot": 0,
+      "width": 618,
+      "height": 864,
+      "changedChannels": 0,
+      "maxDifference": 0,
+      "changedAlpha": 0
+    },
+    {
+      "st": "altbau",
+      "rot": 0.6,
+      "width": 408,
+      "height": 867,
+      "changedChannels": 0,
+      "maxDifference": 0,
+      "changedAlpha": 0
+    },
+    {
+      "st": "altbau",
+      "rot": -0.6,
+      "width": 642,
+      "height": 753,
+      "changedChannels": 0,
+      "maxDifference": 0,
+      "changedAlpha": 0
+    },
+    {
+      "st": "ruin",
+      "rot": 0,
+      "width": 618,
+      "height": 864,
+      "changedChannels": 0,
+      "maxDifference": 0,
+      "changedAlpha": 0
+    },
+    {
+      "st": "ruin",
+      "rot": 0.6,
+      "width": 408,
+      "height": 867,
+      "changedChannels": 0,
+      "maxDifference": 0,
+      "changedAlpha": 0
+    },
+    {
+      "st": "ruin",
+      "rot": -0.6,
+      "width": 642,
+      "height": 753,
+      "changedChannels": 0,
+      "maxDifference": 0,
+      "changedAlpha": 0
+    }
+  ],
+  "stats": {
+    "decodedBytes": 1592672,
+    "sharedCanvasBytes": 873504,
+    "canvasBytes": 36804672,
+    "perBuildingCanvasBytes": 35931168,
+    "totalBytes": 38397344,
+    "cacheLimitBytes": 40000000,
+    "cachedBuildings": 18,
+    "cacheReady": true,
+    "evictions": 7,
+    "maxAllocatedBytes": 39857504
+  }
+}

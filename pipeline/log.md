@@ -393,3 +393,79 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   head. This delivers the approved A rollout, all eight weathered selections,
   fallback/offline integration and the completed evidence described above.
 - 2026-11-10 (v0.70, Claude): added legendaries for head, hands, feet and ring and set pieces for the same slots (sets now 5 pieces, bonuses at 2/3/5). Art still SVG fallback. New work package `tasks/12-legendaries-and-sets.md` (10 icons, optional hero parts).
+
+## 2026-11-10 · Codex · queue and status update
+
+- Johannes accepted the GDR enemy proportions/wear work in
+  `12-gdr-enemy-proportions.md`. This records acceptance of that prior work; it
+  does not claim new implementation or authorize a merge.
+- Current authorized queue: Köpenick building kit; ten legendary/set icons,
+  with any worn parts matching the set art goal; props/fire; player animation
+  step 1; vehicles with assets fitted to actual runtime rotations.
+- Köpenick style canvas is saved in
+  `assets/raw/codex/02-buildings-koepenick/style-canvas-abc.png`, with the exact
+  prompt and design-status notes beside it. Recommended mix: A common Altbau,
+  B occasional variant, C selected ruins. Johannes's design choice is pending;
+  the production task remains open. The sheet is not a runtime texture atlas.
+- Tablet heat/performance checks are deferred much later. Existing desktop
+  measurements remain desktop evidence only.
+- Reconciled the stale vehicle “quick win/start here after 01b” claim: vehicles
+  are fifth in the current queue. Updated backlog, workflow and task statuses;
+  no runtime work or merge authorization is implied. The duplicate `12` task
+  prefixes remain unchanged; references use descriptive filenames.
+- Created an ignored local `.venv` with Pillow 11.3.0 and numpy 2.0.2;
+  `tools/requirements-assets.txt` records the dependencies. Manifest check:
+  235 sprites pass; 6 Python and 33 JavaScript asset tests pass. No runtime
+  files changed. Browser proof was not rerun: Playwright is absent from the
+  default Node path and the harness needs a Windows Chromium path.
+- Used GPT-6 Luna subagents for documentation and narrowly scoped read-only
+  equipment/vehicle preparation. Painting used built-in image generation,
+  whose exposed tool has no model/quality selector. Reusable texture kits
+  and scripted normalization reduce duplicate painting. No API/CLI generation.
+- Vehicle implementation direction: map painted face textures onto existing
+  P3 geometry at runtime road rotations (up to ±45°), retaining procedural
+  wheels/frustums and the full fallback; independent 360° painted renders are
+  not required. Updated `contract.md` and `03-vehicles.md` accordingly.
+- Clarified legacy duplicate task numbering (including `08-landmarks.md` and
+  both descriptive task 12 files) without renaming. Corrected the icon task's
+  code version to v0.70 and separated required icons from optional worn parts.
+  Style-bible Alexanderplatz status now scopes delivered enemies/building kit
+  while keeping landmarks open.
+
+## 2026-11-10 · Codex · Köpenick kit draft and design autonomy
+
+- Johannes chose A common Altbau, B occasional variants and selective C
+  ruins. Thirteen normalized materials cover those variants, slab blocks and
+  the Späti. Sources, exact prompts, crops and aperture pivots are preserved.
+  The dedicated picker rebuilds only its own keys, byte-identically; existing
+  235 manifest entries and old art remain unchanged.
+- Runtime uses the original footprints, light/window positions, ruin-cutout
+  union, sorting and collision records. Projected caches derive from the
+  texture kit at actual rotations, 3 px/screen unit, one draw per building.
+  Cache memory is capped at 40,000,000 bytes; drawn entries take priority over
+  unused prefetches. District/camp/tunnel transitions release queued caches.
+- Validation: 248-entry manifest, 49 JavaScript and 6 Python tests pass;
+  60 browser paint/legacy/contact views cover five kinds, three rotations,
+  default/2x zoom. Six source-resolution cached/live comparisons have zero
+  pixel differences. Required-image HTTP404 keeps complete fallback. A fresh
+  v0.71 offline reload plays with 13/13 new images decoded/cached and no
+  post-boundary image failures. All 47 recorded source hashes match.
+- **Not accepted for release:** isolated timing passed (+0.90% Köpenick,
+  -3.67% Alexanderplatz), but the final combined run failed at +9.68%
+  Köpenick (2.191 to 2.403 ms/frame; limit 5%). Its visible/cache-revisit
+  working sets were fully painted, with peak 39,514,028 bytes. Do not choose
+  the favourable timing or claim the budget passes. Three optimization
+  approaches were tried; preserve a draft and continue independent work.
+  Evidence/commands: `pipeline/proof/02-buildings-koepenick/README.md`.
+  Version/cache 0.71 are draft-only; main remains 0.70, no merge authorized.
+- New standing design rule from Johannes: A/B/C only for critical design
+  choices, with strongly different alternatives. For about 80% of routine
+  assets, choose, create and show the design; continue unless he objects.
+  Updated CLAUDE/workflow/style bible; technical checks and merge rules stay.
+- Next equipment choices: Kiezwache B, Spreegeist B, Zitadelle A. The sheets
+  are saved locally under the equipment task raw folder; production is next.
+  Props/fire, player animation step 1 and rotation-fitted vehicles remain queued.
+- GPT-6 Luna helpers reached their usage limit during validation. Root took
+  over the final run. No cheaper image-model selector is exposed by the
+  built-in painting tool; source reuse and scripted processing remain the
+  cost-saving route.

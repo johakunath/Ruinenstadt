@@ -1,5 +1,18 @@
 # Renderer contract
 
+Köpenick method-A integration (draft v0.71; performance gate open): `js/koep-assets.js` maps selected
+window/material modules to the existing facade lattice and records aperture
+bounds as `pivots.apertureTL`/`apertureBR`. It derives transparent projected
+caches at 3 px/screen unit for actual building rotations; no authored fixed-view
+painting replaces the geometry. `koepPrepareMap()`/`koepPrepare(b)` schedule
+cache work outside drawing. Signatures invalidate changed geometry/rotation;
+actual draws receive eviction priority over unused prefetches. Task images,
+shared materials and caches together are capped at 40,000,000 bytes. The
+original sprite supplies complete fallback while a required image/cache is
+unavailable. Cache retirement clears dimensions and cancels pending map jobs.
+The Späti keeps its German sign, central entrance, interior and collision gate;
+ruins keep the original cutout union. See task 02 proof for validation.
+
 How a painted sprite has to look and where it plugs in. If something here is wrong, fix this file in the same PR.
 
 ## Camera and units
@@ -16,7 +29,7 @@ How a painted sprite has to look and where it plugs in. If something here is wro
 | Object | Drawn today by | Sprite must provide | Anchor |
 |---|---|---|---|
 | Building, Späti, landmark | `drawBox` / `drawBB` in `js/iso.js`, landmark functions in the district files (`drawRathaus`, `drawReichstag`, ...) | Full iso render of the building at the game angle, footprint `w` x `h` in world units | Footprint south corner `(x, y+h)` on the ground |
-| Vehicle | `drawVehBox` in `js/iso.js` (`b.veh.k`: car, trabi, van, bus, tram; `V.v` vertical) | Two renders: long axis along world x and along world y | Footprint centre on the ground |
+| Vehicle | `drawVehBox` in `js/iso.js` (`b.veh.k`: car, trabi, van, bus, tram; `V.v` vertical) | Painted roof, long-side and short-end face textures mapped onto existing P3 geometry for both `V.v` assignments and actual supported `rotN` road angles (up to ±45°); retain procedural wheels/frustums and full fallback | Footprint centre on the ground |
 | Tree, lamp, Litfaßsäule, crane | Upright sprite via `drawBB` (`b.spr`, `b.sc`) | Upright PNG | Bottom centre at the footprint centre |
 | Enemy | `drawEnemy(e,t)` in `js/art.js` (district enemies in `js/alex.js` etc.), animated in code | Upright, facing right (the game mirrors), as parts with pivots or as a small set of frames (idle, walk 2 to 4, attack 2 to 3, hit) | Painted ghoul: feet centre at `(e.x, e.y + e.r*.4)` screen-space, so soles stay inside the projected collision ring. Legacy canvas enemies use `e.r*.75`; see `drawEnemy` |
 | Boss | Same as enemy, `type:'boss'`, `e.big` | Same | Same |

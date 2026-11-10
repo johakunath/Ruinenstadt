@@ -1,2 +1,7 @@
 __pycache__/
 *.py[cod]
+.venv/
+.tools-browser/
+.worktrees/
+pipeline/proof/02-buildings-koepenick/*/
+!pipeline/proof/02-buildings-koepenick/draft/

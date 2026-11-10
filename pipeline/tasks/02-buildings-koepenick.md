@@ -1,6 +1,17 @@
 # 02 Buildings, Köpenick first
 
-Status: step 0 complete (v0.69, Alexanderplatz proof per Johannes’ priority); Johannes selected A for GDR Zuckerbaecker blocks on 2026-11-10. Köpenick asset work remains open.
+Status: in progress (Codex, 2026-11-10). Johannes selected A common Altbau + B occasional variants + selective C ruins for Köpenick. Step 0 was completed with the GDR proof in v0.69.
+
+Production is preserved as a draft, not accepted: 13 materials and all five
+building types are integrated locally, visual/contact and semantic checks
+pass, but the final combined performance run is +9.68% on Köpenick (limit 5%).
+An isolated run passed; acceptance remains unresolved. Three optimizations
+were tried, so follow the workflow stop rule and continue independent work.
+See `pipeline/proof/02-buildings-koepenick/README.md`.
+
+Current queue (2026-11-10): draft preserved pending performance acceptance;
+continue with the independent equipment-icon task. Design selection is complete.
+The selected GDR method did not by itself complete Köpenick production.
 
 Köpenick is the default look (board `docs/style/koepenick.png`). Building boxes are drawn by `drawBox` (`js/iso.js`) from footprint `x,y,w,h` and height; size factors `BSC`/`BHS` in `js/world.js`; landmarks per district in `K.lm` (`js/geo.js` for Köpenick and Xhain).
 

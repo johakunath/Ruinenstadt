@@ -134,7 +134,7 @@ Real-world hook: Spreepark Plänterwald (next to Köpenick in Treptow-Köpenick)
 | NPC | Older gardener with apron |
 | Props | Greenhouse, tram, Weltzeituhr, radio, wind-up key, secateurs |
 | Named places | Alexanderplatz, Hackescher Markt, central Spree, Berliner Dom, Palast der Republik (inspiration, not a list of required maps) |
-| In game (v0.49, code placeholders) | Daylight, sand and ochre ground, cream Zuckerbäcker blocks with red banners on the Karl-Marx-Allee, Palast der Republik with a greenhouse vault, Fernsehturm with a gear rim, Weltzeituhr as clockwork, sunflower field, greenhouses. Uhrwerkläufer, Wurzler, Kernspeier, Brigadeghul, boss Der Volkseigene Koloss, gardener NPC still open. Mockup `mockups/v049-alexanderplatz-geo.html`. Painted sprites still to come (Codex) |
+| In game (v0.49 baseline) | Daylight, sand and ochre ground, cream Zuckerbäcker blocks with red banners on the Karl-Marx-Allee, Palast der Republik with a greenhouse vault, Fernsehturm with a gear rim, Weltzeituhr as clockwork, sunflower field, greenhouses. GDR enemy art/proportions and the weathered Zuckerbäcker face kit are delivered (v0.68/v0.69); landmarks and the gardener NPC remain open. Mockup `mockups/v049-alexanderplatz-geo.html`. |
 
 ## What it means for the game
 
@@ -178,7 +178,7 @@ Real-world hook: Spreepark Plänterwald (next to Köpenick in Treptow-Köpenick)
 
 ## Design source for new characters and props (v0.62)
 
-New enemies, NPCs and props are designed from the **style boards** (`docs/style/`) and this bible, not from the code-drawn placeholders in `js/` (the canvas/SVG drawings made by Claude limit the result: same bodies, same proportions). Each batch starts with a **style canvas** (palette, materials, line weight, lighting, 3 to 5 silhouette thumbnails per family) that Johannes approves, then Codex paints new designs from it. The old drawing only supplies gameplay data (footprint, anchor, telegraph origin). See `pipeline/workflow.md` step 3.
+New enemies, NPCs and props are designed from the **style boards** (`docs/style/`) and this bible, not from code-drawn placeholders in `js/`. A new family or identity starts with a **style canvas** (palette, materials, line weight, lighting and silhouettes). Under Johannes's 2026-11-10 direction, approval gates apply only to critical design/asset decisions; alternatives must be strongly different. For roughly 80% of routine work, Codex chooses within the approved direction, creates and shows the design, then continues unless Johannes objects. Do not request near-identical A/B/C comparisons for each asset. Old drawings supply gameplay data only (footprint, anchor, telegraph origin). See `pipeline/workflow.md`.
 
 ## Production order
 

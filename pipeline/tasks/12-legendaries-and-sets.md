@@ -1,6 +1,12 @@
 # 12 Legendaries and set pieces for head, hands, feet and ring
 
-Status: open (requested by Johannes 2026-11-10, delivered in code as v0.68)
+Status: open (second in current queue; code delivered in v0.70, art pending)
+
+Design choices (Johannes, 2026-11-10): Kiezwache B, Spreegeist B, Zitadelle A
+from the saved set canvases. Routine production and the four legendary
+designs proceed under the updated workflow's design autonomy; do not ask for
+another near-identical comparison. Strongly different alternatives are reserved
+for critical decisions. Production icons have not yet been integrated.
 
 The code is done and runs with SVG fallbacks. This task only adds painted art.
 Style: item icons as in `docs/chatgpt-assets.md` (brighter, more saturated,
@@ -43,6 +49,11 @@ paper doll. Worn looks (part B) follow the same palette.
 Set pieces share the set green (`#8fd16a`) only as accent, not as body colour.
 After delivery add the keys to `ICOI` and the batch to `docs/chatgpt-assets.md`.
 
+Queue update (2026-11-10): Johannes confirms ten icons next after the Köpenick
+building kit. Any optional worn parts must visually match the corresponding
+set's shared design language and meet the art goal; icons remain the required
+deliverable.
+
 ## B. Painted player parts (optional, after A)
 
 `drawHero` falls back to the default hat, gloves and boots for unknown bases
@@ -53,6 +64,8 @@ check with `?debug=hit` and `tools/proof_hero.cjs`.
 
 ## Done when
 
-All 10 icons render in inventory, Kodex and drop labels, the hero shows the
-parts (B), `ICOI` and the hero manifest are updated, offline cache lists the
-new files, and `VERSION`/`CACHE` are bumped together.
+Required: all 10 icons render in inventory, Kodex and drop labels; `ICOI` and
+the relevant offline cache entries are updated; `VERSION`/`CACHE` are bumped
+together. Optional part B is a separate extension: if included, update the
+hero manifest and verify the parts on the doll. Do not treat B as required by
+the ten-icon deliverable.

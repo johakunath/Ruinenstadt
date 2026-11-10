@@ -1,0 +1,181 @@
+{
+  "buildings/koep-a-wall": {
+    "crop": [
+      768,
+      0,
+      1536,
+      1024
+    ],
+    "for": "drawBox Köpenick a blank-wall material; approved A/B mix and selective C use",
+    "height": 48,
+    "source": "a-materials.png"
+  },
+  "buildings/koep-a-window": {
+    "crop": [
+      0,
+      0,
+      768,
+      1024
+    ],
+    "for": "drawBox Köpenick a window-bay material; approved A/B mix and selective C use",
+    "height": 48,
+    "pivots": {
+      "apertureBR": [
+        562,
+        790
+      ],
+      "apertureTL": [
+        200,
+        280
+      ]
+    },
+    "source": "a-materials.png"
+  },
+  "buildings/koep-b-wall": {
+    "crop": [
+      768,
+      0,
+      1536,
+      1024
+    ],
+    "for": "drawBox Köpenick b blank-wall material; approved A/B mix and selective C use",
+    "height": 48,
+    "source": "b-materials.png"
+  },
+  "buildings/koep-b-window": {
+    "crop": [
+      0,
+      0,
+      768,
+      1024
+    ],
+    "for": "drawBox Köpenick b window-bay material; approved A/B mix and selective C use",
+    "height": 48,
+    "pivots": {
+      "apertureBR": [
+        530,
+        740
+      ],
+      "apertureTL": [
+        240,
+        278
+      ]
+    },
+    "source": "b-materials.png"
+  },
+  "buildings/koep-c-wall": {
+    "crop": [
+      887,
+      0,
+      1774,
+      887
+    ],
+    "for": "drawBox Köpenick c blank-wall material; approved A/B mix and selective C use",
+    "height": 48,
+    "source": "c-materials.png"
+  },
+  "buildings/koep-c-window": {
+    "crop": [
+      0,
+      0,
+      887,
+      887
+    ],
+    "for": "drawBox Köpenick c window-bay material; approved A/B mix and selective C use",
+    "height": 48,
+    "pivots": {
+      "apertureBR": [
+        672,
+        711
+      ],
+      "apertureTL": [
+        248,
+        241
+      ]
+    },
+    "source": "c-materials.png"
+  },
+  "buildings/koep-damage": {
+    "alpha_threshold": 245,
+    "crop": [
+      768,
+      0,
+      1536,
+      1024
+    ],
+    "for": "drawBox Köpenick plaster/brick damage overlay; source haze removed at alpha 245",
+    "height": 48,
+    "source": "overlays-materials.png"
+  },
+  "buildings/koep-ivy": {
+    "alpha_threshold": 245,
+    "crop": [
+      0,
+      0,
+      768,
+      1024
+    ],
+    "for": "drawBox Köpenick ivy overlay; source haze removed at alpha 245",
+    "height": 100,
+    "source": "overlays-materials.png"
+  },
+  "buildings/koep-platte-wall": {
+    "crop": [
+      887,
+      0,
+      1774,
+      887
+    ],
+    "for": "drawBox Köpenick platte blank-wall material; approved A/B mix and selective C use",
+    "height": 48,
+    "source": "platte-materials.png"
+  },
+  "buildings/koep-platte-window": {
+    "crop": [
+      0,
+      0,
+      887,
+      887
+    ],
+    "for": "drawBox Köpenick platte window-bay material; approved A/B mix and selective C use",
+    "height": 48,
+    "pivots": {
+      "apertureBR": [
+        660,
+        650
+      ],
+      "apertureTL": [
+        245,
+        225
+      ]
+    },
+    "source": "platte-materials.png"
+  },
+  "buildings/koep-roof": {
+    "crop": [
+      0,
+      0,
+      724,
+      724
+    ],
+    "for": "drawBox Köpenick Altbau roof material",
+    "height": 90,
+    "source": "roof-materials.png"
+  },
+  "buildings/koep-roof-ruin": {
+    "crop": [
+      1448,
+      0,
+      2172,
+      724
+    ],
+    "for": "drawBox Köpenick collapsed roof/rubble material",
+    "height": 90,
+    "source": "roof-materials.png"
+  },
+  "buildings/koep-shopfront": {
+    "for": "drawBox Köpenick Späti shopfront texture",
+    "height": 60,
+    "source": "shop-materials.png"
+  }
+}

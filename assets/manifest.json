@@ -79,6 +79,176 @@
     "units": 3,
     "w": 272
   },
+  "buildings/koep-a-wall": {
+    "anchor": [
+      55.0,
+      144.859
+    ],
+    "for": "drawBox Köpenick a blank-wall material; approved A/B mix and selective C use",
+    "h": 146,
+    "units": 3,
+    "w": 110
+  },
+  "buildings/koep-a-window": {
+    "anchor": [
+      55.0,
+      144.859
+    ],
+    "for": "drawBox Köpenick a window-bay material; approved A/B mix and selective C use",
+    "h": 146,
+    "pivots": {
+      "apertureBR": [
+        80.031,
+        112.094
+      ],
+      "apertureTL": [
+        29.125,
+        40.375
+      ]
+    },
+    "units": 3,
+    "w": 110
+  },
+  "buildings/koep-b-wall": {
+    "anchor": [
+      55.0,
+      144.859
+    ],
+    "for": "drawBox Köpenick b blank-wall material; approved A/B mix and selective C use",
+    "h": 146,
+    "units": 3,
+    "w": 110
+  },
+  "buildings/koep-b-window": {
+    "anchor": [
+      55.0,
+      144.859
+    ],
+    "for": "drawBox Köpenick b window-bay material; approved A/B mix and selective C use",
+    "h": 146,
+    "pivots": {
+      "apertureBR": [
+        75.531,
+        105.062
+      ],
+      "apertureTL": [
+        34.75,
+        40.094
+      ]
+    },
+    "units": 3,
+    "w": 110
+  },
+  "buildings/koep-c-wall": {
+    "anchor": [
+      73.0,
+      144.838
+    ],
+    "for": "drawBox Köpenick c blank-wall material; approved A/B mix and selective C use",
+    "h": 146,
+    "units": 3,
+    "w": 146
+  },
+  "buildings/koep-c-window": {
+    "anchor": [
+      73.0,
+      144.838
+    ],
+    "for": "drawBox Köpenick c window-bay material; approved A/B mix and selective C use",
+    "h": 146,
+    "pivots": {
+      "apertureBR": [
+        110.096,
+        116.427
+      ],
+      "apertureTL": [
+        41.262,
+        40.125
+      ]
+    },
+    "units": 3,
+    "w": 146
+  },
+  "buildings/koep-damage": {
+    "anchor": [
+      45.0,
+      144.855
+    ],
+    "for": "drawBox Köpenick plaster/brick damage overlay; source haze removed at alpha 245",
+    "h": 146,
+    "units": 3,
+    "w": 90
+  },
+  "buildings/koep-ivy": {
+    "anchor": [
+      63.0,
+      300.697
+    ],
+    "for": "drawBox Köpenick ivy overlay; source haze removed at alpha 245",
+    "h": 302,
+    "units": 3,
+    "w": 126
+  },
+  "buildings/koep-platte-wall": {
+    "anchor": [
+      73.0,
+      144.838
+    ],
+    "for": "drawBox Köpenick platte blank-wall material; approved A/B mix and selective C use",
+    "h": 146,
+    "units": 3,
+    "w": 146
+  },
+  "buildings/koep-platte-window": {
+    "anchor": [
+      73.0,
+      144.838
+    ],
+    "for": "drawBox Köpenick platte window-bay material; approved A/B mix and selective C use",
+    "h": 146,
+    "pivots": {
+      "apertureBR": [
+        108.148,
+        106.524
+      ],
+      "apertureTL": [
+        40.775,
+        37.528
+      ]
+    },
+    "units": 3,
+    "w": 146
+  },
+  "buildings/koep-roof": {
+    "anchor": [
+      136.0,
+      270.627
+    ],
+    "for": "drawBox Köpenick Altbau roof material",
+    "h": 272,
+    "units": 3,
+    "w": 272
+  },
+  "buildings/koep-roof-ruin": {
+    "anchor": [
+      136.0,
+      270.627
+    ],
+    "for": "drawBox Köpenick collapsed roof/rubble material",
+    "h": 272,
+    "units": 3,
+    "w": 272
+  },
+  "buildings/koep-shopfront": {
+    "anchor": [
+      136.0,
+      180.824
+    ],
+    "for": "drawBox Köpenick Späti shopfront texture",
+    "h": 182,
+    "units": 3,
+    "w": 272
+  },
   "enemies/bass-attack-a": {
     "anchor": [
       45.777,

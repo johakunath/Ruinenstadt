@@ -1,6 +1,6 @@
 # 12 GDR enemy proportions and post-apocalyptic wear
 
-Status: done (v0.68, Codex, 2026-11-10)
+Status: done and accepted by Johannes (v0.68, Codex, 2026-11-10)
 
 Johannes says Uhrwerkläufer and Brigadeghul read too small. Use the larger
 clockwork design from the active style board for Uhrwerkläufer, make it a

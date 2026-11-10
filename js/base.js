@@ -8,7 +8,7 @@ function basePerson(col){const c=cnv(30,56),g=c.getContext('2d');g.fillStyle='rg
   g.fillStyle=col;rr(g,7,20,16,20,4);g.fillStyle='#d9b48f';g.beginPath();g.arc(15,13,6.5,0,7);g.fill();g.fillStyle='rgba(0,0,0,.25)';g.fillRect(7,34,16,3);return c;}
 // billboard sprite (sign, person): footprint centre x,y, drawn upright and depth-sorted like trees
 const bBoard=(x,y,spr,top)=>blds.push({x:x-spr.width/2,y,w:spr.width,h:0,top:top||spr.height,spr,lights:[]});
-function buildBase(){D=Object.assign({},DIST[0],{n:'Basis Lindenstraße',base:1,tun:0,geo:null,wet:0,day:0,cyber:0,dark:.62,nc:'6,5,4'});TUN=null;
+function buildBase(){if(typeof koepResetCache==='function')koepResetCache(null);D=Object.assign({},DIST[0],{n:'Basis Lindenstraße',base:1,tun:0,geo:null,wet:0,day:0,cyber:0,dark:.62,nc:'6,5,4'});TUN=null;
   WS=2400;WH=1500;[SX,SY]=[1200,760];G=cnv(WS,WH);G.k=1;gx=G.getContext('2d');walls=[];blds=[];barrels=[];reserved=[];marks=[];brk=[];spati=null;darks=[];waters=[];neons=[];shrines=[];ROADS=[];BLK=[];BZ.length=0;
   const g=gx;g.fillStyle='#0b0a09';g.fillRect(0,0,WS,WH);
   // track bed with two tracks, tiled platform, yellow edge
