@@ -30,8 +30,10 @@ def cell(im,i):
 
 def run():
     picks={}
-    redesign=RAW.parent/'01b-enemy-redesign/picks.json'
-    owned=set(json.loads(redesign.read_text())) if redesign.exists() else set()
+    owned=set()
+    for recipe in RAW.parent.glob('*/picks.json'):
+        if recipe.parent.name not in ['00-tooling','01-enemies']:
+            owned.update(json.loads(recipe.read_text()))
     for key in [*HEIGHT,'rat','crow']:
         if all('enemies/'+key+'-'+pose in owned for pose in POSES):continue
         im=Image.open(RAW/(key+'.png')).convert('RGBA');cells=[]

@@ -28,7 +28,7 @@ test('pose selection follows hit, contact, movement and attack timers for every 
  for(const variant of variants){
   assert.equal(pose(variant),`enemies/${variant}-idle`);
   assert.equal(pose(variant,{mv:60,t:0}),`enemies/${variant}-walk-a`);
-  assert.equal(pose(variant,{mv:60,t:.2}),`enemies/${variant}-walk-b`);
+  assert.equal(pose(variant,{mv:60,t:.3}),`enemies/${variant}-walk-b`);
   assert.equal(pose(variant,{atk:.24}),`enemies/${variant}-attack-b`);
   assert.equal(pose(variant,{atk:.05}),`enemies/${variant}-attack-a`);
   assert.equal(pose(variant,{flash:.1,atk:.24}),`enemies/${variant}-hit`);

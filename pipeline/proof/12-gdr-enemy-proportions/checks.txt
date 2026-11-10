@@ -1,0 +1,86 @@
+$ python3 -m unittest discover -s tools -p test_*.py
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.200s
+
+OK
+enemies/test: 71x122, anchor [35.5, 117.571]
+enemies/test: 71x122, anchor [35.5, 117.571]
+enemies/test: 71x122, anchor [35.5, 117.571]
+enemies/test: 71x122, anchor [35.5, 117.571]
+enemies/test: 71x122, anchor [35.5, 117.571]
+
+$ node tools/test_enemies.mjs
+✔ every selected enemy family has six authored, anchored, cached frames (6.006818ms)
+✔ pose selection follows hit, contact, movement and attack timers for every family (4.038292ms)
+✔ mouth anchors are explicit for ranged frames and do not move combat positions (1.447454ms)
+✔ elite radius scales painted bodies from each family base radius (2.262498ms)
+✔ spit originates visually at the mouth while legacy projectile collision coordinates stay fixed (1.965167ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21.708135
+
+$ node tools/test_gdr_geometry.mjs
+✔ constructors and authored references agree; only GDR ghouls grow (9.189042ms)
+✔ larger enemies retain HP, damage, ghoul speed and exact constructor random draws (9.246637ms)
+✔ normal and elite spawn probes enclose enlarged radii without changing other types (11.490943ms)
+✔ clock shield origin, vertical offset, panel and open drop scale with body, including elites; boss stays unchanged (3.565621ms)
+✔ painted and fallback feet use the selected ground offset; Brigade fallback keeps worker height (3.477202ms)
+✔ muzzle anchors share the optional ground offset and retain the default for other families (1.54651ms)
+✔ actual contact attack starts at enlarged base and elite rings and keeps its damage and cooldown (1.810976ms)
+✔ actual wall resolution and crowd separation account for enlarged base and elite radii (3.674718ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 50.903852
+
+$ node tools/test_gdr_shadows.mjs
+✔ GDR cache separates frames, light projection and face while reusing across position and elite scale (4.122094ms)
+✔ projected canvases enclose every source corner with two pixels of padding and expose world bounds (1.988929ms)
+✔ other enemies retain the existing silhouette cache and affine rendering path (0.958348ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12.627269
+
+$ node tools/test_sprites.mjs
+✔ manifest loads once; images load once on demand; missing and failed images return null (2.218964ms)
+✔ network, HTTP and invalid JSON failures leave fallback available (2.973505ms)
+✔ generic poses follow contact, walk, stun and hit timers with variant and missing-pose fallback (1.671912ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12.432072
+
+$ node tools/test_hero.mjs
+✔ all outfits share mannequin joints and provide complete layered limbs (1.560645ms)
+✔ weapon axes derive from explicit manifest pivots and point forwards (0.362864ms)
+✔ missing glove or boot returns fallback before painting a partial rig (3.508257ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12.965721
+
+$ python3 tools/sprites.py --check
+Checked 227 sprite(s).

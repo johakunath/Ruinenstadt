@@ -1,6 +1,6 @@
 # 12 GDR enemy proportions and post-apocalyptic wear
 
-Status: in progress (Codex, 2026-11-10)
+Status: done (v0.68, Codex, 2026-11-10)
 
 Johannes says Uhrwerkläufer and Brigadeghul read too small. Use the larger
 clockwork design from the active style board for Uhrwerkläufer, make it a
@@ -21,4 +21,5 @@ manifest dimensions. Browser default/2x, offline, fallback and performance
 checks still apply. Add before/after proof with the player for scale.
 
 Task 11 source/proof work is preserved on `codex/11-alexanderplatz-pioneer`
-(local WIP `ff85e62`); resume its weathered building proof after this correction.
+(local WIP `ff85e62`); paused at the user’s request to wrap the session. Resume its weathered
+building proof in a future session; no generic building method is selected.

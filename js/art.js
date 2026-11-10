@@ -111,14 +111,14 @@ function drawCaptive(c,t){const x=c.x,y=c.y+9;ctx.fillStyle='rgba(0,0,0,.45)';ct
   if(c.free){ctx.strokeStyle='rgba(143,209,106,.6)';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(x,y,22,8,0,0,7);ctx.stroke();}}
 // Generic painted enemy driver, motion and launch pivots: js/anim.js.
 function drawEnemy(e,t){
-  const g=enemySprite(e),fl=enemyFlip(e),f=e.flash>0,C=c=>f?'#ead9c0':c,mv=(e.mv||0)>8&&e.stun<=0,sw=mv?Math.sin(e.t*10):0,fy=e.y+e.r*(g?.4:.75),near=e.atk>0||Math.hypot(P.x-e.x,P.y-e.y)<e.r+34;
+  const g=enemySprite(e),fl=enemyFlip(e),f=e.flash>0,C=c=>f?'#ead9c0':c,mv=(e.mv||0)>8&&e.stun<=0,sw=mv?Math.sin(e.t*10):0,fy=e.y+e.r*(g?(g.spec.ground??.4):e.type==='uhr'?.25:e.type==='ghoul'&&D.gdr?.4:.75),near=e.atk>0||Math.hypot(P.x-e.x,P.y-e.y)<e.r+34;
   if(g&&e.type!=='crow')fxSil(g.key,g.i,g.m,e.x,fy,1.15*e.r/g.spec.r,fl);else fxShadow(e.x,fy,e.r,e.fly?e.r:e.r*3.2);
   if(e.elite){ctx.strokeStyle=EMC[e.elite];ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.45,e.r*.5,0,0,7);ctx.stroke();}
   if(e.tw>0){const p=1-e.tw/e.twm;ctx.strokeStyle=`rgba(255,80,60,${.4+.5*p})`;ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(e.x,fy,e.r*(1.2+p),e.r*(.45+.35*p),0,0,7);ctx.stroke();}
   if(e.open>0){ctx.strokeStyle='#f2d14b';ctx.lineWidth=3;ctx.setLineDash([6,4]);ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.9,e.r*.7,0,0,7);ctx.stroke();ctx.setLineDash([]);}
   const L=enemyLife(e,fl);ctx.save();ctx.translate(e.x+L[3],fy+L[4]);ctx.rotate(L[2]);ctx.scale(fl*1.15*L[0],1.15*L[1]);let H=34;
   if(g)H=drawEnemySprite(g,e,C);
-  else if(e.type==='ghoul'||e.type==='shield'){const s=e.r/10;ctx.scale(s,s);H=36*s;const reach=near?8:0;
+  else if(e.type==='ghoul'||e.type==='shield'){const s=e.r/10,sy=D.gdr&&e.type==='ghoul'?e.r/20*44/36:s;ctx.scale(s,sy);H=36*sy;const reach=near?8:0;
     limb(-2,-12,sw*.5,12,3,C('#3d1d12'));limb(3,-12,-sw*.5,12,3,C('#4a2414'));
     stick(0,-22,9+reach,-6-sw*3-reach*1.2,3,C('#4a2010'));
     ctx.save();ctx.translate(1,-18);ctx.rotate(.35);ctx.fillStyle=C(e.col);ctx.beginPath();ctx.ellipse(0,0,6.5,9,0,0,7);ctx.fill();ctx.strokeStyle='rgba(0,0,0,.3)';ctx.lineWidth=1;for(let i=-4;i<5;i+=3){ctx.beginPath();ctx.moveTo(-1,i);ctx.lineTo(4,i);ctx.stroke();}ctx.restore();
