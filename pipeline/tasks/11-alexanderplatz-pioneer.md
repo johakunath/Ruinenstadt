@@ -1,6 +1,6 @@
 # 11 Alexanderplatz Pioneer identity and buildings
 
-Status: paused (Codex, 2026-11-10; user requested session wrap after task 12)
+Status: in progress (Codex, 2026-11-10; resumed by Johannes to finish, review and merge PR #27)
 
 Johannes asked to regenerate the critical logo-bearing GDR enemies, then
 continue with buildings and assets for that biome. This priority supersedes
