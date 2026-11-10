@@ -374,3 +374,21 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Task 02 step0 is complete with A selected for GDR. Its Köpenick production
   assets and task08 landmarks/street-prop follow-ups remain separate work;
   this PR does not claim to finish all biome art.
+
+
+## 2026-11-10 · Codex · completion PR after draft merge #27
+
+- PR #27 was merged externally at `7515e0f` as `3a43d2192fbb99ad44377d4a909fdff467a30388`
+  while the completed v0.69 implementation was still local. That merge only
+  contains the earlier preserved studies and status claim. Corrected its
+  title/description so they do not claim the finished runtime release.
+- Synced completed work with the merged main on
+  `codex/11-gdr-buildings-complete`. All 41 validated runtime/tool source
+  hashes remain identical after the merge; no code or art changed. Main's
+  runtime is still v0.68: relative to the exact timing baseline its sole JS
+  addition is the unreferenced original gdr-assets draft, plus three unused
+  manifest decoration entries. Index, service worker and all loaded runtime
+  scripts match v0.68. Existing final validation therefore remains applicable.
+- Open the completion follow-up for fresh Codex review and merge its final
+  head. This delivers the approved A rollout, all eight weathered selections,
+  fallback/offline integration and the completed evidence described above.

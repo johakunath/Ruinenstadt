@@ -130,3 +130,10 @@ measures current 23.1 ms, A 24.1 ms, fixed B 22.4 ms over seven alternating
 triples. This shows B's single-image drawing advantage for that fixed fixture;
 it does not substitute for the complete-world budget or extra authored views.
 The approved A rollout follows the walls at all supported rotations.
+
+
+PR #27 merged the preserved studies before this implementation was pushed.
+The completion follow-up carries this v0.69 release. Syncing that draft merge
+changed none of the 41 validated runtime/tool files. Its loaded runtime is
+identical to the exact v0.68 timing baseline; the added original gdr-assets
+script was unreferenced and its three manifest images were unused.

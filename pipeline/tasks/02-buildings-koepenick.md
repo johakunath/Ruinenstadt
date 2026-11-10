@@ -36,7 +36,7 @@ The sprite replaces the box faces, the footprint stays the collision box. Check 
 ## Step 0 delivery in the GDR-priority session (2026-11-10)
 
 Johannes prioritized task 11's Alexanderplatz Zuckerbaecker for this proof.
-PR #27 supplies current/A/B default+2x and 0/+0.6/-0.6 rotation evidence,
+The completion follow-up to PR #27 supplies current/A/B default+2x and 0/+0.6/-0.6 rotation evidence,
 actual wall contact, fresh image fallback, offline and full-render timing.
 See `pipeline/proof/11-alexanderplatz-pioneer/README.md`. B is an exact fixed
 precomposition of the same approved paintings, not a successful independent
@@ -45,5 +45,5 @@ footprint fit and do not bias the technical method comparison.
 
 Johannes selected A after reviewing the in-game comparison: ‘Apply A to the
 GDR blocks’. Its faces follow arbitrary supported footprints/rotations with
-three shared patterns. PR #27 applies A to existing GDR Zuckerbaecker blocks;
+three shared patterns. The completion PR applies A to existing GDR Zuckerbaecker blocks;
 Köpenick and other districts retain their art until their own task delivery.

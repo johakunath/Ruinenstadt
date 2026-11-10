@@ -1,6 +1,6 @@
 # 11 Alexanderplatz Pioneer identity and buildings
 
-Status: done (v0.69, Codex, 2026-11-10; PR #27)
+Status: done (v0.69, Codex, 2026-11-10; completion follow-up to draft merge #27)
 
 Johannes asked to regenerate the critical logo-bearing GDR enemies, then
 continue with buildings and assets for that biome. This priority supersedes
@@ -39,9 +39,9 @@ colour language follows the updated board. One task per PR, with at most
 Handoff and preserved source limitations: `pipeline/proof/11-alexanderplatz-pioneer/README.md`.
 
 
-## PR #27 delivery boundary
+## Completed delivery boundary
 
-This PR finishes the eight selected paintings, independent decorations on
+The completion PR finishes the eight selected paintings, independent decorations on
 existing Zucker blocks, and the one-building current/A/B method proof. The
 broader landmark/street-prop examples above stay in their own tasks; task 08
 is not completed by this PR. Johannes selected A after seeing the comparison,
