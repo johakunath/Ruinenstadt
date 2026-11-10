@@ -15,6 +15,7 @@ import argparse
 import hashlib
 import json
 import math
+import re
 from pathlib import Path
 
 import numpy as np
@@ -66,7 +67,13 @@ def load(root, manifest, kind):
     sampled = alpha[first:last + 1] > 128
     local_y, x = np.nonzero(sampled)
     y = local_y + first
-    r = RADIUS[kind]
+    source = (root / 'js/anim.js').read_text()
+    body = re.search(r'\b' + re.escape(kind) + r'\s*:\s*\{([^}]+)\}', source)
+    if not body:
+        raise ValueError(f'{root}: missing authored reference for {kind}')
+    r = float(re.search(r'\br\s*:\s*([0-9.]+)', body[1])[1])
+    ground_match = re.search(r'\bground\s*:\s*([0-9.]+)', body[1])
+    ground = float(ground_match[1]) if ground_match else .4
     # ix(r*cos(a),r*sin(a)) = r*(cos(a)-sin(a))/sqrt(2).
     # Its extrema are +/-r; iy has extrema +/-r/2.
     metrics = {
@@ -80,15 +87,16 @@ def load(root, manifest, kind):
         'candidate_x_intervals_px': intervals(np.unique(x)),
         'projected_ring_half_width': r,
         'projected_ring_half_height': r / 2,
+        'ground_offset': ground,
         'render_scale_before_motion': RENDER_SCALE,
-        'feet_anchor_y_from_ground': rounded(r * .4),
+        'feet_anchor_y_from_ground': rounded(r * ground),
         'automatic_hitbox_verdict': None,
     }
     if len(x):
         left = (float(x.min()) - ax) / units * RENDER_SCALE
         right = (float(x.max()) - ax) / units * RENDER_SCALE
-        top = r * .4 + (float(y.min()) - ay) / units * RENDER_SCALE
-        bottom = r * .4 + (float(y.max()) - ay) / units * RENDER_SCALE
+        top = r * ground + (float(y.min()) - ay) / units * RENDER_SCALE
+        bottom = r * ground + (float(y.max()) - ay) / units * RENDER_SCALE
         metrics.update({
             'candidate_contact_envelope_from_ground': {
                 'left': rounded(left), 'right': rounded(right),
@@ -106,11 +114,12 @@ def font(size):
         return ImageFont.load_default()
 
 
-def card(sheet, image, entry, kind, left, top, width, height, scale, black=False, bottom_margin=37):
+def card(sheet, image, entry, kind, left, top, width, height, scale, black=False, bottom_margin=37, reference=None):
     draw = ImageDraw.Draw(sheet)
     draw.rectangle((left + 3, top + 3, left + width - 4, top + height - 4), fill=CELL)
     cx, cy = left + width / 2, top + height - bottom_margin
-    radius = RADIUS[kind]
+    radius = reference['projected_ring_half_width']
+    ground = reference['ground_offset']
     draw.ellipse((cx - radius * scale, cy - radius * scale / 2,
                   cx + radius * scale, cy + radius * scale / 2), outline=RING, width=1)
     draw.line((cx - 3, cy, cx + 3, cy), fill=RING)
@@ -124,7 +133,7 @@ def card(sheet, image, entry, kind, left, top, width, height, scale, black=False
         sprite = silhouette
     ax, ay = entry['anchor']
     x = round(cx - ax * pixel_scale)
-    y = round(cy + radius * .4 * scale - ay * pixel_scale)
+    y = round(cy + radius * ground * scale - ay * pixel_scale)
     if x < left or x + size[0] > left + width or y < top or y + size[1] > top + height:
         raise ValueError(f'{kind}: comparison card would clip ({size})')
     sheet.paste(sprite, (x, y), sprite)
@@ -136,7 +145,7 @@ def layout(families):
     large_width, small_width, row_height, bottom_margin = 225, 145, 250, 37
     highest = 0
     for kind, pair in families.items():
-        for image, entry, _ in pair.values():
+        for image, entry, reference in pair.values():
             ax, ay = entry['anchor']
             for multiplier in (1, 2.5):
                 scale = REFERENCE_SCALE * multiplier
@@ -147,8 +156,9 @@ def layout(families):
                     large_width = max(large_width, needed_width)
                 else:
                     small_width = max(small_width, needed_width)
-                highest = max(highest, ay * pixel_scale - RADIUS[kind] * .4 * scale)
-                lowest = RADIUS[kind] * .4 * scale + (image.height - ay) * pixel_scale
+                feet = reference['feet_anchor_y_from_ground'] * scale
+                highest = max(highest, ay * pixel_scale - feet)
+                lowest = feet + (image.height - ay) * pixel_scale
                 bottom_margin = max(bottom_margin, math.ceil(lowest) + 4)
     row_height = max(row_height, math.ceil(highest) + bottom_margin + 4)
     label_width = max(100, math.ceil(max(font(14).getlength(kind) for kind in families)) + 24)
@@ -194,11 +204,11 @@ def run(args):
         old, new = families[kind]['old'], families[kind]['new']
         top = header + i * row_height
         draw.text((12, top + 18), kind, fill=INK, font=font(14))
-        draw.text((12, top + 40), f'r = {RADIUS[kind]}', fill=INK, font=font(12))
+        draw.text((12, top + 40), f"r: {old[2]['projected_ring_half_width']:g} → {new[2]['projected_ring_half_width']:g}", fill=INK, font=font(12))
         x = label_width
         for _, width, multiplier, black, which in columns:
-            image, entry, _ = old if which == 'old' else new
-            card(sheet, image, entry, kind, x, top, width, row_height, REFERENCE_SCALE * multiplier, black, bottom_margin)
+            image, entry, reference = old if which == 'old' else new
+            card(sheet, image, entry, kind, x, top, width, row_height, REFERENCE_SCALE * multiplier, black, bottom_margin, reference)
             x += width
         report['families'][kind] = {'old': old[2], 'new': new[2]}
     output = args.output or current / 'pipeline/proof/01b-enemy-redesign/comparison.png'

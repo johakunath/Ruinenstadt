@@ -26,7 +26,8 @@ No further work is authorized by the wrap request; resume when requested.
 
 ## Resume from here
 
-First synchronize this branch with main and read task 12's final geometry,
+This branch is synchronized with merged task 12 PR #26 (v0.68).
+Before future work, synchronize again and read task 12's final geometry,
 style board and contract. Keep the completed enemy update unchanged.
 
 The building method remains undecided. A maps painted flat facade/roof kits

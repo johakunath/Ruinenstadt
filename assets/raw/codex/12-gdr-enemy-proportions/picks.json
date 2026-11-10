@@ -1,0 +1,254 @@
+{
+  "enemies/brigadeghoul-attack-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      255.5,
+      928
+    ],
+    "authored_radius": 20,
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy brigadeghoul attack-a",
+    "ground_offset": 0.4,
+    "height": 43.335347,
+    "height_class": "medium",
+    "outline_family": "square-collar",
+    "reason": "User-requested believable large GDR body, matching collider and post-apocalyptic wear; Pioneer colours and hammer-and-sickle retained",
+    "source": "brigadeghoul.png"
+  },
+  "enemies/brigadeghoul-attack-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      737,
+      928
+    ],
+    "authored_radius": 20,
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy brigadeghoul attack-b",
+    "ground_offset": 0.4,
+    "height": 42.670695,
+    "height_class": "medium",
+    "outline_family": "square-collar",
+    "reason": "User-requested believable large GDR body, matching collider and post-apocalyptic wear; Pioneer colours and hammer-and-sickle retained",
+    "source": "brigadeghoul.png"
+  },
+  "enemies/brigadeghoul-hit": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1269.5,
+      928
+    ],
+    "authored_radius": 20,
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy brigadeghoul hit",
+    "ground_offset": 0.4,
+    "height": 45.329305,
+    "height_class": "medium",
+    "outline_family": "square-collar",
+    "reason": "User-requested believable large GDR body, matching collider and post-apocalyptic wear; Pioneer colours and hammer-and-sickle retained",
+    "source": "brigadeghoul.png"
+  },
+  "enemies/brigadeghoul-idle": {
+    "alpha_threshold": 128,
+    "anchor": [
+      255,
+      417
+    ],
+    "authored_radius": 20,
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy brigadeghoul idle",
+    "ground_offset": 0.4,
+    "height": 44.0,
+    "height_class": "medium",
+    "outline_family": "square-collar",
+    "reason": "User-requested believable large GDR body, matching collider and post-apocalyptic wear; Pioneer colours and hammer-and-sickle retained",
+    "source": "brigadeghoul.png"
+  },
+  "enemies/brigadeghoul-walk-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      766.5,
+      417
+    ],
+    "authored_radius": 20,
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy brigadeghoul walk-a",
+    "ground_offset": 0.4,
+    "height": 43.734139,
+    "height_class": "medium",
+    "outline_family": "square-collar",
+    "reason": "User-requested believable large GDR body, matching collider and post-apocalyptic wear; Pioneer colours and hammer-and-sickle retained",
+    "source": "brigadeghoul.png"
+  },
+  "enemies/brigadeghoul-walk-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1264.5,
+      418
+    ],
+    "authored_radius": 20,
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy brigadeghoul walk-b",
+    "ground_offset": 0.4,
+    "height": 43.867069,
+    "height_class": "medium",
+    "outline_family": "square-collar",
+    "reason": "User-requested believable large GDR body, matching collider and post-apocalyptic wear; Pioneer colours and hammer-and-sickle retained",
+    "source": "brigadeghoul.png"
+  },
+  "enemies/uhr-attack-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      252,
+      973
+    ],
+    "authored_radius": 22,
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy uhr attack-a",
+    "ground_offset": 0.25,
+    "height": 60.692135,
+    "height_class": "giant",
+    "outline_family": "humanoid-clockwork",
+    "reason": "User-requested believable large GDR body, matching collider and post-apocalyptic wear; Pioneer colours and hammer-and-sickle retained",
+    "source": "uhr.png"
+  },
+  "enemies/uhr-attack-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      730,
+      972
+    ],
+    "authored_radius": 22,
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy uhr attack-b",
+    "ground_offset": 0.25,
+    "height": 60.260674,
+    "height_class": "giant",
+    "outline_family": "humanoid-clockwork",
+    "reason": "User-requested believable large GDR body, matching collider and post-apocalyptic wear; Pioneer colours and hammer-and-sickle retained",
+    "source": "uhr.png"
+  },
+  "enemies/uhr-hit": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1289,
+      972
+    ],
+    "authored_radius": 22,
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy uhr hit",
+    "ground_offset": 0.25,
+    "height": 62.993258,
+    "height_class": "giant",
+    "outline_family": "humanoid-clockwork",
+    "reason": "User-requested believable large GDR body, matching collider and post-apocalyptic wear; Pioneer colours and hammer-and-sickle retained",
+    "source": "uhr.png"
+  },
+  "enemies/uhr-idle": {
+    "alpha_threshold": 128,
+    "anchor": [
+      268.5,
+      465
+    ],
+    "authored_radius": 22,
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy uhr idle",
+    "ground_offset": 0.25,
+    "height": 64.0,
+    "height_class": "giant",
+    "outline_family": "humanoid-clockwork",
+    "reason": "User-requested believable large GDR body, matching collider and post-apocalyptic wear; Pioneer colours and hammer-and-sickle retained",
+    "source": "uhr.png"
+  },
+  "enemies/uhr-walk-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      755.5,
+      464
+    ],
+    "authored_radius": 22,
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy uhr walk-a",
+    "ground_offset": 0.25,
+    "height": 62.849438,
+    "height_class": "giant",
+    "outline_family": "humanoid-clockwork",
+    "reason": "User-requested believable large GDR body, matching collider and post-apocalyptic wear; Pioneer colours and hammer-and-sickle retained",
+    "source": "uhr.png"
+  },
+  "enemies/uhr-walk-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1260.5,
+      465
+    ],
+    "authored_radius": 22,
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy uhr walk-b",
+    "ground_offset": 0.25,
+    "height": 62.849438,
+    "height_class": "giant",
+    "outline_family": "humanoid-clockwork",
+    "reason": "User-requested believable large GDR body, matching collider and post-apocalyptic wear; Pioneer colours and hammer-and-sickle retained",
+    "source": "uhr.png"
+  }
+}

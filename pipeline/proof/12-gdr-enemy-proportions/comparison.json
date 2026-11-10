@@ -1,0 +1,166 @@
+{
+  "enemy_render_scale_before_motion": 1.15,
+  "families": {
+    "brigadeghoul": {
+      "new": {
+        "anchor_px": [
+          71.011,
+          132.601
+        ],
+        "automatic_hitbox_verdict": null,
+        "candidate_band_pixels": 150,
+        "candidate_band_rows_px": [
+          130,
+          132
+        ],
+        "candidate_contact_envelope_from_ground": {
+          "bottom": 7.7696,
+          "left": -11.1209,
+          "right": 10.7291,
+          "top": 7.003
+        },
+        "candidate_width_over_projected_ring_width": 0.5463,
+        "candidate_x_intervals_px": [
+          [
+            42,
+            99
+          ]
+        ],
+        "dimensions_px": [
+          146,
+          134
+        ],
+        "feet_anchor_y_from_ground": 8.0,
+        "ground_offset": 0.4,
+        "path": "assets/enemies/brigadeghoul-idle.webp",
+        "projected_ring_half_height": 10.0,
+        "projected_ring_half_width": 20.0,
+        "render_scale_before_motion": 1.15,
+        "sha256": "ea28552e28674757ecd5e00445870fe75e2fc65388b07a9f631a4fad769fedf7",
+        "units": 3
+      },
+      "old": {
+        "anchor_px": [
+          33.957,
+          60.817
+        ],
+        "automatic_hitbox_verdict": null,
+        "candidate_band_pixels": 77,
+        "candidate_band_rows_px": [
+          58,
+          60
+        ],
+        "candidate_contact_envelope_from_ground": {
+          "bottom": 3.6868,
+          "left": -5.3502,
+          "right": 4.2331,
+          "top": 2.9202
+        },
+        "candidate_width_over_projected_ring_width": 0.4792,
+        "candidate_x_intervals_px": [
+          [
+            20,
+            45
+          ]
+        ],
+        "dimensions_px": [
+          65,
+          62
+        ],
+        "feet_anchor_y_from_ground": 4.0,
+        "ground_offset": 0.4,
+        "path": "assets/enemies/brigadeghoul-idle.webp",
+        "projected_ring_half_height": 5.0,
+        "projected_ring_half_width": 10.0,
+        "render_scale_before_motion": 1.15,
+        "sha256": "c8fc3042ad73da3284a0c954bf20537b2f274a02ba012c03a6c584be55d10605",
+        "units": 3
+      }
+    },
+    "uhr": {
+      "new": {
+        "anchor_px": [
+          62.979,
+          192.569
+        ],
+        "automatic_hitbox_verdict": null,
+        "candidate_band_pixels": 251,
+        "candidate_band_rows_px": [
+          190,
+          192
+        ],
+        "candidate_contact_envelope_from_ground": {
+          "bottom": 5.2819,
+          "left": -16.092,
+          "right": 15.7247,
+          "top": 4.5152
+        },
+        "candidate_width_over_projected_ring_width": 0.7231,
+        "candidate_x_intervals_px": [
+          [
+            21,
+            104
+          ]
+        ],
+        "dimensions_px": [
+          113,
+          194
+        ],
+        "feet_anchor_y_from_ground": 5.5,
+        "ground_offset": 0.25,
+        "path": "assets/enemies/uhr-idle.webp",
+        "projected_ring_half_height": 11.0,
+        "projected_ring_half_width": 22.0,
+        "render_scale_before_motion": 1.15,
+        "sha256": "1ffba4bac71a0ab179bd1e895366a6001382f573716c993d02ed446fac335a02",
+        "units": 3
+      },
+      "old": {
+        "anchor_px": [
+          40.918,
+          132.716
+        ],
+        "automatic_hitbox_verdict": null,
+        "candidate_band_pixels": 107,
+        "candidate_band_rows_px": [
+          130,
+          132
+        ],
+        "candidate_contact_envelope_from_ground": {
+          "bottom": 4.9255,
+          "left": -7.6352,
+          "right": 7.3148,
+          "top": 4.1589
+        },
+        "candidate_width_over_projected_ring_width": 0.575,
+        "candidate_x_intervals_px": [
+          [
+            21,
+            39
+          ],
+          [
+            43,
+            60
+          ]
+        ],
+        "dimensions_px": [
+          64,
+          134
+        ],
+        "feet_anchor_y_from_ground": 5.2,
+        "ground_offset": 0.4,
+        "path": "assets/enemies/uhr-idle.webp",
+        "projected_ring_half_height": 6.5,
+        "projected_ring_half_width": 13.0,
+        "render_scale_before_motion": 1.15,
+        "sha256": "bd9780e8fad0bb3e112881e233a1eb2eb6d708d0f5fe1b45ed926ce5a2947041",
+        "units": 3
+      }
+    }
+  },
+  "large_display_multiplier": 2.5,
+  "measurement_limitations": "Only the >128 alpha candidate contact band in the three source rows immediately above each authored anchor is measured. Raised feet can fall outside this band; identities of feet/toes/fingers are not inferred. Vertical anchor offset and motion complicate ellipse containment. No automatic hitbox pass is claimed.",
+  "projection": "ix=(x-y)/sqrt(2), iy=(x+y)/(2*sqrt(2)); a world circle projects to ellipse half-width r, half-height r/2",
+  "reference_character_units": 48,
+  "reference_height_px": 64
+}
