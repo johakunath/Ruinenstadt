@@ -259,3 +259,17 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   drafts and are not integrated into this enemy release.
 
 - Task 01b completion is ready PR #24, candidate `12415b7f2762bf12815f489e159c1f516a0f6f89`, final validation above complete. Codex review is pending; branch stays unchanged. New independent task 11 claimed on `codex/11-alexanderplatz-pioneer` while that review runs.
+
+
+## 2026-11-10 · Codex · task 11 paused for session wrap
+
+- Preserve original facade/roof/decor drafts plus the new weathered facade,
+  roof/overlay kit and B building source on the separate task 11 branch.
+  Sources are saved as `*-weathered-study.png` without overwriting selected
+  clean atlas recipes. No runtime integration or method selection ships.
+- Preserve scratch harness source and inspection notes in task 11 proof,
+  with explicit superseded/path/footprint limitations. B foundation fit is
+  still unresolved after three attempts. Do not retry silently or ship it.
+  Next-session handoff: `pipeline/proof/11-alexanderplatz-pioneer/README.md`.
+- Task 12 is the final active task; Johannes explicitly requested session
+  wrap. Task 11 remains paused for a future session.
