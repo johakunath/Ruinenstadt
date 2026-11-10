@@ -42,6 +42,10 @@ def write(path, value):
 
 def run():
     picks = {}
+    owned = set()
+    for recipe in RAW.parent.glob('*/picks.json'):
+        if recipe.parent.name not in ['00-tooling', '01-enemies', '01b-enemy-redesign']:
+            owned.update(json.loads(recipe.read_text()))
     for kind, (target, height_class, outline_family, reason) in DESIGNS.items():
         with Image.open(RAW / (kind + '.png')) as source:
             if source.size != (1536, 1024) or source.mode != 'RGBA':
@@ -72,7 +76,9 @@ def run():
                     'height_class': height_class, 'outline_family': outline_family}
             if kind == 'spitter':
                 spec['pivots'] = {'mouth': [x + MOUTH[i][0], y + MOUTH[i][1]]}
-            picks[f'enemies/{kind}-{POSES[i]}'] = spec
+            key = f'enemies/{kind}-{POSES[i]}'
+            if key not in owned:
+                picks[key] = spec
     # Build all selections successfully before changing recipe ownership.
     write(RAW / 'picks.json', picks)
     for task in ['00-tooling', '01-enemies']:

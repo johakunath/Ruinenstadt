@@ -1,4 +1,34 @@
 {
+  "buildings/gdr-banner-blue": {
+    "anchor": [
+      72.19,
+      300.381
+    ],
+    "for": "drawGdrDecorations gdr-banner-blue",
+    "h": 302,
+    "units": 3,
+    "w": 145
+  },
+  "buildings/gdr-banner-red": {
+    "anchor": [
+      77.7,
+      300.402
+    ],
+    "for": "drawGdrDecorations gdr-banner-red",
+    "h": 302,
+    "units": 3,
+    "w": 156
+  },
+  "buildings/gdr-mural-pioneer": {
+    "anchor": [
+      110.752,
+      240.505
+    ],
+    "for": "drawGdrDecorations gdr-mural-pioneer",
+    "h": 242,
+    "units": 3,
+    "w": 222
+  },
   "enemies/bass-attack-a": {
     "anchor": [
       45.777,
@@ -121,63 +151,63 @@
   },
   "enemies/brigadeghoul-attack-a": {
     "anchor": [
-      32.891,
-      59.816
+      68.4,
+      130.601
     ],
     "for": "drawEnemy brigadeghoul attack-a",
-    "h": 61,
+    "h": 132,
     "units": 3,
-    "w": 68
+    "w": 148
   },
   "enemies/brigadeghoul-attack-b": {
     "anchor": [
-      31.63,
-      58.817
+      65.573,
+      128.601
     ],
     "for": "drawEnemy brigadeghoul attack-b",
-    "h": 60,
+    "h": 130,
     "units": 3,
-    "w": 80
+    "w": 173
   },
   "enemies/brigadeghoul-hit": {
     "anchor": [
-      33.189,
-      62.816
+      77.724,
+      136.601
     ],
     "for": "drawEnemy brigadeghoul hit",
-    "h": 64,
+    "h": 138,
     "units": 3,
-    "w": 78
+    "w": 169
   },
   "enemies/brigadeghoul-idle": {
     "anchor": [
-      33.957,
-      60.817
+      71.011,
+      132.601
     ],
     "for": "drawEnemy brigadeghoul idle",
-    "h": 62,
+    "h": 134,
     "units": 3,
-    "w": 65
+    "w": 146
   },
   "enemies/brigadeghoul-walk-a": {
     "anchor": [
-      35.162,
-      60.815
+      71.21,
+      131.602
     ],
     "for": "drawEnemy brigadeghoul walk-a",
-    "h": 62,
+    "h": 133,
     "units": 3,
-    "w": 67
+    "w": 146
   },
   "enemies/brigadeghoul-walk-b": {
     "anchor": [
-      33.646,
-      60.816
+      64.4,
+      132.6
     ],
     "for": "drawEnemy brigadeghoul walk-b",
-    "h": 62,
+    "h": 134,
     "units": 3,
-    "w": 66
+    "w": 146
   },
   "enemies/brute-attack-a": {
     "anchor": [
@@ -923,63 +953,63 @@
   },
   "enemies/uhr-attack-a": {
     "anchor": [
-      37.352,
-      119.716
+      69.991,
+      182.569
     ],
     "for": "drawEnemy uhr attack-a",
-    "h": 121,
+    "h": 184,
     "units": 3,
-    "w": 73
+    "w": 143
   },
   "enemies/uhr-attack-b": {
     "anchor": [
-      40.524,
-      129.716
+      70.271,
+      181.568
     ],
     "for": "drawEnemy uhr attack-b",
-    "h": 131,
+    "h": 183,
     "units": 3,
-    "w": 85
+    "w": 186
   },
   "enemies/uhr-hit": {
     "anchor": [
-      59.952,
-      128.715
+      92.461,
+      189.568
     ],
     "for": "drawEnemy uhr hit",
-    "h": 130,
+    "h": 191,
     "units": 3,
-    "w": 91
+    "w": 175
   },
   "enemies/uhr-idle": {
     "anchor": [
-      40.918,
-      132.716
+      62.979,
+      192.569
     ],
     "for": "drawEnemy uhr idle",
-    "h": 134,
+    "h": 194,
     "units": 3,
-    "w": 64
+    "w": 113
   },
   "enemies/uhr-walk-a": {
     "anchor": [
-      41.581,
-      131.715
+      66.094,
+      189.568
     ],
     "for": "drawEnemy uhr walk-a",
-    "h": 133,
+    "h": 191,
     "units": 3,
-    "w": 78
+    "w": 143
   },
   "enemies/uhr-walk-b": {
     "anchor": [
-      43.286,
-      129.716
+      46.37,
+      189.568
     ],
     "for": "drawEnemy uhr walk-b",
-    "h": 131,
+    "h": 191,
     "units": 3,
-    "w": 78
+    "w": 124
   },
   "enemies/wurz-attack-a": {
     "anchor": [

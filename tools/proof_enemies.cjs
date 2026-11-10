@@ -5,6 +5,7 @@ const {chromium}=require('playwright');
 const fs=require('fs'),path=require('path');
 const root=path.resolve(__dirname,'..'),out=process.env.ENEMY_PROOF_OUT?path.resolve(process.env.ENEMY_PROOF_OUT):path.join(root,'pipeline/proof/01-enemies');
 const port=Number(process.env.ENEMY_PROOF_PORT||8767),baselinePort=Number(process.env.ENEMY_BASELINE_PORT||8765);
+const allowGeometryChange=process.env.ENEMY_ALLOW_GEOMETRY_CHANGE==='1';
 const perfDistricts=(process.env.ENEMY_PERF_DISTRICTS||'0,3').split(',').map(s=>Number(s.trim()));
 if(perfDistricts.some(n=>!Number.isInteger(n)||n<0||n>6))throw Error('ENEMY_PERF_DISTRICTS must contain district indices 0..6');
 const variants='ghoul brute spitter rat crow shield bomb howl raser schrottkoloss kabel bass uhr wurz kern brigadeghoul'.split(' ');
@@ -30,7 +31,7 @@ async function installHelpers(page){
  await page.evaluate(()=>{
   window.__enemyProof={
    reset(di,tun){Math.random=rngFrom(12345);startRun(di,false,false,tun==null?undefined:tun);resize();state='paused';P.dark=false;P.inv=0;P.dashT=P.swingT=P.walk=P.mvx=P.mvy=P.spin=0;document.getElementById('banner').style.display='none';document.getElementById('toasts').style.display='none';return Z;},
-   enemy(variant,pose='idle',face=1){D.gdr=variant==='brigadeghoul'?1:0;const type=variant==='brigadeghoul'?'ghoul':variant==='schrottkoloss'?'boss':variant,e=mkEnemy(type,0,0);e.big=false;e.hcd=1;e.fire=5;e.stun=0;e.flash=0;e.mv=0;e.atk=0;e.t=1;e.rdx=face;e.rdy=0;if(pose==='walk-a'||pose==='walk-b'){e.mv=60;e.t=pose==='walk-b'?1.2:1;}if(pose==='attack-a')e.atk=.05;if(pose==='attack-b')e.atk=.24;if(pose==='hit')e.flash=.1;return e;},
+   enemy(variant,pose='idle',face=1){D.gdr=variant==='brigadeghoul'?1:0;const type=variant==='brigadeghoul'?'ghoul':variant==='schrottkoloss'?'boss':variant,e=mkEnemy(type,0,0);e.big=false;e.hcd=1;e.fire=5;e.stun=0;e.flash=0;e.mv=0;e.atk=0;e.t=1;e.rdx=face;e.rdy=0;if(pose==='walk-a'||pose==='walk-b'){e.mv=60;e.t=pose==='walk-b'?1.3:1;}if(pose==='attack-a')e.atk=.05;if(pose==='attack-b')e.atk=.24;if(pose==='hit')e.flash=.1;return e;},
    card(variant,pose,face,factor,extra={}){
     const w=factor===1?220:360,h=factor===1?210:390,c=document.createElement('canvas');c.width=w;c.height=h;const g=c.getContext('2d'),oldCtx=ctx,oldD=D,oldP=P;
     D={...D};P={...P,x:face*100,y:0};const e=Object.assign(this.enemy(variant,pose,face),extra);
@@ -99,6 +100,15 @@ async function behavior(page){
   return{charge:{start:[enemies[0].x,enemies[0].y],projected:[scx(enemies[0].x,enemies[0].y),scy(enemies[0].x,enemies[0].y)],key:enemySprite(enemies[0])?.key},mouth:{enemy:enemies[1].type,offset:enemyMuzzle(enemies[1]),projectile:eproj[0]},eliteText:text.filter(s=>s.includes('Elite')),hud:{hp:document.getElementById('hpt').textContent,district:document.getElementById('dn').textContent,remaining:document.getElementById('rem').textContent}};
  });
  report.behavior.action=action;await page.screenshot({path:path.join(out,'behavior-charge-spit-elite-hud-2x.png')});if(!action.eliteText.length||!action.hud.hp||!action.hud.district)throw Error('Elite / HP / district HUD missing');
+ report.behavior.gdrScale=[];
+ for(const factor of [1,2]){
+  const result=await page.evaluate(factor=>{const z=__enemyProof.reset(2,null),meta=__enemyProof.world(['ghoul','uhr'],z,factor);for(const e of enemies){delete e.elite;e.hp=e.max;}render(1200);drawDebug();hud();return{...meta,playerRadius:P.r,specs:enemies.map(e=>({type:e.type,r:e.r,height:enemySprite(e).spec.h,ground:enemySprite(e).spec.ground??.4}))};},factor);
+  await page.screenshot({path:path.join(out,`gdr-player-scale-${factor}x.png`)});report.behavior.gdrScale.push(result);
+ }
+ const clock=await page.evaluate(()=>{const labels=[],cards=[];for(const fa of [0,Math.PI/2,Math.PI,Math.PI*1.5])for(const guard of [0,1]){cards.push(__enemyProof.card('uhr','idle',1,2,{fa:sAng(fa),guard}).canvas);labels.push({fa,guard});}const c=document.createElement('canvas');c.width=1440;c.height=780;const g=c.getContext('2d');cards.forEach((p,i)=>{g.drawImage(p,i%4*360,Math.floor(i/4)*390);g.fillStyle='#fff';g.fillText(`clock fa=${labels[i].fa.toFixed(2)} guard=${labels[i].guard}`,i%4*360+8,Math.floor(i/4)*390+38);});return c.toDataURL();});imageData('gdr-clock-shield.png',clock);
+ const runProof=await page.evaluate(()=>{__enemyProof.reset(2,null);P.inv=20;enemies=[];for(const type of ['ghoul','uhr','ghoul','uhr']){const e=mkEnemy(type,0,0),q=freeSpot(100,180,e.r);e.x=q.x;e.y=q.y;enemies.push(e);}state='play';for(let i=0;i<180&&state==='play';i++)update(1/60);render(3000);drawDebug();return{state,time:3,playerRadius:P.r,enemies:enemies.map(e=>{const distances=walls.filter(w=>!(w.gate&&!spSafe())).map(w=>{if(w.ob){const [u,v]=obL(w.ob,e.x,e.y);return Math.hypot(Math.max(0,Math.abs(u)-w.ob.w/2),Math.max(0,Math.abs(v)-w.ob.h/2));}return Math.hypot(Math.max(0,w.x-e.x,e.x-w.x-w.w),Math.max(0,w.y-e.y,e.y-w.y-w.h));});return{type:e.type,r:e.r,x:e.x,y:e.y,finite:Number.isFinite(e.x)&&Number.isFinite(e.y),broadPhaseInWall:inWall(e.x,e.y,e.r),minWallClearance:Math.min(...distances)-e.r};})};});
+ // inWall is a conservative expanded rectangle; circular corner contact needs true distance and float tolerance.
+ report.behavior.gdrRun=runProof;await page.screenshot({path:path.join(out,'gdr-combat-3s.png')});if(runProof.state!=='play'||runProof.enemies.some(e=>!e.finite||e.minWallClearance< -1e-6))throw Error('GDR movement/collision smoke failed: '+JSON.stringify(runProof));
 }
 async function fallback(browser){
  const context=await browser.newContext(settings),page=await context.newPage(),missing='assets/enemies/brute-idle.webp',events=watch(page,'fallback',{expected404:missing});
@@ -108,6 +118,18 @@ async function fallback(browser){
   const result=await page.evaluate(()=>{startRun(0,false);state='paused';window.requestAnimationFrame=()=>0;P.x=100;P.y=0;const e=mkEnemy('brute',0,0);e.hcd=1;e.mv=e.flash=e.atk=e.stun=0;const c=document.createElement('canvas');c.width=300;c.height=300;const g=c.getContext('2d'),old=ctx;ctx=g;g.translate(150,245);g.scale(2,2);let bodyPixels=0;const choice=enemySprite(e);drawEnemy(e,1200);ctx=old;const px=g.getImageData(0,0,300,300).data;for(let y=0;y<220;y++)for(let x=0;x<300;x++)if(px[(y*300+x)*4+3])bodyPixels++;return{key:'enemies/brute-idle',failed:!SPRIMG['enemies/brute-idle'].naturalWidth,choice:choice?.key||null,bodyPixels,data:c.toDataURL()};});
   imageData('missing-file-canvas-fallback.png',result.data);report.fallback={...result,data:undefined,...events};if(!result.failed||result.choice!==null||result.bodyPixels<30||events.expected.length!==1||events.errors.length||events.failedImages.length)throw Error('Actual HTTP404 canvas fallback failed: '+JSON.stringify(report.fallback));
  }finally{await context.close();}
+}
+async function gdrFallback(browser){
+ report.gdrFallback=[];
+ for(const variant of ['uhr','brigadeghoul']){
+  const missing=`assets/enemies/${variant}-idle.webp`,context=await browser.newContext(settings),page=await context.newPage(),events=watch(page,'GDR fallback '+variant,{expected404:missing});
+  try{
+   await page.route('**/'+missing,r=>r.fulfill({status:404,contentType:'text/plain',body:'intentional GDR required-image failure'}));
+   await page.goto(`http://127.0.0.1:${port}/index.html?debug=hit`);await page.evaluate(async variant=>{await spriteReady;spr('enemies/'+variant+'-idle');},variant);await page.waitForFunction(variant=>SPRIMG['enemies/'+variant+'-idle']?.complete,variant);
+   const result=await page.evaluate(variant=>{startRun(2,false);state='paused';window.requestAnimationFrame=()=>0;P.x=100;P.y=0;const type=variant==='brigadeghoul'?'ghoul':variant,e=mkEnemy(type,0,0);e.hcd=1;e.t=1;e.mv=e.flash=e.atk=e.stun=0;e.hp=e.max;const c=document.createElement('canvas');c.width=c.height=320;const g=c.getContext('2d'),old=ctx;ctx=g;g.translate(150,270);g.scale(2,2);const choice=enemySprite(e);drawEnemy(e,1200);ctx=old;const px=g.getImageData(0,0,320,320).data;let bodyPixels=0;for(let i=3;i<px.length;i+=4)if(px[i])bodyPixels++;return{variant,type,r:e.r,failed:!SPRIMG['enemies/'+variant+'-idle'].naturalWidth,choice:choice?.key||null,bodyPixels,data:c.toDataURL()};},variant);
+   imageData('gdr-missing-'+variant+'.png',result.data);const entry={...result,data:undefined,...events};report.gdrFallback.push(entry);if(!entry.failed||entry.choice!==null||entry.bodyPixels<30||events.expected.length!==1||events.errors.length||events.failedImages.length)throw Error('GDR canvas fallback failed: '+JSON.stringify(entry));
+  }finally{await context.close();}
+ }
 }
 async function offline(browser){
  const context=await browser.newContext({...settings,serviceWorkers:'allow'}),page=await context.newPage(),events=watch(page,'offline');
@@ -121,7 +143,7 @@ async function offline(browser){
 async function visual(){
  let browser;try{
   browser=await launch();const context=await browser.newContext(settings),page=await context.newPage(),events=watch(page,'smoke/visual');await page.goto(`http://127.0.0.1:${port}/index.html?debug=hit`);await page.evaluate(()=>startRun(0,false));await page.waitForTimeout(3000);report.smoke=await page.evaluate(()=>({state,version:VERSION,enemyCount:enemies.length}));if(report.smoke.state!=='play')throw Error('3s run did not remain in play');
-  report.schema=await loadEnemyArt(page);await page.evaluate(()=>{window.requestAnimationFrame=()=>0;});await installHelpers(page);await gallery(page);await worldScenes(page);await behavior(page);report.errors.push(...events.errors);report.failedImages.push(...events.failedImages);await context.close();await fallback(browser);await offline(browser);
+  report.schema=await loadEnemyArt(page);await page.evaluate(()=>{window.requestAnimationFrame=()=>0;});await installHelpers(page);await gallery(page);await worldScenes(page);await behavior(page);report.errors.push(...events.errors);report.failedImages.push(...events.failedImages);await context.close();await fallback(browser);await gdrFallback(browser);await offline(browser);
   if(report.errors.length||report.failedImages.length)throw Error('Page errors / failed images: '+JSON.stringify({errors:report.errors,failedImages:report.failedImages}));
  }finally{if(browser)await browser.close();}
 }
@@ -132,11 +154,13 @@ async function performanceProof(){
   const result={method:'Same seeded 40 mixed enemies, maps, viewport, camera and DPR. Seven alternating pairs; 15 warmup and 50 timed full renders each. Visual/offline browser closed before timing.',viewport:settings.viewport,dpr:2,baselinePort,targetPort:port,districts:[],errors};
   for(const di of perfDistricts){
    const setups=[];for(const page of pages)setups.push(await page.evaluate(di=>{Math.random=rngFrom(12345);startRun(di,false);resize();state='paused';P.x=SX;P.y=SY;cam.x=P.x;cam.y=P.y;P.inv=P.swingT=P.walk=P.mvx=P.mvy=P.spin=0;const types=['ghoul','brute','spitter','rat','crow','shield','bomb','howl','raser','boss','kabel','bass','uhr','wurz','kern'];enemies=[];for(let j=0;j<40;j++){const q=s2w((j%8-3.5)*34,Math.floor(j/8)*23-32),e=mkEnemy(types[j%types.length],P.x+q[0],P.y+q[1]);e.big=false;e.hcd=1;e.mv=60;e.t=j*.17;e.fire=4;enemies.push(e);}return{version:VERSION,Z,WS,WH,name:D.n,types:enemies.map(e=>e.type),positions:enemies.map(e=>[e.x,e.y,e.r])};},di));
-   if(JSON.stringify({...setups[0],version:undefined})!==JSON.stringify({...setups[1],version:undefined}))throw Error('Performance scenes differ: '+JSON.stringify(setups));
+   const comparable=s=>({...s,version:undefined,positions:s.positions.map(p=>allowGeometryChange?p.slice(0,2):p)});
+   if(JSON.stringify(comparable(setups[0]))!==JSON.stringify(comparable(setups[1])))throw Error('Performance scenes differ: '+JSON.stringify(setups));
    const samples=[];for(let j=0;j<7;j++){const pair={};for(const index of j%2?[1,0]:[0,1])pair[index?'painted':'baseline']=await pages[index].evaluate(()=>{for(let k=0;k<15;k++)render(1200);const times=[];for(let k=0;k<50;k++){const begin=performance.now();render(1200);times.push(performance.now()-begin);}times.sort((a,b)=>a-b);return{median:times[25],p95:times[47]};});samples.push(pair);}
-   const before=median(samples.map(p=>p.baseline.median)),after=median(samples.map(p=>p.painted.median));result.districts.push({district:setups[0].name,baselineVersion:setups[0].version,paintedVersion:setups[1].version,enemies:40,samples,medianBaseline:before,medianPainted:after,ratio:after/before});
+   const before=median(samples.map(p=>p.baseline.median)),after=median(samples.map(p=>p.painted.median));result.districts.push({district:setups[0].name,baselineVersion:setups[0].version,paintedVersion:setups[1].version,enemies:40,geometryChangeAllowed:allowGeometryChange,radiiBaseline:setups[0].positions.map(p=>p[2]),radiiPainted:setups[1].positions.map(p=>p[2]),samples,medianBaseline:before,medianPainted:after,ratio:after/before});
   }
   if(errors.length)throw Error('Performance page errors: '+errors.join('; '));save('performance.json',result);report.performance=result;
+  const over=result.districts.filter(d=>d.ratio>1.05);if(over.length)throw Error('Performance budget exceeded (5%): '+JSON.stringify(over.map(d=>({district:d.district,ratio:d.ratio}))));
  }finally{if(browser)await browser.close();}
 }
 (async()=>{try{const phase=process.env.ENEMY_PROOF_PHASE||'all';if(phase==='perf'&&fs.existsSync(path.join(out,'results.json')))Object.assign(report,JSON.parse(fs.readFileSync(path.join(out,'results.json'),'utf8')));report.completedPhases=report.completedPhases||[];if(phase!=='perf'){await visual();report.completedPhases.push('visual');}if(phase!=='visual'){await performanceProof();report.completedPhases.push('perf');}report.completedPhases=[...new Set(report.completedPhases)];report.finished=new Date().toISOString();report.status=report.completedPhases.includes('visual')&&report.completedPhases.includes('perf')?'passed':phase+'-passed';delete report.failure;save('results.json',report);console.log(JSON.stringify({status:report.status,gallery:report.gallery.length,scenes:report.scenes.length,performance:report.performance?.districts.map(d=>({district:d.district,ratio:d.ratio}))},null,2));}catch(error){report.status='failed';report.failure=error.stack;save('results.json',report);console.error(error);process.exitCode=1;}})();

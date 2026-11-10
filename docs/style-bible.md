@@ -38,6 +38,26 @@ reference; the new board governs the identity update.
   mechanics. Prioritize its buildings/assets after the enemy regeneration,
   ahead of unrelated prop production in this continuous session.
 
+## Post-apocalyptic wear (Johannes, 2026-11-10)
+
+The approved colours stay bright and clear, but the world must look used and
+broken. This newer direction applies to enemies, buildings and other assets;
+the updated Pioneer board includes the wear pass.
+
+- Chip enamel and painted metal at edges; expose rust at rivets, seams and
+  lower surfaces. Add dents, scratches, bent/broken covers and visible gears
+  or wires. Avoid pristine factory-fresh armour.
+- Break or board some window panes, crack/spall plaster, expose brick at
+  damaged corners, corrode roof seams and repair patches. Fray banners,
+  tear hems and peel mural edges. Ivy and weeds should feel like reclamation.
+- Keep blue/yellow as readable colour blocks and hammer-and-sickle emblems
+  recognizable. Concentrate damage at plausible stress/water points instead
+  of covering everything in a brown or grey filter.
+- Uhrwerkläufer should read as a large lumbering clockwork machine, with a
+  believable head/body. Brigadeghul should read as a human-sized armoured
+  worker, not a tiny suit with an implausibly small head. Match actual
+  collision, contact and shield geometry when their scale changes.
+
 ## Shared language
 
 | Topic | Rule |

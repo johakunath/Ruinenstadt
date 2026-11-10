@@ -32,6 +32,9 @@ BACKGROUND = '#e6e6e6'
 
 
 def proof_directory(root):
+    scale = root / 'pipeline/proof/12-gdr-enemy-proportions'
+    if (scale / 'silhouette-classes-current.json').exists():
+        return scale
     second = root / 'pipeline/proof/01b-enemy-redesign-batch-2'
     return second if (second / 'silhouette-classes-current.json').exists() else root / 'pipeline/proof/01b-enemy-redesign'
 

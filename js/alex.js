@@ -12,8 +12,8 @@ function drawUhr(e,C,sw){const s=e.r/13;ctx.scale(s,s);
   ctx.fillStyle=C('#5a5030');ctx.fillRect(5,-46,3,7);for(let i=0;i<3;i++){const p=(e.t*.8+i/3)%1;ctx.fillStyle=`rgba(216,212,200,${.4*(1-p)})`;ctx.beginPath();ctx.arc(6.5+p*3,-48-p*14,1.5+p*3,0,7);ctx.fill();}
   ctx.globalCompositeOperation='lighter';ctx.drawImage(glow(GOC),-3,-47,12,12);ctx.globalCompositeOperation='source-over';return 46*s;}
 // clock face held in front (shield direction fa): brass rim, enamel face, ticks, turning hands. Open guard: face tipped down and dull
-function gdrShield(e,fy,C,boss){const fa=e.fa,sr=e.r+4,cx=e.x+Math.cos(fa)*sr,cy=fy-16+Math.sin(fa)*sr*.6,px=-Math.sin(fa),py=Math.cos(fa)*.6,op=e.guard>0,R0=boss?20:11;
-  ctx.save();ctx.translate(cx,cy+(op?6:0));ctx.transform(px||.01,py,0,op?.5:1,0,0);ctx.fillStyle=op?'rgba(140,110,60,.7)':C(GBR);ctx.beginPath();ctx.arc(0,0,R0,0,7);ctx.fill();
+function gdrShield(e,fy,C,boss){const fa=e.fa,s=boss?1:e.r/13,sr=boss?e.r+4:17*s,cx=e.x+Math.cos(fa)*sr,cy=fy-16*s+Math.sin(fa)*sr*.6,px=-Math.sin(fa),py=Math.cos(fa)*.6,op=e.guard>0,R0=boss?20:11;
+  ctx.save();ctx.translate(cx,cy+(op?6*s:0));ctx.transform(px||.01,py,0,op?.5:1,0,0);ctx.scale(s,s);ctx.fillStyle=op?'rgba(140,110,60,.7)':C(GBR);ctx.beginPath();ctx.arc(0,0,R0,0,7);ctx.fill();
   ctx.fillStyle=op?'rgba(200,190,170,.5)':C('#efe2c4');ctx.beginPath();ctx.arc(0,0,R0*.8,0,7);ctx.fill();ctx.strokeStyle='#14100c';ctx.lineWidth=1;
   for(let i=0;i<12;i++){const a=i/12*6.283,r1=R0*(i%3?.66:.56);ctx.beginPath();ctx.moveTo(Math.cos(a)*r1,Math.sin(a)*r1);ctx.lineTo(Math.cos(a)*R0*.76,Math.sin(a)*R0*.76);ctx.stroke();}
   ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(Math.cos(e.t*.5-1.57)*R0*.45,Math.sin(e.t*.5-1.57)*R0*.45);ctx.moveTo(0,0);ctx.lineTo(Math.cos(e.t*3)*R0*.7,Math.sin(e.t*3)*R0*.7);ctx.stroke();

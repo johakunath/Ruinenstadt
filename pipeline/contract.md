@@ -22,7 +22,7 @@ How a painted sprite has to look and where it plugs in. If something here is wro
 | Boss | Same as enemy, `type:'boss'`, `e.big` | Same | Same |
 | Player | `drawPlayer` / `drawHero` in `js/art.js`, rig from `js/hero.js` | Shared opaque mannequin, clothing overlays, separate arm segments, rear palm / weapon / front fingers; Codex task 07 | Feet at `(P.x, P.y+9)` |
 
-Enemy sizes are their hit radius `r` (world units) in `mkEnemy`, `js/combat.js`: ghoul 10, raser 11, brute 17, spitter 11, rat 6, bomb 11, shield 13, crow 8, howl 11, kabel 9, bass 15, uhr 13, wurz 12, kern 11, boss 34 (big 42). Their code drawings: `drawEnemy` in `js/art.js`, Alexanderplatz ones in `js/alex.js`.
+Enemy sizes are their hit radius `r` (world units) in `mkEnemy`, `js/combat.js`: ghoul 10 (Brigadeghul in the GDR: 20), raser 11, brute 17, spitter 11, rat 6, bomb 11, shield 13, crow 8, howl 11, kabel 9, bass 15, uhr 22, wurz 12, kern 11, boss 34 (big 42). Their code drawings: `drawEnemy` in `js/art.js`, Alexanderplatz ones in `js/alex.js`.
 
 ## Hitbox rules (Johannes, v0.52)
 
@@ -86,7 +86,7 @@ Enemy frames need no renderer hook any more. `js/anim.js` picks them up from the
 
 - Keys `enemies/<e.type>-<pose>`. `<type>-idle` is required and defines the head height (bars, stun ring). Optional poses: `walk-a` to `walk-d`, `attack-a` (wind-up), `attack-b` (strike), `hit`. Missing poses fall back (`POSEFB`), so one idle frame is a valid first delivery.
 - Per-type tuning in `EANI` (`fps`, `walk` frame count, `life` strength of squash and stretch, `radius` authored reference hit radius). Nothing else is per type.
-- Feet centre stays at `(e.x, e.y + e.r*.4)` for painted enemies, sprite scale is `e.r/(EANI[type].radius || 10)` on top of `units`. The default reference radius is 10; task 01 supplies explicit reference radii for its authored families so all frames retain 3 source pixels per world unit.
+- Feet centre stays at `(e.x, e.y + e.r*(ENEMY_ART[type].ground ?? .4))` for painted enemies (Uhr uses `.25`), sprite scale is `e.r/(EANI[type].radius || 10)` on top of `units`. The default reference radius is 10; task 01 supplies explicit reference radii for its authored families so all frames retain 3 source pixels per world unit.
 - `enemyLife` adds motion in code for painted and canvas enemies alike: breathing, walk bob, wind-up squash (telegraph `e.tw`, charge `e.ch`, melee about to land), strike stretch and lunge (`e.atk`), hit squash (`e.flash`), spawn pop. Frames must not bake in a lunge beyond the hit reach; code adds 5 px.
 - Shadows are drawn by code (`fxSil` from the frame, `fxShadow` blob). Deliver frames without a painted ground shadow.
 - Task 01 maps the ordinary boss to `schrottkoloss` and Alexanderplatz ghouls to `brigadeghoul`. District bosses (`e.big`) keep their own drawing until task 06. Selected families prefetch their six frames; missing poses still use `POSEFB`.
@@ -94,3 +94,28 @@ Enemy frames need no renderer hook any more. `js/anim.js` picks them up from the
 Effects: spawn only through the `fx*` helpers in `js/vfx.js` (`fxFlash`, `fxRing`, `fxSparks`, `fxHit`, `fxKill`, `fxPulse`), colours from `FXC()` or an element colour (`ELC`). They are visual only: never change hit areas, timings or damage for an effect. A ring or pulse radius equals the real hit radius.
 
 Task 01 uses `life: .45` for painted families to complement the authored poses without adding a second large lunge. Explicit mouth pivots follow this same life transform; projectile launch offsets ease to the existing ground-plane path over 0.18 s, leaving collision positions and travel unchanged.
+
+
+## GDR proportions correction (user-authorized, v0.68)
+
+Johannes explicitly requested larger GDR bodies and matching functionality/
+hitboxes. Uhrwerkläufer is authored at 64 units with actual/reference radius
+22 (previously 44/13), movement base speed 34 (previously 42), and four pose
+frames per second. Brigadeghul is authored at 44 units with radius 20
+(previously 20/10), only for ghouls in the GDR district. Other ghouls retain
+radius 10. Elite radii retain the existing 1.15 factor and rounding.
+
+Uhr feet use `e.r*.25` from the collision centre to fit the broader planted
+stance inside the projected ring; other painted bodies keep `.4`. Its
+canvas fallback shares `.25`, and Brigade fallback shares `.4` with the
+painted body. `ENEMY_ART.ground` supplies the optional per-family offset;
+shadows and any muzzle pivots follow it. The old general legacy fallback
+`.75` still applies to unchanged families.
+
+Clock shield size/origin/drop scale from its original radius-13 construction;
+block angle and damage rules do not change. Spawn clearance encloses base and
+possible elite radii, and GDR event spawns account for the larger ghoul. Wall
+resolution, crowd separation, contact and incoming-hit tests use the actual
+`e.r`. Health, damage and constructor RNG draws remain unchanged. Proof and
+semantic tests are in `pipeline/proof/12-gdr-enemy-proportions/` and
+`tools/test_gdr_geometry.mjs`.
