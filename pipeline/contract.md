@@ -119,3 +119,41 @@ resolution, crowd separation, contact and incoming-hit tests use the actual
 `e.r`. Health, damage and constructor RNG draws remain unchanged. Proof and
 semantic tests are in `pipeline/proof/12-gdr-enemy-proportions/` and
 `tools/test_gdr_geometry.mjs`.
+
+
+## GDR painted building kit and wall decorations (v0.69)
+
+`js/gdr-assets.js` supplies `drawGdrBuilding(b)` and `drawGdrDecorations(b)`
+inside the existing `drawBox`/`withRot` path. Existing Zuckerbaecker blocks
+carry deterministic `gdrDecor` and `gdrKit` tags. Johannes selected A
+after reviewing the comparison, so the kit is active on existing GDR blocks. No tag changes map RNG, physical dimensions, collision,
+box sorting, culling or fade behavior. The runtime does not use fixed-view B.
+
+Painted facades repeat 120-world-unit modules horizontally and fit their
+160-unit authored height to actual `bHs(b)`. Roof tiles repeat at 90 units.
+Only the normalizer's 1 px transparent border is removed when creating the
+three shared repeating face patterns. Those source-resolution canvases are
+created once, shared across buildings/maps and never resized per building.
+Overlays are clipped by supported face bounds through their placements.
+The east painting contains its own cool shading; skip legacy .42 shading.
+
+The normalizer retains default image anchors for selection metadata; these
+rectangular textures use explicitly documented face-local top-left positions,
+not upright billboard anchors. Face positions and axes come from P3/bAx.
+Decorations hang from `Hs-12`; the mural is a separate ground-floor panel.
+Zucker has no dynamic window light emitters. Gables, rooftop extensions,
+light-bearing buildings and boxes below 48×45×60 opt out before kit load
+(decorations require a 120-unit front face),
+so this task cannot misplace an existing lamp or replace a roof silhouette.
+
+A missing required kit image returns false before any painted part. The old
+canvas box is retained. The independent decoration path behaves the same
+way and keeps the existing underlying canvas art while images load/fail.
+New code and eight WebPs are in the v0.69 service-worker shell.
+
+The comparison's B is an explicit fixed-view precomposition of the same
+approved kit at 3 px/unit, with its anchor calculated from exact projected
+corners and no ground shadow. It is dev proof, never runtime art. Extra
+orientations or a fallback would be needed before using fixed paintings on
+rotated buildings. Raw independently generated B studies failed footprint
+fit and remain unselected; their failure is not attributed to the method.

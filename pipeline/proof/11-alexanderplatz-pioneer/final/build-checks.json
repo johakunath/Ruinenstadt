@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "reproducedImages": 8,
+  "manifestEntries": 235,
+  "files": [
+    {
+      "key": "buildings/gdr-banner-blue",
+      "w": 156,
+      "h": 302,
+      "bytes": 29912,
+      "sha256": "7635188c867331b66a9f48b1972d76a1cbfda04a7ba01e14d3505279aafa71df"
+    },
+    {
+      "key": "buildings/gdr-banner-red",
+      "w": 165,
+      "h": 302,
+      "bytes": 28848,
+      "sha256": "d8a5b2f319f2ddb7b60d65f5dfc86afb42afbc12b49644e6820c83718b037a24"
+    },
+    {
+      "key": "buildings/gdr-facade-east",
+      "w": 362,
+      "h": 482,
+      "bytes": 96356,
+      "sha256": "7eb00d3fc49ba909b3793be044e7b82053746c289e63842621544071764fc80f"
+    },
+    {
+      "key": "buildings/gdr-facade-south",
+      "w": 362,
+      "h": 482,
+      "bytes": 101034,
+      "sha256": "9df4441d7f85e6089718a701d00a742663480e108d40a51d885a80c5a9e13f44"
+    },
+    {
+      "key": "buildings/gdr-ivy",
+      "w": 303,
+      "h": 356,
+      "bytes": 40714,
+      "sha256": "11e9bc2ff9fe71139e991769e6f5ccd4a082d5f5d5f0e03149b815d848fe0949"
+    },
+    {
+      "key": "buildings/gdr-mural-pioneer",
+      "w": 227,
+      "h": 242,
+      "bytes": 35392,
+      "sha256": "a7d0b8aea851655c8b4624b40a7790f127e7728702a802e3bfd1b632127eecac"
+    },
+    {
+      "key": "buildings/gdr-plaster",
+      "w": 131,
+      "h": 146,
+      "bytes": 9900,
+      "sha256": "192ea65d3427c6d27dc571c685009f8d30834576162c4e6d13e41e0d05a6c07b"
+    },
+    {
+      "key": "buildings/gdr-roof",
+      "w": 272,
+      "h": 272,
+      "bytes": 40302,
+      "sha256": "00c6de6a2775d2f4ab73fbb93e4f7d50bb46555814336057510e33de7ab08aa2"
+    }
+  ]
+}

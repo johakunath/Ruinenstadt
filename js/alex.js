@@ -216,7 +216,7 @@ function zuckerB(b){const c=cnv(b.w,b.h+b.H),g=c.getContext('2d'),base=b.h+b.H;b
   if(Math.random()<.6){const x=R(20,b.w-40);g.fillStyle=GRD;g.fillRect(x,b.h+20,16,Math.min(b.H-70,120));g.fillStyle=GOC;g.fillRect(x,b.h+20,16,4);}
   g.fillStyle='rgba(60,100,40,.6)';for(let i=0;i<b.w/30;i++){const x=R(0,b.w);g.fillRect(x,base-R(20,70),R(3,6),R(20,60));}
   g.fillStyle=b.rc;g.fillRect(0,0,b.w,b.h);for(let i=0;i<b.w*b.h/40;i++){g.fillStyle=Math.random()<.5?'rgba(0,0,0,.12)':'rgba(255,230,200,.05)';g.fillRect(R(0,b.w),R(0,b.h),2,2);}g.strokeStyle='rgba(0,0,0,.45)';g.lineWidth=2;g.strokeRect(1,1,b.w-2,b.h-2);
-  b.spr=c;bShadow(b);}
+  b.spr=c;b.gdrKit=b.gdrDecor=!!D.gdr;bShadow(b);}
 /* ---- lots: zucker (Zuckerbäcker blocks), sonnen (sunflower field), glashaus (greenhouses with beds) ---- */
 LOTS.zucker=b=>{const n=Math.max(1,Math.round(b.w*b.h/120000));for(let k=0,t=0;k<n&&t<n*12;t++){const w=R(200,300),h=R(80,110),x=R(b.x0+20,b.x1-20-w),y=R(b.y0+20,b.y1-20-h);if(x<b.x0+10||y<b.y0+10)continue;if(tryB(x,y,w,h,R(70,90),'zucker'))k++;}};
 function sunCluster(x,y){const W=60,H=110,c=cnv(W,H),t=c.getContext('2d');for(let i=0;i<5;i++){const fx=8+Math.random()*44,fh=R(50,95),fy=H-fh;t.strokeStyle='#4a7a3a';t.lineWidth=2.5;t.beginPath();t.moveTo(fx,H);t.quadraticCurveTo(fx+R(-6,6),H-fh/2,fx,fy);t.stroke();

@@ -23,6 +23,7 @@ function ibox(x,y,w,h,z0,z1,c,s,top){faceS(x,y,w,h,z0,z1,c,s);faceE(x,y,w,h,z0,z
 const isBox=b=>!!(b.veh||(b.h>0&&b.H>0&&!b.bb)),bR0=b=>b.R0!=null?b.R0:b.top-b.H,bHs=b=>(b.FH||b.H)*(b.vs||1),boxTop=b=>b.veh?70:bHs(b)+bR0(b)*(b.vs||1)+(b.gable||0);
 // building from its old 3/4 sprite: rows [0,R0) extra (towers), [R0,R0+h) roof, then FH rows facade. Roof goes on the top face, facade on south and (shaded) east face.
 function drawBox(b){const x=b.x,y=b.y,w=b.w,h=b.h,s=b.spr,vs=b.vs||1,FH=b.FH||b.H,Hs=FH*vs,R0=bR0(b);
+  if(drawGdrBuilding(b))return;
   faceT(x+5,y+5,w,h,0,'rgba(0,0,0,.25)');
   const[ux,uy,vx,vy]=bAx(),o=(a,c,z)=>P3(a,c,z);
   {const q=o(x,y+h,Hs);ctx.save();ctx.transform(ux,uy,0,vs,q[0],q[1]);ctx.drawImage(s,0,R0+h,w,FH,0,0,w,FH);ctx.restore();}
@@ -31,7 +32,7 @@ function drawBox(b){const x=b.x,y=b.y,w=b.w,h=b.h,s=b.spr,vs=b.vs||1,FH=b.FH||b.
   if(b.gable){gableRoof(b,Hs);return;}
   {const q=o(x,y,Hs);ctx.save();ctx.transform(ux,uy,vx,vy,q[0],q[1]);ctx.drawImage(s,0,R0,w,h,0,0,w,h);ctx.restore();}
   if(R0>0){const q=o(x,y+h*.5,Hs+R0*vs);ctx.save();ctx.transform(ux,uy,0,vs,q[0],q[1]);ctx.drawImage(s,0,0,w,R0,0,0,w,R0);ctx.restore();}
-  faceS(x,y,w,h,0,Hs,0,INK);faceE(x,y,w,h,0,Hs,0,INK);faceT(x,y,w,h,Hs,0,INK);}
+  faceS(x,y,w,h,0,Hs,0,INK);faceE(x,y,w,h,0,Hs,0,INK);faceT(x,y,w,h,Hs,0,INK);drawGdrDecorations(b);}
 // gable roof, ridge along world x at y+h/2: back slope, front slope with tile rows, east gable triangle. Overhang 4 units
 function gableRoof(b,Hs){const{x,y,w,h}=b,G_=b.gable,o=4,rc=b.rc||'#6a3a2a',ym=y+h/2,Z=Hs+G_;faceS(x,y,w,h,0,Hs,0,INK);faceE(x,y,w,h,0,Hs,0,INK);
   const tri=[P3(x+w,y,Hs),P3(x+w,y+h,Hs),P3(x+w,ym,Z)];poly(tri,b.wc||'#b8a888');poly(tri,'rgba(8,5,4,.42)',INK);
