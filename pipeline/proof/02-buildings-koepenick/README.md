@@ -60,7 +60,26 @@ keep task textures and derived canvases below 40,000,000 bytes. Window
 apertures, candle pixels, entrance lanes and ruin cutouts retain the legacy
 positions. Semantic tests freeze generation RNG, lights and fallback drawings.
 
+**Performance gate (updated 2026-11-10).** `draft/` timing used seven unpaired
+batches after the visual run and cannot resolve 5% (baseline 2.14 to 2.68 ms,
+paired deltas -21.8% to +12.6%). It is superseded by `tools/perf_koep.cjs`:
+fresh browser context, 21 alternating pairs at 1280×800 DPR 2 (Tab S9 class),
+median paired on/off ratio with seeded bootstrap 95% CI, GPU renderer
+recorded. Results go to `perf/`. Only a hardware-GPU run counts; procedure in
+`.claude/skills/asset-perf-gate/SKILL.md`. Caches now bake at
+`koepScale()` = min(3, DPR×Z), so `cache-pixels.json` compares at that scale.
+
 Performance evidence compares the same seeded full scenes with the painted
 hook enabled and disabled. It measures desktop render script time; it does
 not establish Tab S9 temperature, battery use or device frame rate. Johannes
 deferred that hardware check.
+
+**Performance gate result (2026-11-11, Windows PC): pass.**
+
+| District | Off ms | On ms | Paired median | 95% CI | Verdict |
+|---|---|---|---|---|---|
+| Köpenick | 2.170 | 2.052 | -6.51% | -8.22% … -2.26% | pass |
+| Alexanderplatz (null control) | 2.955 | 2.939 | -0.74% | -4.73% … 1.30% | pass |
+
+GPU: ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11), hardware raster. 1280×800 @ DPR 2, 21 pairs, commit 0dc5f4b, Windows 11, power mode "Höchstleistung", headless Chrome via Playwright 1.65.0. Raw data: `perf/perf-2026-11-10T23-39-22-523Z.json`.
+The Köpenick CI upper bound (-2.26%) is below the +5% limit; the null control stays within ±5%. No rerun at 41 pairs was needed. This measures desktop render script time, not Tab S9 heat or battery.

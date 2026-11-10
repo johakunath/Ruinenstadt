@@ -1,4 +1,4 @@
-// Compare the actual projected cache against live texture-kit composition at source resolution.
+// Compare the actual projected cache against live texture-kit composition at the cache's own bake scale (koepScale()).
 // NODE_PATH=.tools-browser/node_modules; KOEP_PROOF_PORT defaults to 8765.
 const {chromium}=require('playwright');
 (async()=>{
@@ -13,15 +13,15 @@ const {chromium}=require('playwright');
    for(const st of ['altbau','ruin'])for(const rot of [0,.6,-.6]){
     const b={x:1000,y:1000,w:192,h:96,H:180,top:180,R0:0,rot};makeB(b,st);await koepPrepare(b);
     const entry=KOEPCACHE.items.get(b);if(!entry)throw Error('Cache not ready');
-    const r=entry.bounds,reference=cnv(r.w*3,r.h*3),actual=cnv(r.w*3,r.h*3),previous=ctx;
+    const r=entry.bounds,k=entry.scale,reference=cnv(r.w*k,r.h*k),actual=cnv(r.w*k,r.h*k),previous=ctx;
     try{
-     ctx=reference.getContext('2d');ctx.scale(3,3);ctx.translate(-r.x,-r.y);withRot(b,()=>drawKoepBuildingLive(b));
-     ctx=actual.getContext('2d');ctx.scale(3,3);ctx.translate(-r.x,-r.y);withRot(b,()=>drawKoepBuilding(b));
+     ctx=reference.getContext('2d');ctx.scale(k,k);ctx.translate(-r.x,-r.y);withRot(b,()=>drawKoepBuildingLive(b));
+     ctx=actual.getContext('2d');ctx.scale(k,k);ctx.translate(-r.x,-r.y);withRot(b,()=>drawKoepBuilding(b));
     }finally{ctx=previous;}
     const a=reference.getContext('2d').getImageData(0,0,reference.width,reference.height).data,z=actual.getContext('2d').getImageData(0,0,actual.width,actual.height).data;
     let changedChannels=0,maxDifference=0,changedAlpha=0;
     for(let i=0;i<a.length;i++){const d=Math.abs(a[i]-z[i]);if(d){changedChannels++;maxDifference=Math.max(maxDifference,d);if(i%4===3)changedAlpha++;}}
-    comparisons.push({st,rot,width:actual.width,height:actual.height,changedChannels,maxDifference,changedAlpha});
+    comparisons.push({st,rot,scale:k,width:actual.width,height:actual.height,changedChannels,maxDifference,changedAlpha});
     reference.width=actual.width=reference.height=actual.height=0;
    }
    return{comparisons,stats:koepAssetStats()};

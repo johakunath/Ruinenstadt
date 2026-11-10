@@ -2,14 +2,26 @@
 
 Status: in progress (Codex, 2026-11-10). Johannes selected A common Altbau + B occasional variants + selective C ruins for Köpenick. Step 0 was completed with the GDR proof in v0.69.
 
-Production is preserved as a draft, not accepted: 13 materials and all five
+Production is integrated; the performance gate passed on 2026-11-11 (see update below). Earlier state: 13 materials and all five
 building types are integrated locally, visual/contact and semantic checks
 pass, but the final combined performance run is +9.68% on Köpenick (limit 5%).
 An isolated run passed; acceptance remains unresolved. Three optimizations
 were tried, so follow the workflow stop rule and continue independent work.
+
+Update 2026-11-10 (Claude): the 7-pair timing could not resolve 5% (baseline
+spread 25%, 3 of 7 pairs negative). Caches now bake at device scale instead
+of a fixed 3 px (the 960×640 proof viewport drew them minified, 2.2× the
+source pixels of legacy). New gate `tools/perf_koep.cjs`: own context, 21
+pairs, paired median + 95% CI. Open: one GPU run on the Windows PC per
+`.claude/skills/asset-perf-gate/SKILL.md`.
+
+Update 2026-11-11 (Claude): gate run on the Windows PC (RTX 4070, hardware GPU,
+1280×800 DPR 2, 21 pairs): Köpenick -6.51% [-8.22, -2.26], pass; Alexanderplatz
+null control -0.74%. Perf blocker closed. Tab S9 heat/battery check still
+deferred.
 See `pipeline/proof/02-buildings-koepenick/README.md`.
 
-Current queue (2026-11-10): draft preserved pending performance acceptance;
+Current queue (2026-11-10): draft passed the performance gate (2026-11-11);
 continue with the independent equipment-icon task. Design selection is complete.
 The selected GDR method did not by itself complete Köpenick production.
 

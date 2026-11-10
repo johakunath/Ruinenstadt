@@ -469,3 +469,34 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   over the final run. No cheaper image-model selector is exposed by the
   built-in painting tool; source reuse and scripted processing remain the
   cost-saving route.
+
+## 2026-11-10 · Claude · task 02 performance gate review
+
+- Codex's +9.68% Köpenick failure is not decidable with its method: seven
+  unpaired batches, baseline spread 2.14 to 2.68 ms (25%), paired deltas
+  -21.8% to +12.6%, three of seven faster with the kit. The isolated +0.90%
+  pass is equally inconclusive.
+- Found and fixed one real cost: caches baked at fixed 3 px/screen unit were
+  drawn minified at the 960×640 proof viewport (DPR×Z = 2.37), reading 6.5 M
+  source pixels per frame vs 3.0 M legacy. Now `koepScale()` = min(3, DPR×Z):
+  5.3 M, 27 instead of 18 cached buildings in 40 MB, no evictions. On the
+  Tab S9 (about 1280×800, DPR 2) the scale stays 3, so the device cost is
+  unchanged by this fix.
+- New gate `tools/perf_koep.cjs` (used by `proof_koep_buildings.cjs`): own
+  context, 21 pairs, paired median + bootstrap 95% CI, pass/fail/inconclusive,
+  Alexanderplatz as null control, GPU renderer recorded, software raster
+  never counts. Rules and the Windows procedure: `.claude/skills/asset-perf-gate/SKILL.md`.
+- Validation in the cloud container (no GPU): 50 JS tests pass; cache/live
+  comparison 6/6 zero-difference at scale 2.5; quick visual proof and
+  perf-only harness run without page errors (verdict software-raster).
+- Open for Johannes: run the gate once on the Windows PC (about 10 min).
+
+## 2026-11-11 · Claude · task 02 performance gate run (Windows GPU)
+
+| District | Off ms | On ms | Paired median | 95% CI | Verdict |
+|---|---|---|---|---|---|
+| Köpenick | 2.170 | 2.052 | -6.51% | -8.22% … -2.26% | pass |
+| Alexanderplatz (null control) | 2.955 | 2.939 | -0.74% | -4.73% … 1.30% | pass |
+
+- GPU: ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11), hardware raster. 1280×800 @ DPR 2, 21 pairs, commit 0dc5f4b, Windows 11, power mode "Höchstleistung", headless Chrome via Playwright 1.65.0. Raw data: `perf/perf-2026-11-10T23-39-22-523Z.json`.
+- Verdict: **pass**. First and only run, nothing discarded; no levers needed. Draft PR #30 can go to review; not merged.

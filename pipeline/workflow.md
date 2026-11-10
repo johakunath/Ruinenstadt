@@ -70,7 +70,7 @@ design selection, not merge authorization or technical acceptance checks.
 | Smoke | Playwright: load `index.html`, start a run (`startRun(0,false)` in the page), wait 3 s, no `pageerror`, no failed image requests |
 | Look | Screenshots at default zoom and at 2x, per district the asset appears in (`startRun(i,false)`, `DIST[i]`) |
 | Hitboxes | Load `index.html?debug=hit`: pink ring = player radius `P.r`, yellow rings = enemy radii `e.r`, green sector = current melee hit area. The visible feet and body must sit on the ring, attack art must reach about the sector edge. See `contract.md` |
-| Perf | Köpenick (3600) and Mitte (4000): frame time not worse than before (Chrome performance panel or `performance.now()` around `render`) |
+| Perf | Paired on/off gate per `.claude/skills/asset-perf-gate/SKILL.md`: Köpenick plus a null-control district, median paired ratio with 95% CI, on a GPU machine |
 | Offline | New files listed in `SHELL` in `sw.js` |
 
 Browser proof portability: the existing proof harness defaults to
@@ -103,7 +103,7 @@ Johannes starts Codex and goes to sleep. Rules for such a run:
 | Decisions | Codex decides design picks and colour picks itself using the style canvas and the silhouette/readability checks, records pick and reason in `picks.json` and `log.md`, and never waits for an answer. Anything that needs a game design decision (balance, new mechanic) goes into `log.md` as a question and is skipped |
 | Merging | Not authorized by default. Open **draft PRs**, one per task, with the comparison sheet (old vs new) and proof images. Merge only if Johannes wrote "merge" for this run, then follow "Continuous asset sessions" |
 | Style source | Style boards and style canvas (step 3 above). Do not trace the code drawings. The already merged painted enemies (`assets/enemies/`) are the quality bar for finish, but not a shape reference for new things |
-| Performance budget | The Tab S9 gets warm. Per task: before and after numbers from `?debug=perf` on Köpenick and Alexanderplatz, no regression above 5 %. Large painted assets are drawn from cached canvases or one shared sheet, never rebuilt per frame. Keep decoded texture memory of a task under 40 MB (width x height x 4) and report it. If a task fails the budget, stop and log it instead of shipping |
+| Performance budget | The Tab S9 gets warm. Per task: before and after numbers from `?debug=perf` on Köpenick and Alexanderplatz, no regression above 5 %. Large painted assets are drawn from cached canvases or one shared sheet, never rebuilt per frame. Keep decoded texture memory of a task under 40 MB (width x height x 4) and report it. Rules, gate method and the Windows GPU run: `.claude/skills/asset-perf-gate/SKILL.md` (`tools/perf_koep.cjs`). Only a GPU run counts; software-raster numbers are smoke tests. If a task fails the budget, stop and log it instead of shipping |
 | Stop conditions | Three failed attempts on the same asset, a test that cannot be made green without changing gameplay, or any need to change the contract. Write it to `log.md` and continue with the next task |
 | Report | At the end append to `log.md`: what is done, which PRs are open, what Johannes has to decide (list of questions, max 5), perf table |
 

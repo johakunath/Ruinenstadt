@@ -48,7 +48,7 @@ test('Späti retains sign, door, bars, side window, light records, and separate 
 test('landmarks, gables, towers, vehicles and other districts opt out without requests or paint',()=>{
  for(const attrs of [{koep:null},{gable:24},{R0:20},{veh:{}},{bb:true}]){const s=setup();assert.equal(s.draw(building(attrs)),false);assert.equal(s.requests.length,0);assert.equal(s.calls.length,0);}const s=setup();s.env.D={i:1};assert.equal(s.draw(building()),false);assert.equal(s.requests.length,0);
 });
-test('queued projections preserve 3 px/screen unit and original sprites, then use one draw without allocations',async()=>{
+test('queued projections default to 3 px/screen unit without DPR/Z, keep original sprites, then use one draw without allocations',async()=>{
  const s=setup(),b=building(),before=JSON.stringify(b);s.env.blds=[b];s.env.b=b;
  assert.equal(s.draw(b,'drawKoepBuilding'),false,'pending facade retains complete procedural fallback');assert.equal(s.canvases.length,6,'draw only initializes shared kit; facade allocation is scheduled');
  const ready=s.run('koepPrepare(b)');await s.flush();assert.equal(await ready,true);assert.equal(s.run('koepCacheReady(b)'),true);assert.equal(s.canvases.length,7);const c=s.canvases.at(-1);const bounds=s.run('koepBounds(b)');assert.equal(c.width,bounds.w*3);assert.equal(c.height,bounds.h*3);assert.deepEqual(c.ops[0],{op:'scale',args:[3,3]});assert.equal(JSON.stringify(b),before,'cache is external to gameplay/fallback records');
@@ -104,3 +104,9 @@ test('recorded candle centres match all original light anchors; non-target style
  assert.ok(lights>0,'fixture contains actual candle emitters');for(const st of ['efh','reihen','laube'])assert.equal(construct(st).b.koep,undefined);
 });
 export {construct};
+test('cache bakes at device scale (DPR*Z, quarter steps, max 3) and a zoom change invalidates it',async()=>{
+ const s=setup(),b=building();s.env.b=b;s.env.blds=[b];s.env.DPR=2;s.env.Z=1.1851851851851851;assert.equal(s.run('koepScale()'),2.5);
+ let ready=s.run('koepPrepare(b)');await s.flush();assert.equal(await ready,true);const c=s.canvases.at(-1),r=s.run('koepBounds(b)');assert.equal(c.width,Math.ceil(r.w*2.5));assert.equal(c.height,Math.ceil(r.h*2.5));assert.deepEqual(c.ops[0],{op:'scale',args:[2.5,2.5]});assert.equal(s.run('koepAssetStats().perBuildingCanvasBytes'),c.width*c.height*4);
+ s.env.Z=1.48;assert.equal(s.run('koepScale()'),3);assert.equal(s.run('koepCacheReady(b)'),false,'resize forces a rebake');ready=s.run('koepPrepare(b)');await s.flush();assert.equal(await ready,true);assert.equal(c.width,0,'stale cache released');assert.equal(s.canvases.at(-1).width,r.w*3);
+ s.env.DPR=1;s.env.Z=1;assert.equal(s.run('koepScale()'),1);s.env.DPR=2;s.env.Z=1.8;assert.equal(s.run('koepScale()'),3);
+});

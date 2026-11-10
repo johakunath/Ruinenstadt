@@ -3,7 +3,8 @@
 Köpenick method-A integration (draft v0.71; performance gate open): `js/koep-assets.js` maps selected
 window/material modules to the existing facade lattice and records aperture
 bounds as `pivots.apertureTL`/`apertureBR`. It derives transparent projected
-caches at 3 px/screen unit for actual building rotations; no authored fixed-view
+caches at device scale `koepScale()` = min(3, DPR×Z) px/screen unit, quarter steps,
+for actual building rotations (scale is part of the signature, resize rebakes); no authored fixed-view
 painting replaces the geometry. `koepPrepareMap()`/`koepPrepare(b)` schedule
 cache work outside drawing. Signatures invalidate changed geometry/rotation;
 actual draws receive eviction priority over unused prefetches. Task images,
