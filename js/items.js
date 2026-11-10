@@ -19,8 +19,8 @@ function makeItem(il,minR,fs){il+=3*D.i;// v0.65: item level +3 per district so 
   const base=BASES[name];if(r===1||r===2)name+=' '+pick(SUF[r]);
   const it={id:++uid,slot,kind,base,name,r,val,ilvl:il,afx:[]};rollAfx(it);return it;
 }
-function makeSetItem(il){const k=pick(['kiez','spree','zit']),slot=pick(['w','a','t']),[name,kind,base]=SETS[k].p[slot];let val;
-  if(slot==='w')val=Math.round((4+il*1.6)*KIND[kind].k*1.8);else if(slot==='a')val=Math.round((12+il*6)*1.8);else val=Math.round({krit:3+il*.35,tempo:4+il*.3}[kind]*1.8);
+function makeSetItem(il){const k=pick(['kiez','spree','zit']),slot=pick(Object.keys(SETS[k].p)),[name,kind,base]=SETS[k].p[slot];let val;
+  if(slot==='w')val=Math.round((4+il*1.6)*KIND[kind].k*1.8);else if(slot==='a')val=Math.round((12+il*6)*1.8);else if(slot==='h')val=Math.round((2+il*.12)*1.8);else if(slot==='g'||slot==='f')val=Math.round((3+il*.12)*1.8);else val=Math.round({krit:3+il*.35,tempo:4+il*.3}[kind]*1.8);
   const it={id:++uid,slot,kind,base,name,r:2,val,ilvl:il,afx:[],set:k};rollAfx(it);delete it.el;return it;}
 function lootItem(il,minR,p){return Math.random()<(p||.05)?makeSetItem(il):makeItem(il,minR);}
 function rollAfx(it){const r=it.r,il=it.ilvl,m=Math.sqrt(RAR[r].m);
@@ -35,7 +35,7 @@ const dps=it=>it.val/KIND[it.kind].rate;
 function withItem(it){const e=Object.assign({},S.eq);e[it.slot]=it;return e;}
 function better(it){return power(stats(withItem(it)))>power(stats())*1.01;}
 function fmtA(f){const A=AFX[f.k];let v=A.neg?-f.v:f.v;return(v>0?'+':'−')+(A.d?Math.abs(v).toFixed(1):Math.abs(v))+A.u+' '+A.n;}
-function extraLines(it){let h='';if(it.set){const Q=SETS[it.set],n=setCount(S.eq,it.set);h+=`<div class="af" style="color:${SETC}">Set ${Q.n} · ${n}/3 angelegt</div><div class="af" style="color:${n>=2?SETC:'var(--dim)'}">(2) ${Q.b2}</div><div class="af" style="color:${n>=3?SETC:'var(--dim)'}">(3) ${Q.b3}</div>`;}if(LEGP[baseOf(it)])h+=`<div class="af" style="color:${RAR[3].c};font-style:italic">${LEGP[baseOf(it)]}</div>`;if(it.el)h+=`<div class="st" style="color:${ELC[it.el]}">Element: ${ELN[it.el]}</div>`;if(modSlots(it)){const ms=it.mods||[];h+=`<div class="af" style="color:#f2a04b">Aufsätze ${ms.length}/${modSlots(it)}${ms.length?': '+ms.map(k=>(MODS.find(m=>m.k===k)||{}).n).join(', '):''}</div>`;}return h;}
+function extraLines(it){let h='';if(it.set){const Q=SETS[it.set],n=setCount(S.eq,it.set);h+=`<div class="af" style="color:${SETC}">Set ${Q.n} · ${n}/${Object.keys(Q.p).length} angelegt</div><div class="af" style="color:${n>=2?SETC:'var(--dim)'}">(2) ${Q.b2}</div><div class="af" style="color:${n>=3?SETC:'var(--dim)'}">(3) ${Q.b3}</div><div class="af" style="color:${n>=5?SETC:'var(--dim)'}">(5) ${Q.b5}</div>`;}if(LEGP[baseOf(it)])h+=`<div class="af" style="color:${RAR[3].c};font-style:italic">${LEGP[baseOf(it)]}</div>`;if(it.el)h+=`<div class="st" style="color:${ELC[it.el]}">Element: ${ELN[it.el]}</div>`;if(modSlots(it)){const ms=it.mods||[];h+=`<div class="af" style="color:#f2a04b">Aufsätze ${ms.length}/${modSlots(it)}${ms.length?': '+ms.map(k=>(MODS.find(m=>m.k===k)||{}).n).join(', '):''}</div>`;}return h;}
 const afxAll=it=>[...(IMP[baseOf(it)]||[]).map(q=>({k:q[0],v:q[1]})),...(it.afx||[])];
 function afxLines(it){let h=extraLines(it);afxAll(it).forEach(f=>{h+=`<div class="af" style="color:${f.v>0?'var(--bone)':'var(--bad)'}">${fmtA(f)}</div>`;});return h;}
 // item comparison (v0.53): aligned rows, same affix on the same row in both cards. diff: show the change against o (the equipped item) next to each row
@@ -137,6 +137,8 @@ const ICO={
  npumpe:c=>`<rect x="8" y="3" width="8" height="18" rx="3" fill="${c}" fill-opacity=".25"/><path d="M8 9h8M8 15h8M12 1v2M12 21v2" stroke-width="1.4"/>`,
  bassarm:c=>`<path d="M3 16l7-7 4 1 5-5 2 2-5 5 1 4-7 7z" fill="${c}" fill-opacity=".35"/><circle cx="10" cy="14" r="2.5"/><path d="M17 15l2 2 3-1" stroke-width="1.4"/>`,
  herz:c=>`<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" fill="${c}" fill-opacity=".3"/><path d="M8 12q2 2 4 0t4 0" stroke-width="1.2"/>`};
+// v0.68 set pieces for head, hands, feet, ring: SVG fallback = existing shapes until painted icons exist (pipeline/tasks/12-set-pieces.md)
+Object.assign(ICO,{kiezhelm:ICO.helm,kiezhand:ICO.handsch,spreestief:ICO.stiefel,spreering:ICO.siegel,topfhelm:ICO.maske,eisenstief:ICO.gummi});
 // painted icons and portraits (ChatGPT sheets, cut by tools/cut_sheets.py); ids from docs/chatgpt-assets.md, SVG stays as fallback
 const ICOI={latte:'I01',rohr:'I02',stahl:'I03',machete:'I04',brech:'I05',vorschlag:'I06',pflaster:'I07',zange:'I08',zwille:'I09',nagel:'I10',stein:'I11',rspeer:'I12',fahne:'I13',harpune:'I14',turm:'I15',mauer:'I16',
  leder:'I17',mantel:'I18',weste:'I19',feuer:'I20',bvg:'I21',helm:'I22',schieber:'I23',muetze:'I24',maske:'I25',handsch:'I26',bandage:'I27',schweiss:'I28',turnsch:'I29',stiefel:'I30',gummi:'I31',ring:'I32',

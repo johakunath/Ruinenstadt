@@ -44,12 +44,14 @@ SIM.run=function(di,opt){opt=opt||{};const tl0=(S.tlog||[]).slice(-1)[0];if(opt.
     if(state==='trade'){if(npc)npc.offers.forEach((o,i)=>{if(o&&S.scrap>=o.price&&better(o.it)&&S.bag.length<BAG){S.scrap-=o.price;S.bag.push(o.it);npc.offers[i]=null;}});$('trade').hidden=true;state='play';continue;}
     if(state==='paused'){resume();continue;}
     if(freeze>0){freeze-=dt;continue;}
-    thinkT-=dt;if(thinkT<=0){thinkT=.1;SIM.think(.1);}
+    thinkT-=dt;if(thinkT<=0){thinkT=.1;if(S.bag.length>=BAG-2)SIM.tidy();SIM.think(.1);}
     update(dt);t+=dt;if(run.wave!==wv){if(t-wt>slow[1])slow=[wv,Math.round(t-wt),slow[2]];wv=run.wave;wt=t;diag='';}if(t-wt>90&&!diag){diag='w'+run.wave+' stuck with '+enemies.length+': '+[...new Set(enemies.map(e=>e.type+(e.fly?'(f)':'')))].join(',')+' toSpawn '+run.toSpawn;}if(P.hp<lastHp)dmgTaken+=lastHp-P.hp;lastHp=P.hp;}
   const won=run&&S.best[run.d]>=WAVES&&run.wave>=WAVES&&P.hp>0;
   const r={d:di,tun:!!opt.tun,won:!!(state==='over'&&P.hp>0),wave:run.wave,t:Math.round(t),lvl:P.lvl,pw0:p0,pw:power(ST),kills:run.kills,scrap:run.sg,dmg:Math.round(dmgTaken),boss:run.boss?run.boss.name:'',slow:slow[0]+':'+slow[1]+'s '+diag,tl:(S.tlog||[]).slice(-1)[0]!==tl0?S.tlog[S.tlog.length-1]:null};// tl: the same telemetry entry the game logs for Johannes (v0.54)
   state='menu';run=null;enemies=[];refresh();return r;};
 SIM.equip=function(){let ch=true,n=0;while(ch&&n++<20){ch=false;for(let i=0;i<S.bag.length;i++){const it=S.bag[i];if(better(it)){const old=S.eq[it.slot];S.eq[it.slot]=it;if(old)S.bag[i]=old;else S.bag.splice(i,1);refresh();ch=true;break;}}}};
+/* v0.68: since v0.65 a full bag leaves loot on the ground (the guaranteed boss legendary was never picked up, telemetry showed 0 legendaries): equip, then salvage the weakest items like a player would */
+SIM.tidy=function(){SIM.equip();S.bag.sort((x,y)=>(y.r-x.r)||(y.ilvl-x.ilvl)||(x.set?-1:0));while(S.bag.length>BAG-6){const it=S.bag.pop();S.scrap+=scrapVal(it);}};
 SIM.camp=function(){SIM.equip();
   for(const it of S.bag.splice(0))S.scrap+=scrapVal(it);
   for(const c of CONS)while((S.cons[c.k]||0)<3&&S.scrap>=c.p*3){S.scrap-=c.p;S.cons[c.k]=(S.cons[c.k]||0)+1;}

@@ -257,3 +257,5 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   decision is still open. Continue independent GDR banners/crests/landmarks
   while it is reviewed. Earlier non-GDR prop studies remain local generated
   drafts and are not integrated into this enemy release.
+
+- 2026-11-10 (v0.68, Claude): added legendaries for head, hands, feet and ring and set pieces for the same slots (sets now 5 pieces, bonuses at 2/3/5). Art still SVG fallback. New work package `tasks/12-legendaries-and-sets.md` (10 icons, optional hero parts).
