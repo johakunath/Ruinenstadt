@@ -1,6 +1,6 @@
 # 11 Alexanderplatz Pioneer identity and buildings
 
-Status: next (Johannes explicitly prioritized this on 2026-11-10)
+Status: in progress (Codex, 2026-11-10; resumed by Johannes to finish, review and merge PR #27)
 
 Johannes asked to regenerate the critical logo-bearing GDR enemies, then
 continue with buildings and assets for that biome. This priority supersedes
@@ -35,3 +35,5 @@ choice: painted Pioneer banners and entrance crests, murals, upright
 Fernsehturm/Weltzeituhr from task 08, and GDR street props. Their emblem and
 colour language follows the updated board. One task per PR, with at most
 30 image deliveries in a batch; keep unfinished scope explicit.
+
+Handoff and preserved source limitations: `pipeline/proof/11-alexanderplatz-pioneer/README.md`.

@@ -298,3 +298,22 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   including the newer weathered sources, with a paused handoff. Generic
   texture-kit vs full-building method is still undecided; full-building
   footprint fit is unresolved and its rejected studies must not ship.
+
+
+## 2026-11-10 · Codex · task 11 paused for session wrap
+
+- Preserve original facade/roof/decor drafts plus the new weathered facade,
+  roof/overlay kit and B building source on the separate task 11 branch.
+  Sources are saved as `*-weathered-study.png` without overwriting selected
+  clean atlas recipes. No runtime integration or method selection ships.
+- Preserve scratch harness source and inspection notes in task 11 proof,
+  with explicit superseded/path/footprint limitations. B foundation fit is
+  still unresolved after three attempts. Do not retry silently or ship it.
+  Next-session handoff: `pipeline/proof/11-alexanderplatz-pioneer/README.md`.
+- Task 12 is the final active task; Johannes explicitly requested session
+  wrap. Task 11 remains paused for a future session.
+
+- Final task 12 PR #26 merged as `60ec422ca0760fdffb9f914659b579cbb650520d`
+  after Codex completed a clean review of exact head
+  `26220ace5cd788ecd51d04ea25279c2fda1fc873`. No review threads or status/check
+  runs remained. This paused branch is synchronized with that release.
