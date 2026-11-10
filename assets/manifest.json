@@ -1,33 +1,83 @@
 {
   "buildings/gdr-banner-blue": {
     "anchor": [
-      72.19,
-      300.381
+      77.699,
+      300.398
     ],
     "for": "drawGdrDecorations gdr-banner-blue",
     "h": 302,
     "units": 3,
-    "w": 145
+    "w": 156
   },
   "buildings/gdr-banner-red": {
     "anchor": [
-      77.7,
-      300.402
+      82.191,
+      300.381
     ],
     "for": "drawGdrDecorations gdr-banner-red",
     "h": 302,
     "units": 3,
-    "w": 156
+    "w": 165
+  },
+  "buildings/gdr-facade-east": {
+    "anchor": [
+      181.0,
+      480.531
+    ],
+    "for": "drawGdrBuilding facade-east",
+    "h": 482,
+    "units": 3,
+    "w": 362
+  },
+  "buildings/gdr-facade-south": {
+    "anchor": [
+      181.0,
+      480.531
+    ],
+    "for": "drawGdrBuilding facade-south",
+    "h": 482,
+    "units": 3,
+    "w": 362
+  },
+  "buildings/gdr-ivy": {
+    "anchor": [
+      151.5,
+      354.303
+    ],
+    "for": "drawGdrBuilding ivy",
+    "h": 356,
+    "units": 3,
+    "w": 303
   },
   "buildings/gdr-mural-pioneer": {
     "anchor": [
-      110.752,
-      240.505
+      113.258,
+      240.516
     ],
     "for": "drawGdrDecorations gdr-mural-pioneer",
     "h": 242,
     "units": 3,
-    "w": 222
+    "w": 227
+  },
+  "buildings/gdr-plaster": {
+    "anchor": [
+      65.5,
+      144.697
+    ],
+    "for": "drawGdrBuilding plaster",
+    "h": 146,
+    "units": 3,
+    "w": 131
+  },
+  "buildings/gdr-roof": {
+    "anchor": [
+      136.0,
+      270.473
+    ],
+    "for": "drawGdrBuilding roof",
+    "h": 272,
+    "units": 3,
+    "w": 272
   },
   "enemies/bass-attack-a": {
     "anchor": [

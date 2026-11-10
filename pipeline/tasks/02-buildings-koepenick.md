@@ -1,6 +1,6 @@
 # 02 Buildings, Köpenick first
 
-Status: open (start with step 0)
+Status: step 0 complete (v0.69, Alexanderplatz proof per Johannes’ priority); Johannes selected A for GDR Zuckerbaecker blocks on 2026-11-10. Köpenick asset work remains open.
 
 Köpenick is the default look (board `docs/style/koepenick.png`). Building boxes are drawn by `drawBox` (`js/iso.js`) from footprint `x,y,w,h` and height; size factors `BSC`/`BHS` in `js/world.js`; landmarks per district in `K.lm` (`js/geo.js` for Köpenick and Xhain).
 
@@ -31,3 +31,19 @@ Rule for both methods: the painted texture must carry the light from the top lef
 | Rathaus Köpenick | landmark, see task 08 |
 
 The sprite replaces the box faces, the footprint stays the collision box. Check that walls line up with the footprint (walking along a wall in game must not show a gap or overlap).
+
+
+## Step 0 delivery in the GDR-priority session (2026-11-10)
+
+Johannes prioritized task 11's Alexanderplatz Zuckerbaecker for this proof.
+The completion follow-up to PR #27 supplies current/A/B default+2x and 0/+0.6/-0.6 rotation evidence,
+actual wall contact, fresh image fallback, offline and full-render timing.
+See `pipeline/proof/11-alexanderplatz-pioneer/README.md`. B is an exact fixed
+precomposition of the same approved paintings, not a successful independent
+full-building generation. The raw full-building studies were rejected for
+footprint fit and do not bias the technical method comparison.
+
+Johannes selected A after reviewing the in-game comparison: ‘Apply A to the
+GDR blocks’. Its faces follow arbitrary supported footprints/rotations with
+three shared patterns. The completion PR applies A to existing GDR Zuckerbaecker blocks;
+Köpenick and other districts retain their art until their own task delivery.

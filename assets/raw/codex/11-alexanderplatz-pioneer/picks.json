@@ -1,53 +1,118 @@
 {
   "buildings/gdr-banner-blue": {
-    "alpha_threshold": 128,
+    "alpha_threshold": 180,
     "anchor": [
-      263.0,
-      1009
+      263.5,
+      1017
     ],
     "crop": [
-      0,
-      512,
-      512,
-      1024
+      136,
+      520,
+      392,
+      1018
     ],
     "for": "drawGdrDecorations gdr-banner-blue",
     "height": 100,
-    "reason": "User-requested Pioneer blue/yellow with explicit hammer-and-sickle identity",
-    "source": "roof-overlays.png"
+    "reason": "Weathered Pioneer art with clear crossed hammer-and-sickle identity",
+    "source": "roof-overlays-weathered-study.png"
   },
   "buildings/gdr-banner-red": {
-    "alpha_threshold": 128,
+    "alpha_threshold": 180,
     "anchor": [
-      749.0,
-      1013
+      761.5,
+      1004
     ],
     "crop": [
-      512,
-      512,
-      1024,
-      1024
+      630,
+      520,
+      914,
+      1005
     ],
     "for": "drawGdrDecorations gdr-banner-red",
     "height": 100,
-    "reason": "User-requested Pioneer blue/yellow with explicit hammer-and-sickle identity",
-    "source": "roof-overlays.png"
+    "reason": "Weathered Pioneer art with clear crossed hammer-and-sickle identity",
+    "source": "roof-overlays-weathered-study.png"
   },
-  "buildings/gdr-mural-pioneer": {
-    "alpha_threshold": 128,
-    "anchor": [
-      1279.5,
-      1007
-    ],
+  "buildings/gdr-facade-east": {
+    "alpha_threshold": 0,
     "crop": [
-      1024,
-      512,
+      768,
+      0,
       1536,
       1024
     ],
+    "for": "drawGdrBuilding facade-east",
+    "height": 160,
+    "reason": "Approved Pioneer palette with cracked plaster, broken panes, rust and overgrowth; shared face kit preserves exact engine geometry",
+    "source": "facades-weathered-study.png"
+  },
+  "buildings/gdr-facade-south": {
+    "alpha_threshold": 0,
+    "crop": [
+      0,
+      0,
+      768,
+      1024
+    ],
+    "for": "drawGdrBuilding facade-south",
+    "height": 160,
+    "reason": "Approved Pioneer palette with cracked plaster, broken panes, rust and overgrowth; shared face kit preserves exact engine geometry",
+    "source": "facades-weathered-study.png"
+  },
+  "buildings/gdr-ivy": {
+    "alpha_threshold": 245,
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawGdrBuilding ivy",
+    "height": 118,
+    "reason": "Approved Pioneer palette with cracked plaster, broken panes, rust and overgrowth; shared face kit preserves exact engine geometry",
+    "source": "roof-overlays-weathered-study.png"
+  },
+  "buildings/gdr-mural-pioneer": {
+    "alpha_threshold": 180,
+    "anchor": [
+      1287.5,
+      1015
+    ],
+    "crop": [
+      1048,
+      520,
+      1520,
+      1016
+    ],
     "for": "drawGdrDecorations gdr-mural-pioneer",
     "height": 80,
-    "reason": "User-requested Pioneer blue/yellow with explicit hammer-and-sickle identity",
-    "source": "roof-overlays.png"
+    "reason": "Weathered Pioneer art with clear crossed hammer-and-sickle identity",
+    "source": "roof-overlays-weathered-study.png"
+  },
+  "buildings/gdr-plaster": {
+    "alpha_threshold": 245,
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawGdrBuilding plaster",
+    "height": 48,
+    "reason": "Approved Pioneer palette with cracked plaster, broken panes, rust and overgrowth; shared face kit preserves exact engine geometry",
+    "source": "roof-overlays-weathered-study.png"
+  },
+  "buildings/gdr-roof": {
+    "alpha_threshold": 128,
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawGdrBuilding roof",
+    "height": 90,
+    "reason": "Approved Pioneer palette with cracked plaster, broken panes, rust and overgrowth; shared face kit preserves exact engine geometry",
+    "source": "roof-overlays-weathered-study.png"
   }
 }

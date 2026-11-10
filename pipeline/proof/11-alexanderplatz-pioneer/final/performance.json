@@ -1,0 +1,306 @@
+{
+  "baselineCommit": "60ec422ca0760fdffb9f914659b579cbb650520d",
+  "sourceSha256": {
+    "index.html": "5e0e76ce1ca7d4712cb3111897bcf8303f2d0554d40953bad8a50e8724a90116",
+    "sw.js": "d3fb2a81a1217c8f0079c6de41392fd80e0c08443b9e6fca5842d18d47e58680",
+    "assets/manifest.json": "42c601824c08be3bef6763bb609ab09d976bf4d01d64874ecf7d4cb40668ca06",
+    "js/alex.js": "cd4c7446d4f791f8960bb786a0f7cd8e8f71396dcb542b6184b50e34e8dd4c97",
+    "js/anim.js": "b86249f64f9468a98d8b9978f674049650d3028c278e816157d5a9cad9935462",
+    "js/art.js": "f2bd025deb84b39f9ecac739dbb9bed0afd5812718144944ad5a134bca01bf0f",
+    "js/audio.js": "d30238cf0d9c31167d595dce341ea31a72324f1792036f2b3a763fbde401d963",
+    "js/base.js": "785778c9509b5f39e88cc958bc9825fe4e228b85c672b2f8373345cff32be201",
+    "js/biomes.js": "341addcf5a7b8457f7aefbcb7a00103704178597e5e896e74eb92fbac67af042",
+    "js/canvas.js": "871d95b9b72977b1d61cad512c72cfbb74f3dd4972adfe46aaf3b098c8027636",
+    "js/combat.js": "59dfafbad237c2b50ad971213a85e724ef07514f3b48a46756f72c23637353df",
+    "js/core.js": "692dda788cd6ac21d45f9c0ff48b0d3011dba48c13f0c22fa33c7614a9b2cb2d",
+    "js/data.js": "eb0f8c81e3cb8ec27488f4e4ce707ee544e9dd1975f714761e339814842466f4",
+    "js/feedback.js": "c4b6ead1bbec6bf61250c38a9baa3d3b1d0d9a280fff06986a23b05948aa9ea4",
+    "js/gdr-assets.js": "d29215996c51aa0824e063343a8e06d896097b6676dba25654e98022e65750a8",
+    "js/geo.js": "a73250e196668ad33c17553c2062c9497a20e001f7ca2f14a2c8cfd6d47cfbd2",
+    "js/hero.js": "98236d349a209aff28e1290a6564f807e6dc3e314ea24c35e51e6204ecff5f28",
+    "js/input.js": "7885a0b9847c34daa884c1b419cc95bf4b86ed9bec6a2ddddd5b18609bb3dcf9",
+    "js/iso.js": "c98e3ddbeeb406717c56bf43531d8e5e93785db06633f26eba82611e69f004b8",
+    "js/items.js": "425ddb0faa79a4bac41e1fb9e3c4a9eae344e2508cd1ee92e26252d2115122ca",
+    "js/main.js": "8fb25c5327bceb2aa6a1a6c66b1f35e690438f6787e9d9a61bb89ab438ef5f9b",
+    "js/mitte.js": "b712289a821dd8f174a996ff0f677692993ddd1de9cac75b201e828f689f90c5",
+    "js/panels.js": "7a7d019a23d3b354405048f678a7cf9a98e0c4dd628ec0f87dbb538d970ce153",
+    "js/render.js": "14078b1ac1cee0e64804420dbd771b002cae4a3c45286821dbf614cdb9043cf1",
+    "js/save.js": "5ed23404810153a55323323111e5e1d0e94e4af28f882361674466b833b576fd",
+    "js/sprites.js": "ef05362b28e35d86db3b4edc8ca5b095ae126095466d91044f7ea791b489202a",
+    "js/state.js": "7e5117227a9df9f8cd780c4d9c0bee1ce9d604bdb0dfbf897aa9445f77dcb41c",
+    "js/ubahn.js": "a7914a1053df355677d779bf2d5e8893fc263c787d5ef67b6b6f1ccc9b678560",
+    "js/update.js": "8a65c3cace52dae7bce841e2b700c2ff2e0c32a8d52cdd710e6a7bc2a5655fcb",
+    "js/vfx.js": "c29d821732c3c36f10e04dc4ca6ff96fdf18e02208f4434219375987395dd2d5",
+    "js/world.js": "3e8788a62dfdc5e1690b85b56306daca26dbb9d8c902b913d0473ba739f42ce5",
+    "assets/buildings/gdr-banner-blue.webp": "7635188c867331b66a9f48b1972d76a1cbfda04a7ba01e14d3505279aafa71df",
+    "assets/buildings/gdr-banner-red.webp": "d8a5b2f319f2ddb7b60d65f5dfc86afb42afbc12b49644e6820c83718b037a24",
+    "assets/buildings/gdr-facade-east.webp": "7eb00d3fc49ba909b3793be044e7b82053746c289e63842621544071764fc80f",
+    "assets/buildings/gdr-facade-south.webp": "9df4441d7f85e6089718a701d00a742663480e108d40a51d885a80c5a9e13f44",
+    "assets/buildings/gdr-ivy.webp": "11e9bc2ff9fe71139e991769e6f5ccd4a082d5f5d5f0e03149b815d848fe0949",
+    "assets/buildings/gdr-mural-pioneer.webp": "a7d0b8aea851655c8b4624b40a7790f127e7728702a802e3bfd1b632127eecac",
+    "assets/buildings/gdr-plaster.webp": "192ea65d3427c6d27dc571c685009f8d30834576162c4e6d13e41e0d05a6c07b",
+    "assets/buildings/gdr-roof.webp": "00c6de6a2775d2f4ab73fbb93e4f7d50bb46555814336057510e33de7ab08aa2",
+    "tools/proof_gdr_buildings.cjs": "a2015f144d108b547ab40179d1176fa83fd6b8bd672581df421ab8618e51fc5f",
+    "tools/run_gdr_proof.py": "ea599103d009bf7b1f9a78d233b939cdd95494355dc6f0880b205629f3d30c75"
+  },
+  "method": "Exact git archive baseline; seeded identical complete world/maps/enemies/camera/DPR. Seven alternating paired samples, 20 warmups and 80 timed full render(1200) calls per sample. Separate fresh browser after visual/offline browser closes. Median of sample medians; <=5% each district.",
+  "viewport": {
+    "width": 960,
+    "height": 640
+  },
+  "dpr": 2,
+  "districts": [
+    {
+      "district": "Köpenick",
+      "baselineVersion": "0.68",
+      "paintedVersion": "0.69",
+      "sceneIdentical": true,
+      "buildings": 833,
+      "enemies": 40,
+      "samples": [
+        {
+          "baseline": {
+            "median": 57.899999998509884,
+            "p95": 73.19999999925494
+          },
+          "painted": {
+            "median": 56.30000000074506,
+            "p95": 67
+          }
+        },
+        {
+          "painted": {
+            "median": 56.600000001490116,
+            "p95": 130
+          },
+          "baseline": {
+            "median": 54.80000000074506,
+            "p95": 60.399999998509884
+          }
+        },
+        {
+          "baseline": {
+            "median": 54.69999999925494,
+            "p95": 61.600000001490116
+          },
+          "painted": {
+            "median": 55.30000000074506,
+            "p95": 61.29999999701977
+          }
+        },
+        {
+          "painted": {
+            "median": 54.5,
+            "p95": 59.19999999925494
+          },
+          "baseline": {
+            "median": 55.100000001490116,
+            "p95": 87
+          }
+        },
+        {
+          "baseline": {
+            "median": 54.70000000298023,
+            "p95": 72.09999999776483
+          },
+          "painted": {
+            "median": 54.600000001490116,
+            "p95": 58
+          }
+        },
+        {
+          "painted": {
+            "median": 54.70000000298023,
+            "p95": 58.099999997764826
+          },
+          "baseline": {
+            "median": 54.5,
+            "p95": 57.100000001490116
+          }
+        },
+        {
+          "baseline": {
+            "median": 54.69999999925494,
+            "p95": 58
+          },
+          "painted": {
+            "median": 55.70000000298023,
+            "p95": 64.09999999776483
+          }
+        }
+      ],
+      "medianBaseline": 54.70000000298023,
+      "medianPainted": 55.30000000074506,
+      "ratio": 1.0109689213479367,
+      "regressionPercent": 1.09689213479367
+    },
+    {
+      "district": "Alexanderplatz",
+      "baselineVersion": "0.68",
+      "paintedVersion": "0.69",
+      "sceneIdentical": true,
+      "buildings": 590,
+      "enemies": 40,
+      "samples": [
+        {
+          "baseline": {
+            "median": 42,
+            "p95": 49.099999997764826
+          },
+          "painted": {
+            "median": 42.099999997764826,
+            "p95": 47.30000000074506
+          }
+        },
+        {
+          "painted": {
+            "median": 41.100000001490116,
+            "p95": 42.5
+          },
+          "baseline": {
+            "median": 41.19999999925494,
+            "p95": 47.600000001490116
+          }
+        },
+        {
+          "baseline": {
+            "median": 40.900000002235174,
+            "p95": 53.69999999925494
+          },
+          "painted": {
+            "median": 41.399999998509884,
+            "p95": 46.5
+          }
+        },
+        {
+          "painted": {
+            "median": 40.70000000298023,
+            "p95": 44.30000000074506
+          },
+          "baseline": {
+            "median": 40.5,
+            "p95": 47.69999999925494
+          }
+        },
+        {
+          "baseline": {
+            "median": 40.899999998509884,
+            "p95": 49.600000001490116
+          },
+          "painted": {
+            "median": 41.19999999925494,
+            "p95": 52
+          }
+        },
+        {
+          "painted": {
+            "median": 41.5,
+            "p95": 56
+          },
+          "baseline": {
+            "median": 40.5,
+            "p95": 42.80000000074506
+          }
+        },
+        {
+          "baseline": {
+            "median": 40.19999999925494,
+            "p95": 43.900000002235174
+          },
+          "painted": {
+            "median": 42,
+            "p95": 44.80000000074506
+          }
+        }
+      ],
+      "medianBaseline": 40.899999998509884,
+      "medianPainted": 41.399999998509884,
+      "ratio": 1.012224938875751,
+      "regressionPercent": 1.2224938875750935
+    },
+    {
+      "district": "Mitte",
+      "baselineVersion": "0.68",
+      "paintedVersion": "0.69",
+      "sceneIdentical": true,
+      "buildings": 789,
+      "enemies": 40,
+      "samples": [
+        {
+          "baseline": {
+            "median": 48.69999999925494,
+            "p95": 51.600000001490116
+          },
+          "painted": {
+            "median": 49.099999997764826,
+            "p95": 52.399999998509884
+          }
+        },
+        {
+          "painted": {
+            "median": 48.100000001490116,
+            "p95": 50.099999997764826
+          },
+          "baseline": {
+            "median": 50.19999999925494,
+            "p95": 53.30000000074506
+          }
+        },
+        {
+          "baseline": {
+            "median": 50.30000000074506,
+            "p95": 55.69999999925494
+          },
+          "painted": {
+            "median": 49.099999997764826,
+            "p95": 56.30000000074506
+          }
+        },
+        {
+          "painted": {
+            "median": 48.099999997764826,
+            "p95": 51.30000000074506
+          },
+          "baseline": {
+            "median": 49.600000001490116,
+            "p95": 54.399999998509884
+          }
+        },
+        {
+          "baseline": {
+            "median": 49.69999999925494,
+            "p95": 55.600000001490116
+          },
+          "painted": {
+            "median": 50.70000000298023,
+            "p95": 54.900000002235174
+          }
+        },
+        {
+          "painted": {
+            "median": 50.100000001490116,
+            "p95": 54.900000002235174
+          },
+          "baseline": {
+            "median": 49.400000002235174,
+            "p95": 60.30000000074506
+          }
+        },
+        {
+          "baseline": {
+            "median": 49.900000002235174,
+            "p95": 53.900000002235174
+          },
+          "painted": {
+            "median": 49.5,
+            "p95": 53.5
+          }
+        }
+      ],
+      "medianBaseline": 49.69999999925494,
+      "medianPainted": 49.099999997764826,
+      "ratio": 0.987927565362191,
+      "regressionPercent": -1.2072434637809049
+    }
+  ]
+}

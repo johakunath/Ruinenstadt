@@ -1,0 +1,6711 @@
+{
+  "started": "2026-11-10T13:22:08.666Z",
+  "targetPort": 39607,
+  "baselinePort": 38861,
+  "baselineCommit": "60ec422ca0760fdffb9f914659b579cbb650520d",
+  "sceneSeed": 20261110,
+  "sceneNote": "Audio initialized before reseeding; interior Zucker avoids unrelated world-edge clamping during collision proof.",
+  "sourceSha256": {
+    "index.html": "5e0e76ce1ca7d4712cb3111897bcf8303f2d0554d40953bad8a50e8724a90116",
+    "sw.js": "d3fb2a81a1217c8f0079c6de41392fd80e0c08443b9e6fca5842d18d47e58680",
+    "assets/manifest.json": "42c601824c08be3bef6763bb609ab09d976bf4d01d64874ecf7d4cb40668ca06",
+    "js/alex.js": "cd4c7446d4f791f8960bb786a0f7cd8e8f71396dcb542b6184b50e34e8dd4c97",
+    "js/anim.js": "b86249f64f9468a98d8b9978f674049650d3028c278e816157d5a9cad9935462",
+    "js/art.js": "f2bd025deb84b39f9ecac739dbb9bed0afd5812718144944ad5a134bca01bf0f",
+    "js/audio.js": "d30238cf0d9c31167d595dce341ea31a72324f1792036f2b3a763fbde401d963",
+    "js/base.js": "785778c9509b5f39e88cc958bc9825fe4e228b85c672b2f8373345cff32be201",
+    "js/biomes.js": "341addcf5a7b8457f7aefbcb7a00103704178597e5e896e74eb92fbac67af042",
+    "js/canvas.js": "871d95b9b72977b1d61cad512c72cfbb74f3dd4972adfe46aaf3b098c8027636",
+    "js/combat.js": "59dfafbad237c2b50ad971213a85e724ef07514f3b48a46756f72c23637353df",
+    "js/core.js": "692dda788cd6ac21d45f9c0ff48b0d3011dba48c13f0c22fa33c7614a9b2cb2d",
+    "js/data.js": "eb0f8c81e3cb8ec27488f4e4ce707ee544e9dd1975f714761e339814842466f4",
+    "js/feedback.js": "c4b6ead1bbec6bf61250c38a9baa3d3b1d0d9a280fff06986a23b05948aa9ea4",
+    "js/gdr-assets.js": "d29215996c51aa0824e063343a8e06d896097b6676dba25654e98022e65750a8",
+    "js/geo.js": "a73250e196668ad33c17553c2062c9497a20e001f7ca2f14a2c8cfd6d47cfbd2",
+    "js/hero.js": "98236d349a209aff28e1290a6564f807e6dc3e314ea24c35e51e6204ecff5f28",
+    "js/input.js": "7885a0b9847c34daa884c1b419cc95bf4b86ed9bec6a2ddddd5b18609bb3dcf9",
+    "js/iso.js": "c98e3ddbeeb406717c56bf43531d8e5e93785db06633f26eba82611e69f004b8",
+    "js/items.js": "425ddb0faa79a4bac41e1fb9e3c4a9eae344e2508cd1ee92e26252d2115122ca",
+    "js/main.js": "8fb25c5327bceb2aa6a1a6c66b1f35e690438f6787e9d9a61bb89ab438ef5f9b",
+    "js/mitte.js": "b712289a821dd8f174a996ff0f677692993ddd1de9cac75b201e828f689f90c5",
+    "js/panels.js": "7a7d019a23d3b354405048f678a7cf9a98e0c4dd628ec0f87dbb538d970ce153",
+    "js/render.js": "14078b1ac1cee0e64804420dbd771b002cae4a3c45286821dbf614cdb9043cf1",
+    "js/save.js": "5ed23404810153a55323323111e5e1d0e94e4af28f882361674466b833b576fd",
+    "js/sprites.js": "ef05362b28e35d86db3b4edc8ca5b095ae126095466d91044f7ea791b489202a",
+    "js/state.js": "7e5117227a9df9f8cd780c4d9c0bee1ce9d604bdb0dfbf897aa9445f77dcb41c",
+    "js/ubahn.js": "a7914a1053df355677d779bf2d5e8893fc263c787d5ef67b6b6f1ccc9b678560",
+    "js/update.js": "8a65c3cace52dae7bce841e2b700c2ff2e0c32a8d52cdd710e6a7bc2a5655fcb",
+    "js/vfx.js": "c29d821732c3c36f10e04dc4ca6ff96fdf18e02208f4434219375987395dd2d5",
+    "js/world.js": "3e8788a62dfdc5e1690b85b56306daca26dbb9d8c902b913d0473ba739f42ce5",
+    "assets/buildings/gdr-banner-blue.webp": "7635188c867331b66a9f48b1972d76a1cbfda04a7ba01e14d3505279aafa71df",
+    "assets/buildings/gdr-banner-red.webp": "d8a5b2f319f2ddb7b60d65f5dfc86afb42afbc12b49644e6820c83718b037a24",
+    "assets/buildings/gdr-facade-east.webp": "7eb00d3fc49ba909b3793be044e7b82053746c289e63842621544071764fc80f",
+    "assets/buildings/gdr-facade-south.webp": "9df4441d7f85e6089718a701d00a742663480e108d40a51d885a80c5a9e13f44",
+    "assets/buildings/gdr-ivy.webp": "11e9bc2ff9fe71139e991769e6f5ccd4a082d5f5d5f0e03149b815d848fe0949",
+    "assets/buildings/gdr-mural-pioneer.webp": "a7d0b8aea851655c8b4624b40a7790f127e7728702a802e3bfd1b632127eecac",
+    "assets/buildings/gdr-plaster.webp": "192ea65d3427c6d27dc571c685009f8d30834576162c4e6d13e41e0d05a6c07b",
+    "assets/buildings/gdr-roof.webp": "00c6de6a2775d2f4ab73fbb93e4f7d50bb46555814336057510e33de7ab08aa2",
+    "tools/proof_gdr_buildings.cjs": "a2015f144d108b547ab40179d1176fa83fd6b8bd672581df421ab8618e51fc5f",
+    "tools/run_gdr_proof.py": "ea599103d009bf7b1f9a78d233b939cdd95494355dc6f0880b205629f3d30c75"
+  },
+  "errors": [],
+  "failedImages": [],
+  "fixture": [
+    {
+      "file": "fixture-current-r0-1x.png",
+      "mode": "current",
+      "rotation": 0,
+      "factor": 1,
+      "zoom": 1.8,
+      "painted": false,
+      "legacyDraws": 3,
+      "decorationPainted": false,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3120,
+            2169.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3122,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3124,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3126,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3128,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3130,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3132,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3134,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3136,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        },
+        {
+          "side": "east",
+          "position": [
+            3252,
+            2112.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3252,
+                2114.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2116.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2118.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2120.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2122.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2124.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2126.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2128.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        }
+      ],
+      "fixedView": false
+    },
+    {
+      "file": "fixture-A-r0-1x.png",
+      "mode": "A",
+      "rotation": 0,
+      "factor": 1,
+      "zoom": 1.8,
+      "painted": true,
+      "legacyDraws": 0,
+      "decorationPainted": true,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3120,
+            2169.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3122,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3124,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3126,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3128,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3130,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3132,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3134,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3136,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        },
+        {
+          "side": "east",
+          "position": [
+            3252,
+            2112.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3252,
+                2114.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2116.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2118.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2120.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2122.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2124.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2126.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2128.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        }
+      ],
+      "fixedView": false
+    },
+    {
+      "file": "fixture-B-r0-1x.png",
+      "mode": "B",
+      "rotation": 0,
+      "factor": 1,
+      "zoom": 1.8,
+      "painted": false,
+      "legacyDraws": 0,
+      "decorationPainted": false,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3120,
+            2169.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3122,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3124,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3126,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3128,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3130,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3132,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3134,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3136,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        },
+        {
+          "side": "east",
+          "position": [
+            3252,
+            2112.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3252,
+                2114.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2116.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2118.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2120.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2122.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2124.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2126.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2128.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        }
+      ],
+      "fixedView": true,
+      "sourceFit": "exact at rotation 0; fixed image intentionally does not expose rotated faces"
+    },
+    {
+      "file": "fixture-current-rplus06-1x.png",
+      "mode": "current",
+      "rotation": 0.6,
+      "factor": 1,
+      "zoom": 1.8,
+      "painted": false,
+      "legacyDraws": 3,
+      "decorationPainted": false,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0.6
+        ],
+        "corners": [
+          [
+            3046.3686375136153,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2217.417968835187
+          ],
+          [
+            2995.550814908062,
+            2081.9037752203785
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0.6
+        ],
+        "corners": [
+          [
+            3046.3686375136153,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2217.417968835187
+          ],
+          [
+            2995.550814908062,
+            2081.9037752203785
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3087.815379016483,
+            2159.5648994066987
+          ],
+          "clearance": -1.2789769243681803e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000284,
+          "walking": [
+            {
+              "position": [
+                3089.466050246302,
+                2160.6941843534887
+              ],
+              "clearance": -9.237055564881302e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3091.1167214761213,
+                2161.8234693002787
+              ],
+              "clearance": -5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3092.7673927059404,
+                2162.9527542470687
+              ],
+              "clearance": -1.4210854715202004e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3094.4180639357596,
+                2164.0820391938587
+              ],
+              "clearance": 2.1316282072803006e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3096.068735165579,
+                2165.2113241406487
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3097.719406395398,
+                2166.3406090874387
+              ],
+              "clearance": 8.526512829121202e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3099.370077625217,
+                2167.4698940342287
+              ],
+              "clearance": 1.2079226507921703e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3101.0207488550363,
+                2168.599178981018
+              ],
+              "clearance": -2.1316282072803006e-13,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 15.999999999998241
+        },
+        {
+          "side": "east",
+          "position": [
+            3228.9443011680773,
+            2187.053575844992
+          ],
+          "clearance": -1.7053025658242404e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000853,
+          "walking": [
+            {
+              "position": [
+                3227.8150162212874,
+                2188.7042470748115
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3226.685731274497,
+                2190.3549183046307
+              ],
+              "clearance": -3.694822225952521e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3225.556446327707,
+                2192.0055895344503
+              ],
+              "clearance": -1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3224.427161380917,
+                2193.6562607642695
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3223.297876434127,
+                2195.306931994089
+              ],
+              "clearance": 2.842170943040401e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3222.1685914873365,
+                2196.9576032239083
+              ],
+              "clearance": -3.979039320256561e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3221.0393065405465,
+                2198.608274453728
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3219.9100215937565,
+                2200.2589456835476
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16.000000000000888
+        }
+      ],
+      "fixedView": false
+    },
+    {
+      "file": "fixture-A-rplus06-1x.png",
+      "mode": "A",
+      "rotation": 0.6,
+      "factor": 1,
+      "zoom": 1.8,
+      "painted": true,
+      "legacyDraws": 0,
+      "decorationPainted": true,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0.6
+        ],
+        "corners": [
+          [
+            3046.3686375136153,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2217.417968835187
+          ],
+          [
+            2995.550814908062,
+            2081.9037752203785
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0.6
+        ],
+        "corners": [
+          [
+            3046.3686375136153,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2217.417968835187
+          ],
+          [
+            2995.550814908062,
+            2081.9037752203785
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3087.815379016483,
+            2159.5648994066987
+          ],
+          "clearance": -1.2789769243681803e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000284,
+          "walking": [
+            {
+              "position": [
+                3089.466050246302,
+                2160.6941843534887
+              ],
+              "clearance": -9.237055564881302e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3091.1167214761213,
+                2161.8234693002787
+              ],
+              "clearance": -5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3092.7673927059404,
+                2162.9527542470687
+              ],
+              "clearance": -1.4210854715202004e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3094.4180639357596,
+                2164.0820391938587
+              ],
+              "clearance": 2.1316282072803006e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3096.068735165579,
+                2165.2113241406487
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3097.719406395398,
+                2166.3406090874387
+              ],
+              "clearance": 8.526512829121202e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3099.370077625217,
+                2167.4698940342287
+              ],
+              "clearance": 1.2079226507921703e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3101.0207488550363,
+                2168.599178981018
+              ],
+              "clearance": -2.1316282072803006e-13,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 15.999999999998241
+        },
+        {
+          "side": "east",
+          "position": [
+            3228.9443011680773,
+            2187.053575844992
+          ],
+          "clearance": -1.7053025658242404e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000853,
+          "walking": [
+            {
+              "position": [
+                3227.8150162212874,
+                2188.7042470748115
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3226.685731274497,
+                2190.3549183046307
+              ],
+              "clearance": -3.694822225952521e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3225.556446327707,
+                2192.0055895344503
+              ],
+              "clearance": -1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3224.427161380917,
+                2193.6562607642695
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3223.297876434127,
+                2195.306931994089
+              ],
+              "clearance": 2.842170943040401e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3222.1685914873365,
+                2196.9576032239083
+              ],
+              "clearance": -3.979039320256561e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3221.0393065405465,
+                2198.608274453728
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3219.9100215937565,
+                2200.2589456835476
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16.000000000000888
+        }
+      ],
+      "fixedView": false
+    },
+    {
+      "file": "fixture-B-rplus06-1x.png",
+      "mode": "B",
+      "rotation": 0.6,
+      "factor": 1,
+      "zoom": 1.8,
+      "painted": false,
+      "legacyDraws": 0,
+      "decorationPainted": false,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0.6
+        ],
+        "corners": [
+          [
+            3046.3686375136153,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2217.417968835187
+          ],
+          [
+            2995.550814908062,
+            2081.9037752203785
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0.6
+        ],
+        "corners": [
+          [
+            3046.3686375136153,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2217.417968835187
+          ],
+          [
+            2995.550814908062,
+            2081.9037752203785
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3087.815379016483,
+            2159.5648994066987
+          ],
+          "clearance": -1.2789769243681803e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000284,
+          "walking": [
+            {
+              "position": [
+                3089.466050246302,
+                2160.6941843534887
+              ],
+              "clearance": -9.237055564881302e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3091.1167214761213,
+                2161.8234693002787
+              ],
+              "clearance": -5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3092.7673927059404,
+                2162.9527542470687
+              ],
+              "clearance": -1.4210854715202004e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3094.4180639357596,
+                2164.0820391938587
+              ],
+              "clearance": 2.1316282072803006e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3096.068735165579,
+                2165.2113241406487
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3097.719406395398,
+                2166.3406090874387
+              ],
+              "clearance": 8.526512829121202e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3099.370077625217,
+                2167.4698940342287
+              ],
+              "clearance": 1.2079226507921703e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3101.0207488550363,
+                2168.599178981018
+              ],
+              "clearance": -2.1316282072803006e-13,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 15.999999999998241
+        },
+        {
+          "side": "east",
+          "position": [
+            3228.9443011680773,
+            2187.053575844992
+          ],
+          "clearance": -1.7053025658242404e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000853,
+          "walking": [
+            {
+              "position": [
+                3227.8150162212874,
+                2188.7042470748115
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3226.685731274497,
+                2190.3549183046307
+              ],
+              "clearance": -3.694822225952521e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3225.556446327707,
+                2192.0055895344503
+              ],
+              "clearance": -1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3224.427161380917,
+                2193.6562607642695
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3223.297876434127,
+                2195.306931994089
+              ],
+              "clearance": 2.842170943040401e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3222.1685914873365,
+                2196.9576032239083
+              ],
+              "clearance": -3.979039320256561e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3221.0393065405465,
+                2198.608274453728
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3219.9100215937565,
+                2200.2589456835476
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16.000000000000888
+        }
+      ],
+      "fixedView": true,
+      "sourceFit": "exact at rotation 0; fixed image intentionally does not expose rotated faces"
+    },
+    {
+      "file": "fixture-current-rminus06-1x.png",
+      "mode": "current",
+      "rotation": -0.6,
+      "factor": 1,
+      "zoom": 1.8,
+      "painted": false,
+      "legacyDraws": 3,
+      "decorationPainted": false,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          -0.6
+        ],
+        "corners": [
+          [
+            2995.550814908062,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2081.9037752203785
+          ],
+          [
+            3046.3686375136153,
+            2217.417968835187
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          -0.6
+        ],
+        "corners": [
+          [
+            2995.550814908062,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2081.9037752203785
+          ],
+          [
+            3046.3686375136153,
+            2217.417968835187
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3152.184620983517,
+            2159.5648994066987
+          ],
+          "clearance": -1.2789769243681803e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000284,
+          "walking": [
+            {
+              "position": [
+                3153.8352922133367,
+                2158.4356144599087
+              ],
+              "clearance": 9.947598300641403e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3155.485963443156,
+                2157.3063295131183
+              ],
+              "clearance": -3.126388037344441e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3157.1366346729756,
+                2156.1770445663283
+              ],
+              "clearance": -9.237055564881302e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3158.787305902795,
+                2155.0477596195383
+              ],
+              "clearance": 1.2789769243681803e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3160.4379771326144,
+                2153.918474672748
+              ],
+              "clearance": -2.8421709430404007e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3162.088648362434,
+                2152.789189725958
+              ],
+              "clearance": -6.394884621840902e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3163.7393195922537,
+                2151.6599047791674
+              ],
+              "clearance": -2.2026824808563106e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3165.3899908220733,
+                2150.5306198323774
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16.00000000000152
+        },
+        {
+          "side": "east",
+          "position": [
+            3228.9443011680773,
+            2037.9879628687024
+          ],
+          "clearance": -5.684341886080802e-14,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000853,
+          "walking": [
+            {
+              "position": [
+                3230.0735861148673,
+                2039.6386340985218
+              ],
+              "clearance": -1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3231.2028710616573,
+                2041.2893053283412
+              ],
+              "clearance": -2.2737367544323206e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3232.3321560084473,
+                2042.9399765581604
+              ],
+              "clearance": -1.9895196601282805e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3233.4614409552373,
+                2044.5906477879796
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3234.5907259020273,
+                2046.241319017799
+              ],
+              "clearance": -2.5579538487363607e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3235.7200108488173,
+                2047.8919902476182
+              ],
+              "clearance": -2.2737367544323206e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3236.8492957956073,
+                2049.5426614774374
+              ],
+              "clearance": -1.9895196601282805e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3237.9785807423973,
+                2051.1933327072566
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 15.999999999999062
+        }
+      ],
+      "fixedView": false
+    },
+    {
+      "file": "fixture-A-rminus06-1x.png",
+      "mode": "A",
+      "rotation": -0.6,
+      "factor": 1,
+      "zoom": 1.8,
+      "painted": true,
+      "legacyDraws": 0,
+      "decorationPainted": true,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          -0.6
+        ],
+        "corners": [
+          [
+            2995.550814908062,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2081.9037752203785
+          ],
+          [
+            3046.3686375136153,
+            2217.417968835187
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          -0.6
+        ],
+        "corners": [
+          [
+            2995.550814908062,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2081.9037752203785
+          ],
+          [
+            3046.3686375136153,
+            2217.417968835187
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3152.184620983517,
+            2159.5648994066987
+          ],
+          "clearance": -1.2789769243681803e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000284,
+          "walking": [
+            {
+              "position": [
+                3153.8352922133367,
+                2158.4356144599087
+              ],
+              "clearance": 9.947598300641403e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3155.485963443156,
+                2157.3063295131183
+              ],
+              "clearance": -3.126388037344441e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3157.1366346729756,
+                2156.1770445663283
+              ],
+              "clearance": -9.237055564881302e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3158.787305902795,
+                2155.0477596195383
+              ],
+              "clearance": 1.2789769243681803e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3160.4379771326144,
+                2153.918474672748
+              ],
+              "clearance": -2.8421709430404007e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3162.088648362434,
+                2152.789189725958
+              ],
+              "clearance": -6.394884621840902e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3163.7393195922537,
+                2151.6599047791674
+              ],
+              "clearance": -2.2026824808563106e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3165.3899908220733,
+                2150.5306198323774
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16.00000000000152
+        },
+        {
+          "side": "east",
+          "position": [
+            3228.9443011680773,
+            2037.9879628687024
+          ],
+          "clearance": -5.684341886080802e-14,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000853,
+          "walking": [
+            {
+              "position": [
+                3230.0735861148673,
+                2039.6386340985218
+              ],
+              "clearance": -1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3231.2028710616573,
+                2041.2893053283412
+              ],
+              "clearance": -2.2737367544323206e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3232.3321560084473,
+                2042.9399765581604
+              ],
+              "clearance": -1.9895196601282805e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3233.4614409552373,
+                2044.5906477879796
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3234.5907259020273,
+                2046.241319017799
+              ],
+              "clearance": -2.5579538487363607e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3235.7200108488173,
+                2047.8919902476182
+              ],
+              "clearance": -2.2737367544323206e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3236.8492957956073,
+                2049.5426614774374
+              ],
+              "clearance": -1.9895196601282805e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3237.9785807423973,
+                2051.1933327072566
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 15.999999999999062
+        }
+      ],
+      "fixedView": false
+    },
+    {
+      "file": "fixture-B-rminus06-1x.png",
+      "mode": "B",
+      "rotation": -0.6,
+      "factor": 1,
+      "zoom": 1.8,
+      "painted": false,
+      "legacyDraws": 0,
+      "decorationPainted": false,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          -0.6
+        ],
+        "corners": [
+          [
+            2995.550814908062,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2081.9037752203785
+          ],
+          [
+            3046.3686375136153,
+            2217.417968835187
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          -0.6
+        ],
+        "corners": [
+          [
+            2995.550814908062,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2081.9037752203785
+          ],
+          [
+            3046.3686375136153,
+            2217.417968835187
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3152.184620983517,
+            2159.5648994066987
+          ],
+          "clearance": -1.2789769243681803e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000284,
+          "walking": [
+            {
+              "position": [
+                3153.8352922133367,
+                2158.4356144599087
+              ],
+              "clearance": 9.947598300641403e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3155.485963443156,
+                2157.3063295131183
+              ],
+              "clearance": -3.126388037344441e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3157.1366346729756,
+                2156.1770445663283
+              ],
+              "clearance": -9.237055564881302e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3158.787305902795,
+                2155.0477596195383
+              ],
+              "clearance": 1.2789769243681803e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3160.4379771326144,
+                2153.918474672748
+              ],
+              "clearance": -2.8421709430404007e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3162.088648362434,
+                2152.789189725958
+              ],
+              "clearance": -6.394884621840902e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3163.7393195922537,
+                2151.6599047791674
+              ],
+              "clearance": -2.2026824808563106e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3165.3899908220733,
+                2150.5306198323774
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16.00000000000152
+        },
+        {
+          "side": "east",
+          "position": [
+            3228.9443011680773,
+            2037.9879628687024
+          ],
+          "clearance": -5.684341886080802e-14,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000853,
+          "walking": [
+            {
+              "position": [
+                3230.0735861148673,
+                2039.6386340985218
+              ],
+              "clearance": -1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3231.2028710616573,
+                2041.2893053283412
+              ],
+              "clearance": -2.2737367544323206e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3232.3321560084473,
+                2042.9399765581604
+              ],
+              "clearance": -1.9895196601282805e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3233.4614409552373,
+                2044.5906477879796
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3234.5907259020273,
+                2046.241319017799
+              ],
+              "clearance": -2.5579538487363607e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3235.7200108488173,
+                2047.8919902476182
+              ],
+              "clearance": -2.2737367544323206e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3236.8492957956073,
+                2049.5426614774374
+              ],
+              "clearance": -1.9895196601282805e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3237.9785807423973,
+                2051.1933327072566
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 15.999999999999062
+        }
+      ],
+      "fixedView": true,
+      "sourceFit": "exact at rotation 0; fixed image intentionally does not expose rotated faces"
+    },
+    {
+      "file": "fixture-current-r0-2x.png",
+      "mode": "current",
+      "rotation": 0,
+      "factor": 2,
+      "zoom": 3.6,
+      "painted": false,
+      "legacyDraws": 3,
+      "decorationPainted": false,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3120,
+            2169.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3122,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3124,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3126,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3128,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3130,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3132,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3134,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3136,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        },
+        {
+          "side": "east",
+          "position": [
+            3252,
+            2112.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3252,
+                2114.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2116.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2118.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2120.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2122.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2124.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2126.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2128.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        }
+      ],
+      "fixedView": false
+    },
+    {
+      "file": "fixture-A-r0-2x.png",
+      "mode": "A",
+      "rotation": 0,
+      "factor": 2,
+      "zoom": 3.6,
+      "painted": true,
+      "legacyDraws": 0,
+      "decorationPainted": true,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3120,
+            2169.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3122,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3124,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3126,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3128,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3130,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3132,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3134,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3136,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        },
+        {
+          "side": "east",
+          "position": [
+            3252,
+            2112.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3252,
+                2114.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2116.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2118.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2120.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2122.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2124.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2126.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2128.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        }
+      ],
+      "fixedView": false
+    },
+    {
+      "file": "fixture-B-r0-2x.png",
+      "mode": "B",
+      "rotation": 0,
+      "factor": 2,
+      "zoom": 3.6,
+      "painted": false,
+      "legacyDraws": 0,
+      "decorationPainted": false,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3120,
+            2169.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3122,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3124,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3126,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3128,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3130,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3132,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3134,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3136,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        },
+        {
+          "side": "east",
+          "position": [
+            3252,
+            2112.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3252,
+                2114.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2116.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2118.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2120.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2122.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2124.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2126.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2128.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        }
+      ],
+      "fixedView": true,
+      "sourceFit": "exact at rotation 0; fixed image intentionally does not expose rotated faces"
+    },
+    {
+      "file": "fixture-current-rplus06-2x.png",
+      "mode": "current",
+      "rotation": 0.6,
+      "factor": 2,
+      "zoom": 3.6,
+      "painted": false,
+      "legacyDraws": 3,
+      "decorationPainted": false,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0.6
+        ],
+        "corners": [
+          [
+            3046.3686375136153,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2217.417968835187
+          ],
+          [
+            2995.550814908062,
+            2081.9037752203785
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0.6
+        ],
+        "corners": [
+          [
+            3046.3686375136153,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2217.417968835187
+          ],
+          [
+            2995.550814908062,
+            2081.9037752203785
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3087.815379016483,
+            2159.5648994066987
+          ],
+          "clearance": -1.2789769243681803e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000284,
+          "walking": [
+            {
+              "position": [
+                3089.466050246302,
+                2160.6941843534887
+              ],
+              "clearance": -9.237055564881302e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3091.1167214761213,
+                2161.8234693002787
+              ],
+              "clearance": -5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3092.7673927059404,
+                2162.9527542470687
+              ],
+              "clearance": -1.4210854715202004e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3094.4180639357596,
+                2164.0820391938587
+              ],
+              "clearance": 2.1316282072803006e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3096.068735165579,
+                2165.2113241406487
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3097.719406395398,
+                2166.3406090874387
+              ],
+              "clearance": 8.526512829121202e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3099.370077625217,
+                2167.4698940342287
+              ],
+              "clearance": 1.2079226507921703e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3101.0207488550363,
+                2168.599178981018
+              ],
+              "clearance": -2.1316282072803006e-13,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 15.999999999998241
+        },
+        {
+          "side": "east",
+          "position": [
+            3228.9443011680773,
+            2187.053575844992
+          ],
+          "clearance": -1.7053025658242404e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000853,
+          "walking": [
+            {
+              "position": [
+                3227.8150162212874,
+                2188.7042470748115
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3226.685731274497,
+                2190.3549183046307
+              ],
+              "clearance": -3.694822225952521e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3225.556446327707,
+                2192.0055895344503
+              ],
+              "clearance": -1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3224.427161380917,
+                2193.6562607642695
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3223.297876434127,
+                2195.306931994089
+              ],
+              "clearance": 2.842170943040401e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3222.1685914873365,
+                2196.9576032239083
+              ],
+              "clearance": -3.979039320256561e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3221.0393065405465,
+                2198.608274453728
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3219.9100215937565,
+                2200.2589456835476
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16.000000000000888
+        }
+      ],
+      "fixedView": false
+    },
+    {
+      "file": "fixture-A-rplus06-2x.png",
+      "mode": "A",
+      "rotation": 0.6,
+      "factor": 2,
+      "zoom": 3.6,
+      "painted": true,
+      "legacyDraws": 0,
+      "decorationPainted": true,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0.6
+        ],
+        "corners": [
+          [
+            3046.3686375136153,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2217.417968835187
+          ],
+          [
+            2995.550814908062,
+            2081.9037752203785
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0.6
+        ],
+        "corners": [
+          [
+            3046.3686375136153,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2217.417968835187
+          ],
+          [
+            2995.550814908062,
+            2081.9037752203785
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3087.815379016483,
+            2159.5648994066987
+          ],
+          "clearance": -1.2789769243681803e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000284,
+          "walking": [
+            {
+              "position": [
+                3089.466050246302,
+                2160.6941843534887
+              ],
+              "clearance": -9.237055564881302e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3091.1167214761213,
+                2161.8234693002787
+              ],
+              "clearance": -5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3092.7673927059404,
+                2162.9527542470687
+              ],
+              "clearance": -1.4210854715202004e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3094.4180639357596,
+                2164.0820391938587
+              ],
+              "clearance": 2.1316282072803006e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3096.068735165579,
+                2165.2113241406487
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3097.719406395398,
+                2166.3406090874387
+              ],
+              "clearance": 8.526512829121202e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3099.370077625217,
+                2167.4698940342287
+              ],
+              "clearance": 1.2079226507921703e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3101.0207488550363,
+                2168.599178981018
+              ],
+              "clearance": -2.1316282072803006e-13,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 15.999999999998241
+        },
+        {
+          "side": "east",
+          "position": [
+            3228.9443011680773,
+            2187.053575844992
+          ],
+          "clearance": -1.7053025658242404e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000853,
+          "walking": [
+            {
+              "position": [
+                3227.8150162212874,
+                2188.7042470748115
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3226.685731274497,
+                2190.3549183046307
+              ],
+              "clearance": -3.694822225952521e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3225.556446327707,
+                2192.0055895344503
+              ],
+              "clearance": -1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3224.427161380917,
+                2193.6562607642695
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3223.297876434127,
+                2195.306931994089
+              ],
+              "clearance": 2.842170943040401e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3222.1685914873365,
+                2196.9576032239083
+              ],
+              "clearance": -3.979039320256561e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3221.0393065405465,
+                2198.608274453728
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3219.9100215937565,
+                2200.2589456835476
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16.000000000000888
+        }
+      ],
+      "fixedView": false
+    },
+    {
+      "file": "fixture-B-rplus06-2x.png",
+      "mode": "B",
+      "rotation": 0.6,
+      "factor": 2,
+      "zoom": 3.6,
+      "painted": false,
+      "legacyDraws": 0,
+      "decorationPainted": false,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0.6
+        ],
+        "corners": [
+          [
+            3046.3686375136153,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2217.417968835187
+          ],
+          [
+            2995.550814908062,
+            2081.9037752203785
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0.6
+        ],
+        "corners": [
+          [
+            3046.3686375136153,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2217.417968835187
+          ],
+          [
+            2995.550814908062,
+            2081.9037752203785
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3087.815379016483,
+            2159.5648994066987
+          ],
+          "clearance": -1.2789769243681803e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000284,
+          "walking": [
+            {
+              "position": [
+                3089.466050246302,
+                2160.6941843534887
+              ],
+              "clearance": -9.237055564881302e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3091.1167214761213,
+                2161.8234693002787
+              ],
+              "clearance": -5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3092.7673927059404,
+                2162.9527542470687
+              ],
+              "clearance": -1.4210854715202004e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3094.4180639357596,
+                2164.0820391938587
+              ],
+              "clearance": 2.1316282072803006e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3096.068735165579,
+                2165.2113241406487
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3097.719406395398,
+                2166.3406090874387
+              ],
+              "clearance": 8.526512829121202e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3099.370077625217,
+                2167.4698940342287
+              ],
+              "clearance": 1.2079226507921703e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3101.0207488550363,
+                2168.599178981018
+              ],
+              "clearance": -2.1316282072803006e-13,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 15.999999999998241
+        },
+        {
+          "side": "east",
+          "position": [
+            3228.9443011680773,
+            2187.053575844992
+          ],
+          "clearance": -1.7053025658242404e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000853,
+          "walking": [
+            {
+              "position": [
+                3227.8150162212874,
+                2188.7042470748115
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3226.685731274497,
+                2190.3549183046307
+              ],
+              "clearance": -3.694822225952521e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3225.556446327707,
+                2192.0055895344503
+              ],
+              "clearance": -1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3224.427161380917,
+                2193.6562607642695
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3223.297876434127,
+                2195.306931994089
+              ],
+              "clearance": 2.842170943040401e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3222.1685914873365,
+                2196.9576032239083
+              ],
+              "clearance": -3.979039320256561e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3221.0393065405465,
+                2198.608274453728
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3219.9100215937565,
+                2200.2589456835476
+              ],
+              "clearance": 5.684341886080802e-14,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16.000000000000888
+        }
+      ],
+      "fixedView": true,
+      "sourceFit": "exact at rotation 0; fixed image intentionally does not expose rotated faces"
+    },
+    {
+      "file": "fixture-current-rminus06-2x.png",
+      "mode": "current",
+      "rotation": -0.6,
+      "factor": 2,
+      "zoom": 3.6,
+      "painted": false,
+      "legacyDraws": 3,
+      "decorationPainted": false,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          -0.6
+        ],
+        "corners": [
+          [
+            2995.550814908062,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2081.9037752203785
+          ],
+          [
+            3046.3686375136153,
+            2217.417968835187
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          -0.6
+        ],
+        "corners": [
+          [
+            2995.550814908062,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2081.9037752203785
+          ],
+          [
+            3046.3686375136153,
+            2217.417968835187
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3152.184620983517,
+            2159.5648994066987
+          ],
+          "clearance": -1.2789769243681803e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000284,
+          "walking": [
+            {
+              "position": [
+                3153.8352922133367,
+                2158.4356144599087
+              ],
+              "clearance": 9.947598300641403e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3155.485963443156,
+                2157.3063295131183
+              ],
+              "clearance": -3.126388037344441e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3157.1366346729756,
+                2156.1770445663283
+              ],
+              "clearance": -9.237055564881302e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3158.787305902795,
+                2155.0477596195383
+              ],
+              "clearance": 1.2789769243681803e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3160.4379771326144,
+                2153.918474672748
+              ],
+              "clearance": -2.8421709430404007e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3162.088648362434,
+                2152.789189725958
+              ],
+              "clearance": -6.394884621840902e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3163.7393195922537,
+                2151.6599047791674
+              ],
+              "clearance": -2.2026824808563106e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3165.3899908220733,
+                2150.5306198323774
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16.00000000000152
+        },
+        {
+          "side": "east",
+          "position": [
+            3228.9443011680773,
+            2037.9879628687024
+          ],
+          "clearance": -5.684341886080802e-14,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000853,
+          "walking": [
+            {
+              "position": [
+                3230.0735861148673,
+                2039.6386340985218
+              ],
+              "clearance": -1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3231.2028710616573,
+                2041.2893053283412
+              ],
+              "clearance": -2.2737367544323206e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3232.3321560084473,
+                2042.9399765581604
+              ],
+              "clearance": -1.9895196601282805e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3233.4614409552373,
+                2044.5906477879796
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3234.5907259020273,
+                2046.241319017799
+              ],
+              "clearance": -2.5579538487363607e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3235.7200108488173,
+                2047.8919902476182
+              ],
+              "clearance": -2.2737367544323206e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3236.8492957956073,
+                2049.5426614774374
+              ],
+              "clearance": -1.9895196601282805e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3237.9785807423973,
+                2051.1933327072566
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 15.999999999999062
+        }
+      ],
+      "fixedView": false
+    },
+    {
+      "file": "fixture-A-rminus06-2x.png",
+      "mode": "A",
+      "rotation": -0.6,
+      "factor": 2,
+      "zoom": 3.6,
+      "painted": true,
+      "legacyDraws": 0,
+      "decorationPainted": true,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          -0.6
+        ],
+        "corners": [
+          [
+            2995.550814908062,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2081.9037752203785
+          ],
+          [
+            3046.3686375136153,
+            2217.417968835187
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          -0.6
+        ],
+        "corners": [
+          [
+            2995.550814908062,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2081.9037752203785
+          ],
+          [
+            3046.3686375136153,
+            2217.417968835187
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3152.184620983517,
+            2159.5648994066987
+          ],
+          "clearance": -1.2789769243681803e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000284,
+          "walking": [
+            {
+              "position": [
+                3153.8352922133367,
+                2158.4356144599087
+              ],
+              "clearance": 9.947598300641403e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3155.485963443156,
+                2157.3063295131183
+              ],
+              "clearance": -3.126388037344441e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3157.1366346729756,
+                2156.1770445663283
+              ],
+              "clearance": -9.237055564881302e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3158.787305902795,
+                2155.0477596195383
+              ],
+              "clearance": 1.2789769243681803e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3160.4379771326144,
+                2153.918474672748
+              ],
+              "clearance": -2.8421709430404007e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3162.088648362434,
+                2152.789189725958
+              ],
+              "clearance": -6.394884621840902e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3163.7393195922537,
+                2151.6599047791674
+              ],
+              "clearance": -2.2026824808563106e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3165.3899908220733,
+                2150.5306198323774
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16.00000000000152
+        },
+        {
+          "side": "east",
+          "position": [
+            3228.9443011680773,
+            2037.9879628687024
+          ],
+          "clearance": -5.684341886080802e-14,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000853,
+          "walking": [
+            {
+              "position": [
+                3230.0735861148673,
+                2039.6386340985218
+              ],
+              "clearance": -1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3231.2028710616573,
+                2041.2893053283412
+              ],
+              "clearance": -2.2737367544323206e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3232.3321560084473,
+                2042.9399765581604
+              ],
+              "clearance": -1.9895196601282805e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3233.4614409552373,
+                2044.5906477879796
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3234.5907259020273,
+                2046.241319017799
+              ],
+              "clearance": -2.5579538487363607e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3235.7200108488173,
+                2047.8919902476182
+              ],
+              "clearance": -2.2737367544323206e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3236.8492957956073,
+                2049.5426614774374
+              ],
+              "clearance": -1.9895196601282805e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3237.9785807423973,
+                2051.1933327072566
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 15.999999999999062
+        }
+      ],
+      "fixedView": false
+    },
+    {
+      "file": "fixture-B-rminus06-2x.png",
+      "mode": "B",
+      "rotation": -0.6,
+      "factor": 2,
+      "zoom": 3.6,
+      "painted": false,
+      "legacyDraws": 0,
+      "decorationPainted": false,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          -0.6
+        ],
+        "corners": [
+          [
+            2995.550814908062,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2081.9037752203785
+          ],
+          [
+            3046.3686375136153,
+            2217.417968835187
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          -0.6
+        ],
+        "corners": [
+          [
+            2995.550814908062,
+            2143.137763493316
+          ],
+          [
+            3193.6313624863847,
+            2007.6235698785076
+          ],
+          [
+            3244.449185091938,
+            2081.9037752203785
+          ],
+          [
+            3046.3686375136153,
+            2217.417968835187
+          ]
+        ],
+        "wall": [
+          2995.550814908062,
+          2007.6235698785076,
+          248.89837018387607,
+          209.7943989566793
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3152.184620983517,
+            2159.5648994066987
+          ],
+          "clearance": -1.2789769243681803e-13,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000284,
+          "walking": [
+            {
+              "position": [
+                3153.8352922133367,
+                2158.4356144599087
+              ],
+              "clearance": 9.947598300641403e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3155.485963443156,
+                2157.3063295131183
+              ],
+              "clearance": -3.126388037344441e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3157.1366346729756,
+                2156.1770445663283
+              ],
+              "clearance": -9.237055564881302e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3158.787305902795,
+                2155.0477596195383
+              ],
+              "clearance": 1.2789769243681803e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3160.4379771326144,
+                2153.918474672748
+              ],
+              "clearance": -2.8421709430404007e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3162.088648362434,
+                2152.789189725958
+              ],
+              "clearance": -6.394884621840902e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3163.7393195922537,
+                2151.6599047791674
+              ],
+              "clearance": -2.2026824808563106e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3165.3899908220733,
+                2150.5306198323774
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16.00000000000152
+        },
+        {
+          "side": "east",
+          "position": [
+            3228.9443011680773,
+            2037.9879628687024
+          ],
+          "clearance": -5.684341886080802e-14,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000853,
+          "walking": [
+            {
+              "position": [
+                3230.0735861148673,
+                2039.6386340985218
+              ],
+              "clearance": -1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3231.2028710616573,
+                2041.2893053283412
+              ],
+              "clearance": -2.2737367544323206e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3232.3321560084473,
+                2042.9399765581604
+              ],
+              "clearance": -1.9895196601282805e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3233.4614409552373,
+                2044.5906477879796
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3234.5907259020273,
+                2046.241319017799
+              ],
+              "clearance": -2.5579538487363607e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3235.7200108488173,
+                2047.8919902476182
+              ],
+              "clearance": -2.2737367544323206e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3236.8492957956073,
+                2049.5426614774374
+              ],
+              "clearance": -1.9895196601282805e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3237.9785807423973,
+                2051.1933327072566
+              ],
+              "clearance": -1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 15.999999999999062
+        }
+      ],
+      "fixedView": true,
+      "sourceFit": "exact at rotation 0; fixed image intentionally does not expose rotated faces"
+    }
+  ],
+  "scenes": [
+    {
+      "file": "runtime-gdr-painted-buildings-1x.png",
+      "factor": 1,
+      "Z": 1.1851851851851851,
+      "district": "Alexanderplatz",
+      "buildings": 590,
+      "gdrTagged": 1,
+      "gdrEligible": 1,
+      "gdrUnsupported": [],
+      "gdrDimensions": [
+        [
+          195.51666431734338,
+          64.52504007285461,
+          154
+        ]
+      ],
+      "decorated": 1,
+      "painted": 1,
+      "selected": {
+        "box": [
+          3726.6597397444625,
+          2067.5207693568473,
+          195.51666431734338,
+          64.52504007285461,
+          154,
+          null,
+          0.4002406570339741
+        ],
+        "corners": [
+          [
+            3746.9566174772776,
+            2031.980009356266
+          ],
+          [
+            3927.0210623517155,
+            2108.1611206492976
+          ],
+          [
+            3901.879526328991,
+            2167.5865694302834
+          ],
+          [
+            3721.815081454553,
+            2091.4054581372516
+          ]
+        ],
+        "wall": [
+          3721.815081454553,
+          2031.980009356266,
+          205.2059808971626,
+          135.60656007401735
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3807.1716240017313,
+            2140.54762079659
+          ],
+          "clearance": -7.815970093361102e-14,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -2.9999999999998153,
+          "walking": [
+            {
+              "position": [
+                3809.013558503868,
+                2141.3269007782633
+              ],
+              "clearance": 1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3810.855493006005,
+                2142.1061807599363
+              ],
+              "clearance": -2.2737367544323206e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3812.6974275081416,
+                2142.8854607416097
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3814.5393620102786,
+                2143.6647407232826
+              ],
+              "clearance": -3.765876499528531e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3816.3812965124152,
+                2144.444020704956
+              ],
+              "clearance": -1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3818.223231014552,
+                2145.2233006866295
+              ],
+              "clearance": 7.815970093361102e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3820.065165516689,
+                2146.0025806683025
+              ],
+              "clearance": -2.913225216616411e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3821.9071000188255,
+                2146.781860649976
+              ],
+              "clearance": -6.394884621840902e-14,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 15.999999999997078
+        },
+        {
+          "side": "east",
+          "position": [
+            3925.501901353176,
+            2142.5495249298306
+          ],
+          "clearance": 5.684341886080802e-14,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000995,
+          "walking": [
+            {
+              "position": [
+                3924.7226213715026,
+                2144.3914594319676
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3923.943341389829,
+                2146.2333939341047
+              ],
+              "clearance": -4.263256414560601e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3923.1640614081557,
+                2148.0753284362418
+              ],
+              "clearance": -8.526512829121202e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3922.3847814264823,
+                2149.917262938379
+              ],
+              "clearance": -1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3921.6055014448093,
+                2151.759197440516
+              ],
+              "clearance": 2.2737367544323206e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3920.826221463136,
+                2153.601131942653
+              ],
+              "clearance": 1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3920.0469414814625,
+                2155.44306644479
+              ],
+              "clearance": 1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3919.267661499789,
+                2157.285000946927
+              ],
+              "clearance": 8.526512829121202e-14,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 15.999999999999524
+        }
+      ]
+    },
+    {
+      "file": "runtime-gdr-painted-buildings-2x.png",
+      "factor": 2,
+      "Z": 2.3703703703703702,
+      "district": "Alexanderplatz",
+      "buildings": 590,
+      "gdrTagged": 1,
+      "gdrEligible": 1,
+      "gdrUnsupported": [],
+      "gdrDimensions": [
+        [
+          195.51666431734338,
+          64.52504007285461,
+          154
+        ]
+      ],
+      "decorated": 1,
+      "painted": 1,
+      "selected": {
+        "box": [
+          3726.6597397444625,
+          2067.5207693568473,
+          195.51666431734338,
+          64.52504007285461,
+          154,
+          null,
+          0.4002406570339741
+        ],
+        "corners": [
+          [
+            3746.9566174772776,
+            2031.980009356266
+          ],
+          [
+            3927.0210623517155,
+            2108.1611206492976
+          ],
+          [
+            3901.879526328991,
+            2167.5865694302834
+          ],
+          [
+            3721.815081454553,
+            2091.4054581372516
+          ]
+        ],
+        "wall": [
+          3721.815081454553,
+          2031.980009356266,
+          205.2059808971626,
+          135.60656007401735
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3807.1716240017313,
+            2140.54762079659
+          ],
+          "clearance": -7.815970093361102e-14,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -2.9999999999998153,
+          "walking": [
+            {
+              "position": [
+                3809.013558503868,
+                2141.3269007782633
+              ],
+              "clearance": 1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3810.855493006005,
+                2142.1061807599363
+              ],
+              "clearance": -2.2737367544323206e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3812.6974275081416,
+                2142.8854607416097
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3814.5393620102786,
+                2143.6647407232826
+              ],
+              "clearance": -3.765876499528531e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3816.3812965124152,
+                2144.444020704956
+              ],
+              "clearance": -1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3818.223231014552,
+                2145.2233006866295
+              ],
+              "clearance": 7.815970093361102e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3820.065165516689,
+                2146.0025806683025
+              ],
+              "clearance": -2.913225216616411e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3821.9071000188255,
+                2146.781860649976
+              ],
+              "clearance": -6.394884621840902e-14,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 15.999999999997078
+        },
+        {
+          "side": "east",
+          "position": [
+            3925.501901353176,
+            2142.5495249298306
+          ],
+          "clearance": 5.684341886080802e-14,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3.0000000000000995,
+          "walking": [
+            {
+              "position": [
+                3924.7226213715026,
+                2144.3914594319676
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3923.943341389829,
+                2146.2333939341047
+              ],
+              "clearance": -4.263256414560601e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3923.1640614081557,
+                2148.0753284362418
+              ],
+              "clearance": -8.526512829121202e-14,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3922.3847814264823,
+                2149.917262938379
+              ],
+              "clearance": -1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3921.6055014448093,
+                2151.759197440516
+              ],
+              "clearance": 2.2737367544323206e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3920.826221463136,
+                2153.601131942653
+              ],
+              "clearance": 1.7053025658242404e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3920.0469414814625,
+                2155.44306644479
+              ],
+              "clearance": 1.4210854715202004e-13,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3919.267661499789,
+                2157.285000946927
+              ],
+              "clearance": 8.526512829121202e-14,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 15.999999999999524
+        }
+      ]
+    }
+  ],
+  "completedPhases": [
+    "visual",
+    "perf"
+  ],
+  "smoke": {
+    "state": "play",
+    "version": "0.69",
+    "enemies": 1
+  },
+  "assets": {
+    "keys": [
+      "buildings/gdr-banner-blue",
+      "buildings/gdr-banner-red",
+      "buildings/gdr-facade-east",
+      "buildings/gdr-facade-south",
+      "buildings/gdr-ivy",
+      "buildings/gdr-mural-pioneer",
+      "buildings/gdr-plaster",
+      "buildings/gdr-roof"
+    ],
+    "decodedBytes": 2807288,
+    "sizes": [
+      {
+        "key": "buildings/gdr-banner-blue",
+        "w": 156,
+        "h": 302
+      },
+      {
+        "key": "buildings/gdr-banner-red",
+        "w": 165,
+        "h": 302
+      },
+      {
+        "key": "buildings/gdr-facade-east",
+        "w": 362,
+        "h": 482
+      },
+      {
+        "key": "buildings/gdr-facade-south",
+        "w": 362,
+        "h": 482
+      },
+      {
+        "key": "buildings/gdr-ivy",
+        "w": 303,
+        "h": 356
+      },
+      {
+        "key": "buildings/gdr-mural-pioneer",
+        "w": 227,
+        "h": 242
+      },
+      {
+        "key": "buildings/gdr-plaster",
+        "w": 131,
+        "h": 146
+      },
+      {
+        "key": "buildings/gdr-roof",
+        "w": 272,
+        "h": 272
+      }
+    ]
+  },
+  "fixtureSetup": {
+    "defaultZoom": 1.8,
+    "footprint": [
+      240,
+      90
+    ],
+    "height": 160,
+    "units": 3,
+    "viewport": {
+      "width": 1280,
+      "height": 1200
+    },
+    "note": "Larger fixture viewport retains the complete building at native 2x zoom; runtime and perf stay 960x640."
+  },
+  "bSource": {
+    "w": 707,
+    "h": 837,
+    "anchor": [
+      512.1980515339463,
+      833.0178566873411
+    ],
+    "units": 3,
+    "decodedBytes": 2367036,
+    "source": "same production painted kit precomposed at rotation 0",
+    "sourceFit": "exact engine footprint",
+    "rotatedArt": false
+  },
+  "memory": {
+    "decodedBytes": 2807288,
+    "canvasBytes": 1674000,
+    "runtimeTotalBytes": 4481288,
+    "withPrototypeBBytes": 6848324
+  },
+  "contactSheet": "current-a-b-contact-sheet.png",
+  "decorationFixture": [
+    {
+      "file": "fixture-pioneer-decorations-1x.png",
+      "mode": "decor",
+      "rotation": 0,
+      "factor": 1,
+      "zoom": 1.8,
+      "painted": false,
+      "legacyDraws": 3,
+      "decorationPainted": true,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3120,
+            2169.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3122,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3124,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3126,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3128,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3130,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3132,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3134,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3136,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        },
+        {
+          "side": "east",
+          "position": [
+            3252,
+            2112.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3252,
+                2114.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2116.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2118.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2120.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2122.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2124.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2126.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2128.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        }
+      ],
+      "fixedView": false
+    },
+    {
+      "file": "fixture-pioneer-decorations-2x.png",
+      "mode": "decor",
+      "rotation": 0,
+      "factor": 2,
+      "zoom": 3.6,
+      "painted": false,
+      "legacyDraws": 3,
+      "decorationPainted": true,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "after": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3120,
+            2169.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3122,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3124,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3126,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3128,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3130,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3132,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3134,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3136,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        },
+        {
+          "side": "east",
+          "position": [
+            3252,
+            2112.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3252,
+                2114.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2116.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2118.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2120.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2122.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2124.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2126.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2128.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        }
+      ],
+      "fixedView": false
+    }
+  ],
+  "fallback": [
+    {
+      "file": "fallback-gdr-facade-south.png",
+      "key": "buildings/gdr-facade-south",
+      "failed": true,
+      "painted": false,
+      "legacyDraws": 3,
+      "decorationPainted": true,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3120,
+            2169.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3122,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3124,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3126,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3128,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3130,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3132,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3134,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3136,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        },
+        {
+          "side": "east",
+          "position": [
+            3252,
+            2112.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3252,
+                2114.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2116.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2118.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2120.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2122.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2124.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2126.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2128.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        }
+      ],
+      "errors": [],
+      "failedImages": [],
+      "expected404": [
+        {
+          "url": "http://127.0.0.1:39607/assets/buildings/gdr-facade-south.webp",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "file": "fallback-gdr-banner-blue.png",
+      "key": "buildings/gdr-banner-blue",
+      "failed": true,
+      "painted": false,
+      "legacyDraws": 3,
+      "decorationPainted": false,
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "position": [
+            3120,
+            2169.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3122,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3124,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3126,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3128,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3130,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3132,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3134,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3136,
+                2169.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        },
+        {
+          "side": "east",
+          "position": [
+            3252,
+            2112.5207693568473
+          ],
+          "clearance": 0,
+          "centerInWall": false,
+          "finite": true,
+          "initialClearance": -3,
+          "walking": [
+            {
+              "position": [
+                3252,
+                2114.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2116.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2118.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2120.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2122.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2124.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2126.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            },
+            {
+              "position": [
+                3252,
+                2128.5207693568473
+              ],
+              "clearance": 0,
+              "centerInWall": false,
+              "finite": true
+            }
+          ],
+          "tangentDistance": 16
+        }
+      ],
+      "errors": [],
+      "failedImages": [],
+      "expected404": [
+        {
+          "url": "http://127.0.0.1:39607/assets/buildings/gdr-banner-blue.webp",
+          "status": 404
+        }
+      ]
+    }
+  ],
+  "offline": {
+    "state": "play",
+    "version": "0.69",
+    "controller": true,
+    "decoded": 8,
+    "expected": 8,
+    "missing": [],
+    "caches": [
+      {
+        "name": "ruinenstadt-0.69",
+        "entries": 392
+      }
+    ],
+    "errors": [],
+    "failedImages": [],
+    "expected404": []
+  },
+  "fixturePerformance": {
+    "method": "Diagnostic only, separate from canonical district budget. One frozen 240x90x160 Zucker fixture, rotation 0, same world/camera/DPR. Seven alternating triples, 15 warmups and 30 timed full renders per method; B is the same kit baked once at 3px/unit. No generic B runtime integration.",
+    "viewport": {
+      "width": 960,
+      "height": 640
+    },
+    "dpr": 2,
+    "setup": {
+      "defaultZoom": 1.1851851851851851,
+      "footprint": [
+        240,
+        90
+      ],
+      "height": 160,
+      "units": 3,
+      "bake": {
+        "w": 707,
+        "h": 837,
+        "anchor": [
+          512.1980515339463,
+          833.0178566873411
+        ],
+        "units": 3
+      },
+      "geometry": {
+        "box": [
+          3000,
+          2067.5207693568473,
+          240,
+          90,
+          160,
+          160,
+          0
+        ],
+        "corners": [
+          [
+            3000,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2067.5207693568473
+          ],
+          [
+            3240,
+            2157.5207693568473
+          ],
+          [
+            3000,
+            2157.5207693568473
+          ]
+        ],
+        "wall": [
+          3000,
+          2067.5207693568473,
+          240,
+          90
+        ],
+        "playerRadius": 12
+      }
+    },
+    "samples": [
+      {
+        "current": {
+          "median": 23.399999998509884,
+          "p95": 32.600000001490116
+        },
+        "A": {
+          "median": 24,
+          "p95": 25
+        },
+        "B": {
+          "median": 22.100000001490116,
+          "p95": 30.800000000745058
+        }
+      },
+      {
+        "B": {
+          "median": 22.399999998509884,
+          "p95": 23.5
+        },
+        "A": {
+          "median": 24.199999999254942,
+          "p95": 26.699999999254942
+        },
+        "current": {
+          "median": 22.800000000745058,
+          "p95": 24.600000001490116
+        }
+      },
+      {
+        "current": {
+          "median": 23.300000000745058,
+          "p95": 25.100000001490116
+        },
+        "A": {
+          "median": 24.200000002980232,
+          "p95": 25
+        },
+        "B": {
+          "median": 22.400000002235174,
+          "p95": 25.899999998509884
+        }
+      },
+      {
+        "B": {
+          "median": 22.300000000745058,
+          "p95": 28.599999997764826
+        },
+        "A": {
+          "median": 24.100000001490116,
+          "p95": 25
+        },
+        "current": {
+          "median": 23,
+          "p95": 24.300000000745058
+        }
+      },
+      {
+        "current": {
+          "median": 23,
+          "p95": 23.899999998509884
+        },
+        "A": {
+          "median": 24.099999997764826,
+          "p95": 25
+        },
+        "B": {
+          "median": 22.399999998509884,
+          "p95": 23.699999999254942
+        }
+      },
+      {
+        "B": {
+          "median": 22.099999997764826,
+          "p95": 23
+        },
+        "A": {
+          "median": 24,
+          "p95": 25.399999998509884
+        },
+        "current": {
+          "median": 23.100000001490116,
+          "p95": 23.900000002235174
+        }
+      },
+      {
+        "current": {
+          "median": 23.100000001490116,
+          "p95": 24.600000001490116
+        },
+        "A": {
+          "median": 24.099999997764826,
+          "p95": 25.799999997019768
+        },
+        "B": {
+          "median": 22.5,
+          "p95": 24.200000002980232
+        }
+      }
+    ],
+    "medians": {
+      "current": 23.100000001490116,
+      "A": 24.099999997764826,
+      "B": 22.399999998509884
+    },
+    "ratiosToCurrent": {
+      "A": 1.0432900431259828,
+      "B": 0.96969696956991
+    }
+  },
+  "performance": {
+    "baselineCommit": "60ec422ca0760fdffb9f914659b579cbb650520d",
+    "sourceSha256": {
+      "index.html": "5e0e76ce1ca7d4712cb3111897bcf8303f2d0554d40953bad8a50e8724a90116",
+      "sw.js": "d3fb2a81a1217c8f0079c6de41392fd80e0c08443b9e6fca5842d18d47e58680",
+      "assets/manifest.json": "42c601824c08be3bef6763bb609ab09d976bf4d01d64874ecf7d4cb40668ca06",
+      "js/alex.js": "cd4c7446d4f791f8960bb786a0f7cd8e8f71396dcb542b6184b50e34e8dd4c97",
+      "js/anim.js": "b86249f64f9468a98d8b9978f674049650d3028c278e816157d5a9cad9935462",
+      "js/art.js": "f2bd025deb84b39f9ecac739dbb9bed0afd5812718144944ad5a134bca01bf0f",
+      "js/audio.js": "d30238cf0d9c31167d595dce341ea31a72324f1792036f2b3a763fbde401d963",
+      "js/base.js": "785778c9509b5f39e88cc958bc9825fe4e228b85c672b2f8373345cff32be201",
+      "js/biomes.js": "341addcf5a7b8457f7aefbcb7a00103704178597e5e896e74eb92fbac67af042",
+      "js/canvas.js": "871d95b9b72977b1d61cad512c72cfbb74f3dd4972adfe46aaf3b098c8027636",
+      "js/combat.js": "59dfafbad237c2b50ad971213a85e724ef07514f3b48a46756f72c23637353df",
+      "js/core.js": "692dda788cd6ac21d45f9c0ff48b0d3011dba48c13f0c22fa33c7614a9b2cb2d",
+      "js/data.js": "eb0f8c81e3cb8ec27488f4e4ce707ee544e9dd1975f714761e339814842466f4",
+      "js/feedback.js": "c4b6ead1bbec6bf61250c38a9baa3d3b1d0d9a280fff06986a23b05948aa9ea4",
+      "js/gdr-assets.js": "d29215996c51aa0824e063343a8e06d896097b6676dba25654e98022e65750a8",
+      "js/geo.js": "a73250e196668ad33c17553c2062c9497a20e001f7ca2f14a2c8cfd6d47cfbd2",
+      "js/hero.js": "98236d349a209aff28e1290a6564f807e6dc3e314ea24c35e51e6204ecff5f28",
+      "js/input.js": "7885a0b9847c34daa884c1b419cc95bf4b86ed9bec6a2ddddd5b18609bb3dcf9",
+      "js/iso.js": "c98e3ddbeeb406717c56bf43531d8e5e93785db06633f26eba82611e69f004b8",
+      "js/items.js": "425ddb0faa79a4bac41e1fb9e3c4a9eae344e2508cd1ee92e26252d2115122ca",
+      "js/main.js": "8fb25c5327bceb2aa6a1a6c66b1f35e690438f6787e9d9a61bb89ab438ef5f9b",
+      "js/mitte.js": "b712289a821dd8f174a996ff0f677692993ddd1de9cac75b201e828f689f90c5",
+      "js/panels.js": "7a7d019a23d3b354405048f678a7cf9a98e0c4dd628ec0f87dbb538d970ce153",
+      "js/render.js": "14078b1ac1cee0e64804420dbd771b002cae4a3c45286821dbf614cdb9043cf1",
+      "js/save.js": "5ed23404810153a55323323111e5e1d0e94e4af28f882361674466b833b576fd",
+      "js/sprites.js": "ef05362b28e35d86db3b4edc8ca5b095ae126095466d91044f7ea791b489202a",
+      "js/state.js": "7e5117227a9df9f8cd780c4d9c0bee1ce9d604bdb0dfbf897aa9445f77dcb41c",
+      "js/ubahn.js": "a7914a1053df355677d779bf2d5e8893fc263c787d5ef67b6b6f1ccc9b678560",
+      "js/update.js": "8a65c3cace52dae7bce841e2b700c2ff2e0c32a8d52cdd710e6a7bc2a5655fcb",
+      "js/vfx.js": "c29d821732c3c36f10e04dc4ca6ff96fdf18e02208f4434219375987395dd2d5",
+      "js/world.js": "3e8788a62dfdc5e1690b85b56306daca26dbb9d8c902b913d0473ba739f42ce5",
+      "assets/buildings/gdr-banner-blue.webp": "7635188c867331b66a9f48b1972d76a1cbfda04a7ba01e14d3505279aafa71df",
+      "assets/buildings/gdr-banner-red.webp": "d8a5b2f319f2ddb7b60d65f5dfc86afb42afbc12b49644e6820c83718b037a24",
+      "assets/buildings/gdr-facade-east.webp": "7eb00d3fc49ba909b3793be044e7b82053746c289e63842621544071764fc80f",
+      "assets/buildings/gdr-facade-south.webp": "9df4441d7f85e6089718a701d00a742663480e108d40a51d885a80c5a9e13f44",
+      "assets/buildings/gdr-ivy.webp": "11e9bc2ff9fe71139e991769e6f5ccd4a082d5f5d5f0e03149b815d848fe0949",
+      "assets/buildings/gdr-mural-pioneer.webp": "a7d0b8aea851655c8b4624b40a7790f127e7728702a802e3bfd1b632127eecac",
+      "assets/buildings/gdr-plaster.webp": "192ea65d3427c6d27dc571c685009f8d30834576162c4e6d13e41e0d05a6c07b",
+      "assets/buildings/gdr-roof.webp": "00c6de6a2775d2f4ab73fbb93e4f7d50bb46555814336057510e33de7ab08aa2",
+      "tools/proof_gdr_buildings.cjs": "a2015f144d108b547ab40179d1176fa83fd6b8bd672581df421ab8618e51fc5f",
+      "tools/run_gdr_proof.py": "ea599103d009bf7b1f9a78d233b939cdd95494355dc6f0880b205629f3d30c75"
+    },
+    "method": "Exact git archive baseline; seeded identical complete world/maps/enemies/camera/DPR. Seven alternating paired samples, 20 warmups and 80 timed full render(1200) calls per sample. Separate fresh browser after visual/offline browser closes. Median of sample medians; <=5% each district.",
+    "viewport": {
+      "width": 960,
+      "height": 640
+    },
+    "dpr": 2,
+    "districts": [
+      {
+        "district": "Köpenick",
+        "baselineVersion": "0.68",
+        "paintedVersion": "0.69",
+        "sceneIdentical": true,
+        "buildings": 833,
+        "enemies": 40,
+        "samples": [
+          {
+            "baseline": {
+              "median": 57.899999998509884,
+              "p95": 73.19999999925494
+            },
+            "painted": {
+              "median": 56.30000000074506,
+              "p95": 67
+            }
+          },
+          {
+            "painted": {
+              "median": 56.600000001490116,
+              "p95": 130
+            },
+            "baseline": {
+              "median": 54.80000000074506,
+              "p95": 60.399999998509884
+            }
+          },
+          {
+            "baseline": {
+              "median": 54.69999999925494,
+              "p95": 61.600000001490116
+            },
+            "painted": {
+              "median": 55.30000000074506,
+              "p95": 61.29999999701977
+            }
+          },
+          {
+            "painted": {
+              "median": 54.5,
+              "p95": 59.19999999925494
+            },
+            "baseline": {
+              "median": 55.100000001490116,
+              "p95": 87
+            }
+          },
+          {
+            "baseline": {
+              "median": 54.70000000298023,
+              "p95": 72.09999999776483
+            },
+            "painted": {
+              "median": 54.600000001490116,
+              "p95": 58
+            }
+          },
+          {
+            "painted": {
+              "median": 54.70000000298023,
+              "p95": 58.099999997764826
+            },
+            "baseline": {
+              "median": 54.5,
+              "p95": 57.100000001490116
+            }
+          },
+          {
+            "baseline": {
+              "median": 54.69999999925494,
+              "p95": 58
+            },
+            "painted": {
+              "median": 55.70000000298023,
+              "p95": 64.09999999776483
+            }
+          }
+        ],
+        "medianBaseline": 54.70000000298023,
+        "medianPainted": 55.30000000074506,
+        "ratio": 1.0109689213479367,
+        "regressionPercent": 1.09689213479367
+      },
+      {
+        "district": "Alexanderplatz",
+        "baselineVersion": "0.68",
+        "paintedVersion": "0.69",
+        "sceneIdentical": true,
+        "buildings": 590,
+        "enemies": 40,
+        "samples": [
+          {
+            "baseline": {
+              "median": 42,
+              "p95": 49.099999997764826
+            },
+            "painted": {
+              "median": 42.099999997764826,
+              "p95": 47.30000000074506
+            }
+          },
+          {
+            "painted": {
+              "median": 41.100000001490116,
+              "p95": 42.5
+            },
+            "baseline": {
+              "median": 41.19999999925494,
+              "p95": 47.600000001490116
+            }
+          },
+          {
+            "baseline": {
+              "median": 40.900000002235174,
+              "p95": 53.69999999925494
+            },
+            "painted": {
+              "median": 41.399999998509884,
+              "p95": 46.5
+            }
+          },
+          {
+            "painted": {
+              "median": 40.70000000298023,
+              "p95": 44.30000000074506
+            },
+            "baseline": {
+              "median": 40.5,
+              "p95": 47.69999999925494
+            }
+          },
+          {
+            "baseline": {
+              "median": 40.899999998509884,
+              "p95": 49.600000001490116
+            },
+            "painted": {
+              "median": 41.19999999925494,
+              "p95": 52
+            }
+          },
+          {
+            "painted": {
+              "median": 41.5,
+              "p95": 56
+            },
+            "baseline": {
+              "median": 40.5,
+              "p95": 42.80000000074506
+            }
+          },
+          {
+            "baseline": {
+              "median": 40.19999999925494,
+              "p95": 43.900000002235174
+            },
+            "painted": {
+              "median": 42,
+              "p95": 44.80000000074506
+            }
+          }
+        ],
+        "medianBaseline": 40.899999998509884,
+        "medianPainted": 41.399999998509884,
+        "ratio": 1.012224938875751,
+        "regressionPercent": 1.2224938875750935
+      },
+      {
+        "district": "Mitte",
+        "baselineVersion": "0.68",
+        "paintedVersion": "0.69",
+        "sceneIdentical": true,
+        "buildings": 789,
+        "enemies": 40,
+        "samples": [
+          {
+            "baseline": {
+              "median": 48.69999999925494,
+              "p95": 51.600000001490116
+            },
+            "painted": {
+              "median": 49.099999997764826,
+              "p95": 52.399999998509884
+            }
+          },
+          {
+            "painted": {
+              "median": 48.100000001490116,
+              "p95": 50.099999997764826
+            },
+            "baseline": {
+              "median": 50.19999999925494,
+              "p95": 53.30000000074506
+            }
+          },
+          {
+            "baseline": {
+              "median": 50.30000000074506,
+              "p95": 55.69999999925494
+            },
+            "painted": {
+              "median": 49.099999997764826,
+              "p95": 56.30000000074506
+            }
+          },
+          {
+            "painted": {
+              "median": 48.099999997764826,
+              "p95": 51.30000000074506
+            },
+            "baseline": {
+              "median": 49.600000001490116,
+              "p95": 54.399999998509884
+            }
+          },
+          {
+            "baseline": {
+              "median": 49.69999999925494,
+              "p95": 55.600000001490116
+            },
+            "painted": {
+              "median": 50.70000000298023,
+              "p95": 54.900000002235174
+            }
+          },
+          {
+            "painted": {
+              "median": 50.100000001490116,
+              "p95": 54.900000002235174
+            },
+            "baseline": {
+              "median": 49.400000002235174,
+              "p95": 60.30000000074506
+            }
+          },
+          {
+            "baseline": {
+              "median": 49.900000002235174,
+              "p95": 53.900000002235174
+            },
+            "painted": {
+              "median": 49.5,
+              "p95": 53.5
+            }
+          }
+        ],
+        "medianBaseline": 49.69999999925494,
+        "medianPainted": 49.099999997764826,
+        "ratio": 0.987927565362191,
+        "regressionPercent": -1.2072434637809049
+      }
+    ]
+  },
+  "finished": "2026-11-10T13:26:58.541Z",
+  "status": "passed"
+}
