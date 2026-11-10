@@ -60,6 +60,15 @@ keep task textures and derived canvases below 40,000,000 bytes. Window
 apertures, candle pixels, entrance lanes and ruin cutouts retain the legacy
 positions. Semantic tests freeze generation RNG, lights and fallback drawings.
 
+**Performance gate (updated 2026-11-10).** `draft/` timing used seven unpaired
+batches after the visual run and cannot resolve 5% (baseline 2.14 to 2.68 ms,
+paired deltas -21.8% to +12.6%). It is superseded by `tools/perf_koep.cjs`:
+fresh browser context, 21 alternating pairs at 1280×800 DPR 2 (Tab S9 class),
+median paired on/off ratio with seeded bootstrap 95% CI, GPU renderer
+recorded. Results go to `perf/`. Only a hardware-GPU run counts; procedure in
+`.claude/skills/asset-perf-gate/SKILL.md`. Caches now bake at
+`koepScale()` = min(3, DPR×Z), so `cache-pixels.json` compares at that scale.
+
 Performance evidence compares the same seeded full scenes with the painted
 hook enabled and disabled. It measures desktop render script time; it does
 not establish Tab S9 temperature, battery use or device frame rate. Johannes

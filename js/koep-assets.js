@@ -34,17 +34,19 @@ function koepShopFacade(b,kit,east){const FH=b.FH||b.H;ctx.fillStyle=kit.materia
   koepLegacy(b,{x:b.dx-2,y:28,w:b.dw+4,h:FH-28});
 }
 function koepEligible(b){return D===DIST[0]&&b.koep&&!b.gable&&bR0(b)===0&&!b.veh&&!b.bb&&b.w>0&&b.h>0;}
-function koepSignature(b){return[b.x,b.y,b.w,b.h,b.H,b.FH||0,b.vs||1,b.rot||0,bR0(b),b.koep.kind].join(',');}
+// Bake at the device scale the cache is drawn at (DPR*Z, quarter steps, max 3) so drawImage stays ~1:1, never minifies.
+function koepScale(){return typeof DPR==='undefined'||typeof Z==='undefined'?3:Math.min(3,Math.max(1,Math.ceil(DPR*Z*4)/4));}
+function koepSignature(b){return[koepScale(),b.x,b.y,b.w,b.h,b.H,b.FH||0,b.vs||1,b.rot||0,bR0(b),b.koep.kind].join(',');}
 function koepCacheMatches(b,e){return e&&e.signature===koepSignature(b)&&e.metadata===b.koep&&e.original===b.spr&&e.originalEast===b.ef;}
 function koepBounds(b){const points=[],H=bHs(b);withRot(b,()=>{for(const z of [0,H])for(const[u,v]of [[0,0],[b.w,0],[b.w,b.h],[0,b.h]])points.push(P3(b.x+u,b.y+v,z));for(const[u,v]of [[0,0],[b.w,0],[b.w,b.h],[0,b.h]])points.push(P3(b.x+5+u,b.y+5+v,0));});const x=Math.floor(Math.min(...points.map(p=>p[0]))-1),y=Math.floor(Math.min(...points.map(p=>p[1]))-1),x1=Math.ceil(Math.max(...points.map(p=>p[0]))+1),y1=Math.ceil(Math.max(...points.map(p=>p[1]))+1);return{x,y,w:x1-x,h:y1-y};}
-function koepBake(b,kit,bounds){const scale=3,c=cnv(bounds.w*scale,bounds.h*scale),g=c.getContext('2d'),previous=ctx,rotation=ROT;ctx=g;try{g.scale(scale,scale);g.translate(-bounds.x,-bounds.y);withRot(b,()=>drawKoepBuildingLive(b));}finally{ctx=previous;ROT=rotation;}return{image:c,bounds,bytes:c.width*c.height*4,signature:koepSignature(b),metadata:b.koep,original:b.spr,originalEast:b.ef,lastUsed:0};}
-// Bake the exact texture-kit projection at 3 px/screen unit in scheduled jobs, never in draw.
+function koepBake(b,kit,bounds){const scale=koepScale(),c=cnv(bounds.w*scale,bounds.h*scale),g=c.getContext('2d'),previous=ctx,rotation=ROT;ctx=g;try{g.scale(scale,scale);g.translate(-bounds.x,-bounds.y);withRot(b,()=>drawKoepBuildingLive(b));}finally{ctx=previous;ROT=rotation;}return{image:c,bounds,scale,bytes:c.width*c.height*4,signature:koepSignature(b),metadata:b.koep,original:b.spr,originalEast:b.ef,lastUsed:0};}
+// Bake the exact texture-kit projection at koepScale() px/screen unit in scheduled jobs, never in draw.
 // The cache is derived from method A at the actual box rotation, not a separate fixed-view asset.
 // A strict 40 MB total cap includes decoded assets, shared materials and every cached facade.
 function koepDistance(b){return typeof P==='undefined'?0:Math.hypot(b.x+b.w/2-P.x,b.y+b.h/2-P.y);}
 function koepRelease(entry){entry.image.width=0;entry.image.height=0;}
 function koepResetCache(map){for(const e of KOEPCACHE.items.values())koepRelease(e);for(const pending of KOEPCACHE.pending.values())pending.resolve(false);KOEPCACHE={map,items:new Map(),bytes:0,ready:false,promise:null,pending:new Map(),queue:[],scheduled:false,evictions:0,clock:0,maxAllocatedBytes:koepAssetStats().decodedBytes+koepAssetStats().sharedCanvasBytes};}
-function koepCacheStep(state){if(KOEPCACHE!==state)return;state.scheduled=false;const job=state.queue.shift();if(!job)return;const{b,force,resolve}=job,bounds=koepBounds(b),cost=bounds.w*3*bounds.h*3*4,kit=koepKit();let allowed=!!kit&&cost+koepAssetStats().decodedBytes+koepAssetStats().sharedCanvasBytes<=KOEP_CACHE_LIMIT;
+function koepCacheStep(state){if(KOEPCACHE!==state)return;state.scheduled=false;const job=state.queue.shift();if(!job)return;const{b,force,resolve}=job,bounds=koepBounds(b),sc=koepScale(),cost=Math.ceil(bounds.w*sc)*Math.ceil(bounds.h*sc)*4,kit=koepKit();let allowed=!!kit&&cost+koepAssetStats().decodedBytes+koepAssetStats().sharedCanvasBytes<=KOEP_CACHE_LIMIT;
   while(allowed&&koepAssetStats().totalBytes+cost>KOEP_CACHE_LIMIT){const victim=[...state.items.keys()].sort((a,z)=>(state.items.get(a).lastUsed-state.items.get(z).lastUsed)||koepDistance(z)-koepDistance(a))[0];if(!victim||(!force&&(state.items.get(victim).lastUsed>0||koepDistance(victim)<=koepDistance(b)))){allowed=false;break;}const e=state.items.get(victim);state.bytes-=e.bytes;koepRelease(e);state.items.delete(victim);state.evictions++;}
   if(allowed){const e=koepBake(b,kit,bounds);state.items.set(b,e);state.bytes+=e.bytes;state.maxAllocatedBytes=Math.max(state.maxAllocatedBytes,koepAssetStats().totalBytes);}state.pending.delete(b);resolve(allowed);koepSchedule(state);}
 function koepSchedule(state){if(!state.scheduled&&state.queue.length){state.scheduled=true;setTimeout(()=>koepCacheStep(state),0);}}

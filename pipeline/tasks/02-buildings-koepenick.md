@@ -7,6 +7,13 @@ building types are integrated locally, visual/contact and semantic checks
 pass, but the final combined performance run is +9.68% on Köpenick (limit 5%).
 An isolated run passed; acceptance remains unresolved. Three optimizations
 were tried, so follow the workflow stop rule and continue independent work.
+
+Update 2026-11-10 (Claude): the 7-pair timing could not resolve 5% (baseline
+spread 25%, 3 of 7 pairs negative). Caches now bake at device scale instead
+of a fixed 3 px (the 960×640 proof viewport drew them minified, 2.2× the
+source pixels of legacy). New gate `tools/perf_koep.cjs`: own context, 21
+pairs, paired median + 95% CI. Open: one GPU run on the Windows PC per
+`.claude/skills/asset-perf-gate/SKILL.md`.
 See `pipeline/proof/02-buildings-koepenick/README.md`.
 
 Current queue (2026-11-10): draft preserved pending performance acceptance;
