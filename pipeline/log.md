@@ -257,3 +257,10 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   decision is still open. Continue independent GDR banners/crests/landmarks
   while it is reviewed. Earlier non-GDR prop studies remain local generated
   drafts and are not integrated into this enemy release.
+
+
+## 2026-11-10 · Codex · user feedback on GDR proportions and wear
+
+- PR #24 merged as `7b7d70b45b8d6ed806616ffe677fffcd9263aec5` after completed clean Codex review of `12415b7f2762bf12815f489e159c1f516a0f6f89`, no remaining threads/checks.
+- Johannes likes the colour setting but asks for a larger Uhrwerkläufer and a believable taller/wider Brigadeghul. He explicitly authorizes matching functionality and hitbox changes. Add more rust, chips, cracks and broken/torn parts while preserving clear blue/yellow. Apply this to pending building/asset work too.
+- Task 11 source/decor drafts are safely preserved in local WIP `ff85e62` on `codex/11-alexanderplatz-pioneer`; no unreviewed runtime integration or method choice has shipped. Task 12 corrects enemy proportions first on `codex/12-gdr-enemy-proportions`.
