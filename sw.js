@@ -1,5 +1,5 @@
 // Bump CACHE with every release so installed copies pick up the new files.
-const CACHE='ruinenstadt-0.69';
+const CACHE='ruinenstadt-0.70';
 const SHELL=['./','index.html','css/style.css','manifest.webmanifest','icons/icon.svg','icons/icon-192.png','icons/icon-512.png',
   ...['core','save','canvas','iso','data','items','audio','world','biomes','geo','mitte','alex','ubahn','base','state','feedback','vfx','anim','combat','input','panels','update','hero','sprites','gdr-assets','art','render','main'].map(n=>`js/${n}.js`),
   ...['assets/buildings/gdr-facade-south.webp', 'assets/buildings/gdr-facade-east.webp', 'assets/buildings/gdr-roof.webp', 'assets/buildings/gdr-ivy.webp', 'assets/buildings/gdr-plaster.webp', 'assets/buildings/gdr-banner-blue.webp', 'assets/buildings/gdr-banner-red.webp', 'assets/buildings/gdr-mural-pioneer.webp'],

@@ -392,3 +392,4 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Open the completion follow-up for fresh Codex review and merge its final
   head. This delivers the approved A rollout, all eight weathered selections,
   fallback/offline integration and the completed evidence described above.
+- 2026-11-10 (v0.70, Claude): added legendaries for head, hands, feet and ring and set pieces for the same slots (sets now 5 pieces, bonuses at 2/3/5). Art still SVG fallback. New work package `tasks/12-legendaries-and-sets.md` (10 icons, optional hero parts).

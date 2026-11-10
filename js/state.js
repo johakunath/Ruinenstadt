@@ -5,7 +5,7 @@ function gear(eq){const A={};for(const k in AFX)A[k]=0;
   for(const s of SLOTS){const it=eq[s];if(!it)continue;if(SSTAT[s])A[SSTAT[s]]+=it.val;if(s==='t'||s==='r'||s==='i')A[TM[it.kind]]+=it.val;
     (IMP[baseOf(it)]||[]).forEach(q=>A[q[0]]+=q[1]);(it.afx||[]).forEach(f=>A[f.k]+=f.v);
     (it.mods||[]).forEach(k=>{const M=MODS.find(m=>m.k===k);if(!M)return;(M.a||[]).forEach(q=>A[q[0]]+=q[1]);if(M.el&&(it.el||(it.mods.find(x=>MODS.find(m=>m.k===x&&m.el))!==k)))A.el+=20;});}
-  const kz=setCount(eq,'kiez'),sp=setCount(eq,'spree');if(S.camp&&S.camp.turm)A.res+=8;if(kz>=2)A.res+=20;if(kz>=3)A.dmg+=45;if(sp>=2)A.as+=20;if(sp>=3)A.el+=60;const zt=setCount(eq,'zit');if(zt>=2)A.hp+=90;if(zt>=3){A.dmg+=40;A.res+=15;}return A;}
+  if(S.camp&&S.camp.turm)A.res+=8;for(const k in SETB){const n=setCount(eq,k);for(const[need,fx]of SETB[k])if(n>=need)for(const a in fx)A[a]+=fx[a];}return A;}
 function stats(eq){eq=eq||S.eq;const w=eq.w,K=KIND[w.kind],A=gear(eq),lv=P?P.lvl:1,els=[];const wel=w.el||((w.mods||[]).map(k=>MODS.find(m=>m.k===k)).find(m=>m&&m.el)||{}).el;if(wel)els.push(wel);if(setCount(eq,'spree')>=3&&!els.includes('shock'))els.push('shock');['fire','acid','shock'].forEach(e=>{if(pk(e)&&!els.includes(e))els.push(e);});
   const ml=run&&run.meal;if(dm_('glas'))A.dmg+=50;if(ml==='kaffee'){A.as+=10;A.spd+=10;}if(ml==='soljanka')A.regen+=1.5;if(ml==='gurke')A.luck+=2;if(ml==='curry')A.dmg+=12;
   const asF=Math.max(.4,1+.12*pk('rate')+A.as/100+(SHR.as>0?.3:0)),cdr=clamp(A.cdr/100,0,.5);
