@@ -1,6 +1,6 @@
 # 09 Player animation v3: knees, elbows, more directions
 
-Status: open (after 01b, 03, 05; can start earlier if Johannes says so)
+Status: open (fourth in current queue; step 1 only)
 
 Johannes' feedback on the v0.61 rig: movement is too stiff, legs move a little and like a stick figure, **knees and elbows do not bend**, and the player only has two views (left and right, the game mirrors). Wanted: the figure feels a bit more alive. Torso and clothing are fine, arms and forearms need to be made to fit.
 

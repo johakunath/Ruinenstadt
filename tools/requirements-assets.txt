@@ -1,0 +1,3 @@
+# Image normalization/checking tools; no runtime game dependencies.
+Pillow==11.3.0
+numpy==2.0.2

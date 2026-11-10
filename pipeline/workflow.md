@@ -12,6 +12,20 @@ How the painted in-world art is made, plugged in and handed over. Index for ever
 
 Tasks are written so they can be followed step by step: concrete files, functions, numbers and acceptance checks. If a step is unclear or does not work as written, stop at that step and write it into `log.md`.
 
+## Current queue (Johannes, 2026-11-10)
+
+This user-authorized order supersedes older queue/order notes below and in task
+headers: (1) Köpenick building kit (`02-buildings-koepenick.md`; GDR method A is
+already selected), (2) ten legendary/set icons (`12-legendaries-and-sets.md`,
+with worn parts matching each set's art goal), (3) props and fire
+(`05-props.md`), (4) player animation step 1 (`09-player-animation.md`), and
+(5) vehicles (`03-vehicles.md`), whose art must fit the actual supported
+rotations. GDR enemy proportions and wear (`12-gdr-enemy-proportions.md`) are
+accepted by Johannes. Tablet heat/performance checks are deferred much later.
+Task-number prefixes are legacy identifiers and are duplicated across files
+(including task 08 landmarks and the two task 12 packages). Do not rename them
+as part of queue work; reference each by its full descriptive filename.
+
 Both agents may change any code when a task needs it. Keep the change small and say it in `log.md`.
 
 ## Workflow per task
@@ -31,7 +45,7 @@ Both agents may change any code when a task needs it. Keep the change small and 
 | Topic | Rule |
 |---|---|
 | Code | Plain HTML/CSS/JS, no build step, no dependencies, classic scripts sharing globals, order in `index.html` matters. Dense one-liners, match the style. Game text German |
-| Tools | Python 3 with Pillow and numpy only (both available). Scripts in `tools/`, runnable with no arguments, idempotent |
+| Tools | Python 3 plus Pillow and numpy are required for image scripts; verify/install them in the active environment before running (they are not guaranteed available). Scripts in `tools/`, runnable with no arguments, idempotent |
 | Files | `assets/<group>/<name>.webp` (groups: `buildings`, `vehicles`, `nature`, `enemies`, `bosses`, `props`). Lowercase ASCII names, the code key of the object (e.g. `enemies/ghoul-body.webp`) |
 | Format | WebP with alpha, quality 86 to 90. No baked shadow, no text, no background |
 | Size | Draw at 3 px per game unit for world objects (crisp at 2x zoom on a high-DPI tablet). Keep single files under 400 KB |
@@ -50,6 +64,17 @@ Both agents may change any code when a task needs it. Keep the change small and 
 | Perf | Köpenick (3600) and Mitte (4000): frame time not worse than before (Chrome performance panel or `performance.now()` around `render`) |
 | Offline | New files listed in `SHELL` in `sw.js` |
 
+Browser proof portability: the existing proof harness defaults to
+`/usr/bin/chromium`, which is Linux-specific. On Windows, configure its
+Chromium executable or use an available browser automation setup before
+claiming browser validation. Playwright is not guaranteed installed; check the
+active environment first. Record any unavailable check in the handover log.
+
+Windows image-tool setup: `python -m venv .venv`, then
+`.venv/Scripts/python.exe -m pip install -r tools/requirements-assets.txt`.
+Use `.venv/Scripts/python.exe tools/sprites.py --check` for the manifest check.
+The virtual environment is local and ignored by Git.
+
 ## Definition of done
 
 - Johannes picked the design variants, or Codex recorded a colour-only choice under step 4.
@@ -64,7 +89,7 @@ Johannes starts Codex and goes to sleep. Rules for such a run:
 
 | Topic | Rule |
 |---|---|
-| Order | 01b (enemy redesign), 03 (vehicles), 05 (props and fire), 04 (nature), 09 step 1 (player knees and elbows, no new paint), 02 step 0 (one building proof), 08 (landmarks, Fernsehturm first), 09 steps 2 to 4 (secondary motion, four directions), 10 (ground, mockup first). Stop after 02 step 0 until Johannes decides the method, skip what depends on it and continue |
+| Order | Historical overnight sequence; for current work follow the dated `Current queue` above. That sequence's 03 “quick win” assumption is withdrawn: vehicles are now fifth, and rotation fit is an explicit requirement. Task 02 step 0 is complete for GDR with method A selected; Köpenick production remains open. |
 | Sync first | `git fetch origin main` and merge before every task. Other agents ship versions in parallel (v0.62 to v0.64 landed during task 01). Read `js/core.js` on main and take the next free number for `VERSION` and `CACHE` |
 | Decisions | Codex decides design picks and colour picks itself using the style canvas and the silhouette/readability checks, records pick and reason in `picks.json` and `log.md`, and never waits for an answer. Anything that needs a game design decision (balance, new mechanic) goes into `log.md` as a question and is skipped |
 | Merging | Not authorized by default. Open **draft PRs**, one per task, with the comparison sheet (old vs new) and proof images. Merge only if Johannes wrote "merge" for this run, then follow "Continuous asset sessions" |

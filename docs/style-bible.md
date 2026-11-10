@@ -134,7 +134,7 @@ Real-world hook: Spreepark Plänterwald (next to Köpenick in Treptow-Köpenick)
 | NPC | Older gardener with apron |
 | Props | Greenhouse, tram, Weltzeituhr, radio, wind-up key, secateurs |
 | Named places | Alexanderplatz, Hackescher Markt, central Spree, Berliner Dom, Palast der Republik (inspiration, not a list of required maps) |
-| In game (v0.49, code placeholders) | Daylight, sand and ochre ground, cream Zuckerbäcker blocks with red banners on the Karl-Marx-Allee, Palast der Republik with a greenhouse vault, Fernsehturm with a gear rim, Weltzeituhr as clockwork, sunflower field, greenhouses. Uhrwerkläufer, Wurzler, Kernspeier, Brigadeghul, boss Der Volkseigene Koloss, gardener NPC still open. Mockup `mockups/v049-alexanderplatz-geo.html`. Painted sprites still to come (Codex) |
+| In game (v0.49 baseline) | Daylight, sand and ochre ground, cream Zuckerbäcker blocks with red banners on the Karl-Marx-Allee, Palast der Republik with a greenhouse vault, Fernsehturm with a gear rim, Weltzeituhr as clockwork, sunflower field, greenhouses. GDR enemy art/proportions and the weathered Zuckerbäcker face kit are delivered (v0.68/v0.69); landmarks and the gardener NPC remain open. Mockup `mockups/v049-alexanderplatz-geo.html`. |
 
 ## What it means for the game
 

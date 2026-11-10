@@ -2,6 +2,10 @@
 
 Status: step 0 complete (v0.69, Alexanderplatz proof per Johannes’ priority); Johannes selected A for GDR Zuckerbaecker blocks on 2026-11-10. Köpenick asset work remains open.
 
+Current queue (2026-11-10): next asset task. Design-canvas preparation is
+underway; Köpenick production has not started. The selected GDR method does not
+complete the separate Köpenick production kit.
+
 Köpenick is the default look (board `docs/style/koepenick.png`). Building boxes are drawn by `drawBox` (`js/iso.js`) from footprint `x,y,w,h` and height; size factors `BSC`/`BHS` in `js/world.js`; landmarks per district in `K.lm` (`js/geo.js` for Köpenick and Xhain).
 
 ## Step 0: decide the method with a proof (do this first, one building)
