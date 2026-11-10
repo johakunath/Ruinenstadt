@@ -1,6 +1,6 @@
 # 01b Enemy redesign (second pass of task 01)
 
-Status: in progress (Codex, 2026-11-09; batch 1 PR #23 under review; batch 2 in progress; user-authorized review and merge)
+Status: done (v0.67; 54 frames across two batches, including user-requested GDR livery)
 
 ## Why
 
@@ -29,3 +29,7 @@ Every enemy type is recognisable by **silhouette alone** at 64 px, and the desig
 ## Out of scope
 
 Bosses (task 06), new enemy types, balance changes.
+
+## User direction update, 2026-11-10
+
+Regenerate the two logo-bearing GDR enemies Brigadeghul and Uhrwerkläufer with explicit hammer-and-sickle badges and a strong yellow/blue Pioneer identity. Preserve silhouettes and gameplay. This explicitly adds Uhrwerkläufer livery to the task scope. New direction: `docs/style/alexanderplatz-pioneer.png` and `docs/style-bible.md`. Continue with buildings and assets for that biome after this batch.

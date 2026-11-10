@@ -121,63 +121,63 @@
   },
   "enemies/brigadeghoul-attack-a": {
     "anchor": [
-      33.317,
-      110.766
+      32.891,
+      59.816
     ],
     "for": "drawEnemy brigadeghoul attack-a",
-    "h": 112,
+    "h": 61,
     "units": 3,
-    "w": 65
+    "w": 68
   },
   "enemies/brigadeghoul-attack-b": {
     "anchor": [
-      25.945,
-      104.768
+      31.63,
+      58.817
     ],
     "for": "drawEnemy brigadeghoul attack-b",
-    "h": 106,
+    "h": 60,
     "units": 3,
-    "w": 90
+    "w": 80
   },
   "enemies/brigadeghoul-hit": {
     "anchor": [
-      30.85,
-      107.767
+      33.189,
+      62.816
     ],
     "for": "drawEnemy brigadeghoul hit",
-    "h": 109,
+    "h": 64,
     "units": 3,
-    "w": 61
+    "w": 78
   },
   "enemies/brigadeghoul-idle": {
     "anchor": [
-      20.764,
-      110.767
+      33.957,
+      60.817
     ],
     "for": "drawEnemy brigadeghoul idle",
-    "h": 112,
+    "h": 62,
     "units": 3,
-    "w": 48
+    "w": 65
   },
   "enemies/brigadeghoul-walk-a": {
     "anchor": [
-      29.242,
-      109.767
+      35.162,
+      60.815
     ],
     "for": "drawEnemy brigadeghoul walk-a",
-    "h": 111,
+    "h": 62,
     "units": 3,
-    "w": 62
+    "w": 67
   },
   "enemies/brigadeghoul-walk-b": {
     "anchor": [
-      32.384,
-      109.767
+      33.646,
+      60.816
     ],
     "for": "drawEnemy brigadeghoul walk-b",
-    "h": 111,
+    "h": 62,
     "units": 3,
-    "w": 69
+    "w": 66
   },
   "enemies/brute-attack-a": {
     "anchor": [
@@ -697,103 +697,103 @@
   },
   "enemies/schrottkoloss-attack-a": {
     "anchor": [
-      111.579,
-      250.636
+      126.486,
+      246.436
     ],
     "for": "drawEnemy schrottkoloss attack-a",
-    "h": 253,
+    "h": 248,
     "units": 3,
-    "w": 245
+    "w": 240
   },
   "enemies/schrottkoloss-attack-b": {
     "anchor": [
-      113.94,
-      236.634
+      82.596,
+      244.436
     ],
     "for": "drawEnemy schrottkoloss attack-b",
-    "h": 239,
+    "h": 246,
     "units": 3,
-    "w": 262
+    "w": 229
   },
   "enemies/schrottkoloss-hit": {
     "anchor": [
-      117.788,
-      248.636
+      133.618,
+      247.435
     ],
     "for": "drawEnemy schrottkoloss hit",
-    "h": 251,
+    "h": 249,
     "units": 3,
-    "w": 224
+    "w": 235
   },
   "enemies/schrottkoloss-idle": {
     "anchor": [
-      113.692,
-      248.956
+      123.692,
+      249.435
     ],
     "for": "drawEnemy schrottkoloss idle",
-    "h": 252,
+    "h": 251,
     "units": 3,
-    "w": 209
+    "w": 222
   },
   "enemies/schrottkoloss-walk-a": {
     "anchor": [
-      113.604,
-      250.317
+      128.562,
+      249.435
     ],
     "for": "drawEnemy schrottkoloss walk-a",
-    "h": 252,
+    "h": 251,
     "units": 3,
-    "w": 232
+    "w": 213
   },
   "enemies/schrottkoloss-walk-b": {
     "anchor": [
-      98.799,
-      249.634
+      103.522,
+      247.436
     ],
     "for": "drawEnemy schrottkoloss walk-b",
-    "h": 252,
+    "h": 249,
     "units": 3,
-    "w": 216
+    "w": 220
   },
   "enemies/shield-attack-a": {
     "anchor": [
-      45.435,
-      129.72
+      44.763,
+      93.74
     ],
     "for": "drawEnemy shield attack-a",
-    "h": 131,
+    "h": 95,
     "units": 3,
-    "w": 97
+    "w": 96
   },
   "enemies/shield-attack-b": {
     "anchor": [
-      49.02,
-      128.721
+      43.617,
+      90.739
     ],
     "for": "drawEnemy shield attack-b",
-    "h": 130,
+    "h": 92,
     "units": 3,
-    "w": 121
+    "w": 114
   },
   "enemies/shield-hit": {
     "anchor": [
-      40.359,
-      129.72
+      49.738,
+      98.739
     ],
     "for": "drawEnemy shield hit",
-    "h": 131,
+    "h": 100,
     "units": 3,
-    "w": 81
+    "w": 100
   },
   "enemies/shield-idle": {
     "anchor": [
-      31.037,
-      132.721
+      47.13,
+      96.74
     ],
     "for": "drawEnemy shield idle",
-    "h": 134,
+    "h": 98,
     "units": 3,
-    "w": 78
+    "w": 94
   },
   "enemies/shield-panel": {
     "anchor": [
@@ -807,23 +807,23 @@
   },
   "enemies/shield-walk-a": {
     "anchor": [
-      34.662,
-      131.72
+      49.92,
+      94.741
     ],
     "for": "drawEnemy shield walk-a",
-    "h": 133,
+    "h": 96,
     "units": 3,
-    "w": 76
+    "w": 97
   },
   "enemies/shield-walk-b": {
     "anchor": [
-      35.932,
-      130.441
+      44.849,
+      95.741
     ],
     "for": "drawEnemy shield walk-b",
-    "h": 132,
+    "h": 97,
     "units": 3,
-    "w": 80
+    "w": 98
   },
   "enemies/spitter-attack-a": {
     "anchor": [
@@ -923,48 +923,48 @@
   },
   "enemies/uhr-attack-a": {
     "anchor": [
-      38.161,
-      120.71
+      37.352,
+      119.716
     ],
     "for": "drawEnemy uhr attack-a",
-    "h": 122,
+    "h": 121,
     "units": 3,
-    "w": 74
+    "w": 73
   },
   "enemies/uhr-attack-b": {
     "anchor": [
-      41.753,
-      130.421
+      40.524,
+      129.716
     ],
     "for": "drawEnemy uhr attack-b",
-    "h": 132,
+    "h": 131,
     "units": 3,
-    "w": 87
+    "w": 85
   },
   "enemies/uhr-hit": {
     "anchor": [
-      60.429,
-      129.423
+      59.952,
+      128.715
     ],
     "for": "drawEnemy uhr hit",
-    "h": 131,
+    "h": 130,
     "units": 3,
     "w": 91
   },
   "enemies/uhr-idle": {
     "anchor": [
-      41.603,
-      134.421
+      40.918,
+      132.716
     ],
     "for": "drawEnemy uhr idle",
-    "h": 136,
+    "h": 134,
     "units": 3,
-    "w": 65
+    "w": 64
   },
   "enemies/uhr-walk-a": {
     "anchor": [
-      42.023,
-      131.422
+      41.581,
+      131.715
     ],
     "for": "drawEnemy uhr walk-a",
     "h": 133,
@@ -973,13 +973,13 @@
   },
   "enemies/uhr-walk-b": {
     "anchor": [
-      44.132,
-      131.42
+      43.286,
+      129.716
     ],
     "for": "drawEnemy uhr walk-b",
-    "h": 133,
+    "h": 131,
     "units": 3,
-    "w": 79
+    "w": 78
   },
   "enemies/wurz-attack-a": {
     "anchor": [
