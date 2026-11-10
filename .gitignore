@@ -5,3 +5,4 @@ __pycache__/
 .worktrees/
 pipeline/proof/02-buildings-koepenick/*/
 !pipeline/proof/02-buildings-koepenick/draft/
+!pipeline/proof/02-buildings-koepenick/perf/
