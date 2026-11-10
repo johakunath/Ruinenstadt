@@ -37,7 +37,9 @@ const b64e=t=>btoa(String.fromCharCode(...new TextEncoder().encode(t))),b64d=t=>
 /* v0.70 save safety: rolling backups before every overwrite (import, cloud pull, new game) and a run history outside the save, both in localStorage (lost when the browser data is cleared, so „Alle Daten exportieren“ is the real safety net) */
 const lsGet=(k)=>{try{const a=JSON.parse(localStorage.getItem(k));return Array.isArray(a)?a:[];}catch(e){return[];}},lsSet=(k,a)=>{try{localStorage.setItem(k,JSON.stringify(a));return true;}catch(e){return false;}};
 function bak(why){if(!S||!(S.t||(S.rec&&S.rec.runs)))return;const a=lsGet('rs2bak');a.unshift({t:Date.now(),v:VERSION,why,s:JSON.stringify(S)});let n=5;while(n>0&&!lsSet('rs2bak',a.slice(0,n)))n--;}
-function histAdd(e){const a=lsGet('rs2hist');a.push(Object.assign({at:Date.now()},e));lsSet('rs2hist',a.slice(-500));}
+// merges every run of the save log (S.tlog) that the history does not have yet: seeds it for existing players, picks up runs of imported saves, no duplicates
+const hkey=e=>[e.v,e.day,e.d,e.m,e.end,e.wave,e.t,e.kills,e.dmg,e.lvl].join('|');
+function histSync(){const a=lsGet('rs2hist'),k=new Set(a.map(hkey));let n=0;for(const e of S.tlog||[])if(!k.has(hkey(e))){a.push(Object.assign({at:Date.now()},e));k.add(hkey(e));n++;}if(n)lsSet('rs2hist',a.slice(-500));}
 function applySave(rs){bak('Import');S=fix(rs);fillJobs();save();resize();S.dist=Math.min(S.dist,S.unlocked-1);buildWorld(DIST[S.dist]);ST=stats();P.hp=ST.maxHp;}
 // new game: progress back to zero, options (sound, difficulty, input, display) and run telemetry stay. Two confirms because it cannot be undone
 function newGame(){if(!confirm('Neues Spiel starten? Fortschritt, Ausrüstung, Lager und Schrott werden gelöscht. Tipp: vorher „Spielstand kopieren“.'))return;if(!confirm('Wirklich alles löschen?'))return;
@@ -51,6 +53,6 @@ function importSave(){const code=(prompt('Spielstand-Code einfügen. Der aktuell
   if(!ok){toast('Ungültiger Code · vollständig kopiert? Er endet mit END');return;}applySave(rs);renderMenu();toast('Spielstand geladen');}
 
 // v0.70: everything in one file for analysis: active save, run history (all runs ever, outside the save), backups; every run carries its game version (`v`)
-function exportAll(){save();const d={game:'Ruinenstadt',v:VERSION,exported:new Date().toISOString(),save:S,hist:lsGet('rs2hist'),backups:lsGet('rs2bak').map(b=>({t:b.t,v:b.v,why:b.why,save:JSON.parse(b.s)}))},txt=JSON.stringify(d);
+function exportAll(){save();histSync();const d={game:'Ruinenstadt',v:VERSION,exported:new Date().toISOString(),save:S,hist:lsGet('rs2hist'),backups:lsGet('rs2bak').map(b=>({t:b.t,v:b.v,why:b.why,save:JSON.parse(b.s)}))},txt=JSON.stringify(d);
   try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'application/json'}));a.download='ruinenstadt-alles-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();a.remove();toast('Alle Daten exportiert (Datei)');}catch(e){prompt('Alle Daten kopieren:',txt);}}
 function restoreBackup(i){const b=lsGet('rs2bak')[i];if(!b)return;if(!confirm('Sicherung vom '+new Date(b.t).toLocaleString('de-DE')+' (v'+b.v+', '+b.why+') laden? Der aktuelle Spielstand wird vorher gesichert.'))return;let rs=null;try{rs=JSON.parse(b.s);}catch(e){}if(rs)applySave(rs);renderMenu();toast('Sicherung geladen');}
