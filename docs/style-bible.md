@@ -1,6 +1,6 @@
 # Style bible
 
-Reference for all art, content and district work. Source: four finished reference boards from ChatGPT (Nov 2026) plus the art-direction handover. When text and image disagree, the image wins. New ideas that are not in the boards or the handover are marked **Proposal**.
+Reference for all art, content and district work. Source: four finished reference boards from ChatGPT (Nov 2026) plus the art-direction handover. When text and image disagree, the image wins, except for a newer explicit user art-direction update such as the GDR/Pioneer direction below. New ideas that are not in the boards or the handover are marked **Proposal**.
 
 ## Reference boards
 
@@ -14,6 +14,29 @@ Reference for all art, content and district work. Source: four finished referenc
 Each board has the same layout: key scene on top, lineup below (player in front and back view, enemies, NPC, vehicle, props, weapon), title and palette on a dark teal panel.
 
 The exploratory boards (A Prussian Clockwork, B Concrete Orchard, C Bassline Underworld, D Velvet Radio Noir, F, H Below the Ring) and the earlier first references are not in the repo. Only the four finals count.
+
+## GDR / Pioneer direction (Johannes, 2026-11-10)
+
+The active Alexanderplatz identity is now `docs/style/alexanderplatz-pioneer.png`.
+Johannes explicitly requested stronger Soviet-style **hammer-and-sickle**
+logos and saturated **yellow and blue** inspired by Junge Pioniere. This
+supersedes the old cream/ochre emphasis and gear-only or abstract insignia
+for newly generated GDR assets. The original board remains a scene/material
+reference; the new board governs the identity update.
+
+- Cobalt/Pioneer blue `#2463a5` and warm yellow `#f3ce43` are the signature
+  pair. Red `#b93432` carries clear yellow hammer-and-sickle emblems; cream
+  `#eadfc6`, brass and cool teal keep the existing painted-comic language.
+- Brigadeghul and Uhrwerkläufer are the first regenerated logo-bearing
+  enemies. Preserve their silhouettes, feet, poses and gameplay.
+- Carry this direction into GDR building facades, entrance crests, flags,
+  banners, murals, clockwork landmarks and street props. Keep Berlin
+  architecture recognizable, with ivy, gardens, sunflowers and weathering.
+- Use an actual crossed hammer and curved sickle when an emblem is called
+  for; a cog, gear, flower, slash or generic rune is not a substitute.
+- This is a visual direction for the fictional biome. It introduces no new
+  mechanics. Prioritize its buildings/assets after the enemy regeneration,
+  ahead of unrelated prop production in this continuous session.
 
 ## Shared language
 
@@ -37,7 +60,8 @@ Sampled from the board swatches. Approximate (painted texture), use as a startin
 |---|---|
 | Köpenick | `#f0b27a` cream · `#db8c2b` ochre · `#7b6a32` olive · `#516a62` teal grey · `#8b4a35` rust · `#591e1e` oxblood |
 | U-Bahn | `#fac997` cream · `#ed9e25` BVG yellow · `#8f7c45` olive · `#647872` teal grey · `#a7533a` rust · `#7d322d` oxblood |
-| Alexanderplatz | `#d4a27e` sand · `#e7982b` ochre · `#736734` olive · `#8a856e` sage · `#af4237` banner red · `#763536` oxblood |
+| Alexanderplatz Pioneer (active, 2026-11-10) | `#2463a5` cobalt blue · `#f3ce43` warm yellow · `#b93432` emblem red · `#eadfc6` cream · `#36585d` teal · `#b58a3d` brass |
+| Alexanderplatz original board | `#d4a27e` sand · `#e7982b` ochre · `#736734` olive · `#8a856e` sage · `#af4237` banner red · `#763536` oxblood |
 | Potsdamer Platz | `#284652` night teal · `#43d1cf` cyan · `#bd2b77` magenta · `#dfb697` cream · `#e19142` amber · `#9b3e39` rust · `#665b38` olive |
 
 Köpenick, U-Bahn and Alexanderplatz share one six-colour family (cream, ochre, olive, teal, rust, oxblood) and shift only brightness and saturation. Potsdamer Platz adds cyan and magenta on top of the same base. Panel background is a dark teal (`#14282b` to `#20363e`). Alexanderplatz is the exception with a light paper panel.

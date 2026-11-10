@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Render enemy idle silhouettes at 64 px on light grey (Pillow/numpy only).
 
-No arguments writes pipeline/proof/01b-enemy-redesign/silhouettes-current.png
-and a matching JSON inventory. Use --output to retain a named baseline, and
+No arguments writes silhouettes-current.png and a matching JSON inventory in
+the latest completed 01b proof directory. Use --output to retain a named baseline, and
 --root/--manifest to compare a checkout or exported asset tree. --picks may be
 repeated to attach height_class and outline_family annotations (directly on a
 pick or inside its silhouette object). Unknown annotations remain explicit;
@@ -29,6 +29,11 @@ from sprites import read_object, remove_background
 
 ROOT = Path(__file__).resolve().parents[1]
 BACKGROUND = '#e6e6e6'
+
+
+def proof_directory(root):
+    second = root / 'pipeline/proof/01b-enemy-redesign-batch-2'
+    return second if (second / 'silhouette-classes-current.json').exists() else root / 'pipeline/proof/01b-enemy-redesign'
 
 
 def annotation(spec, name):
@@ -69,7 +74,7 @@ def source_mask(path, spec):
 
 def collect(args, root):
     recipes = args.picks or sorted((root / 'assets/raw/codex').glob('*/picks.json'))
-    annotations = root / 'pipeline/proof/01b-enemy-redesign/silhouette-classes-current.json'
+    annotations = proof_directory(root) / 'silhouette-classes-current.json'
     if not args.picks and annotations.exists():
         recipes = [*recipes, annotations]
     selections = {}
@@ -161,7 +166,7 @@ def main():
     parser.add_argument('--title', default='Enemy silhouettes - current idle frames')
     args = parser.parse_args()
     root = args.root.resolve()
-    output = args.output or root / 'pipeline/proof/01b-enemy-redesign/silhouettes-current.png'
+    output = args.output or proof_directory(root) / 'silhouettes-current.png'
     try:
         render(collect(args, root), output, args.title)
     except (OSError, ValueError, KeyError, TypeError) as exc:

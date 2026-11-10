@@ -119,6 +119,126 @@
     "selected_variant": "01",
     "source": "bomb.png"
   },
+  "enemies/brigadeghoul-attack-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      263.5,
+      925
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy brigadeghoul attack-a",
+    "height": 19.571865,
+    "height_class": "low",
+    "outline_family": "square-collar",
+    "reason": "Alexanderplatz variant 01 silhouette, regenerated on user request with Pioneer blue/yellow and a red hammer-and-sickle medallion.",
+    "selected_variant": "01",
+    "source": "brigadeghoul.png"
+  },
+  "enemies/brigadeghoul-attack-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      745.5,
+      926
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy brigadeghoul attack-b",
+    "height": 19.388379,
+    "height_class": "low",
+    "outline_family": "square-collar",
+    "reason": "Alexanderplatz variant 01 silhouette, regenerated on user request with Pioneer blue/yellow and a red hammer-and-sickle medallion.",
+    "selected_variant": "01",
+    "source": "brigadeghoul.png"
+  },
+  "enemies/brigadeghoul-hit": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1254.5,
+      925
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy brigadeghoul hit",
+    "height": 20.611621,
+    "height_class": "low",
+    "outline_family": "square-collar",
+    "reason": "Alexanderplatz variant 01 silhouette, regenerated on user request with Pioneer blue/yellow and a red hammer-and-sickle medallion.",
+    "selected_variant": "01",
+    "source": "brigadeghoul.png"
+  },
+  "enemies/brigadeghoul-idle": {
+    "alpha_threshold": 128,
+    "anchor": [
+      263.0,
+      414
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy brigadeghoul idle",
+    "height": 20.0,
+    "height_class": "low",
+    "outline_family": "square-collar",
+    "reason": "Alexanderplatz variant 01 silhouette, regenerated on user request with Pioneer blue/yellow and a red hammer-and-sickle medallion.",
+    "selected_variant": "01",
+    "source": "brigadeghoul.png"
+  },
+  "enemies/brigadeghoul-walk-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      776.0,
+      414
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy brigadeghoul walk-a",
+    "height": 19.877676,
+    "height_class": "low",
+    "outline_family": "square-collar",
+    "reason": "Alexanderplatz variant 01 silhouette, regenerated on user request with Pioneer blue/yellow and a red hammer-and-sickle medallion.",
+    "selected_variant": "01",
+    "source": "brigadeghoul.png"
+  },
+  "enemies/brigadeghoul-walk-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1286.0,
+      414
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy brigadeghoul walk-b",
+    "height": 19.938838,
+    "height_class": "low",
+    "outline_family": "square-collar",
+    "reason": "Alexanderplatz variant 01 silhouette, regenerated on user request with Pioneer blue/yellow and a red hammer-and-sickle medallion.",
+    "selected_variant": "01",
+    "source": "brigadeghoul.png"
+  },
   "enemies/ghoul-attack-a": {
     "alpha_threshold": 128,
     "anchor": [
@@ -479,6 +599,246 @@
     "selected_variant": "01",
     "source": "raser.png"
   },
+  "enemies/schrottkoloss-attack-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      265.5,
+      961
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy schrottkoloss attack-a",
+    "height": 82.058957,
+    "height_class": "giant",
+    "outline_family": "chimney-triangle",
+    "reason": "U-Bahn canvas variant 01: tall chimneys and a triangular scrap body distinguish the giant from the bulky worker.",
+    "selected_variant": "01",
+    "source": "schrottkoloss.png"
+  },
+  "enemies/schrottkoloss-attack-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      735.5,
+      960
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy schrottkoloss attack-b",
+    "height": 81.494331,
+    "height_class": "giant",
+    "outline_family": "chimney-triangle",
+    "reason": "U-Bahn canvas variant 01: tall chimneys and a triangular scrap body distinguish the giant from the bulky worker.",
+    "selected_variant": "01",
+    "source": "schrottkoloss.png"
+  },
+  "enemies/schrottkoloss-hit": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1305.5,
+      962
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy schrottkoloss hit",
+    "height": 82.247166,
+    "height_class": "giant",
+    "outline_family": "chimney-triangle",
+    "reason": "U-Bahn canvas variant 01: tall chimneys and a triangular scrap body distinguish the giant from the bulky worker.",
+    "selected_variant": "01",
+    "source": "schrottkoloss.png"
+  },
+  "enemies/schrottkoloss-idle": {
+    "alpha_threshold": 128,
+    "anchor": [
+      282.5,
+      454
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy schrottkoloss idle",
+    "height": 83.0,
+    "height_class": "giant",
+    "outline_family": "chimney-triangle",
+    "reason": "U-Bahn canvas variant 01: tall chimneys and a triangular scrap body distinguish the giant from the bulky worker.",
+    "selected_variant": "01",
+    "source": "schrottkoloss.png"
+  },
+  "enemies/schrottkoloss-walk-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      792.5,
+      453
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy schrottkoloss walk-a",
+    "height": 83.0,
+    "height_class": "giant",
+    "outline_family": "chimney-triangle",
+    "reason": "U-Bahn canvas variant 01: tall chimneys and a triangular scrap body distinguish the giant from the bulky worker.",
+    "selected_variant": "01",
+    "source": "schrottkoloss.png"
+  },
+  "enemies/schrottkoloss-walk-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1278,
+      452
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy schrottkoloss walk-b",
+    "height": 82.435374,
+    "height_class": "giant",
+    "outline_family": "chimney-triangle",
+    "reason": "U-Bahn canvas variant 01: tall chimneys and a triangular scrap body distinguish the giant from the bulky worker.",
+    "selected_variant": "01",
+    "source": "schrottkoloss.png"
+  },
+  "enemies/shield-attack-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      253,
+      954
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy shield attack-a",
+    "height": 31.04607,
+    "height_class": "medium",
+    "outline_family": "vaulted-carapace",
+    "reason": "U-Bahn canvas variant 03: a vaulted shell distinguishes the defender while the separate directional panel retains its shield arc.",
+    "selected_variant": "03",
+    "source": "shield.png"
+  },
+  "enemies/shield-attack-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      740,
+      950
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy shield attack-b",
+    "height": 29.918699,
+    "height_class": "medium",
+    "outline_family": "vaulted-carapace",
+    "reason": "U-Bahn canvas variant 03: a vaulted shell distinguishes the defender while the separate directional panel retains its shield arc.",
+    "selected_variant": "03",
+    "source": "shield.png"
+  },
+  "enemies/shield-hit": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1279,
+      950
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy shield hit",
+    "height": 32.520325,
+    "height_class": "medium",
+    "outline_family": "vaulted-carapace",
+    "reason": "U-Bahn canvas variant 03: a vaulted shell distinguishes the defender while the separate directional panel retains its shield arc.",
+    "selected_variant": "03",
+    "source": "shield.png"
+  },
+  "enemies/shield-idle": {
+    "alpha_threshold": 128,
+    "anchor": [
+      254,
+      442
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy shield idle",
+    "height": 32.0,
+    "height_class": "medium",
+    "outline_family": "vaulted-carapace",
+    "reason": "U-Bahn canvas variant 03: a vaulted shell distinguishes the defender while the separate directional panel retains its shield arc.",
+    "selected_variant": "03",
+    "source": "shield.png"
+  },
+  "enemies/shield-walk-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      775.5,
+      441
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy shield walk-a",
+    "height": 31.479675,
+    "height_class": "medium",
+    "outline_family": "vaulted-carapace",
+    "reason": "U-Bahn canvas variant 03: a vaulted shell distinguishes the defender while the separate directional panel retains its shield arc.",
+    "selected_variant": "03",
+    "source": "shield.png"
+  },
+  "enemies/shield-walk-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1276,
+      440
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy shield walk-b",
+    "height": 31.826558,
+    "height_class": "medium",
+    "outline_family": "vaulted-carapace",
+    "reason": "U-Bahn canvas variant 03: a vaulted shell distinguishes the defender while the separate directional panel retains its shield arc.",
+    "selected_variant": "03",
+    "source": "shield.png"
+  },
   "enemies/spitter-attack-a": {
     "alpha_threshold": 128,
     "anchor": [
@@ -634,5 +994,125 @@
     "reason": "Low inflated throat and long snout give the ranged enemy a broad nonhuman outline.",
     "selected_variant": "01",
     "source": "spitter.png"
+  },
+  "enemies/uhr-attack-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      246.0,
+      980
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawEnemy uhr attack-a",
+    "height": 39.732759,
+    "height_class": "medium",
+    "outline_family": "clock-robot",
+    "reason": "Existing clockwork body and poses retained; user-requested Pioneer blue/yellow and a large hammer-and-sickle badge replace the olive livery.",
+    "selected_variant": "01",
+    "source": "uhr.png"
+  },
+  "enemies/uhr-attack-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      766.0,
+      979
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawEnemy uhr attack-b",
+    "height": 43.146552,
+    "height_class": "medium",
+    "outline_family": "clock-robot",
+    "reason": "Existing clockwork body and poses retained; user-requested Pioneer blue/yellow and a large hammer-and-sickle badge replace the olive livery.",
+    "selected_variant": "01",
+    "source": "uhr.png"
+  },
+  "enemies/uhr-hit": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1305.0,
+      979
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawEnemy uhr hit",
+    "height": 42.577586,
+    "height_class": "medium",
+    "outline_family": "clock-robot",
+    "reason": "Existing clockwork body and poses retained; user-requested Pioneer blue/yellow and a large hammer-and-sickle badge replace the olive livery.",
+    "selected_variant": "01",
+    "source": "uhr.png"
+  },
+  "enemies/uhr-idle": {
+    "alpha_threshold": 128,
+    "anchor": [
+      259.0,
+      483
+    ],
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "for": "drawEnemy uhr idle",
+    "height": 44.0,
+    "height_class": "medium",
+    "outline_family": "clock-robot",
+    "reason": "Existing clockwork body and poses retained; user-requested Pioneer blue/yellow and a large hammer-and-sickle badge replace the olive livery.",
+    "selected_variant": "01",
+    "source": "uhr.png"
+  },
+  "enemies/uhr-walk-a": {
+    "alpha_threshold": 128,
+    "anchor": [
+      770.5,
+      481
+    ],
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ],
+    "for": "drawEnemy uhr walk-a",
+    "height": 43.525862,
+    "height_class": "medium",
+    "outline_family": "clock-robot",
+    "reason": "Existing clockwork body and poses retained; user-requested Pioneer blue/yellow and a large hammer-and-sickle badge replace the olive livery.",
+    "selected_variant": "01",
+    "source": "uhr.png"
+  },
+  "enemies/uhr-walk-b": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1291.0,
+      480
+    ],
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ],
+    "for": "drawEnemy uhr walk-b",
+    "height": 43.051724,
+    "height_class": "medium",
+    "outline_family": "clock-robot",
+    "reason": "Existing clockwork body and poses retained; user-requested Pioneer blue/yellow and a large hammer-and-sickle badge replace the olive livery.",
+    "selected_variant": "01",
+    "source": "uhr.png"
   }
 }

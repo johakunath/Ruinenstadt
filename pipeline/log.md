@@ -207,3 +207,53 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   angles or a layered vehicle construction? Do not change the contract
   silently. Skip this dependent step and continue other tasks under the
   autonomous-run stop rule. No vehicle runtime changes made.
+
+- Batch 1 ready PR #23 opened, reviewed candidate `ec80d2de5fb5bf5e3bd07fa9b296d53d51e12899`, all above validation complete. Codex review pending. Independent remaining 18-frame generation prepared for `codex/01b-enemies-batch-2`; batch 1 branch stays unchanged during review.
+
+
+## 2026-11-10 · Codex · task 01b complete, v0.67, GDR direction update
+
+- PR #23 merged as `5edf3a5b3892b371e57038e8f83080f559cb5896` after the
+  configured Codex review completed with no findings for exact head
+  `ec80d2de5fb5bf5e3bd07fa9b296d53d51e12899`. No review threads or checks
+  remained. Batch 2 branch `codex/01b-enemies-batch-2` claimed in `245d4b3`
+  and synced with merged main. First-batch 30 images and entries are unchanged.
+- Final batch delivers 24 frames: Schildträger, Brigadeghul, Uhrwerkläufer,
+  Schrottkoloss. All eight weak silhouettes are redesigned. User then
+  explicitly requested hammer-and-sickle logos and yellow/blue Junge-Pionier
+  identity for GDR, followed by buildings/assets of that biome. Regenerated
+  Brigadeghul and Uhrwerkläufer accordingly; Uhr keeps its existing body and
+  poses. New active board `docs/style/alexanderplatz-pioneer.png`; durable
+  rules in the style bible. Task 11 records the user-prioritized continuation.
+- Pick shield U-Bahn03 vaulted shell, brigade Alexanderplatz01 square collar
+  plus new Pioneer livery, Schrott U-Bahn01 chimney triangle. Existing Uhr
+  geometry gets the requested livery. Reasons/crops/scales are in picks.json.
+- Internal review found the broad bottom strip included low hands/claws.
+  Schildträger and Schrottkoloss now have explicit per-pose sole centres
+  (`SOLES` in picker). Rebuilt/inspected proof confirms centred feet. Separate
+  shield direction/open-guard behavior and all combat numbers are unchanged.
+  Two visual height values follow the new bodies; first release proof stays
+  intact. Generic silhouette output now targets the latest proof directory.
+- Validation: 6 Python + 11 JS tests, 227-entry manifest/alpha/size check,
+  54 images/entries reproduce byte-for-byte. Final Chromium run after GDR
+  repaint passes: 32 six-pose/both-facing galleries, 40 default/2x world
+  captures, actual shield/mouth/crow/contact/elite/boss checks, HTTP404 body
+  fallback, fresh fully offline v0.67 reload/run with 97/97 enemy images and
+  no page errors or unexpected image failures. All runtime paths reused.
+  Evidence: `pipeline/proof/01b-enemy-redesign-batch-2/`.
+- Final isolated seeded full-render A/B vs merged v0.66:
+
+  | District | Before ms | After ms | Change |
+  |---|---:|---:|---:|
+  | Köpenick | 52.9 | 52.7 | -0.4% |
+  | Alexanderplatz | 46.4 | 43.6 | -6.0% |
+  | Mitte | 53.5 | 50.9 | -4.9% |
+
+  Desktop results meet the budget; tablet heat/battery still needs hardware
+  playtesting. Batch 24 frames decode to 1,932,616 bytes; all 54 repainted
+  frames total 2,960,152 bytes (<40 MB).
+- Continuation: prioritize the requested GDR buildings and assets. Prepare
+  one Zuckerbäcker A/B building proof under task 11; task 02's generic method
+  decision is still open. Continue independent GDR banners/crests/landmarks
+  while it is reviewed. Earlier non-GDR prop studies remain local generated
+  drafts and are not integrated into this enemy release.
