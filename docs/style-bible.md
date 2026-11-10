@@ -178,7 +178,7 @@ Real-world hook: Spreepark Plänterwald (next to Köpenick in Treptow-Köpenick)
 
 ## Design source for new characters and props (v0.62)
 
-New enemies, NPCs and props are designed from the **style boards** (`docs/style/`) and this bible, not from the code-drawn placeholders in `js/` (the canvas/SVG drawings made by Claude limit the result: same bodies, same proportions). Each batch starts with a **style canvas** (palette, materials, line weight, lighting, 3 to 5 silhouette thumbnails per family) that Johannes approves, then Codex paints new designs from it. The old drawing only supplies gameplay data (footprint, anchor, telegraph origin). See `pipeline/workflow.md` step 3.
+New enemies, NPCs and props are designed from the **style boards** (`docs/style/`) and this bible, not from code-drawn placeholders in `js/`. A new family or identity starts with a **style canvas** (palette, materials, line weight, lighting and silhouettes). Under Johannes's 2026-11-10 direction, approval gates apply only to critical design/asset decisions; alternatives must be strongly different. For roughly 80% of routine work, Codex chooses within the approved direction, creates and shows the design, then continues unless Johannes objects. Do not request near-identical A/B/C comparisons for each asset. Old drawings supply gameplay data only (footprint, anchor, telegraph origin). See `pipeline/workflow.md`.
 
 ## Production order
 

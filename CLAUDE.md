@@ -8,5 +8,5 @@
 - ChatGPT menu art (icons, portraits): batch list `docs/chatgpt-assets.md`, raw sheets land in `assets/raw/`.
 - Game text is German. Code style is dense one-liners; match it.
 - Release: bump `VERSION` (`js/core.js`) and `CACHE` (`sw.js`) together, update `BACKLOG.md`.
-- New visual forms (charts, layouts, scenes): SVG mockup first, let the user choose, then implement.
+- Critical visual/design decisions: show clearly distinct alternatives before implementation. Routine assets: choose within the approved style, create and show the result, continue unless Johannes objects. Do not require A/B/C choices for every asset (Johannes, 2026-11-10). Use SVG mockups for critical code-native layouts and painted canvases for critical art choices.
 - Smoke test: serve with `python3 -m http.server`, load in Playwright, start a run, check for page errors.

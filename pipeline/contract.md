@@ -1,5 +1,18 @@
 # Renderer contract
 
+Köpenick method-A integration (draft v0.71; performance gate open): `js/koep-assets.js` maps selected
+window/material modules to the existing facade lattice and records aperture
+bounds as `pivots.apertureTL`/`apertureBR`. It derives transparent projected
+caches at 3 px/screen unit for actual building rotations; no authored fixed-view
+painting replaces the geometry. `koepPrepareMap()`/`koepPrepare(b)` schedule
+cache work outside drawing. Signatures invalidate changed geometry/rotation;
+actual draws receive eviction priority over unused prefetches. Task images,
+shared materials and caches together are capped at 40,000,000 bytes. The
+original sprite supplies complete fallback while a required image/cache is
+unavailable. Cache retirement clears dimensions and cancels pending map jobs.
+The Späti keeps its German sign, central entrance, interior and collision gate;
+ruins keep the original cutout union. See task 02 proof for validation.
+
 How a painted sprite has to look and where it plugs in. If something here is wrong, fix this file in the same PR.
 
 ## Camera and units

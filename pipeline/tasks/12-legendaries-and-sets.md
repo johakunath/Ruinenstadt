@@ -2,6 +2,12 @@
 
 Status: open (second in current queue; code delivered in v0.70, art pending)
 
+Design choices (Johannes, 2026-11-10): Kiezwache B, Spreegeist B, Zitadelle A
+from the saved set canvases. Routine production and the four legendary
+designs proceed under the updated workflow's design autonomy; do not ask for
+another near-identical comparison. Strongly different alternatives are reserved
+for critical decisions. Production icons have not yet been integrated.
+
 The code is done and runs with SVG fallbacks. This task only adds painted art.
 Style: item icons as in `docs/chatgpt-assets.md` (brighter, more saturated,
 128 px WebP, teal keyed out by `tools/cut_sheets.py`), player parts as in

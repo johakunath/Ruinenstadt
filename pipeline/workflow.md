@@ -6,7 +6,7 @@ How the painted in-world art is made, plugged in and handed over. Index for ever
 
 | Who | Does | Does not |
 |---|---|---|
-| Johannes | Picks design variants (colour-only choices delegated to Codex), approves each task, playtests on the Tab S9 | Edit code |
+| Johannes | Chooses critical design directions, can object to shown routine designs, approves task scope, playtests on the Tab S9 when scheduled | Edit code |
 | Codex | Does the tasks end to end: generates sprites and parts, cuts and normalises them, writes the manifest, hooks the renderer, updates the player rig (`tools/build_hero.py`, `js/hero.js`, `drawHero`) and menu art when a task says so, tests in the browser, opens the PR | Change task scope or the contract on its own: write the question into `log.md` instead |
 | Claude | Plans and writes the tasks, keeps `contract.md` right, reviews and debugs Codex PRs, fixes what is architecturally tricky | Redo Codex work without a note in `log.md` |
 
@@ -30,11 +30,20 @@ Both agents may change any code when a task needs it. Keep the change small and 
 
 ## Workflow per task
 
+**Design autonomy (Johannes, 2026-11-10):** A/B/C decisions are only for the
+most critical design and asset choices. For roughly 80% of routine assets,
+Codex chooses within the approved direction, creates and shows the result,
+and continues unless Johannes objects. Critical alternatives must differ
+strongly in silhouette, structure or visual identity; near-identical options
+are not a useful decision. This supersedes older per-asset variant/approval
+requirements in this workflow, the style bible and task files. It changes
+design selection, not merge authorization or technical acceptance checks.
+
 1. Read the task file in `tasks/`, then `contract.md`.
 2. Set the task status to `in progress (Codex, date)` and commit that alone, so the other agent sees it.
 3. **Design source (v0.62 rule).** Do not trace or restyle the canvas/SVG drawings in `js/`. They are placeholders and limit the design (they came from Claude's code art, not from the style). Take the look from `docs/style-bible.md` and the boards in `docs/style/` (Köpenick board as default), first generate one **style canvas** per task (a single sheet with the district's palette, material language, line weight, lighting and 3 to 5 silhouette thumbnails for the asset family), put it into `assets/raw/codex/<task>/` and show it to Johannes. Then create completely new designs from that canvas. The old drawing is only a gameplay reference: footprint `r`, anchor, telegraph origin and hitbox (see `contract.md`). Silhouette must differ clearly between types.
-3b. Generate 2 to 3 variants per asset. Put raw output in `assets/raw/codex/<task>/`, never into game folders.
-4. Show Johannes a comparison sheet (PNG, one row per asset, variants side by side, plus a game-size row at 64 px). He picks design variants. If variants differ only in colour, Codex chooses within the style bible and records the choice in `log.md`; do not pause or ask Johannes for colour-only choices. Animation poses derived from an already selected design do not require another variant selection.
+3b. Create one strong design for routine assets. Generate 2 to 3 substantially different alternatives only for critical decisions. Save raw output under `assets/raw/codex/<task>/`, never directly into game folders.
+4. Show the result with a game-size row at 64 px. For critical choices, show clearly different alternatives and wait for Johannes's selection. For routine assets and colour-only choices, choose within the style bible, record the choice and reason, and continue unless Johannes objects. Selected-design animation/layer derivatives need no new selection.
 5. Normalise the picks (`tools/` script, see task 00), write `assets/manifest.json` entries, hook the renderer with canvas fallback.
 6. Test (below). Screenshot every asset in game at default zoom and at 2x.
 7. Bump `VERSION` (`js/core.js`) and `CACHE` (`sw.js`) together, add a row to `BACKLOG.md`, add new files to the `SHELL` list in `sw.js`.
@@ -77,7 +86,7 @@ The virtual environment is local and ignored by Git.
 
 ## Definition of done
 
-- Johannes picked the design variants, or Codex recorded a colour-only choice under step 4.
+- Critical design choices are approved; routine design choices are shown and recorded under step 4.
 - Manifest entries complete, fallback works (rename the file, game still runs).
 - Hitbox screenshots attached to the PR, no visible mismatch.
 - No page errors, smoke test passes, version and backlog updated.

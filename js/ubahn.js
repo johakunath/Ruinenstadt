@@ -74,7 +74,7 @@ function tunMapTab(c){const g=c.getContext('2d'),k=600/TW,oy=300-TH*k/2,T=(x,y)=
   {const[x,y]=T(GEN.x,GEN.y);g.fillStyle='#f2d14b';g.beginPath();g.arc(x,y,4,0,7);g.fill();}{const[x,y]=T(P.x,P.y);g.fillStyle='#fff';g.beginPath();g.arc(x,y,5,0,7);g.fill();}
   g.fillStyle='#a8957d';g.textAlign='left';g.fillText(tunName(TUN.k,TSEC[TUN.sec].n)+' · Abschnitt '+(TUN.sec+1)+' von '+TSEC.length,12,oy+TH*k+30);}
 // build the tunnel map for line k (instead of buildWorld)
-function buildTunnel(k){const L=LINES[k];D=Object.assign({},DIST[k],{n:L.l+' · '+DIST[k].n+' → '+DIST[k+1].n,tun:1,lvl:DIST[k].lvl+6,geo:null,wet:0,day:0,cyber:0,dark:.93,nc:'5,6,7'});
+function buildTunnel(k){if(typeof koepResetCache==='function')koepResetCache(null);const L=LINES[k];D=Object.assign({},DIST[k],{n:L.l+' · '+DIST[k].n+' → '+DIST[k+1].n,tun:1,lvl:DIST[k].lvl+6,geo:null,wet:0,day:0,cyber:0,dark:.93,nc:'5,6,7'});
   WS=TW;WH=TH;const sp=at(700,-440);[SX,SY]=sp;G=cnv(TW/2,TH/2);G.k=.5;gx=G.getContext('2d');gx.scale(.5,.5);walls=[];blds=[];barrels=[];reserved=[];marks=[];brk=[];spati=null;darks=[{x:0,y:0,w:TW,h:TH,seen:1}];waters=[];neons=[];shrines=[];ROADS=[];BLK=[];
   TUN={k,sec:0,live:[],gates:[],gen:null,lit:0,hold:0,boss:0,done:0};
   {const rc=cy(2730)-THW-420;ROOM[1]=Math.round(rc/20)*20;ROOM[3]=540;const g_=at(GENX,-450);GEN.y=g_[1];GEN.x=g_[0];}

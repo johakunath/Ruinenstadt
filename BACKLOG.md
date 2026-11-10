@@ -28,6 +28,12 @@ Feedback batch. Fixed in v0.65 (see Done): vertical walk speed, settings cogwhee
 
 ## Next
 
+Asset draft (2026-11-10): the Köpenick kit is implemented on its asset branch,
+but v0.71 is not a release. The final combined timing exceeds the 5% budget;
+preserve the draft after three optimization attempts and continue equipment
+art. See `pipeline/proof/02-buildings-koepenick/README.md`. Johannes now delegates
+routine asset designs; only critical choices need strongly different A/B/C options.
+
 Focus: gameplay and content. Art runs in parallel through Codex (`pipeline/workflow.md`). Style source of truth: `docs/style-bible.md` (Köpenick = default look, U-Bahn, Potsdamer Platz, Alexanderplatz boards).
 
 | # | Item | Notes |

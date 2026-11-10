@@ -14,8 +14,9 @@ Those checks belong to the selected production kit.
 - C: visibly collapsed upper corner with exposed floors and roof beams.
 
 Recommended mix: A as the common Altbau, B as a less frequent variant, C
-for selected ruins. Johannes's design selection is pending. No selections
-are registered in picks.json and nothing is loaded by the game.
+for selected ruins. Johannes approved this mix on 2026-11-10. Production
+materials are selected by `tools/pick_koep_buildings.py`; `picks.json` records
+the crops, aperture pivots and overlay alpha thresholds.
 
 Next production constraints: preserve existing footprint/rotation/roof
 geometry and window light positions; generate flat facade and roof modules,

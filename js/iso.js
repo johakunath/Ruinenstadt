@@ -23,6 +23,7 @@ function ibox(x,y,w,h,z0,z1,c,s,top){faceS(x,y,w,h,z0,z1,c,s);faceE(x,y,w,h,z0,z
 const isBox=b=>!!(b.veh||(b.h>0&&b.H>0&&!b.bb)),bR0=b=>b.R0!=null?b.R0:b.top-b.H,bHs=b=>(b.FH||b.H)*(b.vs||1),boxTop=b=>b.veh?70:bHs(b)+bR0(b)*(b.vs||1)+(b.gable||0);
 // building from its old 3/4 sprite: rows [0,R0) extra (towers), [R0,R0+h) roof, then FH rows facade. Roof goes on the top face, facade on south and (shaded) east face.
 function drawBox(b){const x=b.x,y=b.y,w=b.w,h=b.h,s=b.spr,vs=b.vs||1,FH=b.FH||b.H,Hs=FH*vs,R0=bR0(b);
+  if(typeof drawKoepBuilding==='function'&&D===DIST[0]&&drawKoepBuilding(b))return;
   if(drawGdrBuilding(b))return;
   faceT(x+5,y+5,w,h,0,'rgba(0,0,0,.25)');
   const[ux,uy,vx,vy]=bAx(),o=(a,c,z)=>P3(a,c,z);
