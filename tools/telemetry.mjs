@@ -2,8 +2,8 @@
 // Prints Johannes' logged runs in the same format as tools/balance.mjs, so human and bot results can be compared per district.
 import fs from 'fs';
 import { extra } from './tlfmt.mjs';
-const a = process.argv[2] || ''; const raw = (fs.existsSync(a) ? fs.readFileSync(a, 'utf8') : a).trim();// a save code, or a bot file from tools/runs/
-const L = raw.startsWith('[') ? JSON.parse(raw) : JSON.parse(Buffer.from(raw.replace(/^RS1:/, ''), 'base64').toString('utf8')).tlog || [];
+const a = process.argv[2] || ''; const raw = (fs.existsSync(a) ? fs.readFileSync(a, 'utf8') : a).trim().replace(/\s*END$/, '');// v0.70: codes end with END; export-all files are {save,hist,backups}// a save code, or a bot file from tools/runs/
+const L = raw.startsWith('[') ? JSON.parse(raw) : raw.startsWith('{') ? (j => j.hist && j.hist.length ? j.hist : j.save.tlog || [])(JSON.parse(raw)) : JSON.parse(Buffer.from(raw.replace(/^RS1:/, ''), 'base64').toString('utf8')).tlog || [];
 const DN = i => ['Köpenick', 'Xhain', 'Alexanderplatz', 'Mitte', 'Tempelhof', 'Spandau', 'Marzahn'][i] || '?', DF = ['Leicht', 'Normal', 'Schwer'];
 if (!L.length) { console.log('No runs logged yet (telemetry exists since v0.39).'); process.exit(0); }
 L.forEach((r, i) => { const sw = r.ws.reduce((b, s, j) => s > b[1] ? [j + 1, s] : b, [0, 0]);
