@@ -1,0 +1,210 @@
+{
+  "display_height_px": 64,
+  "failing_pairs": [],
+  "gate_complete": false,
+  "sprites": [
+    {
+      "height_class": null,
+      "key": "enemies/bomb-variant-01",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/bomb-variant-02",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/bomb-variant-03",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/bomb-variant-04",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/bomb-variant-05",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/ghoul-variant-01",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/ghoul-variant-02",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/ghoul-variant-03",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/ghoul-variant-04",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/ghoul-variant-05",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/howl-variant-01",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/howl-variant-02",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/howl-variant-03",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/howl-variant-04",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/howl-variant-05",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/raser-variant-01",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/raser-variant-02",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/raser-variant-03",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/raser-variant-04",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/raser-variant-05",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/spitter-variant-01",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/spitter-variant-02",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/spitter-variant-03",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/spitter-variant-04",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    },
+    {
+      "height_class": null,
+      "key": "enemies/spitter-variant-05",
+      "outline_family": null,
+      "source_sha256": "8957b764ff88d8bc7adbde8bc48bf5ed8dbd09965a90c6bb949cf116969b2fa6",
+      "world_height": null
+    }
+  ],
+  "title": "Task 01b - 25 style canvas silhouette thumbnails",
+  "unannotated": [
+    "enemies/bomb-variant-01",
+    "enemies/bomb-variant-02",
+    "enemies/bomb-variant-03",
+    "enemies/bomb-variant-04",
+    "enemies/bomb-variant-05",
+    "enemies/ghoul-variant-01",
+    "enemies/ghoul-variant-02",
+    "enemies/ghoul-variant-03",
+    "enemies/ghoul-variant-04",
+    "enemies/ghoul-variant-05",
+    "enemies/howl-variant-01",
+    "enemies/howl-variant-02",
+    "enemies/howl-variant-03",
+    "enemies/howl-variant-04",
+    "enemies/howl-variant-05",
+    "enemies/raser-variant-01",
+    "enemies/raser-variant-02",
+    "enemies/raser-variant-03",
+    "enemies/raser-variant-04",
+    "enemies/raser-variant-05",
+    "enemies/spitter-variant-01",
+    "enemies/spitter-variant-02",
+    "enemies/spitter-variant-03",
+    "enemies/spitter-variant-04",
+    "enemies/spitter-variant-05"
+  ]
+}

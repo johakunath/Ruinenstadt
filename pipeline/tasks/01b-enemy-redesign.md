@@ -1,6 +1,6 @@
 # 01b Enemy redesign (second pass of task 01)
 
-Status: open (Codex, overnight run allowed, see `workflow.md` section "Autonomous runs")
+Status: in progress (Codex, 2026-11-09; 30-image batches, user-authorized review and merge)
 
 ## Why
 

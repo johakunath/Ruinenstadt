@@ -61,63 +61,63 @@
   },
   "enemies/bomb-attack-a": {
     "anchor": [
-      28.123,
-      102.506
+      29.294,
+      86.803
     ],
     "for": "drawEnemy bomb attack-a",
-    "h": 104,
+    "h": 88,
     "units": 3,
-    "w": 74
+    "w": 57
   },
   "enemies/bomb-attack-b": {
     "anchor": [
-      45.456,
-      104.508
+      29.803,
+      83.802
     ],
     "for": "drawEnemy bomb attack-b",
-    "h": 106,
+    "h": 85,
     "units": 3,
-    "w": 114
+    "w": 60
   },
   "enemies/bomb-hit": {
     "anchor": [
-      45.074,
-      118.504
+      32.743,
+      85.804
     ],
     "for": "drawEnemy bomb hit",
-    "h": 120,
+    "h": 87,
     "units": 3,
-    "w": 82
+    "w": 59
   },
   "enemies/bomb-idle": {
     "anchor": [
-      26.337,
-      120.754
+      30.098,
+      84.803
     ],
     "for": "drawEnemy bomb idle",
-    "h": 122,
+    "h": 86,
     "units": 3,
-    "w": 48
+    "w": 60
   },
   "enemies/bomb-walk-a": {
     "anchor": [
-      31.168,
-      120.508
+      29.803,
+      84.803
     ],
     "for": "drawEnemy bomb walk-a",
-    "h": 122,
+    "h": 86,
     "units": 3,
-    "w": 66
+    "w": 60
   },
   "enemies/bomb-walk-b": {
     "anchor": [
-      34.254,
-      120.753
+      29.115,
+      84.804
     ],
     "for": "drawEnemy bomb walk-b",
-    "h": 122,
+    "h": 86,
     "units": 3,
-    "w": 69
+    "w": 60
   },
   "enemies/brigadeghoul-attack-a": {
     "anchor": [
@@ -301,123 +301,123 @@
   },
   "enemies/ghoul-attack-a": {
     "anchor": [
-      32.594,
-      107.821
+      44.085,
+      105.748
     ],
     "for": "drawEnemy ghoul attack-a",
-    "h": 110,
+    "h": 107,
     "units": 3,
-    "w": 64
+    "w": 94
   },
   "enemies/ghoul-attack-b": {
     "anchor": [
-      23.547,
-      101.814
+      37.087,
+      94.749
     ],
     "for": "drawEnemy ghoul attack-b",
-    "h": 104,
+    "h": 96,
     "units": 3,
-    "w": 91
+    "w": 106
   },
   "enemies/ghoul-hit": {
     "anchor": [
-      28.943,
-      105.054
+      27.659,
+      91.75
     ],
     "for": "drawEnemy ghoul hit",
-    "h": 107,
+    "h": 93,
     "units": 3,
-    "w": 60
+    "w": 75
   },
   "enemies/ghoul-idle": {
     "anchor": [
-      19.872,
-      109.812
+      31.828,
+      96.749
     ],
     "for": "drawEnemy ghoul idle",
-    "h": 112,
+    "h": 98,
     "units": 3,
-    "w": 48
+    "w": 78
   },
   "enemies/ghoul-walk-a": {
     "anchor": [
-      27.584,
-      109.052
+      36.75,
+      95.749
     ],
     "for": "drawEnemy ghoul walk-a",
-    "h": 111,
+    "h": 97,
     "units": 3,
-    "w": 63
+    "w": 76
   },
   "enemies/ghoul-walk-b": {
     "anchor": [
-      31.643,
-      108.815
+      44.039,
+      95.749
     ],
     "for": "drawEnemy ghoul walk-b",
-    "h": 111,
+    "h": 97,
     "units": 3,
-    "w": 68
+    "w": 80
   },
   "enemies/howl-attack-a": {
     "anchor": [
-      38.362,
-      132.684
+      31.085,
+      155.671
     ],
     "for": "drawEnemy howl attack-a",
-    "h": 134,
+    "h": 157,
     "units": 3,
     "w": 71
   },
   "enemies/howl-attack-b": {
     "anchor": [
-      54.51,
-      133.684
+      37.257,
+      135.671
     ],
     "for": "drawEnemy howl attack-b",
-    "h": 135,
+    "h": 137,
     "units": 3,
-    "w": 96
+    "w": 120
   },
   "enemies/howl-hit": {
     "anchor": [
-      43.848,
-      134.368
+      41.675,
+      120.672
     ],
     "for": "drawEnemy howl hit",
-    "h": 136,
+    "h": 122,
     "units": 3,
-    "w": 72
+    "w": 105
   },
   "enemies/howl-idle": {
     "anchor": [
-      27.358,
-      133.368
+      26.052,
+      150.671
     ],
     "for": "drawEnemy howl idle",
-    "h": 135,
+    "h": 152,
     "units": 3,
-    "w": 49
+    "w": 91
   },
   "enemies/howl-walk-a": {
     "anchor": [
-      39.5,
-      131.37
+      33.529,
+      148.672
     ],
     "for": "drawEnemy howl walk-a",
-    "h": 133,
+    "h": 150,
     "units": 3,
-    "w": 79
+    "w": 94
   },
   "enemies/howl-walk-b": {
     "anchor": [
-      41.0,
-      132.683
+      29.624,
+      150.67
     ],
     "for": "drawEnemy howl walk-b",
-    "h": 134,
+    "h": 152,
     "units": 3,
-    "w": 82
+    "w": 93
   },
   "enemies/kabel-attack-a": {
     "anchor": [
@@ -577,63 +577,63 @@
   },
   "enemies/raser-attack-a": {
     "anchor": [
-      45.02,
-      90.406
+      70.409,
+      70.728
     ],
     "for": "drawEnemy raser attack-a",
-    "h": 92,
+    "h": 72,
     "units": 3,
-    "w": 85
+    "w": 116
   },
   "enemies/raser-attack-b": {
     "anchor": [
-      40.215,
-      89.405
+      68.148,
+      58.729
     ],
     "for": "drawEnemy raser attack-b",
-    "h": 91,
+    "h": 60,
     "units": 3,
-    "w": 114
+    "w": 129
   },
   "enemies/raser-hit": {
     "anchor": [
-      50.498,
-      103.401
+      70.59,
+      61.725
     ],
     "for": "drawEnemy raser hit",
-    "h": 105,
+    "h": 63,
     "units": 3,
-    "w": 84
+    "w": 120
   },
   "enemies/raser-idle": {
     "anchor": [
-      39.94,
-      108.702
+      68.282,
+      54.727
     ],
     "for": "drawEnemy raser idle",
-    "h": 110,
+    "h": 56,
     "units": 3,
-    "w": 76
+    "w": 130
   },
   "enemies/raser-walk-a": {
     "anchor": [
-      51.243,
-      109.406
+      70.864,
+      54.729
     ],
     "for": "drawEnemy raser walk-a",
-    "h": 111,
+    "h": 56,
     "units": 3,
-    "w": 93
+    "w": 129
   },
   "enemies/raser-walk-b": {
     "anchor": [
-      44.5,
-      109.703
+      69.645,
+      54.729
     ],
     "for": "drawEnemy raser walk-b",
-    "h": 111,
+    "h": 56,
     "units": 3,
-    "w": 89
+    "w": 129
   },
   "enemies/rat-attack-a": {
     "anchor": [
@@ -827,99 +827,99 @@
   },
   "enemies/spitter-attack-a": {
     "anchor": [
-      57.738,
-      122.468
+      44.051,
+      89.746
     ],
     "for": "drawEnemy spitter attack-a",
-    "h": 124,
+    "h": 91,
     "pivots": {
       "mouth": [
-        63.718,
-        14.024
+        90.679,
+        5.831
       ]
     },
     "units": 3,
-    "w": 99
+    "w": 95
   },
   "enemies/spitter-attack-b": {
     "anchor": [
-      55.142,
-      114.467
+      47.884,
+      72.746
     ],
     "for": "drawEnemy spitter attack-b",
-    "h": 116,
+    "h": 74,
     "pivots": {
       "mouth": [
-        111.679,
-        18.579
+        110.226,
+        12.915
       ]
     },
     "units": 3,
-    "w": 118
+    "w": 113
   },
   "enemies/spitter-hit": {
     "anchor": [
-      58.043,
-      121.466
+      43.583,
+      80.748
     ],
     "for": "drawEnemy spitter hit",
-    "h": 123,
+    "h": 82,
     "pivots": {
       "mouth": [
-        32.601,
-        12.219
+        94.984,
+        25.984
       ]
     },
     "units": 3,
-    "w": 96
+    "w": 98
   },
   "enemies/spitter-idle": {
     "anchor": [
-      36.399,
-      120.468
+      36.412,
+      72.746
     ],
     "for": "drawEnemy spitter idle",
-    "h": 122,
+    "h": 74,
     "pivots": {
       "mouth": [
-        65.144,
-        19.625
+        97.715,
+        12.915
       ]
     },
     "units": 3,
-    "w": 72
+    "w": 101
   },
   "enemies/spitter-walk-a": {
     "anchor": [
-      46.459,
-      121.465
+      41.364,
+      74.745
     ],
     "for": "drawEnemy spitter walk-a",
-    "h": 123,
+    "h": 76,
     "pivots": {
       "mouth": [
-        72.82,
-        20.007
+        101.206,
+        14.269
       ]
     },
     "units": 3,
-    "w": 87
+    "w": 104
   },
   "enemies/spitter-walk-b": {
     "anchor": [
-      44.266,
-      120.468
+      43.158,
+      74.745
     ],
     "for": "drawEnemy spitter walk-b",
-    "h": 122,
+    "h": 76,
     "pivots": {
       "mouth": [
-        64.901,
-        20.157
+        101.206,
+        14.524
       ]
     },
     "units": 3,
-    "w": 88
+    "w": 104
   },
   "enemies/uhr-attack-a": {
     "anchor": [

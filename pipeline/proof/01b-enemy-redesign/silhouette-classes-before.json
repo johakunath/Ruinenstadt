@@ -1,0 +1,66 @@
+{
+  "enemies/bass-idle": {
+    "height_class": "tall",
+    "outline_family": "speaker-column"
+  },
+  "enemies/bomb-idle": {
+    "height_class": "medium",
+    "outline_family": "upright-humanoid"
+  },
+  "enemies/brigadeghoul-idle": {
+    "height_class": "medium",
+    "outline_family": "hunched-humanoid"
+  },
+  "enemies/brute-idle": {
+    "height_class": "tall",
+    "outline_family": "bulky-humanoid"
+  },
+  "enemies/crow-idle": {
+    "height_class": "low",
+    "outline_family": "wings"
+  },
+  "enemies/ghoul-idle": {
+    "height_class": "medium",
+    "outline_family": "bent-humanoid"
+  },
+  "enemies/howl-idle": {
+    "height_class": "medium",
+    "outline_family": "upright-humanoid"
+  },
+  "enemies/kabel-idle": {
+    "height_class": "medium",
+    "outline_family": "upright-humanoid"
+  },
+  "enemies/kern-idle": {
+    "height_class": "medium",
+    "outline_family": "bulb-head"
+  },
+  "enemies/raser-idle": {
+    "height_class": "medium",
+    "outline_family": "hunched-humanoid"
+  },
+  "enemies/rat-idle": {
+    "height_class": "low",
+    "outline_family": "horizontal-rodent"
+  },
+  "enemies/schrottkoloss-idle": {
+    "height_class": "giant",
+    "outline_family": "heavy-golem"
+  },
+  "enemies/shield-idle": {
+    "height_class": "medium",
+    "outline_family": "bent-humanoid"
+  },
+  "enemies/spitter-idle": {
+    "height_class": "medium",
+    "outline_family": "hunched-humanoid"
+  },
+  "enemies/uhr-idle": {
+    "height_class": "medium",
+    "outline_family": "clock-robot"
+  },
+  "enemies/wurz-idle": {
+    "height_class": "tall",
+    "outline_family": "root-fan"
+  }
+}

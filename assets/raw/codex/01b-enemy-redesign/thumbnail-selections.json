@@ -1,0 +1,277 @@
+{
+  "enemies/bomb-variant-01": {
+    "alpha_threshold": 16,
+    "crop": [
+      480,
+      570,
+      540,
+      614
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/bomb-variant-02": {
+    "alpha_threshold": 16,
+    "crop": [
+      685,
+      568,
+      760,
+      614
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/bomb-variant-03": {
+    "alpha_threshold": 16,
+    "crop": [
+      910,
+      573,
+      984,
+      614
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/bomb-variant-04": {
+    "alpha_threshold": 16,
+    "crop": [
+      1150,
+      566,
+      1220,
+      614
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/bomb-variant-05": {
+    "alpha_threshold": 16,
+    "crop": [
+      1380,
+      570,
+      1440,
+      614
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/ghoul-variant-01": {
+    "alpha_threshold": 16,
+    "crop": [
+      480,
+      170,
+      540,
+      221
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/ghoul-variant-02": {
+    "alpha_threshold": 16,
+    "crop": [
+      675,
+      180,
+      755,
+      221
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/ghoul-variant-03": {
+    "alpha_threshold": 16,
+    "crop": [
+      900,
+      170,
+      980,
+      221
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/ghoul-variant-04": {
+    "alpha_threshold": 16,
+    "crop": [
+      1105,
+      169,
+      1195,
+      221
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/ghoul-variant-05": {
+    "alpha_threshold": 16,
+    "crop": [
+      1350,
+      169,
+      1465,
+      221
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/howl-variant-01": {
+    "alpha_threshold": 16,
+    "crop": [
+      505,
+      742,
+      558,
+      820
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/howl-variant-02": {
+    "alpha_threshold": 16,
+    "crop": [
+      730,
+      743,
+      780,
+      820
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/howl-variant-03": {
+    "alpha_threshold": 16,
+    "crop": [
+      945,
+      743,
+      1018,
+      820
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/howl-variant-04": {
+    "alpha_threshold": 16,
+    "crop": [
+      1186,
+      747,
+      1238,
+      815
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/howl-variant-05": {
+    "alpha_threshold": 16,
+    "crop": [
+      1402,
+      744,
+      1475,
+      820
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/raser-variant-01": {
+    "alpha_threshold": 16,
+    "crop": [
+      472,
+      966,
+      580,
+      1015
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/raser-variant-02": {
+    "alpha_threshold": 16,
+    "crop": [
+      699,
+      965,
+      776,
+      1015
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/raser-variant-03": {
+    "alpha_threshold": 16,
+    "crop": [
+      910,
+      962,
+      1004,
+      1015
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/raser-variant-04": {
+    "alpha_threshold": 16,
+    "crop": [
+      1127,
+      958,
+      1204,
+      1015
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/raser-variant-05": {
+    "alpha_threshold": 16,
+    "crop": [
+      1340,
+      969,
+      1468,
+      1015
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/spitter-variant-01": {
+    "alpha_threshold": 16,
+    "crop": [
+      480,
+      375,
+      545,
+      416
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/spitter-variant-02": {
+    "alpha_threshold": 16,
+    "crop": [
+      685,
+      366,
+      765,
+      416
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/spitter-variant-03": {
+    "alpha_threshold": 16,
+    "crop": [
+      905,
+      365,
+      984,
+      416
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/spitter-variant-04": {
+    "alpha_threshold": 16,
+    "crop": [
+      1120,
+      368,
+      1210,
+      416
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  },
+  "enemies/spitter-variant-05": {
+    "alpha_threshold": 16,
+    "crop": [
+      1378,
+      365,
+      1440,
+      415
+    ],
+    "luminance_threshold": 50,
+    "source": "style-canvas-koepenick.png"
+  }
+}
