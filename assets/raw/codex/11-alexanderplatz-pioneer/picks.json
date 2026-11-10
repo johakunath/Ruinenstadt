@@ -1,0 +1,53 @@
+{
+  "buildings/gdr-banner-blue": {
+    "alpha_threshold": 128,
+    "anchor": [
+      263.0,
+      1009
+    ],
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ],
+    "for": "drawGdrDecorations gdr-banner-blue",
+    "height": 100,
+    "reason": "User-requested Pioneer blue/yellow with explicit hammer-and-sickle identity",
+    "source": "roof-overlays.png"
+  },
+  "buildings/gdr-banner-red": {
+    "alpha_threshold": 128,
+    "anchor": [
+      749.0,
+      1013
+    ],
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "for": "drawGdrDecorations gdr-banner-red",
+    "height": 100,
+    "reason": "User-requested Pioneer blue/yellow with explicit hammer-and-sickle identity",
+    "source": "roof-overlays.png"
+  },
+  "buildings/gdr-mural-pioneer": {
+    "alpha_threshold": 128,
+    "anchor": [
+      1279.5,
+      1007
+    ],
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "for": "drawGdrDecorations gdr-mural-pioneer",
+    "height": 80,
+    "reason": "User-requested Pioneer blue/yellow with explicit hammer-and-sickle identity",
+    "source": "roof-overlays.png"
+  }
+}
