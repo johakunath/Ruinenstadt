@@ -1,0 +1,107 @@
+$ python3 -m unittest discover -s tools -p test_*.py
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.291s
+
+OK
+enemies/test: 71x122, anchor [35.5, 117.571]
+enemies/test: 71x122, anchor [35.5, 117.571]
+enemies/test: 71x122, anchor [35.5, 117.571]
+enemies/test: 71x122, anchor [35.5, 117.571]
+enemies/test: 71x122, anchor [35.5, 117.571]
+
+$ node tools/test_enemies.mjs
+✔ every selected enemy family has six authored, anchored, cached frames (6.038637ms)
+✔ pose selection follows hit, contact, movement and attack timers for every family (3.871228ms)
+✔ mouth anchors are explicit for ranged frames and do not move combat positions (1.492892ms)
+✔ elite radius scales painted bodies from each family base radius (2.217204ms)
+✔ spit originates visually at the mouth while legacy projectile collision coordinates stay fixed (1.54391ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22.960209
+
+$ node tools/test_gdr_geometry.mjs
+✔ constructors and authored references agree; only GDR ghouls grow (12.924652ms)
+✔ larger enemies retain HP, damage, ghoul speed and exact constructor random draws (20.713886ms)
+✔ normal and elite spawn probes enclose enlarged radii without changing other types (16.570907ms)
+✔ clock shield origin, vertical offset, panel and open drop scale with body, including elites; boss stays unchanged (4.96931ms)
+✔ painted and fallback feet use the selected ground offset; Brigade fallback keeps worker height (4.81171ms)
+✔ muzzle anchors share the optional ground offset and retain the default for other families (1.959393ms)
+✔ actual contact attack starts at enlarged base and elite rings and keeps its damage and cooldown (2.442827ms)
+✔ actual wall resolution and crowd separation account for enlarged base and elite radii (3.374597ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 75.61557
+
+$ node tools/test_gdr_shadows.mjs
+✔ GDR cache separates frames, light projection and face while reusing across position and elite scale (5.765617ms)
+✔ projected canvases enclose every source corner with two pixels of padding and expose world bounds (2.280223ms)
+✔ other enemies retain the existing silhouette cache and affine rendering path (0.914871ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 23.092157
+
+$ node tools/test_gdr_buildings.mjs
+✔ any missing required kit image leaves no partial paint or shared cache, then retries (14.474688ms)
+✔ three cropped repeating textures are shared across sizes, rotations, scaling and replacement maps (22.285193ms)
+✔ painted face corners exactly match true P3 footprint and scaled height at supported rotations (81.63634ms)
+✔ unsupported anchors opt out before image requests or paint (33.40416ms)
+✔ kit and decor enforce their own minimum supported width before loading images (3.01748ms)
+✔ missing decor retains all three painted kit faces, ivy and plaster without partial banners (6.555699ms)
+✔ missing kit preserves complete legacy faces and available decor (8.888969ms)
+✔ missing decor leaves full legacy canvas fallback and no painted overlay (5.539552ms)
+✔ other districts request no GDR images and draw exactly the untagged legacy box (26.276886ms)
+✔ decor image rectangles remain entirely within their south or east face (44.148872ms)
+✔ narrow vertical Zucker blocks retain exact kit faces and bounded ivy/plaster at scaled rotations (113.138911ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 370.568596
+
+$ node tools/test_sprites.mjs
+✔ manifest loads once; images load once on demand; missing and failed images return null (2.673809ms)
+✔ network, HTTP and invalid JSON failures leave fallback available (3.469024ms)
+✔ generic poses follow contact, walk, stun and hit timers with variant and missing-pose fallback (1.904219ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13.662366
+
+$ node tools/test_hero.mjs
+✔ all outfits share mannequin joints and provide complete layered limbs (2.160183ms)
+✔ weapon axes derive from explicit manifest pivots and point forwards (0.498361ms)
+✔ missing glove or boot returns fallback before painting a partial rig (5.079101ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16.96321
+
+$ python3 tools/sprites.py --check
+Checked 235 sprite(s).

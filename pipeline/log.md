@@ -317,3 +317,60 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   after Codex completed a clean review of exact head
   `26220ace5cd788ecd51d04ea25279c2fda1fc873`. No review threads or status/check
   runs remained. This paused branch is synchronized with that release.
+
+
+## 2026-11-10 · Codex · task 11 complete, v0.69, PR #27
+
+- Johannes resumed the paused branch and explicitly requested completion,
+  review and merge of PR #27. Reused the approved weathered Pioneer board
+  and saved facade/roof studies. Eight normalized paintings: south/east
+  facades, roof, ivy, damaged plaster, blue/red hammer-and-sickle banners and
+  mural. Tightened overlay alpha selection to remove source haze without
+  repainting the approved designs; explicit crops/reasons remain in recipes.
+- Completed one exact-footprint current/A/B proof at default/2x and rotations
+  0/+0.6/-0.6. B is honestly labelled the same approved kit precomposed at
+  3 px/unit, not an independent full-building illustration. No fourth blind
+  generation or anchor distortion was used. Rejected paintings remain raw
+  unselected studies. Removed superseded scratch-path/mirrored-B scripts.
+- After seeing concrete proof, Johannes selected “Apply A to the GDR blocks”.
+  All existing GDR Zucker constructors now tag the painted kit/decorations.
+  Three shared repeating face textures fit existing P3/withRot geometry and
+  variable footprints, including narrow blocks. Existing collision, heights,
+  sorting, culling, fades and RNG remain unchanged. The east source carries
+  its own shading. Unsupported roof/light geometry retains complete fallback.
+  Decor renders on both painted blocks and legacy fallback; a missing decor
+  image keeps the underlying building art rather than painting a partial set.
+- Validation: 6 Python + 33 JS tests, 235-entry manifest/alpha/size checks,
+  eight images reproduced byte-for-byte, selectors idempotent. Final browser:
+  eighteen current/A/B captures, actual runtime/default+2x and standalone
+  decoration views, real collide(P) resolution plus tangent walks on both
+  wall faces at all rotations, two fresh required-image HTTP404 fallbacks,
+  fresh offline v0.69 play with all 8/8 GDR files cached/decoded, no unexpected
+  page/image errors. All 41 recorded runtime/tool source hashes match.
+- Fixed proof determinism by initializing audio before the world seed (its
+  noise buffers consume random draws). Final seed20261110 generates one
+  tagged/eligible/painted/decorated Zucker, verified at both zooms; semantic
+  tests cover additional dimensions. An earlier seed's pre-existing edge lot
+  extends beyond WS4000; choose an interior building for real wall walks
+  rather than bypassing map clamps. No game map/collision change was needed.
+- Final seven-pair isolated full-render A/B vs exact merged v0.68:
+
+  | District | Before ms | After ms | Change |
+  |---|---:|---:|---:|
+  | Köpenick | 54.7 | 55.3 | +1.10% |
+  | Alexanderplatz | 40.9 | 41.4 | +1.22% |
+  | Mitte | 49.7 | 49.1 | -1.21% |
+
+  Seeded maps/walls/camera/player and 40 enemy positions/radii match exactly.
+  All pass the enforced <=5% budget. Runtime textures total 4,481,288 bytes
+  (4.27 MiB), including shared canvases; dev-only B brings proof to6.53MiB.
+  Separate fixture diagnostic: current23.1ms, A24.1ms, fixedB22.4ms. Desktop
+  timings do not establish tablet heat/battery behavior. Evidence/commands:
+  `pipeline/proof/11-alexanderplatz-pioneer/README.md` and `final/`.
+- High-reasoning internal review is clean. Its one proof-provenance finding
+  was fixed before the final run: stale visual hashes now reject combining
+  changed sources with performance evidence. Publish final code, request a
+  fresh configured Codex review and merge only that completed reviewed head.
+- Task 02 step0 is complete with A selected for GDR. Its Köpenick production
+  assets and task08 landmarks/street-prop follow-ups remain separate work;
+  this PR does not claim to finish all biome art.
