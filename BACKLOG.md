@@ -53,6 +53,7 @@ Focus: gameplay and content. Art runs in parallel through Codex (`pipeline/workf
 | 15 | More ruins | Playtest 3 wish: more buildings should look like ruins (not all), more realistic, the city should feel empty and only somewhat recognizable. Do it whenever world and building assets are redone (Codex pipeline) |
 | 12 | Style proposals | From `docs/style-bible.md`, undecided: Spreepark (own district between Köpenick and Xhain, see #3), zombie raptor and T-rex, U-Bahn market set piece, lamp gun, per-district palettes in code (mockup first). Alexanderplatz done in v0.49 |
 | 14 | Story backdrop | Light story artefacts instead of dialogue: tapes, notes, history plaques to find per district (the GDR that survived, the fall). Johannes may write them later. No dialogue trees |
+| 23 | Controller hints in the game screen | Not an options screen: small on-screen help for the buttons that are not obvious (A sprint, X attack, Y skill, B Molotow, RB Verband), shown in the game view while a gamepad is used, hidden otherwise. Mockup first. Menu focus navigation is deliberately out of scope (touch and mouse work on all devices) |
 | - | GitHub Pages | When playtesting outside the dev setup |
 
 ## Ideas by theme

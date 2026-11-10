@@ -7,6 +7,24 @@ Style: item icons as in `docs/chatgpt-assets.md` (brighter, more saturated,
 128 px WebP, teal keyed out by `tools/cut_sheets.py`), player parts as in
 `pipeline/tasks/07-player-rig-v2.md`.
 
+## Looks must match (Johannes, 2026-11-10)
+
+The current SVG fallbacks reuse existing shapes and look generic. Painted art
+has to make each set read as one set when worn together and in the Kodex row:
+
+| Set | Shared design language across all 5 pieces (weapon, body, talisman + the new ones) |
+|---|---|
+| Kiezwache | blue-grey patrol gear, reflective tape, white stencil lettering, worn police look |
+| Spreegeist | wet teal and green, river mud, pebbles, reeds, pale glow |
+| Zitadelle | riveted dark iron, chain mail, red and gold heraldic accents |
+
+Method: first a style canvas per set with all 5 pieces side by side (the
+existing pieces I44 Abzeichen, I46 Wappen, I48 Morgenstern, I39 Kiesel, I40 and
+the Kettenhemd icon are the reference, repaint them if they do not fit), then the
+new pieces from that canvas. The 4 legendaries need a distinct gold/ember rim
+and must not look like a set. Check at 56 px in the inventory grid and on the
+paper doll. Worn looks (part B) follow the same palette.
+
 ## A. Menu icons (10), map in `ICOI` (`js/items.js`), file `assets/icons/<id>.webp`
 
 | Base key | Name | Look |
