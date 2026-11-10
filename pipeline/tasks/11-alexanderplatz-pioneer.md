@@ -1,6 +1,6 @@
 # 11 Alexanderplatz Pioneer identity and buildings
 
-Status: next (Johannes explicitly prioritized this on 2026-11-10)
+Status: in progress (Codex, 2026-11-10; user-prioritized building proof and independent GDR identity assets)
 
 Johannes asked to regenerate the critical logo-bearing GDR enemies, then
 continue with buildings and assets for that biome. This priority supersedes

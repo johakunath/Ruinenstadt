@@ -257,3 +257,5 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   decision is still open. Continue independent GDR banners/crests/landmarks
   while it is reviewed. Earlier non-GDR prop studies remain local generated
   drafts and are not integrated into this enemy release.
+
+- Task 01b completion is ready PR #24, candidate `12415b7f2762bf12815f489e159c1f516a0f6f89`, final validation above complete. Codex review is pending; branch stays unchanged. New independent task 11 claimed on `codex/11-alexanderplatz-pioneer` while that review runs.
