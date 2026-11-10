@@ -490,3 +490,13 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   comparison 6/6 zero-difference at scale 2.5; quick visual proof and
   perf-only harness run without page errors (verdict software-raster).
 - Open for Johannes: run the gate once on the Windows PC (about 10 min).
+
+## 2026-11-11 · Claude · task 02 performance gate run (Windows GPU)
+
+| District | Off ms | On ms | Paired median | 95% CI | Verdict |
+|---|---|---|---|---|---|
+| Köpenick | 2.170 | 2.052 | -6.51% | -8.22% … -2.26% | pass |
+| Alexanderplatz (null control) | 2.955 | 2.939 | -0.74% | -4.73% … 1.30% | pass |
+
+- GPU: ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11), hardware raster. 1280×800 @ DPR 2, 21 pairs, commit 0dc5f4b, Windows 11, power mode "Höchstleistung", headless Chrome via Playwright 1.65.0. Raw data: `perf/perf-2026-11-10T23-39-22-523Z.json`.
+- Verdict: **pass**. First and only run, nothing discarded; no levers needed. Draft PR #30 can go to review; not merged.
