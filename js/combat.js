@@ -142,7 +142,7 @@ function drawNpc(n,t){const fx=n.x,fy=n.y+9;ctx.fillStyle='rgba(0,0,0,.45)';ctx.
   ctx.fillStyle='#120c09';ctx.fillRect(5,-41,1.7,2);ctx.fillStyle='#6b4a30';ctx.beginPath();ctx.ellipse(1,-45,11,3,0,0,7);ctx.fill();rr(ctx,-5,-53,12,9,3);
   ctx.strokeStyle='#24201c';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(8,-28);ctx.lineTo(10,-22);ctx.stroke();ctx.fillStyle='#f7d98a';ctx.fillRect(8,-22+Math.sin(t*.004)*1.5,5,7);ctx.restore();
   ctx.font='600 13px "Barlow Condensed",sans-serif';ctx.textAlign='center';ctx.fillStyle='#8fd16a';ctx.fillText('Händler',fx,fy-74);}
-function useCons(k,at){tip('cons','Verbände und Molotows stellst du im Lager unter Handwerk her.');if(state!=='play'||!(S.cons[k]>0))return;S.cons[k]--;if(run&&run.tl)run.tl.cu++;save();
+function useCons(k,at){tip('cons','Verbände und Molotows stellt Dr. Ahmet im Lazarett im Lager her.');if(state!=='play'||!(S.cons[k]>0))return;S.cons[k]--;if(run&&run.tl)run.tl.cu++;save();
   if(k==='verband'){P.hot=3;sfx('heal');burst(P.x,P.y-14,'#8fd16a',14,90);}
   else{const tg=at||nearest(320);let x1,y1;if(tg){x1=tg.x;y1=tg.y;}else{x1=P.x+Math.cos(P.face)*150;y1=P.y+Math.sin(P.face)*150;}mols.push({x0:P.x,y0:P.y-20,x1,y1,t:0,dur:.42});sfx('swing');}}
 $('c1').addEventListener('pointerdown',e=>{e.preventDefault();useCons('verband');});

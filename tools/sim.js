@@ -54,9 +54,9 @@ SIM.equip=function(){let ch=true,n=0;while(ch&&n++<20){ch=false;for(let i=0;i<S.
 SIM.tidy=function(){SIM.equip();S.bag.sort((x,y)=>((y.set?3:y.r)-(x.set?3:x.r))||(y.ilvl-x.ilvl));while(S.bag.length>BAG-6){const it=S.bag.pop();S.scrap+=scrapVal(it);}};
 SIM.camp=function(){SIM.equip();
   for(const it of S.bag.splice(0))S.scrap+=scrapVal(it);
-  for(const c of CONS)while((S.cons[c.k]||0)<3&&S.scrap>=c.p*3){S.scrap-=c.p;S.cons[c.k]=(S.cons[c.k]||0)+1;}
-  let buy=true;while(buy){buy=false;const u=UPG.filter(u=>S.upg[u.k]<u.max).sort((a,b)=>upCost(a)-upCost(b))[0];if(u&&S.scrap>=upCost(u)){S.scrap-=upCost(u);S.upg[u.k]++;buy=true;}
-    else{const c=CAMP.find(c=>!S.camp[c.k]&&S.scrap>=c.p);if(c){S.scrap-=c.p;S.camp[c.k]=1;buy=true;}}}
+  if(campOpen())for(const c of CONS)while((S.cons[c.k]||0)<3&&S.scrap>=c.p*3){S.scrap-=c.p;S.cons[c.k]=(S.cons[c.k]||0)+1;}
+  let buy=true;while(buy){buy=false;const u=UPG.filter(u=>campOpen()&&S.upg[u.k]<upMax(u)).sort((a,b)=>upCost(a)-upCost(b))[0];if(u&&S.scrap>=upCost(u)){S.scrap-=upCost(u);S.upg[u.k]++;buy=true;}
+    else{const c=CST.find(c=>{const n=cNext(c);return n&&n.ok;});if(c){cBuy(c);buy=true;}}}
   const w=S.eq.w;for(const m of MODS){if(modSlots(w)<=(w.mods||[]).length)break;if((w.mods||[]).includes(m.k))continue;if(Object.entries(m.c).every(([k,v])=>(S.mat[k]||0)>=v)&&S.scrap>=m.p){for(const[k,v]of Object.entries(m.c))S.mat[k]-=v;S.scrap-=m.p;w.mods=(w.mods||[]).concat(m.k);}}
   for(const j of S.jobs)if(j.p>=j.t){S.scrap+=j.sc;}S.jobs=S.jobs.filter(j=>j.p<j.t);fillJobs();refresh();};
 SIM.campaign=function(n,opt){opt=opt||{};const out=[];let fails=0;for(let i=0;i<n;i++){let di=S.unlocked-1;const tun=lineOpen(di)&&!lineFree(di);if(fails>=3&&!tun){di=Math.max(0,di-1);fails=0;}

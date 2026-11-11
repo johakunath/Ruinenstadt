@@ -2,7 +2,7 @@
 const keys={};let atkHeld=false,dashReq=false,skillReq=false;const joy={id:null,ox:0,oy:0,x:0,y:0};let rightId=null;
 addEventListener('keydown',e=>{keys[e.code]=true;document.body.classList.remove('pad');if(e.code==='Space'){atkHeld=true;e.preventDefault();}if(e.code==='ShiftLeft'||e.code==='ShiftRight')dashReq=true;if(e.code==='KeyE'){if(manA!=null)aimA=manA;skillReq=true;}if(state==='play'&&!e.repeat){if(e.code==='KeyQ'||e.code==='Digit1')useCons('verband');if(e.code==='KeyF'||e.code==='Digit2')useCons('molotow',manTgt());}
   if(e.code==='Escape'&&!$('optv').hidden){closeOpts();return;}
-  if(e.code==='Escape'||e.code==='KeyP'){if(state==='play')pauseGame();else if(state==='paused')resume();else if(state==='base')baseMenu('bag');else if(state==='baseinv')$('invbox').querySelector('[data-a=close]').click();}
+  if(e.code==='Escape'||e.code==='KeyP'){if(state==='play')pauseGame();else if(state==='paused')resume();else if(state==='base')baseMenu('bag');else if(state==='stn')closeStn();else if(state==='baseinv')$('invbox').querySelector('[data-a=close]').click();}
   // v0.57 menu keys: Tab or I inventory, M map, J jobs, B blessings, K Kodex. The same key again closes
   const KT={Tab:'bag',KeyI:'bag',KeyM:'map',KeyJ:'jobs',KeyB:'segen',KeyK:'kodex'}[e.code];if(KT&&!$('optv').hidden){e.preventDefault();return;}// options window open: menu keys do nothing
   if(KT){e.preventDefault();
@@ -71,6 +71,7 @@ addEventListener('pointerdown',armBack,true);
 addEventListener('popstate',()=>{
   if(!$('optv').hidden){closeOpts();return armBack();}
   if(state==='play'){pauseGame();return armBack();}
+  if(state==='stn'){closeStn();return armBack();}
   if(state==='base'){leaveBase();return armBack();}
   if(!$('inv').hidden){const b=document.querySelector('#inv [data-a=close]');if(b)b.click();return armBack();}
   if(state!=='menu'||!$('trade').hidden||!$('perk').hidden||!$('end').hidden)return armBack();

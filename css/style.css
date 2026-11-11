@@ -319,3 +319,15 @@ body.tab #fsb{top:calc(env(safe-area-inset-top,0px) + 82px);right:calc(max(24px,
 .gowarn{margin:0;color:#e0b84a}
 .cell,.slot .ic{position:relative}.wcb{position:absolute;left:2px;bottom:2px;display:flex;padding:1px;border-radius:3px;background:rgba(18,13,10,.75);pointer-events:none}
 #skill{line-height:1.05;text-align:center;overflow-wrap:anywhere;hyphens:auto;padding:4px}
+/* v0.83 station window (variant A): compact, the camp stays visible behind it */
+.ov.stn{background:rgba(14,10,7,.55)}#stnbox{max-width:620px;border:1px solid var(--ember);background:var(--panel);border-radius:6px;padding:14px 16px;display:grid;gap:8px}
+.sthead{display:flex;gap:12px;align-items:center}.sthead>div{flex:1}.sthead h2{margin:0;font:30px/1.05 var(--f-display);color:var(--ember)}.stpic{width:64px;height:64px;border-radius:50%;object-fit:cover;background:#2a211b;border:2px solid var(--edge);flex:none}
+.stlv{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--dim)}.stp{display:inline-flex;gap:4px}.stp i{width:30px;height:7px;border-radius:2px;background:#3a2c22}.stp i.f{background:var(--ember)}.stx{align-self:flex-start}
+.stnow{color:var(--dim)}.stbody{gap:8px}.stnx{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 10px;border:1px dashed var(--edge);border-radius:4px}.pips i.x{opacity:.25;border-style:dashed}
+@media (min-width:900px){#stnbox .stbody{grid-template-columns:1fr}}
+/* v0.83 station window (variant A): compact, the camp stays visible behind it */
+.ov.stn{background:rgba(14,10,7,.55)}#stnbox{max-width:620px;border:1px solid var(--ember);background:var(--panel);border-radius:6px;padding:14px 16px;display:grid;gap:8px}
+.sthead{display:flex;gap:12px;align-items:center}.sthead>div{flex:1}.sthead h2{margin:0;font:30px/1.05 var(--f-display);color:var(--ember)}.stpic{width:64px;height:64px;border-radius:50%;object-fit:cover;background:#2a211b;border:2px solid var(--edge);flex:none}
+.stlv{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--dim)}.stp{display:inline-flex;gap:4px}.stp i{width:30px;height:7px;border-radius:2px;background:#3a2c22}.stp i.f{background:var(--ember)}.stx{align-self:flex-start}
+.stnow{color:var(--dim)}.stbody{gap:8px}.stnx{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 10px;border:1px dashed var(--edge);border-radius:4px}.pips i.x{opacity:.25;border-style:dashed}
+@media (min-width:900px){#stnbox .stbody{grid-template-columns:1fr}}
