@@ -585,3 +585,11 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 | Null control | -2.51% | -4.04% to -1.17% | pass |
 
 - Earlier full candidate also passed; retain its report as history, superseded by the final allocation-cleaned/cream-variant run. Physical Tab S9 heat/battery and human feel remain open. New branch publication/review remains pending after the previously recorded automatic export rejection; no bypass was attempted.
+
+
+## 2026-11-11 · Codex · soft body shoulders and publication authorization
+
+- Johannes requested removal of the heavy black corner/rim on the top of the car body, then explicitly authorized publishing the combined branch and opening its PR. Removed the extra polygon stroke, trimmed the authored dark border through face UV sampling, and softened the rounded top contour. Footprints, wheels, source image bytes, cache dimensions and warm draw path remain unchanged.
+- Refreshed visual/default/2×, rotation, collision, missing-image, shrine and offline proof passes; 73 JS tests and prop assertions pass. Prior six Python tests remain applicable (no builder changes).
+- Johannes then clarified that full checks are unnecessary after each small cosmetic asset edit. Stopped the redundant GPU run; its completed Köpenick sample passed (-16.61%, CI -22.01 to -15.38), but no complete new gate verdict is claimed. Reuse the recorded complete integration gate (-15.42/-9.28% with a passing control); refreshed visual proof identifies the final appearance code. Documented proportionate checks in CLAUDE/workflow.
+- New publication authorization resolves the earlier export approval blocker. Publish one draft PR; no new asset merge requested.

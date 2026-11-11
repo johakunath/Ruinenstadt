@@ -47,7 +47,7 @@ node tools/proof_vehicles.cjs
 node tools/perf_assets.cjs
 ```
 
-## Final combined GPU gate
+## Combined integration GPU gate
 
 Passed on hardware RTX 4070, zero timed canvas allocations and no page errors.
 
@@ -57,7 +57,12 @@ Passed on hardware RTX 4070, zero timed canvas allocations and no page errors.
 | Alexanderplatz | -9.28% | -9.76% to -6.92% | pass |
 | Null control | -2.51% | -4.04% to -1.17% | pass |
 
-Final report: `perf/perf-2026-11-11T12-46-36-859Z.json`. All recorded runtime/image hashes match the final candidate.
+Complete integration report: `perf/perf-2026-11-11T12-46-36-859Z.json`.
+Its hashes identify the candidate before the final cosmetic shoulder/rim edit.
+The refreshed visual/offline proof covers that edit. Cache dimensions and the
+warm one-draw rendering path are unchanged; the integration GPU result is reused
+under Johannes's cosmetic-follow-up instruction. The redundant timing rerun was
+stopped at his request, after a passing Köpenick sample; no full new verdict is claimed.
 The earlier `perf-2026-11-11T08-42-27-468Z.json` also passed but predates final
 draw-allocation cleanup and the stronger cream van palette; it is retained as history.
 

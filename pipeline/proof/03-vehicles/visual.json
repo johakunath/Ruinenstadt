@@ -1,5 +1,5 @@
 {
-  "started": "2026-11-11T12:45:32.787Z",
+  "started": "2026-11-11T13:01:17.371Z",
   "sourceHashes": {
     "index.html": "14737c775694136bab11f22cee84ab582f5ae6832189b8d115ede2eff8065fe9",
     "sw.js": "de203799f946c7730953a8ee66286cca174b70119a0075f41c5ba49fd925cbbe",
@@ -34,7 +34,7 @@
     "js/sync.js": "780f3f7ab823ca65df878d7a431dbdbdb78905cb4656a1530d2562974ae20835",
     "js/ubahn.js": "cc1e3a89b921361cc15f780e51fbceb397850ef790ccaf7e595b9f8b69007395",
     "js/update.js": "f0d82ee32b87d720674950b4a0104b43157da0d3a95c96147d62b4575f2be0ba",
-    "js/vehicle-art.js": "da65b07e61d0d1b72baba009ddfaf615da7bf3fc7d09bba8ce48e9b4fdde20cd",
+    "js/vehicle-art.js": "732d5a31b0939be45fa899d6d86bcab4e87d9af8cf1570e6d88b7e33f220148e",
     "js/vfx.js": "623ef8f87d8ca82c74642af29694581db3cddee52f8069a680f2ac1d01ae8a10",
     "js/world.js": "4a745291276f93fe80eaab844a019ca9665e1e891e0d80b832cc450d8a25f92e",
     "assets/vehicles/bus-yellow-end.webp": "b7bd2fea6c5bd9cb4ac2429ba3ae7eb988e9d79a2d2770f51c68cb98438b8daa",

@@ -156,3 +156,11 @@ save from merged PR #33 (v0.76) is retained; this asset candidate is v0.77.
 Vehicle refinement, shrine aura and 60 s duration are explicitly requested.
 Building-light occlusion belongs at the top of Claude's backlog, not this
 implementation. Equipment/nature work remains open. Drafts are preserved; publication/review of the new batch remains pending.
+
+## Small cosmetic follow-ups (Johannes, 2026-11-11)
+
+Use a quick visual check for small asset appearance adjustments. Reuse existing
+regression/performance evidence when gameplay, collision, cache dimensions and
+the warm rendering path are unchanged. Do not repeat the full browser/GPU
+matrix after every cosmetic tweak. Run broader checks when the actual change
+could affect behavior, geometry correctness, memory or rendering cost.

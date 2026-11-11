@@ -59,3 +59,10 @@ P3 geometry, so no second ground-plane affine transform is applied.
 Proof covers all five kinds, both axes, eleven angles, default/2x sheets,
 seven seeded district wall comparisons, tangent walks, missing faces, offline
 play and lifecycle/overflow tests. See `pipeline/proof/03-vehicles/README.md`.
+
+### Soft shoulders (Johannes, 2026-11-11)
+
+Remove the extra black polygon rim around small-vehicle top planes. Sample
+inside the authored face border so its painted black edge does not recreate
+the same heavy belt line; the body top uses a softer rounded contour. This
+only changes scheduled cache painting, not footprint, wheels or warm draws.
