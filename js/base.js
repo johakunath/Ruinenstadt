@@ -34,14 +34,15 @@ function buildBase(keepPos){if(typeof koepResetCache==='function')koepResetCache
   // south wall of the hall with four doorways: toilets, bakery, corridor, maintenance
   for(const[x0,x1]of[[200,420],[520,830],[930,1100],[1300,1990],[2090,2200]])for(let x=x0;x<x1;x+=200)wall(x,1100,Math.min(200,x1-x),14);
   wall(700,1114,14,380);wall(200,1490,514,14);// toilets
-  wall(1086,1114,14,320);wall(714,1430,386,14);wall(1086,1430,14,270);// bakery, corridor west side
+  wall(1086,1114,14,320);wall(714,1430,386,14);wall(1086,1430,14,166);// bakery, corridor west side
   wall(1300,1114,14,186);wall(1314,1286,576,14);wall(1880,1114,14,586);// corridor east, mezzanine north, maintenance west
+  solid_({x:1086,y:1596,w:214,h:104,H:150,lights:[{x:1104,y:1655,z:95,r:150}]},drawStairs);// exit stairs built in iso into the corridor's west wall
   solid_({x:700,y:400,w:800,h:150,H:110,TH:110},drawTrain);
   for(let x=400;x<=2000;x+=400)solid_({x:x-13,y:687,w:26,h:26,H:120,lights:[{x,y:713,z:110,r:170}]},drawCol);
   const light=(x,y,r)=>blds.push({x:x-1,y,w:2,h:0,top:1,spr:cnv(2,1),lights:[{x,y,z:90,r}]});light(450,1300,190);light(900,1260,180);light(1200,1500,150);light(1600,1480,200);light(2040,1380,210);
   // dressing (deco SVGs)
   const deco=(k,x,y,sc)=>{const c=cArt('deco',k);if(c){blds.push({x:x-c.width/2,y,w:c.width,h:0,top:c.height,spr:c,sc:sc||1,lights:[]});walls.push({x:x-40*(sc||1),y:y-22,w:80*(sc||1),h:24});}};
-  deco('klo',300,1160,.75);deco('klo',580,1160,.75);deco('kiosk',2120,700,.7);deco('automat',1480,620,.5);deco('automat',1550,620,.5);deco('bank',880,630,.5);deco('bank',1720,1070,.5);deco('plakat',1500,1112,.5);deco('treppe',1200,1700,.9);
+  deco('klo',300,1160,.75);deco('klo',580,1160,.75);deco('kiosk',2120,700,.7);deco('automat',1480,620,.5);deco('automat',1550,620,.5);deco('bank',880,630,.5);deco('bank',1720,1070,.5);deco('plakat',1500,1112,.5);
   // places: [x,y,name,action]
   const place=(x,y,n,act,col)=>{BZ.push({x,y,r:62,n,act,near:false});bBoard(x,y-60,baseSign(n,col),120);marks.push({x,y,n});};
   place(1100,640,'Abfahrt · Netzplan',()=>leaveBase(),'#7dd3ff');
@@ -51,6 +52,15 @@ function buildBase(keepPos){if(typeof koepResetCache==='function')koepResetCache
     const rx=c.x+20,ry=c.y+82;BZ.push({x:rx,y:ry,r:52,n:c.n,act:()=>openStn(c.k),near:false});bBoard(c.x,c.y+4,baseSign(c.n+' · '+l+'/3','#ef9f27'),(sp?sp.height:90)+38);marks.push({x:rx,y:ry,n:c.n});}
   if(!keepPos)BZ.forEach(z=>z.near=Math.hypot(z.x-SX,z.y-SY)<z.r);else BZ.forEach(z=>z.near=P&&Math.hypot(z.x-P.x,z.y-P.y)<z.r+30);gridBuild();
   const k=192/3200;MB=cnv(Math.ceil(WS*k),Math.ceil(WH*k));MB.getContext('2d').drawImage(G,0,0,MB.width,MB.height);MB2=cnv(600,Math.ceil(WH*600/WS));MB2.getContext('2d').drawImage(G,0,0,MB2.width,MB2.height);}
+// v0.83 exit stairs: steps rise to the west (risers face east, the visible side), a lit doorway in a tall wall at the top, a sloped side wall behind
+function drawStairs(b){const N=9,sw=20,rz=6,Y0=b.y+14,Y1=b.y+b.h,X1=b.x+b.w-10,top=N*rz,t=Date.now()*.002;
+  ibox(b.x,b.y,14,b.h,0,150,'#3c4a48',INK,'#2a3332');poly([P3(b.x+14,Y1-14,top),P3(b.x+14,Y0+12,top),P3(b.x+14,Y0+12,top+74),P3(b.x+14,Y1-14,top+74)],'#cfe2b6',INK);
+  poly([P3(b.x+14,Y1-20,top+4),P3(b.x+14,Y0+18,top+4),P3(b.x+14,Y0+18,top+68),P3(b.x+14,Y1-20,top+68)],`rgba(255,255,230,${.55+.1*Math.sin(t)})`);
+  poly([P3(b.x+14,Y1-30,top+82),P3(b.x+14,Y0+28,top+82),P3(b.x+14,Y0+28,top+92),P3(b.x+14,Y1-30,top+92)],'#2f8a4a',INK);
+  poly([P3(b.x+14,Y0,0),P3(X1,Y0,0),P3(X1,Y0,44),P3(b.x+14,Y0,top+44)],'#2f3a38',INK);
+  for(let i=N-1;i>=0;i--){const x=X1-(i+1)*sw;ibox(x,Y0,sw,Y1-Y0,0,rz*(i+1),'#5f5b55',INK,'#7d786f');poly([P3(x+sw-2,Y0,rz*(i+1)),P3(x+sw,Y0,rz*(i+1)),P3(x+sw,Y1,rz*(i+1)),P3(x+sw-2,Y1,rz*(i+1))],'#c9a227');}
+  ctx.strokeStyle='#8a8f96';ctx.lineWidth=2;ctx.beginPath();let q=P3(X1,Y1-4,30);ctx.moveTo(q[0],q[1]);q=P3(b.x+14,Y1-4,top+30);ctx.lineTo(q[0],q[1]);ctx.stroke();
+  for(let i=0;i<=N;i+=3){const x=X1-i*sw,z=rz*i,a=P3(x,Y1-4,z),c=P3(x,Y1-4,z+30);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(c[0],c[1]);ctx.stroke();}}
 function solid_(b,draw){b.lights=b.lights||[];b.top=b.top||b.H;b.R0=0;b.draw=draw;blds.push(b);walls.push(b);return b;}
 function enterBase(){initAudio();immerse();run=null;buildBase();newPlayer();ST=stats();P.hp=ST.maxHp;enemies=[];drops=[];parts=[];nums=[];swings=[];eproj=[];pproj=[];npc=null;captive=null;zone=null;crate=null;trove=null;cam.x=null;
   ['menu','inv','end','perk','trade'].forEach(i=>$(i).hidden=true);document.body.classList.add('base');state='base';last=performance.now();banner('S+U Warschauer Straße');tip('base','Lauf in einen leuchtenden Ring vor einer Station, um sie zu öffnen. Der Zug bringt dich zum Netzplan.');}

@@ -25,7 +25,7 @@ Current actions are tracked below.
 | Step | Scope |
 |---|---|
 | Playtest v0.83 | Camp at S+U Warschauer Straße opens after the S3 tunnel. Are 7 stations too many to walk to? Station window readable on the phone? Do level costs fit the economy (bot buys them)? Early game without upgrades still fair? |
-| Station art | Painted props per station level (21) and NPC figures via Codex; SVG placeholders in `js/camp-art.js` until then (or keep them if they hold up, see #40) |
+| Station art | `pipeline/tasks/14-camp-stations.md`: painted props per station level (21), NPC figures and room dressing, all in the 2:1 iso view (rules in the task). SVG placeholders in `js/camp-art.js` until then; exit stairs are code-drawn iso geometry (`drawStairs`) |
 | Later | Station quests and NPC lines (#36), garden minigame in the Imbiss (#33), more rooms or a second floor |
 
 Open follow-ups from v0.82:
