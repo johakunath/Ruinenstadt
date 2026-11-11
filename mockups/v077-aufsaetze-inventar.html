@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aufsätze im Inventar</title>
+<style>
+:root{--bg:#120d0a;--panel:#1d1611;--edge:#3a2e26;--bone:#ead9c0;--dim:#a8957d;--ember:#ef9f27;--good:#8fd16a}
+body{margin:0;background:var(--bg);color:var(--bone);font:15px/1.4 "Barlow Condensed",system-ui,sans-serif;padding:16px}
+h1{font-size:26px;margin:0 0 4px;color:var(--ember)}h2{font-size:20px;margin:18px 0 6px;color:var(--ember)}p{margin:0 0 8px;color:var(--dim);max-width:900px}
+svg{width:100%;max-width:1100px;height:auto;display:block;border:1px solid var(--edge);border-radius:6px;background:#0e0a08}
+text{fill:var(--bone);font-family:"Barlow Condensed",system-ui,sans-serif}.d{fill:var(--dim)}.e{fill:var(--ember)}.g{fill:var(--good)}
+</style></head><body>
+<h1>Aufsätze und Schnellitems im Inventar (v0.77, Entscheidung offen)</h1>
+<p>Beispielwerte, keine echten Daten. Beide Varianten ersetzen den Aufsatz-Bereich im Handwerk-Tab. Handwerk behält Verbesserungen, Lagerausbau, Essen und Herstellen.</p>
+
+<h2>A · Werkbank-Knopf am Waffenplatz, Panel in der rechten Spalte</h2>
+<p>Kleiner Schraubenschlüssel am Waffenplatz. Tippen öffnet rechts statt des Vergleichs das Aufsatz-Panel: Waffe groß, Plätze, eingebaute und vorrätige Aufsätze, „Bauen“ direkt daneben. Schnellitems bleiben im Handwerk. Geringste Änderung, Inventar bleibt ruhig.</p>
+<svg viewBox="0 0 1100 420" role="img" aria-label="Variante A">
+<rect x="10" y="10" width="300" height="400" rx="6" fill="#1d1611" stroke="#3a2e26"/>
+<text x="24" y="34" class="d" font-size="13">CHARAKTER</text>
+<rect x="24" y="50" width="52" height="52" rx="4" fill="none" stroke="#3a2e26" stroke-dasharray="4 3"/><text x="50" y="118" text-anchor="middle" class="d" font-size="12">Kopf</text>
+<rect x="24" y="130" width="52" height="52" rx="4" fill="none" stroke="#3a2e26" stroke-dasharray="4 3"/><text x="50" y="198" text-anchor="middle" class="d" font-size="12">Körper</text>
+<rect x="110" y="70" width="120" height="200" rx="60" fill="#2a211b"/><text x="170" y="175" text-anchor="middle" class="d">Held</text>
+<rect x="244" y="50" width="52" height="52" rx="4" fill="#2a211b" stroke="#ef9f27" stroke-width="2"/><text x="270" y="82" text-anchor="middle" font-size="13">Waffe</text>
+<circle cx="292" cy="54" r="12" fill="#ef9f27"/><text x="292" y="59" text-anchor="middle" font-size="14" fill="#120d0a">🔧</text>
+<text x="270" y="118" text-anchor="middle" class="e" font-size="12">2/2 Aufsätze</text>
+<rect x="24" y="300" width="272" height="96" rx="4" fill="#120d0a" stroke="#3a2e26"/><text x="34" y="322" class="d" font-size="13">Werte …</text>
+<rect x="320" y="10" width="300" height="400" rx="6" fill="#1d1611" stroke="#3a2e26"/><text x="334" y="34" class="d" font-size="13">RUCKSACK 14/18</text>
+<g fill="#120d0a" stroke="#3a2e26">
+<rect x="334" y="48" width="50" height="50"/><rect x="390" y="48" width="50" height="50"/><rect x="446" y="48" width="50" height="50"/><rect x="502" y="48" width="50" height="50"/><rect x="558" y="48" width="50" height="50"/>
+<rect x="334" y="104" width="50" height="50"/><rect x="390" y="104" width="50" height="50"/><rect x="446" y="104" width="50" height="50"/><rect x="502" y="104" width="50" height="50"/><rect x="558" y="104" width="50" height="50"/></g>
+<rect x="630" y="10" width="460" height="400" rx="6" fill="#1d1611" stroke="#ef9f27"/>
+<text x="646" y="36" class="d" font-size="13">AUFSÄTZE · WAFFE</text>
+<rect x="646" y="48" width="64" height="64" rx="4" fill="#2a211b" stroke="#f2d14b"/><text x="722" y="72" font-size="22" class="e">Pflasterhammer des Brandes</text><text x="722" y="94" class="d" font-size="14">Selten · Hammer · 2 Plätze</text>
+<rect x="646" y="128" width="210" height="58" rx="4" fill="#2a211b" stroke="#f2a04b"/><text x="660" y="152" fill="#f2a04b">Nagelband</text><text x="660" y="172" class="d" font-size="13">+12% Schaden · eingebaut</text>
+<rect x="866" y="128" width="210" height="58" rx="4" fill="none" stroke="#3a2e26" stroke-dasharray="5 4"/><text x="971" y="162" text-anchor="middle" class="d">freier Platz</text>
+<text x="646" y="214" class="d" font-size="13">VORRAT UND BAUEN</text>
+<rect x="646" y="224" width="430" height="44" rx="4" fill="#120d0a" stroke="#3a2e26"/><text x="660" y="251">Griffband · 1 da</text><rect x="980" y="232" width="86" height="28" rx="3" fill="#8a3a1e"/><text x="1023" y="251" text-anchor="middle" font-size="14">Einbauen</text>
+<rect x="646" y="274" width="430" height="44" rx="4" fill="#120d0a" stroke="#3a2e26"/><text x="660" y="301">Autobatterie · 2 Kabel, 1 Metall, 40 Schrott</text><rect x="980" y="282" width="86" height="28" rx="3" fill="none" stroke="#3a2e26"/><text x="1023" y="301" text-anchor="middle" font-size="14">Bauen</text>
+<text x="646" y="350" class="d" font-size="13">Nur im Lager änderbar. Auf Expedition nur Ansicht.</text>
+</svg>
+
+<h2>B · Aufsatz-Leiste unter dem Waffenplatz plus Schnellitem-Leiste unter dem Rucksack</h2>
+<p>Eingebaute Aufsätze sind immer als kleine Chips am Charakter sichtbar. Unter dem Rucksack eine Zeile Verband/Molotow mit Bestand und „+“ zum Herstellen. Mehr auf einen Blick, aber dichter. Auf dem Handy rutscht die Schnellitem-Zeile unter den Rucksack.</p>
+<svg viewBox="0 0 1100 420" role="img" aria-label="Variante B">
+<rect x="10" y="10" width="300" height="400" rx="6" fill="#1d1611" stroke="#3a2e26"/>
+<text x="24" y="34" class="d" font-size="13">CHARAKTER</text>
+<rect x="110" y="70" width="120" height="200" rx="60" fill="#2a211b"/><text x="170" y="175" text-anchor="middle" class="d">Held</text>
+<rect x="244" y="50" width="52" height="52" rx="4" fill="#2a211b" stroke="#ef9f27" stroke-width="2"/><text x="270" y="82" text-anchor="middle" font-size="13">Waffe</text>
+<rect x="232" y="108" width="34" height="22" rx="3" fill="#3a2a1a" stroke="#f2a04b"/><text x="249" y="124" text-anchor="middle" font-size="11" fill="#f2a04b">Nagel</text>
+<rect x="270" y="108" width="34" height="22" rx="3" fill="none" stroke="#3a2e26" stroke-dasharray="3 3"/><text x="287" y="124" text-anchor="middle" font-size="13" class="d">+</text>
+<rect x="24" y="300" width="272" height="96" rx="4" fill="#120d0a" stroke="#3a2e26"/><text x="34" y="322" class="d" font-size="13">Werte …</text>
+<rect x="320" y="10" width="300" height="400" rx="6" fill="#1d1611" stroke="#3a2e26"/><text x="334" y="34" class="d" font-size="13">RUCKSACK 14/18</text>
+<g fill="#120d0a" stroke="#3a2e26">
+<rect x="334" y="48" width="50" height="50"/><rect x="390" y="48" width="50" height="50"/><rect x="446" y="48" width="50" height="50"/><rect x="502" y="48" width="50" height="50"/><rect x="558" y="48" width="50" height="50"/>
+<rect x="334" y="104" width="50" height="50"/><rect x="390" y="104" width="50" height="50"/><rect x="446" y="104" width="50" height="50"/><rect x="502" y="104" width="50" height="50"/><rect x="558" y="104" width="50" height="50"/></g>
+<text x="334" y="200" class="d" font-size="13">SCHNELLITEMS</text>
+<rect x="334" y="210" width="134" height="56" rx="4" fill="#120d0a" stroke="#3a2e26"/><text x="346" y="236">Verband</text><text x="346" y="256" class="g" font-size="13">2/3 dabei</text><rect x="430" y="222" width="30" height="30" rx="3" fill="#8a3a1e"/><text x="445" y="243" text-anchor="middle">+</text>
+<rect x="476" y="210" width="134" height="56" rx="4" fill="#120d0a" stroke="#3a2e26"/><text x="488" y="236">Molotow</text><text x="488" y="256" class="g" font-size="13">1/3 dabei</text><rect x="572" y="222" width="30" height="30" rx="3" fill="#8a3a1e"/><text x="587" y="243" text-anchor="middle">+</text>
+<text x="334" y="290" class="d" font-size="12">+ kostet 20 Schrott, nur im Lager</text>
+<rect x="334" y="304" width="276" height="40" rx="4" fill="#120d0a" stroke="#8fd16a"/><text x="346" y="329" class="g" font-size="14">Essen aktiv: Currywurst · +12% Schaden</text>
+<rect x="630" y="10" width="460" height="400" rx="6" fill="#1d1611" stroke="#3a2e26"/>
+<text x="646" y="36" class="d" font-size="13">VERGLEICH (wie heute, ausgewählt | angelegt)</text>
+<rect x="646" y="48" width="210" height="340" rx="4" fill="#120d0a" stroke="#ef9f27"/><rect x="866" y="48" width="210" height="340" rx="4" fill="#120d0a" stroke="#3a2e26"/>
+<text x="660" y="74" class="e">Ausgewählt</text><text x="880" y="74" class="d">Angelegt</text>
+<text x="660" y="372" class="d" font-size="13">Tippen auf „+“ am Waffenplatz</text><text x="660" y="388" class="d" font-size="13">öffnet hier das Aufsatz-Panel aus A</text>
+</svg>
+<p style="margin-top:12px">Empfehlung: <b style="color:var(--bone)">A jetzt</b> (löst „welche Waffe, was ist eingebaut“ ohne Platzproblem), Schnellitem-Zeile aus B später, wenn das Lager als Ort (#16) kommt.</p>
+</body></html>

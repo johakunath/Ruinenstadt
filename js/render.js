@@ -35,6 +35,7 @@ function render(t){koepBeginFrame();let pt=PERF?performance.now():0;
   for(const c of corpses){ctx.globalAlpha=Math.min(1,c.t)*.85;ctx.save();ctx.translate(c.x,c.y);ctx.rotate(-.78);ctx.scale(c.fl*c.r/10,c.r/10);ctx.fillStyle='rgba(40,12,6,.5)';ctx.beginPath();ctx.ellipse(0,2,15,5,0,0,7);ctx.fill();
     ctx.fillStyle=dark(c.col,.6);ctx.beginPath();ctx.ellipse(0,0,11,4.5,0,0,7);ctx.fill();ctx.fillStyle=dark(c.col,.45);ctx.beginPath();ctx.arc(11,-1,4,0,7);ctx.fill();ctx.restore();}ctx.globalAlpha=1;
   for(const h of hazards){ctx.globalAlpha=Math.min(1,h.t);ctx.drawImage(glow(h.col||'#ff6a2a'),h.x-h.r*1.2,h.y-h.r*1.2,h.r*2.4,h.r*2.4);}ctx.globalAlpha=1;
+  if(run&&run.hid)for(const h of run.hid)if(!h.got&&Math.abs(h.x-P.x)<500&&Math.abs(h.y-P.y)<500){const p=.6+.4*Math.sin(t*.005+h.x);ctx.drawImage(glow('#f2a04b'),h.x-36*p,h.y-36*p,72*p,72*p);ctx.fillStyle='#4a3e33';ctx.beginPath();ctx.ellipse(h.x,h.y+2,11,6,0,0,7);ctx.fill();ctx.fillStyle='#f2c46b';ctx.beginPath();ctx.moveTo(h.x,h.y-14-3*p);ctx.lineTo(h.x+5,h.y-4);ctx.lineTo(h.x,h.y+1);ctx.lineTo(h.x-5,h.y-4);ctx.fill();}// v0.79 hidden blessing
   if(trove){const a=.5+.3*Math.sin(t*.008);ctx.strokeStyle=`rgba(242,209,75,${a})`;ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(trove.x-14,trove.y-14);ctx.lineTo(trove.x+14,trove.y+14);ctx.moveTo(trove.x+14,trove.y-14);ctx.lineTo(trove.x-14,trove.y+14);ctx.stroke();ctx.strokeStyle='#f2d14b';ctx.lineWidth=3;ctx.beginPath();ctx.arc(trove.x,trove.y,26,-1.57,-1.57+6.283*trove.t/50);ctx.stroke();}
   if(crate){ctx.strokeStyle='#f2d14b';ctx.lineWidth=3;ctx.beginPath();ctx.arc(crate.x,crate.y,26,-1.57,-1.57+6.283*crate.t/28);ctx.stroke();}
   if(P.spin>0){ctx.strokeStyle='rgba(250,199,117,.75)';ctx.lineWidth=5;const a=t*.03,rr_=72*(1+.2*pk('reach'));for(let k=0;k<3;k++){ctx.beginPath();ctx.arc(P.x,P.y,rr_,a+k*2.09,a+k*2.09+1.1);ctx.stroke();}}
@@ -43,6 +44,7 @@ function render(t){koepBeginFrame();let pt=PERF?performance.now():0;
   ctx.restore();if(PERF)pt=pmk('ground',pt);
   /* ---- upright layer ---- */
   for(const d of drops)upr(d.x,d.y,()=>drawDrop(d));
+  if(run&&run.hid)for(const h of run.hid)if(!h.got&&Math.abs(h.x-P.x)<520&&Math.abs(h.y-P.y)<520)upr(h.x,h.y,()=>{ctx.fillStyle='rgba(242,160,75,.12)';ctx.fillRect(h.x-3,h.y-90,6,90);});
   if(trove)upr(trove.x,trove.y,()=>{ctx.fillStyle='rgba(242,209,75,.14)';ctx.fillRect(trove.x-4,trove.y-110,8,110);});
   if(crate)upr(crate.x,crate.y,()=>{ctx.fillStyle='rgba(242,209,75,.18)';ctx.fillRect(crate.x-5,crate.y-120,10,120);ctx.fillStyle='rgba(0,0,0,.4)';ctx.fillRect(crate.x-10,crate.y+6,24,6);
     ctx.fillStyle='#7a5530';ctx.fillRect(crate.x-12,crate.y-12,24,22);ctx.strokeStyle='#3a2414';ctx.lineWidth=2;ctx.strokeRect(crate.x-12,crate.y-12,24,22);ctx.beginPath();ctx.moveTo(crate.x-12,crate.y-12);ctx.lineTo(crate.x+12,crate.y+10);ctx.stroke();});
@@ -59,17 +61,17 @@ function render(t){koepBeginFrame();let pt=PERF?performance.now():0;
   // c: light colour. Tinted lights are collected in TN and painted into the light canvas after the holes are cut (v0.63), so fire, lamps and effects colour what they light
   TN.length=0;const lit=(x,y,r,z,c)=>{const X=scx(x,y),Y=scy(x,y)-(z||0);if(X<-r||X>VW+r||Y<-r||Y>VH+r)return;lx.drawImage(LSPR,X-r,Y-r*.7,r*2,r*1.4);if(c&&!S.eco)TN.push(X,Y,r,c);};
   lit(P.x,P.y,(P.dark?(P.torch?(D.tun?320:270):D.tun?280:P.lamp?200:95):250)+Math.sin(t*.008)*8+Math.sin(t*.021)*4,10);
-  for(const b of barrels)lit(b.x,b.y,150+Math.sin(t*.012+b.ph)*12,10,'#ff7a2a');
-  for(const b of blds)for(const l of b.lights){if(l.inner&&!b.inside)continue;const q=lpos(b,l);if(l.inner){lit(q[0],q[1],150,0,'#ffb060');continue;}if(l.r||!S.eco)lit(q[0],q[1],(l.r||34)*(l.fl&&Math.sin(t*.031+l.x)*Math.sin(t*.017+l.y)>.55?.35:1),q[2],l.c||(l.r?LCOL():0));}
+  for(const b of barrels)if(!b.occ)lit(b.x,b.y,150+Math.sin(t*.012+b.ph)*12,10,'#ff7a2a');
+  for(const b of blds)for(const l of b.lights){if(l.inner&&!b.inside||b.occ)continue;const q=lpos(b,l);if(l.inner){lit(q[0],q[1],150,0,'#ffb060');continue;}if(l.r||!S.eco)lit(q[0],q[1],(l.r||34)*(l.fl&&Math.sin(t*.031+l.x)*Math.sin(t*.017+l.y)>.55?.35:1),q[2],l.c||(l.r?LCOL():0));}
   for(const p of eproj)lit(p.x,p.y,46,10,'#97c459');for(const b of bolts)lit(b.x1,b.y1,60,0,'#7dd3ff');if(!S.eco)for(const h of hazards)lit(h.x,h.y,50,0,h.col||'#ff6a2a');for(const d of drops)if(d.item&&d.item.r>=2)lit(d.x,d.y,60);for(const f of fields)lit(f.x,f.y,f.r+50,0,'#ff6a2a');
-  if(crate)lit(crate.x,crate.y,110);if(trove)lit(trove.x,trove.y,110);if(captive)lit(captive.x,captive.y,90);if(npc)lit(npc.x,npc.y,110,10);if(zone)lit(zone.x,zone.y,zone.r+50);if(D.tun&&TUN&&TUN.hold&&!TUN.lit)lit(GEN.x,GEN.y,GEN.r);for(const tl of teles)lit(tl.x,tl.y,tl.r*1.3);for(const s of shocks)lit(s.x,s.y,s.r+40);fxLight(lit);
+  if(crate)lit(crate.x,crate.y,110);if(trove)lit(trove.x,trove.y,110);if(run&&run.hid)for(const h of run.hid)if(!h.got)lit(h.x,h.y,60);if(captive)lit(captive.x,captive.y,90);if(npc)lit(npc.x,npc.y,110,10);if(zone)lit(zone.x,zone.y,zone.r+50);if(D.tun&&TUN&&TUN.hold&&!TUN.lit)lit(GEN.x,GEN.y,GEN.r);for(const tl of teles)lit(tl.x,tl.y,tl.r*1.3);for(const s of shocks)lit(s.x,s.y,s.r+40);fxLight(lit);
   if(TN.length){lx.globalCompositeOperation='source-over';lx.globalAlpha=D.day&&!P.dark?.06:.14;for(let i=0;i<TN.length;i+=4){const r=TN[i+2]*.85;lx.drawImage(glow(TN[i+3]),TN[i]-r,TN[i+1]-r*.7,r*2,r*1.4);}lx.globalAlpha=1;}
   fxDay(t);ctx.drawImage(lc,0,0,VW,VH);if(PERF)pt=pmk('light',pt);if(flashT>0){ctx.fillStyle=`rgba(255,90,40,${flashT*.6})`;ctx.fillRect(0,0,VW,VH);}if(goldT>0){ctx.fillStyle=`rgba(255,200,90,${goldT*.45})`;ctx.fillRect(0,0,VW,VH);}if(state==='play'&&P.hp<ST.maxHp*.3){ctx.globalAlpha=.5+.3*Math.sin(t*.008);ctx.drawImage(VIG,0,0,VW,VH);ctx.globalAlpha=1;}
   ctx.globalCompositeOperation='lighter';
   fxDraw(t);ctx.globalCompositeOperation='lighter';if(PERF)pt=pmk('fx',pt);
   if(!S.eco)for(const n of neons){const x=scx(n.x,n.y)+(n.dx||0),y=scy(n.x,n.y)-(n.z||0);if(x<-n.s||x>VW+n.s||y<-n.s||y>VH+n.s)continue;ctx.globalAlpha=D.day?.25:.55;ctx.drawImage(glow(n.c),x-n.s,y-n.s*.7,n.s*2,n.s*1.4);}ctx.globalAlpha=1;
   if(P.torch)ctx.drawImage(FIRE,scx(P.x,P.y)-110,scy(P.x,P.y)-40-110,220,220);
-  if(D.day)ctx.globalAlpha=.1;for(const b of barrels){const x=scx(b.x,b.y),y=scy(b.x,b.y)-10;if(x<-130||x>VW+130||y<-130||y>VH+130)continue;ctx.drawImage(FIRE,x-120,y-120,240,240);}ctx.globalAlpha=1;// daylight: fire glow much weaker
+  if(D.day)ctx.globalAlpha=.1;for(const b of barrels){if(b.occ)continue;const x=scx(b.x,b.y),y=scy(b.x,b.y)-10;if(x<-130||x>VW+130||y<-130||y>VH+130)continue;ctx.drawImage(FIRE,x-120,y-120,240,240);}ctx.globalAlpha=1;// daylight: fire glow much weaker
   ctx.globalCompositeOperation='source-over';
   drawWeather(t,S.eco?.033:.016);
   ctx.textAlign='center';ctx.font='600 13px "Barlow Condensed",sans-serif';for(const d of drops){if(!d.item||d.h||(d.item.r<1&&Math.hypot(d.x-P.x,d.y-P.y)>160))continue;const x=scx(d.x,d.y),y=scy(d.x,d.y)+22;if(x<-80||x>VW+80||y<-20||y>VH+20)continue;const w=ctx.measureText(d.item.name).width+10;ctx.fillStyle='rgba(13,9,7,.78)';ctx.fillRect(x-w/2,y-11,w,15);ctx.fillStyle=rc(d.item);ctx.fillText(d.item.name,x,y);}
@@ -86,6 +88,7 @@ function render(t){koepBeginFrame();let pt=PERF?performance.now():0;
 }
 function drawDrop(d){const bob=Math.sin(d.t*4)*2;
   if(d.food){ctx.drawImage(glow('#f2a04b'),d.x-14,d.y+bob-14,28,28);ctx.fillStyle='#e8d8b0';ctx.beginPath();ctx.moveTo(d.x-7,d.y+bob-4);ctx.lineTo(d.x+7,d.y+bob-4);ctx.lineTo(d.x,d.y+bob+8);ctx.fill();ctx.fillStyle='#8a4a22';ctx.fillRect(d.x-6,d.y+bob-7,12,4);ctx.fillStyle='#8fd16a';ctx.fillRect(d.x-4,d.y+bob-9,3,2);ctx.fillStyle='#c23a2e';ctx.fillRect(d.x+1,d.y+bob-9,3,2);return;}
+  if(d.zut){const hh=d.h||0,c=ZUT[d.zut][1];ctx.drawImage(glow(c),d.x-13,d.y+bob-13-hh,26,26);ctx.fillStyle=c;ctx.beginPath();ctx.arc(d.x,d.y+bob-hh,4.5,0,7);ctx.fill();ctx.fillStyle='rgba(255,255,255,.35)';ctx.fillRect(d.x-2,d.y+bob-3-hh,2,2);return;}// v0.78 ingredient
   if(d.mat){const hh=d.h||0,c=MATS[d.mat][1];ctx.drawImage(glow(c),d.x-12,d.y+bob-12-hh,24,24);ctx.fillStyle=c;ctx.fillRect(d.x-4,d.y+bob-4-hh,8,7);ctx.fillStyle='rgba(0,0,0,.3)';ctx.fillRect(d.x-4,d.y+bob+1-hh,8,2);return;}
   if(d.heal){ctx.drawImage(glow('#ff5040'),d.x-16,d.y+bob-16,32,32);ctx.fillStyle='#c23a2e';ctx.beginPath();ctx.arc(d.x,d.y+bob,6,0,7);ctx.fill();return;}
   const c=rc(d.item),gs=24+Math.sin(d.t*5)*4,hh=d.h||0;if(d.item.r>=2&&!hh){ctx.fillStyle=c+'30';ctx.fillRect(d.x-3,d.y-(d.item.r>=3?140:70),6,d.item.r>=3?140:70);}
@@ -101,6 +104,8 @@ function drawSorted(t){const BX=[],IT=[],vL=-OX-60,vR=VW-OX+60,vT=-OY-60,vB=VH-O
   BX.sort((a,b)=>a._k-b._k);const PX=ix(P.x,P.y),PY=iy(P.x,P.y);
   for(const it of IT){it.s=1e9;it.d=it.x+it.y;if(it.k!==3&&it.k!==0){const X=ix(it.x,it.y),Y=iy(it.x,it.y);if(X<vL||X>vR||Y<vT||Y-60>vB){it.s=-1;continue;}}const X=ix(it.x,it.y),Y=iy(it.x,it.y);
     for(let j=0;j<BX.length;j++){const b=BX[j];if(X<b._s[0]-12||X>b._s[1]+12||Y<b._s[2]||front(b,it.x,it.y))continue;it.s=j;break;}}
+  // v0.77: fire barrels and lamp sprites hidden behind a box are marked, so their glow does not shine through the building (light pass below)
+  for(const it of IT)if(it.k<2){const b=it.s>=0&&it.s<BX.length?BX[it.s]:null;it.o.occ=!!b&&!(b.oa<.6);}
   for(const b of BX){b._o=!front(b,P.x,P.y)&&PX>b._s[0]-10&&PX<b._s[1]+10&&PY>b._s[2]+10;if(b.grp)b.grp.o=0;}for(const b of BX)if(b.grp&&b._o)b.grp.o=1;// grp: parts of one landmark fade together
   for(const b of BX){const occ=b.grp?b.grp.o:b._o;b.oa=(b.oa==null?1:b.oa)+((occ?.32:1)-(b.oa==null?1:b.oa))*.2;}
   // trees and other tall sprites in front of the player fade too, so the player is never hidden under a canopy
@@ -115,8 +120,8 @@ function drawItem(it,t){const o=it.o;if(it.k===0){ctx.globalAlpha=o.oa==null?1:o
   if(it.k===2){const fa=o.fa;o.fa=sAng(fa||0);upr(it.x,it.y,()=>drawEnemy(o,t));o.fa=fa;return;}// shield facing is a world angle, draw it in screen space
   upr(it.x,it.y,()=>{if(it.k===1)drawBarrel(o,t);else if(it.k===2)drawEnemy(o,t);else if(it.k===4)drawProp(o);else if(it.k===5)drawNpc(o,t);else drawCaptive(o,t);});}
 const cache={};function setT(id,v){if(cache[id]!==v){cache[id]=v;$(id).textContent=v;}}function setW(id,v){v=Math.round(v*10)/10;if(cache[id]!==v){cache[id]=v;$(id).style.width=v+'%';}}
-function hud(){if(!P||!ST)return;setW('hpf',100*Math.max(0,P.hp)/ST.maxHp);setT('hpt',Math.max(0,Math.ceil(P.hp))+' / '+ST.maxHp);setW('xpf',100*P.xp/(20+P.lvl*15));
-  setT('lv',P.lvl);{const bl=Object.keys(SHR).filter(k=>SHR[k]>0).map(k=>`${SHRN[k][0]} ${Math.ceil(SHR[k])} s`).join(' · ');setT('bufs',bl);}setT('rem',run?enemies.length+run.toSpawn:0);const sn=streak.n>=3?streak.n:0;if(cache.sn!==sn){const el=$('streak');el.hidden=!sn;if(sn){$('stn').textContent=sn;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');}cache.sn=sn;}setT('sc',S.scrap);setT('wv',run?run.wave:0);setT('wmax',run&&run.tun?TSEC.length:run&&run.endless?'∞':WAVES);setT('dn',D.n+(run&&run.th?' · B'+run.th:''));setT('skill',ST.K.sk);
+function hud(){if(!P||!ST)return;fsBtn();setW('hpf',100*Math.max(0,P.hp)/ST.maxHp);setT('hpt',Math.max(0,Math.ceil(P.hp))+' / '+ST.maxHp);setW('xpf',100*P.xp/(20+P.lvl*15));
+  setT('lv',P.lvl);{const ml=run&&run.meal&&MEALS.find(m=>m.k===run.meal),bl=(ml?[ml.n+' '+ml.d]:[]).concat(Object.keys(SHR).filter(k=>SHR[k]>0).map(k=>`${SHRN[k][0]} ${Math.ceil(SHR[k])} s`)).join(' · ');setT('bufs',bl);}setT('rem',run?enemies.length+run.toSpawn:0);const sn=streak.n>=3?streak.n:0;if(cache.sn!==sn){const el=$('streak');el.hidden=!sn;if(sn){$('stn').textContent=sn;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');}cache.sn=sn;}setT('sc',S.scrap);setT('wv',run?run.wave:0);setT('wmax',run&&run.tun?TSEC.length:run&&run.endless?'∞':WAVES);setT('dn',D.n+(run&&run.th?' · B'+run.th:''));setT('skill',ST.K.sk);
   for(const[id,k]of[['c1','verband'],['c2','molotow']]){const n=S.cons[k]||0;if(cache[id]!==n){cache[id]=n;$(id+'n').textContent=n;$(id).classList.toggle('empty',!n);}}
   const b=run&&run.boss;$('boss').hidden=!b;if(b){setT('bossn',b.name);setW('bossf',100*Math.max(0,b.hp)/b.max);}
   const cd=P.dashCd>0?Math.round(360*(1-P.dashCd/ST.dashCd)):360;if(cache.cd!==cd){cache.cd=cd;$('dash').style.setProperty('--cd',cd+'deg');}
@@ -132,9 +137,12 @@ function drawMini(){if(!MB)return;const k=WS>WH?192/3200:192/WS,dot=(x,y,r,c)=>{
   const c=[[0,0],[VW,0],[VW,VH],[0,VH]].map(q=>s2w(q[0]-OX,q[1]-OY));mx_.strokeStyle='rgba(255,255,255,.4)';mx_.lineWidth=1.5;mx_.beginPath();c.forEach((q,i)=>i?mx_.lineTo(q[0]*k,q[1]*k):mx_.moveTo(q[0]*k,q[1]*k));mx_.closePath();mx_.stroke();dot(P.x,P.y,4.5,'#ffffff');mx_.restore();}
 // ?debug=hit: hit areas over the scene (player radius, current melee sector, enemy radii), for checking sprites against hitboxes (pipeline/contract.md)
 const DBG=/[?&]debug=hit\b/.test(location.search);
+// v0.77 optional fps counter (Optionen › Bild und Ton): frames counted per 0.5 s, written to a small DOM label (no canvas text cost)
+let fpsN=0,fpsT=0;function fpsTick(t){if(!S.fps){if(fpsT){fpsT=0;$('fps').hidden=true;}return;}fpsN++;if(!fpsT)fpsT=t;if(t-fpsT>=500){const el=$('fps');el.hidden=false;el.textContent=Math.round(fpsN*1000/(t-fpsT))+' fps';fpsN=0;fpsT=t;}}
 function drawDebug(){if(!P)return;ctx.setTransform(DPR*Z,0,0,DPR*Z,0,0);ctx.lineWidth=1.5;const ring=(x,y,r,c)=>{ctx.strokeStyle=c;ctx.beginPath();for(let i=0;i<=24;i++){const a=i/24*7,X=scx(x+Math.cos(a)*r,y+Math.sin(a)*r),Y=scy(x+Math.cos(a)*r,y+Math.sin(a)*r);i?ctx.lineTo(X,Y):ctx.moveTo(X,Y);}ctx.stroke();};
   ring(P.x,P.y,P.r,'#ff3366');for(const e of enemies)ring(e.x,e.y,e.r,'#ffd23f');
   const K=ST&&KIND[ST.kind];if(K&&K.reach&&P.swingT>0){ctx.strokeStyle='#00ff88';ctx.beginPath();ctx.moveTo(scx(P.x,P.y),scy(P.x,P.y));for(let i=0;i<=24;i++){const a=P.atkA-K.arc+2*K.arc*i/24,x=P.x+Math.cos(a)*ST.reach,y=P.y+Math.sin(a)*ST.reach;ctx.lineTo(scx(x,y),scy(x,y));}ctx.closePath();ctx.stroke();}}
-function loop(t){requestAnimationFrame(loop);const minF=S.eco?1000/31:1000/61;if(t-last<minF)return;const dt=Math.min(.05,(t-last)/1000);if(PERF)pmk('frame',last);last=t;
+function loop(t){requestAnimationFrame(loop);const minF=S.eco?1000/31:1000/61;if(t-last<minF-3)return;// v0.77: -3 ms slack. Without it 144 Hz screens dropped to an uneven ~48 fps and Firefox rAF jitter (16.2 ms) skipped whole frames
+  fpsTick(t);const dt=Math.min(.05,(t-last)/1000);if(PERF)pmk('frame',last);last=t;
   if(state==='menu'){P.walk+=dt*6;P.mvx=.6;P.face=Math.sin(t*.0004)>0?0:Math.PI;}
   if(freeze>0&&state==='play'){freeze-=dt;render(t);hud();return;}{const u=PERF?performance.now():0;update(dt);if(PERF)pmk('update',u);}if(state==='paused'){padPoll();if(run&&run.tl)run.tl.pt+=dt;}render(t);if(DBG)drawDebug();if(PERF)drawPerf();hud();const mh=!run;if(cache.mh!==mh){cache.mh=mh;mini.hidden=mh;document.body.classList.toggle('inrun',!mh);}if(run&&(++mf%(S.eco?6:3)===0))drawMini();if(state==='menu')P.mvx=0;}

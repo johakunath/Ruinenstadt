@@ -19,7 +19,7 @@ test('constructors and authored references agree; only GDR ghouls grow',()=>{
 });
 test('larger enemies retain HP, damage, ghoul speed and exact constructor random draws',()=>{
  const expected=[['R',70,86],['R',118,140],['R',74,84],['R',92,104],['R',0,3],['R',1.5,2.5],['pick',-1,1],['R',0,6.28],['R',2,3.5]];
- for(const gdr of [false,true])for(const [type,hp,dmg,spd]of [['uhr',58,13,34],['ghoul',20,7,70+16*.37],['rat',6,3,118+22*.37]]){const {run,draws}=setup(gdr),e=run(`mkEnemy('${type}',10,20)`);assert.equal(e.hp,hp);assert.equal(e.max,hp);assert.equal(e.dmg,dmg);close(e.spd,spd*1.06*1.01,type+' speed');assert.deepEqual(draws,expected,type+' RNG');}
+ for(const gdr of [false,true])for(const [type,hp,dmg,spd]of [['uhr',58,13,34],['ghoul',20,7,70+16*.37],['rat',6,3,118+22*.37]]){const {run,draws}=setup(gdr),e=run(`mkEnemy('${type}',10,20)`);assert.equal(e.hp,hp);assert.equal(e.max,hp);assert.equal(e.dmg,Math.max(1,Math.round(dmg*.8)));/* v0.79: Köpenick (D.i 0) deals 80% damage */close(e.spd,spd*1.06*1.01,type+' speed');assert.deepEqual(draws,expected,type+' RNG');}
 });
 test('normal and elite spawn probes enclose enlarged radii without changing other types',()=>{
  for(const [type,gdr,probe,base]of [['uhr',true,25,22],['ghoul',true,23,20],['ghoul',false,20,10],['shield',false,20,13]])for(const elite of [false,true]){
