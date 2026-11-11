@@ -29,6 +29,7 @@ SIM.think=function(dt){
   else{let tg=null;
     if(captive)tg=captive;else if(trove)tg=trove;else if(crate)tg=crate;else if(zone)tg=zone;
     else{let bd=1e9;for(const d of drops){if(d.botSkip)continue;const q=dist(d,P);if(q<bd&&q<900){bd=q;tg=d;}}if(tg&&tg===SIM.dropT){SIM.dropS+=dt;if(SIM.dropS>6){tg.botSkip=1;tg=null;}}else{SIM.dropT=tg;SIM.dropS=0;}/* unreachable drop (in a wall): give up after 6 s */for(const h of shrines)if(!h.used){const q=dist(h,P);if(q<500&&q<bd){bd=q;tg={x:h.x,y:h.y+10};}}for(const h of run.hid||[])if(!h.got){const q=dist(h,P);if(q<700&&q<bd){bd=q;tg=h;}}/* v0.79 the bot finds hidden blessings that are close */}
+    if(!tg&&run&&run.exit)tg=run.exit;// v0.84: district liberated, walk back to the start station
     if(!tg&&run&&run.tun&&TUN){if(TUN.sec===TSEC.length-1&&!TUN.lit)tg={x:GEN.x,y:GEN.y+30};else{const x=Math.min(TX1-200,P.x+500),q=at(x,0);tg={x:q[0],y:q[1]};}}// tunnel: walk the route east, then hold the generator
     if(!tg)tg={x:SX,y:SY};const d=Math.max(1,dist(tg,P));if(d>8){const g=SIM.goto(tg.x,tg.y);mx+=g.x;my+=g.y;}}
   if(run&&run.tun&&TUN&&TUN.hold&&!TUN.lit){const d=Math.hypot(GEN.x-P.x,GEN.y-P.y);if(d>GEN.r*.55){mx+=(GEN.x-P.x)/d*2;my+=(GEN.y-P.y)/d*2;}}// keep charging
