@@ -11,28 +11,19 @@ Isometric loot ARPG in post-collapse Berlin. Hobby project to learn game develop
 - **Inspirations:** Diablo 2/3 (loot, acts), Hades (dash, boons, weapon = playstyle, hand-drawn look), V Rising (boss-gated unlocks, base), Valheim (weak to strong), Enshrouded (authored points of interest).
 - **Out of scope:** multiplayer, 3D, hunger as a timer, story dialogue trees.
 
-## Playtest 1 (v0.34, Tab S9 portrait, 15 min Köpenick)
+## Playtests
 
-Fun, "almost something to show friends". Lighting and floors good. Item looks on the character good.
-Problems: environment scale (cars smaller than player), pure top-down props vs side-view characters, grid-like streets, only 3 equipment slots, Normal too easy, text not wrapping on tablet (fixed v0.35).
-
-## Playtest 2 (v0.51, Tab S9, about 17 min, Köpenick won on Normal)
-
-Fun, no lags, no technical issues, tablet only slightly warm. Map size fine (everything explored, places visited several times), so bigger maps are OK from now on. Icons, buildings and trees good.
-Problems: fences and other low blockers flat without height, U-Bahn entrance too small, too much loot (3 legendaries, fully geared after one district), far too easy (enemies and the district boss one-shot, life never in danger), messages vanish before they can be read, weapons do not feel different (no ranged weapon found), lots of Schrott for upgrades.
-Telemetry vs bot (Köpenick Normal): Johannes 17.5 min, level 18, 1025 damage taken, power 42→1773, no death. Bot v0.52: 10.9 min, level 19, 1766 damage taken, power 42→601. Working assumption: Johannes is slower but better than the bot, so the bot winning is a lower bound and difficulty can sit above what the bot handles comfortably.
-
-## Playtest 4 (v0.61, Tab S9, 30+ min, Xhain reached)
-
-Feedback batch. Fixed in v0.65 (see Done): vertical walk speed, settings cogwheel, pickup text, full bag, drop rate, Kodex silhouettes, unlock gates, final boss delay, Alexanderplatz market flicker, TV tower proportions, distance sound, set bonuses, dark zones off. The rest sits in Next (#16 to #22).
+Recorded sessions and feedback: [docs/playtests.md](docs/playtests.md).
+Current actions are tracked below.
 
 ## Next
 
-Asset draft (2026-11-10): the Köpenick kit is implemented on its asset branch,
-but v0.71 is not a release. The final combined timing exceeds the 5% budget;
-preserve the draft after three optimization attempts and continue equipment
-art. See `pipeline/proof/02-buildings-koepenick/README.md`. Johannes now delegates
-routine asset designs; only critical choices need strongly different A/B/C options.
+Köpenick kit: merged in PRs #29/#30 (v0.71). The original seven-pair
+failure is superseded by the documented 21-pair Windows GPU pass on
+2026-11-11, including a null-control CI inside ±5%. Review follow-up v0.72
+stabilizes over-budget views and enforces gate verdicts. Tablet acceptance
+remains deferred. See `pipeline/proof/02-buildings-koepenick/README.md`.
+Routine asset designs are delegated; critical choices need distinct alternatives.
 
 Focus: gameplay and content. Art runs in parallel through Codex (`pipeline/workflow.md`). Style source of truth: `docs/style-bible.md` (Köpenick = default look, U-Bahn, Potsdamer Platz, Alexanderplatz boards).
 
@@ -53,9 +44,9 @@ Focus: gameplay and content. Art runs in parallel through Codex (`pipeline/workf
 | 18 | Enemy voices | Not in the game yet (v0.65 only added distance volume to `sfx(name,e)`). Wanted: growl, snarl, screech and beep per type when they attack or idle, bosses, short spoken lines for robotic or human enemies. Needs generated voice lines (free external TTS or a generated sound pack, not Sonnet) and recipes in `FX` |
 | 19 | Dark zones replacement | `makeDark()` is off since v0.65. Idea from Playtest 4: a few authored arena spots where a pack spawns and a special reward drops after clearing them. Mockup and reward design first |
 | 20 | Performance on the tablet | Deferred to much later. The Tab S9 has reported warmth, battery drain and a slightly lower frame rate after the painted sprite update. When resumed, record `?debug=perf` on Köpenick and Alexanderplatz, then check painted sprites and hero layers (draw calls, `drawImage`, offscreen caches), lights and overdraw in `render()`, and Akkusparen defaults. Desktop timings do not establish tablet behavior. |
-| 21 | Codex asset queue | Current user-authorized order: (1) Köpenick building kit in task `02-buildings-koepenick.md` (the GDR texture-kit method A is separately accepted); (2) ten legendary/set icons in `12-legendaries-and-sets.md`, matching worn parts to each set’s art goal; (3) props and fire in `05-props.md`; (4) player animation step 1 in `09-player-animation.md`; (5) vehicles in `03-vehicles.md`, with artwork fitted to the actual rotations. GDR enemy proportions/wear in `12-gdr-enemy-proportions.md` are accepted by Johannes. Tablet heat/performance is deferred much later. See `pipeline/workflow.md` for this queue. |
+| 21 | Codex asset queue | Köpenick kit merged (#29/#30); review fixes v0.72. Preserve existing equipment and props/fire drafts. Continue player animation step 1 (knees, elbows and body motion; no new paint). Props/fire follows its existing draft. Vehicles require the technical decision and rotation-fit proof; the quick-win assumption is withdrawn. Tablet heat/performance remains deferred. See `pipeline/workflow.md`. |
 | 22 | Loot pacing check | v0.65: item level +3 per district for item drops (the first drops of Xhain used to sit below the end of Köpenick, which explains few replacements), drop rates lowered, base values -10%, set bonuses up. Re-test with the bot and a human run, tune from `S.tlog` |
-| A | Asset pipeline | Menu art via ChatGPT (`docs/chatgpt-assets.md`). In-world art via Codex: tooling, player rig v2, enemy families and GDR enemy proportion/wear updates are delivered; task 02 step 0 selected method A for GDR blocks, with Köpenick production assets still open. Current queue is in #21 and `pipeline/workflow.md`. |
+| A | Asset pipeline | Menu art: `docs/chatgpt-assets.md`. Tooling, player rig v2, enemies, GDR buildings/proportions and Köpenick kit are delivered. Independent equipment and props/fire drafts remain open. Player animation step 1 is active; see #21 and `pipeline/workflow.md`. |
 | 15 | More ruins | Playtest 3 wish: more buildings should look like ruins (not all), more realistic, the city should feel empty and only somewhat recognizable. Do it whenever world and building assets are redone (Codex pipeline) |
 | 12 | Style proposals | From `docs/style-bible.md`, undecided: Spreepark (own district between Köpenick and Xhain, see #3), zombie raptor and T-rex, U-Bahn market set piece, lamp gun, per-district palettes in code (mockup first). Alexanderplatz done in v0.49 |
 | 14 | Story backdrop | Light story artefacts instead of dialogue: tapes, notes, history plaques to find per district (the GDR that survived, the fall). Johannes may write them later. No dialogue trees |
@@ -104,6 +95,8 @@ Focus: gameplay and content. Art runs in parallel through Codex (`pipeline/workf
 | Later engine | Godot if the browser limits us (for example a high-end desktop version) |
 
 ## Done
+
+- v0.72 (review follow-up): stabilize visible building cache overflow, enforce performance verdict exit codes and null-control noise bounds; move playtest history to `docs/playtests.md`.
 
 | Version | Contents |
 |---|---|

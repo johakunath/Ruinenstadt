@@ -11,7 +11,7 @@ let last=performance.now();const TN=[],LCOL=()=>D.cyber?'#6a8cff':'#ffb060';
 const PERF=/[?&]debug=perf\b/.test(location.search),PM={},PX_={};let pfN=0;function pmk(k,t0){const n=performance.now(),d=n-t0;PM[k]=PM[k]==null?d:PM[k]*.94+d*.06;if(!(PX_[k]>d))PX_[k]=d;return n;}
 function drawPerf(){if(++pfN%120===0)for(const k in PX_)PX_[k]=0;ctx.setTransform(DPR,0,0,DPR,0,0);const f=k=>PM[k]==null?'-':PM[k].toFixed(1)+' ('+PX_[k].toFixed(0)+')',L=['frame '+f('frame')+' ms · '+(1000/(PM.frame||16.7)).toFixed(0)+' fps','update '+f('update')+' · ground '+f('ground')+' · world '+f('world'),'light '+f('light')+' · fx '+f('fx')+' · ui '+f('ui'),'enemies '+enemies.length+' · fx '+fx.length+' · parts '+parts.length+' · boxes '+blds.length,cv.width+'x'+cv.height+' · DPR '+DPR+' · Z '+Z.toFixed(2)+(S.eco?' · eco':'')];
   ctx.font='12px monospace';ctx.textAlign='left';ctx.fillStyle='rgba(0,0,0,.7)';ctx.fillRect(6,SH-L.length*15-12,330,L.length*15+8);ctx.fillStyle=(PM.frame||0)>20?'#ff8a3d':'#8fd16a';L.forEach((l,i)=>ctx.fillText(l,12,SH-L.length*15+6+i*15));}
-function render(t){let pt=PERF?performance.now():0;
+function render(t){koepBeginFrame();let pt=PERF?performance.now():0;
   ctx.setTransform(DPR*Z,0,0,DPR*Z,0,0);ctx.globalCompositeOperation='source-over';
   const tx=P.x+(state==='play'?P.mvx*80:0),ty=P.y+(state==='play'?P.mvy*80:0);if(cam.x==null||Math.hypot(cam.x-tx,cam.y-ty)>600){cam.x=tx;cam.y=ty;}else{cam.x+=(tx-cam.x)*.12;cam.y+=(ty-cam.y)*.12;}
   OX=VW/2-ix(cam.x,cam.y)+R(-shake,shake)+KX;OY=VH/2-iy(cam.x,cam.y)+24+R(-shake,shake)+KY;

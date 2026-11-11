@@ -1,0 +1,600 @@
+{
+  "started": "2026-11-11T06:26:41.175Z",
+  "port": 8765,
+  "seed": 20261110,
+  "errors": [],
+  "failedImages": [],
+  "fixtures": [
+    {
+      "file": "fixture-a-r0-1x-disabled.png",
+      "fixture": {
+        "x": 1331.9834576309288,
+        "y": 1112.7102009190446,
+        "kind": "a",
+        "height": 242,
+        "rot": -0.1821683104727636
+      },
+      "kind": "a",
+      "rot": 0,
+      "zoom": 1,
+      "mode": "disabled",
+      "painted": 0,
+      "randomAfter": 0.11707454989664257,
+      "geometry": {
+        "geom": [
+          1331.9834576309288,
+          1112.7102009190446,
+          94.36157337892801,
+          105.92358961999416,
+          242,
+          null,
+          0
+        ]
+      },
+      "after": {
+        "geom": [
+          1331.9834576309288,
+          1112.7102009190446,
+          94.36157337892801,
+          105.92358961999416,
+          242,
+          null,
+          0
+        ]
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "resolved": [
+            1379.1642443203928,
+            1230.633790539039
+          ],
+          "initialClearance": 1.7763568394002505e-13,
+          "walk": [
+            {
+              "position": [
+                1381.1642443203928,
+                1230.633790539039
+              ],
+              "clearance": 1.7763568394002505e-13
+            },
+            {
+              "position": [
+                1383.1642443203928,
+                1230.633790539039
+              ],
+              "clearance": 1.7763568394002505e-13
+            },
+            {
+              "position": [
+                1385.1642443203928,
+                1230.633790539039
+              ],
+              "clearance": 1.7763568394002505e-13
+            },
+            {
+              "position": [
+                1387.1642443203928,
+                1230.633790539039
+              ],
+              "clearance": 1.7763568394002505e-13
+            },
+            {
+              "position": [
+                1389.1642443203928,
+                1230.633790539039
+              ],
+              "clearance": 1.7763568394002505e-13
+            },
+            {
+              "position": [
+                1391.1642443203928,
+                1230.633790539039
+              ],
+              "clearance": 1.7763568394002505e-13
+            },
+            {
+              "position": [
+                1393.1642443203928,
+                1230.633790539039
+              ],
+              "clearance": 1.7763568394002505e-13
+            },
+            {
+              "position": [
+                1395.1642443203928,
+                1230.633790539039
+              ],
+              "clearance": 1.7763568394002505e-13
+            }
+          ],
+          "tangentDistance": 16
+        },
+        {
+          "side": "east",
+          "resolved": [
+            1438.3450310098567,
+            1165.6719957290418
+          ],
+          "initialClearance": -9.947598300641403e-14,
+          "walk": [
+            {
+              "position": [
+                1438.3450310098567,
+                1167.6719957290418
+              ],
+              "clearance": -9.947598300641403e-14
+            },
+            {
+              "position": [
+                1438.3450310098567,
+                1169.6719957290418
+              ],
+              "clearance": -9.947598300641403e-14
+            },
+            {
+              "position": [
+                1438.3450310098567,
+                1171.6719957290418
+              ],
+              "clearance": -9.947598300641403e-14
+            },
+            {
+              "position": [
+                1438.3450310098567,
+                1173.6719957290418
+              ],
+              "clearance": -9.947598300641403e-14
+            },
+            {
+              "position": [
+                1438.3450310098567,
+                1175.6719957290418
+              ],
+              "clearance": -9.947598300641403e-14
+            },
+            {
+              "position": [
+                1438.3450310098567,
+                1177.6719957290418
+              ],
+              "clearance": -9.947598300641403e-14
+            },
+            {
+              "position": [
+                1438.3450310098567,
+                1179.6719957290418
+              ],
+              "clearance": -9.947598300641403e-14
+            },
+            {
+              "position": [
+                1438.3450310098567,
+                1181.6719957290418
+              ],
+              "clearance": -9.947598300641403e-14
+            }
+          ],
+          "tangentDistance": 16
+        }
+      ]
+    },
+    {
+      "file": "fixture-a-r0-1x-painted.png",
+      "fixture": {
+        "x": 1331.9834576309288,
+        "y": 1112.7102009190446,
+        "kind": "a",
+        "height": 242,
+        "rot": -0.1821683104727636
+      },
+      "kind": "a",
+      "rot": 0,
+      "zoom": 1,
+      "mode": "painted",
+      "painted": 1,
+      "randomAfter": 0.11707454989664257,
+      "geometry": {
+        "geom": [
+          1331.9834576309288,
+          1112.7102009190446,
+          94.36157337892801,
+          105.92358961999416,
+          242,
+          null,
+          0
+        ]
+      },
+      "after": {
+        "geom": [
+          1331.9834576309288,
+          1112.7102009190446,
+          94.36157337892801,
+          105.92358961999416,
+          242,
+          null,
+          0
+        ]
+      },
+      "contacts": [
+        {
+          "side": "front",
+          "resolved": [
+            1379.1642443203928,
+            1230.633790539039
+          ],
+          "initialClearance": 1.7763568394002505e-13,
+          "walk": [
+            {
+              "position": [
+                1381.1642443203928,
+                1230.633790539039
+              ],
+              "clearance": 1.7763568394002505e-13
+            },
+            {
+              "position": [
+                1383.1642443203928,
+                1230.633790539039
+              ],
+              "clearance": 1.7763568394002505e-13
+            },
+            {
+              "position": [
+                1385.1642443203928,
+                1230.633790539039
+              ],
+              "clearance": 1.7763568394002505e-13
+            },
+            {
+              "position": [
+                1387.1642443203928,
+                1230.633790539039
+              ],
+              "clearance": 1.7763568394002505e-13
+            },
+            {
+              "position": [
+                1389.1642443203928,
+                1230.633790539039
+              ],
+              "clearance": 1.7763568394002505e-13
+            },
+            {
+              "position": [
+                1391.1642443203928,
+                1230.633790539039
+              ],
+              "clearance": 1.7763568394002505e-13
+            },
+            {
+              "position": [
+                1393.1642443203928,
+                1230.633790539039
+              ],
+              "clearance": 1.7763568394002505e-13
+            },
+            {
+              "position": [
+                1395.1642443203928,
+                1230.633790539039
+              ],
+              "clearance": 1.7763568394002505e-13
+            }
+          ],
+          "tangentDistance": 16
+        },
+        {
+          "side": "east",
+          "resolved": [
+            1438.3450310098567,
+            1165.6719957290418
+          ],
+          "initialClearance": -9.947598300641403e-14,
+          "walk": [
+            {
+              "position": [
+                1438.3450310098567,
+                1167.6719957290418
+              ],
+              "clearance": -9.947598300641403e-14
+            },
+            {
+              "position": [
+                1438.3450310098567,
+                1169.6719957290418
+              ],
+              "clearance": -9.947598300641403e-14
+            },
+            {
+              "position": [
+                1438.3450310098567,
+                1171.6719957290418
+              ],
+              "clearance": -9.947598300641403e-14
+            },
+            {
+              "position": [
+                1438.3450310098567,
+                1173.6719957290418
+              ],
+              "clearance": -9.947598300641403e-14
+            },
+            {
+              "position": [
+                1438.3450310098567,
+                1175.6719957290418
+              ],
+              "clearance": -9.947598300641403e-14
+            },
+            {
+              "position": [
+                1438.3450310098567,
+                1177.6719957290418
+              ],
+              "clearance": -9.947598300641403e-14
+            },
+            {
+              "position": [
+                1438.3450310098567,
+                1179.6719957290418
+              ],
+              "clearance": -9.947598300641403e-14
+            },
+            {
+              "position": [
+                1438.3450310098567,
+                1181.6719957290418
+              ],
+              "clearance": -9.947598300641403e-14
+            }
+          ],
+          "tangentDistance": 16
+        }
+      ]
+    }
+  ],
+  "world": [
+    {
+      "file": "world-1x.png",
+      "district": "Köpenick",
+      "version": "0.72",
+      "buildings": 833,
+      "kinds": {
+        "a": {
+          "x": 1331.9834576309288,
+          "y": 1112.7102009190446,
+          "w": 94.36157337892801,
+          "h": 105.92358961999416,
+          "rot": -0.1821683104727636
+        },
+        "b": {
+          "x": 2911.7111901752955,
+          "y": 2227.9918621124616,
+          "w": 233.6719307154417,
+          "h": 136.22789906337857,
+          "rot": 0.2730087030867106
+        },
+        "c": {
+          "x": 1254.32617411866,
+          "y": 257.9916121564013,
+          "w": 76.0837020277977,
+          "h": 109.31033791601658,
+          "rot": -0.03997868712329011
+        },
+        "platte": {
+          "x": 2018.4083579184157,
+          "y": 2177.6122374790307,
+          "w": 308.5798378614709,
+          "h": 139.7754740305245,
+          "rot": 0.7853981633974483
+        },
+        "shop": {
+          "x": 150,
+          "y": 2570,
+          "w": 260,
+          "h": 170,
+          "rot": 0
+        }
+      },
+      "selected": {
+        "x": 1331.9834576309288,
+        "y": 1112.7102009190446,
+        "w": 94.36157337892801,
+        "h": 105.92358961999416,
+        "rot": -0.1821683104727636
+      }
+    },
+    {
+      "file": "world-2x.png",
+      "district": "Köpenick",
+      "version": "0.72",
+      "buildings": 833,
+      "kinds": {
+        "a": {
+          "x": 1331.9834576309288,
+          "y": 1112.7102009190446,
+          "w": 94.36157337892801,
+          "h": 105.92358961999416,
+          "rot": -0.1821683104727636
+        },
+        "b": {
+          "x": 2911.7111901752955,
+          "y": 2227.9918621124616,
+          "w": 233.6719307154417,
+          "h": 136.22789906337857,
+          "rot": 0.2730087030867106
+        },
+        "c": {
+          "x": 1254.32617411866,
+          "y": 257.9916121564013,
+          "w": 76.0837020277977,
+          "h": 109.31033791601658,
+          "rot": -0.03997868712329011
+        },
+        "platte": {
+          "x": 2018.4083579184157,
+          "y": 2177.6122374790307,
+          "w": 308.5798378614709,
+          "h": 139.7754740305245,
+          "rot": 0.7853981633974483
+        },
+        "shop": {
+          "x": 150,
+          "y": 2570,
+          "w": 260,
+          "h": 170,
+          "rot": 0
+        }
+      },
+      "selected": {
+        "x": 1331.9834576309288,
+        "y": 1112.7102009190446,
+        "w": 94.36157337892801,
+        "h": 105.92358961999416,
+        "rot": -0.1821683104727636
+      }
+    }
+  ],
+  "fallback": [],
+  "sourceHashes": {
+    "assets/buildings/koep-a-wall.webp": "3f2cac705caa13fec20cf8bf5dfef98e39e234e4270829c95f5f44a5b22bc369",
+    "assets/buildings/koep-a-window.webp": "51180ad10b8ea36fb3310a067a537d1e0bda51de40a836e6f951d3731a1733b2",
+    "assets/buildings/koep-b-wall.webp": "8926c5843f0b6dfc458f6cf532b0773b73e663f8a8b68a7f98231c106820e81e",
+    "assets/buildings/koep-b-window.webp": "512e82a254942bc4772c64b7f62c7dcfef64df6bdd5ebf648d9fc23e28bcd2e0",
+    "assets/buildings/koep-c-wall.webp": "f7203b1650f0a5b0a9957056d26d6896e3e95849544cac3b3829a08e291e11cf",
+    "assets/buildings/koep-c-window.webp": "c00e82a8514919f4718afc6360b3a36ae9c730a722ca56be77840b985bfd2437",
+    "assets/buildings/koep-damage.webp": "f9a0ee78bec65fa64afb626175fbee0cb34f58f2c6d3f830294748366f9265a0",
+    "assets/buildings/koep-ivy.webp": "7f0eb5bd95b68066d4f20f7d01db3d9c6c567e1695c1cf3260c7b4b24f54c21b",
+    "assets/buildings/koep-platte-wall.webp": "56df5049c9680b3d15a1c786ddeb2c5a0d8ff4a39781b97fddb52cad299f4064",
+    "assets/buildings/koep-platte-window.webp": "f0a53c70242c91e88a8b734481221bb2d9d92568d369667b2f30009190bd9a9d",
+    "assets/buildings/koep-roof-ruin.webp": "b5f368ed69e9d736b4fbc9d8c8e0c4616a175b64089d88a2317146c3b33e9260",
+    "assets/buildings/koep-roof.webp": "2cd938727d0e939f5034fe00743166b66bdd27bda63ff045dd866ddbd0576c43",
+    "assets/buildings/koep-shopfront.webp": "55753b500c9a2277d5a584de7b2971b18c08300f7b2c226f778705adef7fa4ed",
+    "assets/manifest.json": "3fea2820a32ff8a3736c4e9cdf1fd4a032d5aa605fd0ed10a82bf17e626c319b",
+    "index.html": "dc9177600864ad9594a3f790e1a51d7096970671059b0beaafe38939781a4fef",
+    "js/alex.js": "623ff5a5223527ecb9f654cc092fbe31faf0b35cada01886ac00c2ff00cb0704",
+    "js/anim.js": "c2e44013ad1ff98349d6b7fe8b41ec980f6cc897df48b2a981d1c0550ff0a00a",
+    "js/art.js": "49c6cf7764ee6e4e315b3257486865fd86526bb6661eed9f2296ffb0e4e42fb7",
+    "js/audio.js": "3c6f832ff8a2613aac74243d509e3f108304b4f2cfa8ecaee66f48d9ce84be56",
+    "js/base.js": "74e395dba2451863d17521fc2e47a0d2c966bef49582331abe1eb6ffcded6f64",
+    "js/biomes.js": "0abfe8cb86cce0782bee4ffb728071f80d8f409863af1f943c68eb8978f7ce05",
+    "js/canvas.js": "d34cbe815e1873b7c0183e2b12421f0d148e801d3b4cbce41b34263bb1015fc9",
+    "js/combat.js": "c385433c9e7bc3e132ebd56e3f839375c6a2ede301a5d6c9653efc8f7d279221",
+    "js/core.js": "7bc6e97ed5f29962fcedef5c0b87f3528b49945ac5ad05c5b5d57de9551d5408",
+    "js/data.js": "67efe7a86c5faa05caea2fd965482591e5f9bf22179a14d55d04db2fe9ba6b7e",
+    "js/feedback.js": "85014f11d8a9cc17a1f5a04b25c92351802401351118fa8cdcf59b5286b17dfc",
+    "js/gdr-assets.js": "55ecdf5d40153c52cb4c086d28bf9f630e809b76fe1acccd464b800850787e7e",
+    "js/geo.js": "e90401ecb4e49452baa003442afe48d344d754d28b1cd80dd8b1e6d4b0d21048",
+    "js/hero.js": "afd81d88185464cfed1dbe6ac4580412f26a096ef2d81878018247ef1c570e7a",
+    "js/input.js": "10a5c000ebcfb7cc2ddb940e8fc0ef7e6e4fc50a3337e911389765949c2d0fdd",
+    "js/iso.js": "c2005cf3d6b520aafbc12cd41263ded6a2182fb70dc5a44ed260b96d589235f6",
+    "js/items.js": "6a7432a89f3e781f0fc3e318a0dfe8814599f4b2e3149e4492d8fb0fab247208",
+    "js/koep-assets.js": "137e06476943145b696e9cd7773084106a11e3857e2ead51915d13959b7be576",
+    "js/main.js": "e8da6f7673f61ac50a173f47b6b9a5803b363eeff175f26df254e34d12a7e8c4",
+    "js/mitte.js": "e4c308c61318985360186b3e4c923813e415e1c5d3a12da8f7cab9fc204371f7",
+    "js/panels.js": "391c2586c86b26517b834cb4cae446f959922528cd0272aa1bc58b1cdb077dd4",
+    "js/render.js": "7e1337e8d3bcbc604fd6d4677f646ad0326016db7bd299fcb05e785568015b9e",
+    "js/save.js": "1ac146255d812abf515549e9ddb21003aa4feb91c69333af4a10a0b0e430faab",
+    "js/sprites.js": "b1787f5f565065b81c0d8fa0d2961722c5d6c2aa097280541a2ef599bec999b6",
+    "js/state.js": "84639cfc7b0782978f0b564f290ebf8ce4db7c5f835736c9ba7be81fb57ca48a",
+    "js/ubahn.js": "814179fb853bc0c1317947d958e54cfc13b7bb3b85c2c3b1f500c7474d95b725",
+    "js/update.js": "7d73e47144fc52b457efab07b28f4ed244e0fc6713f33c3de095756345e26182",
+    "js/vfx.js": "623ef8f87d8ca82c74642af29694581db3cddee52f8069a680f2ac1d01ae8a10",
+    "js/world.js": "2970503023e4001f67172664f67743c83401a73e8cb9037d6749bab752218c92",
+    "sw.js": "7df73bb64407e180aa3728c4b7289cce76c06961ab0a2b1ca16a1324e2147e2f",
+    "tools/perf_koep.cjs": "36134738ac5fc859bd5f7d684d8fe66ed6f7241fb4d592ab8f0a1203163eb6d9",
+    "tools/proof_koep_buildings.cjs": "d3eecdbaca1851e3d48e65f621a33ba0855d8be2b55c6ef49fc984deb3f39e5e",
+    "tools/proof_koep_cache.cjs": "09c650936cd19a19a4043db3b9c8153fc64a17745c19696904e1c9fb161dd0fa"
+  },
+  "smoke": {
+    "state": "play",
+    "version": "0.72",
+    "district": "Köpenick"
+  },
+  "assets": {
+    "keys": [
+      "buildings/koep-a-window",
+      "buildings/koep-a-wall",
+      "buildings/koep-b-window",
+      "buildings/koep-b-wall",
+      "buildings/koep-c-window",
+      "buildings/koep-c-wall",
+      "buildings/koep-platte-window",
+      "buildings/koep-platte-wall",
+      "buildings/koep-roof",
+      "buildings/koep-shopfront",
+      "buildings/koep-ivy",
+      "buildings/koep-damage",
+      "buildings/koep-roof-ruin"
+    ],
+    "decodedBytes": 1592672,
+    "sizes": [
+      {
+        "key": "buildings/koep-a-window",
+        "w": 110,
+        "h": 146
+      },
+      {
+        "key": "buildings/koep-a-wall",
+        "w": 110,
+        "h": 146
+      },
+      {
+        "key": "buildings/koep-b-window",
+        "w": 110,
+        "h": 146
+      },
+      {
+        "key": "buildings/koep-b-wall",
+        "w": 110,
+        "h": 146
+      },
+      {
+        "key": "buildings/koep-c-window",
+        "w": 146,
+        "h": 146
+      },
+      {
+        "key": "buildings/koep-c-wall",
+        "w": 146,
+        "h": 146
+      },
+      {
+        "key": "buildings/koep-platte-window",
+        "w": 146,
+        "h": 146
+      },
+      {
+        "key": "buildings/koep-platte-wall",
+        "w": 146,
+        "h": 146
+      },
+      {
+        "key": "buildings/koep-roof",
+        "w": 272,
+        "h": 272
+      },
+      {
+        "key": "buildings/koep-shopfront",
+        "w": 272,
+        "h": 182
+      },
+      {
+        "key": "buildings/koep-ivy",
+        "w": 126,
+        "h": 302
+      },
+      {
+        "key": "buildings/koep-damage",
+        "w": 90,
+        "h": 146
+      },
+      {
+        "key": "buildings/koep-roof-ruin",
+        "w": 272,
+        "h": 272
+      }
+    ]
+  }
+}

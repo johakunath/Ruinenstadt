@@ -110,3 +110,17 @@ test('cache bakes at device scale (DPR*Z, quarter steps, max 3) and a zoom chang
  s.env.Z=1.48;assert.equal(s.run('koepScale()'),3);assert.equal(s.run('koepCacheReady(b)'),false,'resize forces a rebake');ready=s.run('koepPrepare(b)');await s.flush();assert.equal(await ready,true);assert.equal(c.width,0,'stale cache released');assert.equal(s.canvases.at(-1).width,r.w*3);
  s.env.DPR=1;s.env.Z=1;assert.equal(s.run('koepScale()'),1);s.env.DPR=2;s.env.Z=1.8;assert.equal(s.run('koepScale()'),3);
 });
+
+// A visible working set larger than the cap must converge, not evict every frame.
+test('stationary overflow retains visible caches and stops allocating until camera changes',async()=>{
+ const s=setup(),a=building({x:0,y:0,w:800,H:650,top:650}),b=building({x:100,y:0,w:800,H:650,top:650});
+ Object.assign(s.env,{blds:[a,b],a,b,Z:1,DPR:3,SW:2560,SH:1440});
+ const ready=s.run('koepPrepareMap()');await s.flush();await ready;
+ for(let i=0;i<20;i++){s.run('koepBeginFrame()');s.draw(a,'drawKoepBuilding');s.draw(b,'drawKoepBuilding');await s.flush();}
+ assert.equal(s.run('koepCacheReady(a)'),true);assert.equal(s.run('koepCacheReady(b)'),false);
+ const count=s.canvases.length,evictions=s.run('KOEPCACHE.evictions');
+ for(let i=0;i<20;i++){s.run('koepBeginFrame()');s.draw(a,'drawKoepBuilding');s.draw(b,'drawKoepBuilding');await s.flush();}
+ assert.equal(s.canvases.length,count);assert.equal(s.run('KOEPCACHE.evictions'),evictions);assert.equal(s.jobs.length,0);
+ s.env.P.x=5000;s.run('koepBeginFrame()');s.draw(b,'drawKoepBuilding');await s.flush();
+ assert.equal(s.run('koepCacheReady(b)'),true,'camera movement permits stale offscreen cache replacement');assert.ok(s.run('koepAssetStats().maxAllocatedBytes')<=40000000);
+});

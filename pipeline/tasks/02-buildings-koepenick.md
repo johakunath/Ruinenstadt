@@ -1,12 +1,11 @@
 # 02 Buildings, Köpenick first
 
-Status: in progress (Codex, 2026-11-10). Johannes selected A common Altbau + B occasional variants + selective C ruins for Köpenick. Step 0 was completed with the GDR proof in v0.69.
-
-Production is integrated; the performance gate passed on 2026-11-11 (see update below). Earlier state: 13 materials and all five
-building types are integrated locally, visual/contact and semantic checks
-pass, but the final combined performance run is +9.68% on Köpenick (limit 5%).
-An isolated run passed; acceptance remains unresolved. Three optimizations
-were tried, so follow the workflow stop rule and continue independent work.
+Status: done (v0.71, merged PRs #29/#30). Desktop GPU gate passed on
+2026-11-11; the earlier seven-pair timing is superseded. Tablet acceptance
+is deferred. Review follow-up v0.72 stabilizes over-budget cache views and
+makes both proof entry points enforce unsuccessful performance verdicts.
+Johannes selected A common Altbau + B occasional variants + selective C
+ruins. Step 0 was completed with the GDR proof in v0.69.
 
 Update 2026-11-10 (Claude): the 7-pair timing could not resolve 5% (baseline
 spread 25%, 3 of 7 pairs negative). Caches now bake at device scale instead

@@ -1,11 +1,9 @@
 # Köpenick building kit proof
 
-**Draft, performance acceptance unresolved.** The final combined browser run
-passed all 60 visual/contact fixtures but failed the 5% timing limit on
-Köpenick (+9.68%). An isolated run of the same runtime passed (+0.90% Köpenick,
--3.67% Alexanderplatz); this does not override the combined failure. Three
-optimization approaches have been tried. Preserve the work for review, do
-not ship it or claim the task complete. Independent asset work can continue.
+**Merged v0.71; desktop performance accepted.** The original seven-pair
+measurements below are historical and superseded by the 21-pair Windows GPU
+pass recorded at the end of this file. Its null-control CI also meets the
+corrected ±5% noise check. PRs #29/#30 are merged; tablet acceptance is deferred.
 
 Johannes selected A as the common cream Altbau, B as an occasional teal/ochre
 variant, and C for selected ruins on 2026-11-10. The thirteen selected
@@ -83,3 +81,11 @@ deferred that hardware check.
 
 GPU: ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11), hardware raster. 1280×800 @ DPR 2, 21 pairs, commit 0dc5f4b, Windows 11, power mode "Höchstleistung", headless Chrome via Playwright 1.65.0. Raw data: `perf/perf-2026-11-10T23-39-22-523Z.json`.
 The Köpenick CI upper bound (-2.26%) is below the +5% limit; the null control stays within ±5%. No rerun at 41 pairs was needed. This measures desktop render script time, not Tab S9 heat or battery.
+
+
+Review follow-up v0.72 (2026-11-11): 58 semantic checks pass; the actual
+2560×1440/DPR2 overflow reproduction stays at 18 caches and 39,841,412 bytes,
+without continuing evictions. `tools/proof_koep_overflow.cjs` reproduces it.
+Fresh RTX 4070 gate, 21 pairs at 1280×800/DPR2: Koepenick -2.85%
+(CI -5.25 to +2.25), Alexanderplatz +2.27% (CI -1.32 to +4.77); pass.
+Raw data: `perf/perf-2026-11-11T06-26-54-510Z.json`.

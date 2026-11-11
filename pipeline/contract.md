@@ -7,7 +7,7 @@ caches at device scale `koepScale()` = min(3, DPR×Z) px/screen unit, quarter st
 for actual building rotations (scale is part of the signature, resize rebakes); no authored fixed-view
 painting replaces the geometry. `koepPrepareMap()`/`koepPrepare(b)` schedule
 cache work outside drawing. Signatures invalidate changed geometry/rotation;
-actual draws receive eviction priority over unused prefetches. Task images,
+current-frame visible caches are pinned; overflow remains on fallback until the view changes. Task images,
 shared materials and caches together are capped at 40,000,000 bytes. The
 original sprite supplies complete fallback while a required image/cache is
 unavailable. Cache retirement clears dimensions and cancels pending map jobs.

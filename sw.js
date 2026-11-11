@@ -1,5 +1,5 @@
 // Bump CACHE with every release so installed copies pick up the new files.
-const CACHE='ruinenstadt-0.71';
+const CACHE='ruinenstadt-0.72';
 const SHELL=['./','index.html','css/style.css','manifest.webmanifest','icons/icon.svg','icons/icon-192.png','icons/icon-512.png',
   ...['core','save','canvas','iso','data','items','audio','world','biomes','geo','mitte','alex','ubahn','base','state','feedback','vfx','anim','combat','input','panels','update','hero','sprites','gdr-assets','koep-assets','art','render','main'].map(n=>`js/${n}.js`),
   ...['a-window','a-wall','b-window','b-wall','c-window','c-wall','platte-window','platte-wall','roof','roof-ruin','shopfront','ivy','damage'].map(n=>`assets/buildings/koep-${n}.webp`),

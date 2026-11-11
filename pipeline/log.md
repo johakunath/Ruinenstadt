@@ -500,3 +500,14 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 
 - GPU: ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11), hardware raster. 1280×800 @ DPR 2, 21 pairs, commit 0dc5f4b, Windows 11, power mode "Höchstleistung", headless Chrome via Playwright 1.65.0. Raw data: `perf/perf-2026-11-10T23-39-22-523Z.json`.
 - Verdict: **pass**. First and only run, nothing discarded; no levers needed. Draft PR #30 can go to review; not merged.
+
+
+## 2026-11-11 · Codex · PRs 29/30 review follow-up
+
+- Fixed visible cache churn: pin current-frame entries, keep a stable subset, suppress rejected requests until view/geometry changes. Overflow uses complete fallback.
+- Both proof entry points propagate unsuccessful gate exit codes. Alexanderplatz separately requires the whole CI within ±5%; noisy controls are inconclusive.
+- PR #30's committed GPU pass superseded the original release-gate finding. Reconciled stale draft wording and retained historical evidence.
+- 58 semantic checks pass. Real 2560×1440 / DPR2 reproduction at (1600,1400) converges at 18 caches, 39,841,412 bytes, no continuing evictions or page errors. Two visual/contact fixtures and two world views pass.
+- Fresh RTX 4070 gate: 21 pairs, 1280×800 DPR2. Koepenick -2.85% CI [-5.25,2.25]; Alexanderplatz +2.27% CI [-1.32,4.77]. Both pass. Raw data: `perf/perf-2026-11-11T06-26-54-510Z.json`. Desktop evidence only.
+- Deleted only merged local branches `codex/asset-queue-koepenick` and `claude/busy-turing-wcm3s0`; remotes were already gone. Preserved all unfinished asset worktrees.
+- Moved playtest paragraphs verbatim to `docs/playtests.md` at Johannes's request; linked the index/backlog and updated current pipeline priorities.
