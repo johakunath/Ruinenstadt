@@ -1,6 +1,6 @@
 # 03 Vehicles
 
-Status: open; production blocked on rotation-fit proof. Technical direction: P3 face materials; see `docs/vehicle-rendering.md`. Preserve the existing claimed vehicle worktree.
+Status: in progress (Codex, 2026-11-11). Resume preserved art in isolated continuation; repair scheduled caches and prove full rotation/edge-on range before publication.
 
 Johannes: the cars look bad now, this is a visible upgrade for little work.
 
