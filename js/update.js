@@ -58,6 +58,7 @@ function update(dt){dt=fxTime(dt);
   if(captive){captive.t+=dt;if(!captive.free&&!enemies.some(e=>e.guard2&&e.hp>0)){captive.free=true;toast('Die Wachen sind besiegt · geh zur Gefangenen');}
     if(captive.free&&Math.hypot(captive.x-P.x,captive.y-P.y)<36){const sv=captive.s;S.surv[sv.k]=1;save();banner(sv.n.split(',')[0]+' ist frei');toast(`<span style="color:var(--good)">${sv.n}</span> zieht in dein Lager · ${sv.d}`);sfx('win');burst(captive.x,captive.y,'#8fd16a',30,220);
       for(let i=0;i<2;i++)drops.push({x:captive.x,y:captive.y,item:makeItem(ilvl()+1,1),t:0});drops.push({x:captive.x,y:captive.y,mat:pick(Object.keys(MATS)),t:0});prog('rescue');captive=null;}}
+  for(const h of run.hid||[])if(!h.got&&Math.hypot(h.x-P.x,h.y-P.y)<30){h.got=1;burst(h.x,h.y,'#f2a04b',30,220);sfx('win');offerPerks(false,1);break;}if(state!=='play')return;
   if(trove){trove.t-=dt;if(Math.hypot(trove.x-P.x,trove.y-P.y)<34){burst(trove.x,trove.y,'#f2d14b',30,220);sfx('win');toast('Versteck gefunden');for(let i=0;i<2;i++)drops.push({x:trove.x,y:trove.y,item:lootItem(ilvl()+2,1,.08),t:0});for(let i=0;i<3;i++)drops.push({x:trove.x,y:trove.y,mat:pick(Object.keys(MATS)),t:0});const s=Math.round(25*(1+D.lvl*.08)*DF().sc);S.scrap+=s;run.sg+=s;trove=null;}
     else if(trove.t<=0){toast('Das Versteck ist verloren');trove=null;}}
   if(npc){npc.t-=dt;const nd=Math.hypot(npc.x-P.x,npc.y-P.y);if(nd<34&&!npc.near){npc.near=true;openTrade();return;}if(nd>60)npc.near=false;if(npc.t<=0){npc=null;toast('Der Händler ist weitergezogen');}}
