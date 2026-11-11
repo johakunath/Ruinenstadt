@@ -1,19 +1,209 @@
 [
   {
     "viewport": [
-      1920,
-      1080
+      900,
+      640
     ],
     "expected": {
       "count": 18,
-      "id": 1794381769324,
+      "id": 1794383253589,
       "oldId": 1,
       "name": "Fahnenstange der letzten Ruine",
       "affixes": 3,
       "power": 151
     },
     "actual": {
-      "id": 1794381769324,
+      "id": 1794383253589,
+      "oldId": 1,
+      "power": 151,
+      "count": 18
+    },
+    "layout": {
+      "horizontalOverflow": false,
+      "rows": 4,
+      "valuesClipped": 0,
+      "cards": [
+        {
+          "width": 277,
+          "height": 423
+        },
+        {
+          "width": 277,
+          "height": 278
+        }
+      ]
+    },
+    "expandedStats": true,
+    "equip": true,
+    "errors": []
+  },
+  {
+    "viewport": [
+      920,
+      640
+    ],
+    "expected": {
+      "count": 18,
+      "id": 1794383255745,
+      "oldId": 1,
+      "name": "Fahnenstange der letzten Ruine",
+      "affixes": 3,
+      "power": 151
+    },
+    "actual": {
+      "id": 1794383255745,
+      "oldId": 1,
+      "power": 151,
+      "count": 18
+    },
+    "layout": {
+      "horizontalOverflow": false,
+      "rows": 4,
+      "valuesClipped": 0,
+      "cards": [
+        {
+          "width": 283,
+          "height": 423
+        },
+        {
+          "width": 283,
+          "height": 278
+        }
+      ]
+    },
+    "expandedStats": true,
+    "equip": true,
+    "errors": []
+  },
+  {
+    "viewport": [
+      960,
+      640
+    ],
+    "expected": {
+      "count": 18,
+      "id": 1794383257801,
+      "oldId": 1,
+      "name": "Fahnenstange der letzten Ruine",
+      "affixes": 3,
+      "power": 151
+    },
+    "actual": {
+      "id": 1794383257801,
+      "oldId": 1,
+      "power": 151,
+      "count": 18
+    },
+    "layout": {
+      "horizontalOverflow": false,
+      "rows": 4,
+      "valuesClipped": 0,
+      "cards": [
+        {
+          "width": 297,
+          "height": 423
+        },
+        {
+          "width": 297,
+          "height": 278
+        }
+      ]
+    },
+    "expandedStats": true,
+    "equip": true,
+    "errors": []
+  },
+  {
+    "viewport": [
+      983,
+      640
+    ],
+    "expected": {
+      "count": 18,
+      "id": 1794383260093,
+      "oldId": 1,
+      "name": "Fahnenstange der letzten Ruine",
+      "affixes": 3,
+      "power": 151
+    },
+    "actual": {
+      "id": 1794383260093,
+      "oldId": 1,
+      "power": 151,
+      "count": 18
+    },
+    "layout": {
+      "horizontalOverflow": false,
+      "rows": 4,
+      "valuesClipped": 0,
+      "cards": [
+        {
+          "width": 304,
+          "height": 423
+        },
+        {
+          "width": 304,
+          "height": 278
+        }
+      ]
+    },
+    "expandedStats": true,
+    "equip": true,
+    "errors": []
+  },
+  {
+    "viewport": [
+      984,
+      640
+    ],
+    "expected": {
+      "count": 18,
+      "id": 1794383262289,
+      "oldId": 1,
+      "name": "Fahnenstange der letzten Ruine",
+      "affixes": 3,
+      "power": 151
+    },
+    "actual": {
+      "id": 1794383262289,
+      "oldId": 1,
+      "power": 151,
+      "count": 18
+    },
+    "layout": {
+      "horizontalOverflow": false,
+      "rows": 4,
+      "valuesClipped": 0,
+      "cards": [
+        {
+          "width": 305,
+          "height": 423
+        },
+        {
+          "width": 305,
+          "height": 278
+        }
+      ]
+    },
+    "expandedStats": true,
+    "equip": true,
+    "errors": []
+  },
+  {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "expected": {
+      "count": 18,
+      "id": 1794383264568,
+      "oldId": 1,
+      "name": "Fahnenstange der letzten Ruine",
+      "affixes": 3,
+      "power": 151
+    },
+    "actual": {
+      "id": 1794383264568,
       "oldId": 1,
       "power": 151,
       "count": 18
@@ -44,14 +234,14 @@
     ],
     "expected": {
       "count": 18,
-      "id": 1794381771274,
+      "id": 1794383266603,
       "oldId": 1,
       "name": "Fahnenstange der letzten Ruine",
       "affixes": 3,
       "power": 151
     },
     "actual": {
-      "id": 1794381771274,
+      "id": 1794383266603,
       "oldId": 1,
       "power": 151,
       "count": 18
@@ -82,14 +272,14 @@
     ],
     "expected": {
       "count": 18,
-      "id": 1794381773700,
+      "id": 1794383268837,
       "oldId": 1,
       "name": "Fahnenstange der letzten Ruine",
       "affixes": 3,
       "power": 151
     },
     "actual": {
-      "id": 1794381773700,
+      "id": 1794383268837,
       "oldId": 1,
       "power": 151,
       "count": 18
@@ -120,14 +310,14 @@
     ],
     "expected": {
       "count": 18,
-      "id": 1794381775976,
+      "id": 1794383271053,
       "oldId": 1,
       "name": "Fahnenstange der letzten Ruine",
       "affixes": 3,
       "power": 151
     },
     "actual": {
-      "id": 1794381775976,
+      "id": 1794383271053,
       "oldId": 1,
       "power": 151,
       "count": 18
@@ -158,14 +348,14 @@
     ],
     "expected": {
       "count": 18,
-      "id": 1794381778259,
+      "id": 1794383273335,
       "oldId": 1,
       "name": "Fahnenstange der letzten Ruine",
       "affixes": 3,
       "power": 151
     },
     "actual": {
-      "id": 1794381778259,
+      "id": 1794383273335,
       "oldId": 1,
       "power": 151,
       "count": 18
@@ -196,14 +386,14 @@
     ],
     "expected": {
       "count": 18,
-      "id": 1794381780379,
+      "id": 1794383276146,
       "oldId": 1,
       "name": "Fahnenstange der letzten Ruine",
       "affixes": 3,
       "power": 151
     },
     "actual": {
-      "id": 1794381780379,
+      "id": 1794383276146,
       "oldId": 1,
       "power": 151,
       "count": 18

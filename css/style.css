@@ -261,7 +261,7 @@ body.base:not(.inrun) #pause{display:grid}
 @media (min-width:900px) and (min-height:541px){
   #invbox{max-width:1440px}
   #inv .ihead{position:sticky;top:0;z-index:9;padding:8px 0;background:rgba(14,10,7,.98)}
-  .inv3.wide{grid-template-columns:minmax(360px,1.15fr) minmax(240px,.85fr) minmax(320px,1fr);gap:16px;align-items:start}
+  .inv3.wide{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr) minmax(0,1fr);gap:16px;align-items:start}
   .inv3.wide .doll{max-width:520px;grid-template-columns:76px minmax(0,1fr) 76px;gap:8px}
   .inv3.wide .doll #dollc{grid-row:1/5;aspect-ratio:3/4}
   .inv3.wide .doll .slot{width:76px;font-size:15px}

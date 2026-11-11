@@ -548,3 +548,10 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Paired GPU acceptance pending at this checkpoint. Work remains on the single consolidated draft PR #32; no merge authorized.
 
 - Final v0.75 RTX 4070 gate passes: Koepenick -2.82% CI [-9.87,2.95], Alexanderplatz +0.08% CI [-1.69,3.89], null control +0.69% CI [0.13,2.15]. 21 pairs, 1280×800 DPR2, zero timed canvas allocations/page errors; `perf-2026-11-11T07-24-36-658Z.json`. All timed source hashes match the final candidate.
+
+
+## 2026-11-11 · Codex · PR 32 breakpoint review correction
+
+- Johannes authorized fixing findings, merging, then continuing shared props/fire and vehicles. PR #32 had one P2: fixed minimum grid tracks overflowed at 900–983 CSS px.
+- Retained the three-panel layout and proportional widths, but let each track shrink to zero instead of reserving 360+240+320 px. Backpack cells still use their 72 px minimum. Larger viewport proportions remain identical.
+- Expanded layout/active rare-comparison proof to 900, 920, 960, 983 and 984 px, alongside the existing desktop/tablet/phone matrix. Check scrolling, no horizontal overflow, visible values/actions and real item equip. Runtime JS and the previous GPU acceptance are unaffected (CSS-only fix).

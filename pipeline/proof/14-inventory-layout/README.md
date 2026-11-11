@@ -38,3 +38,11 @@ checks the equipped item ID, verifies the displayed power matches the
 predicted comparison, and confirms the old weapon returns to the backpack
 without losing an item. All six pass; see `comparison.json` and
 `comparison-*.png`. Browser state is isolated from the player's save.
+
+
+## PR 32 review: 900–983 px breakpoint
+
+The fixed minimum columns required more space than the active breakpoint.
+All three tracks now use a zero minimum and retain their proportional widths.
+Added 900, 920, 960, 983 and 984 px to both the layout/scroll and active rare
+comparison/equip matrix. The existing larger-screen proportions are unchanged.
