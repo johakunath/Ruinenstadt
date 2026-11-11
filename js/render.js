@@ -64,10 +64,10 @@ function render(t){koepBeginFrame();vehicleBeginFrame();let pt=PERF?performance.
   /* ---- light ---- */
   lx.setTransform(LS,0,0,LS,0,0);lx.globalCompositeOperation='source-over';lx.clearRect(0,0,VW,VH);lx.fillStyle=`rgba(${D.nc||'6,4,3'},${P.dark?.95:D.day?clamp(.12+wE()*.022+(dm_('dunkel')?.3:0),.1,.6):clamp(D.dark-.12+wE()*.017+(dm_('dunkel')?.12:0),.45,.96)})`;lx.fillRect(0,0,VW,VH);lx.globalCompositeOperation='destination-out';// D.day (Alexanderplatz): daylight, late waves dim towards dusk
   // c: light colour. Tinted lights are collected in TN and painted into the light canvas after the holes are cut (v0.63), so fire, lamps and effects colour what they light
-  TN.length=0;const lit=(x,y,r,z,c)=>{const X=scx(x,y),Y=scy(x,y)-(z||0);if(X<-r||X>VW+r||Y<-r||Y>VH+r)return;lx.drawImage(LSPR,X-r,Y-r*.7,r*2,r*1.4);if(c&&!S.eco)TN.push(X,Y,r,c);};
+  TN.length=0;const lit=(x,y,r,z,c,own)=>{const X=scx(x,y),Y=scy(x,y)-(z||0);if(X<-r||X>VW+r||Y<-r||Y>VH+r)return;const oc=lOcc(x,y,X,Y,r,own);if(oc){lHole(X,Y,r,oc);return;}lx.drawImage(LSPR,X-r,Y-r*.7,r*2,r*1.4);if(c&&!S.eco)TN.push(X,Y,r,c);};
   lit(P.x,P.y,(P.dark?(P.torch?(D.tun?320:270):D.tun?280:P.lamp?200:95):250)+Math.sin(t*.008)*8+Math.sin(t*.021)*4,10);
   for(const b of barrels)if(!b.occ)lit(b.x,b.y,150+Math.sin(t*.012+b.ph)*12,10,'#ff7a2a');
-  for(const b of blds)for(const l of b.lights){if(l.inner&&!b.inside||b.occ)continue;const q=lpos(b,l);if(l.inner){lit(q[0],q[1],150,0,'#ffb060');continue;}if(l.r||!S.eco)lit(q[0],q[1],(l.r||34)*(l.fl&&Math.sin(t*.031+l.x)*Math.sin(t*.017+l.y)>.55?.35:1),q[2],l.c||(l.r?LCOL():0));}
+  for(const b of blds)for(const l of b.lights){if(l.inner&&!b.inside||b.occ)continue;const q=lpos(b,l);if(l.inner){lit(q[0],q[1],150,0,'#ffb060',b);continue;}if(l.r||!S.eco)lit(q[0],q[1],(l.r||34)*(l.fl&&Math.sin(t*.031+l.x)*Math.sin(t*.017+l.y)>.55?.35:1),q[2],l.c||(l.r?LCOL():0),b);}
   for(const p of eproj)lit(p.x,p.y,46,10,'#97c459');for(const b of bolts)lit(b.x1,b.y1,60,0,'#7dd3ff');if(!S.eco)for(const h of hazards)lit(h.x,h.y,50,0,h.col||'#ff6a2a');for(const d of drops)if(d.item&&d.item.r>=2)lit(d.x,d.y,60);for(const f of fields)lit(f.x,f.y,f.r+50,0,'#ff6a2a');
   if(crate)lit(crate.x,crate.y,110);if(trove)lit(trove.x,trove.y,110);if(run&&run.hid)for(const h of run.hid)if(!h.got)lit(h.x,h.y,60);if(captive)lit(captive.x,captive.y,90);if(npc)lit(npc.x,npc.y,110,10);if(zone)lit(zone.x,zone.y,zone.r+50);if(D.tun&&TUN&&TUN.hold&&!TUN.lit)lit(GEN.x,GEN.y,GEN.r);for(const tl of teles)lit(tl.x,tl.y,tl.r*1.3);for(const s of shocks)lit(s.x,s.y,s.r+40);fxLight(lit);
   if(TN.length){lx.globalCompositeOperation='source-over';lx.globalAlpha=D.day&&!P.dark?.06:.14;for(let i=0;i<TN.length;i+=4){const r=TN[i+2]*.85;lx.drawImage(glow(TN[i+3]),TN[i]-r,TN[i+1]-r*.7,r*2,r*1.4);}lx.globalAlpha=1;}
@@ -99,14 +99,24 @@ function drawDrop(d){const bob=Math.sin(d.t*4)*2;
   const c=rc(d.item),gs=24+Math.sin(d.t*5)*4,hh=d.h||0;if(d.item.r>=2&&!hh){ctx.fillStyle=c+'30';ctx.fillRect(d.x-3,d.y-(d.item.r>=3?140:70),6,d.item.r>=3?140:70);}
   if(hh){ctx.fillStyle='rgba(0,0,0,.35)';ctx.beginPath();ctx.ellipse(d.x,d.y+4,6,2.5,0,0,7);ctx.fill();}
   ctx.drawImage(glow(c),d.x-gs,d.y+bob-gs-hh,gs*2,gs*2);ctx.save();ctx.translate(d.x,d.y+bob-hh);ctx.rotate(Math.PI/4+(hh?d.t*12:0));ctx.fillStyle=c;ctx.fillRect(-6,-6,12,12);ctx.restore();}
+/* v0.82 light occlusion: a light whose source stands behind an opaque box is cut out of the darkness only outside that box's screen silhouette,
+   so fire, lamps and windows behind a building no longer brighten its facade. Lights without an occluder keep the fast path. */
+let SBX=[];const LT=document.createElement('canvas'),ltx=LT.getContext('2d');
+function lOcc(x,y,X,Y,r,own){let o=null;const x0=X-r-OX,x1=X+r-OX,y0=Y-r*.7-OY,y1=Y+r*.7-OY;for(const b of SBX){if(b===own||b.oa<.6||b.isSpati||!b._s||b._s[1]<x0||b._s[0]>x1||b._s[3]<y0||b._s[2]>y1||front(b,x,y))continue;(o||(o=[])).push(b);}return o;}
+function bSil(g,b){const G=b.rot?obbC(b):[[b.x,b.y],[b.x+b.w,b.y],[b.x+b.w,b.y+b.h],[b.x,b.y+b.h]],T=boxTop(b),P_=[];for(const q of G){const X=scx(q[0],q[1]),Y=scy(q[0],q[1]);P_.push([X,Y],[X,Y-T]);}
+  P_.sort((a,c)=>a[0]-c[0]||a[1]-c[1]);const cr=(o,a,c)=>(a[0]-o[0])*(c[1]-o[1])-(a[1]-o[1])*(c[0]-o[0]),lo=[],up=[];for(const p of P_){while(lo.length>1&&cr(lo[lo.length-2],lo[lo.length-1],p)<=0)lo.pop();lo.push(p);}for(let i=P_.length-1;i>=0;i--){const p=P_[i];while(up.length>1&&cr(up[up.length-2],up[up.length-1],p)<=0)up.pop();up.push(p);}
+  const H=lo.slice(0,-1).concat(up.slice(0,-1));g.moveTo(H[0][0],H[0][1]);for(let i=1;i<H.length;i++)g.lineTo(H[i][0],H[i][1]);g.closePath();}
+function lHole(X,Y,r,oc){if(LT.width!==lc.width||LT.height!==lc.height){LT.width=lc.width;LT.height=lc.height;}const px=Math.max(0,Math.floor((X-r)*LS)),py=Math.max(0,Math.floor((Y-r*.7)*LS)),pw=Math.min(lc.width-px,Math.ceil(r*2*LS)+2),ph=Math.min(lc.height-py,Math.ceil(r*1.4*LS)+2);if(pw<=0||ph<=0)return;
+  ltx.setTransform(1,0,0,1,0,0);ltx.globalCompositeOperation='source-over';ltx.clearRect(px,py,pw,ph);ltx.setTransform(LS,0,0,LS,0,0);ltx.drawImage(LSPR,X-r,Y-r*.7,r*2,r*1.4);ltx.globalCompositeOperation='destination-out';ltx.fillStyle='#000';ltx.beginPath();for(const b of oc)bSil(ltx,b);ltx.fill();
+  lx.setTransform(1,0,0,1,0,0);lx.drawImage(LT,px,py,pw,ph,px,py,pw,ph);lx.setTransform(LS,0,0,LS,0,0);}
 /* depth order: boxes (buildings, vehicles) sorted by centre depth; each upright item is drawn just before the first box it stands behind and overlaps on screen, else after all boxes. Buildings in front of the player fade. */
 function drawSorted(t){const BX=[],IT=[],vL=-OX-60,vR=VW-OX+60,vT=-OY-60,vB=VH-OY+80;
   for(const b of blds){if(isBox(b)){let x0=ix(b.x,b.y+b.h),x1=ix(b.x+b.w,b.y),y0=iy(b.x,b.y)-boxTop(b),y1=iy(b.x+b.w,b.y+b.h);
-    if(b.rot){const C=obbC(b).map(p=>[ix(p[0],p[1]),iy(p[0],p[1])]);x0=Math.min(...C.map(p=>p[0]));x1=Math.max(...C.map(p=>p[0]));y0=Math.min(...C.map(p=>p[1]))-boxTop(b);y1=Math.max(...C.map(p=>p[1]));}if(x1<vL||x0>vR||y1<vT||y0>vB)continue;b._s=[x0,x1,y0];b._k=b.x+b.w/2+b.y+b.h/2+(b.dk||0);BX.push(b);}
+    if(b.rot){const C=obbC(b).map(p=>[ix(p[0],p[1]),iy(p[0],p[1])]);x0=Math.min(...C.map(p=>p[0]));x1=Math.max(...C.map(p=>p[0]));y0=Math.min(...C.map(p=>p[1]))-boxTop(b);y1=Math.max(...C.map(p=>p[1]));}if(x1<vL||x0>vR||y1<vT||y0>vB)continue;b._s=[x0,x1,y0,y1];b._k=b.x+b.w/2+b.y+b.h/2+(b.dk||0);BX.push(b);}
     else{const ax=b.x+b.w/2,X=ix(ax,b.y),Y=iy(ax,b.y),sc=b.sc||1;if(X+b.spr.width*sc<vL||X-b.spr.width*sc>vR||Y<vT||Y-b.top*sc>vB)continue;IT.push({x:ax,y:b.y,k:0,o:b});}}
   for(const b of barrels)IT.push({x:b.x,y:b.y,k:1,o:b});for(const b of brk)IT.push({x:b.x+b.w/2,y:b.y+b.h/2,k:4,o:b});
   for(const e of enemies)IT.push({x:e.x,y:e.y,k:2,o:e});if(npc)IT.push({x:npc.x,y:npc.y,k:5,o:npc});if(captive)IT.push({x:captive.x,y:captive.y,k:6,o:captive});IT.push({x:P.x,y:P.y,k:3});
-  BX.sort((a,b)=>a._k-b._k);const PX=ix(P.x,P.y),PY=iy(P.x,P.y);
+  BX.sort((a,b)=>a._k-b._k);SBX=BX;const PX=ix(P.x,P.y),PY=iy(P.x,P.y);
   for(const it of IT){it.s=1e9;it.d=it.x+it.y;if(it.k!==3&&it.k!==0){const X=ix(it.x,it.y),Y=iy(it.x,it.y);if(X<vL||X>vR||Y<vT||Y-60>vB){it.s=-1;continue;}}const X=ix(it.x,it.y),Y=iy(it.x,it.y);
     for(let j=0;j<BX.length;j++){const b=BX[j];if(X<b._s[0]-12||X>b._s[1]+12||Y<b._s[2]||front(b,it.x,it.y))continue;it.s=j;break;}}
   // v0.77: fire barrels and lamp sprites hidden behind a box are marked, so their glow does not shine through the building (light pass below)
