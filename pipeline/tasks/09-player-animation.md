@@ -1,6 +1,6 @@
 # 09 Player animation v3: knees, elbows, more directions
 
-Status: in progress (Codex, 2026-11-11; step 1 only). Resume and validate the preserved local draft on current main plus PR 29/30 review fixes.
+Status: implemented (v0.73 draft, Codex, 2026-11-11; step 1 only). Resumed preserved local work on current main plus PR #31 review fixes. 62 JS / 6 Python checks, browser/offline proof and paired GPU gate pass. Human movement acceptance remains open; steps 2-4 are unchanged.
 
 Johannes' feedback on the v0.61 rig: movement is too stiff, legs move a little and like a stick figure, **knees and elbows do not bend**, and the player only has two views (left and right, the game mirrors). Wanted: the figure feels a bit more alive. Torso and clothing are fine, arms and forearms need to be made to fit.
 

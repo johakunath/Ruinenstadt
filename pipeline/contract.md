@@ -171,3 +171,24 @@ corners and no ground shadow. It is dev proof, never runtime art. Extra
 orientations or a fallback would be needed before using fixed paintings on
 rotated buildings. Raw independently generated B studies failed footprint
 fit and remain unselected; their failure is not attributed to the method.
+
+
+## Player animation v3, step 1 (v0.73 draft)
+
+`tools/build_hero.py --animation-only` derives twelve lossless WebPs from the
+committed v2 leg/trouser layers. Existing image bytes, shoulder, arm lengths,
+weapon grip/tip metadata and `HWL` remain unchanged. Every outfit registers
+its thigh and shin at the same knee (8 local units below the hip), with a
+four-source-pixel overlap. Boot art remains an independent ankle layer.
+The complete default builder also emits these derivatives after v2 sources.
+
+`heroPose` is visual only. Wet ground and speed scale phase/stride, the lifted
+knee flexes, one local foot remains planted, and ankle rotation cancels hip
+and knee rotation. Body lean/counter-rotation and head lag use the same pose.
+Attack IK targets the old hand path; joint lengths remain 10+10 and a small
+unreachable-target error is bounded by the semantic tests. Dash uses the same
+knee/ankle and arm chain. No physics, hit areas, timings, RNG or damage change.
+`drawDoll` already calls `drawPlayer`, so inventory uses this rig too.
+
+As before, this is a mirrored side rig. Additional directions and scarf/coat
+spring chains remain task 09 steps 2–4 and are not claimed by this delivery.

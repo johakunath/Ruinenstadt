@@ -1,0 +1,43 @@
+{
+  "failures": [],
+  "maxGripDrift": 0.8367952146546103,
+  "minBend": 0,
+  "maxBend": 1,
+  "outfits": 14,
+  "fallback": {
+    "value": false,
+    "paints": 0
+  },
+  "doll": {
+    "canvas": true,
+    "pixels": true
+  },
+  "memory": {
+    "textures": 4215208,
+    "cache": 2292224,
+    "cacheCount": 83
+  },
+  "errors": [],
+  "failed": [],
+  "httpFallback": {
+    "painted": false,
+    "failed": true,
+    "pixels": true
+  },
+  "offline": {
+    "controlled": true,
+    "rig": 3,
+    "images": 142,
+    "version": "0.73"
+  },
+  "sourceHashes": {
+    "js/art.js": "7ed0d8fd3a8caec366ef610cedbc057bbddfd681922bcdf7093b9b752562a721",
+    "js/hero.js": "a4598c91612a33f3e09db0230cb25786b2eb047a06f0385c35dd59eaa68e6478",
+    "js/update.js": "31552f17a4362789b02513b761a42c78ac69e72a3bd7f9fa5c5602c94247e8a2",
+    "js/base.js": "b3c6437ff793ac42eee90c18994947355d8e2300a67bbd99c0806678e8f05ad4",
+    "sw.js": "e7b3d2f01628046fae587e16c94961a2e65d535f18cbe47b47e1331e87e9f456",
+    "assets/manifest.json": "c90d0bdaf18a92e6c557e2c5b251de337352d3389879d62373566182228ebfb3",
+    "tools/proof_player_animation.cjs": "b5fa90420eca015a2cd9628da158e48324a6502cbf1894ad816c57b7b3c8309b"
+  },
+  "baseline": "ade3477"
+}

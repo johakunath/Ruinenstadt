@@ -84,7 +84,7 @@
       55.0,
       144.859
     ],
-    "for": "drawBox Köpenick a blank-wall material; approved A/B mix and selective C use",
+    "for": "drawBox KÃ¶penick a blank-wall material; approved A/B mix and selective C use",
     "h": 146,
     "units": 3,
     "w": 110
@@ -94,7 +94,7 @@
       55.0,
       144.859
     ],
-    "for": "drawBox Köpenick a window-bay material; approved A/B mix and selective C use",
+    "for": "drawBox KÃ¶penick a window-bay material; approved A/B mix and selective C use",
     "h": 146,
     "pivots": {
       "apertureBR": [
@@ -114,7 +114,7 @@
       55.0,
       144.859
     ],
-    "for": "drawBox Köpenick b blank-wall material; approved A/B mix and selective C use",
+    "for": "drawBox KÃ¶penick b blank-wall material; approved A/B mix and selective C use",
     "h": 146,
     "units": 3,
     "w": 110
@@ -124,7 +124,7 @@
       55.0,
       144.859
     ],
-    "for": "drawBox Köpenick b window-bay material; approved A/B mix and selective C use",
+    "for": "drawBox KÃ¶penick b window-bay material; approved A/B mix and selective C use",
     "h": 146,
     "pivots": {
       "apertureBR": [
@@ -144,7 +144,7 @@
       73.0,
       144.838
     ],
-    "for": "drawBox Köpenick c blank-wall material; approved A/B mix and selective C use",
+    "for": "drawBox KÃ¶penick c blank-wall material; approved A/B mix and selective C use",
     "h": 146,
     "units": 3,
     "w": 146
@@ -154,7 +154,7 @@
       73.0,
       144.838
     ],
-    "for": "drawBox Köpenick c window-bay material; approved A/B mix and selective C use",
+    "for": "drawBox KÃ¶penick c window-bay material; approved A/B mix and selective C use",
     "h": 146,
     "pivots": {
       "apertureBR": [
@@ -174,7 +174,7 @@
       45.0,
       144.855
     ],
-    "for": "drawBox Köpenick plaster/brick damage overlay; source haze removed at alpha 245",
+    "for": "drawBox KÃ¶penick plaster/brick damage overlay; source haze removed at alpha 245",
     "h": 146,
     "units": 3,
     "w": 90
@@ -184,7 +184,7 @@
       63.0,
       300.697
     ],
-    "for": "drawBox Köpenick ivy overlay; source haze removed at alpha 245",
+    "for": "drawBox KÃ¶penick ivy overlay; source haze removed at alpha 245",
     "h": 302,
     "units": 3,
     "w": 126
@@ -194,7 +194,7 @@
       73.0,
       144.838
     ],
-    "for": "drawBox Köpenick platte blank-wall material; approved A/B mix and selective C use",
+    "for": "drawBox KÃ¶penick platte blank-wall material; approved A/B mix and selective C use",
     "h": 146,
     "units": 3,
     "w": 146
@@ -204,7 +204,7 @@
       73.0,
       144.838
     ],
-    "for": "drawBox Köpenick platte window-bay material; approved A/B mix and selective C use",
+    "for": "drawBox KÃ¶penick platte window-bay material; approved A/B mix and selective C use",
     "h": 146,
     "pivots": {
       "apertureBR": [
@@ -224,7 +224,7 @@
       136.0,
       270.627
     ],
-    "for": "drawBox Köpenick Altbau roof material",
+    "for": "drawBox KÃ¶penick Altbau roof material",
     "h": 272,
     "units": 3,
     "w": 272
@@ -234,7 +234,7 @@
       136.0,
       270.627
     ],
-    "for": "drawBox Köpenick collapsed roof/rubble material",
+    "for": "drawBox KÃ¶penick collapsed roof/rubble material",
     "h": 272,
     "units": 3,
     "w": 272
@@ -244,7 +244,7 @@
       136.0,
       180.824
     ],
-    "for": "drawBox Köpenick Späti shopfront texture",
+    "for": "drawBox KÃ¶penick SpÃ¤ti shopfront texture",
     "h": 182,
     "units": 3,
     "w": 272
@@ -1821,6 +1821,70 @@
     "units": 6,
     "w": 43
   },
+  "hero/rig/leg-shin": {
+    "anchor": [
+      15.600000000000001,
+      2
+    ],
+    "for": "drawHero shin",
+    "h": 50,
+    "pivots": {
+      "knee": [
+        15.600000000000001,
+        2
+      ]
+    },
+    "units": 6,
+    "w": 43
+  },
+  "hero/rig/leg-shin-d": {
+    "anchor": [
+      15.600000000000001,
+      2
+    ],
+    "for": "drawHero shin",
+    "h": 50,
+    "pivots": {
+      "knee": [
+        15.600000000000001,
+        2
+      ]
+    },
+    "units": 6,
+    "w": 43
+  },
+  "hero/rig/leg-thigh": {
+    "anchor": [
+      15.600000000000001,
+      6
+    ],
+    "for": "drawHero thigh",
+    "h": 56,
+    "pivots": {
+      "knee": [
+        15.600000000000001,
+        54
+      ]
+    },
+    "units": 6,
+    "w": 43
+  },
+  "hero/rig/leg-thigh-d": {
+    "anchor": [
+      15.600000000000001,
+      6
+    ],
+    "for": "drawHero thigh",
+    "h": 56,
+    "pivots": {
+      "knee": [
+        15.600000000000001,
+        54
+      ]
+    },
+    "units": 6,
+    "w": 43
+  },
   "hero/rig/lower": {
     "anchor": [
       13.0,
@@ -2021,6 +2085,70 @@
     "units": 6,
     "w": 35
   },
+  "hero/rig/trousers-blaumann-shin": {
+    "anchor": [
+      16.799999999999997,
+      1.5999999999999943
+    ],
+    "for": "drawHero shin",
+    "h": 43,
+    "pivots": {
+      "knee": [
+        16.799999999999997,
+        1.5999999999999943
+      ]
+    },
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/trousers-blaumann-shin-d": {
+    "anchor": [
+      16.799999999999997,
+      1.5999999999999943
+    ],
+    "for": "drawHero shin",
+    "h": 43,
+    "pivots": {
+      "knee": [
+        16.799999999999997,
+        1.5999999999999943
+      ]
+    },
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/trousers-blaumann-thigh": {
+    "anchor": [
+      16.799999999999997,
+      6.6000000000000005
+    ],
+    "for": "drawHero thigh",
+    "h": 57,
+    "pivots": {
+      "knee": [
+        16.799999999999997,
+        54.599999999999994
+      ]
+    },
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/trousers-blaumann-thigh-d": {
+    "anchor": [
+      16.799999999999997,
+      6.6000000000000005
+    ],
+    "for": "drawHero thigh",
+    "h": 57,
+    "pivots": {
+      "knee": [
+        16.799999999999997,
+        54.599999999999994
+      ]
+    },
+    "units": 6,
+    "w": 35
+  },
   "hero/rig/trousers-d": {
     "anchor": [
       17.5,
@@ -2028,6 +2156,70 @@
     ],
     "for": "drawHero trousers-d",
     "h": 96,
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/trousers-shin": {
+    "anchor": [
+      16.799999999999997,
+      1.5999999999999943
+    ],
+    "for": "drawHero shin",
+    "h": 43,
+    "pivots": {
+      "knee": [
+        16.799999999999997,
+        1.5999999999999943
+      ]
+    },
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/trousers-shin-d": {
+    "anchor": [
+      16.799999999999997,
+      1.5999999999999943
+    ],
+    "for": "drawHero shin",
+    "h": 43,
+    "pivots": {
+      "knee": [
+        16.799999999999997,
+        1.5999999999999943
+      ]
+    },
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/trousers-thigh": {
+    "anchor": [
+      16.799999999999997,
+      6.6000000000000005
+    ],
+    "for": "drawHero thigh",
+    "h": 57,
+    "pivots": {
+      "knee": [
+        16.799999999999997,
+        54.599999999999994
+      ]
+    },
+    "units": 6,
+    "w": 35
+  },
+  "hero/rig/trousers-thigh-d": {
+    "anchor": [
+      16.799999999999997,
+      6.6000000000000005
+    ],
+    "for": "drawHero thigh",
+    "h": 57,
+    "pivots": {
+      "knee": [
+        16.799999999999997,
+        54.599999999999994
+      ]
+    },
     "units": 6,
     "w": 35
   },

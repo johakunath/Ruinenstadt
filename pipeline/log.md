@@ -511,3 +511,14 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Fresh RTX 4070 gate: 21 pairs, 1280×800 DPR2. Koepenick -2.85% CI [-5.25,2.25]; Alexanderplatz +2.27% CI [-1.32,4.77]. Both pass. Raw data: `perf/perf-2026-11-11T06-26-54-510Z.json`. Desktop evidence only.
 - Deleted only merged local branches `codex/asset-queue-koepenick` and `claude/busy-turing-wcm3s0`; remotes were already gone. Preserved all unfinished asset worktrees.
 - Moved playtest paragraphs verbatim to `docs/playtests.md` at Johannes's request; linked the index/backlog and updated current pipeline priorities.
+
+
+## 2026-11-11 · Codex · player animation step 1 continuation
+
+- Review fixes published as draft PR #31 (`ade3477`), with Johannes's explicit publication approval. No merge authorization. Animation is a separate branch stacked on that fix.
+- Resumed the preserved dirty player-animation draft without modifying its original worktree. Integrated onto current code, retaining the camp cache-reset hook. Twelve lossless knee derivatives, 14 outfits, independent ankle/boot layers, opposite elbow swing, speed/wet-dependent cadence, torso lean/counter-rotation and head lag. Existing rig art bytes and weapon pivots remain unchanged.
+- v0.73 draft. The knee builder is byte-idempotent; explicit UTF-8 I/O repairs existing malformed manifest descriptions without changing geometry. No new painting or directions.
+- 62 JS and 6 Python checks pass; 26 weapon pivots checked. Browser proof: three outfits × three weapons, all 14 outfits × three boots at 1x/2x, hit overlays, inventory, 3 s play, required-image HTTP404 fallback and fresh offline reload. No unexpected failed requests/page errors. Maximum grip drift 0.837 local units; textures + layer caches 6,507,432 bytes.
+- Fresh RTX 4070 paired gate: Koepenick +2.02% CI [0.08,4.09]; Alexanderplatz -0.16% CI [-1.23,0.47]; old/old null control 0.00% CI [-1.71,1.44]. 21 pairs, 1280×800 DPR2, 100 warmup/300 timed renders, zero timed canvas allocations; overall pass. Raw data: `pipeline/proof/09-player-animation/perf/perf-2026-11-11T06-36-05-887Z.json`. An initial attempt was interrupted before any verdict while reconciling the camp hook.
+- Shown comparison GIF; human movement acceptance remains open. Secondary motion and extra views remain separate steps; tablet heat/performance remains deferred.
+- Recorded vehicle technical direction and alternatives in `docs/vehicle-rendering.md`: retain P3 body/cabin geometry and procedural wheels, map painted face materials. Actual `rotN` plus ±.06 rad jitter reaches ±48.44°, so production waits for the expanded edge-on/rotation-fit proof. Existing equipment, props/fire and vehicle worktrees remain preserved.

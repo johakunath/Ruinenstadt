@@ -26,7 +26,7 @@ let activeBrowser=null;
  page.on('pageerror',e=>errors.push(e.message));
  page.on('response',r=>{if(r.status()>=400&&new URL(r.url()).hostname==='127.0.0.1'&&!r.url().includes('__proof_missing__'))failed.push([r.status(),r.url()]);});
  await page.goto('http://127.0.0.1:8765/index.html?debug=hit');
- await page.waitForFunction(()=>typeof HR==='object'&&HR.v===2&&typeof drawHero==='function',{timeout:30000});
+ await page.waitForFunction(()=>typeof HR==='object'&&HR.v>=2&&typeof drawHero==='function',{timeout:30000});
  const schema=await page.evaluate(async()=>{
    const required=['parts','outfits','hats','gloves','boots','sh','hip','upper','lower','hand'];
    const missing=required.filter(k=>!(k in HR));

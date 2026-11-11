@@ -48,7 +48,7 @@ function leaveBase(){document.body.classList.remove('base');clearInput();state='
 function baseMenu(tab){clearInput();invTab=tab;state='baseinv';openInv('base');}
 function baseUpdate(dt){padPoll();let mx=joy.x+pad.mx,my=joy.y+pad.my;if(keys.KeyA||keys.ArrowLeft)mx-=1;if(keys.KeyD||keys.ArrowRight)mx+=1;if(keys.KeyW||keys.ArrowUp)my-=1;if(keys.KeyS||keys.ArrowDown)my+=1;
   let ml=Math.hypot(mx,my);if(ml>1){mx/=ml;my/=ml;ml=1;}if(ml>0){const q=s2w(mx,my);mx=q[0];my=q[1];}/* v0.65: constant SCREEN speed (vertical used to be half as fast in 2:1 iso) */P.mvx=mx;P.mvy=my;
-  P.x+=mx*ST.spd*dt;P.y+=my*ST.spd*dt;if(ml>.15){P.walk+=dt*13*Math.min(1,ml);P.face=Math.atan2(my,mx);}collide(P);P.swingT-=dt;dashReq=false;skillReq=false;
+  P.x+=mx*ST.spd*dt;P.y+=my*ST.spd*dt;if(ml>.15){P.walk+=dt*13*Math.min(1,ml)*(ST.spd/182)*(P.wet?.7:1)*(P.root>0||P.dashT>0?0:1);P.face=Math.atan2(my,mx);}collide(P);P.swingT-=dt;dashReq=false;skillReq=false;
   for(const z of BZ){const d=Math.hypot(z.x-P.x,z.y-P.y);if(d<z.r&&!z.near){z.near=true;sfx('bell');z.act();return;}if(d>z.r+30)z.near=false;}}
 // ground rings for the places (ground layer, world coords)
 function baseDraw(t){if(!D.base)return;for(const z of BZ){const a=.35+.2*Math.sin(t*.004+z.x);ctx.strokeStyle=`rgba(239,159,39,${a})`;ctx.lineWidth=3;ctx.beginPath();ctx.arc(z.x,z.y,z.r,0,7);ctx.stroke();ctx.fillStyle='rgba(239,159,39,.06)';ctx.fill();}}
