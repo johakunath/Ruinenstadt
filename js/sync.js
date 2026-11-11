@@ -1,4 +1,4 @@
-/* ================= online save + telemetry (v0.72) =================
+/* ================= online save + telemetry (v0.76) =================
    Backend: Google Sheet with Apps Script web app (tools/sync/Code.gs, setup tools/sync/README.md). Empty SYNC_URL hides everything.
    Online save is opt-in per player with a sync code (XXXX-XXXX) that moves the save between devices; local save stays the primary copy.
    Concurrency: every push carries the server time of the last sync (os.base); the server refuses it if another device wrote since, then this device pulls (old local state goes into the backups).

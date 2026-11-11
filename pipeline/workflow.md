@@ -26,6 +26,13 @@ Task-number prefixes are legacy identifiers and are duplicated across files
 (including task 08 landmarks and the two task 12 packages). Do not rename them
 as part of queue work; reference each by its full descriptive filename.
 
+Continuation (Johannes, 2026-11-11): after PRs #29/#30 review fixes and merged
+branch cleanup, continue either props/fire or player animation step 1. Codex
+chose animation and resumes its existing draft; preserve the equipment and
+props/fire worktrees. Vehicles require the technical gate in
+`docs/vehicle-rendering.md` before production. This replaces the immediate
+next-step order above; tablet acceptance stays deferred.
+
 Both agents may change any code when a task needs it. Keep the change small and say it in `log.md`.
 
 ## Workflow per task

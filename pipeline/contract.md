@@ -7,7 +7,7 @@ caches at device scale `koepScale()` = min(3, DPR×Z) px/screen unit, quarter st
 for actual building rotations (scale is part of the signature, resize rebakes); no authored fixed-view
 painting replaces the geometry. `koepPrepareMap()`/`koepPrepare(b)` schedule
 cache work outside drawing. Signatures invalidate changed geometry/rotation;
-actual draws receive eviction priority over unused prefetches. Task images,
+current-frame visible caches are pinned; overflow remains on fallback until the view changes. Task images,
 shared materials and caches together are capped at 40,000,000 bytes. The
 original sprite supplies complete fallback while a required image/cache is
 unavailable. Cache retirement clears dimensions and cancels pending map jobs.
@@ -171,3 +171,55 @@ corners and no ground shadow. It is dev proof, never runtime art. Extra
 orientations or a fallback would be needed before using fixed paintings on
 rotated buildings. Raw independently generated B studies failed footprint
 fit and remain unselected; their failure is not attributed to the method.
+
+
+## Player animation v3, step 1 (v0.73 draft)
+
+`tools/build_hero.py --animation-only` derives twelve lossless WebPs from the
+committed v2 leg/trouser layers. Existing image bytes, shoulder, arm lengths,
+weapon grip/tip metadata and `HWL` remain unchanged. Every outfit registers
+its thigh and shin at the same knee (8 local units below the hip), with a
+four-source-pixel overlap. Boot art remains an independent ankle layer.
+The complete default builder also emits these derivatives after v2 sources.
+
+`heroPose` is visual only. Wet ground and speed scale phase/stride, the lifted
+knee flexes, one local foot remains planted, and ankle rotation cancels hip
+and knee rotation. Body lean/counter-rotation and head lag use the same pose.
+Attack IK targets the old hand path; joint lengths remain 10+10 and a small
+unreachable-target error is bounded by the semantic tests. Dash uses the same
+knee/ankle and arm chain. No physics, hit areas, timings, RNG or damage change.
+`drawDoll` already calls `drawPlayer`, so inventory uses this rig too.
+
+As before, this is a mirrored side rig. Additional directions and scarf/coat
+spring chains remain task 09 steps 2–4 and are not claimed by this delivery.
+
+
+## v0.74 movement and inventory follow-up
+
+`heroGait` derives walk/run blending and cadence from the existing projected
+movement magnitude, stats and wet factor. Update and camp use its cadence;
+no movement speed, hit rules or RNG changes. Lower input gets shorter/slower
+walking; full input gets longer running strides, extra arm swing, torso lean
+and mild weapon sway. Sway is visual and disabled for attacks/dash.
+
+The inventory doll uses a 480×640 portrait canvas with matching CSS aspect
+ratio. Its zoom/offset accounts for hammer/spear extent. Wide inventory keeps
+three panels, gives the survivor/equipment more width, stacks comparison
+cards in a narrower column and uses auto-filled square cells with vertical
+page scrolling. The phone layout keeps its existing ordering and controls.
+
+
+## v0.75 resolved-travel gait
+
+`heroAdvance(P,ST,oldX,oldY,dt,wasDash)` runs after collision resolution. Its
+`animSpeed` and `walk` are visual state; gameplay positions and travel speed
+remain unchanged. `heroGait` uses that measured projected speed, retaining a
+requested-speed fallback only for synthetic/menu poses. Running phase is
+linear in distance (10 rad per 182 projected units at full normal speed),
+with shorter strides in the walk blend. Dash movement does not advance it.
+
+Forward leg extension straightens before contact, and running torso lean is
+.23 rad. `heroFrontJoint` adds ±1.8-unit carry height through arm IK rather
+than translating the weapon away from the palm. Extra angular/vertical carry
+motion is disabled in attacks/dash. Attack stride is reduced to .4 so larger
+running geometry cannot shift the old attack grip beyond its existing bound.

@@ -49,7 +49,7 @@ function drawHead(L,t){
   else if(L.helmet==='goggles'){ctx.fillStyle='#2a1c14';ctx.beginPath();ctx.arc(0,-42,7.2,Math.PI*.95,Math.PI*1.95);ctx.fill();ctx.fillStyle='#1a1a1e';ctx.fillRect(-7,-43,15,3);ctx.fillStyle=L.hc;ctx.fillRect(2,-43.5,6,3.4);ctx.globalCompositeOperation='lighter';ctx.drawImage(glow(L.hc),-2,-50,16,14);ctx.globalCompositeOperation='source-over';}
   else if(L.helmet==='steel'){ctx.fillStyle=L.hc;ctx.beginPath();ctx.arc(1,-41.5,8.6,Math.PI,0);ctx.fill();ctx.fillStyle='#5a5650';ctx.fillRect(-8,-42,18,2);ctx.fillStyle='rgba(255,255,255,.18)';ctx.fillRect(-3,-49,3,5);}
 }
-/* Painted player rig v2: one opaque mannequin; registered clothing and two-part fists.
+/* Painted player rig v3 step 1: shared mannequin, knees, ankles and two-part fists.
    Generated HR/HW in js/hero.js, with source grip/tip pivots in the manifest. */
 const HIMG={},HHAT={helm:1,schieber:1,muetze:1,maske:1,nbrille:1,stroh:1},HWL={blade:22,hammer:34,spear:48,sling:16};
 function himg(k){let i=HIMG[k];if(!i){i=HIMG[k]=new Image();i.src='assets/hero/rig/'+k+'.webp';}return i.complete&&i.naturalWidth?i:null;}
@@ -57,34 +57,51 @@ function heroKeys(){const A=S.eq.a,b=A?baseOf(A):'none',o=b==='kette'?'khemd':HR
 function heroPre(){Object.keys(HR.parts).forEach(himg);}
 function hpart(img,x,y,w,h){ctx.drawImage(img,x,y,w,h);}
 // Compose registered base/clothing pairs once at rig resolution; joints remain animated.
-const HCOMP={};
+const HCOMP={},HREADY={};
 function heroLayer(key,names){if(HCOMP[key])return HCOMP[key];const rs=6,rr=names.map(k=>HR.parts[k]),x=Math.floor(Math.min(...rr.map(r=>r[0]))*rs)/rs,y=Math.floor(Math.min(...rr.map(r=>r[1]))*rs)/rs,w=Math.ceil((Math.max(...rr.map(r=>r[0]+r[2]))-x)*rs),h=Math.ceil((Math.max(...rr.map(r=>r[1]+r[3]))-y)*rs),i=cnv(w,h),c=i.getContext('2d');for(let j=0;j<names.length;j++){const r=rr[j];c.drawImage(HIMG[names[j]],(r[0]-x)*rs,(r[1]-y)*rs,r[2]*rs,r[3]*rs);}return HCOMP[key]={i,r:[x,y,w/rs,h/rs]};}
+// Pure joint pose: no gameplay mutation, RNG, or per-frame canvas creation.
+// Analogue input already controls travel speed. Blend short walking into long-stride running.
+function heroGait(p,st){const input=Math.min(1,Math.hypot((p.mvx-p.mvy)*Math.SQRT1_2,(p.mvx+p.mvy)*Math.SQRT1_2/2)),speed=input<=.15||p.root>0||p.dashT>0?0:Number.isFinite(p.animSpeed)?p.animSpeed:input*(st.spd||182)/182*(p.wet?.7:1),r=Math.max(0,Math.min(1,(speed-.45)/.55)),run=r*r*(3-2*r);return{speed,run,cadence:(16-6*run)*speed};}
+// Phase follows projected distance after collision resolution, so blocked movement cannot cycle the feet.
+function heroAdvance(p,st,x,y,dt,dash=false){const dx=p.x-x,dy=p.y-y;p.animSpeed=dash||!(dt>0)?0:Math.hypot((dx-dy)*Math.SQRT1_2,(dx+dy)*Math.SQRT1_2/2)/(dt*182);p.walk+=dt*heroGait(p,st).cadence;}
+
+function heroPose(p,st){const gait=heroGait(p,st),{speed,run}=gait,dash=p.dashT>0,attack=p.swingT>0||p.spin>0,stride=Math.min(1.15,speed)*(attack?.4:1),phase=p.walk||0,progress=p.swingT>0?Math.max(0,Math.min(1,1-p.swingT/p.swingDur)):0,beat=Math.sin(progress*Math.PI),leg=q=>{const sn=Math.sin(q),a=sn*(sn<0?.45+.60*run:.45+.27*run)*stride,k=Math.max(0,-Math.cos(q))*(.65+.60*run)*Math.min(1,stride);return{hip:a,knee:k,ankle:-a-k};},near=leg(phase),far=leg(phase+Math.PI);
+  if(dash){Object.assign(near,{hip:-.55,knee:.9,ankle:-.35});Object.assign(far,{hip:.5,knee:.15,ankle:-.65});}
+  const ext=l=>Math.cos(l.hip)*HR.thigh+Math.cos(l.hip+l.knee)*HR.shin,bob=16-Math.max(ext(near),ext(far)),lean=dash?.12:attack?(progress-.5)*.09:(.045+.185*run)*Math.min(1,speed),twist=Math.sin(phase)*(.025+.015*run)*stride;
+  return{near,far,bob,lean,torso:lean+twist,head:-lean*.55-twist*.7,speed,run,attack,progress,beat,armSwing:(.48+.22*run)*Math.min(1.15,speed),weaponSway:attack||dash?0:Math.sin(phase-.45)*.12*run,weaponBob:attack||dash?0:Math.cos(phase*2-.5)*1.8*run,frontBend:.12+(.4+.25*run)*stride*(.5+.5*Math.cos(phase)),backBend:.12+(.4+.25*run)*stride*(.5-.5*Math.cos(phase))};}
+function heroShoulder(pose,far){const x=HR.sh[0]+(far?-1.6:0),y=HR.sh[1]-HR.hip,c=Math.cos(pose.torso),s=Math.sin(pose.torso);return[x*c-y*s,HR.hip+x*s+y*c];}
+function heroArmJoint(shoulder,angle,bend,target){let a=angle,b=bend;if(target){const dx=target[0]-shoulder[0],dy=target[1]-shoulder[1],d=Math.min(HR.upper+HR.lower,Math.hypot(dx,dy));b=Math.acos(Math.max(-1,Math.min(1,(d*d-HR.upper*HR.upper-HR.lower*HR.lower)/(2*HR.upper*HR.lower))));a=Math.atan2(dy,dx)-Math.atan2(HR.lower*Math.sin(b),HR.upper+HR.lower*Math.cos(b));}return{a,b,elbow:[shoulder[0]+Math.cos(a)*HR.upper,shoulder[1]+Math.sin(a)*HR.upper],hand:[shoulder[0]+Math.cos(a)*HR.upper+Math.cos(a+b)*HR.lower,shoulder[1]+Math.sin(a)*HR.upper+Math.sin(a+b)*HR.lower]};}
+// Lift/lower the hand and weapon together through the elbow, retaining fixed shoulder and bone lengths.
+function heroFrontJoint(pose,angle,bend,target){const sh=heroShoulder(pose,false),j=heroArmJoint(sh,angle,bend,target);return target||!pose.weaponBob?j:heroArmJoint(sh,angle,bend,[j.hand[0],j.hand[1]+pose.weaponBob]);}
+
 function drawHero(t,sw,aa,wa,W,GC,CY){const{o,h}=heroKeys(),R=HR.outfits[o],gl=S.eq.g&&HR.gloves[baseOf(S.eq.g)],boot=HR.boots[S.eq.f&&baseOf(S.eq.f)]||HR.boots.stiefel,pa=gl?gl.palm:'palm',fi=gl?gl.fingers:'fingers',id=ICOI[baseOf(W)],q=id&&HW[id],wk=q?'weapon-'+id.toLowerCase():null;
-  const keys=['body','upper','upper-d','lower','lower-d','leg','leg-d','head',R.t,R.u,R.u+'-d',R.l,R.l+'-d',R.leg,R.leg+'-d',boot,boot+'-d',pa,fi,...(h?[h]:[]),...(wk?[wk]:[])],im={};for(const k of keys){im[k]=himg(k);if(!im[k])return false;}
-  if(W.kind==='hammer'&&!(P.swingT>0)&&!(P.spin>0))wa=.42;
-  const [sx,sy]=HR.sh,part=k=>{const r=HR.parts[k];ctx.drawImage(im[k],...r);},layer=(k,names)=>{const g=heroLayer(k,names);ctx.drawImage(g.i,...g.r);},leg=(far,angle)=>{ctx.save();ctx.translate(far?-2.4:1.2,HR.hip);ctx.rotate(angle);layer(R.leg+(far?'-d':''),[far?'leg-d':'leg',R.leg+(far?'-d':'')]);ctx.translate(0,-HR.hip);part(boot+(far?'-d':''));ctx.restore();},bend=P.swingT>0?.16:.08,arm=(far,angle)=>{const d=far?'-d':'';ctx.save();ctx.translate(sx+(far?-1.6:0),sy);ctx.rotate(angle-Math.PI/2);layer(R.u+d,['upper'+d,R.u+d]);ctx.translate(0,HR.upper);ctx.rotate(far?0:bend);layer(R.l+d,['lower'+d,R.l+d]);ctx.restore();};
-  const ba=Math.PI/2+.1-sw*.5;leg(true,-sw*.4);arm(true,ba);
-  if(P.torch){const tx=sx-1.6+Math.cos(ba)*HR.hand,ty=sy+Math.sin(ba)*HR.hand;ctx.fillStyle='#5a4030';ctx.fillRect(tx-1.5,ty-15,3,15);ctx.fillStyle='#EF9F27';ctx.beginPath();ctx.moveTo(tx-3.5,ty-15);ctx.lineTo(tx+3.5,ty-15);ctx.lineTo(tx+Math.sin(t*.03)*1.5,ty-25-Math.sin(t*.02)*2);ctx.fill();}
-  layer(R.t,['body',R.t]);leg(false,sw*.4);layer(h||'head',h?['head',h]:['head']);arm(false,aa);
-  const hx=sx+Math.cos(aa)*HR.upper+Math.cos(aa+bend)*HR.lower,hy=sy+Math.sin(aa)*HR.upper+Math.sin(aa+bend)*HR.lower;
-  if(CY){ctx.save();ctx.translate(sx,sy);ctx.rotate(aa);ctx.fillStyle='#43d1cf';ctx.fillRect(4,-.5,HR.hand-6,1);ctx.restore();}
-  ctx.save();ctx.translate(hx,hy);ctx.rotate(wa);part(pa);
+  const readyKey=[o,h,boot,pa,fi,wk].join('|');let im=HREADY[readyKey];if(!im){im={};const keys=['body','upper','upper-d','lower','lower-d','head','leg-thigh','leg-thigh-d','leg-shin','leg-shin-d',R.t,R.u,R.u+'-d',R.l,R.l+'-d',R.thigh,R.thigh+'-d',R.shin,R.shin+'-d',boot,boot+'-d',pa,fi,...(h?[h]:[]),...(wk?[wk]:[])];for(const k of keys){im[k]=himg(k);if(!im[k])return false;}HREADY[readyKey]=im;}
+  const pose=heroPose(P,ST),part=k=>ctx.drawImage(im[k],...HR.parts[k]),layer=(k,names)=>{const g=heroLayer(k,names);ctx.drawImage(g.i,...g.r);},leg=(far,l)=>{const d=far?'-d':'';ctx.save();ctx.translate(far?-2.4:1.2,HR.hip);ctx.rotate(l.hip);layer(R.thigh+d,['leg-thigh'+d,R.thigh+d]);ctx.translate(0,R.knee);ctx.rotate(l.knee);layer(R.shin+d,['leg-shin'+d,R.shin+d]);ctx.translate(0,HR.shin);ctx.rotate(l.ankle);part(boot+d);ctx.restore();},arm=(far,j)=>{const d=far?'-d':'',sh=heroShoulder(pose,far);ctx.save();ctx.translate(...sh);ctx.rotate(j.a-Math.PI/2);layer(R.u+d,['upper'+d,R.u+d]);ctx.translate(0,HR.upper);ctx.rotate(j.b);layer(R.l+d,['lower'+d,R.l+d]);ctx.restore();};
+  if(W.kind==='hammer'&&!pose.attack)wa=.42;wa+=pose.weaponSway;
+  const frontAngle=pose.attack?aa:Math.PI/2-.35-Math.sin(P.walk||0)*pose.armSwing,backAngle=Math.PI/2+.1+Math.sin(P.walk||0)*pose.armSwing,oldBend=P.swingT>0?.16:.08,target=pose.attack?[HR.sh[0]+Math.cos(aa)*HR.upper+Math.cos(aa+oldBend)*HR.lower,HR.sh[1]+Math.sin(aa)*HR.upper+Math.sin(aa+oldBend)*HR.lower-pose.bob]:null,front=heroFrontJoint(pose,frontAngle,pose.frontBend,target),back=heroArmJoint(heroShoulder(pose,true),backAngle,pose.backBend,null);
+  ctx.save();ctx.translate(0,pose.bob);leg(true,pose.far);arm(true,back);
+  if(P.torch){const[tx,ty]=back.hand;ctx.fillStyle='#5a4030';ctx.fillRect(tx-1.5,ty-15,3,15);ctx.fillStyle='#EF9F27';ctx.beginPath();ctx.moveTo(tx-3.5,ty-15);ctx.lineTo(tx+3.5,ty-15);ctx.lineTo(tx+Math.sin(t*.03)*1.5,ty-25-Math.sin(t*.02)*2);ctx.fill();}
+  ctx.save();ctx.translate(0,HR.hip);ctx.rotate(pose.torso);ctx.translate(0,-HR.hip);layer(R.t,['body',R.t]);ctx.translate(0,-41);ctx.rotate(pose.head);ctx.translate(0,41);layer(h||'head',h?['head',h]:['head']);ctx.restore();leg(false,pose.near);arm(false,front);
+  if(CY){const sh=heroShoulder(pose,false);stick(...sh,...front.elbow,1,'#43d1cf');stick(...front.elbow,...front.hand,1,'#43d1cf');}
+  ctx.save();ctx.translate(...front.hand);ctx.rotate(wa);part(pa);
   if(q){const sc=HWL[W.kind]/q[3];ctx.save();ctx.rotate(-q[0]);ctx.drawImage(im[wk],-q[1]*sc,-q[2]*sc,im[wk].naturalWidth*sc,im[wk].naturalHeight*sc);ctx.restore();if(W.r===3||W.el){ctx.globalCompositeOperation='lighter';ctx.drawImage(glow(W.el?ELC[W.el]:RAR[3].c),HWL[W.kind]*.4,-13,26,26);ctx.globalCompositeOperation='source-over';}}
   else drawWeaponModel(W);
-  part(fi);ctx.restore();return true;}
+  part(fi);ctx.restore();ctx.restore();return true;}
+
 const IIMG={};function himgI(id){let i=IIMG[id];if(!i){i=IIMG[id]=new Image();i.src='assets/icons/'+id+'.webp';}return i.complete&&i.naturalWidth?i:null;}
 function drawPlayer(t){
   if(state==='over'&&P.hp<=0)return;
   const moving=Math.hypot(P.mvx,P.mvy)>.15&&P.dashT<=0,sw=moving?Math.sin(P.walk):0,bob=moving?Math.abs(Math.cos(P.walk))*1.6:0,fx=P.x,fy=P.y+9,flip=Math.cos(P.face)<0?-1:1;
   fxShadow(fx,fy,13,44);
   const A=S.eq.a,L0=LOOK[A?baseOf(A):'none']||LOOK.none,J=L0.j,W=S.eq.w,toL=a=>flip>0?a:Math.PI-a,HD=S.eq.h,L=HD?Object.assign({},L0,{hood:0},HEADL[baseOf(HD)]):L0,GC=S.eq.g&&GLOVE[baseOf(S.eq.g)],BC=S.eq.f&&BOOT[baseOf(S.eq.f)];
-  ctx.save();ctx.translate(fx,fy-bob);ctx.scale(flip*1.2,1.2);if(P.dashT>0)ctx.rotate(.18);
+  ctx.save();ctx.translate(fx,fy);ctx.scale(flip*1.2,1.2);
   if(P.inv>0&&P.dashT<=0&&Math.floor(P.inv*22)%2)ctx.globalAlpha=.45;
   let wa,aa;
   if(P.spin>0){wa=t*.03;aa=wa;}
   else if(P.swingT>0){if(P.swingKind==='sling'){wa=aa=toL(P.atkA);}else if(P.swingKind==='spear'){wa=aa=toL(P.atkA);}else{const p=1-P.swingT/P.swingDur,arc=KIND[P.swingKind].arc,e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;wa=aa=toL(P.atkA-arc+2*arc*e);}}
   else{aa=Math.PI/2-.45+sw*.35;wa=W.kind==='sling'?-.2:W.kind==='hammer'?-2.1:W.kind==='spear'?-1.05:-1.2;}
   if(drawHero(t,sw,aa,wa,W,GC,!!S.eq.i)){ctx.restore();return;}
+  ctx.translate(0,-bob/1.2);if(P.dashT>0)ctx.rotate(.18);
   limb(-4,-30,.25-sw*.5,12,4.5,dark(J,.7));ctx.fillStyle=GC?dark(GC,.8):'#b8946f';ctx.beginPath();ctx.arc(-4+Math.sin(-(.25-sw*.5))*12,-30+Math.cos(.25-sw*.5)*12,2.3,0,7);ctx.fill();
   if(P.torch){const tx=-4-Math.sin(.25-sw*.5)*12,ty=-30+Math.cos(.25-sw*.5)*12;ctx.fillStyle='#5a4030';ctx.fillRect(tx-1.5,ty-15,3,15);ctx.fillStyle='#EF9F27';ctx.beginPath();ctx.moveTo(tx-3.5,ty-15);ctx.lineTo(tx+3.5,ty-15);ctx.lineTo(tx+Math.sin(t*.03)*1.5,ty-25-Math.sin(t*.02)*2);ctx.fill();ctx.fillStyle='#FAC775';ctx.beginPath();ctx.moveTo(tx-1.8,ty-15);ctx.lineTo(tx+1.8,ty-15);ctx.lineTo(tx,ty-20);ctx.fill();}
   limb(-2.5,-15,-sw*.55,14,5,'#1e1610');limb(2.5,-15,sw*.55,14,5,'#2a1f18');

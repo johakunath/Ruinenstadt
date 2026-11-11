@@ -13,6 +13,8 @@ const median=a=>{const s=a.slice().sort((x,y)=>x-y),n=s.length;return n%2?s[n>>1
 function ci(a,n=5000){let r=20261110;const rnd=()=>(r=(r*1103515245+12345)%2147483648)/2147483648,m=[];for(let i=0;i<n;i++)m.push(median(a.map(()=>a[Math.floor(rnd()*a.length)])));m.sort((x,y)=>x-y);return[m[Math.floor(n*.025)],m[Math.floor(n*.975)]];}
 // Fewer than 15 pairs is a smoke run: the CI is not trustworthy, so it never passes or fails.
 const verdict=(lo,hi,limit,n)=>n<15?'inconclusive':hi<=limit?'pass':lo>limit?'fail':'inconclusive';
+const nullVerdict=(lo,hi,limit,n)=>n>=15&&Number.isFinite(lo)&&Number.isFinite(hi)&&lo>=-limit&&hi<=limit?'pass':'inconclusive';
+const exitCode=v=>({pass:0,fail:1,inconclusive:2,'software-raster':3}[v]??4);
 async function gpuInfo(page){return page.evaluate(()=>{const g=document.createElement('canvas').getContext('webgl'),x=g&&g.getExtension('WEBGL_debug_renderer_info'),renderer=g?(x?g.getParameter(x.UNMASKED_RENDERER_WEBGL):g.getParameter(g.RENDERER)):'no webgl';return{renderer,vendor:g&&x?g.getParameter(x.UNMASKED_VENDOR_WEBGL):'',ua:navigator.userAgent,cores:navigator.hardwareConcurrency,software:/swiftshader|llvmpipe|software|basic render|no webgl/i.test(renderer)};});}
 async function scene(page,di){return page.evaluate(async di=>{window.requestAnimationFrame=()=>0;initAudio();Math.random=rngFrom(20261110);startRun(di,false);resize();state='paused';P.dark=P.inv=P.swingT=P.walk=P.mvx=P.mvy=P.spin=0;shake=KX=KY=0;let x=SX,y=SY;
   if(di===0){const b=blds.find(b=>b.koep&&obbC({...b,rot:b.rot||0}).every(p=>p[0]>P.r+40&&p[0]<WS-P.r-40&&p[1]>P.r+40&&p[1]<WH-P.r-40));if(b){x=b.x+b.w/2;y=b.y+b.h+45;}}
@@ -28,14 +30,14 @@ async function run(browser,c=cfg){const ctx=await browser.newContext({viewport:{
   const gpu=await gpuInfo(page),result={method:`Fresh context. Per district ${c.pairs} alternating-order pairs; each sample ${c.warm} warmup + ${c.frames} timed full render(1200) calls with the kit hook on vs off. Gate: median of paired on/off ratios, seeded bootstrap 95% CI; pass if CI high <= +${c.limit}%, fail if CI low > +${c.limit}%, else inconclusive.`,viewport:c.viewport,dpr:c.dpr,headed:c.headed,gpu,sourceHashes:hashes(),started:new Date().toISOString(),districts:[]};
   for(const di of [0,2]){const sc=await scene(page,di),samples=[];
    for(let j=0;j<c.pairs;j++){const p={};for(const m of j%2?['off','on']:['on','off'])p[m]=await batch(page,m,c);samples.push(p);}
-   const pct=samples.map(s=>(s.on/s.off-1)*100),[lo,hi]=ci(pct),d={scene:sc,samples,offMedian:median(samples.map(s=>s.off)),onMedian:median(samples.map(s=>s.on)),medianPairedPct:median(pct),ci95Pct:[lo,hi],verdict:verdict(lo,hi,c.limit,c.pairs)};
+   const pct=samples.map(s=>(s.on/s.off-1)*100),[lo,hi]=ci(pct),d={scene:sc,samples,offMedian:median(samples.map(s=>s.off)),onMedian:median(samples.map(s=>s.on)),medianPairedPct:median(pct),ci95Pct:[lo,hi],verdict:di===2?nullVerdict(lo,hi,c.limit,c.pairs):verdict(lo,hi,c.limit,c.pairs)};
    result.districts.push(d);console.log(`${sc.district}: off ${d.offMedian.toFixed(3)} ms, on ${d.onMedian.toFixed(3)} ms, paired median ${d.medianPairedPct.toFixed(2)}% [${lo.toFixed(2)}, ${hi.toFixed(2)}] -> ${d.verdict}`);}
   result.errors=errors;const v=result.districts.map(d=>d.verdict);result.verdict=errors.length?'error':gpu.software?'software-raster':v.includes('fail')?'fail':v.includes('inconclusive')?'inconclusive':'pass';
   const after=hashes();if(JSON.stringify(after)!==JSON.stringify(result.sourceHashes))result.verdict='error',result.errors.push('Sources changed during the run');
   result.finished=new Date().toISOString();return result;}finally{await ctx.close();}}
 function table(r){return['| District | Off ms | On ms | Paired median | 95% CI | Verdict |','|---|---|---|---|---|---|',...r.districts.map(d=>`| ${d.scene.district} | ${d.offMedian.toFixed(3)} | ${d.onMedian.toFixed(3)} | ${d.medianPairedPct.toFixed(2)}% | ${d.ci95Pct.map(x=>x.toFixed(2)+'%').join(' … ')} | ${d.verdict} |`)].join('\n');}
-module.exports={run,table,cfg};
+module.exports={run,table,cfg,verdict,nullVerdict,exitCode};
 if(require.main===module)(async()=>{const browser=await chromium.launch({executablePath:env.CHROMIUM_PATH||'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',headless:!cfg.headed});
  try{const r=await run(browser);fs.mkdirSync(cfg.out,{recursive:true});const stamp=r.started.replace(/[:.]/g,'-'),file=path.join(cfg.out,`perf-${stamp}.json`);fs.writeFileSync(file,JSON.stringify(r,null,2)+'\n');
   console.log(`\nGPU: ${r.gpu.renderer}${r.gpu.software?' (SOFTWARE, not a GPU result)':''}\n${cfg.viewport.join('x')} @ DPR ${cfg.dpr}, ${cfg.pairs} pairs\n\n${table(r)}\n\nVerdict: ${r.verdict}\nSaved: ${path.relative(root,file)}`);
-  process.exitCode={pass:0,fail:1,inconclusive:2,'software-raster':3}[r.verdict]??4;}catch(e){console.error(e);process.exitCode=4;}finally{await browser.close();}})();
+  process.exitCode=exitCode(r.verdict);}catch(e){console.error(e);process.exitCode=4;}finally{await browser.close();}})();

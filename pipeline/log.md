@@ -500,3 +500,58 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 
 - GPU: ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11), hardware raster. 1280×800 @ DPR 2, 21 pairs, commit 0dc5f4b, Windows 11, power mode "Höchstleistung", headless Chrome via Playwright 1.65.0. Raw data: `perf/perf-2026-11-10T23-39-22-523Z.json`.
 - Verdict: **pass**. First and only run, nothing discarded; no levers needed. Draft PR #30 can go to review; not merged.
+
+
+## 2026-11-11 · Codex · PRs 29/30 review follow-up
+
+- Fixed visible cache churn: pin current-frame entries, keep a stable subset, suppress rejected requests until view/geometry changes. Overflow uses complete fallback.
+- Both proof entry points propagate unsuccessful gate exit codes. Alexanderplatz separately requires the whole CI within ±5%; noisy controls are inconclusive.
+- PR #30's committed GPU pass superseded the original release-gate finding. Reconciled stale draft wording and retained historical evidence.
+- 58 semantic checks pass. Real 2560×1440 / DPR2 reproduction at (1600,1400) converges at 18 caches, 39,841,412 bytes, no continuing evictions or page errors. Two visual/contact fixtures and two world views pass.
+- Fresh RTX 4070 gate: 21 pairs, 1280×800 DPR2. Koepenick -2.85% CI [-5.25,2.25]; Alexanderplatz +2.27% CI [-1.32,4.77]. Both pass. Raw data: `perf/perf-2026-11-11T06-26-54-510Z.json`. Desktop evidence only.
+- Deleted only merged local branches `codex/asset-queue-koepenick` and `claude/busy-turing-wcm3s0`; remotes were already gone. Preserved all unfinished asset worktrees.
+- Moved playtest paragraphs verbatim to `docs/playtests.md` at Johannes's request; linked the index/backlog and updated current pipeline priorities.
+
+
+## 2026-11-11 · Codex · player animation step 1 continuation
+
+- Review fixes published as draft PR #31 (`ade3477`), with Johannes's explicit publication approval. No merge authorization. Animation is a separate branch stacked on that fix.
+- Resumed the preserved dirty player-animation draft without modifying its original worktree. Integrated onto current code, retaining the camp cache-reset hook. Twelve lossless knee derivatives, 14 outfits, independent ankle/boot layers, opposite elbow swing, speed/wet-dependent cadence, torso lean/counter-rotation and head lag. Existing rig art bytes and weapon pivots remain unchanged.
+- v0.73 draft. The knee builder is byte-idempotent; explicit UTF-8 I/O repairs existing malformed manifest descriptions without changing geometry. No new painting or directions.
+- 62 JS and 6 Python checks pass; 26 weapon pivots checked. Browser proof: three outfits × three weapons, all 14 outfits × three boots at 1x/2x, hit overlays, inventory, 3 s play, required-image HTTP404 fallback and fresh offline reload. No unexpected failed requests/page errors. Maximum grip drift 0.837 local units; textures + layer caches 6,507,432 bytes.
+- Fresh RTX 4070 paired gate: Koepenick +2.02% CI [0.08,4.09]; Alexanderplatz -0.16% CI [-1.23,0.47]; old/old null control 0.00% CI [-1.71,1.44]. 21 pairs, 1280×800 DPR2, 100 warmup/300 timed renders, zero timed canvas allocations; overall pass. Raw data: `pipeline/proof/09-player-animation/perf/perf-2026-11-11T06-36-05-887Z.json`. An initial attempt was interrupted before any verdict while reconciling the camp hook.
+- Shown comparison GIF; human movement acceptance remains open. Secondary motion and extra views remain separate steps; tablet heat/performance remains deferred.
+- Recorded vehicle technical direction and alternatives in `docs/vehicle-rendering.md`: retain P3 body/cabin geometry and procedural wheels, map painted face materials. Actual `rotN` plus ±.06 rad jitter reaches ±48.44°, so production waits for the expanded edge-on/rotation-fit proof. Existing equipment, props/fire and vehicle worktrees remain preserved.
+
+- Publication checkpoint: draft PR #31 is `codex/pr29-30-review-fixes` -> main; draft PR #32 is `codex/player-animation-complete` -> the #31 branch. Animation head `a8e9140`; both are unmerged. Merge #31 first, then retarget #32 to main. Human animation acceptance remains open.
+
+
+## 2026-11-11 · Codex · consolidated PR and movement/inventory follow-up
+
+- Johannes requested one PR. Retargeted #32 to main; closed #31 as superseded. All review-fix, animation, backlog, playtest-history and vehicle-decision changes stay in #32. No merge authorization.
+- v0.74: low analogue input blends short, slower steps into a long-stride full-input run; normal full-speed cadence 10 instead of 13 rad/s, hip swing up to .8 rad. Stronger arm swing, about 7° forward torso lean and ±7° weapon sway; attack/dash suppress added sway. Existing movement speed, combat timings, hit geometry and RNG remain unchanged. Keyboard uses the full run.
+- Wide inventory now gives the character/equipment a larger column and a 480×640 portrait doll, with weapon-aware framing. Comparison stacks in a smaller column. Backpack cells remain square, grow to ~80 px at 1280×800 and form additional rows scrolling downward. Sticky header keeps controls visible. Phone canvas aspect ratio follows its portrait backing pixels.
+- Browser fixtures cover 1920×1080 desktop; 1280×800, 1024×768 and 1180×820 tablets; phone portrait/landscape. At 1280×800 the doll grows 110 -> 298 px, equipment boxes 64 -> 76, cells 57 -> 80, comparison 600 -> 405. The 1024-wide cell collapse (16 px) is fixed (85 px). Last backpack/stash item selection and horizontal-overflow checks pass. Physical tablet acceptance remains open.
+- 63 JS / 6 Python tests pass. Source-hashed animation/offline/fallback proof passes; stress-probe grip drift 1.245 local units remains below the existing 2-unit tolerance. New walk/run GIF covers three outfits and three weapons.
+- Paired RTX 4070 gate: Koepenick +0.19% CI [-0.91,1.21], Alexanderplatz +0.28% CI [-1.94,1.84], null control +0.08% CI [-1.38,0.51]; pass, zero timed canvas allocations. Report: `pipeline/proof/09-player-animation/perf/perf-2026-11-11T07-00-30-840Z.json`. Only menu sticky-header CSS was corrected after timing; renderer JS remains identical. Final responsive/browser checks include that correction.
+
+- Final handoff: #32 is the single combined draft PR against main; #31 remains closed. All six responsive viewport fixtures also pass last-stash selection and header visibility after scrolling. No merge performed.
+
+
+## 2026-11-11 · Codex · comparison acceptance and resolved-travel running
+
+- Johannes asked whether comparison also works. The existing layout screenshots already had active selected/equipped cards. Added a stronger six-viewport fixture with a three-affix rare weapon, expanded post-equip stats and the actual equip action. All numeric values remain unclipped; predicted power 151 equals equipped power 151; old weapon returns to the 18-item backpack. Screenshots/JSON: `pipeline/proof/14-inventory-layout/comparison*`.
+- v0.75: running forward hip reaches -1.05 rad with a straight knee at extension; recovery gets the knee bend, rear push .72 rad. Torso lean increases to .23 rad (~13°). Hand and weapon bob ±1.8 local units through the elbow chain; fixed shoulder and bone lengths, no detached grip. Carry bob/sway disabled for attacks and dash.
+- `heroAdvance` now advances phase from actual projected displacement after collision resolution in expedition and camp. Faster running advances it proportionally; blocked movement stops it; dash distance is excluded. Visual `animSpeed` does not change gameplay positions/speed. Synthetic pose tools explicitly clear it.
+- Initial larger leg motion exceeded attack grip tolerance (2.781 units). Retained failed probe JSON under `diagnostics/first-extension-grip.json`; reduced attack-only stride to .4 and final stress probe passes at 1.258 units. Full running extension remains. 66 JS checks pass, including phase at 30/60/120 Hz, doubled speed, blocked movement and fixed arm lengths. Browser/offline/fallback proof passes with zero page errors/unexpected failed images.
+- Local proof preloads intermittently refused connections; diagnostics identified local HTTP server backlog pressure. Enlarging the listen backlog to 128 resolved the fixtures; documented in browser setup. No game fallback or loading behavior was weakened.
+- Paired GPU acceptance pending at this checkpoint. Work remains on the single consolidated draft PR #32; no merge authorized.
+
+- Final v0.75 RTX 4070 gate passes: Koepenick -2.82% CI [-9.87,2.95], Alexanderplatz +0.08% CI [-1.69,3.89], null control +0.69% CI [0.13,2.15]. 21 pairs, 1280×800 DPR2, zero timed canvas allocations/page errors; `perf-2026-11-11T07-24-36-658Z.json`. All timed source hashes match the final candidate.
+
+
+## 2026-11-11 · Codex · PR 32 breakpoint review correction
+
+- Johannes authorized fixing findings, merging, then continuing shared props/fire and vehicles. PR #32 had one P2: fixed minimum grid tracks overflowed at 900–983 CSS px.
+- Retained the three-panel layout and proportional widths, but let each track shrink to zero instead of reserving 360+240+320 px. Backpack cells still use their 72 px minimum. Larger viewport proportions remain identical.
+- Expanded layout/active rare-comparison proof to 900, 920, 960, 983 and 984 px, alongside the existing desktop/tablet/phone matrix. Check scrolling, no horizontal overflow, visible values/actions and real item equip. Runtime JS and the previous GPU acceptance are unaffected (CSS-only fix).

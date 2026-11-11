@@ -1,4 +1,4 @@
-/* Ruinenstadt online save + telemetry backend (v0.72). Container-bound Apps Script of a Google Sheet, deployed as web app:
+/* Ruinenstadt online save + telemetry backend (v0.76). Container-bound Apps Script of a Google Sheet, deployed as web app:
    Execute as: Me, Who has access: Anyone. Setup: tools/sync/README.md. The game calls it with POST text/plain JSON:
    {a:'get',c}            -> {ok,s,t}       s = save JSON string or null
    {a:'put',c,s,t,b}      -> {ok,t} | {ok:false,newer:true,t}   b = server t the client last saw (optimistic concurrency)

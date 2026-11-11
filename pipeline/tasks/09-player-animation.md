@@ -1,6 +1,6 @@
 # 09 Player animation v3: knees, elbows, more directions
 
-Status: open (fourth in current queue; step 1 only)
+Status: implemented (v0.75 draft, Codex, 2026-11-11; step 1 only). Consolidated draft PR #32 targets main and includes PR #31 review fixes; #31 is superseded. 66 JS / 6 Python checks, browser/offline proof and paired GPU gate pass. Human movement acceptance remains open; steps 2-4 are unchanged.
 
 Johannes' feedback on the v0.61 rig: movement is too stiff, legs move a little and like a stick figure, **knees and elbows do not bend**, and the player only has two views (left and right, the game mirrors). Wanted: the figure feels a bit more alive. Torso and clothing are fine, arms and forearms need to be made to fit.
 
@@ -36,3 +36,32 @@ Verdict: a layered cut-out rig (the technique we use) **can** reach "lively" for
 - Walking along the four iso directions looks right, no sliding feet at normal speed.
 - Hit areas, weapon tip and grip unchanged (`tools/check_weapon_pivots.py`, `?debug=hit`).
 - `?debug=perf` on Köpenick with 40 enemies: no regression above 5 %. Rig layers stay cached per outfit, no per-frame canvas creation.
+
+
+## Movement follow-up (Johannes, 2026-11-11)
+
+Short-step walk at low analogue movement speed blends smoothly into the
+long-stride run at full movement speed. Keyboard movement uses the full run;
+existing joystick/stick magnitude supplies walking, without a new speed or
+stamina mechanic. At normal full speed the cycle slows from 13 to 10 rad/s
+while hip swing grows from ±.55 to ±.8 rad. Arms swing up to .7 rad; torso
+leans about 7° and the weapon sways about ±7° while running. Attack/dash
+suppress weapon sway. Movement distances and combat rules are unchanged.
+
+Walk/run comparison: `pipeline/proof/09-player-animation/gaits/walk-run.gif`.
+
+
+## Reach/speed follow-up (Johannes, 2026-11-11)
+
+The running forward hip reaches -1.05 rad and straightens the knee at maximum
+extension; knee bend now belongs to the recovery phase. Rear push is .72 rad.
+Running torso lean is about 13° (.23 rad). Vertical weapon/hand bob is ±1.8
+local units, solved through the elbow so the grip stays attached. Attacks and
+dash suppress added carry sway/bob; attacks use a smaller leg stride to keep
+the existing grip path within its established 2-unit tolerance.
+
+`heroAdvance` measures projected travel after `collide(P)` in expedition and
+camp updates. Phase follows distance, not requested input or sqrt(speed).
+At a stable full run, twice the travel speed yields twice the cadence; a
+blocked player stops cycling and dash travel is excluded. Synthetic pose
+proofs explicitly clear `animSpeed` to use their authored input magnitude.

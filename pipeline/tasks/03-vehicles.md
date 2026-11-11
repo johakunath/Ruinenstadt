@@ -1,6 +1,6 @@
 # 03 Vehicles
 
-Status: open (fifth in the current queue; see `workflow.md`)
+Status: open; production blocked on rotation-fit proof. Technical direction: P3 face materials; see `docs/vehicle-rendering.md`. Preserve the existing claimed vehicle worktree.
 
 Johannes: the cars look bad now, this is a visible upgrade for little work.
 
@@ -26,3 +26,12 @@ constraint for this task.
 Implementation direction (2026-11-10): face textures mapped onto the existing
 P3 geometry best fit the renderer's supported rotations. Preserve the current
 procedural wheels/frustums and full fallback while adding painted faces.
+
+
+## Technical gate (2026-11-11)
+
+The direction is recorded in `docs/vehicle-rendering.md`. Before production
+paint, prove body and sloping cabin mappings for all five types and both axis
+assignments, including edge-on faces and actual ±48.44° placement extremes
+(`rotN` plus ±.06 rad jitter). The old ±45° description omits that jitter.
+Vehicles remain after the immediate animation/props work, not a quick win.

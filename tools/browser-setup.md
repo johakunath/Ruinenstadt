@@ -35,3 +35,18 @@ node tools/proof_hero.cjs
 The proof scripts may write reports and images under `pipeline/proof/`; inspect each script's `out` path before running. Browser setup itself does not run proof scripts.
 
 Microsoft Edge is also installed at `C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`; set `CHROMIUM_PATH` to that executable if preferred.
+
+
+## Refused local asset connections during large preloads
+
+On this Windows/Python 3.9 setup the default server listen backlog can refuse
+parallel requests during the 142-part hero preload. This can appear as missing
+script globals or failed image decodes in the proof, rather than a game error.
+Use a larger backlog when reproducing the full fixture suite:
+
+```powershell
+python -u -c "from http.server import ThreadingHTTPServer,SimpleHTTPRequestHandler; ThreadingHTTPServer.request_queue_size=128; ThreadingHTTPServer(('127.0.0.1',8765),SimpleHTTPRequestHandler).serve_forever()"
+```
+
+Keep page errors and failed-request checks enabled; do not accept a partial
+preload as a passing proof.
