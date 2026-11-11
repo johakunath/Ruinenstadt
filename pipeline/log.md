@@ -593,3 +593,5 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Refreshed visual/default/2×, rotation, collision, missing-image, shrine and offline proof passes; 73 JS tests and prop assertions pass. Prior six Python tests remain applicable (no builder changes).
 - Johannes then clarified that full checks are unnecessary after each small cosmetic asset edit. Stopped the redundant GPU run; its completed Köpenick sample passed (-16.61%, CI -22.01 to -15.38), but no complete new gate verdict is claimed. Reuse the recorded complete integration gate (-15.42/-9.28% with a passing control); refreshed visual proof identifies the final appearance code. Documented proportionate checks in CLAUDE/workflow.
 - New publication authorization resolves the earlier export approval blocker. Publish one draft PR; no new asset merge requested.
+
+- Publication complete: one draft PR [#36](https://github.com/johakunath/Ruinenstadt/pull/36), `codex/shared-assets-vehicles` → main. Includes the softened body rim and all shared asset/shrine/backlog changes. No merge performed. The cosmetic-check preference is recorded in CLAUDE/workflow.

@@ -155,7 +155,7 @@ fire and vehicles in one PR, following Johannes's one-PR instruction. Online
 save from merged PR #33 (v0.76) is retained; this asset candidate is v0.77.
 Vehicle refinement, shrine aura and 60 s duration are explicitly requested.
 Building-light occlusion belongs at the top of Claude's backlog, not this
-implementation. Equipment/nature work remains open. Drafts are preserved; publication/review of the new batch remains pending.
+implementation. Equipment/nature work remains open. Drafts are preserved; draft PR #36 is open; review remains pending.
 
 ## Small cosmetic follow-ups (Johannes, 2026-11-11)
 

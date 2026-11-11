@@ -1,6 +1,6 @@
 # Vehicle rendering decision
 
-Status: P3 direction implemented and rotation-fit proof passed (v0.77 local); combined hardware-GPU gate passed; publication/review pending.
+Status: P3 direction implemented and rotation-fit proof passed (v0.77 local); combined hardware-GPU gate passed; draft PR #36 open; review pending.
 Source: `js/iso.js` (`drawVehBox`, `frust`, `wheel`), `js/world.js` (`vrot`),
 `js/geo.js` (`rotN`); checked 2026-11-11.
 

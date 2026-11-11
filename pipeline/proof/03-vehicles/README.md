@@ -79,4 +79,4 @@ overlap timing. Physical Tab S9 heat/battery and human feel remain deferred.
 
 Building-light occlusion is deliberately unchanged, explicitly assigned to
 Claude at the top of BACKLOG. Equipment/nature remain separate open tasks.
-Publication/review pending.
+Draft PR #36 open; review pending.
