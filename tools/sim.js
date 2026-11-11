@@ -1,7 +1,7 @@
 /* Balance simulator: injected into the running game page. A bot plays runs at accelerated time
    (game logic only, no rendering) and manages the camp between runs. Used by tools/balance.mjs. */
 (()=>{
-const SIM=window.SIM={log:[],stuck:{t:0,x:0,y:0,ax:0,ay:0,at:0}};
+const SIM=window.SIM={miss:.3,log:[],stuck:{t:0,x:0,y:0,ax:0,ay:0,at:0}};
 SIM.setup=function(){/* v0.57: the bot plays the U-Bahn tunnels too (SIM.run with opt.tun) */loop=function(){};toast=function(){};banner=function(){};sfx=function(){};S.mute=true;S.music=false;S.tips={};for(const k in S.tips)S.tips[k]=1;tip=function(){};updateHot=function(){};};
 const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
 const GC=24;let GW=0,GHt=0,GB=null;function gridFree(){GW=Math.ceil(WS/GC);GHt=Math.ceil(WH/GC);GB=new Uint8Array(GW*GHt);for(let y=0;y<GHt;y++)for(let x=0;x<GW;x++)GB[y*GW+x]=inWall(x*GC+GC/2,y*GC+GC/2,11)?1:0;}// GHt: rows (worlds can be rectangular since v0.55)
@@ -15,9 +15,9 @@ SIM.blocked=function(tx,ty){const n=Math.ceil(Math.hypot(tx-P.x,ty-P.y)/20);for(
 SIM.think=function(dt){
   const es=enemies.filter(e=>e.hp>0);let near=null,nd=1e9;for(const e of es){const d=dist(e,P);if(d<nd){nd=d;near=e;}}
   let mx=0,my=0,threat=false;const away=(o,w)=>{const d=Math.max(1,dist(o,P));mx+=(P.x-o.x)/d*w;my+=(P.y-o.y)/d*w;};
-  for(const tl of teles)if(dist(tl,P)<tl.r+P.r+14){away(tl,3);threat=true;if(tl.t<.3&&P.dashCd<=0)dashReq=true;}
+  for(const tl of teles){if(tl.bs==null){tl.bs=Math.random()<SIM.miss?0:1;tl.t0=tl.t;tl.rt=.25+Math.random()*.25;}if(!tl.bs||tl.t0-tl.t<tl.rt)continue;if(dist(tl,P)<tl.r+P.r+14){away(tl,3);threat=true;if(tl.t<.3&&P.dashCd<=0)dashReq=true;}}// v0.79 human-like: reaction time .25-.5 s, misses SIM.miss of telegraphs
   for(const h of hazards)if(Math.hypot(P.x-h.x,(P.y+9-h.y)*1.6)<h.r+24){away(h,1.5);threat=true;}
-  for(const p of eproj){const d=Math.hypot(p.x-P.x,p.y-(P.y-14));if(d<90){const ap=(P.x-p.x)*p.vx+(P.y-14-p.y)*p.vy>0;if(ap){mx+=-p.vy/200;my+=p.vx/200;threat=true;if(d<45&&P.dashCd<=0)dashReq=true;}}}
+  for(const p of eproj){if(p.bs==null)p.bs=Math.random()<SIM.miss?0:1;if(!p.bs)continue;const d=Math.hypot(p.x-P.x,p.y-(P.y-14));if(d<90){const ap=(P.x-p.x)*p.vx+(P.y-14-p.y)*p.vy>0;if(ap){mx+=-p.vy/200;my+=p.vx/200;threat=true;if(d<45&&P.dashCd<=0)dashReq=true;}}}
   for(const e of es){if(e.type==='bomb'&&e.fuse>0&&dist(e,P)<110){away(e,3);threat=true;}if(e.ch>0&&dist(e,P)<300){const px=-e.rdy,py=e.rdx;mx+=px*2;my+=py*2;}}
   const ranged=ST.kind==='sling';
   if(near&&nd<700){const ux=(near.x-P.x)/nd,uy=(near.y-P.y)/nd,crowd=es.filter(e=>dist(e,P)<150).length;
