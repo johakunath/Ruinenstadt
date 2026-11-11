@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "unused": {
+    "used": 0,
+    "lights": 1
+  },
+  "active": {
+    "k": "zap",
+    "seconds": 60,
+    "used": 1,
+    "lights": 0,
+    "afterOneSecond": 59.00000000000006,
+    "toast": "Tipp · Links ziehen zum Laufen, Hieb halten zum Kämpfen. Zielen geht automatisch.Litfaßsäule · Funkenflug: Treffer lösen oft Blitze aus (60 s)"
+  },
+  "errors": []
+}

@@ -52,7 +52,7 @@ function update(dt){dt=fxTime(dt);
   if(run.winT>0){run.winT-=dt;if(run.winT<=0){win();return;}}// v0.65: a few seconds to collect the loot after the final boss
   if(run.cleared&&!run.tun&&!(run.winT>0)){run.breakT-=dt;if(run.breakT<=0){if(!run.perkDone){if(run.wave%2){run.perkDone=true;return;}offerPerks();if(state!=='play')return;}/* v0.45: blessing after every second wave */else{run.cleared=false;startWave();}}}
   for(const k in SHR)if(SHR[k]>0){SHR[k]-=dt;if(SHR[k]<=0){SHR[k]=0;refresh();toast(`<span style="color:var(--dim)">${SHRN[k][0]} ist verflogen</span>`);}}
-  for(const h of shrines)if(!h.used&&Math.hypot(h.x-P.x,h.y+10-P.y)<46){h.used=1;h.o.spr=h.off;h.o.lights=[];const k=pick(Object.keys(SHRN));SHR[k]=45;refresh();toast(`Litfaßsäule · <span style="color:#7dd3ff">${SHRN[k][0]}</span>: ${SHRN[k][1]} (45 s)`);sfx('legend');burst(h.x,h.y-30,'#7dd3ff',24,200);rings.push({x:h.x,y:h.y,r:10,max:120,col:'125,211,255'});prog('shrine');}
+  for(const h of shrines)if(!h.used&&Math.hypot(h.x-P.x,h.y+10-P.y)<46){h.used=1;h.o.spr=h.off;h.o.lights=[];const k=pick(Object.keys(SHRN));SHR[k]=60;refresh();toast(`Litfaßsäule · <span style="color:#7dd3ff">${SHRN[k][0]}</span>: ${SHRN[k][1]} (60 s)`);sfx('legend');burst(h.x,h.y-30,'#7dd3ff',24,200);rings.push({x:h.x,y:h.y,r:10,max:120,col:'125,211,255'});prog('shrine');}
   if(run.crateIn>0){run.crateIn-=dt;if(run.crateIn<=0)spawnCrate();}
   if(run.evIn>0){run.evIn-=dt;if(run.evIn<=0)startEvent(run.evType);}
   if(captive){captive.t+=dt;if(!captive.free&&!enemies.some(e=>e.guard2&&e.hp>0)){captive.free=true;toast('Die Wachen sind besiegt · geh zur Gefangenen');}

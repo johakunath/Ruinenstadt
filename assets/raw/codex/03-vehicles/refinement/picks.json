@@ -1,0 +1,236 @@
+{
+  "vehicles/car-burnt-end": {
+    "crop": [
+      640,
+      0,
+      1162,
+      443
+    ],
+    "source": "burnt-atlas.png",
+    "units": [
+      44,
+      12
+    ]
+  },
+  "vehicles/car-burnt-glass-end": {
+    "crop": [
+      640,
+      443,
+      1167,
+      887
+    ],
+    "source": "burnt-atlas.png",
+    "units": [
+      38,
+      7
+    ]
+  },
+  "vehicles/car-burnt-glass-side": {
+    "crop": [
+      0,
+      443,
+      640,
+      887
+    ],
+    "source": "burnt-atlas.png",
+    "units": [
+      48,
+      7
+    ]
+  },
+  "vehicles/car-burnt-roof": {
+    "crop": [
+      1167,
+      443,
+      1774,
+      887
+    ],
+    "source": "burnt-atlas.png",
+    "units": [
+      36,
+      32
+    ]
+  },
+  "vehicles/car-burnt-side": {
+    "crop": [
+      0,
+      0,
+      640,
+      443
+    ],
+    "source": "burnt-atlas.png",
+    "units": [
+      96,
+      12
+    ]
+  },
+  "vehicles/car-burnt-top": {
+    "crop": [
+      1162,
+      0,
+      1774,
+      443
+    ],
+    "source": "burnt-atlas.png",
+    "units": [
+      96,
+      44
+    ]
+  },
+  "vehicles/trabi-cream-end": {
+    "crop": [
+      620,
+      0,
+      1180,
+      443
+    ],
+    "source": "trabi-atlas.png",
+    "units": [
+      44,
+      15
+    ]
+  },
+  "vehicles/trabi-cream-glass-end": {
+    "crop": [
+      620,
+      443,
+      1180,
+      887
+    ],
+    "source": "trabi-atlas.png",
+    "units": [
+      38,
+      12
+    ]
+  },
+  "vehicles/trabi-cream-glass-side": {
+    "crop": [
+      0,
+      443,
+      620,
+      887
+    ],
+    "source": "trabi-atlas.png",
+    "units": [
+      41,
+      12
+    ]
+  },
+  "vehicles/trabi-cream-roof": {
+    "crop": [
+      1180,
+      443,
+      1774,
+      887
+    ],
+    "source": "trabi-atlas.png",
+    "units": [
+      33,
+      34
+    ]
+  },
+  "vehicles/trabi-cream-side": {
+    "crop": [
+      0,
+      0,
+      620,
+      443
+    ],
+    "source": "trabi-atlas.png",
+    "units": [
+      79,
+      15
+    ]
+  },
+  "vehicles/trabi-cream-top": {
+    "crop": [
+      1180,
+      0,
+      1774,
+      443
+    ],
+    "source": "trabi-atlas.png",
+    "units": [
+      79,
+      44
+    ]
+  },
+  "vehicles/van-blue-end": {
+    "crop": [
+      690,
+      0,
+      1147,
+      443
+    ],
+    "source": "barkas-atlas.png",
+    "units": [
+      44,
+      36
+    ]
+  },
+  "vehicles/van-blue-glass-end": {
+    "crop": [
+      690,
+      443,
+      1147,
+      887
+    ],
+    "source": "barkas-atlas.png",
+    "units": [
+      44,
+      12
+    ]
+  },
+  "vehicles/van-blue-glass-side": {
+    "crop": [
+      0,
+      443,
+      690,
+      887
+    ],
+    "source": "barkas-atlas.png",
+    "units": [
+      91,
+      12
+    ]
+  },
+  "vehicles/van-blue-roof": {
+    "crop": [
+      1147,
+      443,
+      1774,
+      887
+    ],
+    "source": "barkas-atlas.png",
+    "units": [
+      75,
+      32
+    ]
+  },
+  "vehicles/van-blue-side": {
+    "crop": [
+      0,
+      0,
+      690,
+      443
+    ],
+    "source": "barkas-atlas.png",
+    "units": [
+      106,
+      36
+    ]
+  },
+  "vehicles/van-blue-top": {
+    "crop": [
+      1147,
+      0,
+      1774,
+      443
+    ],
+    "source": "barkas-atlas.png",
+    "units": [
+      106,
+      44
+    ]
+  }
+}

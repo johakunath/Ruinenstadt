@@ -18,6 +18,13 @@ Current actions are tracked below.
 
 ## Next
 
+**Top fix for Claude:** light occlusion by buildings. A light source behind a
+building currently appears to shine over/through it toward the elevated
+camera. The building should cast the appropriate visibility/shadow mask and
+let the light reach only unblocked sides. Johannes explicitly deferred the
+implementation (2026-11-11); reproduce and fix with Claude.
+
+
 Köpenick kit: merged in PRs #29/#30 (v0.71). The original seven-pair
 failure is superseded by the documented 21-pair Windows GPU pass on
 2026-11-11, including a null-control CI inside ±5%. Review follow-up v0.72
