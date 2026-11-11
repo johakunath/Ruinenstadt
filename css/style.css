@@ -35,8 +35,8 @@ body{font-family:var(--f-ui)}
 #c2{right:calc(max(16px,env(safe-area-inset-right,0px)) + 182px);bottom:calc(env(safe-area-inset-bottom,0px) + 64px)}
 #mini{position:fixed;top:calc(env(safe-area-inset-top,0px) + 62px);right:max(16px,env(safe-area-inset-right,0px));width:96px;height:96px;border:1px solid var(--edge);border-radius:3px;background:#0d0907;opacity:.92;pointer-events:none}
 #trade{background:rgba(14,10,7,.88)}
-#toasts{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 168px);display:grid;justify-items:center;gap:5px;pointer-events:none;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.toast{font-size:18px;background:rgba(13,9,7,.88);border:1px solid var(--edge);padding:5px 14px;border-radius:3px;animation:t 5.4s forwards;max-width:100%;text-align:center}
+#toasts{position:fixed;left:0;right:0;top:calc(50% + 62px);display:grid;justify-items:center;gap:5px;pointer-events:none;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.toast{font-size:17px;background:rgba(13,9,7,.55);border:0;padding:3px 12px;border-radius:3px;animation:t 5.4s forwards;max-width:100%;text-align:center}
 @keyframes t{0%{opacity:0;transform:translateY(-6px)}4%{opacity:1;transform:none}90%{opacity:1}100%{opacity:0}}
 #banner{position:fixed;left:0;right:0;top:38%;text-align:center;font:52px/1.1 var(--f-display);color:var(--ember);pointer-events:none;opacity:0;transition:opacity 1s ease-in,transform 1.2s ease-in;padding:0 16px}
 .ov{position:fixed;inset:0;overflow-y:auto;background:rgba(14,10,7,.94);display:grid;justify-items:center;align-content:start;padding-top:calc(env(safe-area-inset-top,0px) + 22px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 24px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -115,7 +115,7 @@ body.tab #skill{width:86px;height:86px;font-size:16px;right:calc(max(28px,env(sa
 body.tab .cons{width:70px;height:70px;font-size:13px}body.tab .cons b{min-width:22px;height:22px;line-height:22px;font-size:14px;border-radius:11px}
 body.tab #c1{right:calc(max(28px,env(safe-area-inset-right,0px)) + 150px);bottom:calc(env(safe-area-inset-bottom,0px) + 166px)}
 body.tab #c2{right:calc(max(28px,env(safe-area-inset-right,0px)) + 252px);bottom:calc(env(safe-area-inset-bottom,0px) + 84px)}
-body.tab #toasts{top:calc(env(safe-area-inset-top,0px) + 120px)}body.tab .toast{font-size:22px;padding:7px 18px}
+body.tab #toasts{top:calc(50% + 84px)}body.tab .toast{font-size:19px;padding:4px 14px}
 body.tab #banner{font-size:76px}
 /* ---- camp menu ---- */
 .mhead{display:grid;justify-items:center;gap:6px}
@@ -184,7 +184,7 @@ body:not(.inrun) #bufs,body:not(.inrun) #streak{display:none}
 .kset{display:grid;grid-template-columns:repeat(3,auto);gap:4px}.kset .kimg{width:44px;height:44px}.kset svg{width:30px;height:30px}
 #toasts{z-index:30}
 /* phones: tabs as a bottom bar in thumb reach, sticky header with close button on top */
-@media (max-width:599px){#inv{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 76px)}
+@media (max-width:599px){#inv{padding-top:0;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 76px)}
   #inv .ihead{position:sticky;top:0;z-index:9;margin:0 -16px;padding:max(8px,env(safe-area-inset-top,0px)) 16px 8px;background:#140f0b;border-bottom:1px solid var(--edge)}#inv .ires{grid-column:1;grid-row:1;justify-content:flex-start;gap:4px 12px;font-size:15px}
   #inv .tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;justify-content:space-around;gap:0;background:#17110d;border-top:1px solid var(--edge);border-bottom:0;padding:0 4px env(safe-area-inset-bottom,0px)}
   #inv button.tab{flex:1;font-size:15px;padding:14px 2px 12px;border-bottom:0;border-top:3px solid transparent}#inv button.tab.on{border-top-color:var(--ember)}
@@ -219,7 +219,7 @@ body.mouse #atk,body.mouse #dash{display:none}
 /* v0.54 phone landscape (short screens, e.g. 6.3" phones held sideways): use the width, keep icons at portrait size, less scrolling */
 @media (orientation:landscape) and (max-height:540px){
   .ov{padding-top:calc(env(safe-area-inset-top,0px) + 8px);padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px))}
-  #toasts,body.tab #toasts{top:calc(env(safe-area-inset-top,0px) + 50px)}.toast,body.tab .toast{font-size:15px;padding:3px 12px}
+  #toasts,body.tab #toasts{top:calc(50% + 44px)}.toast,body.tab .toast{font-size:15px;padding:3px 12px}
   #banner,body.tab #banner{top:14%;font-size:40px}
   /* camp menu: scene and network map left, district card and buttons right */
   #menubox{max-width:100%;gap:8px}.mhead{grid-template-columns:auto 1fr;justify-items:start;align-items:center}.mhead h1{font-size:34px;margin:0}.mres{justify-self:end}
@@ -261,20 +261,51 @@ body.base:not(.inrun) #pause{display:grid}
 @media (min-width:900px) and (min-height:541px){
   #invbox{max-width:1440px}
   #inv .ihead{position:sticky;top:0;z-index:9;padding:8px 0;background:rgba(14,10,7,.98)}
-  .inv3.wide{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr) minmax(0,1fr);gap:16px;align-items:start}
-  .inv3.wide .doll{max-width:520px;grid-template-columns:76px minmax(0,1fr) 76px;gap:8px}
+  /* v0.77: survivor and backpack at about 2/3 of v0.75, so the comparison fits side by side (selected left, equipped right) */
+  .inv3.wide{grid-template-columns:minmax(0,.82fr) minmax(0,.62fr) minmax(0,1.3fr);gap:16px;align-items:start}
+  .inv3.wide .doll{max-width:400px;grid-template-columns:60px minmax(0,1fr) 60px;gap:6px}
   .inv3.wide .doll #dollc{grid-row:1/5;aspect-ratio:3/4}
-  .inv3.wide .doll .slot{width:76px;font-size:15px}
-  .inv3.wide .doll .slot .ic{width:72px;height:72px}
-  .inv3.wide .doll .slot .ic .ico{width:64px;height:64px}
-  .inv3.wide .doll .slot .ic svg{width:48px;height:48px}
-  .inv3.wide .grid{grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:8px}
+  .inv3.wide .doll .slot{width:60px;font-size:13px}
+  .inv3.wide .doll .slot .ic{width:56px;height:56px}
+  .inv3.wide .doll .slot .ic .ico{width:50px;height:50px}
+  .inv3.wide .doll .slot .ic svg{width:36px;height:36px}
+  .inv3.wide .grid{grid-template-columns:repeat(auto-fill,minmax(50px,1fr));gap:5px}
   .inv3.wide .cell{width:100%;min-width:0}
-  .inv3.wide .cmp2{grid-template-columns:minmax(0,1fr);gap:10px}
+  .inv3.wide .cmp2{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+  #inv{padding-top:0}#inv .ihead{padding-top:calc(env(safe-area-inset-top,0px) + 14px)}
   .inv3.wide .idet{position:static}
-  .inv3.wide .cmp2 .card{padding:12px;min-height:0}
-  .inv3.wide .cmp2 .nm{font-size:24px}
+  .inv3.wide .cmp2 .card{padding:10px;min-height:0}
+  .inv3.wide .cmp2 .nm{font-size:21px}
   .inv3.wide .cmp2 .card .sub{font-size:15px}
   .inv3.wide .cmp2 .chead{gap:10px}
   .inv3.wide .ckp{flex-wrap:wrap;gap:4px 10px}
 }
+
+/* v0.77 tab and stat icons, stat tooltips, compact salvage bar above the backpack */
+.uic{flex:none;display:block}button.tab{display:inline-flex;align-items:center;gap:6px}button.tab .uic{opacity:.85}
+@media (max-width:599px){#inv button.tab{flex-direction:column;gap:2px;font-size:12px;padding:8px 1px 8px}}
+.bagh{display:flex;align-items:center;justify-content:space-between;gap:6px 10px;flex-wrap:wrap}.bagh .lbl{margin:0}
+.chips.salv{gap:4px;justify-content:flex-end;align-items:center;color:var(--dim)}.salv .chip{font-size:12px;padding:3px 7px;letter-spacing:.02em}
+.sn{position:relative;display:inline-flex;align-items:center;gap:6px;cursor:help;outline:0}.sn .uic{color:var(--ember);opacity:.85}
+.sn .tq{font:700 10px/13px var(--f-ui);font-style:normal;width:13px;height:13px;border-radius:50%;border:1px solid var(--edge);text-align:center;color:var(--dim);opacity:.7}
+.sn:hover::after,.sn:focus-visible::after,.sn.tipon::after{content:attr(data-tip);position:absolute;left:0;top:calc(100% + 4px);z-index:30;width:min(260px,70vw);background:#1a130e;border:1px solid var(--ember);border-radius:4px;padding:6px 9px;font:500 14px/1.3 var(--f-ui);color:var(--bone);box-shadow:0 6px 18px rgba(0,0,0,.6);pointer-events:none}
+/* v0.77 controller badges: pad glyphs replace E/Q/F while a gamepad is used */
+body.pad #skill::after,body.pad #c1::after,body.pad #c2::after{border-radius:50%;min-width:20px;height:20px;line-height:18px;padding:0 3px;text-align:center;color:#120d0a;border-color:rgba(0,0,0,.4)}
+body.pad #skill::after{content:"Y";background:#c9a227}body.pad #c2::after{content:"X";background:#3a6ad8;color:#fff}body.pad #c1::after{content:"RB";border-radius:8px;background:#5a5048;color:#fff;font-size:11px}
+/* v0.77 toasts sit below the hero's feet (were in the upper middle over hero and enemies), lighter panel */
+/* v0.77 fullscreen return button (under the minimap) and optional fps label */
+#fsb{position:fixed;top:calc(env(safe-area-inset-top,0px) + 166px);right:max(16px,env(safe-area-inset-right,0px));width:40px;height:40px;border-radius:8px;background:rgba(13,9,7,.75);border:1px solid var(--edge);display:grid;place-items:center;cursor:pointer;z-index:5}
+body.tab #fsb{top:calc(env(safe-area-inset-top,0px) + 82px);right:calc(max(24px,env(safe-area-inset-right,0px)) + 9px)}#fsb[hidden]{display:none}body:not(.inrun):not(.base) #fsb{display:none}
+#fps{position:fixed;left:max(8px,env(safe-area-inset-left,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 4px);font:600 12px var(--f-ui);color:#8fd16a;background:rgba(0,0,0,.55);padding:1px 6px;border-radius:3px;pointer-events:none;z-index:40}#fps[hidden]{display:none}
+/* v0.77 big desktop screens (1440p, 4K): menus scale up instead of floating small in the middle */
+@media (min-width:2000px) and (min-height:1100px){#invbox,#optbox,#menubox,#perkbox,#endbox,#tradebox{zoom:1.3}}
+@media (min-width:3000px) and (min-height:1600px){#invbox,#optbox,#menubox,#perkbox,#endbox,#tradebox{zoom:1.7}}
+.qic{width:44px;height:44px;border:1px solid var(--edge);border-radius:6px;display:grid;place-items:center;color:var(--ember);background:#120d0a}.qic.won{color:#f2d14b;border-color:#8a6a1e;box-shadow:inset 0 0 12px rgba(242,209,75,.25)}.qic .uic{display:block}
+.qic.off{opacity:.45}
+/* v0.78 mods panel (variant A): wrench on the weapon slot, mods card in the detail column */
+.doll .wmod{grid-area:1/3;justify-self:end;align-self:start;z-index:2;transform:translate(8px,-8px);display:inline-flex;align-items:center;gap:3px;padding:3px 6px;border-radius:12px;border:1px solid #f2a04b;background:#2a1d12;color:#f2a04b;font:inherit;font-size:12px;cursor:pointer;line-height:1}
+.doll .wmod.on{background:#f2a04b;color:#120d0a}.doll .wmod b{font-weight:600}
+.card.mods{text-align:left;display:grid;gap:10px}.mslots{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}
+.mslot{display:flex;align-items:center;gap:10px;min-height:58px;padding:8px 10px;border:1px dashed var(--edge);border-radius:4px}.mslot.on{border:1px solid #f2a04b;background:#2a1d12}
+.mslot .un{font-size:17px;font-weight:600}.mslot .ud,.mrow .ud{font-size:14px;color:var(--dim)}.mrow{padding:8px 10px}.mrow .un{font-size:17px}.mrow .kico .ico,.mslot .kico .ico{width:40px;height:40px}
+.mbtn{display:grid;gap:6px}.mats.sm{font-size:14px;gap:10px;justify-content:flex-start}.mats.sm .mico{width:22px;height:22px}.mats .zic{width:auto;height:auto;font-style:normal;background:none;margin:0;font-size:20px;line-height:1}

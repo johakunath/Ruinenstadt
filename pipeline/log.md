@@ -595,3 +595,9 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - New publication authorization resolves the earlier export approval blocker. Publish one draft PR; no new asset merge requested.
 
 - Publication complete: one draft PR [#36](https://github.com/johakunath/Ruinenstadt/pull/36), `codex/shared-assets-vehicles` → main. Includes the softened body rim and all shared asset/shrine/backlog changes. No merge performed. The cosmetic-check preference is recorded in CLAUDE/workflow.
+
+
+## 2026-11-11 · Codex · PR 36 merge readiness
+
+- Merged current main (PR #35 through v0.80) into the asset branch. Resolved release/backlog conflicts as v0.81, preserving the latest gameplay, controller/inventory, DPR/sharpness and Claude lighting-occlusion changes as well as all assets and 60 s shrines. Updated stale lighting backlog status instead of reintroducing the already implemented work as a new task.
+- PR #36 initially had no review submissions/comments. Mark ready, request current-head review, address actionable findings, then merge under Johannes's explicit authorization. Checks are scoped to the actual merge/review changes.
