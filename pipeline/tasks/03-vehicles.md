@@ -1,6 +1,6 @@
 # 03 Vehicles
 
-Status: locally complete (v0.77, Codex, 2026-11-11). Rotation, collision, cache lifecycle, fallback and offline proof pass. Final combined hardware-GPU gate passes; draft PR #36 open; review pending.
+Status: done (v0.81, Codex, 2026-11-11). Rotation, collision, cache lifecycle, fallback and offline proof pass. Final combined hardware-GPU gate passes; PR #36; code review completed without findings.
 
 Johannes: the cars look bad now, this is a visible upgrade for little work.
 

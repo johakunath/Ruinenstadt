@@ -601,3 +601,5 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 
 - Merged current main (PR #35 through v0.80) into the asset branch. Resolved release/backlog conflicts as v0.81, preserving the latest gameplay, controller/inventory, DPR/sharpness and Claude lighting-occlusion changes as well as all assets and 60 s shrines. Updated stale lighting backlog status instead of reintroducing the already implemented work as a new task.
 - PR #36 initially had no review submissions/comments. Mark ready, request current-head review, address actionable findings, then merge under Johannes's explicit authorization. Checks are scoped to the actual merge/review changes.
+
+- Review completed on `2743e054f48d629fe40275b0789441e2ff11898e` with no findings or unresolved threads. All 73 JS checks plus prop assertions pass; brief integrated v0.81 play smoke has zero page errors. Final follow-up changes only backlog/task status. Merge authorized by Johannes; retain historical art/GPU proof without redundant reruns.
