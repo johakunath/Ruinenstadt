@@ -1,6 +1,6 @@
 # 09 Player animation v3: knees, elbows, more directions
 
-Status: implemented (v0.73 draft, Codex, 2026-11-11; step 1 only). Resumed preserved local work on current main plus PR #31 review fixes. 62 JS / 6 Python checks, browser/offline proof and paired GPU gate pass. Human movement acceptance remains open; steps 2-4 are unchanged.
+Status: implemented (v0.74 draft, Codex, 2026-11-11; step 1 only). Consolidated draft PR #32 targets main and includes PR #31 review fixes; #31 is superseded. 63 JS / 6 Python checks, browser/offline proof and paired GPU gate pass. Human movement acceptance remains open; steps 2-4 are unchanged.
 
 Johannes' feedback on the v0.61 rig: movement is too stiff, legs move a little and like a stick figure, **knees and elbows do not bend**, and the player only has two views (left and right, the game mirrors). Wanted: the figure feels a bit more alive. Torso and clothing are fine, arms and forearms need to be made to fit.
 
@@ -36,3 +36,16 @@ Verdict: a layered cut-out rig (the technique we use) **can** reach "lively" for
 - Walking along the four iso directions looks right, no sliding feet at normal speed.
 - Hit areas, weapon tip and grip unchanged (`tools/check_weapon_pivots.py`, `?debug=hit`).
 - `?debug=perf` on Köpenick with 40 enemies: no regression above 5 %. Rig layers stay cached per outfit, no per-frame canvas creation.
+
+
+## Movement follow-up (Johannes, 2026-11-11)
+
+Short-step walk at low analogue movement speed blends smoothly into the
+long-stride run at full movement speed. Keyboard movement uses the full run;
+existing joystick/stick magnitude supplies walking, without a new speed or
+stamina mechanic. At normal full speed the cycle slows from 13 to 10 rad/s
+while hip swing grows from ±.55 to ±.8 rad. Arms swing up to .7 rad; torso
+leans about 7° and the weapon sways about ±7° while running. Attack/dash
+suppress weapon sway. Movement distances and combat rules are unchanged.
+
+Walk/run comparison: `pipeline/proof/09-player-animation/gaits/walk-run.gif`.

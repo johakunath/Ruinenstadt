@@ -524,3 +524,15 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Recorded vehicle technical direction and alternatives in `docs/vehicle-rendering.md`: retain P3 body/cabin geometry and procedural wheels, map painted face materials. Actual `rotN` plus ±.06 rad jitter reaches ±48.44°, so production waits for the expanded edge-on/rotation-fit proof. Existing equipment, props/fire and vehicle worktrees remain preserved.
 
 - Publication checkpoint: draft PR #31 is `codex/pr29-30-review-fixes` -> main; draft PR #32 is `codex/player-animation-complete` -> the #31 branch. Animation head `a8e9140`; both are unmerged. Merge #31 first, then retarget #32 to main. Human animation acceptance remains open.
+
+
+## 2026-11-11 · Codex · consolidated PR and movement/inventory follow-up
+
+- Johannes requested one PR. Retargeted #32 to main; closed #31 as superseded. All review-fix, animation, backlog, playtest-history and vehicle-decision changes stay in #32. No merge authorization.
+- v0.74: low analogue input blends short, slower steps into a long-stride full-input run; normal full-speed cadence 10 instead of 13 rad/s, hip swing up to .8 rad. Stronger arm swing, about 7° forward torso lean and ±7° weapon sway; attack/dash suppress added sway. Existing movement speed, combat timings, hit geometry and RNG remain unchanged. Keyboard uses the full run.
+- Wide inventory now gives the character/equipment a larger column and a 480×640 portrait doll, with weapon-aware framing. Comparison stacks in a smaller column. Backpack cells remain square, grow to ~80 px at 1280×800 and form additional rows scrolling downward. Sticky header keeps controls visible. Phone canvas aspect ratio follows its portrait backing pixels.
+- Browser fixtures cover 1920×1080 desktop; 1280×800, 1024×768 and 1180×820 tablets; phone portrait/landscape. At 1280×800 the doll grows 110 -> 298 px, equipment boxes 64 -> 76, cells 57 -> 80, comparison 600 -> 405. The 1024-wide cell collapse (16 px) is fixed (85 px). Last backpack/stash item selection and horizontal-overflow checks pass. Physical tablet acceptance remains open.
+- 63 JS / 6 Python tests pass. Source-hashed animation/offline/fallback proof passes; stress-probe grip drift 1.245 local units remains below the existing 2-unit tolerance. New walk/run GIF covers three outfits and three weapons.
+- Paired RTX 4070 gate: Koepenick +0.19% CI [-0.91,1.21], Alexanderplatz +0.28% CI [-1.94,1.84], null control +0.08% CI [-1.38,0.51]; pass, zero timed canvas allocations. Report: `pipeline/proof/09-player-animation/perf/perf-2026-11-11T07-00-30-840Z.json`. Only menu sticky-header CSS was corrected after timing; renderer JS remains identical. Final responsive/browser checks include that correction.
+
+- Final handoff: #32 is the single combined draft PR against main; #31 remains closed. All six responsive viewport fixtures also pass last-stash selection and header visibility after scrolling. No merge performed.

@@ -2,7 +2,7 @@
 const {chromium}=require('playwright'),fs=require('fs'),path=require('path'),cp=require('child_process'),crypto=require('crypto');
 const gate=require('./perf_koep.cjs'),root=path.resolve(__dirname,'..'),out=path.join(root,'pipeline/proof/09-player-animation/perf');
 const pairs=+(process.env.ANIM_PERF_PAIRS||21),warm=100,frames=300,baseline=process.env.ANIM_BASELINE||'ade3477',port=+(process.env.ANIM_PROOF_PORT||8765);
-const old=cp.execFileSync('git',['show',baseline+':js/art.js'],{cwd:root,encoding:'utf8'}),sourceFiles=['assets/manifest.json','index.html','sw.js',...fs.readdirSync(path.join(root,'js')).filter(f=>f.endsWith('.js')).map(f=>'js/'+f),'tools/perf_player_animation.cjs'];
+const old=cp.execFileSync('git',['show',baseline+':js/art.js'],{cwd:root,encoding:'utf8'}),sourceFiles=['css/style.css','assets/manifest.json','index.html','sw.js',...fs.readdirSync(path.join(root,'js')).filter(f=>f.endsWith('.js')).map(f=>'js/'+f),'tools/perf_player_animation.cjs'];
 const hashes=()=>Object.fromEntries(sourceFiles.map(f=>[f,crypto.createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')]));
 const median=a=>{const s=a.slice().sort((x,y)=>x-y),n=s.length;return n%2?s[n>>1]:(s[n/2-1]+s[n/2])/2;};
 function ci(a){let seed=20261110;const rnd=()=>(seed=(seed*1103515245+12345)%2147483648)/2147483648,m=[];for(let i=0;i<5000;i++)m.push(median(a.map(()=>a[Math.floor(rnd()*a.length)])));m.sort((a,b)=>a-b);return[m[125],m[4875]];}

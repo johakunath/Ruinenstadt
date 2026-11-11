@@ -9,3 +9,5 @@ pipeline/proof/02-buildings-koepenick/*/
 
 # Reproducible intermediate frames; retain the GIF and contact sheets.
 pipeline/proof/09-player-animation/walk-*.png
+
+pipeline/proof/09-player-animation/gaits/frame-*.png

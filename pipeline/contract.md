@@ -192,3 +192,18 @@ knee/ankle and arm chain. No physics, hit areas, timings, RNG or damage change.
 
 As before, this is a mirrored side rig. Additional directions and scarf/coat
 spring chains remain task 09 steps 2–4 and are not claimed by this delivery.
+
+
+## v0.74 movement and inventory follow-up
+
+`heroGait` derives walk/run blending and cadence from the existing projected
+movement magnitude, stats and wet factor. Update and camp use its cadence;
+no movement speed, hit rules or RNG changes. Lower input gets shorter/slower
+walking; full input gets longer running strides, extra arm swing, torso lean
+and mild weapon sway. Sway is visual and disabled for attacks/dash.
+
+The inventory doll uses a 480×640 portrait canvas with matching CSS aspect
+ratio. Its zoom/offset accounts for hammer/spear extent. Wide inventory keeps
+three panels, gives the survivor/equipment more width, stacks comparison
+cards in a narrower column and uses auto-filled square cells with vertical
+page scrolling. The phone layout keeps its existing ordering and controls.

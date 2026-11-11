@@ -1,0 +1,747 @@
+{
+  "started": "2026-11-11T07:00:30.840Z",
+  "baseline": "ade3477",
+  "baselineHash": "f2bd025deb84b39f9ecac739dbb9bed0afd5812718144944ad5a134bca01bf0f",
+  "sourceHashes": {
+    "css/style.css": "1e63fbf6cc7effc5d8280ea11ee2b0b358820805a4fb2bb9e393290f98cdd461",
+    "assets/manifest.json": "c90d0bdaf18a92e6c557e2c5b251de337352d3389879d62373566182228ebfb3",
+    "index.html": "dc9177600864ad9594a3f790e1a51d7096970671059b0beaafe38939781a4fef",
+    "sw.js": "8d51c9b3485fc0fd01d417038cb77a101abfe95001c5cd171818d1a969f4b4f5",
+    "js/alex.js": "623ff5a5223527ecb9f654cc092fbe31faf0b35cada01886ac00c2ff00cb0704",
+    "js/anim.js": "c2e44013ad1ff98349d6b7fe8b41ec980f6cc897df48b2a981d1c0550ff0a00a",
+    "js/art.js": "fe0790efcb561768c49424b43c831b5a901fd162289552503f4f6a79d54203f8",
+    "js/audio.js": "3c6f832ff8a2613aac74243d509e3f108304b4f2cfa8ecaee66f48d9ce84be56",
+    "js/base.js": "3fd459b37f6f50f925b87ef5d264eb6f2acf8c94d2d2411c0a2c9f87f5055db0",
+    "js/biomes.js": "0abfe8cb86cce0782bee4ffb728071f80d8f409863af1f943c68eb8978f7ce05",
+    "js/canvas.js": "d34cbe815e1873b7c0183e2b12421f0d148e801d3b4cbce41b34263bb1015fc9",
+    "js/combat.js": "c385433c9e7bc3e132ebd56e3f839375c6a2ede301a5d6c9653efc8f7d279221",
+    "js/core.js": "b289925a4ded58569bd14f70c025bc7d1d122359ca06c60d39e2490a17786e3c",
+    "js/data.js": "67efe7a86c5faa05caea2fd965482591e5f9bf22179a14d55d04db2fe9ba6b7e",
+    "js/feedback.js": "85014f11d8a9cc17a1f5a04b25c92351802401351118fa8cdcf59b5286b17dfc",
+    "js/gdr-assets.js": "55ecdf5d40153c52cb4c086d28bf9f630e809b76fe1acccd464b800850787e7e",
+    "js/geo.js": "e90401ecb4e49452baa003442afe48d344d754d28b1cd80dd8b1e6d4b0d21048",
+    "js/hero.js": "a4598c91612a33f3e09db0230cb25786b2eb047a06f0385c35dd59eaa68e6478",
+    "js/input.js": "10a5c000ebcfb7cc2ddb940e8fc0ef7e6e4fc50a3337e911389765949c2d0fdd",
+    "js/iso.js": "c2005cf3d6b520aafbc12cd41263ded6a2182fb70dc5a44ed260b96d589235f6",
+    "js/items.js": "6a7432a89f3e781f0fc3e318a0dfe8814599f4b2e3149e4492d8fb0fab247208",
+    "js/koep-assets.js": "137e06476943145b696e9cd7773084106a11e3857e2ead51915d13959b7be576",
+    "js/main.js": "e8da6f7673f61ac50a173f47b6b9a5803b363eeff175f26df254e34d12a7e8c4",
+    "js/mitte.js": "e4c308c61318985360186b3e4c923813e415e1c5d3a12da8f7cab9fc204371f7",
+    "js/panels.js": "0f0b3a2ce13762d6b23b64f86c8cf72b49d425475ba8a192d42e3a29291c8831",
+    "js/render.js": "7e1337e8d3bcbc604fd6d4677f646ad0326016db7bd299fcb05e785568015b9e",
+    "js/save.js": "1ac146255d812abf515549e9ddb21003aa4feb91c69333af4a10a0b0e430faab",
+    "js/sprites.js": "b1787f5f565065b81c0d8fa0d2961722c5d6c2aa097280541a2ef599bec999b6",
+    "js/state.js": "84639cfc7b0782978f0b564f290ebf8ce4db7c5f835736c9ba7be81fb57ca48a",
+    "js/ubahn.js": "814179fb853bc0c1317947d958e54cfc13b7bb3b85c2c3b1f500c7474d95b725",
+    "js/update.js": "004560b8645b581c5f20b684f9434efd6c8c2ce352cf8648d86b5f893086ae95",
+    "js/vfx.js": "623ef8f87d8ca82c74642af29694581db3cddee52f8069a680f2ac1d01ae8a10",
+    "js/world.js": "2970503023e4001f67172664f67743c83401a73e8cb9037d6749bab752218c92",
+    "tools/perf_player_animation.cjs": "ede7b121c6ac1dcd50446c9d3970cb44d86c18ae2ff61189e493faa35f2a6027"
+  },
+  "method": "Fresh context before fixtures. 21 alternating-order pairs per scene (41 on rerun), 100 warmup + 300 timed full renders. Median paired ratio and seeded bootstrap 95% CI. 40 enemies, 1280x800 DPR2. Both districts test actual animation; additional Alexanderplatz old/old null control must stay inside +/-5%. No timed canvas allocations.",
+  "pairs": 21,
+  "viewport": [
+    1280,
+    800
+  ],
+  "dpr": 2,
+  "districts": [
+    {
+      "scene": {
+        "district": "Köpenick",
+        "version": "0.74",
+        "enemies": 40,
+        "Z": 1.4814814814814814,
+        "DPR": 2
+      },
+      "control": false,
+      "samples": [
+        {
+          "on": {
+            "ms": 2.2029999999996894,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.0360000000009313,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.0846666666663562,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.0910000000009314,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.105999999999379,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.0703333333336436,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.290999999999379,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.3533333333333335,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 1.9776666666660458,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 1.9823333333339541,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.2266666666666666,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 1.9760000000009312,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.0033333333333334,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 1.965,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 1.9619999999987583,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 1.9470000000003105,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 1.9543333333327124,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 1.9959999999993792,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 1.9740000000006208,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 1.9559999999993791,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 1.943666666666977,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 1.9466666666666668,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.0156666666672876,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 1.9670000000003105,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 1.969000000000621,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 1.991333333333023,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 1.99,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.2020000000003104,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 1.9830000000012418,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 1.9789999999990686,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.0329999999996895,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.057666666667598,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.195666666665735,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.0093333333327124,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.0143333333327123,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 1.991333333333023,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.013333333333333,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.0366666666666666,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 1.9716666666666667,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 1.9753333333336438,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 1.9996666666663563,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 1.9859999999993792,
+            "allocations": 0
+          }
+        }
+      ],
+      "offMedian": 1.9959999999993792,
+      "onMedian": 1.991333333333023,
+      "medianPairedPct": 0.18596787829132655,
+      "ci95Pct": [
+        -0.9118541034060845,
+        1.2133136580379844
+      ],
+      "verdict": "pass"
+    },
+    {
+      "scene": {
+        "district": "Alexanderplatz",
+        "version": "0.74",
+        "enemies": 40,
+        "Z": 1.4814814814814814,
+        "DPR": 2
+      },
+      "control": false,
+      "samples": [
+        {
+          "on": {
+            "ms": 2.6983333333333333,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.649666666666356,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.7456666666657354,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.756333333333023,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.581000000000931,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.8443333333327123,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.648000000001242,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.658666666666977,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.7256666666672875,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.9110000000009313,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.6533333333333333,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.615,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.635333333333644,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.6873333333339544,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.650999999999379,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.651666666666667,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.616333333333023,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.6920000000003106,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.652666666667598,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 3.0376666666675978,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.9029999999996896,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.6393333333327123,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.6026666666660456,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.61,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.6920000000003106,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.582333333332402,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.6166666666666667,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.6229999999996894,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.6970000000003105,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.617666666667598,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.627666666666046,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.662333333333954,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.623000000001242,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.6226666666660456,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.6106666666672877,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.721333333333023,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.6279999999996897,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.827333333333954,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.7820000000003104,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.6913333333330227,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.8379999999996897,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.6416666666666666,
+            "allocations": 0
+          }
+        }
+      ],
+      "offMedian": 2.649666666666356,
+      "onMedian": 2.662333333333954,
+      "medianPairedPct": 0.2817622951058807,
+      "ci95Pct": [
+        -1.9350037211721127,
+        1.8367090200144487
+      ],
+      "verdict": "pass"
+    },
+    {
+      "scene": {
+        "district": "Alexanderplatz",
+        "version": "0.74",
+        "enemies": 40,
+        "Z": 1.4814814814814814,
+        "DPR": 2
+      },
+      "control": true,
+      "samples": [
+        {
+          "on": {
+            "ms": 2.6279999999996897,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.6853333333336438,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.6226666666660456,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.6360000000009314,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.591333333333023,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.905666666665735,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.67,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.8389999999990687,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.609000000000621,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.601333333333023,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.6543333333327124,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.617666666667598,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.6156666666657356,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.605,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.6446666666663563,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.669000000000621,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.6270000000003106,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.612666666667598,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.627333333332402,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.5940000000006207,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.708666666665425,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.6266666666666665,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.609666666666356,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.611666666666667,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.7129999999996897,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.71,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.6236666666669772,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.611333333333023,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.608666666665425,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.6539999999990687,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.692333333332402,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.6913333333330227,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.592666666666046,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.6366666666666667,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.6130000000012417,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.669000000000621,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.559000000000621,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.885333333333644,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "ms": 2.710999999999379,
+            "allocations": 0
+          },
+          "on": {
+            "ms": 2.614666666666356,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "ms": 2.625,
+            "allocations": 0
+          },
+          "off": {
+            "ms": 2.586000000000931,
+            "allocations": 0
+          }
+        }
+      ],
+      "offMedian": 2.6366666666666667,
+      "onMedian": 2.617666666667598,
+      "medianPairedPct": 0.0766381402597105,
+      "ci95Pct": [
+        -1.3813889237142996,
+        0.5083884088035839
+      ],
+      "verdict": "pass"
+    }
+  ],
+  "errors": [],
+  "gpu": {
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 (0x00002786) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "software": false
+  },
+  "verdict": "pass",
+  "finished": "2026-11-11T07:02:43.373Z"
+}
