@@ -138,7 +138,8 @@ function tunDraw(t){const T=TUN;if(!T||!T.hold||T.lit)return;const p=T.p/GEN.nee
 function tunWin(){logRun('win');state='over';clearInput();const k=TUN.k;S.ln=S.ln||[];const first=!S.ln[k];S.ln[k]=1;S.dist=k+1;if(first&&k===0)setTimeout(()=>toast('<span style="color:var(--ember)">S+U Warschauer Straße</span> ist jetzt dein Lager. Dort baust du Stationen aus.'),1500);const unl=S.unlocked<k+2;if(unl)S.unlocked=k+2;
   const bonus=Math.round(40*(k+1)*DF().sc);S.scrap+=bonus;run.sg+=bonus;run.bonus=bonus;run.unl=unl;run.first=first;save();sfx('win');setTimeout(()=>showEnd(true),900);}
 // start a tunnel run on line k (startRun with the tunnel flag)
-const startTunnel=k=>startRun(k,false,false,k);
+// v0.85 keep: straight from a won district into its tunnel, the blessings of that run come along (from the camp you start without)
+const startTunnel=(k,keep)=>{const cp=keep&&run&&!run.tun?{p:run.perks,q:run.pq}:null;startRun(k,false,false,k);if(cp){run.perks=Object.assign({},cp.p);run.pq=Object.assign({},cp.q||{});run.kept=1;ST=stats();P.hp=ST.maxHp;updateHot();}};
 /* ---- menu: S+U network map (replaces the old district map) ---- */
 function netSVG(){let h=`<svg class="bmap net" viewBox="0 0 400 250" role="group" aria-label="S- und U-Bahn-Netz"><rect width="400" height="250" fill="#14282b"/><text x="12" y="20" class="nett">S+U Netz · Ruinenstadt</text>`;
   const pts=a=>a.map(p=>p.join(',')).join(' ');

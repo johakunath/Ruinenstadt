@@ -4,7 +4,7 @@
 function steer(e,vx,vy,d){let sx=0,sy=0;for(const o of enemies){if(o===e||o.fly!==e.fly)continue;const ax=e.x-o.x,ay=e.y-o.y,m=e.r+o.r+6;if(ax>m||ax<-m||ay>m||ay<-m)continue;const q=Math.hypot(ax,ay)||.01;if(q<m){const w=(1-q/m)*(o.r>e.r?1.5:1);sx+=ax/q*w;sy+=ay/q*w;}}
   const ch=(vx*(P.x-e.x)+vy*(P.y-e.y))/d>.8&&d>60&&d<300&&!e.fly&&e.type!=='boss'?.4*e.side*Math.min(1,(d-60)/80):0,X=vx+sx*1.3-vy*ch,Y=vy+sy*1.3+vx*ch,n=Math.max(1,Math.hypot(X,Y));return[X/n,Y/n];}
 function update(dt){dt=fxTime(dt);
-  if(run&&run.tl&&state==='play'){run.tl.t+=dt;run.tl.fr++;if(dt>.034)run.tl.sl++;}
+  if(run&&run.tl&&state==='play'){run.tl.t+=dt;run.tl.fr++;if(dt>.034)run.tl.sl++;if(RAWDT>.05&&RAWDT<.5)run.tl.sp=(run.tl.sp||0)+1;if(RAWDT<.5&&RAWDT>(run.tl.mx||0))run.tl.mx=RAWDT;}// v0.85 spikes: frames over 50 ms and the longest frame (pauses excluded)
   if(bannerT>0){bannerT-=dt;if(bannerT<=0){const b=$('banner');b.style.opacity=0;b.style.transform='translateY(-48px)';}}
   for(const p of parts){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=.9;p.vy*=.9;p.life-=dt;}parts=parts.filter(p=>p.life>0);fxUpdate(dt);audioTick(dt);
   for(const n of nums){n.y-=32*dt;n.life-=dt;}nums=nums.filter(n=>n.life>0);

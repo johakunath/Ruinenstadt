@@ -9,12 +9,14 @@ function gear(eq){const A={};for(const k in AFX)A[k]=0;
 function stats(eq){eq=eq||S.eq;const w=eq.w,K=KIND[w.kind],A=gear(eq),lv=P?P.lvl:1,els=[];const wm=(w.mods||[]).map(k=>MODS.find(m=>m.k===k)).filter(Boolean);if(w.el)els.push(w.el);for(const m of wm)if(m.el&&!els.includes(m.el))els.push(m.el);if(setCount(eq,'spree')>=3&&!els.includes('shock'))els.push('shock');['fire','acid','shock'].forEach(e=>{if(pk(e)&&!els.includes(e))els.push(e);});
   const ml=run&&run.meal,mk=cLv('imbiss')>=3?1.2:1;if(dm_('glas'))A.dmg+=50;if(ml==='kaffee'){A.as+=18*mk;A.spd+=18*mk;}if(ml==='soljanka'){A.regen+=3*mk;A.res+=10*mk;}if(ml==='gurke')A.luck+=Math.round(4*mk);if(ml==='curry')A.dmg+=25*mk;// v0.83 Imbiss level 3: meals 20% stronger
   const asF=Math.max(.4,1+.12*pk('rate')+A.as/100+(SHR.as>0?.3:0)),cdr=clamp(A.cdr/100,0,.5);
-  return{kind:w.kind,K,A,els,elc:wm.some(m=>m.el)?.5:.3,eb:wm.reduce((a,m)=>a+(m.eb||0),0),wt:(wm.find(m=>m.wt)||{}).wt||0,elp:Math.max(0,1+A.el/100+.25*pk('elp')),dmg:Math.max(1,(w.val+(lv-1)*K.k)*(1+.07*S.upg.dmg+.15*pk('dmg')+A.dmg/100+.05*mLvl(w.kind))*(pk('m_dampf')&&w.kind==='hammer'?1.7:1)),
-    maxHp:Math.max(20,Math.round((100+(lv-1)*5+15*S.upg.hp+25*pk('hp')+A.hp)*(run&&run.meal==='suppe'?1+.35*(cLv('imbiss')>=3?1.2:1):1)*(dm_('glas')?.6:1))),crit:clamp(.08+.08*pk('crit')+A.crit/100,0,.75),spd:182*clamp(1+.1*pk('spd')+A.spd/100+(SHR.spd>0?.25:0),.5,1.8),
+  return{kind:w.kind,K,A,els,elc:wm.some(m=>m.el)?.5:.3,eb:wm.reduce((a,m)=>a+(m.eb||0),0),wt:(wm.find(m=>m.wt)||{}).wt||0,elp:Math.max(0,1+A.el/100+.25*pk('elp')),dmg:Math.max(1,(w.val+(lv-1)*K.k)*(1+.07*S.upg.dmg+.15*pk('dmg')+A.dmg/100+DRILL_D*(S.drill||0))*(pk('m_dampf')&&w.kind==='hammer'?1.7:1)),
+    maxHp:Math.max(20,Math.round((100+(lv-1)*5+15*S.upg.hp+25*pk('hp')+A.hp)*(1+DRILL_H*(S.drill||0))*(run&&run.meal==='suppe'?1+.35*(cLv('imbiss')>=3?1.2:1):1)*(dm_('glas')?.6:1))),crit:clamp(.08+.08*pk('crit')+A.crit/100,0,.75),spd:182*clamp(1+.1*pk('spd')+A.spd/100+(SHR.spd>0?.25:0),.5,1.8),
     regen:Math.max(0,A.regen),res:clamp(A.res/100+.06*pk('res')+(SHR.res>0?.25:0),-.5,.75),leech:Math.max(0,A.leech)+2*pk('leech'),luck:A.luck+(hasS('spaeher')?1:0),
     rate:K.rate/asF*(pk('m_dampf')&&w.kind==='hammer'?1.3:1),reach:(K.reach||0)*(1+.2*pk('reach')),pspd:560*(1+.2*pk('reach')),
-    dashCd:Math.max(.4,1.4*(1-.08*S.upg.dash)*(1-.2*pk('dashcd'))*(1-cdr)*(hasS('mechaniker')?.9:1)),skCd:krOf(w).cd*(1-.2*pk('skill'))*(1-cdr)*(mLvl(w.kind)>=5?.85:1)};}
-function power(st){const dps=st.dmg*(1+st.crit)/st.rate*(1+(st.els.length?.18*st.elp*(st.elc||.3)/.3*Math.min(2,st.els.length):0))*(st.wt?1.12:1),ehp=st.maxHp/(1-st.res)*(1+st.regen*.04);return Math.round(Math.sqrt(dps*ehp)*(1+(st.spd/182-1)*.4)*(1+st.luck*.01));}
+    dashCd:Math.max(.4,1.4*(1-.08*S.upg.dash)*(1-.2*pk('dashcd'))*(1-cdr)*(hasS('mechaniker')?.9:1)),skCd:krOf(w).cd*(1-.2*pk('skill'))*(1-cdr)};}
+// Kampfkraft = sqrt(damage per second × effective life) × move speed factor × luck factor. pwParts feeds the comparison breakdown (v0.85)
+function pwParts(st){return{dps:st.dmg*(1+st.crit)/st.rate*(1+(st.els.length?.18*st.elp*(st.elc||.3)/.3*Math.min(2,st.els.length):0))*(st.wt?1.12:1),ehp:st.maxHp/(1-st.res)*(1+st.regen*.04),mob:1+(st.spd/182-1)*.4,lk:1+st.luck*.01};}
+function power(st){const q=pwParts(st);return Math.round(Math.sqrt(q.dps*q.ehp)*q.mob*q.lk);}
 function refresh(){if(!P){ST=stats();return;}const pct=ST?P.hp/ST.maxHp:1;ST=stats();P.hp=Math.min(ST.maxHp,Math.max(1,Math.round(ST.maxHp*pct)));}
 const ilvl=()=>D.lvl+(run?Math.max(1,Math.ceil(wE()))+run.th*3:1);
 function startRun(di,endless,daily,tun){// tun: line index for a U-Bahn tunnel run (js/ubahn.js)

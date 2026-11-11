@@ -21,3 +21,9 @@ Feedback batch. Fixed in v0.65 (see Done): vertical walk speed, settings cogwhee
 
 PC, phone and tablet exported before syncing. 8 unique runs (v0.40 to v0.68), all from one save branch; the phone's own save had only 2 aborted runs. Ids `df2s…` (PC), `bw45…` (phone), `65ac…` (tablet) are the same person; all devices now share the PC save.
 Performance: v0.63 tunnel on phone 21 fps with 98.7% slow frames, v0.63 Alexanderplatz on tablet 20 fps with 99.4%; overworld on phone 43 to 46 fps with about 2%. v0.68 Köpenick on tablet 58 fps with 1%, but only 7 s, so the fix is not confirmed. Check the first v0.76 tunnel and Alexanderplatz runs in the sheet.
+
+## Playtest 6 (v0.83/v0.84, PC browser with pad, 2048×1152, Mitte won incl. meta boss)
+
+Online save: 21 runs, 4 wins, Kampfkraft 4005 → 7854 per run, Drill-relevant upgrades maxed (Schärfen 10, Panzerung 10, Ausdauer 5, Spürnase 5), all 7 stations at level 2 to 3, 15,835 Schrott and 518 Stoff unused, stash empty, blade mastery 16,342 EP (level 10, +50% damage).
+Runs: Alexanderplatz win 958 s, lowest life 77%, 63 fps, 2.1% slow; Alexanderplatz tunnel win 220 s, 36 fps, 40.3% slow (outlier); Mitte win 1027 s, lowest life 9%, boss fights 9 s and 123 s, 54 fps, 4.7% slow.
+Feedback: Lager tab unnecessary, stash should sit under the bag in camp with drag and drop, bag too small (25 wanted), Schrott has no sink, Umschmieden only at the smith, lock as an icon, smaller buttons, explain Kampfkraft and ▲, camera erratic with the pad at high speed, mastery against the progression rule, keep blessings into the tunnel, network page layout, Säbeltanz strong but invisible, expected 3 powers at once, 3 quests too few and too dull, story and district vision missing. Station art approved. Fixes and open decisions: v0.85 in `BACKLOG.md`.
