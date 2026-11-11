@@ -24,7 +24,7 @@ SIM.think=function(dt){
     if(ranged){if(nd<170){mx-=ux;my-=uy;}else if(nd>300||SIM.blocked(near.x,near.y)){const g=SIM.goto(near.x,near.y);mx+=g.x;my+=g.y;}else{mx+=-uy*.8;my+=ux*.8;}}
     else if(P.hp<ST.maxHp*.3&&crowd>=3){mx-=ux;my-=uy;mx+=-uy;my+=ux;}
     else if(nd>near.r+P.r+8){const g=SIM.goto(near.x,near.y);mx+=g.x;my+=g.y;}
-    if((!ranged&&(crowd>=3||(near.type==='boss'&&nd<130)))||(ranged&&nd<330))skillReq=true;
+    if((!ranged&&(crowd>=3||(near.type==='boss'&&nd<130)))||(ranged&&nd<330))skillReq=true;if(crowd>=5||(near.type==='boss'&&nd<200)||(near.elite&&nd<160))ulReq=true;
     if(S.cons.molotow>0&&es.filter(e=>dist(e,near)<90).length>=5&&Math.random()<.02)useCons('molotow');}
   else{let tg=null;
     if(captive)tg=captive;else if(trove)tg=trove;else if(crate)tg=crate;else if(zone)tg=zone;
@@ -39,7 +39,7 @@ SIM.think=function(dt){
   if(st.t>.8){if(Math.hypot(mx,my)>.4&&Math.hypot(P.x-st.x,P.y-st.y)<10){const a=Math.atan2(my,mx)+(Math.random()<.5?1.6:-1.6);st.ax=Math.cos(a)*1.5;st.ay=Math.sin(a)*1.5;st.at=.7;}st.t=0;st.x=P.x;st.y=P.y;}
   // joystick is in screen space (iso view): project the world direction
   const sx=(mx-my)*IS,sy=(mx+my)*IS/2,l=Math.hypot(mx,my),sl=Math.hypot(sx,sy);joy.x=l>.05?sx/sl:0;joy.y=l>.05?sy/sl:0;atkHeld=true;};
-SIM.run=function(di,opt){opt=opt||{};S.kr={};for(const k in KR)S.kr[k]=opt.kr!=null?opt.kr:Math.floor(Math.random()*3);/* v0.82: random weapon power per run unless given */const tl0=(S.tlog||[]).slice(-1)[0];if(opt.tun)startTunnel(di);else startRun(di,opt.endless);gridFree();const dt=1/30;let t=0,thinkT=0,hp0=0,dmgTaken=0,lastHp=P.hp,wv=0,wt=0,slow=[0,0,''],diag='';const p0=power(ST);
+SIM.run=function(di,opt){opt=opt||{};S.eq.w.kr=opt.kr!=null?opt.kr:Math.floor(Math.random()*2);/* v0.86: random regular power per run unless given, the ultimate is always there */const tl0=(S.tlog||[]).slice(-1)[0];if(opt.tun)startTunnel(di);else startRun(di,opt.endless);gridFree();const dt=1/30;let t=0,thinkT=0,hp0=0,dmgTaken=0,lastHp=P.hp,wv=0,wt=0,slow=[0,0,''],diag='';const p0=power(ST);
   while(state!=='over'&&t<(opt.maxT||1500)){
     if(state==='perk'){SIM.equip();const cs=[...document.querySelectorAll('#perkbox .pcard')];const c=cs.find(b=>b.classList.contains('duo'))||cs.find(b=>b.classList.contains('mod'))||cs.find(b=>b.classList.contains('fon')&&Math.random()<.75)||cs.find(b=>b.classList.contains('ep'))||cs.find(b=>b.classList.contains('ra'))||cs[Math.floor(Math.random()*cs.length)];c.click();continue;}
     if(state==='trade'){if(npc)npc.offers.forEach((o,i)=>{if(o&&S.scrap>=o.price&&better(o.it)&&S.bag.length<BAG){S.scrap-=o.price;S.bag.push(o.it);npc.offers[i]=null;}});$('trade').hidden=true;state='play';continue;}

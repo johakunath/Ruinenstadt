@@ -35,6 +35,23 @@ next-step order above; tablet acceptance stays deferred.
 
 Both agents may change any code when a task needs it. Keep the change small and say it in `log.md`.
 
+## Source per asset family (decision Johannes, 2026-11-11)
+
+Painted (Codex, this pipeline) only where it pays off most: things that move and carry the player's identity. Everything else is made as code-native SVG or canvas art by Claude and stays final, not a placeholder.
+
+| Family | Source | Note |
+|---|---|---|
+| Hero rig: body, clothing layers, held weapons | Painted (Codex) | `tools/build_hero.py`, `js/hero.js` |
+| Enemies and bosses (animated) | Painted (Codex) | Boss queue continues (`06-bosses.md`) |
+| Item and menu icons (weapons, armour, jewellery, implants, ingredients, power icons) | SVG, rasterized to 128 px WebP | Approved after the v0.85 batch I71 to I87; existing ChatGPT icons stay |
+| Environment: props, ground, nature, camp stations and dressing, decals | SVG / canvas code | `js/camp-art.js`, `js/glyphs.js` pattern |
+| Buildings of new districts (Wedding, Tempelhof, Charlottenburg) | SVG / canvas textures on the iso faces | The painted Köpenick and GDR kits stay; repaint only if a district looks clearly worse |
+| Landmarks (Fernsehturm, Schloss, Hangar) | Decide per landmark | Painted if it is a one-off hero image, SVG if it is modular |
+
+Why: at draw time both end up as cached bitmaps, so the GPU cost per frame is the same for the same pixel area (`drawImage` of a canvas or a decoded WebP). The real costs are pixels drawn per frame, draw calls and live path drawing. SVG wins on iteration speed (Claude can make and change it in the same session, Codex is the bottleneck), download size, crispness at any DPR and recolouring per district or era. Painted wins on organic, textured, animated figures.
+
+Rules for SVG/code art: rasterize once into a cached canvas (`svgCnv` in `js/base.js`, or an offscreen canvas) at the size it is drawn, never parse or path-draw a complex SVG per frame; keep the noise/grime filters (feTurbulence) to the rasterize step; measure build-time rasterization on the Tab S9 when a district adds more than about 30 SVG sprites; match the style bible (palette, ink outline, top-left light, wear). The v0.62 rule in step 3 below ("do not restyle the canvas/SVG drawings") applies to painted tasks only.
+
 ## Workflow per task
 
 **Design autonomy (Johannes, 2026-11-10):** A/B/C decisions are only for the

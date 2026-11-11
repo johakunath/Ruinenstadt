@@ -340,3 +340,10 @@ body.tab #fsb{top:calc(env(safe-area-inset-top,0px) + 82px);right:calc(max(24px,
 .dgsrc{opacity:.35}.dgover{outline:2px dashed var(--ember);outline-offset:2px}
 [data-dg]{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .mres .btn{width:auto}
+/* v0.86 ultimate: own button above the power (pad LB, keyboard R) */
+#ult{right:calc(max(16px,env(safe-area-inset-right,0px)) + 20px);bottom:calc(env(safe-area-inset-bottom,0px) + 214px);width:62px;height:62px;font-size:13px;border:2px solid rgba(255,90,60,.7);background:conic-gradient(rgba(255,90,60,.34) var(--sk,360deg),rgba(13,9,7,.6) 0);line-height:1.05;text-align:center;overflow-wrap:anywhere;hyphens:auto;padding:4px}
+#ult.ready{box-shadow:0 0 0 3px rgba(255,90,60,.3),0 0 16px rgba(255,90,60,.35)}
+body.tab #ult{width:80px;height:80px;font-size:15px;right:calc(max(28px,env(safe-area-inset-right,0px)) + 29px);bottom:calc(env(safe-area-inset-bottom,0px) + 286px)}
+body.mouse #ult::after,body.pad #ult::after{position:absolute;bottom:-4px;right:-4px;font:700 12px var(--f-ui);border:1px solid var(--edge);padding:1px 5px}
+body.mouse #ult::after{content:"R";background:#120d0a;border-radius:3px;color:var(--bone)}
+body.pad #ult::after{content:"LB";border-radius:8px;background:#5a5048;color:#fff;font-size:11px}

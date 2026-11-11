@@ -89,6 +89,8 @@ function dailyPlan(){const r=rngFrom(dayKey()*7+13),ks=Object.keys(DMODS),a=ks[M
 let RNG0=null;const dm_=k=>run&&run.dmods&&run.dmods.includes(k);
 function endDaily(){if(RNG0){Math.random=RNG0;RNG0=null;}if(run&&run.daily){const sc=run.kills*10+run.wave*50+(P.hp>0&&run.wave>=WAVES?1000:0);run.score=sc;const k=dayKey();if(!S.daily||S.daily.k!==k)S.daily={k,best:0,tries:0};S.daily.tries++;S.daily.best=Math.max(S.daily.best,sc);save();}}
 // v0.85 Drill (Exerzierplatz): endless scrap sink that replaces weapon mastery. Each rank +2% damage and +2% life, cost grows linearly
+// v0.86 implant modes: every implant has 3 passive settings, switchable anytime in the inventory (it.im)
+const IMODE=[{k:'lauf',n:'Laufwerk',d:'+12% Lauftempo',a:{spd:12}},{k:'takt',n:'Taktgeber',d:'+10% Angriffstempo',a:{as:10}},{k:'haut',n:'Panzerhaut',d:'+8% Widerstand',a:{res:8}}];
 const DRILL_D=.02,DRILL_H=.02,drillCost=()=>300+60*(S.drill||0);
 const JOBT=[
  {k:'ghoul',n:t=>`Besiege ${t} Ghule`,t:()=>pick([30,40,50])},{k:'brute',n:t=>`Besiege ${t} Brocken`,t:()=>pick([8,12])},{k:'spitter',n:t=>`Besiege ${t} Speier`,t:()=>pick([10,15])},
@@ -169,7 +171,7 @@ const PERKS=[
  {k:'m_rund',n:'Rundumschlag',d:'Dein Finisher trifft rundherum, +20% Reichweite',max:1,w:'blade'},{k:'m_dampf',n:'Dampfhammer',d:'30% langsamer, +70% Schaden, jeder Hieb schickt eine Druckwelle',max:1,w:'hammer'},
  {k:'m_schrot',n:'Schrotladung',d:'Jeder Schuss feuert 3 Kugeln mit je 55% Schaden, kürzere Reichweite',max:1,w:'sling'},{k:'m_spiess',n:'Wurfspieße',d:'Jeder Finisher wirft zusätzlich einen Speer, der 4 Gegner durchbohrt',max:1,w:'spear'}];
 const pFam=p=>p.duo||p.f||[],famHeld=()=>{const h=new Set();if(run)for(const k in run.perks)if(run.perks[k]>0){const p=PERKS.find(x=>x.k===k);if(p&&!p.duo&&!p.w)(p.f||[]).forEach(f=>h.add(f));}return h;};
-// v0.82 weapon powers (Kräfte): 3 per weapon class, picked before the run (S.kr[kind]); the third is an ultimate with a long cooldown. Names: [default, Potsdamer Platz neon bases, Alexanderplatz bases]
+// v0.82 weapon powers (Kräfte): 3 per weapon class; since v0.86 power 1 or 2 is set on the weapon item (w.kr) and the third, the ultimate, is always equipped; the third is an ultimate with a long cooldown. Names: [default, Potsdamer Platz neon bases, Alexanderplatz bases]
 const KR={blade:[{k:'saege',n:['Kreissäge','Neonwirbel','Ernteschlacht'],d:'Du wirbelst 1,2 s lang und triffst alles um dich herum',cd:7},
   {k:'fecht',n:['Fechtsprung','Phasensprung','Sonderschicht'],d:'Sprung durch die Gegner mit 180% Schaden. Ein Kill lädt die Kraft sofort auf',cd:6},
   {k:'saebel',n:['Säbeltanz','Übertakten','Übersoll'],d:'5 s lang +80% Angriffstempo, jeder Treffer kritisch',cd:24,u:1}],
@@ -182,5 +184,6 @@ const KR={blade:[{k:'saege',n:['Kreissäge','Neonwirbel','Ernteschlacht'],d:'Du 
  spear:[{k:'spiess',n:['Spießrute','Rückkopplung','Stundenschlag'],d:'Speerwurf, durchbohrt alles in einer Linie',cd:7},
   {k:'stab',n:['Stabhochsprung','Stagedive','Sprungfeder'],d:'Sprung nach vorn, die Landung trifft alles im Kreis mit 220% Schaden',cd:6},
   {k:'stand',n:['Standarte','Verstärker','Weltzeituhr'],d:'Pflanzt 8 s eine Standarte. Darin +50% Schaden und Heilung, Gegner langsamer',cd:26,u:1}]};
-const krVar=b=>({leucht:1,boxh:1,neonfl:1,mikro:1,sichel:2,werkh:2,aufzieh:2,zeiger:2})[b]||0,krOf=w=>{w=w||S.eq.w;return KR[w.kind][Math.min(2,(S.kr&&S.kr[w.kind])||0)];},krName=(p,w)=>p.n[krVar(baseOf(w||S.eq.w))];
+const krVar=b=>({leucht:1,boxh:1,neonfl:1,mikro:1,sichel:2,werkh:2,aufzieh:2,zeiger:2})[b]||0,krOf=w=>{w=w||S.eq.w;return KR[w.kind][w.kr===1?1:0];},ulOf=w=>KR[(w||S.eq.w).kind][2],// v0.86: the regular power is chosen per weapon (w.kr 0/1, anytime in the inventory), the ultimate is always equipped on its own button
+krName=(p,w)=>p.n[krVar(baseOf(w||S.eq.w))];
 let run=null;const pk=k=>(run&&run.perks[k])||0;
