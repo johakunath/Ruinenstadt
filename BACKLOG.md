@@ -18,6 +18,12 @@ Current actions are tracked below.
 
 ## Next
 
+**Next session (Johannes, 2026-11-11): start with blessing synergies.** Order agreed: (1) blessing synergies, (2) weapon powers #7, (3) camp stations with levels and NPCs #37, (4) weapon crafting quests #36.
+
+| Step | Scope |
+|---|---|
+| Blessing synergies | Blessings are the strongest power source (#32). Audit `PERKS` in `js/data.js` and the effects in `js/combat.js`/`js/state.js`, then add many pairs that clearly combine (e.g. element + spread/chain, combo + crit, dash + damage, kill streak + speed), shown on the card („Passt zu: …“) and as a synergy line in the Segen tab. Weapon modifications as a rare blessing card (Daedalus-hammer style, changes how the weapon attacks), not as a second camp system. Proposal with a short list first, mockup for the card, then build; verify with `node tools/balance.mjs 16 1` (human-like bot since v0.79) |
+
 Köpenick kit: merged in PRs #29/#30 (v0.71). The original seven-pair
 failure is superseded by the documented 21-pair Windows GPU pass on
 2026-11-11, including a null-control CI inside ±5%. Review follow-up v0.72
