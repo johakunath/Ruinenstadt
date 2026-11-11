@@ -17,3 +17,7 @@ Telemetry vs bot (Köpenick Normal): Johannes 17.5 min, level 18, 1025 damage ta
 
 Feedback batch. Fixed in v0.65 (see Done): vertical walk speed, settings cogwheel, pickup text, full bag, drop rate, Kodex silhouettes, unlock gates, final boss delay, Alexanderplatz market flicker, TV tower proportions, distance sound, set bonuses, dark zones off. The rest sits in Next (#16 to #22).
 
+## Device telemetry before cloud save (2026-11-11, v0.76 exports)
+
+PC, phone and tablet exported before syncing. 8 unique runs (v0.40 to v0.68), all from one save branch; the phone's own save had only 2 aborted runs. Ids `df2s…` (PC), `bw45…` (phone), `65ac…` (tablet) are the same person; all devices now share the PC save.
+Performance: v0.63 tunnel on phone 21 fps with 98.7% slow frames, v0.63 Alexanderplatz on tablet 20 fps with 99.4%; overworld on phone 43 to 46 fps with about 2%. v0.68 Köpenick on tablet 58 fps with 1%, but only 7 s, so the fix is not confirmed. Check the first v0.76 tunnel and Alexanderplatz runs in the sheet.
