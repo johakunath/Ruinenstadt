@@ -3043,6 +3043,116 @@
     "units": 6,
     "w": 128
   },
+  "props/barrel": {
+    "anchor": [
+      27.0,
+      69.737
+    ],
+    "for": "drawBarrel static body",
+    "h": 71,
+    "units": 3,
+    "w": 54
+  },
+  "props/bench": {
+    "anchor": [
+      54.0,
+      78.722
+    ],
+    "for": "drawBB bench",
+    "h": 80,
+    "units": 3,
+    "w": 108
+  },
+  "props/bin": {
+    "anchor": [
+      39.5,
+      102.647
+    ],
+    "for": "drawProp bin",
+    "h": 104,
+    "units": 3,
+    "w": 79
+  },
+  "props/campfire": {
+    "anchor": [
+      37.5,
+      48.776
+    ],
+    "for": "drawBarrel camp static body",
+    "h": 50,
+    "units": 3,
+    "w": 75
+  },
+  "props/chest": {
+    "anchor": [
+      48.0,
+      84.7
+    ],
+    "for": "drawProp chest",
+    "h": 86,
+    "units": 3,
+    "w": 96
+  },
+  "props/crate": {
+    "anchor": [
+      44.5,
+      87.689
+    ],
+    "for": "drawProp crate",
+    "h": 89,
+    "units": 3,
+    "w": 89
+  },
+  "props/fence": {
+    "anchor": [
+      145.5,
+      60.804
+    ],
+    "for": "drawFence projected shared face",
+    "h": 62,
+    "units": 3,
+    "w": 291
+  },
+  "props/flames": {
+    "anchor": [
+      48,
+      119
+    ],
+    "for": "paintedFire eight 96x120 source cells",
+    "h": 120,
+    "units": 3,
+    "w": 768
+  },
+  "props/lamp": {
+    "anchor": [
+      38.5,
+      282.034
+    ],
+    "for": "drawBB lamp",
+    "h": 284,
+    "units": 3,
+    "w": 77
+  },
+  "props/litfass": {
+    "anchor": [
+      82.0,
+      299.976
+    ],
+    "for": "drawBB shrine",
+    "h": 302,
+    "units": 3,
+    "w": 164
+  },
+  "props/sandbags": {
+    "anchor": [
+      128.0,
+      120.483
+    ],
+    "for": "paintedSandbags",
+    "h": 122,
+    "units": 3,
+    "w": 256
+  },
   "vehicles/bus-yellow-end": {
     "anchor": [
       1.0,

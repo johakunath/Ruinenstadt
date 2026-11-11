@@ -555,3 +555,13 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Johannes authorized fixing findings, merging, then continuing shared props/fire and vehicles. PR #32 had one P2: fixed minimum grid tracks overflowed at 900–983 CSS px.
 - Retained the three-panel layout and proportional widths, but let each track shrink to zero instead of reserving 360+240+320 px. Backpack cells still use their 72 px minimum. Larger viewport proportions remain identical.
 - Expanded layout/active rare-comparison proof to 900, 920, 960, 983 and 984 px, alongside the existing desktop/tablet/phone matrix. Check scrolling, no horizontal overflow, visible values/actions and real item equip. Runtime JS and the previous GPU acceptance are unaffected (CSS-only fix).
+
+
+## 2026-11-11 · Codex · PR 32 merged; shared props/fire complete locally
+
+- PR #32 final review on `ce5f72a` completed with no findings; original thread resolved. Merged expected head as `8853689` and synced main. No checks were bypassed.
+- Resumed preserved task05 draft onto merged v0.75 on `codex/global-props-fire`, retaining current rig/building fixes. Eleven shared paintings, deterministic eight-frame fire, complete fallback and unchanged world/tunnel walls. No new painting was necessary; routine design remains the preserved source family. Original worktree is untouched.
+- Current smoke/gallery/all-district/tunnel, missing-image, phase diversity and offline v0.76 proof passes. Runtime build is byte-idempotent; 271-entry manifest; task memory 1,013,788 bytes with zero derived caches. Existing 66 JS checks, task assertions and 6 Python tests pass. Spati constructor test compares stable RNG/geometry/light ownership while its sandbags become dynamic props.
+- Paired RTX 4070 gate: Koepenick -0.29% CI [-3.05,2.29]; Alexanderplatz -0.41% CI [-2.13,0.56]; null +0.09% CI [-2.61,0.46]. 21 pairs, 1280×800 DPR2, 100+300 renders, zero timed canvas allocations. Raw report under `pipeline/proof/05-props/perf/`.
+- Automatic approval review rejected publishing the new props/fire branch because authorization for that new publication was not explicit enough. Continuing locally; request publication approval only when the asset changes are concrete and reviewable. No workaround attempted.
+- Isolated local vehicle continuation starts from merged PR #32 on `codex/vehicle-complete` in `.worktrees/vehicle-complete`; original dirty vehicle draft is preserved. Repairs required: scheduled, bounded device-scale caches; stable visible overflow; correct face/wheel visibility through the actual ±48.44° extremes; current geometry/visual/offline/GPU proof.
