@@ -41,7 +41,7 @@ function buildBase(keepPos){if(typeof koepResetCache==='function')koepResetCache
   const light=(x,y,r)=>blds.push({x:x-1,y,w:2,h:0,top:1,spr:cnv(2,1),lights:[{x,y,z:90,r}]});light(450,1300,190);light(900,1260,180);light(1200,1500,150);light(1600,1480,200);light(2040,1380,210);
   // dressing (deco SVGs)
   const deco=(k,x,y,sc)=>{const c=cArt('deco',k);if(c){blds.push({x:x-c.width/2,y,w:c.width,h:0,top:c.height,spr:c,sc:sc||1,lights:[]});walls.push({x:x-40*(sc||1),y:y-22,w:80*(sc||1),h:24});}};
-  deco('klo',300,1160);deco('klo',600,1160);deco('theke',800,1160);deco('kiosk',2120,700);deco('automat',1480,620);deco('automat',1560,620);deco('bank',880,630);deco('bank',1720,1060);deco('plakat',1150,1112,.8);deco('treppe',1200,1700,1.2);
+  deco('klo',300,1160,.75);deco('klo',580,1160,.75);deco('kiosk',2120,700,.7);deco('automat',1480,620,.5);deco('automat',1550,620,.5);deco('bank',880,630,.5);deco('bank',1720,1070,.5);deco('plakat',1500,1112,.5);deco('treppe',1200,1700,.9);
   // places: [x,y,name,action]
   const place=(x,y,n,act,col)=>{BZ.push({x,y,r:62,n,act,near:false});bBoard(x,y-60,baseSign(n,col),120);marks.push({x,y,n});};
   place(1100,640,'Abfahrt · Netzplan',()=>leaveBase(),'#7dd3ff');
