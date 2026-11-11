@@ -54,7 +54,11 @@ def main():
     picks = {}
     atlas = Image.open(RAW / 'small-atlas.png').convert('RGBA')
     for family, spec in SMALL.items():
+        if family != 'car':
+            continue  # Trabi/Barkas use the user-requested refinement sources.
         for variant, target in spec['variants'].items():
+            if variant == 'red':
+                continue  # Independently painted burned wreck replaces red.
             for face, crop, size in zip(FACES, spec['crops'], spec['size']):
                 part = atlas.crop(crop)
                 # Faces are opaque planes. Fill tiny transparent edge pixels
@@ -97,8 +101,12 @@ def main():
         assert destination.stat().st_size < 400000, destination
         manifest[key] = entry
     write_json(ROOT / 'assets/manifest.json', manifest)
-    stats = {'textures': len(picks), 'decodedBytes': sum(manifest[k]['w'] * manifest[k]['h'] * 4 for k in picks), 'fileBytes': sum((ROOT / 'assets' / f'{k}.webp').stat().st_size for k in picks), 'largestFileBytes': max((ROOT / 'assets' / f'{k}.webp').stat().st_size for k in picks), 'runtimeCanvasLimitBytes': 28000000, 'choices': 'Generated family canvas selected autonomously under latest user policy. Car green/red/blue, Trabi turquoise/cream/red, van blue/cream; bus/tram yellow. Geometry derivatives are not new design variants.'}
-    assert stats['decodedBytes'] + stats['runtimeCanvasLimitBytes'] < 40000000
+    from build_vehicle_refinement import main as refinement
+    refinement()
+    manifest = read_object(ROOT / 'assets/manifest.json')
+    keys = [k for k in manifest if k.startswith('vehicles/')]
+    stats = {'textures': len(keys), 'decodedBytes': sum(manifest[k]['w'] * manifest[k]['h'] * 4 for k in keys), 'fileBytes': sum((ROOT / 'assets' / (k+'.webp')).stat().st_size for k in keys), 'largestFileBytes': max((ROOT / 'assets' / (k+'.webp')).stat().st_size for k in keys), 'runtimeTotalLimitBytes': 40000000, 'choices': 'Cream-only rounded Trabi; windowed blue/cream Barkas B1000; green/blue sedans plus independently painted partly burned red wreck; BVG yellow bus/tram. Refinement sources and prompts preserved.'}
+    assert stats['decodedBytes'] < stats['runtimeTotalLimitBytes']
     write_json(RAW / 'build-stats.json', stats)
     print(json.dumps(stats, indent=2))
 

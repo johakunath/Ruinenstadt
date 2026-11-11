@@ -12,7 +12,7 @@ function fix(s){const nokx=!s.kx,u5=!s.u50,w10=!s.w20,nk=!s.d7,n8=!s.d8;s=Object
   s.unlocked=Math.min(s.unlocked,DIST.length);for(const k of SLOTS)if(!(k in s.eq))s.eq[k]=null;return s;}
 function load(){S=null;try{const s=JSON.parse(localStorage.getItem('rs2'));if(s&&s.upg&&s.eq)S=fix(s);}catch(e){}if(!S)S=defSave();}
 const cloud={ref:null,state:'off',busy:false,dirty:false,timer:0};
-function save(){checkAch();S.t=Date.now();try{localStorage.setItem('rs2',JSON.stringify(S));}catch(e){}cloudQueue();}
+function save(){checkAch();S.t=Date.now();try{localStorage.setItem('rs2',JSON.stringify(S));}catch(e){}cloudQueue();osQueue();}
 function cloudQueue(){if(!cloud.ref||cloud.state==='err')return;cloud.dirty=true;clearTimeout(cloud.timer);cloud.timer=setTimeout(cloudPush,3000);}
 async function cloudPush(retry){
   if(!cloud.ref||!cloud.dirty)return;if(cloud.busy){cloud.timer=setTimeout(cloudPush,1500);return;}
@@ -27,10 +27,12 @@ async function initCloud(){
     const slow=setTimeout(()=>{if(cloud.state==='sync'){cloud.state='slow';if(state==='menu')renderMenu();}},10000);
     const snap=await cloud.ref.get();clearTimeout(slow);
     const rd=snap.exists?snap.data():null;let rs=null;try{rs=rd&&rd.s?JSON.parse(rd.s):null;}catch(e){}
-    if(rs&&(rs.t||0)>(S.t||0)&&state==='menu'){bak('Cloud');S=fix(rs);fillJobs();try{localStorage.setItem('rs2',JSON.stringify(S));}catch(e){}resize();S.dist=Math.min(S.dist,S.unlocked-1);buildWorld(DIST[S.dist]);ST=stats();P.hp=ST.maxHp;toast('Spielstand aus der Cloud geladen');}
+    if(rs&&(rs.t||0)>(S.t||0)&&state==='menu'){adoptSave(rs,'Cloud');toast('Spielstand aus der Cloud geladen');}
     else if(S.t&&(!rs||(rs.t||0)<S.t)){cloud.dirty=true;await cloudPush();}
     cloud.state=cloud.state==='err'?'err':'on';if(state==='menu')renderMenu();
   }catch(e){cloud.state=cloud.ref?'err':'off';if(state==='menu')renderMenu();}}
+// a save from elsewhere (artifact cloud, online save) replaces the local one without pushing it back; backup first, the anonymous player id stays with the device's first save
+function adoptSave(rs,why){bak(why);const pid=S.pid;S=fix(rs);if(!S.pid)S.pid=pid;fillJobs();try{localStorage.setItem('rs2',JSON.stringify(S));}catch(e){}resize();S.dist=Math.min(S.dist,S.unlocked-1);buildWorld(DIST[S.dist]);ST=stats();P.hp=ST.maxHp;if(state==='menu')renderMenu();}
 S=defSave();// placeholder until data.js has run; the real load() runs in main.js because fix() needs DIST and SLOTS from data.js
 /* save code: copy and paste the save as text, works without any backend */
 const b64e=t=>btoa(String.fromCharCode(...new TextEncoder().encode(t))),b64d=t=>new TextDecoder().decode(Uint8Array.from(atob(t),c=>c.charCodeAt(0)));
@@ -39,11 +41,11 @@ const lsGet=(k)=>{try{const a=JSON.parse(localStorage.getItem(k));return Array.i
 function bak(why){if(!S||!(S.t||(S.rec&&S.rec.runs)))return;const a=lsGet('rs2bak');a.unshift({t:Date.now(),v:VERSION,why,s:JSON.stringify(S)});let n=5;while(n>0&&!lsSet('rs2bak',a.slice(0,n)))n--;}
 // merges every run of the save log (S.tlog) that the history does not have yet: seeds it for existing players, picks up runs of imported saves, no duplicates
 const hkey=e=>[e.v,e.day,e.d,e.m,e.end,e.wave,e.t,e.kills,e.dmg,e.lvl].join('|');
-function histSync(){const a=lsGet('rs2hist'),k=new Set(a.map(hkey));let n=0;for(const e of S.tlog||[])if(!k.has(hkey(e))){a.push(Object.assign({at:Date.now()},e));k.add(hkey(e));n++;}if(n)lsSet('rs2hist',a.slice(-500));}
+function histSync(){const a=lsGet('rs2hist'),k=new Set(a.map(hkey));let n=0;for(const e of S.tlog||[])if(!k.has(hkey(e))){a.push(Object.assign({at:Date.now()},e));k.add(hkey(e));n++;}if(n){lsSet('rs2hist',a.slice(-500));if(typeof osTl==='function')setTimeout(osTl,1500);}}
 function applySave(rs){bak('Import');S=fix(rs);fillJobs();save();resize();S.dist=Math.min(S.dist,S.unlocked-1);buildWorld(DIST[S.dist]);ST=stats();P.hp=ST.maxHp;}
 // new game: progress back to zero, options (sound, difficulty, input, display) and run telemetry stay. Two confirms because it cannot be undone
 function newGame(){if(!confirm('Neues Spiel starten? Fortschritt, Ausrüstung, Lager und Schrott werden gelöscht. Tipp: vorher „Spielstand kopieren“.'))return;if(!confirm('Wirklich alles löschen?'))return;
-  bak('Neues Spiel');const keep={};for(const k of ['mute','music','eco','auto','hap','fs','diff','tips','tlog'])if(S[k]!=null)keep[k]=S[k];S=fix(Object.assign(defSave(),keep));fillJobs();save();resize();buildWorld(DIST[0]);ST=stats();P.hp=ST.maxHp;menuOpt=false;renderMenu();toast('Neues Spiel gestartet');}
+  bak('Neues Spiel');const keep={};for(const k of ['mute','music','eco','auto','hap','fs','diff','tips','tlog','pid','tlo'])if(S[k]!=null)keep[k]=S[k];S=fix(Object.assign(defSave(),keep));fillJobs();save();resize();buildWorld(DIST[0]);ST=stats();P.hp=ST.maxHp;menuOpt=false;renderMenu();toast('Neues Spiel gestartet');}
 async function exportSave(){save();const code='RS1:'+b64e(JSON.stringify(S))+'\nEND';// v0.70: END marks a complete copy
   try{await navigator.clipboard.writeText(code);toast('Spielstand-Code kopiert (endet mit END)');}catch(e){prompt('Spielstand-Code kopieren:',code);}}
 function importSave(){const code=(prompt('Spielstand-Code einfügen. Der aktuelle Spielstand wird ersetzt.')||'').trim();if(!code)return;
