@@ -3042,5 +3042,761 @@
     },
     "units": 6,
     "w": 128
+  },
+  "vehicles/bus-yellow-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      46,
+      36
+    ],
+    "for": "drawVehBox bus: orthographic end surface; actual P3 rotation",
+    "h": 110,
+    "units": 3,
+    "w": 140
+  },
+  "vehicles/bus-yellow-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      230,
+      36
+    ],
+    "for": "drawVehBox bus: orthographic side surface; actual P3 rotation",
+    "h": 110,
+    "units": 3,
+    "w": 692
+  },
+  "vehicles/bus-yellow-top": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      230,
+      46
+    ],
+    "for": "drawVehBox bus: orthographic top surface; actual P3 rotation",
+    "h": 140,
+    "units": 3,
+    "w": 692
+  },
+  "vehicles/car-blue-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      12
+    ],
+    "for": "drawVehBox car: orthographic end surface; actual P3 rotation",
+    "h": 38,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/car-blue-glass-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox car: orthographic glass-end surface; actual P3 rotation",
+    "h": 35,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/car-blue-glass-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox car: orthographic glass-side surface; actual P3 rotation",
+    "h": 35,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/car-blue-roof": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      26,
+      32
+    ],
+    "for": "drawVehBox car: orthographic roof surface; actual P3 rotation",
+    "h": 98,
+    "units": 3,
+    "w": 80
+  },
+  "vehicles/car-blue-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      96,
+      12
+    ],
+    "for": "drawVehBox car: orthographic side surface; actual P3 rotation",
+    "h": 38,
+    "units": 3,
+    "w": 290
+  },
+  "vehicles/car-blue-top": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      96,
+      44
+    ],
+    "for": "drawVehBox car: orthographic top surface; actual P3 rotation",
+    "h": 134,
+    "units": 3,
+    "w": 290
+  },
+  "vehicles/car-green-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      12
+    ],
+    "for": "drawVehBox car: orthographic end surface; actual P3 rotation",
+    "h": 38,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/car-green-glass-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox car: orthographic glass-end surface; actual P3 rotation",
+    "h": 35,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/car-green-glass-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox car: orthographic glass-side surface; actual P3 rotation",
+    "h": 35,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/car-green-roof": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      26,
+      32
+    ],
+    "for": "drawVehBox car: orthographic roof surface; actual P3 rotation",
+    "h": 98,
+    "units": 3,
+    "w": 80
+  },
+  "vehicles/car-green-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      96,
+      12
+    ],
+    "for": "drawVehBox car: orthographic side surface; actual P3 rotation",
+    "h": 38,
+    "units": 3,
+    "w": 290
+  },
+  "vehicles/car-green-top": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      96,
+      44
+    ],
+    "for": "drawVehBox car: orthographic top surface; actual P3 rotation",
+    "h": 134,
+    "units": 3,
+    "w": 290
+  },
+  "vehicles/car-red-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      12
+    ],
+    "for": "drawVehBox car: orthographic end surface; actual P3 rotation",
+    "h": 38,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/car-red-glass-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox car: orthographic glass-end surface; actual P3 rotation",
+    "h": 35,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/car-red-glass-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox car: orthographic glass-side surface; actual P3 rotation",
+    "h": 35,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/car-red-roof": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      26,
+      32
+    ],
+    "for": "drawVehBox car: orthographic roof surface; actual P3 rotation",
+    "h": 98,
+    "units": 3,
+    "w": 80
+  },
+  "vehicles/car-red-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      96,
+      12
+    ],
+    "for": "drawVehBox car: orthographic side surface; actual P3 rotation",
+    "h": 38,
+    "units": 3,
+    "w": 290
+  },
+  "vehicles/car-red-top": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      96,
+      44
+    ],
+    "for": "drawVehBox car: orthographic top surface; actual P3 rotation",
+    "h": 134,
+    "units": 3,
+    "w": 290
+  },
+  "vehicles/trabi-cream-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox trabi: orthographic end surface; actual P3 rotation",
+    "h": 35,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/trabi-cream-glass-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      10
+    ],
+    "for": "drawVehBox trabi: orthographic glass-end surface; actual P3 rotation",
+    "h": 32,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/trabi-cream-glass-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      36,
+      10
+    ],
+    "for": "drawVehBox trabi: orthographic glass-side surface; actual P3 rotation",
+    "h": 32,
+    "units": 3,
+    "w": 110
+  },
+  "vehicles/trabi-cream-roof": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      22,
+      32
+    ],
+    "for": "drawVehBox trabi: orthographic roof surface; actual P3 rotation",
+    "h": 98,
+    "units": 3,
+    "w": 68
+  },
+  "vehicles/trabi-cream-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      79,
+      11
+    ],
+    "for": "drawVehBox trabi: orthographic side surface; actual P3 rotation",
+    "h": 35,
+    "units": 3,
+    "w": 239
+  },
+  "vehicles/trabi-cream-top": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      79,
+      44
+    ],
+    "for": "drawVehBox trabi: orthographic top surface; actual P3 rotation",
+    "h": 134,
+    "units": 3,
+    "w": 239
+  },
+  "vehicles/trabi-red-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox trabi: orthographic end surface; actual P3 rotation",
+    "h": 35,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/trabi-red-glass-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      10
+    ],
+    "for": "drawVehBox trabi: orthographic glass-end surface; actual P3 rotation",
+    "h": 32,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/trabi-red-glass-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      36,
+      10
+    ],
+    "for": "drawVehBox trabi: orthographic glass-side surface; actual P3 rotation",
+    "h": 32,
+    "units": 3,
+    "w": 110
+  },
+  "vehicles/trabi-red-roof": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      22,
+      32
+    ],
+    "for": "drawVehBox trabi: orthographic roof surface; actual P3 rotation",
+    "h": 98,
+    "units": 3,
+    "w": 68
+  },
+  "vehicles/trabi-red-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      79,
+      11
+    ],
+    "for": "drawVehBox trabi: orthographic side surface; actual P3 rotation",
+    "h": 35,
+    "units": 3,
+    "w": 239
+  },
+  "vehicles/trabi-red-top": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      79,
+      44
+    ],
+    "for": "drawVehBox trabi: orthographic top surface; actual P3 rotation",
+    "h": 134,
+    "units": 3,
+    "w": 239
+  },
+  "vehicles/trabi-turquoise-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox trabi: orthographic end surface; actual P3 rotation",
+    "h": 35,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/trabi-turquoise-glass-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      10
+    ],
+    "for": "drawVehBox trabi: orthographic glass-end surface; actual P3 rotation",
+    "h": 32,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/trabi-turquoise-glass-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      36,
+      10
+    ],
+    "for": "drawVehBox trabi: orthographic glass-side surface; actual P3 rotation",
+    "h": 32,
+    "units": 3,
+    "w": 110
+  },
+  "vehicles/trabi-turquoise-roof": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      22,
+      32
+    ],
+    "for": "drawVehBox trabi: orthographic roof surface; actual P3 rotation",
+    "h": 98,
+    "units": 3,
+    "w": 68
+  },
+  "vehicles/trabi-turquoise-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      79,
+      11
+    ],
+    "for": "drawVehBox trabi: orthographic side surface; actual P3 rotation",
+    "h": 35,
+    "units": 3,
+    "w": 239
+  },
+  "vehicles/trabi-turquoise-top": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      79,
+      44
+    ],
+    "for": "drawVehBox trabi: orthographic top surface; actual P3 rotation",
+    "h": 134,
+    "units": 3,
+    "w": 239
+  },
+  "vehicles/tram-yellow-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      36
+    ],
+    "for": "drawVehBox tram: orthographic end surface; actual P3 rotation",
+    "h": 110,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/tram-yellow-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      250,
+      36
+    ],
+    "for": "drawVehBox tram: orthographic side surface; actual P3 rotation",
+    "h": 110,
+    "units": 3,
+    "w": 752
+  },
+  "vehicles/tram-yellow-top": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      250,
+      44
+    ],
+    "for": "drawVehBox tram: orthographic top surface; actual P3 rotation",
+    "h": 134,
+    "units": 3,
+    "w": 752
+  },
+  "vehicles/van-blue-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      24
+    ],
+    "for": "drawVehBox van: orthographic end surface; actual P3 rotation",
+    "h": 74,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/van-blue-glass-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      12
+    ],
+    "for": "drawVehBox van: orthographic glass-end surface; actual P3 rotation",
+    "h": 38,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/van-blue-glass-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      91,
+      12
+    ],
+    "for": "drawVehBox van: orthographic glass-side surface; actual P3 rotation",
+    "h": 38,
+    "units": 3,
+    "w": 275
+  },
+  "vehicles/van-blue-roof": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      75,
+      32
+    ],
+    "for": "drawVehBox van: orthographic roof surface; actual P3 rotation",
+    "h": 98,
+    "units": 3,
+    "w": 227
+  },
+  "vehicles/van-blue-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      106,
+      24
+    ],
+    "for": "drawVehBox van: orthographic side surface; actual P3 rotation",
+    "h": 74,
+    "units": 3,
+    "w": 320
+  },
+  "vehicles/van-blue-top": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      106,
+      44
+    ],
+    "for": "drawVehBox van: orthographic top surface; actual P3 rotation",
+    "h": 134,
+    "units": 3,
+    "w": 320
+  },
+  "vehicles/van-cream-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      24
+    ],
+    "for": "drawVehBox van: orthographic end surface; actual P3 rotation",
+    "h": 74,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/van-cream-glass-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      12
+    ],
+    "for": "drawVehBox van: orthographic glass-end surface; actual P3 rotation",
+    "h": 38,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/van-cream-glass-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      91,
+      12
+    ],
+    "for": "drawVehBox van: orthographic glass-side surface; actual P3 rotation",
+    "h": 38,
+    "units": 3,
+    "w": 275
+  },
+  "vehicles/van-cream-roof": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      75,
+      32
+    ],
+    "for": "drawVehBox van: orthographic roof surface; actual P3 rotation",
+    "h": 98,
+    "units": 3,
+    "w": 227
+  },
+  "vehicles/van-cream-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      106,
+      24
+    ],
+    "for": "drawVehBox van: orthographic side surface; actual P3 rotation",
+    "h": 74,
+    "units": 3,
+    "w": 320
+  },
+  "vehicles/van-cream-top": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      106,
+      44
+    ],
+    "for": "drawVehBox van: orthographic top surface; actual P3 rotation",
+    "h": 134,
+    "units": 3,
+    "w": 320
   }
 }
