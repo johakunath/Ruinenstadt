@@ -73,7 +73,7 @@ function rngFrom(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>
 function dailyPlan(){const r=rngFrom(dayKey()*7+13),ks=Object.keys(DMODS),a=ks[Math.floor(r()*ks.length)];let b;do{b=ks[Math.floor(r()*ks.length)];}while(b===a);return{d:Math.floor(r()*Math.max(1,S.unlocked)),mods:[a,b]};}
 let RNG0=null;const dm_=k=>run&&run.dmods&&run.dmods.includes(k);
 function endDaily(){if(RNG0){Math.random=RNG0;RNG0=null;}if(run&&run.daily){const sc=run.kills*10+run.wave*50+(P.hp>0&&run.wave>=WAVES?1000:0);run.score=sc;const k=dayKey();if(!S.daily||S.daily.k!==k)S.daily={k,best:0,tries:0};S.daily.tries++;S.daily.best=Math.max(S.daily.best,sc);save();}}
-const MAST_N={blade:'Klingen',hammer:'Hammer',sling:'Schleuder',spear:'Speer'};
+const MAST_N={blade:'Klingen',hammer:'Hammer',sling:'Werfer',spear:'Speer'};
 // v0.77 (playtest: mastery came too fast): level l needs 40*l^2.6 EP (level 10 at about 16000 EP instead of 4000). Levels already reached before v0.77 are kept (S.mfl)
 const mXP=l=>Math.round(40*Math.pow(l,2.6)),mLvl=k=>{const x=(S.mast&&S.mast[k])||0;let l=0;while(l<10&&x>=mXP(l+1))l++;return Math.max(l,(S.mfl&&S.mfl[k])||0);},mNext=k=>{const l=mLvl(k);return l>=10?0:mXP(l+1);};
 const JOBT=[
@@ -85,8 +85,8 @@ const JOBT=[
 const CONS=[{k:'verband',n:'Verband',d:'Heilt 40% Leben über 3 Sekunden',p:15},{k:'molotow',n:'Molotow',d:'Wirft ein Feuerfeld, das Gegner in Brand setzt',p:25}],RZ=[0,.06,.03,.04,.14,.18,.2];
 const DIFF=[{n:'Leicht',hp:.7,dmg:.6,luck:0,sc:1},{n:'Normal',hp:1.5,dmg:1.25,luck:0,sc:1},{n:'Schwer',hp:1.85,dmg:1.5,luck:4,sc:1.3}];
 const DF=()=>DIFF[S.diff==null?1:S.diff];
-const KIND={blade:{n:'Klinge',k:1,rate:.3,reach:60,arc:1.1,knock:240,sk:'Wirbel'},hammer:{n:'Hammer',k:2.3,rate:.68,reach:74,arc:1.6,knock:430,stun:.6,sk:'Stoß'},sling:{n:'Schleuder',k:.85,rate:.42,knock:120,sk:'Salve'},spear:{n:'Speer',k:1.45,rate:.5,reach:98,arc:.34,knock:300,sk:'Wurf'}};
-const NW={blade:['Rostiges Rohr','Bewehrungsstahl','Machete','Brechstange'],hammer:['Vorschlaghammer','Pflasterhammer','Rohrzange'],sling:['Zwille','Nagelschleuder','Steinschleuder'],spear:['Rohrspeer','Fahnenstange','Harpune']};
+const KIND={blade:{n:'Klinge',k:1,rate:.3,reach:60,arc:1.1,knock:240},hammer:{n:'Hammer',k:2.3,rate:.68,reach:74,arc:1.6,knock:430,stun:.6},sling:{n:'Werfer',k:.85,rate:.42,knock:120},spear:{n:'Speer',k:1.45,rate:.5,reach:98,arc:.34,knock:300}};
+const NW={blade:['Rostiges Rohr','Bewehrungsstahl','Machete','Brechstange'],hammer:['Vorschlaghammer','Pflasterhammer','Rohrzange'],sling:['Jagdzwille','Nagelwerfer','Steinschleuder'],spear:['Rohrspeer','Fahnenstange','Harpune']};
 const LEGW={blade:['Fernsehturm-Splitter','Klinge der Zitadelle'],hammer:['Mauerbrecher','Plattenbrecher'],sling:['Zorn der Ringbahn','Krähenschleuder'],spear:['Speer der Siegessäule']},LEGT=['Herz der Spree','Auge des Fernsehturms'],
 // v0.68: legendaries for head, hands, feet and ring
 LEGH=['Pickelhaube des Hauptmanns'],LEGG=['Fäuste des Kiezboxers'],LEGF=['Stiefel des Schaffners'],LEGR=['Ring der Weltzeituhr'];
@@ -98,15 +98,15 @@ const HEADL={kiezhelm:{helmet:'hard',hc:'#3a5a8a'},topfhelm:{helmet:'steel',hc:'
 // Mitte (D.cyber): own weapon, armour and head bases, implants (slot i) drop only there. Neon weapons lean to shock
 const NWM={blade:['Leuchtröhre'],hammer:['Boxenhammer'],sling:['Neonflinte'],spear:['Mikroständer']},NAM=['Regenponcho','Kabelmantel'],NHM=['Neonbrille'],NI={krit:['Neonauge','Zielchip'],tempo:['Kabelarm','Reflexkoppler'],heil:['Bassherz','Nanopumpe']},LEGI=['Arm des Basspredigers'];
 // Alexanderplatz (D.gdr, v0.49): own bases. Sichel leans to acid, Zeigerlanze to shock, the Aufziehschleuder finisher fires a fan of three
-const NWG={blade:['Sichel'],hammer:['Werkhammer'],sling:['Aufziehschleuder'],spear:['Zeigerlanze']},NAG=['Blaumann'],NHG=['Strohhut'],NGG=['Gartenhandschuhe'];
+const NWG={blade:['Sichel'],hammer:['Werkhammer'],sling:['Aufziehwerfer'],spear:['Zeigerlanze']},NAG=['Blaumann'],NHG=['Strohhut'],NGG=['Gartenhandschuhe'];
 const NT={krit:['Spreekiesel','Mauerstück'],tempo:['Rabenfeder','Fahrradkette'],heil:['Kräuterbeutel','Currywurst-Abzeichen']};
 const SUF=[[],['der Glut','des Schutts','der Asche','des Rauchs'],['des Spreewächters','der letzten Ruine','des Brandes'],[]];
 const BASES={'Holzlatte':'latte','Rostiges Rohr':'rohr','Bewehrungsstahl':'stahl','Machete':'machete','Brechstange':'brech','Vorschlaghammer':'vorschlag','Pflasterhammer':'pflaster','Rohrzange':'zange',
- 'Zwille':'zwille','Nagelschleuder':'nagel','Steinschleuder':'stein','Fernsehturm-Splitter':'turm','Mauerbrecher':'mauer','Zorn der Ringbahn':'ring',
+ 'Zwille':'zwille','Nagelschleuder':'nagel','Jagdzwille':'zwille','Nagelwerfer':'nagel','Steinschleuder':'stein','Fernsehturm-Splitter':'turm','Mauerbrecher':'mauer','Zorn der Ringbahn':'ring',
  'Lederjacke':'leder','Bauhelm':'helm','Arbeitsmantel':'mantel','Schutzweste':'weste','Feuerwehrjacke':'feuer','BVG-Uniform':'bvg','Mantel des letzten Späti':'spaeti','Panzer vom Tempelhofer Feld':'panzer',
  'Spreekiesel':'kiesel','Mauerstück':'stueck','Rabenfeder':'feder','Fahrradkette':'kette','Kräuterbeutel':'beutel','Currywurst-Abzeichen':'abzeichen','Herz der Spree':'herz',
  'Klinge der Zitadelle':'zitklinge','Plattenbrecher':'pbrecher','Krähenschleuder':'kraehe','Mantel der Rattenmutter':'rattenmantel','Rüstung des Zitadellenritters':'ritter','Auge des Fernsehturms':'auge','Morgenstern der Zitadelle':'morgen','Kettenhemd der Zitadelle':'kette','Wappen der Zitadelle':'wappen','Rohrspeer':'rspeer','Schiebermütze':'schieber','Wollmütze':'muetze','Gasmaske':'maske','Arbeitshandschuhe':'handsch','Boxbandagen':'bandage','Schweißerhandschuhe':'schweiss','Turnschuhe':'turnsch','Arbeitsstiefel':'stiefel','Gummistiefel':'gummi','Siegelring':'siegel','Totenkopfring':'totenk','Schraubenmutter':'mutter','Drahtring':'draht','Ehering':'ehe','Kupferring':'kupfer','Fahnenstange':'fahne','Harpune':'harpune','Speer der Siegessäule':'siegsp',
- 'Leuchtröhre':'leucht','Boxenhammer':'boxh','Neonflinte':'neonfl','Mikroständer':'mikro','Regenponcho':'poncho','Kabelmantel':'kmantel','Neonbrille':'nbrille','Neonauge':'nauge','Zielchip':'zchip','Kabelarm':'karm','Reflexkoppler':'reflex','Bassherz':'bherz','Nanopumpe':'npumpe','Arm des Basspredigers':'bassarm','Sichel':'sichel','Werkhammer':'werkh','Aufziehschleuder':'aufzieh','Zeigerlanze':'zeiger','Blaumann':'blaumann','Strohhut':'stroh','Gartenhandschuhe':'gartenh','Pickelhaube des Hauptmanns':'pickel','Helm der Kiezwache':'kiezhelm','Handschuhe der Kiezwache':'kiezhand','Stiefel des Spreegeists':'spreestief','Ring des Spreegeists':'spreering','Topfhelm der Zitadelle':'topfhelm','Eisenstiefel der Zitadelle':'eisenstief','Fäuste des Kiezboxers':'kiezbox','Stiefel des Schaffners':'schaffner','Ring der Weltzeituhr':'weltuhr'};
+ 'Leuchtröhre':'leucht','Boxenhammer':'boxh','Neonflinte':'neonfl','Mikroständer':'mikro','Regenponcho':'poncho','Kabelmantel':'kmantel','Neonbrille':'nbrille','Neonauge':'nauge','Zielchip':'zchip','Kabelarm':'karm','Reflexkoppler':'reflex','Bassherz':'bherz','Nanopumpe':'npumpe','Arm des Basspredigers':'bassarm','Sichel':'sichel','Werkhammer':'werkh','Aufziehschleuder':'aufzieh','Aufziehwerfer':'aufzieh','Zeigerlanze':'zeiger','Blaumann':'blaumann','Strohhut':'stroh','Gartenhandschuhe':'gartenh','Pickelhaube des Hauptmanns':'pickel','Helm der Kiezwache':'kiezhelm','Handschuhe der Kiezwache':'kiezhand','Stiefel des Spreegeists':'spreestief','Ring des Spreegeists':'spreering','Topfhelm der Zitadelle':'topfhelm','Eisenstiefel der Zitadelle':'eisenstief','Fäuste des Kiezboxers':'kiezbox','Stiefel des Schaffners':'schaffner','Ring der Weltzeituhr':'weltuhr'};
 function baseOf(it){if(!it)return'none';if(it.base)return it.base;for(const n in BASES)if(it.name.startsWith(n))return(it.base=BASES[n]);return({blade:'rohr',hammer:'vorschlag',sling:'zwille',armor:'leder'}[it.kind])||'kiesel';}
 const LOOK={none:{j:'#3d3a36',hood:'#2c2926'},leder:{j:'#4a2a1a',collar:'#2a160d',hair:1},helm:{j:'#45413b',helmet:'hard',hc:'#d9a520'},mantel:{j:'#5a5040',coat:1,hair:1},
  weste:{j:'#33302c',vest:'#4a5536',hair:1},feuer:{j:'#7a2416',stripes:'#e8d36a',helmet:'fire',hc:'#2a2522'},bvg:{j:'#26304a',helmet:'cap',hc:'#f2c230'},
@@ -127,19 +127,46 @@ const DI=n=>DIST.findIndex(d=>d.n===n);
 const MIX=[[0,0,0,.06,0],[.14,.05,0,0,0],[0,.03,0,.05,0,0,0,.1,.08,.09],[0,.04,.08,0,0,.2,.07],[0,.08,0,.12,0],[0,.06,.1,.1,.05],[.08,.12,.1,.06,.07]];
 const UPG=[{k:'dmg',n:'Schärfen',d:l=>`+${l*7}% Schaden`,max:10,base:15},{k:'hp',n:'Panzerung',d:l=>`+${l*15} Leben`,max:10,base:15},{k:'dash',n:'Ausdauer',d:l=>`-${l*8}% Sprint-Abklingzeit`,max:5,base:25},{k:'luck',n:'Spürnase',d:l=>`+${l} Beuteglück`,max:5,base:30}];
 const upCost=u=>Math.round(u.base*1.25*Math.pow(1.65,S.upg[u.k]));// v0.77: about twice the total cost (was base*1.55^l)
+// v0.82 blessing families (Hades-style): a held family is offered 2.5x as often, two held families unlock their Doppelsegen (duo). Weapon mods (w) are rare one-per-run cards that change how the weapon attacks
+const FAM={el:['Element','#7dd3ff'],krit:['Kombo und Krit','#f2d14b'],sprint:['Sprint','#9fd8c8'],serie:['Serie','#e05050'],glut:['Glut','#ff7a2a'],boll:['Bollwerk','#9aa4b0'],dist:['Distanz','#b8e05a']};
 const PERKS=[
- {k:'dmg',n:'Glutzorn',d:'+15% Schaden',max:5},{k:'hp',n:'Zähigkeit',d:'+25 maximales Leben',max:5},{k:'spd',n:'Leichtfuß',d:'+10% Lauftempo',max:3},
- {k:'crit',n:'Scharfes Auge',d:'+8% Krit-Chance',max:4},{k:'rate',n:'Schnelle Hand',d:'+12% Angriffstempo',max:4},{k:'reach',n:'Weiter Arm',d:'+20% Reichweite und Geschossgeschwindigkeit',max:3},
- {k:'leech',n:'Blutdurst',d:'Jeder Kill heilt 2 Leben',max:3},{k:'ram',n:'Rammbock',d:'Sprint trifft Gegner auf dem Weg mit 120% Waffenschaden je Stufe',max:3},{k:'stun',n:'Erschütterung',d:'Krits betäuben Gegner 0,6 s (Endgegner kürzer)',max:1},
- {k:'boom',n:'Splitterleichen',d:'Gegner explodieren beim Tod: 35% Waffenschaden je Stufe an Nachbarn',max:3},{k:'second',n:'Zweiter Atem',d:'Überlebe einmal pro Lauf einen tödlichen Treffer',max:1},
- {k:'scrap',n:'Schrottsammler',d:'+50% Schrott in diesem Lauf',max:2},{k:'dashcd',n:'Ausweichkünstler',d:'-20% Sprint-Abklingzeit',max:2},
- {k:'thorns',n:'Dornenmantel',d:'Wer dich im Nahkampf trifft, nimmt 60% Waffenschaden je Stufe',max:3},{k:'skill',n:'Kraftreserve',d:'-20% Abklingzeit deiner Kraft',max:2},{k:'magnet',n:'Elster',d:'Beute in der Nähe fliegt dir zu',max:2},
- {k:'fire',n:'Feuertaufe',d:'30% Chance je Treffer: Gegner brennen 2 s und nehmen jede Sekunde 45% des Trefferschadens',max:1},{k:'acid',n:'Säurebad',d:'30% Chance je Treffer: Gegner sind 3 s verätzt und nehmen 25% mehr Schaden',max:1},
- {k:'shock',n:'Blitzableiter',d:'30% Chance je Treffer: Ein Blitz springt auf 2 Nachbarn über und macht 50% des Trefferschadens',max:1},{k:'spread',n:'Flächenbrand',d:'Brennende Gegner entzünden beim Tod ihre Nachbarn mit 80% ihres Brandschadens',max:1,req:'fire'},
- {k:'corrode',n:'Zersetzung',d:'Verätzte Gegner sind 30% langsamer',max:1,req:'acid'},{k:'chain',n:'Kettenblitz',d:'Blitze springen auf 2 weitere Gegner je Stufe',max:2,req:'shock'},
- {k:'elp',n:'Urgewalt',d:'+25% Elementarschaden',max:3,req:'any'},{k:'res',n:'Abgehärtet',d:'+6% Widerstand',max:4},
- {k:'combo',n:'Kombo-Meister',d:'Finisher kommen einen Schlag früher',max:1},{k:'loot',n:'Plünderer',d:'Kisten und Tonnen geben doppelt Schrott und öfter Material',max:1},
- {k:'breaker',n:'Schildbrecher',d:'+25% Schaden gegen Schildträger, Elite-Gegner und Endgegner',max:2},{k:'blast',n:'Sprengmeister',d:'Molotows brennen 50% größer, Explosionen verletzen dich nicht',max:1},
- {k:'breath',n:'Atempause',d:'Jeder Sprint heilt 3% Leben',max:2},{k:'exec',n:'Gnadenstoß',d:'Normale Gegner unter 12% Leben sterben sofort',max:1},
- {k:'mat',n:'Sammler',d:'+50% Materialfunde',max:2},{k:'rush',n:'Rausch',d:'+2% Schaden je 10 Kills in der laufenden Serie',max:1}];
+ {k:'dmg',n:'Kiezwut',d:'+15% Schaden',max:5},{k:'hp',n:'Dickes Fell',d:'+25 maximales Leben',max:5,f:['boll']},{k:'spd',n:'Fersengeld',d:'+10% Lauftempo',max:3,f:['sprint']},
+ {k:'crit',n:'Adlerblick',d:'+8% Krit-Chance',max:4,f:['krit']},{k:'rate',n:'Akkordarbeit',d:'+12% Angriffstempo',max:4,f:['serie']},{k:'reach',n:'Langer Kerl',d:'+20% Reichweite und Geschossgeschwindigkeit',max:3,f:['dist']},
+ {k:'leech',n:'Aderlass',d:'Jeder Kill heilt 2 Leben',max:3,f:['serie']},{k:'ram',n:'Rammbock',d:'Sprint trifft Gegner auf dem Weg mit 120% Waffenschaden je Stufe',max:3,f:['sprint']},{k:'stun',n:'Kopfnuss',d:'Krits betäuben Gegner 0,6 s (Endgegner kürzer)',max:1,f:['krit']},
+ {k:'boom',n:'Splitterleichen',d:'Gegner explodieren beim Tod: 35% Waffenschaden je Stufe an Nachbarn',max:3,f:['serie']},{k:'second',n:'Stehaufmännchen',d:'Überlebe einmal pro Lauf einen tödlichen Treffer',max:1},
+ {k:'scrap',n:'SERO-Sammler',d:'+50% Schrott in diesem Lauf',max:2},{k:'dashcd',n:'Hakenschlag',d:'-20% Sprint-Abklingzeit',max:2,f:['sprint']},
+ {k:'thorns',n:'Igelstellung',d:'Wer dich im Nahkampf trifft, nimmt 60% Waffenschaden je Stufe',max:3,f:['boll']},{k:'skill',n:'Notstrom',d:'-20% Abklingzeit deiner Kraft',max:2},{k:'magnet',n:'Elster',d:'Beute in der Nähe fliegt dir zu',max:2},
+ {k:'fire',n:'Feuertaufe',d:'30% Chance je Treffer: Gegner brennen 2 s und nehmen jede Sekunde 45% des Trefferschadens',max:1,f:['el','glut']},{k:'acid',n:'Säurebad',d:'30% Chance je Treffer: Gegner sind 3 s verätzt und nehmen 25% mehr Schaden',max:1,f:['el']},
+ {k:'shock',n:'Blitzableiter',d:'30% Chance je Treffer: Ein Blitz springt auf 2 Nachbarn über und macht 50% des Trefferschadens',max:1,f:['el']},{k:'spread',n:'Flächenbrand',d:'Brennende Gegner entzünden beim Tod ihre Nachbarn mit 80% ihres Brandschadens',max:1,req:'fire',f:['el','glut']},
+ {k:'corrode',n:'Zersetzung',d:'Verätzte Gegner sind 30% langsamer',max:1,req:'acid',f:['el']},{k:'chain',n:'Kettenblitz',d:'Blitze springen auf 2 weitere Gegner je Stufe',max:2,req:'shock',f:['el']},
+ {k:'elp',n:'Pulverfass',d:'+25% Elementarschaden',max:3,req:'any',f:['el']},{k:'res',n:'Abgehärtet',d:'+6% Widerstand',max:4,f:['boll']},
+ {k:'combo',n:'Trommelfeuer',d:'Finisher kommen einen Schlag früher',max:1,f:['krit']},{k:'loot',n:'Mundraub',d:'Kisten und Tonnen geben doppelt Schrott und öfter Material',max:1},
+ {k:'breaker',n:'Dicke Bertha',d:'+25% Schaden gegen Schildträger, Elite-Gegner und Endgegner',max:2,f:['boll']},{k:'blast',n:'Sprengmeister',d:'Molotows und Brandsätze brennen 50% größer, Explosionen verletzen dich nicht',max:1,f:['glut']},
+ {k:'breath',n:'Atempause',d:'Jeder Sprint heilt 3% Leben',max:2,f:['sprint']},{k:'exec',n:'Gnadenstoß',d:'Normale Gegner unter 12% Leben sterben sofort',max:1,f:['serie']},
+ {k:'mat',n:'Hamsterkauf',d:'+50% Materialfunde',max:2},{k:'rush',n:'Kiezrausch',d:'+2% Schaden je 10 Kills in der laufenden Serie',max:1,f:['serie']},
+ {k:'pauke',n:'Paukenschlag',d:'Finisher treffen immer kritisch',max:1,f:['krit']},{k:'husar',n:'Husarenritt',d:'Nach einem Sprint 1 s lang +40% Schaden je Stufe',max:2,f:['sprint']},
+ {k:'jagd',n:'Jagdfieber',d:'Jeder Kill: +6% Angriffstempo für 3 s, bis zu 5-mal',max:1,f:['serie']},{k:'schwel',n:'Schwelbrand',d:'Brand stapelt bis zu 3-mal und hält 1 s länger',max:1,req:'fire',f:['glut']},
+ {k:'kachel',n:'Kachelofen',d:'Brandschaden heilt dich um 5% je Stufe',max:2,req:'fire',f:['glut']},{k:'stellung',n:'Stellungskrieg',d:'Im Stehen nimmst du 25% weniger Schaden',max:1,f:['boll']},
+ {k:'retour',n:'Retourkutsche',d:'Wirst du getroffen, macht dein nächster Angriff doppelten Schaden',max:1,f:['boll']},{k:'kimme',n:'Kimme und Korn',d:'Je weiter das Ziel weg ist, desto mehr Schaden (bis +32%)',max:1,f:['dist']},
+ {k:'durch',n:'Durchschlag',d:'Geschosse durchbohren einen Gegner mehr je Stufe',max:2,f:['dist']},
+ {k:'d_brand',n:'Brandstifter',d:'Dein Sprint hinterlässt eine Feuerspur',max:1,duo:['glut','sprint']},{k:'d_mauer',n:'Brandmauer',d:'Wer dich im Nahkampf trifft, fängt Feuer',max:1,duo:['boll','glut']},
+ {k:'d_sturm',n:'Sturmangriff',d:'Ein Kill kurz nach dem Sprint lädt den Sprint sofort auf',max:1,duo:['sprint','serie']},{k:'d_kurz',n:'Kurzschluss',d:'Krits lösen immer dein Element aus',max:1,duo:['krit','el']},
+ {k:'d_ziel',n:'Zielwasser',d:'+25% Krit-Chance gegen entfernte Gegner',max:1,duo:['dist','krit']},
+ {k:'m_rund',n:'Rundumschlag',d:'Dein Finisher trifft rundherum, +20% Reichweite',max:1,w:'blade'},{k:'m_dampf',n:'Dampfhammer',d:'30% langsamer, +70% Schaden, jeder Hieb schickt eine Druckwelle',max:1,w:'hammer'},
+ {k:'m_schrot',n:'Schrotladung',d:'Jeder Schuss feuert 3 Kugeln mit je 55% Schaden, kürzere Reichweite',max:1,w:'sling'},{k:'m_spiess',n:'Wurfspieße',d:'Jeder Finisher wirft zusätzlich einen Speer, der 4 Gegner durchbohrt',max:1,w:'spear'}];
+const pFam=p=>p.duo||p.f||[],famHeld=()=>{const h=new Set();if(run)for(const k in run.perks)if(run.perks[k]>0){const p=PERKS.find(x=>x.k===k);if(p&&!p.duo&&!p.w)(p.f||[]).forEach(f=>h.add(f));}return h;};
+// v0.82 weapon powers (Kräfte): 3 per weapon class, picked before the run (S.kr[kind]); the third is an ultimate with a long cooldown. Names: [default, Potsdamer Platz neon bases, Alexanderplatz bases]
+const KR={blade:[{k:'saege',n:['Kreissäge','Neonwirbel','Ernteschlacht'],d:'Du wirbelst 1,2 s lang und triffst alles um dich herum',cd:7},
+  {k:'fecht',n:['Fechtsprung','Phasensprung','Sonderschicht'],d:'Sprung durch die Gegner mit 180% Schaden. Ein Kill lädt die Kraft sofort auf',cd:6},
+  {k:'saebel',n:['Säbeltanz','Übertakten','Übersoll'],d:'5 s lang +80% Angriffstempo, jeder Treffer kritisch',cd:24,u:1}],
+ hammer:[{k:'fall',n:['Fallhammer','Bassdrop','Plattenbau'],d:'Druckwelle um dich: 250% Schaden, betäubt',cd:8},
+  {k:'gully',n:['Gullydeckel','Schallmauer','Schutzwall'],d:'3 s Deckung: 70% weniger Schaden, du gehst langsamer. Danach ein Rundumschlag',cd:9},
+  {k:'abriss',n:['Abrissbirne','Bassbombe','Rückbau'],d:'Sprung zum Ziel, riesige Druckwelle mit 400% Schaden, betäubt lange',cd:22,u:1}],
+ sling:[{k:'nagel',n:['Nagelsturm','Plasmasalve','Aufziehsalve'],d:'Fächer aus 9 Geschossen',cd:6},
+  {k:'brand',n:['Brandsatz','Plasmagranate','Braunkohle'],d:'Wurf auf das Ziel: Feuerfeld für 4 s',cd:8},
+  {k:'sperr',n:['Sperrfeuer','Drohnenschwarm','Zapfenstreich'],d:'8 Einschläge auf Gegner in der Nähe, je 220% Schaden',cd:22,u:1}],
+ spear:[{k:'spiess',n:['Spießrute','Rückkopplung','Stundenschlag'],d:'Speerwurf, durchbohrt alles in einer Linie',cd:7},
+  {k:'stab',n:['Stabhochsprung','Stagedive','Sprungfeder'],d:'Sprung nach vorn, die Landung trifft alles im Kreis mit 220% Schaden',cd:6},
+  {k:'stand',n:['Standarte','Verstärker','Weltzeituhr'],d:'Pflanzt 8 s eine Standarte. Darin +50% Schaden und Heilung, Gegner langsamer',cd:26,u:1}]};
+const krVar=b=>({leucht:1,boxh:1,neonfl:1,mikro:1,sichel:2,werkh:2,aufzieh:2,zeiger:2})[b]||0,krOf=w=>{w=w||S.eq.w;return KR[w.kind][Math.min(2,(S.kr&&S.kr[w.kind])||0)];},krName=(p,w)=>p.n[krVar(baseOf(w||S.eq.w))];
 let run=null;const pk=k=>(run&&run.perks[k])||0;

@@ -187,5 +187,9 @@ const PG={dmg:['#ff8a3d','f','<path d="M12 3c5 5 7 9 5 14a5 5 0 0 1-10 0c-1-4 2-
  exec:['#e8ddd0','f','<path d="M5 11a7 7 0 0 1 14 0v4h-3v4H8v-4H5z"/><circle cx="9" cy="11" r="1.8" fill="#120d0a"/><circle cx="15" cy="11" r="1.8" fill="#120d0a"/>'],
  mat:['#d6cfc0','f','<path d="M8 8h8l3 10a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z"/><path d="M9 8l-1-4h8l-1 4" fill="none" stroke="#d6cfc0" stroke-width="2"/>'],
  rush:['#c23a2e','s','<path d="M5 13l7-7 7 7M5 20l7-7 7 7" stroke-width="2.6"/>']};
+// v0.82 family glyph (FAMG), power icon (KRG) and weapon class badge (WCG) come from js/glyphs.js
+function famIcon(f,sz,on){const g=typeof FAMG!=='undefined'&&FAMG[f],c=FAM[f][1];return`<svg class="fg${on?' on':''}" viewBox="0 0 24 24" width="${sz}" height="${sz}" role="img" aria-label="${FAM[f][0]}">${g?g[1]:`<circle cx="12" cy="12" r="7" fill="${c}"/>`}</svg>`;}
+function krIcon(k,sz){const g=typeof KRG!=='undefined'&&KRG[k];return`<svg viewBox="0 0 48 48" width="${sz}" height="${sz}" aria-hidden="true">${g||'<circle cx="24" cy="24" r="16" fill="#f2a04b"/>'}</svg>`;}
+const wcBadge=(it,c)=>it&&it.slot==='w'&&typeof WCG!=='undefined'&&WCG[it.kind]?`<span class="wcb" title="${KIND[it.kind].n}"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">${WCG[it.kind].replace(/CUR/g,c||'#ead9c0')}</svg></span>`:'';
 function pIcon(k,sz,q){const g=PG[k]||PG.dmg,f=PQC[q||0],st=g[1]==='s';
   return`<svg viewBox="0 0 32 32" width="${sz}" height="${sz}" aria-hidden="true"><path d="M16 1.5L29 9v14l-13 7.5L3 23V9z" fill="#1c140f" stroke="${f}" stroke-width="2"/><g transform="translate(6 6) scale(.8333)" fill="${st?'none':g[0]}" stroke="${st?g[0]:'none'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${g[2]}</g></svg>`;}

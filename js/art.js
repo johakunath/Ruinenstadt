@@ -51,7 +51,7 @@ function drawHead(L,t){
 }
 /* Painted player rig v3 step 1: shared mannequin, knees, ankles and two-part fists.
    Generated HR/HW in js/hero.js, with source grip/tip pivots in the manifest. */
-const HIMG={},HHAT={helm:1,schieber:1,muetze:1,maske:1,nbrille:1,stroh:1},HWL={blade:22,hammer:34,spear:48,sling:16};
+const HIMG={},HHAT={helm:1,schieber:1,muetze:1,maske:1,nbrille:1,stroh:1},HWL={blade:19,hammer:30,spear:43,sling:14};
 function himg(k){let i=HIMG[k];if(!i){i=HIMG[k]=new Image();i.src='assets/hero/rig/'+k+'.webp';}return i.complete&&i.naturalWidth?i:null;}
 function heroKeys(){const A=S.eq.a,b=A?baseOf(A):'none',o=b==='kette'?'khemd':HR.outfits[b]?b:'none',h=S.eq.h&&HR.hats[baseOf(S.eq.h)]||null;return{o,h};}
 function heroPre(){Object.keys(HR.parts).forEach(himg);}
@@ -85,13 +85,15 @@ function drawHero(t,sw,aa,wa,W,GC,CY){const{o,h}=heroKeys(),R=HR.outfits[o],gl=S
   if(CY){const sh=heroShoulder(pose,false);stick(...sh,...front.elbow,1,'#43d1cf');stick(...front.elbow,...front.hand,1,'#43d1cf');}
   ctx.save();ctx.translate(...front.hand);ctx.rotate(wa);part(pa);
   if(q){const sc=HWL[W.kind]/q[3];ctx.save();ctx.rotate(-q[0]);ctx.drawImage(im[wk],-q[1]*sc,-q[2]*sc,im[wk].naturalWidth*sc,im[wk].naturalHeight*sc);ctx.restore();if(W.r===3||W.el){ctx.globalCompositeOperation='lighter';ctx.drawImage(glow(W.el?ELC[W.el]:RAR[3].c),HWL[W.kind]*.4,-13,26,26);ctx.globalCompositeOperation='source-over';}}
-  else drawWeaponModel(W);
+  else{ctx.save();ctx.scale(.87,.87);drawWeaponModel(W);ctx.restore();}
   part(fi);ctx.restore();ctx.restore();return true;}
 
+// v0.82 Gullydeckel power: an iron manhole cover held in front (local hero coords, +x = facing)
+function drawGuard(){if(!(P.guard>0))return;const a=Math.min(1,P.guard*3);ctx.save();ctx.globalAlpha=a;ctx.translate(11,-22);ctx.fillStyle='#3a3d42';ctx.strokeStyle='#1a1b1e';ctx.lineWidth=1.4;ctx.beginPath();ctx.ellipse(0,0,6,14,0,0,7);ctx.fill();ctx.stroke();ctx.strokeStyle='#6a6e76';ctx.lineWidth=.9;for(const y of [-8,-4,0,4,8]){const w=6*Math.sqrt(1-y*y/196);ctx.beginPath();ctx.moveTo(-w*.8,y);ctx.lineTo(w*.8,y);ctx.stroke();}ctx.beginPath();ctx.ellipse(0,0,4.4,11,0,0,7);ctx.stroke();ctx.fillStyle='rgba(255,255,255,.18)';ctx.beginPath();ctx.ellipse(-2,-6,1.4,4,0,0,7);ctx.fill();ctx.restore();}
 const IIMG={};function himgI(id){let i=IIMG[id];if(!i){i=IIMG[id]=new Image();i.src='assets/icons/'+id+'.webp';}return i.complete&&i.naturalWidth?i:null;}
 function drawPlayer(t){
   if(state==='over'&&P.hp<=0)return;
-  const moving=Math.hypot(P.mvx,P.mvy)>.15&&P.dashT<=0,sw=moving?Math.sin(P.walk):0,bob=moving?Math.abs(Math.cos(P.walk))*1.6:0,fx=P.x,fy=P.y+9,flip=Math.cos(P.face)<0?-1:1;
+  const moving=Math.hypot(P.mvx,P.mvy)>.15&&P.dashT<=0,sw=moving?Math.sin(P.walk):0,bob=moving?Math.abs(Math.cos(P.walk))*1.6:0,fx=P.x,fy=P.y+9-(P.hz||0),flip=Math.cos(P.face)<0?-1:1;
   fxShadow(fx,fy,13,44);
   const A=S.eq.a,L0=LOOK[A?baseOf(A):'none']||LOOK.none,J=L0.j,W=S.eq.w,toL=a=>flip>0?a:Math.PI-a,HD=S.eq.h,L=HD?Object.assign({},L0,{hood:0},HEADL[baseOf(HD)]):L0,GC=S.eq.g&&GLOVE[baseOf(S.eq.g)],BC=S.eq.f&&BOOT[baseOf(S.eq.f)];
   ctx.save();ctx.translate(fx,fy);ctx.scale(flip*1.2,1.2);
@@ -100,7 +102,7 @@ function drawPlayer(t){
   if(P.spin>0){wa=t*.03;aa=wa;}
   else if(P.swingT>0){if(P.swingKind==='sling'){wa=aa=toL(P.atkA);}else if(P.swingKind==='spear'){wa=aa=toL(P.atkA);}else{const p=1-P.swingT/P.swingDur,arc=KIND[P.swingKind].arc,e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;wa=aa=toL(P.atkA-arc+2*arc*e);}}
   else{aa=Math.PI/2-.45+sw*.35;wa=W.kind==='sling'?-.2:W.kind==='hammer'?-2.1:W.kind==='spear'?-1.05:-1.2;}
-  if(drawHero(t,sw,aa,wa,W,GC,!!S.eq.i)){ctx.restore();return;}
+  if(drawHero(t,sw,aa,wa,W,GC,!!S.eq.i)){drawGuard();ctx.restore();return;}
   ctx.translate(0,-bob/1.2);if(P.dashT>0)ctx.rotate(.18);
   limb(-4,-30,.25-sw*.5,12,4.5,dark(J,.7));ctx.fillStyle=GC?dark(GC,.8):'#b8946f';ctx.beginPath();ctx.arc(-4+Math.sin(-(.25-sw*.5))*12,-30+Math.cos(.25-sw*.5)*12,2.3,0,7);ctx.fill();
   if(P.torch){const tx=-4-Math.sin(.25-sw*.5)*12,ty=-30+Math.cos(.25-sw*.5)*12;ctx.fillStyle='#5a4030';ctx.fillRect(tx-1.5,ty-15,3,15);ctx.fillStyle='#EF9F27';ctx.beginPath();ctx.moveTo(tx-3.5,ty-15);ctx.lineTo(tx+3.5,ty-15);ctx.lineTo(tx+Math.sin(t*.03)*1.5,ty-25-Math.sin(t*.02)*2);ctx.fill();ctx.fillStyle='#FAC775';ctx.beginPath();ctx.moveTo(tx-1.8,ty-15);ctx.lineTo(tx+1.8,ty-15);ctx.lineTo(tx,ty-20);ctx.fill();}
