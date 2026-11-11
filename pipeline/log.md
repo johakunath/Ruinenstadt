@@ -610,3 +610,12 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Built-in referenced-image generation produced three transparent style canvases covering all nine district bosses. The eight existing Kodex portraits remain the identity source; the Volkseigene Koloss follows its code concept as a clock-ring Plattenbau machine with asymmetric tool arms.
 - Selected all nine full-body designs as the production direction because their silhouettes and signature colours are clearly distinct. Raw PNGs, exact prompts and the decision record are in `assets/raw/codex/06-bosses/`. No runtime, gameplay, version or cache changes yet.
 - Next: animation-source sheets, beginning with idle, attack and hit poses. No push, PR or merge performed.
+
+## 2026-11-11 · Codex · task 06 district bosses complete candidate
+
+- Built-in referenced-image generation produced nine transparent five-pose sheets from the approved style canvases and Kodex/district references. Final prompt set and correction record are stored with the source sheets.
+- Deterministic `tools/build_bosses.py` cuts and normalises 54 anchored WebPs. Fixed an alpha intermediate overflow found by visual proof, then removed detached neighbouring-pose fragments by connected silhouette. Final output is 1,948,952 encoded / 17,699,360 decoded bytes; no derived cache.
+- Integrated all nine big-boss variants without changing combat positions, attacks, collision, radii or RNG. Existing canvas bosses remain the missing/disabled fallback. v0.82 cache and version move together.
+- Browser proof passes all 54 frames at 1×/2×, intentional HTTP404 fallback and fresh offline decode. Sprite validation and boss/enemy semantic tests pass.
+- Hardware RTX 4070 gate: retained 21-pair run was inconclusive only for Alexanderplatz. Required 41-pair rerun passes Köpenick -2.91% CI [-5.53,-0.48], Alexanderplatz -2.04% [-3.63,+1.60], null +0.15% [-1.77,+2.28]. Zero timed canvas allocations/page errors; no optimisation attempt needed.
+- Candidate is ready for PR review and explicitly authorized merge. Equipment and nature remain separate branches.

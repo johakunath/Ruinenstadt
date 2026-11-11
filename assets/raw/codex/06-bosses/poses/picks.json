@@ -1,0 +1,650 @@
+{
+  "hauptmann-idle": {
+    "source": "hauptmann-poses.png",
+    "cell": 0,
+    "anchor": [
+      124.0,
+      319.0
+    ],
+    "for": "drawEnemy boss hauptmann idle",
+    "h": 326,
+    "units": 3,
+    "w": 185
+  },
+  "hauptmann-walk-a": {
+    "source": "hauptmann-poses.png",
+    "cell": 1,
+    "anchor": [
+      85.0,
+      316.0
+    ],
+    "for": "drawEnemy boss hauptmann walk-a",
+    "h": 323,
+    "units": 3,
+    "w": 218
+  },
+  "hauptmann-walk-b": {
+    "source": "hauptmann-poses.png",
+    "cell": 0,
+    "anchor": [
+      124.0,
+      319.0
+    ],
+    "for": "drawEnemy boss hauptmann walk-b",
+    "h": 326,
+    "units": 3,
+    "w": 185
+  },
+  "hauptmann-attack-a": {
+    "source": "hauptmann-poses.png",
+    "cell": 2,
+    "anchor": [
+      146.5,
+      325.0
+    ],
+    "for": "drawEnemy boss hauptmann attack-a",
+    "h": 332,
+    "units": 3,
+    "w": 229
+  },
+  "hauptmann-attack-b": {
+    "source": "hauptmann-poses.png",
+    "cell": 3,
+    "anchor": [
+      158.0,
+      292.0
+    ],
+    "for": "drawEnemy boss hauptmann attack-b",
+    "h": 299,
+    "units": 3,
+    "w": 283
+  },
+  "hauptmann-hit": {
+    "source": "hauptmann-poses.png",
+    "cell": 4,
+    "anchor": [
+      66.5,
+      294.0
+    ],
+    "for": "drawEnemy boss hauptmann hit",
+    "h": 301,
+    "units": 3,
+    "w": 213
+  },
+  "hexe-idle": {
+    "source": "hexe-poses.png",
+    "cell": 0,
+    "anchor": [
+      73.0,
+      320.0
+    ],
+    "for": "drawEnemy boss hexe idle",
+    "h": 327,
+    "units": 3,
+    "w": 171
+  },
+  "hexe-walk-a": {
+    "source": "hexe-poses.png",
+    "cell": 1,
+    "anchor": [
+      187.0,
+      308.0
+    ],
+    "for": "drawEnemy boss hexe walk-a",
+    "h": 316,
+    "units": 3,
+    "w": 236
+  },
+  "hexe-walk-b": {
+    "source": "hexe-poses.png",
+    "cell": 0,
+    "anchor": [
+      73.0,
+      320.0
+    ],
+    "for": "drawEnemy boss hexe walk-b",
+    "h": 327,
+    "units": 3,
+    "w": 171
+  },
+  "hexe-attack-a": {
+    "source": "hexe-poses.png",
+    "cell": 2,
+    "anchor": [
+      83.0,
+      321.0
+    ],
+    "for": "drawEnemy boss hexe attack-a",
+    "h": 328,
+    "units": 3,
+    "w": 187
+  },
+  "hexe-attack-b": {
+    "source": "hexe-poses.png",
+    "cell": 3,
+    "anchor": [
+      76.0,
+      308.0
+    ],
+    "for": "drawEnemy boss hexe attack-b",
+    "h": 316,
+    "units": 3,
+    "w": 265
+  },
+  "hexe-hit": {
+    "source": "hexe-poses.png",
+    "cell": 4,
+    "anchor": [
+      138.0,
+      305.0
+    ],
+    "for": "drawEnemy boss hexe hit",
+    "h": 312,
+    "units": 3,
+    "w": 211
+  },
+  "bassprediger-idle": {
+    "source": "bass-poses.png",
+    "cell": 0,
+    "anchor": [
+      124.0,
+      320.0
+    ],
+    "for": "drawEnemy boss bassprediger idle",
+    "h": 327,
+    "units": 3,
+    "w": 214
+  },
+  "bassprediger-walk-a": {
+    "source": "bass-poses.png",
+    "cell": 1,
+    "anchor": [
+      82.0,
+      295.0
+    ],
+    "for": "drawEnemy boss bassprediger walk-a",
+    "h": 303,
+    "units": 3,
+    "w": 277
+  },
+  "bassprediger-walk-b": {
+    "source": "bass-poses.png",
+    "cell": 0,
+    "anchor": [
+      124.0,
+      320.0
+    ],
+    "for": "drawEnemy boss bassprediger walk-b",
+    "h": 327,
+    "units": 3,
+    "w": 214
+  },
+  "bassprediger-attack-a": {
+    "source": "bass-poses.png",
+    "cell": 2,
+    "anchor": [
+      54.0,
+      329.0
+    ],
+    "for": "drawEnemy boss bassprediger attack-a",
+    "h": 336,
+    "units": 3,
+    "w": 225
+  },
+  "bassprediger-attack-b": {
+    "source": "bass-poses.png",
+    "cell": 3,
+    "anchor": [
+      147.0,
+      321.0
+    ],
+    "for": "drawEnemy boss bassprediger attack-b",
+    "h": 328,
+    "units": 3,
+    "w": 261
+  },
+  "bassprediger-hit": {
+    "source": "bass-poses.png",
+    "cell": 4,
+    "anchor": [
+      67.0,
+      310.0
+    ],
+    "for": "drawEnemy boss bassprediger hit",
+    "h": 317,
+    "units": 3,
+    "w": 239
+  },
+  "flieger-idle": {
+    "source": "flieger-poses.png",
+    "cell": 0,
+    "anchor": [
+      121.0,
+      320.0
+    ],
+    "for": "drawEnemy boss flieger idle",
+    "h": 327,
+    "units": 3,
+    "w": 192
+  },
+  "flieger-walk-a": {
+    "source": "flieger-poses.png",
+    "cell": 1,
+    "anchor": [
+      159.5,
+      307.0
+    ],
+    "for": "drawEnemy boss flieger walk-a",
+    "h": 315,
+    "units": 3,
+    "w": 220
+  },
+  "flieger-walk-b": {
+    "source": "flieger-poses.png",
+    "cell": 0,
+    "anchor": [
+      121.0,
+      320.0
+    ],
+    "for": "drawEnemy boss flieger walk-b",
+    "h": 327,
+    "units": 3,
+    "w": 192
+  },
+  "flieger-attack-a": {
+    "source": "flieger-poses.png",
+    "cell": 2,
+    "anchor": [
+      45.0,
+      334.0
+    ],
+    "for": "drawEnemy boss flieger attack-a",
+    "h": 341,
+    "units": 3,
+    "w": 207
+  },
+  "flieger-attack-b": {
+    "source": "flieger-poses.png",
+    "cell": 3,
+    "anchor": [
+      184.0,
+      260.0
+    ],
+    "for": "drawEnemy boss flieger attack-b",
+    "h": 267,
+    "units": 3,
+    "w": 235
+  },
+  "flieger-hit": {
+    "source": "flieger-poses.png",
+    "cell": 4,
+    "anchor": [
+      82.0,
+      285.0
+    ],
+    "for": "drawEnemy boss flieger hit",
+    "h": 292,
+    "units": 3,
+    "w": 236
+  },
+  "brand-idle": {
+    "source": "brand-poses.png",
+    "cell": 0,
+    "anchor": [
+      107.0,
+      315.0
+    ],
+    "for": "drawEnemy boss brand idle",
+    "h": 322,
+    "units": 3,
+    "w": 198
+  },
+  "brand-walk-a": {
+    "source": "brand-poses.png",
+    "cell": 1,
+    "anchor": [
+      136.0,
+      303.0
+    ],
+    "for": "drawEnemy boss brand walk-a",
+    "h": 311,
+    "units": 3,
+    "w": 217
+  },
+  "brand-walk-b": {
+    "source": "brand-poses.png",
+    "cell": 0,
+    "anchor": [
+      107.0,
+      315.0
+    ],
+    "for": "drawEnemy boss brand walk-b",
+    "h": 322,
+    "units": 3,
+    "w": 198
+  },
+  "brand-attack-a": {
+    "source": "brand-poses.png",
+    "cell": 2,
+    "anchor": [
+      152.0,
+      317.0
+    ],
+    "for": "drawEnemy boss brand attack-a",
+    "h": 324,
+    "units": 3,
+    "w": 198
+  },
+  "brand-attack-b": {
+    "source": "brand-poses.png",
+    "cell": 3,
+    "anchor": [
+      52.0,
+      272.0
+    ],
+    "for": "drawEnemy boss brand attack-b",
+    "h": 279,
+    "units": 3,
+    "w": 264
+  },
+  "brand-hit": {
+    "source": "brand-poses.png",
+    "cell": 4,
+    "anchor": [
+      104.0,
+      292.0
+    ],
+    "for": "drawEnemy boss brand hit",
+    "h": 300,
+    "units": 3,
+    "w": 210
+  },
+  "ratten-idle": {
+    "source": "ratten-poses.png",
+    "cell": 0,
+    "anchor": [
+      100.0,
+      320.0
+    ],
+    "for": "drawEnemy boss ratten idle",
+    "h": 327,
+    "units": 3,
+    "w": 229
+  },
+  "ratten-walk-a": {
+    "source": "ratten-poses.png",
+    "cell": 1,
+    "anchor": [
+      87.0,
+      300.0
+    ],
+    "for": "drawEnemy boss ratten walk-a",
+    "h": 308,
+    "units": 3,
+    "w": 251
+  },
+  "ratten-walk-b": {
+    "source": "ratten-poses.png",
+    "cell": 0,
+    "anchor": [
+      100.0,
+      320.0
+    ],
+    "for": "drawEnemy boss ratten walk-b",
+    "h": 327,
+    "units": 3,
+    "w": 229
+  },
+  "ratten-attack-a": {
+    "source": "ratten-poses.png",
+    "cell": 2,
+    "anchor": [
+      85.0,
+      326.0
+    ],
+    "for": "drawEnemy boss ratten attack-a",
+    "h": 333,
+    "units": 3,
+    "w": 243
+  },
+  "ratten-attack-b": {
+    "source": "ratten-poses.png",
+    "cell": 3,
+    "anchor": [
+      102.0,
+      304.0
+    ],
+    "for": "drawEnemy boss ratten attack-b",
+    "h": 311,
+    "units": 3,
+    "w": 303
+  },
+  "ratten-hit": {
+    "source": "ratten-poses.png",
+    "cell": 4,
+    "anchor": [
+      102.0,
+      309.0
+    ],
+    "for": "drawEnemy boss ratten hit",
+    "h": 316,
+    "units": 3,
+    "w": 218
+  },
+  "ritter-idle": {
+    "source": "ritter-poses.png",
+    "cell": 0,
+    "anchor": [
+      136.0,
+      319.0
+    ],
+    "for": "drawEnemy boss ritter idle",
+    "h": 327,
+    "units": 3,
+    "w": 230
+  },
+  "ritter-walk-a": {
+    "source": "ritter-poses.png",
+    "cell": 1,
+    "anchor": [
+      105.0,
+      313.0
+    ],
+    "for": "drawEnemy boss ritter walk-a",
+    "h": 321,
+    "units": 3,
+    "w": 216
+  },
+  "ritter-walk-b": {
+    "source": "ritter-poses.png",
+    "cell": 0,
+    "anchor": [
+      136.0,
+      319.0
+    ],
+    "for": "drawEnemy boss ritter walk-b",
+    "h": 327,
+    "units": 3,
+    "w": 230
+  },
+  "ritter-attack-a": {
+    "source": "ritter-poses.png",
+    "cell": 2,
+    "anchor": [
+      71.0,
+      263.0
+    ],
+    "for": "drawEnemy boss ritter attack-a",
+    "h": 270,
+    "units": 3,
+    "w": 235
+  },
+  "ritter-attack-b": {
+    "source": "ritter-poses.png",
+    "cell": 3,
+    "anchor": [
+      192.0,
+      274.0
+    ],
+    "for": "drawEnemy boss ritter attack-b",
+    "h": 281,
+    "units": 3,
+    "w": 278
+  },
+  "ritter-hit": {
+    "source": "ritter-poses.png",
+    "cell": 4,
+    "anchor": [
+      99.0,
+      302.0
+    ],
+    "for": "drawEnemy boss ritter hit",
+    "h": 309,
+    "units": 3,
+    "w": 295
+  },
+  "platte-idle": {
+    "source": "platte-poses.png",
+    "cell": 0,
+    "anchor": [
+      114.0,
+      365.0
+    ],
+    "for": "drawEnemy boss platte idle",
+    "h": 372,
+    "units": 3,
+    "w": 272
+  },
+  "platte-walk-a": {
+    "source": "platte-poses.png",
+    "cell": 1,
+    "anchor": [
+      96.0,
+      352.0
+    ],
+    "for": "drawEnemy boss platte walk-a",
+    "h": 360,
+    "units": 3,
+    "w": 235
+  },
+  "platte-walk-b": {
+    "source": "platte-poses.png",
+    "cell": 0,
+    "anchor": [
+      114.0,
+      365.0
+    ],
+    "for": "drawEnemy boss platte walk-b",
+    "h": 372,
+    "units": 3,
+    "w": 272
+  },
+  "platte-attack-a": {
+    "source": "platte-poses.png",
+    "cell": 2,
+    "anchor": [
+      145.0,
+      396.0
+    ],
+    "for": "drawEnemy boss platte attack-a",
+    "h": 404,
+    "units": 3,
+    "w": 322
+  },
+  "platte-attack-b": {
+    "source": "platte-poses.png",
+    "cell": 3,
+    "anchor": [
+      89.0,
+      317.0
+    ],
+    "for": "drawEnemy boss platte attack-b",
+    "h": 324,
+    "units": 3,
+    "w": 278
+  },
+  "platte-hit": {
+    "source": "platte-poses.png",
+    "cell": 4,
+    "anchor": [
+      127.0,
+      345.0
+    ],
+    "for": "drawEnemy boss platte hit",
+    "h": 353,
+    "units": 3,
+    "w": 289
+  },
+  "volk-idle": {
+    "source": "volk-poses.png",
+    "cell": 0,
+    "anchor": [
+      159.0,
+      363.0
+    ],
+    "for": "drawEnemy boss volk idle",
+    "h": 370,
+    "units": 3,
+    "w": 337
+  },
+  "volk-walk-a": {
+    "source": "volk-poses.png",
+    "cell": 1,
+    "anchor": [
+      247.5,
+      358.0
+    ],
+    "for": "drawEnemy boss volk walk-a",
+    "h": 365,
+    "units": 3,
+    "w": 331
+  },
+  "volk-walk-b": {
+    "source": "volk-poses.png",
+    "cell": 0,
+    "anchor": [
+      159.0,
+      363.0
+    ],
+    "for": "drawEnemy boss volk walk-b",
+    "h": 370,
+    "units": 3,
+    "w": 337
+  },
+  "volk-attack-a": {
+    "source": "volk-poses.png",
+    "cell": 2,
+    "anchor": [
+      138.0,
+      395.0
+    ],
+    "for": "drawEnemy boss volk attack-a",
+    "h": 402,
+    "units": 3,
+    "w": 381
+  },
+  "volk-attack-b": {
+    "source": "volk-poses.png",
+    "cell": 3,
+    "anchor": [
+      148.0,
+      367.0
+    ],
+    "for": "drawEnemy boss volk attack-b",
+    "h": 374,
+    "units": 3,
+    "w": 447
+  },
+  "volk-hit": {
+    "source": "volk-poses.png",
+    "cell": 4,
+    "anchor": [
+      114.0,
+      363.0
+    ],
+    "for": "drawEnemy boss volk hit",
+    "h": 370,
+    "units": 3,
+    "w": 364
+  }
+}
