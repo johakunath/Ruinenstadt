@@ -15,11 +15,11 @@ function osUi(st){os.state=st;if(state==='menu')renderMenu();if(!$('optv').hidde
 function osAdopt(s,t){let rs=null;try{rs=JSON.parse(s);}catch(e){}if(!rs||!rs.upg||!rs.eq)return false;adoptSave(rs,'Online');os.base=t;osKeep();return true;}
 function osQueue(){if(!SYNC_URL||!os.code)return;if(os.pend&&state==='menu'&&!os.busy){osPull();return;}os.dirty=true;clearTimeout(os.timer);os.timer=setTimeout(osPush,3000);}
 async function osPush(){if(!os.code||!os.dirty)return;if(os.busy){os.timer=setTimeout(osPush,1500);return;}if(os.pend)return osPull();
-  os.busy=true;os.dirty=false;let r=null;try{r=await osCall({a:'put',c:os.code,s:JSON.stringify(S),t:S.t,b:os.base});}catch(e){}os.busy=false;
+  const c=os.code;os.busy=true;os.dirty=false;let r=null;try{r=await osCall({a:'put',c,s:JSON.stringify(S),t:S.t,b:os.base});}catch(e){}os.busy=false;if(os.code!==c)return;// disconnected or switched meanwhile
   if(r&&r.ok){os.base=r.t;osKeep();osUi('on');}else if(r&&r.newer){os.pend=true;osPull();}
   else{os.dirty=true;os.timer=setTimeout(osPush,30000);osUi('slow');}}
 // pull: adopt the remote save if another device wrote since the last sync, otherwise push local changes. Outside the menu it waits (os.pend)
-async function osPull(){if(!os.code||os.busy)return;os.busy=true;let r=null;try{r=await osCall({a:'get',c:os.code});}catch(e){}os.busy=false;
+async function osPull(){if(!os.code||os.busy)return;const c=os.code;os.busy=true;let r=null;try{r=await osCall({a:'get',c});}catch(e){}os.busy=false;if(os.code!==c)return;
   if(!r||!r.ok){osUi('slow');return;}
   if(r.s&&r.t!==os.base){if(state!=='menu'){os.pend=true;return;}os.pend=false;if(osAdopt(r.s,r.t))toast('Neuerer Online-Spielstand geladen · alter Stand gesichert');osUi('on');return;}
   os.pend=false;if(!r.s){os.base=0;}if(!r.s||(S.t||0)>os.base){os.dirty=true;osPush();}else osUi('on');}
@@ -27,7 +27,8 @@ function osOn(){if(!confirm('Spielstand online speichern? Du bekommst einen Code
 async function osJoin(){const c=(prompt('Online-Code eingeben (z. B. ABCD-1234). Der Spielstand auf diesem Gerät wird ersetzt, eine Sicherung bleibt.')||'').toUpperCase().replace(/[^A-Z0-9]/g,'');if(!c)return;
   if(!/^[A-Z2-9]{8}$/.test(c)){toast('Ungültiger Code');return;}osUi('sync');let r=null;try{r=await osCall({a:'get',c});}catch(e){}
   if(!r||!r.ok){osUi(os.code?'on':'off');toast('Server nicht erreichbar');return;}if(!r.s){osUi(os.code?'on':'off');toast('Code unbekannt');return;}
-  os.code=c;os.pend=false;os.dirty=false;if(osAdopt(r.s,r.t))toast('Online-Spielstand geladen');osUi('on');}
+  os.code=c;os.dirty=false;if(state!=='menu'){os.base=0;os.pend=true;osKeep();osUi('sync');return;}// a run started meanwhile: adopt on the way back to camp
+  os.pend=false;if(osAdopt(r.s,r.t))toast('Online-Spielstand geladen');osUi('on');}
 function osOff(){if(!confirm('Online-Speichern auf diesem Gerät beenden? Der Spielstand bleibt hier und online erhalten. Notiere den Code '+osFmt(os.code)+', um ihn wieder zu verbinden.'))return;os.code=null;os.base=0;clearTimeout(os.timer);osKeep();osUi('off');}
 async function osCopy(){try{await navigator.clipboard.writeText(osFmt(os.code));toast('Code kopiert');}catch(e){prompt('Online-Code:',osFmt(os.code));}}
 // telemetry: uploads every run of the history once (backfills old runs on the first start), max 10 batches per call
