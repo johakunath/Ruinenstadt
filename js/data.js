@@ -71,7 +71,8 @@ function dailyPlan(){const r=rngFrom(dayKey()*7+13),ks=Object.keys(DMODS),a=ks[M
 let RNG0=null;const dm_=k=>run&&run.dmods&&run.dmods.includes(k);
 function endDaily(){if(RNG0){Math.random=RNG0;RNG0=null;}if(run&&run.daily){const sc=run.kills*10+run.wave*50+(P.hp>0&&run.wave>=WAVES?1000:0);run.score=sc;const k=dayKey();if(!S.daily||S.daily.k!==k)S.daily={k,best:0,tries:0};S.daily.tries++;S.daily.best=Math.max(S.daily.best,sc);save();}}
 const MAST_N={blade:'Klingen',hammer:'Hammer',sling:'Schleuder',spear:'Speer'};
-const mLvl=k=>Math.min(10,Math.floor(Math.sqrt(((S.mast&&S.mast[k])||0)/40))),mNext=k=>{const l=mLvl(k);return l>=10?0:40*(l+1)*(l+1);};
+// v0.77 (playtest: mastery came too fast): level l needs 40*l^2.6 EP (level 10 at about 16000 EP instead of 4000). Levels already reached before v0.77 are kept (S.mfl)
+const mXP=l=>Math.round(40*Math.pow(l,2.6)),mLvl=k=>{const x=(S.mast&&S.mast[k])||0;let l=0;while(l<10&&x>=mXP(l+1))l++;return Math.max(l,(S.mfl&&S.mfl[k])||0);},mNext=k=>{const l=mLvl(k);return l>=10?0:mXP(l+1);};
 const JOBT=[
  {k:'ghoul',n:t=>`Besiege ${t} Ghule`,t:()=>pick([30,40,50])},{k:'brute',n:t=>`Besiege ${t} Brocken`,t:()=>pick([8,12])},{k:'spitter',n:t=>`Besiege ${t} Speier`,t:()=>pick([10,15])},
  {k:'elite',n:t=>`Besiege ${t} Elite-Gegner`,t:()=>pick([2,3,4])},{k:'props',n:t=>`Zerschlage ${t} Kisten oder Tonnen`,t:()=>pick([12,18])},{k:'spati',n:t=>`Plündere ${t} Kisten in einem Späti`,t:()=>3},
@@ -122,17 +123,17 @@ const DI=n=>DIST.findIndex(d=>d.n===n);
 // extra enemy mix per district: [rat, bomb, shield, crow, howl, kabel, bass, uhr, wurz, kern]
 const MIX=[[0,0,0,.06,0],[.14,.05,0,0,0],[0,.03,0,.05,0,0,0,.1,.08,.09],[0,.04,.08,0,0,.2,.07],[0,.08,0,.12,0],[0,.06,.1,.1,.05],[.08,.12,.1,.06,.07]];
 const UPG=[{k:'dmg',n:'Schärfen',d:l=>`+${l*7}% Schaden`,max:10,base:15},{k:'hp',n:'Panzerung',d:l=>`+${l*15} Leben`,max:10,base:15},{k:'dash',n:'Ausdauer',d:l=>`-${l*8}% Sprint-Abklingzeit`,max:5,base:25},{k:'luck',n:'Spürnase',d:l=>`+${l} Beuteglück`,max:5,base:30}];
-const upCost=u=>Math.round(u.base*Math.pow(1.55,S.upg[u.k]));
+const upCost=u=>Math.round(u.base*1.25*Math.pow(1.65,S.upg[u.k]));// v0.77: about twice the total cost (was base*1.55^l)
 const PERKS=[
  {k:'dmg',n:'Glutzorn',d:'+15% Schaden',max:5},{k:'hp',n:'Zähigkeit',d:'+25 maximales Leben',max:5},{k:'spd',n:'Leichtfuß',d:'+10% Lauftempo',max:3},
  {k:'crit',n:'Scharfes Auge',d:'+8% Krit-Chance',max:4},{k:'rate',n:'Schnelle Hand',d:'+12% Angriffstempo',max:4},{k:'reach',n:'Weiter Arm',d:'+20% Reichweite und Geschossgeschwindigkeit',max:3},
- {k:'leech',n:'Blutdurst',d:'Jeder Kill heilt 2 Leben',max:3},{k:'ram',n:'Rammbock',d:'Sprint verletzt Gegner auf dem Weg',max:3},{k:'stun',n:'Erschütterung',d:'Krits betäuben Gegner kurz',max:1},
- {k:'boom',n:'Splitterleichen',d:'Gegner explodieren beim Tod und verletzen Nachbarn',max:3},{k:'second',n:'Zweiter Atem',d:'Überlebe einmal einen tödlichen Treffer',max:1},
+ {k:'leech',n:'Blutdurst',d:'Jeder Kill heilt 2 Leben',max:3},{k:'ram',n:'Rammbock',d:'Sprint trifft Gegner auf dem Weg mit 120% Waffenschaden je Stufe',max:3},{k:'stun',n:'Erschütterung',d:'Krits betäuben Gegner 0,6 s (Endgegner kürzer)',max:1},
+ {k:'boom',n:'Splitterleichen',d:'Gegner explodieren beim Tod: 35% Waffenschaden je Stufe an Nachbarn',max:3},{k:'second',n:'Zweiter Atem',d:'Überlebe einmal pro Lauf einen tödlichen Treffer',max:1},
  {k:'scrap',n:'Schrottsammler',d:'+50% Schrott in diesem Lauf',max:2},{k:'dashcd',n:'Ausweichkünstler',d:'-20% Sprint-Abklingzeit',max:2},
- {k:'thorns',n:'Dornenmantel',d:'Wer dich im Nahkampf trifft, nimmt Schaden',max:3},{k:'skill',n:'Kraftreserve',d:'-20% Abklingzeit deiner Kraft',max:2},{k:'magnet',n:'Elster',d:'Beute in der Nähe fliegt dir zu',max:2},
- {k:'fire',n:'Feuertaufe',d:'Deine Treffer setzen Gegner manchmal in Brand',max:1},{k:'acid',n:'Säurebad',d:'Deine Treffer verätzen Gegner manchmal, sie nehmen dann mehr Schaden',max:1},
- {k:'shock',n:'Blitzableiter',d:'Deine Treffer lassen manchmal Blitze auf Nachbarn überspringen',max:1},{k:'spread',n:'Flächenbrand',d:'Brennende Gegner entzünden beim Tod ihre Nachbarn',max:1,req:'fire'},
- {k:'corrode',n:'Zersetzung',d:'Verätzte Gegner sind 30% langsamer',max:1,req:'acid'},{k:'chain',n:'Kettenblitz',d:'Blitze springen auf 2 weitere Gegner',max:2,req:'shock'},
+ {k:'thorns',n:'Dornenmantel',d:'Wer dich im Nahkampf trifft, nimmt 60% Waffenschaden je Stufe',max:3},{k:'skill',n:'Kraftreserve',d:'-20% Abklingzeit deiner Kraft',max:2},{k:'magnet',n:'Elster',d:'Beute in der Nähe fliegt dir zu',max:2},
+ {k:'fire',n:'Feuertaufe',d:'30% Chance je Treffer: Gegner brennen 2 s und nehmen jede Sekunde 45% des Trefferschadens',max:1},{k:'acid',n:'Säurebad',d:'30% Chance je Treffer: Gegner sind 3 s verätzt und nehmen 25% mehr Schaden',max:1},
+ {k:'shock',n:'Blitzableiter',d:'30% Chance je Treffer: Ein Blitz springt auf 2 Nachbarn über und macht 50% des Trefferschadens',max:1},{k:'spread',n:'Flächenbrand',d:'Brennende Gegner entzünden beim Tod ihre Nachbarn mit 80% ihres Brandschadens',max:1,req:'fire'},
+ {k:'corrode',n:'Zersetzung',d:'Verätzte Gegner sind 30% langsamer',max:1,req:'acid'},{k:'chain',n:'Kettenblitz',d:'Blitze springen auf 2 weitere Gegner je Stufe',max:2,req:'shock'},
  {k:'elp',n:'Urgewalt',d:'+25% Elementarschaden',max:3,req:'any'},{k:'res',n:'Abgehärtet',d:'+6% Widerstand',max:4},
  {k:'combo',n:'Kombo-Meister',d:'Finisher kommen einen Schlag früher',max:1},{k:'loot',n:'Plünderer',d:'Kisten und Tonnen geben doppelt Schrott und öfter Material',max:1},
  {k:'breaker',n:'Schildbrecher',d:'+25% Schaden gegen Schildträger, Elite-Gegner und Endgegner',max:2},{k:'blast',n:'Sprengmeister',d:'Molotows brennen 50% größer, Explosionen verletzen dich nicht',max:1},

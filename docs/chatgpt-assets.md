@@ -153,6 +153,9 @@ Open batches in order, each with its complete prompt. ChatGPT takes the first op
 | 6 | H05 | Player outfits 3: Tempelhof armour, Rattenmutter coat, Zitadellenritter armour | done (v0.52) |
 | 7 | H06 | Player outfits 4: Kettenhemd, Regenponcho, Kabelmantel | done (v0.52) |
 | 8 | H07 | Player headwear | done (v0.52) |
+| 9 | U01 | UI icons (v0.77 playtest, last in queue): 7 menu tabs (Inventar, Karte, Lager, Segen, Quests, Handwerk, Kodex) and 12 stat rows (Kampfkraft, Schaden, Angriffstempo, Krit, Leben, Widerstand, Lauftempo, Leben/s, Elementarschaden, Leben pro Kill, Beuteglück, Sprint-Abklingzeit). Small flat-ish painted glyphs that still read at 16 to 18 px, single object, warm ember/bone palette. Placeholders today: stroke SVGs `UIP` in `js/panels.js` | open, after task 12 |
+| 10 | U02 | Quest icons per quest type (skull for kills, crate, cellar chest, element flame/drop/bolt, radio signal, trader coins, captive, Litfaßsäule, wave flag, boss). Shown at 26 px in the Quests tab. Placeholder mapping `QIC` in `js/panels.js` | open |
+| 11 | U03 | Achievement medals, one per `ACH` entry (19 today), earned = gold rim, open = dimmed in code. Placeholder: one trophy SVG | open |
 
 **B11** · attach: koepenick.png, potsdamer-platz.png
 

@@ -91,7 +91,7 @@ function hurt(dmg,sh){if(P.inv>0||state!=='play'||spSafe())return false;if(hasL(
   nums.push({x:P.x,y:P.y-40,t:'-'+dmg,col:'#ff6b5a',life:.8});
   if(P.hp<=0){if((pk('second')||hasL('herz'))&&!run.second){run.second=true;P.hp=Math.round(ST.maxHp*(hasL('herz')?.4:.3));P.inv=1.5;banner('Zweiter Atem',1);sfx('lvl');burst(P.x,P.y,'#f2d14b',30,220);}else die();}return true;}
 function dash(){if(state!=='play'||P.dashCd>0)return;if(run&&run.tl)run.tl.da++;P.root=0;if(pk('breath'))P.hp=Math.min(ST.maxHp,P.hp+ST.maxHp*.03*pk('breath'));let dx=P.mvx,dy=P.mvy;const l=Math.hypot(dx,dy);if(l<.2){dx=Math.cos(P.face);dy=Math.sin(P.face);}else{dx/=l;dy/=l;}
-  P.ddx=dx;P.ddy=dy;P.dashT=.18;P.inv=Math.max(P.inv,.32);P.dashCd=ST.dashCd;if(hasL('weltuhr'))P.dcrit=1;P.ramHit=[];sfx('dash');}
+  P.ddx=dx;P.ddy=dy;P.dashT=.21;P.inv=Math.max(P.inv,.36);P.dashCd=ST.dashCd;if(hasL('weltuhr'))P.dcrit=1;P.ramHit=[];sfx('dash');}
 function fireGlob(e,a,sp){if(e.type==='spitter'||e.type==='kern')e.cast=.22;const p={x:e.x,y:e.y-(e.type==='boss'?30:14),vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,r:e.type==='boss'?8:6,dmg:Math.round(e.dmg*(e.type==='boss'?.6:1)),life:3.5},m=enemyMuzzle(e);if(m){p.mx=m.x+ix(e.x,e.y)-ix(p.x,p.y);p.my=m.y+iy(e.x,e.y)-iy(p.x,p.y)+10;p.ml=p.life;}eproj.push(p);}
 function addToBag(it){if(S.bag.length>=BAG)return false;if(run&&run.tl)run.tl.lo[it.r]++;
   if(it.r===3)S.rec.legs++;if(it.r===3||it.set){S.found=S.found||{};if(!S.found[baseOf(it)]){S.found[baseOf(it)]=1;toast('<span style="color:var(--ember)">Neu im Kodex</span>');}}tip('loot','Beute landet im Rucksack. Über Pause vergleichst und legst du sie an. ▲ heißt stärker.');if(it.set)tip('set','Grüne Set-Teile geben Boni, wenn du mehrere davon trägst.');
@@ -127,7 +127,7 @@ function drawNpc(n,t){const fx=n.x,fy=n.y+9;ctx.fillStyle='rgba(0,0,0,.45)';ctx.
   ctx.fillStyle='#120c09';ctx.fillRect(5,-41,1.7,2);ctx.fillStyle='#6b4a30';ctx.beginPath();ctx.ellipse(1,-45,11,3,0,0,7);ctx.fill();rr(ctx,-5,-53,12,9,3);
   ctx.strokeStyle='#24201c';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(8,-28);ctx.lineTo(10,-22);ctx.stroke();ctx.fillStyle='#f7d98a';ctx.fillRect(8,-22+Math.sin(t*.004)*1.5,5,7);ctx.restore();
   ctx.font='600 13px "Barlow Condensed",sans-serif';ctx.textAlign='center';ctx.fillStyle='#8fd16a';ctx.fillText('Händler',fx,fy-74);}
-function useCons(k,at){tip('cons','Verbände und Molotows stellst du im Lager in der Werkstatt her.');if(state!=='play'||!(S.cons[k]>0))return;S.cons[k]--;if(run&&run.tl)run.tl.cu++;save();
+function useCons(k,at){tip('cons','Verbände und Molotows stellst du im Lager unter Handwerk her.');if(state!=='play'||!(S.cons[k]>0))return;S.cons[k]--;if(run&&run.tl)run.tl.cu++;save();
   if(k==='verband'){P.hot=3;sfx('heal');burst(P.x,P.y-14,'#8fd16a',14,90);}
   else{const tg=at||nearest(320);let x1,y1;if(tg){x1=tg.x;y1=tg.y;}else{x1=P.x+Math.cos(P.face)*150;y1=P.y+Math.sin(P.face)*150;}mols.push({x0:P.x,y0:P.y-20,x1,y1,t:0,dur:.42});sfx('swing');}}
 $('c1').addEventListener('pointerdown',e=>{e.preventDefault();useCons('verband');});

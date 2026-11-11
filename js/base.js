@@ -26,9 +26,9 @@ function buildBase(){if(typeof koepResetCache==='function')koepResetCache(null);
   // places: [x,y,name,menu tab]
   const place=(x,y,n,act,col)=>{BZ.push({x,y,r:62,n,act,near:false});bBoard(x,y-60,baseSign(n,col),120);marks.push({x,y,n});};
   place(1100,640,'Abfahrt · Netzplan',()=>leaveBase(),'#7dd3ff');
-  lowBox(380,860,120,46,38,'#5a4636','cont');lowBox(400,830,40,26,58,'#6a5a46','cont');place(440,960,'Werkstatt',()=>baseMenu('shop'));
+  lowBox(380,860,120,46,38,'#5a4636','cont');lowBox(400,830,40,26,58,'#6a5a46','cont');place(440,960,'Handwerk',()=>baseMenu('shop'));
   for(const[x,y,w,h,H]of[[330,1150,60,50,44],[400,1160,70,46,36],[340,1110,46,40,72]])lowBox(x,y,w,h,H,'#7a5530','cont');place(440,1250,'Lager',()=>baseMenu('stash'));
-  lowBox(1900,820,120,10,80,'#2a2622','cont');place(1960,900,'Ilse · Aufträge',()=>baseMenu('jobs'));
+  lowBox(1900,820,120,10,80,'#2a2622','cont');place(1960,900,'Ilse · Quests',()=>baseMenu('jobs'));
   barrels.push({x:1200,y:950,ph:0,camp:1});walls.push({x:1186,y:942,w:28,h:16});BZ.push({x:1200,y:950,r:95,n:'Lagerfeuer',act:()=>baseMenu('shop'),near:false});bBoard(1200,880,baseSign('Lagerfeuer · Essen'),130);
   // camp buildings: built ones stand as structures, the rest as marked building plots
   const spots={turm:[1700,1150],sani:[1450,1180],garten:[900,1180],halle:[650,1180],funk:[2050,1150],presse:[750,900],lampe:[1650,880]};
