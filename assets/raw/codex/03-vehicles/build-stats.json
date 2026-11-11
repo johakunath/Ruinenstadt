@@ -1,8 +1,8 @@
 {
-  "choices": "Generated family canvas selected autonomously under latest user policy. Car green/red/blue, Trabi turquoise/cream/red, van blue/cream; bus/tram yellow. Geometry derivatives are not new design variants.",
-  "decodedBytes": 4041564,
-  "fileBytes": 421038,
+  "choices": "Cream-only rounded Trabi; windowed blue/cream Barkas B1000; green/blue sedans plus independently painted partly burned red wreck; BVG yellow bus/tram. Refinement sources and prompts preserved.",
+  "decodedBytes": 3732900,
+  "fileBytes": 439214,
   "largestFileBytes": 39786,
-  "runtimeCanvasLimitBytes": 28000000,
-  "textures": 54
+  "runtimeTotalLimitBytes": 40000000,
+  "textures": 42
 }

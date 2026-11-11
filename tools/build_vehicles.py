@@ -9,10 +9,13 @@ import json
 from pathlib import Path
 import numpy as np
 from PIL import Image
-from sprites import normalise, read_object, write_json
+from sprites import normalise, read_object
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / 'assets/raw/codex/03-vehicles'
+def write_json(path, data):
+    path.write_text(json.dumps(data, indent=2, sort_keys=True, ensure_ascii=False, allow_nan=False)+'\n', encoding='utf8')
+
 FACES = ['side', 'end', 'top', 'glass-side', 'glass-end', 'roof']
 SMALL = {
     'car': {'colour': (45, 73, 60), 'size': [(96, 12), (44, 12), (96, 44), (44, 11), (44, 11), (26, 32)],

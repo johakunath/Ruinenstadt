@@ -5,12 +5,49 @@
     "lights": 1
   },
   "active": {
-    "k": "zap",
+    "k": "res",
     "seconds": 60,
     "used": 1,
     "lights": 0,
     "afterOneSecond": 59.00000000000006,
-    "toast": "Tipp · Links ziehen zum Laufen, Hieb halten zum Kämpfen. Zielen geht automatisch.Litfaßsäule · Funkenflug: Treffer lösen oft Blitze aus (60 s)"
+    "toast": "Tipp · Links ziehen zum Laufen, Hieb halten zum Kämpfen. Zielen geht automatisch.Litfaßsäule · Eisenhaut: +25% Widerstand (60 s)"
+  },
+  "variants": [
+    {
+      "factor": 1,
+      "painted": 16,
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 1028032,
+        "totalBytes": 4760932,
+        "cached": 16,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 4760932
+      }
+    },
+    {
+      "factor": 2,
+      "painted": 16,
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 4112128,
+        "totalBytes": 7845028,
+        "cached": 16,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 7845028
+      }
+    }
+  ],
+  "sourceHashes": {
+    "js/props.js": "f4778342ae7c6c0686454ee80c7bb681edf8e23909e2263847f34a6ae07064cb",
+    "js/vehicle-art.js": "da65b07e61d0d1b72baba009ddfaf615da7bf3fc7d09bba8ce48e9b4fdde20cd",
+    "js/update.js": "f0d82ee32b87d720674950b4a0104b43157da0d3a95c96147d62b4575f2be0ba",
+    "sw.js": "de203799f946c7730953a8ee66286cca174b70119a0075f41c5ba49fd925cbbe",
+    "assets/manifest.json": "b376a60f72a562b3c9b87606723ade8a447fa3443737a515143c51316a3ea7c9"
   },
   "errors": []
 }

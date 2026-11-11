@@ -565,3 +565,23 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Paired RTX 4070 gate: Koepenick -0.29% CI [-3.05,2.29]; Alexanderplatz -0.41% CI [-2.13,0.56]; null +0.09% CI [-2.61,0.46]. 21 pairs, 1280×800 DPR2, 100+300 renders, zero timed canvas allocations. Raw report under `pipeline/proof/05-props/perf/`.
 - Automatic approval review rejected publishing the new props/fire branch because authorization for that new publication was not explicit enough. Continuing locally; request publication approval only when the asset changes are concrete and reviewable. No workaround attempted.
 - Isolated local vehicle continuation starts from merged PR #32 on `codex/vehicle-complete` in `.worktrees/vehicle-complete`; original dirty vehicle draft is preserved. Repairs required: scheduled, bounded device-scale caches; stable visible overflow; correct face/wheel visibility through the actual ±48.44° extremes; current geometry/visual/offline/GPU proof.
+
+
+## 2026-11-11 · Codex · shared assets, rounded vehicles and shrine refinement
+
+- Continued from merged PR #32, preserving original dirty equipment/props/vehicle drafts. Shared props/fire and vehicles are consolidated in one v0.77 candidate. Merged online save PR #33 is preserved; subsequent PR #34 changes only playtest/telemetry docs and will be retained too. The verified merged PR #32 branch was deleted locally/remotely with an exact-head lease.
+- Vehicle geometry checker preceded production paint. Corrected face/wheel visibility past ±45° through the actual ±48.44° road jitter; scheduled device-scale caches own every projected allocation, map/resize/geometry retirement and stable over-budget fallback. Decoded source and all caches share 40 MB; warm vehicles use one drawImage. Removed temporary arrays/object lookups from new draw hooks.
+- Johannes rejected the angular/two-tone Trabi and box van. Built-in imagegen produced new cream-only Trabi, windowed Barkas B1000 KB and independently painted partly burned sedan atlases. Rounded shells/cabins stay within unchanged collision rectangles; Trabi has a 34-unit body/cabin silhouette and properly proportioned round headlamps. The blue Barkas also supplies a clearly distinct cream enamel variant. Original raw paintings remain preserved; prompts/crop record in task03 refinement folder.
+- Forty-two active vehicle face files, 3,732,900 decoded bytes, 439,214 encoded bytes, largest 39,786. Full builder byte-idempotent; obsolete turquoise/red Trabi and old red sedan runtime files retired. Shared props source 1,013,788 bytes plus one prewarmed 65,536-byte cyan glow. No new gameplay RNG/placement/collision changes.
+- Explicit shrine change: faint unused Litfaßsäule aura, removed when consumed; existing buffs last 60 s instead of 45. Real update proof grants 60, counts to 59 after one second and prevents recollection. Light occlusion is deliberately untouched and placed at the very top of BACKLOG for Claude.
+- Final browser proof passes: 20 checker/painted sheets, 14 district views, all eight variants at 1×/2×, exact seven-district wall parity and tangent walks, HTTP404 fallback and offline v0.77 decoding all 42 faces. Maximum vehicle proof allocation 24,664,164 bytes (world max 11,127,516). No page errors/unexpected failed images. 73 JS tests + prop assertions + 6 Python tests pass; 313 manifest entries validate.
+- Harness corrections: seed only after initAudio (its first initialization consumes RNG); one intermediate offline decode failed because an image rebuild overlapped the proof. Froze all runtime files and reran current-source proof; no loader behavior or acceptance threshold was weakened.
+- Final combined GPU gate passes on hardware RTX 4070, 21 alternating pairs with two fresh contexts each, 100 warm + 300 timed full renders, 1280×800 DPR2, all-prop/10-fire and ten all-kind/axis vehicle fixtures plus 40 enemies. Zero timed canvas allocations/page errors; all source/image hashes match. Final report: `pipeline/proof/03-vehicles/perf/perf-2026-11-11T12-46-36-859Z.json`.
+
+| Scene | Paired median | 95% CI | Result |
+|---|---:|---|---|
+| Köpenick | -15.42% | -17.16% to -13.89% | pass |
+| Alexanderplatz | -9.28% | -9.76% to -6.92% | pass |
+| Null control | -2.51% | -4.04% to -1.17% | pass |
+
+- Earlier full candidate also passed; retain its report as history, superseded by the final allocation-cleaned/cream-variant run. Physical Tab S9 heat/battery and human feel remain open. New branch publication/review remains pending after the previously recorded automatic export rejection; no bypass was attempted.

@@ -192,3 +192,12 @@ Asset rules, folder layout and renderer contract: `pipeline/workflow.md`.
 ## Still open
 
 Outline weight in px at game scale, scale chart image, two do and two don't examples (step 2 of the asset pipeline). Do these with the first Köpenick sprite batch.
+
+## Vehicle refinement (Johannes, 2026-11-11)
+
+Cream Trabi: one warm ivory enamel colour on roof and body, soft corners,
+round headlights, recognizable proportions. Windowed period GDR van: Barkas
+B1000 KB in faded blue or cream, rounded cab-over nose and passenger windows.
+One sedan is visibly partly burned: red panels survive around a soot-black,
+opened cabin with missing glass. Wear stays readable at gameplay scale.
+This explicit direction supersedes the initial angular/two-tone vehicle study.

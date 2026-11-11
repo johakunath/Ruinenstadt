@@ -43,9 +43,9 @@ if(typeof spriteReady!=='undefined')spriteReady.then(()=>{for(const k in SPRITES
 function vehicleRelease(e){e.image.width=e.image.height=0;}
 function vehicleReset(map){if(VEHSTATE){for(const e of VEHSTATE.items.values())vehicleRelease(e);for(const j of VEHSTATE.pending.values())j.resolve(false);}VEHSTATE={map,items:new Map(),pending:new Map(),queue:[],blocked:new Map(),bytes:0,frame:0,view:null,scheduled:false,evictions:0,peak:0};return VEHSTATE;}
 function vehicleState(){return !VEHSTATE||VEHSTATE.map!==blds?vehicleReset(blds):VEHSTATE;}
-function vehicleBeginFrame(){const s=vehicleState(),key=[cam.x,cam.y,Z,DPR,SW,SH].join(',');s.frame++;if(s.view!==key){s.view=key;s.blocked.clear();}}
+function vehicleBeginFrame(){const s=vehicleState(),key=`${cam.x},${cam.y},${Z},${DPR},${SW},${SH}`;s.frame++;if(s.view!==key){s.view=key;s.blocked.clear();}}
 function vehicleScale(){return typeof DPR==='undefined'||typeof Z==='undefined'?3:Math.min(3,Math.max(1,Math.ceil(DPR*Z*4)/4));}
-function vehicleSignature(b){const v=b.veh;return[vehicleScale(),b.rot||0,b.w,b.h,v.k,v.v,v.c].join(',');}
+function vehicleSignature(b){const v=b.veh;return`${vehicleScale()},${b.rot||0},${b.w},${b.h},${v.k},${v.v},${v.c}`;}
 function vehicleBounds(b){let r;const prior=ROT;try{withRot(b,()=>{const cx=ix(b.x+b.w/2,b.y+b.h/2),cy=iy(b.x+b.w/2,b.y+b.h/2),H=b.veh.k==='tram'?60:b.veh.k==='bus'?44:b.veh.k==='van'?43:b.veh.k==='trabi'?37:35,p=[[b.x,b.y],[b.x+b.w,b.y],[b.x+b.w,b.y+b.h],[b.x,b.y+b.h]].map(q=>P3(...q,0)),x=Math.floor(Math.min(...p.map(q=>q[0]))-cx-13),y=Math.floor(Math.min(...p.map(q=>q[1]))-cy-H-4);r={x,y,w:Math.ceil(Math.max(...p.map(q=>q[0]))-cx+13-x),h:Math.ceil(Math.max(...p.map(q=>q[1]))-cy+13-y)};});}finally{ROT=prior;}return r;}
 function vehicleImages(b){const v=b.veh,variant=vehicleVariant(v);if(!variant)return null;const names=v.k==='bus'||v.k==='tram'?['side','end','top']:['side','end','top','glass-side','glass-end','roof'],a=names.map(n=>spr('vehicles/'+v.k+'-'+variant+'-'+n));return a.some(i=>!i)?null:a;}
 function vehicleSchedule(s){if(!s.scheduled&&s.queue.length){s.scheduled=true;setTimeout(()=>vehicleCacheStep(s),0);}}

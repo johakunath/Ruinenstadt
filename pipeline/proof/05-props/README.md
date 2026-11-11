@@ -1,4 +1,8 @@
-# Shared props and fire continuation (v0.76)
+# Shared props and fire continuation (historical local v0.76)
+
+The combined v0.77 candidate supersedes this props-only checkpoint; its final
+source-hashed acceptance is in `../03-vehicles/README.md`. Shrine aura adds
+one shared 65,536-byte glow and the user-requested buff duration is now 60 s.
 
 Baseline: merged PR #32, `8853689187dac5661bcd1de0865e18715e5557fb`.
 Resumes the preserved local painted draft; original worktree remains unchanged.

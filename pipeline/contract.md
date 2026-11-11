@@ -235,3 +235,20 @@ and particles. Bench/sandbag ground art is promoted into depth-sorted props
 without changing collision walls; fences retain their actual projected axes.
 Task images decode to 1,013,788 bytes; no derived runtime caches. Script and
 all eleven images are in the service-worker shell.
+
+## Vehicles and shrine refinement (v0.77 local)
+
+Vehicle painted materials wrap continuously rotated P3 shells, including the
+actual road jitter up to ±48.44°. User-authorized rounded small-vehicle bodies
+and inset cabins fit inside unchanged collision rectangles; procedural wheel
+positions, world RNG, sorting and full legacy fallback remain. Trabi is cream
+only, van is a windowed Barkas, and one sedan variant is partly burned. Task03
+uses 42 images (3,732,900 decoded bytes); images plus scheduled device-scale
+caches share 40 MB. See `docs/vehicle-rendering.md` and task03 proof.
+
+Unused painted Litfaßsäulen draw a faint .20-alpha cyan aura behind the column;
+consumption removes it via existing lights/used state. The shared 128×128 glow
+is prewarmed outside draw (+65,536 derived bytes for task05; total 1,079,324).
+Johannes explicitly increased the existing shrine buff duration from 45 to
+60 seconds. No new buff effects or selection rules. Building-light occlusion
+is explicitly deferred; this batch does not change the light-mask algorithm.

@@ -39,7 +39,7 @@ def main():
   if key.startswith(('vehicles/trabi-turquoise-','vehicles/trabi-red-','vehicles/car-red-')):
    (R/'assets'/(key+'.webp')).unlink(missing_ok=True);del m[key]
  for key in [k for k in m if k.startswith('vehicles/van-blue-')]:
-  src=Image.open(R/'assets'/(key+'.webp')).convert('RGBA');a=np.array(src);rgb=a[:,:,:3].astype(float);mask=(rgb[:,:,2]-rgb[:,:,0]>25)&(rgb[:,:,1]-rgb[:,:,0]>10)&(a[:,:,3]>0);lum=rgb.mean(axis=2);target=np.array([196,180,149.]);col=target[None,None,:]*lum[:,:,None]/target.mean();a[:,:,:3][mask]=np.clip(col[mask],0,255).astype('uint8');dest=key.replace('van-blue-','van-cream-');Image.fromarray(a).save(R/'assets'/(dest+'.webp'),'WEBP',quality=90,method=6,exact=True);m[dest]={**m[key],'for':m[key]['for'].replace('van-blue','van-cream')}
+  src=Image.open(R/'assets'/(key+'.webp')).convert('RGBA');a=np.array(src);rgb=a[:,:,:3].astype(float);mask=(rgb[:,:,2]-rgb[:,:,0]>5)&(rgb[:,:,1]-rgb[:,:,0]>3)&(a[:,:,3]>0);lum=rgb.mean(axis=2);target=np.array([225,200,153.]);col=target[None,None,:]*lum[:,:,None]/target.mean();a[:,:,:3][mask]=np.clip(col[mask],0,255).astype('uint8');dest=key.replace('van-blue-','van-cream-');Image.fromarray(a).save(R/'assets'/(dest+'.webp'),'WEBP',quality=90,method=6,exact=True);m[dest]={**m[key],'for':m[key]['for'].replace('van-blue','van-cream')}
  write(R/'assets/manifest.json',m);write(RAW/'picks.json',recipe)
  print('Normalized 18 replacement faces; total vehicle textures:',sum(k.startswith('vehicles/') for k in m))
 if __name__=='__main__':main()

@@ -4,7 +4,7 @@ let PROP_OFF=false;
 spriteReady.then(()=>{glow('#7dd3ff');glow('#c9a227');for(const k of PROP_KEYS)spr('props/'+k);});
 function propImage(k){return PROP_OFF?null:spr('props/'+k);}
 function paintProp(k,x,y,w,h){const i=propImage(k);if(!i)return false;ctx.drawImage(i,x-w/2,y-h,w,h);return true;}
-function paintedBreakable(b){if(!['crate','chest','bin'].includes(b.type)||!propImage(b.type))return false;const w=(b.w+b.h)*IS,h={crate:29,chest:28,bin:34}[b.type],x=b.x+b.w/2,y=b.y+b.h/2+(b.w+b.h)*IS/4;
+function paintedBreakable(b){if((b.type!=='crate'&&b.type!=='chest'&&b.type!=='bin')||!propImage(b.type))return false;const w=(b.w+b.h)*IS,h=b.type==='crate'?29:b.type==='chest'?28:34,x=b.x+b.w/2,y=b.y+b.h/2+(b.w+b.h)*IS/4;
   if(b.type==='chest'){ctx.save();ctx.globalCompositeOperation='lighter';ctx.drawImage(glow('#c9a227'),x-w/2-6,y-h-6,w+12,h+12);ctx.restore();}
   ctx.save();if(b.flash>0)ctx.globalAlpha=.55;paintProp(b.type,x,y,w,h);ctx.restore();if(b.hp<b.max){ctx.strokeStyle='rgba(0,0,0,.65)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x-3,y-14);ctx.lineTo(x+2,y-8);ctx.lineTo(x,y-4);ctx.stroke();}return true;}
 // b.ph is a random phase assigned by world creation already; no gameplay RNG or random calls in render.
