@@ -69,3 +69,28 @@ Overall pass, zero timed canvas allocations. Raw data: `perf/perf-2026-11-11T07-
 After timing, only the inventory header CSS sticky offset changed from -22 px
 to 0 to keep controls visible while scrolling; the timed world renderer JS
 is unchanged. Final browser/source-hash proof covers that menu correction.
+
+
+## v0.75 forward reach, carry height and resolved speed
+
+Current GIF and browser screenshots include the straighter forward-reaching
+leg, 13° torso lean and ±1.8-unit vertical hand/weapon motion. Phase now uses
+actual projected travel after collision resolution, including slowdowns;
+blocked input and dash travel do not cycle the feet. Unit checks cover 30,
+60 and 120 Hz, doubled travel speed, walls and fixed arm lengths.
+
+The first extension candidate exceeded the 2-unit attack-grip tolerance:
+`diagnostics/first-extension-grip.json` retains its 2.781-unit result. Reducing
+only attack leg stride to .4 restored the bound (1.258 units); full running
+extension is retained. The final browser/offline/fallback proof passes with
+no page errors or unexpected failed image requests. Asset-preload failures
+during local proof were traced to refused server connections; increasing the
+local server listen backlog to 128 resolved them. This was a proof-server
+change, not a game fallback change.
+
+Final v0.75 GPU gate: RTX 4070 hardware raster, 21 pairs at 1280×800 DPR2.
+- Köpenick: -2.82%, CI [-9.87, +2.95], pass.
+- Alexanderplatz: +0.08%, CI [-1.69, +3.89], pass.
+- Alexanderplatz null control: +0.69%, CI [+0.13, +2.15], pass.
+
+Overall pass, zero timed canvas allocations, no page errors. Report: `perf/perf-2026-11-11T07-24-36-658Z.json`.

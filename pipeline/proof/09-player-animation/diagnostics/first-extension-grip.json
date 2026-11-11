@@ -1,0 +1,45 @@
+{
+  "failures": [],
+  "maxGripDrift": 2.7806635464976224,
+  "minBend": 0,
+  "maxBend": 1.25,
+  "outfits": 14,
+  "fallback": {
+    "value": false,
+    "paints": 0
+  },
+  "doll": {
+    "canvas": true,
+    "pixels": true
+  },
+  "memory": {
+    "textures": 4215208,
+    "cache": 2292224,
+    "cacheCount": 83
+  },
+  "errors": [],
+  "failed": [],
+  "httpFallback": {
+    "painted": false,
+    "failed": true,
+    "pixels": true
+  },
+  "offline": {
+    "controlled": true,
+    "rig": 3,
+    "images": 142,
+    "version": "0.75"
+  },
+  "sourceHashes": {
+    "css/style.css": "9a45f413793d30ae1f156f8af50cc789f888768f85b75259cc4b11fe03e3a283",
+    "js/panels.js": "0f0b3a2ce13762d6b23b64f86c8cf72b49d425475ba8a192d42e3a29291c8831",
+    "js/art.js": "ac0a6c5b5c2d6111a1687236e3ad7ff6d9d13245557c5c1d27b3f381794346cd",
+    "js/hero.js": "a4598c91612a33f3e09db0230cb25786b2eb047a06f0385c35dd59eaa68e6478",
+    "js/update.js": "533fa081e4be714a15d04d0be045596b3001d519100816eef9b1a57c1488aa9c",
+    "js/base.js": "31be4018ec54467fe920135041267ac2a1b597eabea8583cfd16608b496c327d",
+    "sw.js": "18129a421b0fc2b7a5c001032923a857705cd348626f3a48eeb702ec795cc2a5",
+    "assets/manifest.json": "c90d0bdaf18a92e6c557e2c5b251de337352d3389879d62373566182228ebfb3",
+    "tools/proof_player_animation.cjs": "bff5b3b775b8208e51d45cc537648ac8ce8399768b8e1728a0fe4e593a47cd1a"
+  },
+  "baseline": "ade3477"
+}

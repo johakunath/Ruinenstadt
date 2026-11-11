@@ -96,7 +96,7 @@ Focus: gameplay and content. Art runs in parallel through Codex (`pipeline/workf
 
 ## Validated drafts
 
-- Consolidated draft PR #32 targets main; #31 is closed as superseded. v0.74 adds short-walk/long-stride-run blending, stronger arm motion, forward lean and weapon sway, plus a larger inventory survivor/equipment panel and square backpack cells with vertical scrolling. Final proof is in `pipeline/proof/09-player-animation/` and `pipeline/proof/14-inventory-layout/`.
+- Consolidated draft PR #32 targets main; #31 is closed as superseded. v0.75 adds distance-driven cadence after collision resolution, a straighter forward-reaching run leg, stronger torso lean and vertical hand/weapon bob. Rare-item comparisons, expanded stats and equip actions pass six viewport checks. v0.74 added short-walk/long-stride-run blending, stronger arm motion, forward lean and weapon sway, plus a larger inventory survivor/equipment panel and square backpack cells with vertical scrolling. Final proof is in `pipeline/proof/09-player-animation/` and `pipeline/proof/14-inventory-layout/`.
 
 - v0.73 (draft): player animation step 1 across all 14 outfits, with derived knees/ankles, elbow flexion, torso/head motion and preserved weapon pivots. Desktop GPU and browser gates pass; human acceptance remains open. Vehicle production follows `docs/vehicle-rendering.md` and its rotation-fit gate.
 

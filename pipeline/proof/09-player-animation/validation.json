@@ -1,8 +1,8 @@
 {
   "failures": [],
-  "maxGripDrift": 1.2447378865150958,
+  "maxGripDrift": 1.257451190888918,
   "minBend": 0,
-  "maxBend": 1.1,
+  "maxBend": 1.25,
   "outfits": 14,
   "fallback": {
     "value": false,
@@ -28,18 +28,18 @@
     "controlled": true,
     "rig": 3,
     "images": 142,
-    "version": "0.74"
+    "version": "0.75"
   },
   "sourceHashes": {
     "css/style.css": "9a45f413793d30ae1f156f8af50cc789f888768f85b75259cc4b11fe03e3a283",
     "js/panels.js": "0f0b3a2ce13762d6b23b64f86c8cf72b49d425475ba8a192d42e3a29291c8831",
-    "js/art.js": "fe0790efcb561768c49424b43c831b5a901fd162289552503f4f6a79d54203f8",
+    "js/art.js": "6ade4d479822c4e8003a555edf4c208f6a562d0850373c5d215e73d1789778fa",
     "js/hero.js": "a4598c91612a33f3e09db0230cb25786b2eb047a06f0385c35dd59eaa68e6478",
-    "js/update.js": "004560b8645b581c5f20b684f9434efd6c8c2ce352cf8648d86b5f893086ae95",
-    "js/base.js": "3fd459b37f6f50f925b87ef5d264eb6f2acf8c94d2d2411c0a2c9f87f5055db0",
-    "sw.js": "8d51c9b3485fc0fd01d417038cb77a101abfe95001c5cd171818d1a969f4b4f5",
+    "js/update.js": "533fa081e4be714a15d04d0be045596b3001d519100816eef9b1a57c1488aa9c",
+    "js/base.js": "31be4018ec54467fe920135041267ac2a1b597eabea8583cfd16608b496c327d",
+    "sw.js": "18129a421b0fc2b7a5c001032923a857705cd348626f3a48eeb702ec795cc2a5",
     "assets/manifest.json": "c90d0bdaf18a92e6c557e2c5b251de337352d3389879d62373566182228ebfb3",
-    "tools/proof_player_animation.cjs": "c3617492aab7c0c8fee3e2f06c5ff3ececa03da11bf57b5ee23095ce5c294311"
+    "tools/proof_player_animation.cjs": "465d57e64e4b9dd96d33ee659e35e306f6b6b9879495909b42d8c9d6627d6d1b"
   },
   "baseline": "ade3477"
 }

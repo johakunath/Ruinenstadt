@@ -536,3 +536,15 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Paired RTX 4070 gate: Koepenick +0.19% CI [-0.91,1.21], Alexanderplatz +0.28% CI [-1.94,1.84], null control +0.08% CI [-1.38,0.51]; pass, zero timed canvas allocations. Report: `pipeline/proof/09-player-animation/perf/perf-2026-11-11T07-00-30-840Z.json`. Only menu sticky-header CSS was corrected after timing; renderer JS remains identical. Final responsive/browser checks include that correction.
 
 - Final handoff: #32 is the single combined draft PR against main; #31 remains closed. All six responsive viewport fixtures also pass last-stash selection and header visibility after scrolling. No merge performed.
+
+
+## 2026-11-11 · Codex · comparison acceptance and resolved-travel running
+
+- Johannes asked whether comparison also works. The existing layout screenshots already had active selected/equipped cards. Added a stronger six-viewport fixture with a three-affix rare weapon, expanded post-equip stats and the actual equip action. All numeric values remain unclipped; predicted power 151 equals equipped power 151; old weapon returns to the 18-item backpack. Screenshots/JSON: `pipeline/proof/14-inventory-layout/comparison*`.
+- v0.75: running forward hip reaches -1.05 rad with a straight knee at extension; recovery gets the knee bend, rear push .72 rad. Torso lean increases to .23 rad (~13°). Hand and weapon bob ±1.8 local units through the elbow chain; fixed shoulder and bone lengths, no detached grip. Carry bob/sway disabled for attacks and dash.
+- `heroAdvance` now advances phase from actual projected displacement after collision resolution in expedition and camp. Faster running advances it proportionally; blocked movement stops it; dash distance is excluded. Visual `animSpeed` does not change gameplay positions/speed. Synthetic pose tools explicitly clear it.
+- Initial larger leg motion exceeded attack grip tolerance (2.781 units). Retained failed probe JSON under `diagnostics/first-extension-grip.json`; reduced attack-only stride to .4 and final stress probe passes at 1.258 units. Full running extension remains. 66 JS checks pass, including phase at 30/60/120 Hz, doubled speed, blocked movement and fixed arm lengths. Browser/offline/fallback proof passes with zero page errors/unexpected failed images.
+- Local proof preloads intermittently refused connections; diagnostics identified local HTTP server backlog pressure. Enlarging the listen backlog to 128 resolved the fixtures; documented in browser setup. No game fallback or loading behavior was weakened.
+- Paired GPU acceptance pending at this checkpoint. Work remains on the single consolidated draft PR #32; no merge authorized.
+
+- Final v0.75 RTX 4070 gate passes: Koepenick -2.82% CI [-9.87,2.95], Alexanderplatz +0.08% CI [-1.69,3.89], null control +0.69% CI [0.13,2.15]. 21 pairs, 1280×800 DPR2, zero timed canvas allocations/page errors; `perf-2026-11-11T07-24-36-658Z.json`. All timed source hashes match the final candidate.

@@ -69,7 +69,7 @@ let activeBrowser=null;
      const c=document.createElement('canvas');c.width=w;c.height=h;const g=c.getContext('2d');
      g.fillStyle='#211a15';g.fillRect(0,0,w,h);g.fillStyle='rgba(150,90,35,.13)';g.beginPath();g.ellipse(w/2,h*.78,w*.4,h*.13,0,0,7);g.fill();
      if(gearItem){const extra={};extra[gearItem.slot]=makeItem(gearItem.slot,gearItem.base,gearItem.kind||({w:'blade',a:'armor',h:'head',g:'hand',f:'feet'}[gearItem.slot]));setLoadout(outfit,extra);}else setLoadout(outfit);
-     P.mvx=pose==='step'?1:0;P.mvy=0;P.walk=pose==='step'?.65:0;P.swingT=pose==='swing'?.115:0;P.swingDur=.2;P.swingKind=S.eq.w.kind;P.atkA=-.85;
+     P.animSpeed=null;P.mvx=pose==='step'?1:0;P.mvy=0;P.walk=pose==='step'?.65:0;P.swingT=pose==='swing'?.115:0;P.swingDur=.2;P.swingKind=S.eq.w.kind;P.atkA=-.85;
      const old=ctx;ctx=g;g.save();g.translate(w/2,h*.81);g.scale(scale,scale);drawPlayer(1200);g.restore();ctx=old;
      const painted=lastPainted;g.fillStyle='#ead9c0';g.font='12px sans-serif';g.textAlign='left';g.fillText(label,6,15);
      return{canvas:c,painted};

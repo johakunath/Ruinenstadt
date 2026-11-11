@@ -30,11 +30,12 @@ function update(dt){dt=fxTime(dt);
   let ml=Math.hypot(mx,my);if(ml>1){mx/=ml;my/=ml;ml=1;}if(ml>0){const q=s2w(mx,my);mx=q[0];my=q[1];}/* v0.65: constant SCREEN speed (vertical used to be half as fast in 2:1 iso) */P.mvx=mx;P.mvy=my;
   if(dashReq){dashReq=false;dash();}if(skillReq){skillReq=false;skill();}
   if(P.ratT>0)P.ratT-=dt;if(P.root>0)P.root-=dt;if(P.rootI>0)P.rootI-=dt;
+  const gaitX=P.x,gaitY=P.y,gaitDash=P.dashT>0;
   if(P.dashT>0){P.dashT-=dt;if(P.dashT<=0&&hasL('ritter')){shocks.push({x:P.x,y:P.y,r:10,max:110,hit:[],small:1});sfx('boom');shake=Math.max(shake,5);}P.x+=P.ddx*640*dt;P.y+=P.ddy*640*dt;parts.push({x:P.x,y:P.y-12,vx:0,vy:0,life:.22,max:.22,col:'rgba(234,217,192,.35)',size:14});
     if(pk('ram'))for(const e of enemies)if(!P.ramHit.includes(e)&&Math.hypot(e.x-P.x,e.y-P.y)<e.r+P.r+8){P.ramHit.push(e);hit(e,ST.dmg*1.2*pk('ram'),false,{knock:360});}}
   else if(!(P.root>0)){const wf=P.wet?.7:1;P.x+=mx*ST.spd*wf*dt;P.y+=my*ST.spd*wf*dt;}// rooted by a Wurzler: no walking, a dash breaks free
-  if(ml>.15){P.walk+=dt*heroGait(P,ST).cadence;if(P.swingT<=0)P.face=Math.atan2(my,mx);}
-  collide(P);P.comboT-=dt;P.cd-=dt;P.inv-=dt;P.dashCd-=dt;P.swingT-=dt;P.skCd-=dt;
+  if(ml>.15&&P.swingT<=0)P.face=Math.atan2(my,mx);
+  collide(P);heroAdvance(P,ST,gaitX,gaitY,dt,gaitDash);P.comboT-=dt;P.cd-=dt;P.inv-=dt;P.dashCd-=dt;P.swingT-=dt;P.skCd-=dt;
   if(ST.regen)P.hp=Math.min(ST.maxHp,P.hp+ST.regen*dt);
   if(P.spin>0){P.spin-=dt;P.spinTick-=dt;if(P.spinTick<=0){P.spinTick=.15;const sr=80*(1+.2*pk('reach'));for(const e of enemies)if(Math.hypot(e.x-P.x,e.y-P.y)<sr+e.r){const c=Math.random()<ST.crit;hit(e,ST.dmg*.6*(c?2:1),c,{knock:160});}propsInRadius(P.x,P.y,sr,ST.dmg*.6);sfx('swing');}}
   if(P.hot>0){P.hot-=dt;P.hp=Math.min(ST.maxHp,P.hp+ST.maxHp*.4/3*dt);}if(P.fed>0)P.fed-=dt;

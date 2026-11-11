@@ -207,3 +207,19 @@ ratio. Its zoom/offset accounts for hammer/spear extent. Wide inventory keeps
 three panels, gives the survivor/equipment more width, stacks comparison
 cards in a narrower column and uses auto-filled square cells with vertical
 page scrolling. The phone layout keeps its existing ordering and controls.
+
+
+## v0.75 resolved-travel gait
+
+`heroAdvance(P,ST,oldX,oldY,dt,wasDash)` runs after collision resolution. Its
+`animSpeed` and `walk` are visual state; gameplay positions and travel speed
+remain unchanged. `heroGait` uses that measured projected speed, retaining a
+requested-speed fallback only for synthetic/menu poses. Running phase is
+linear in distance (10 rad per 182 projected units at full normal speed),
+with shorter strides in the walk blend. Dash movement does not advance it.
+
+Forward leg extension straightens before contact, and running torso lean is
+.23 rad. `heroFrontJoint` adds ±1.8-unit carry height through arm IK rather
+than translating the weapon away from the palm. Extra angular/vertical carry
+motion is disabled in attacks/dash. Attack stride is reduced to .4 so larger
+running geometry cannot shift the old attack grip beyond its existing bound.

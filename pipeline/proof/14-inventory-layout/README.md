@@ -26,3 +26,15 @@ The same browser fixture selects the last backpack cell and last of 40 stash
 items after scrolling; both produce the comparison card successfully.
 Phone portrait/landscape retain their existing layout, with corrected canvas
 aspect ratio to avoid distorting the larger portrait doll.
+
+
+## Active rare-item comparison (v0.75)
+
+`node tools/proof_inventory_comparison.cjs` tests a three-affix rare weapon
+against the equipped weapon at all six viewport sizes. Both cards and all
+numeric comparison values are present, without horizontal overflow/clipped
+values. The fixture expands "Alle Werte nach Wechsel", clicks "Anlegen",
+checks the equipped item ID, verifies the displayed power matches the
+predicted comparison, and confirms the old weapon returns to the backpack
+without losing an item. All six pass; see `comparison.json` and
+`comparison-*.png`. Browser state is isolated from the player's save.
