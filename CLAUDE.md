@@ -1,6 +1,6 @@
 # Ruinenstadt
 
-- `AGENTS.md` only points here. Read `BACKLOG.md` for intent, roadmap and version history. Versions are `v0.N`.
+- `AGENTS.md` only points here. Read `BACKLOG.md` for intent, roadmap and version history. Versions are `v0.N`. Historical device feedback is in `docs/playtests.md`.
 - Plain HTML/CSS/JS, no build step, no dependencies. Scripts are classic (not modules) and share globals; order in `index.html` matters.
 - View is 2:1 isometric. Logic, collision and map generation use flat world coords; only drawing projects (`js/iso.js`, `render()` in `js/render.js`).
 - Maps: grid districts in `js/world.js` + `js/biomes.js` (2400). Geographic districts (`D.geo`: Köpenick 3600, Xhain 4000 in `js/geo.js`, Mitte 4000 in `js/mitte.js`, Alexanderplatz 4000 in `js/alex.js`; landmarks per district in `K.lm`, optional `K.post` after lots); roads are segments (`ROADS`, `roadPt`) for both. Building size: `BSC`/`BHS` in `js/world.js`. U-Bahn tunnel levels and the S+U network menu map: `js/ubahn.js` (`buildTunnel` instead of `buildWorld`, `run.tun`, `S.ln` cleared lines; the tunnel world is not square: `WS` width, `WH` height). Walkable camp: `js/base.js` (`state` 'base', `buildBase`).

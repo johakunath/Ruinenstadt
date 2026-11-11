@@ -57,7 +57,7 @@ function drawDoll(){const c=$('dollc');if(!c)return;const g=c.getContext('2d'),W
   g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,W,H);const gr=g.createRadialGradient(W/2,H*.62,0,W/2,H*.62,W*.5);gr.addColorStop(0,rc(S.eq.w)+'33');gr.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=gr;g.fillRect(0,0,W,H);
   g.fillStyle='rgba(0,0,0,.35)';g.beginPath();g.ellipse(W*(S.eq.w.kind==='hammer'?.36:.5),H*.83,W*.22,H*.05,0,0,7);g.fill();
   ctx=g;Object.assign(P,{x:0,y:0,face:.25,mvx:0,mvy:0,swingT:0,spin:0,dashT:0,inv:0,torch:false});
-  try{g.setTransform(W/72,0,0,W/72,W*(S.eq.w.kind==='hammer'?.36:.5),H*.8);drawPlayer(performance.now());}catch(e){}ctx=o;Object.assign(P,keep);}
+  try{const k=S.eq.w.kind,sc=Math.min(W/(k==='hammer'?84:k==='spear'?72:52),H/78);g.setTransform(sc,0,0,sc,W*(k==='hammer'?.32:k==='spear'?.36:.45),H*.86);drawPlayer(performance.now());}catch(e){}ctx=o;Object.assign(P,keep);}
 // map turned 45° like the minimap so screen-up while walking is map-up; labels stay upright. N arrow shows real north
 function drawMapTab(){const c=$('mapc');if(!c||!MB2)return;if(D.tun)return tunMapTab(c);const g=c.getContext('2d'),k=600/WS,T=(x,y)=>{const a=x*k-300,b=y*k-300;return[300+(a-b)/2,300+(a+b)/2];};
   g.setTransform(1,0,0,1,0,0);g.fillStyle='#120d0a';g.fillRect(0,0,600,600);g.save();g.translate(300,300);g.rotate(Math.PI/4);g.scale(IS,IS);g.translate(-300,-300);g.drawImage(MB2,0,0);
@@ -118,7 +118,7 @@ function renderInv(){
     ['Gewöhnliche','Magische','Seltene'].forEach((n,r)=>{const v=sum(i=>i.r===r&&!i.lock&&!i.set);if(v)chips.push(`<button class="chip" data-sr="${r}" style="color:${RAR[r].c}">${n} +${v}</button>`);});
     const va=sum(notUp);if(va)chips.push(`<button class="chip${allArm?' warn':''}" data-a="all">${allArm?'Sicher? Tippe erneut':'Alles ohne ▲ +'+va}</button>`);
     const mk=S.eq.w.kind,ml=mLvl(mk),nx=mNext(mk);
-    body=`<div class="inv3 wide"><section class="ichar"><div class="doll"><canvas id="dollc" width="360" height="360" aria-hidden="true"></canvas>${SLOTS.map(slotBtn).join('')}</div>
+    body=`<div class="inv3 wide"><section class="ichar"><div class="doll"><canvas id="dollc" width="480" height="640" aria-hidden="true"></canvas>${SLOTS.map(slotBtn).join('')}</div>
       <div class="mast"><span>${MAST_N[mk]}-Meisterschaft ${ml}</span><div class="pbar"><i style="width:${nx?Math.round(100*(S.mast[mk]||0)/nx):100}%"></i></div><span class="sub">${nx?`${S.mast[mk]||0}/${nx} EP`:'maximal'} · +${4*ml}% Schaden${ml>=5?' · schnellere Kraft':''}</span></div>${statTable()}</section>
       <section class="ibag"><div class="lbl">${invTab==='stash'?`Lager ${S.stash.length}/${stashMax()}`:`Rucksack ${S.bag.length}/${BAG}`}</div><div class="grid">${cells}</div>
       ${chips.length?`<div class="lbl">Verschrotten</div><div class="chips">${chips.join('')}</div><p class="hint">„Alles ohne ▲“ behält Verbesserungen, Legendäres, Set-Teile und Gesperrtes.</p>`:'<p class="hint">▲ heißt: mehr Kampfkraft als dein angelegtes Teil.</p>'}</section>

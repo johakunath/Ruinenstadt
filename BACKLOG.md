@@ -11,28 +11,19 @@ Isometric loot ARPG in post-collapse Berlin. Hobby project to learn game develop
 - **Inspirations:** Diablo 2/3 (loot, acts), Hades (dash, boons, weapon = playstyle, hand-drawn look), V Rising (boss-gated unlocks, base), Valheim (weak to strong), Enshrouded (authored points of interest).
 - **Out of scope:** multiplayer, 3D, hunger as a timer, story dialogue trees.
 
-## Playtest 1 (v0.34, Tab S9 portrait, 15 min Köpenick)
+## Playtests
 
-Fun, "almost something to show friends". Lighting and floors good. Item looks on the character good.
-Problems: environment scale (cars smaller than player), pure top-down props vs side-view characters, grid-like streets, only 3 equipment slots, Normal too easy, text not wrapping on tablet (fixed v0.35).
-
-## Playtest 2 (v0.51, Tab S9, about 17 min, Köpenick won on Normal)
-
-Fun, no lags, no technical issues, tablet only slightly warm. Map size fine (everything explored, places visited several times), so bigger maps are OK from now on. Icons, buildings and trees good.
-Problems: fences and other low blockers flat without height, U-Bahn entrance too small, too much loot (3 legendaries, fully geared after one district), far too easy (enemies and the district boss one-shot, life never in danger), messages vanish before they can be read, weapons do not feel different (no ranged weapon found), lots of Schrott for upgrades.
-Telemetry vs bot (Köpenick Normal): Johannes 17.5 min, level 18, 1025 damage taken, power 42→1773, no death. Bot v0.52: 10.9 min, level 19, 1766 damage taken, power 42→601. Working assumption: Johannes is slower but better than the bot, so the bot winning is a lower bound and difficulty can sit above what the bot handles comfortably.
-
-## Playtest 4 (v0.61, Tab S9, 30+ min, Xhain reached)
-
-Feedback batch. Fixed in v0.65 (see Done): vertical walk speed, settings cogwheel, pickup text, full bag, drop rate, Kodex silhouettes, unlock gates, final boss delay, Alexanderplatz market flicker, TV tower proportions, distance sound, set bonuses, dark zones off. The rest sits in Next (#16 to #22).
+Recorded sessions and feedback: [docs/playtests.md](docs/playtests.md).
+Current actions are tracked below.
 
 ## Next
 
-Asset draft (2026-11-10): the Köpenick kit is implemented on its asset branch,
-but v0.71 is not a release. The final combined timing exceeds the 5% budget;
-preserve the draft after three optimization attempts and continue equipment
-art. See `pipeline/proof/02-buildings-koepenick/README.md`. Johannes now delegates
-routine asset designs; only critical choices need strongly different A/B/C options.
+Köpenick kit: merged in PRs #29/#30 (v0.71). The original seven-pair
+failure is superseded by the documented 21-pair Windows GPU pass on
+2026-11-11, including a null-control CI inside ±5%. Review follow-up v0.72
+stabilizes over-budget views and enforces gate verdicts. Tablet acceptance
+remains deferred. See `pipeline/proof/02-buildings-koepenick/README.md`.
+Routine asset designs are delegated; critical choices need distinct alternatives.
 
 Focus: gameplay and content. Art runs in parallel through Codex (`pipeline/workflow.md`). Style source of truth: `docs/style-bible.md` (Köpenick = default look, U-Bahn, Potsdamer Platz, Alexanderplatz boards).
 
@@ -53,9 +44,9 @@ Focus: gameplay and content. Art runs in parallel through Codex (`pipeline/workf
 | 18 | Enemy voices | Not in the game yet (v0.65 only added distance volume to `sfx(name,e)`). Wanted: growl, snarl, screech and beep per type when they attack or idle, bosses, short spoken lines for robotic or human enemies. Needs generated voice lines (free external TTS or a generated sound pack, not Sonnet) and recipes in `FX` |
 | 19 | Dark zones replacement | `makeDark()` is off since v0.65. Idea from Playtest 4: a few authored arena spots where a pack spawns and a special reward drops after clearing them. Mockup and reward design first |
 | 20 | Performance on the tablet | Deferred to much later. The Tab S9 has reported warmth, battery drain and a slightly lower frame rate after the painted sprite update. When resumed, record `?debug=perf` on Köpenick and Alexanderplatz, then check painted sprites and hero layers (draw calls, `drawImage`, offscreen caches), lights and overdraw in `render()`, and Akkusparen defaults. Desktop timings do not establish tablet behavior. |
-| 21 | Codex asset queue | Current user-authorized order: (1) Köpenick building kit in task `02-buildings-koepenick.md` (the GDR texture-kit method A is separately accepted); (2) ten legendary/set icons in `12-legendaries-and-sets.md`, matching worn parts to each set’s art goal; (3) props and fire in `05-props.md`; (4) player animation step 1 in `09-player-animation.md`; (5) vehicles in `03-vehicles.md`, with artwork fitted to the actual rotations. GDR enemy proportions/wear in `12-gdr-enemy-proportions.md` are accepted by Johannes. Tablet heat/performance is deferred much later. See `pipeline/workflow.md` for this queue. |
+| 21 | Codex asset queue | Köpenick kit merged (#29/#30); review fixes included in consolidated draft #32. Preserve existing equipment and props/fire drafts. Player animation step 1 is implemented (consolidated v0.74 draft; knees, elbows, body motion; no new paint), pending review/human acceptance. Props/fire follows its existing draft. Vehicles require the technical decision and rotation-fit proof; the quick-win assumption is withdrawn. Tablet heat/performance remains deferred. See `pipeline/workflow.md`. |
 | 22 | Loot pacing check | v0.65: item level +3 per district for item drops (the first drops of Xhain used to sit below the end of Köpenick, which explains few replacements), drop rates lowered, base values -10%, set bonuses up. Re-test with the bot and a human run, tune from `S.tlog` |
-| A | Asset pipeline | Menu art via ChatGPT (`docs/chatgpt-assets.md`). In-world art via Codex: tooling, player rig v2, enemy families and GDR enemy proportion/wear updates are delivered; task 02 step 0 selected method A for GDR blocks, with Köpenick production assets still open. Current queue is in #21 and `pipeline/workflow.md`. |
+| A | Asset pipeline | Menu art: `docs/chatgpt-assets.md`. Tooling, player rig v2, enemies, GDR buildings/proportions and Köpenick kit are delivered. Independent equipment and props/fire drafts remain open. Player animation step 1 and wide inventory refinements are in consolidated draft #32 (v0.74); see #21 and `pipeline/workflow.md`. |
 | 15 | More ruins | Playtest 3 wish: more buildings should look like ruins (not all), more realistic, the city should feel empty and only somewhat recognizable. Do it whenever world and building assets are redone (Codex pipeline) |
 | 12 | Style proposals | From `docs/style-bible.md`, undecided: Spreepark (own district between Köpenick and Xhain, see #3), zombie raptor and T-rex, U-Bahn market set piece, lamp gun, per-district palettes in code (mockup first). Alexanderplatz done in v0.49 |
 | 14 | Story backdrop | Light story artefacts instead of dialogue: tapes, notes, history plaques to find per district (the GDR that survived, the fall). Johannes may write them later. No dialogue trees |
@@ -102,6 +93,14 @@ Focus: gameplay and content. Art runs in parallel through Codex (`pipeline/workf
 | Balance | Bot: `node tools/balance.mjs 30 1` with the local server running. Last result (v0.39, 3 repeats each): Leicht 8 runs for all 8 districts without deaths, Normal 12 to 14 with deaths from Neukölln on, Schwer 9 to 27 (high variance). v0.41 loot cut, Normal, 1 repeat: 12 runs with 4 deaths (Mitte, Tempelhof, Prenzlauer Berg, Marzahn), was 9 runs with 1 death before the cut. v0.47 (Normal, 9 runs, 7 districts): Köpenick, Xhain won first try, Mitte died once to the Bassprediger at wave 20 then won (11.6 min), Tempelhof and Prenzlauer Berg won, Spandau 3 deaths at waves 6 to 11 (unchanged grid district, check next). v0.49 (Normal, after the Wurzler and Kernspeier softening, 6 runs): Köpenick and Xhain won first try, Alexanderplatz died once at wave 9 then won, Mitte died once at wave 7 then won. First pass before softening: Alexanderplatz died at waves 5 and 7, Tempelhof (now one level step further down) twice at wave 6, Spandau twice |
 | Art and sound | Painted look needs an image model (for example ChatGPT image generation via Codex, or Midjourney, Leonardo, Scenario) with a fixed style sheet and prompt templates, transparent PNGs. Canvas draws sprites fine, no engine needed. Sound: jsfxr |
 | Later engine | Godot if the browser limits us (for example a high-end desktop version) |
+
+## Validated drafts
+
+- Consolidated draft PR #32 targets main; #31 is closed as superseded. v0.75 adds distance-driven cadence after collision resolution, a straighter forward-reaching run leg, stronger torso lean and vertical hand/weapon bob. Rare-item comparisons, expanded stats and equip actions pass six viewport checks. v0.74 added short-walk/long-stride-run blending, stronger arm motion, forward lean and weapon sway, plus a larger inventory survivor/equipment panel and square backpack cells with vertical scrolling. Final proof is in `pipeline/proof/09-player-animation/` and `pipeline/proof/14-inventory-layout/`.
+
+- v0.73 (draft): player animation step 1 across all 14 outfits, with derived knees/ankles, elbow flexion, torso/head motion and preserved weapon pivots. Desktop GPU and browser gates pass; human acceptance remains open. Vehicle production follows `docs/vehicle-rendering.md` and its rotation-fit gate.
+
+- v0.72 (review follow-up): stabilize visible building cache overflow, enforce performance verdict exit codes and null-control noise bounds; move playtest history to `docs/playtests.md`.
 
 ## Done
 
@@ -178,3 +177,4 @@ Focus: gameplay and content. Art runs in parallel through Codex (`pipeline/workf
 | v0.68 | Larger weathered GDR enemies: humanoid Uhrwerkläufer and broad Brigadeghul with matching collision, spawn clearance, shields and fallbacks; preserved blue/yellow and hammer-and-sickle identity; cached projected shadows keep all three measured districts within the render budget |
 | v0.69 | Weathered Pioneer architecture on existing Alexanderplatz Zuckerbaecker blocks: shared painted facade/roof kit, ivy/cracked plaster, blue/red hammer-and-sickle banners and mural; exact current/A/fixed-view-B proof; Johannes selected A; collision, sorting, canvas fallbacks and offline play retained |
 | v0.70 | Legendaries and sets for every slot (#2): Pickelhaube des Hauptmanns (head, elite and boss kills heal 15%), Fäuste des Kiezboxers (hands, every 4th hit stuns), Stiefel des Schaffners (feet, kills shorten the sprint cooldown 0.5 s), Ring der Weltzeituhr (ring, first attack after a sprint always crits). Legendary slot roll: weapon .30, body .25, talisman .12, head .09, hands .08, feet .08, ring .08. Sets have 5 pieces now (new: Helm and Handschuhe der Kiezwache, Stiefel and Ring des Spreegeists, Topfhelm and Eisenstiefel der Zitadelle) with stronger bonuses at 2/3/5 pieces, defined as data in `SETB` (`js/data.js`) and applied in `gear()`; achievement „Komplett“ and „Sammler“ ask for the new pieces. SVG icons only, painted icons and hero parts: `pipeline/tasks/12-legendaries-and-sets.md`. Loot check (#22): the bot showed 0 legendaries because its bag was full (18/18) at the end, so the guaranteed boss legendary stayed on the ground (full bag leaves loot since v0.65). `tools/sim.js` now salvages the weakest items when the bag is nearly full (`SIM.tidy`). Bot, Normal, 9 runs: Köpenick, Xhain, Alexanderplatz won, about 80 items per district run (44% white, 22% blue, 31% yellow, 2% legendary, 1 to 2 legendaries per district), 3 early Köpenick deaths at waves 2 to 3 (fresh save, no upgrades). Yellow share is above the v0.41 target of 19%, not tuned yet. Save safety (#24): `END` marker on save codes, rolling backups before overwriting, run history kept outside the save, „Alle Daten exportieren“ |
+| v0.71 | Köpenick painted building kit merged in PRs #29/#30: 13 materials, real facade/window/ruin geometry and complete fallback; device-scale scheduled caches under 40 MB. The 21-pair RTX 4070 GPU pass supersedes the earlier seven-pair timing. Tablet acceptance remains deferred. |

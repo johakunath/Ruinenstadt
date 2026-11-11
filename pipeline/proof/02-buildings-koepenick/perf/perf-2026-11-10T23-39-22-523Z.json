@@ -1,0 +1,314 @@
+{
+  "method": "Fresh context. Per district 21 alternating-order pairs; each sample 100 warmup + 300 timed full render(1200) calls with the kit hook on vs off. Gate: median of paired on/off ratios, seeded bootstrap 95% CI; pass if CI high <= +5%, fail if CI low > +5%, else inconclusive.",
+  "viewport": [
+    1280,
+    800
+  ],
+  "dpr": 2,
+  "headed": false,
+  "gpu": {
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 (0x00002786) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "vendor": "Google Inc. (NVIDIA)",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+    "cores": 12,
+    "software": false
+  },
+  "sourceHashes": {
+    "assets/buildings/koep-a-wall.webp": "3f2cac705caa13fec20cf8bf5dfef98e39e234e4270829c95f5f44a5b22bc369",
+    "assets/buildings/koep-a-window.webp": "51180ad10b8ea36fb3310a067a537d1e0bda51de40a836e6f951d3731a1733b2",
+    "assets/buildings/koep-b-wall.webp": "8926c5843f0b6dfc458f6cf532b0773b73e663f8a8b68a7f98231c106820e81e",
+    "assets/buildings/koep-b-window.webp": "512e82a254942bc4772c64b7f62c7dcfef64df6bdd5ebf648d9fc23e28bcd2e0",
+    "assets/buildings/koep-c-wall.webp": "f7203b1650f0a5b0a9957056d26d6896e3e95849544cac3b3829a08e291e11cf",
+    "assets/buildings/koep-c-window.webp": "c00e82a8514919f4718afc6360b3a36ae9c730a722ca56be77840b985bfd2437",
+    "assets/buildings/koep-damage.webp": "f9a0ee78bec65fa64afb626175fbee0cb34f58f2c6d3f830294748366f9265a0",
+    "assets/buildings/koep-ivy.webp": "7f0eb5bd95b68066d4f20f7d01db3d9c6c567e1695c1cf3260c7b4b24f54c21b",
+    "assets/buildings/koep-platte-wall.webp": "56df5049c9680b3d15a1c786ddeb2c5a0d8ff4a39781b97fddb52cad299f4064",
+    "assets/buildings/koep-platte-window.webp": "f0a53c70242c91e88a8b734481221bb2d9d92568d369667b2f30009190bd9a9d",
+    "assets/buildings/koep-roof-ruin.webp": "b5f368ed69e9d736b4fbc9d8c8e0c4616a175b64089d88a2317146c3b33e9260",
+    "assets/buildings/koep-roof.webp": "2cd938727d0e939f5034fe00743166b66bdd27bda63ff045dd866ddbd0576c43",
+    "assets/buildings/koep-shopfront.webp": "55753b500c9a2277d5a584de7b2971b18c08300f7b2c226f778705adef7fa4ed",
+    "assets/manifest.json": "3fea2820a32ff8a3736c4e9cdf1fd4a032d5aa605fd0ed10a82bf17e626c319b",
+    "index.html": "dc9177600864ad9594a3f790e1a51d7096970671059b0beaafe38939781a4fef",
+    "js/alex.js": "623ff5a5223527ecb9f654cc092fbe31faf0b35cada01886ac00c2ff00cb0704",
+    "js/anim.js": "c2e44013ad1ff98349d6b7fe8b41ec980f6cc897df48b2a981d1c0550ff0a00a",
+    "js/art.js": "49c6cf7764ee6e4e315b3257486865fd86526bb6661eed9f2296ffb0e4e42fb7",
+    "js/audio.js": "3c6f832ff8a2613aac74243d509e3f108304b4f2cfa8ecaee66f48d9ce84be56",
+    "js/base.js": "74e395dba2451863d17521fc2e47a0d2c966bef49582331abe1eb6ffcded6f64",
+    "js/biomes.js": "0abfe8cb86cce0782bee4ffb728071f80d8f409863af1f943c68eb8978f7ce05",
+    "js/canvas.js": "d34cbe815e1873b7c0183e2b12421f0d148e801d3b4cbce41b34263bb1015fc9",
+    "js/combat.js": "c385433c9e7bc3e132ebd56e3f839375c6a2ede301a5d6c9653efc8f7d279221",
+    "js/core.js": "4e6fc90582b152b596f44ef98d9d1d539d8b6499608ed1b66ba9735a61c83ccc",
+    "js/data.js": "67efe7a86c5faa05caea2fd965482591e5f9bf22179a14d55d04db2fe9ba6b7e",
+    "js/feedback.js": "85014f11d8a9cc17a1f5a04b25c92351802401351118fa8cdcf59b5286b17dfc",
+    "js/gdr-assets.js": "55ecdf5d40153c52cb4c086d28bf9f630e809b76fe1acccd464b800850787e7e",
+    "js/geo.js": "e90401ecb4e49452baa003442afe48d344d754d28b1cd80dd8b1e6d4b0d21048",
+    "js/hero.js": "afd81d88185464cfed1dbe6ac4580412f26a096ef2d81878018247ef1c570e7a",
+    "js/input.js": "10a5c000ebcfb7cc2ddb940e8fc0ef7e6e4fc50a3337e911389765949c2d0fdd",
+    "js/iso.js": "c2005cf3d6b520aafbc12cd41263ded6a2182fb70dc5a44ed260b96d589235f6",
+    "js/items.js": "6a7432a89f3e781f0fc3e318a0dfe8814599f4b2e3149e4492d8fb0fab247208",
+    "js/koep-assets.js": "61736794d72306b22583a4f41665ee8eea0904fcb097e51b63512ee0b01b3d89",
+    "js/main.js": "e8da6f7673f61ac50a173f47b6b9a5803b363eeff175f26df254e34d12a7e8c4",
+    "js/mitte.js": "e4c308c61318985360186b3e4c923813e415e1c5d3a12da8f7cab9fc204371f7",
+    "js/panels.js": "391c2586c86b26517b834cb4cae446f959922528cd0272aa1bc58b1cdb077dd4",
+    "js/render.js": "04b45901dcb536292904854b5c49495f06474eea86c6259dfce5c24f623cfce9",
+    "js/save.js": "1ac146255d812abf515549e9ddb21003aa4feb91c69333af4a10a0b0e430faab",
+    "js/sprites.js": "b1787f5f565065b81c0d8fa0d2961722c5d6c2aa097280541a2ef599bec999b6",
+    "js/state.js": "84639cfc7b0782978f0b564f290ebf8ce4db7c5f835736c9ba7be81fb57ca48a",
+    "js/ubahn.js": "814179fb853bc0c1317947d958e54cfc13b7bb3b85c2c3b1f500c7474d95b725",
+    "js/update.js": "7d73e47144fc52b457efab07b28f4ed244e0fc6713f33c3de095756345e26182",
+    "js/vfx.js": "623ef8f87d8ca82c74642af29694581db3cddee52f8069a680f2ac1d01ae8a10",
+    "js/world.js": "2970503023e4001f67172664f67743c83401a73e8cb9037d6749bab752218c92",
+    "sw.js": "022563a0f969d2e1ed98a9dbd29c0bf07f8d8758599e4eef0c349e8aee67dc10",
+    "tools/perf_koep.cjs": "4b6603060f04f6860919cb35e66b84ca6ee8af78963d2cc73b72b3fd9a6cf2cc"
+  },
+  "started": "2026-11-10T23:39:22.523Z",
+  "districts": [
+    {
+      "scene": {
+        "district": "Köpenick",
+        "version": "0.71",
+        "buildings": 833,
+        "enemies": 40,
+        "camera": [
+          1379.1642443203928,
+          1263.6337905390387
+        ],
+        "Z": 1.4814814814814814,
+        "DPR": 2,
+        "bakeScale": 3,
+        "visibleKit": 9,
+        "cache": {
+          "decodedBytes": 1592672,
+          "sharedCanvasBytes": 873504,
+          "canvasBytes": 37149876,
+          "perBuildingCanvasBytes": 36276372,
+          "totalBytes": 38742548,
+          "cacheLimitBytes": 40000000,
+          "cachedBuildings": 18,
+          "cacheReady": true,
+          "evictions": 3,
+          "maxAllocatedBytes": 39408404
+        }
+      },
+      "samples": [
+        {
+          "on": 2.6110000006357827,
+          "off": 2.156333333651225
+        },
+        {
+          "off": 2.3096666669845582,
+          "on": 2.1270000012715657
+        },
+        {
+          "on": 2.176333333651225,
+          "off": 2.1873333342870076
+        },
+        {
+          "off": 2.165,
+          "on": 2.080333333015442
+        },
+        {
+          "on": 2.0606666660308837,
+          "off": 2.48
+        },
+        {
+          "off": 2.154666666984558,
+          "on": 2.014333333969116
+        },
+        {
+          "on": 2.024666666984558,
+          "off": 2.233666666348775
+        },
+        {
+          "off": 2.1076666657129923,
+          "on": 2.0380000003178913
+        },
+        {
+          "on": 2.0673333326975505,
+          "off": 2.1559999990463257
+        },
+        {
+          "off": 2.2,
+          "on": 2.0276666673024497
+        },
+        {
+          "on": 1.9863333336512248,
+          "off": 2.2676666673024495
+        },
+        {
+          "off": 2.2683333333333335,
+          "on": 2.0516666666666667
+        },
+        {
+          "on": 2.485666666030884,
+          "off": 2.0819999996821084
+        },
+        {
+          "off": 2.280333333015442,
+          "on": 2.1216666666666666
+        },
+        {
+          "on": 1.9969999996821086,
+          "off": 2.228999999364217
+        },
+        {
+          "off": 2.154666666984558,
+          "on": 2.191000000635783
+        },
+        {
+          "on": 1.9903333330154418,
+          "off": 2.1686666663487753
+        },
+        {
+          "off": 2.0830000003178912,
+          "on": 2.0359999990463256
+        },
+        {
+          "on": 2.1886666663487753,
+          "off": 2.170333334604899
+        },
+        {
+          "off": 2.1236666663487753,
+          "on": 2.0016666666666665
+        },
+        {
+          "on": 2.0443333339691163,
+          "off": 2.26
+        }
+      ],
+      "offMedian": 2.170333334604899,
+      "onMedian": 2.0516666666666667,
+      "medianPairedPct": -6.512995033790425,
+      "ci95Pct": [
+        -8.223178605570592,
+        -2.256361078463409
+      ],
+      "verdict": "pass"
+    },
+    {
+      "scene": {
+        "district": "Alexanderplatz",
+        "version": "0.71",
+        "buildings": 590,
+        "enemies": 40,
+        "camera": [
+          2420,
+          1500
+        ],
+        "Z": 1.4814814814814814,
+        "DPR": 2,
+        "bakeScale": 3,
+        "visibleKit": 0,
+        "cache": {
+          "decodedBytes": 1592672,
+          "sharedCanvasBytes": 873504,
+          "canvasBytes": 873504,
+          "perBuildingCanvasBytes": 0,
+          "totalBytes": 2466176,
+          "cacheLimitBytes": 40000000,
+          "cachedBuildings": 0,
+          "cacheReady": false,
+          "evictions": 0,
+          "maxAllocatedBytes": 2466176
+        }
+      },
+      "samples": [
+        {
+          "on": 2.989666666984558,
+          "off": 2.9513333320617674
+        },
+        {
+          "off": 3.116333333651225,
+          "on": 2.9393333339691163
+        },
+        {
+          "on": 2.9336666663487754,
+          "off": 2.955
+        },
+        {
+          "off": 3,
+          "on": 3.1359999990463256
+        },
+        {
+          "on": 3.124666666984558,
+          "off": 4.476333333651225
+        },
+        {
+          "off": 3.544666666984558,
+          "on": 3.2080000003178912
+        },
+        {
+          "on": 3.1226666673024495,
+          "off": 3.056333333651225
+        },
+        {
+          "off": 2.925666666030884,
+          "on": 3.1166666666666667
+        },
+        {
+          "on": 3.844666666984558,
+          "off": 4.171333333651225
+        },
+        {
+          "off": 2.980999999046326,
+          "on": 2.958999999364217
+        },
+        {
+          "on": 2.843666666348775,
+          "off": 2.985
+        },
+        {
+          "off": 2.7083333333333335,
+          "on": 3.374666666984558
+        },
+        {
+          "on": 3.121333333651225,
+          "off": 3.3513333336512248
+        },
+        {
+          "off": 2.9023333326975504,
+          "on": 2.793999999364217
+        },
+        {
+          "on": 2.830333333015442,
+          "off": 2.7859999990463256
+        },
+        {
+          "off": 2.7126666673024498,
+          "on": 2.904333332379659
+        },
+        {
+          "on": 2.810333333015442,
+          "off": 2.7893333339691164
+        },
+        {
+          "off": 2.795,
+          "on": 2.670666667620341
+        },
+        {
+          "on": 2.729333332379659,
+          "off": 2.7776666673024497
+        },
+        {
+          "off": 2.979666666984558,
+          "on": 2.7563333336512246
+        },
+        {
+          "on": 2.7216666666666667,
+          "off": 2.7276666673024494
+        }
+      ],
+      "offMedian": 2.955,
+      "onMedian": 2.9393333339691163,
+      "medianPairedPct": -0.7380073696459877,
+      "ci95Pct": [
+        -4.734785046942203,
+        1.29884803273006
+      ],
+      "verdict": "pass"
+    }
+  ],
+  "errors": [],
+  "verdict": "pass",
+  "finished": "2026-11-10T23:40:52.251Z"
+}
