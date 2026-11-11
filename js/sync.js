@@ -3,7 +3,7 @@
    Online save is opt-in per player with a sync code (XXXX-XXXX) that moves the save between devices; local save stays the primary copy.
    Concurrency: every push carries the server time of the last sync (os.base); the server refuses it if another device wrote since, then this device pulls (old local state goes into the backups).
    Run telemetry: every logged run (rs2hist, not bot runs) goes up once, anonymous player id S.pid, opt-out S.tlo. Never from localhost. */
-const SYNC_URL='';
+const SYNC_URL='https://script.google.com/macros/s/AKfycbyUCf3slojkaYJhVemGU54EBidrXFhj2FoOANlOZQQdIxhO4YIWTW1kF9FPv3hVDXQ/exec';
 const os={code:null,base:0,state:'off',busy:false,dirty:false,timer:0,pend:false};
 const lsG=k=>{try{return localStorage.getItem(k);}catch(e){return null;}},lsS=(k,v)=>{try{v==null?localStorage.removeItem(k):localStorage.setItem(k,v);}catch(e){}};
 const osDev=()=>/^(localhost|127\.0\.0\.1|)$/.test(location.hostname)||!!window.SIM,osFmt=c=>c?c.slice(0,4)+'-'+c.slice(4):'';

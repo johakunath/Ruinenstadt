@@ -11,6 +11,10 @@ Google Sheet with a bound Apps Script web app. Free, no server. Players need no 
 
 Code changes later: Deploy → Manage deployments → edit → Version: New version. The URL stays the same.
 
+## Live
+
+Sheet: https://docs.google.com/spreadsheets/d/1Mm1UdqRa5n1NGnjgg0EmE4znc16Wm-vv7cwS0LNNUkk (owner Johannes). The web app URL is in `js/sync.js`.
+
 ## Data
 
 | Tab | Content |
