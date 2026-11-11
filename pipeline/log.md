@@ -603,3 +603,10 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - PR #36 initially had no review submissions/comments. Mark ready, request current-head review, address actionable findings, then merge under Johannes's explicit authorization. Checks are scoped to the actual merge/review changes.
 
 - Review completed on `2743e054f48d629fe40275b0789441e2ff11898e` with no findings or unresolved threads. All 73 JS checks plus prop assertions pass; brief integrated v0.81 play smoke has zero page errors. Final follow-up changes only backlog/task status. Merge authorized by Johannes; retain historical art/GPU proof without redundant reruns.
+
+## 2026-11-11 · Codex · task 06 boss style canvases started
+
+- Claimed the next open asset-generation package on local branch `codex/bosses`, independently from the nature runtime/performance handoff.
+- Built-in referenced-image generation produced three transparent style canvases covering all nine district bosses. The eight existing Kodex portraits remain the identity source; the Volkseigene Koloss follows its code concept as a clock-ring Plattenbau machine with asymmetric tool arms.
+- Selected all nine full-body designs as the production direction because their silhouettes and signature colours are clearly distinct. Raw PNGs, exact prompts and the decision record are in `assets/raw/codex/06-bosses/`. No runtime, gameplay, version or cache changes yet.
+- Next: animation-source sheets, beginning with idle, attack and hit poses. No push, PR or merge performed.
