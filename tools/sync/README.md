@@ -13,7 +13,7 @@ Code changes later: Deploy → Manage deployments → edit → Version: New vers
 
 ## Live
 
-Sheet: https://docs.google.com/spreadsheets/d/1Mm1UdqRa5n1NGnjgg0EmE4znc16Wm-vv7cwS0LNNUkk (owner Johannes). The web app URL is in `js/sync.js`.
+Sheet „Ruinenstadt Sync (live)“: https://docs.google.com/spreadsheets/d/14rG_toEJ88HeYDmMmW2jFbHVgQVO21PnAgNx1dJlxsQ (owner Johannes, the script is bound to this one). The web app URL is in `js/sync.js`.
 
 ## Data
 
