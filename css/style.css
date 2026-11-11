@@ -302,3 +302,10 @@ body.tab #fsb{top:calc(env(safe-area-inset-top,0px) + 82px);right:calc(max(24px,
 @media (min-width:3000px) and (min-height:1600px){#invbox,#optbox,#menubox,#perkbox,#endbox,#tradebox{zoom:1.7}}
 .qic{width:44px;height:44px;border:1px solid var(--edge);border-radius:6px;display:grid;place-items:center;color:var(--ember);background:#120d0a}.qic.won{color:#f2d14b;border-color:#8a6a1e;box-shadow:inset 0 0 12px rgba(242,209,75,.25)}.qic .uic{display:block}
 .qic.off{opacity:.45}
+/* v0.78 mods panel (variant A): wrench on the weapon slot, mods card in the detail column */
+.doll .wmod{grid-area:1/3;justify-self:end;align-self:start;z-index:2;transform:translate(8px,-8px);display:inline-flex;align-items:center;gap:3px;padding:3px 6px;border-radius:12px;border:1px solid #f2a04b;background:#2a1d12;color:#f2a04b;font:inherit;font-size:12px;cursor:pointer;line-height:1}
+.doll .wmod.on{background:#f2a04b;color:#120d0a}.doll .wmod b{font-weight:600}
+.card.mods{text-align:left;display:grid;gap:10px}.mslots{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}
+.mslot{display:flex;align-items:center;gap:10px;min-height:58px;padding:8px 10px;border:1px dashed var(--edge);border-radius:4px}.mslot.on{border:1px solid #f2a04b;background:#2a1d12}
+.mslot .un{font-size:17px;font-weight:600}.mslot .ud,.mrow .ud{font-size:14px;color:var(--dim)}.mrow{padding:8px 10px}.mrow .un{font-size:17px}.mrow .kico .ico,.mslot .kico .ico{width:40px;height:40px}
+.mbtn{display:grid;gap:6px}.mats.sm{font-size:14px;gap:10px;justify-content:flex-start}.mats.sm .mico{width:22px;height:22px}.mats .zic{width:auto;height:auto;font-style:normal;background:none;margin:0;font-size:20px;line-height:1}

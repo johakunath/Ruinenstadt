@@ -18,7 +18,7 @@ const SETS={kiez:{n:'Kiezwache',p:{w:['Brechstange der Kiezwache','blade','brech
 // v0.68: set bonuses as data (pieces needed -> affix totals); sets have 5 pieces: weapon, body, talisman plus two of head, hands, feet, ring
 const SETB={kiez:[[2,{res:25}],[3,{dmg:60}],[5,{crit:15,hp:100}]],spree:[[2,{as:25}],[3,{el:80}],[5,{el:50,spd:10}]],zit:[[2,{hp:120}],[3,{dmg:55,res:20}],[5,{hp:200,leech:4}]]};
 const stashMax=()=>40+(S.camp&&S.camp.halle?20:0);
-const CAMP=[{k:'turm',n:'Wachturm',d:'+8% Widerstand, dauerhaft',p:150},{k:'sani',n:'Sanitätszelt',d:'Jede Expedition startet mit mindestens 2 Verbänden',p:140},{k:'garten',n:'Gemüsegarten',d:'Du startest jede Expedition satt (+10% Schaden für 60 Sekunden)',p:120},
+const CAMP=[{k:'turm',n:'Wachturm',d:'+8% Widerstand, dauerhaft',p:150},{k:'sani',n:'Sanitätszelt',d:'Jede Expedition startet mit mindestens 2 Verbänden',p:140},{k:'garten',n:'Gemüsegarten',d:'Du startest jede Expedition satt (+10% Schaden für 60 Sekunden), +2 Gemüse nach jeder Expedition ab Welle 3',p:120},
   {k:'halle',n:'Lagerhalle',d:'+20 Plätze im Lager',p:180},{k:'funk',n:'Funkmast',d:'Ein zusätzliches Ereignis pro Expedition',p:200},{k:'presse',n:'Schrottpresse',d:'+15% Schrott von Gegnern',p:250},{k:'lampe',n:'Stirnlampen-Werkstatt',d:'Zweihändige Waffen bekommen in Dunkelzonen eine Stirnlampe',p:160}];
 const ACH=[{k:'k100',n:'Aufräumer',d:'Besiege 100 Gegner',r:50,c:()=>S.rec.kills>=100},{k:'k1000',n:'Kiezlegende',d:'Besiege 1.000 Gegner',r:200,c:()=>S.rec.kills>=1000},
   {k:'leg1',n:'Ein Fund fürs Leben',d:'Finde ein legendäres Teil',r:100,c:()=>S.rec.legs>=1},{k:'win1',n:'Befreier',d:'Befreie einen Bezirk',r:100,c:()=>S.rec.wins>=1},
@@ -50,19 +50,22 @@ const SHRN={as:['Adrenalin','+30% Angriffstempo'],res:['Eisenhaut','+25% Widerst
 const MATS={stoff:['Stoff','#d6cfc0'],metall:['Metall','#9aa4b0'],chemie:['Chemie','#97C459'],kabel:['Kabel','#f2a04b']};
 const EMAT={ghoul:'stoff',rat:'stoff',brute:'metall',shield:'metall',spitter:'chemie',bomb:'chemie',raser:'kabel',crow:'kabel',howl:'kabel',kabel:'kabel',bass:'metall',uhr:'metall',wurz:'stoff',kern:'chemie'};
 // weapon mods (Aufsätze): recipe in materials + Schrott, effect applied in gear()/stats()
-const MODS=[{k:'nagel',n:'Nagelband',d:'+12% Schaden',c:{metall:3,stoff:1},p:30,a:[['dmg',12]]},{k:'griff',n:'Griffband',d:'+10% Angriffstempo',c:{stoff:4},p:25,a:[['as',10]]},
- {k:'gewicht',n:'Gegengewicht',d:'+6% Krit-Chance',c:{metall:4},p:30,a:[['crit',6]]},{k:'batt',n:'Autobatterie',d:'Strom-Element, sonst +20% Elementarschaden',c:{kabel:3,metall:1},p:40,el:'shock'},
- {k:'tank',n:'Benzintank',d:'Feuer-Element, sonst +20% Elementarschaden',c:{chemie:2,metall:2},p:40,el:'fire'},{k:'phiole',n:'Säurephiole',d:'Säure-Element, sonst +20% Elementarschaden',c:{chemie:3,stoff:1},p:40,el:'acid'},
- {k:'dorn',n:'Stacheldraht',d:'+2 Leben pro Kill',c:{metall:2,kabel:2},p:35,a:[['leech',2]]}];
+// v0.78: fewer, stronger mods with a mechanic each. eb: bonus vs elites and bosses, wt: every n-th attack is a Wucht hit, el: element (also as a second element), +35% element damage, procs on 50% of hits
+const MODS=[{k:'nagel',n:'Nagelband',d:'+20% Schaden, gegen Elite und Endgegner zusätzlich +20%',c:{metall:4,stoff:2},p:60,a:[['dmg',20]],eb:.2},{k:'gewicht',n:'Gegengewicht',d:'Jeder 4. Angriff ist ein Wuchttreffer: sicherer Krit, doppelter Rückstoß, kurz betäubt',c:{metall:5,kabel:1},p:60,wt:4},
+ {k:'batt',n:'Autobatterie',d:'Strom-Element, auch als zweites Element. +35% Elementarschaden, Element bei jedem 2. statt 3. Treffer',c:{kabel:4,metall:2},p:70,el:'shock'},
+ {k:'tank',n:'Benzintank',d:'Feuer-Element, auch als zweites Element. +35% Elementarschaden, Element bei jedem 2. statt 3. Treffer',c:{chemie:3,metall:3},p:70,el:'fire'},{k:'phiole',n:'Säurephiole',d:'Säure-Element, auch als zweites Element. +35% Elementarschaden, Element bei jedem 2. statt 3. Treffer',c:{chemie:4,stoff:2},p:70,el:'acid'},
+ {k:'dorn',n:'Stacheldraht',d:'+5 Leben pro Kill, +10% Widerstand',c:{metall:3,kabel:3},p:60,a:[['leech',5],['res',10]]}];
 // equipment slots: w weapon, h head, a body, g hands, f feet, t talisman, r ring, i implant (locked until Potsdamer Platz). Main stat of h/a/g/f in SSTAT, t/r via TM
 const SLOTS=['w','h','a','g','f','t','r','i'],SLOTN={w:'Waffe',h:'Kopf',a:'Körper',g:'Hände',f:'Füße',t:'Talisman',r:'Ring',i:'Implantat'},SSTAT={a:'hp',h:'res',g:'as',f:'spd'};
 const typeN=it=>it.slot==='w'?KIND[it.kind].n:{h:'Kopfschutz',a:'Rüstung',g:'Handschuhe',f:'Schuhe',t:'Talisman',r:'Ring',i:'Implantat'}[it.slot];
 const modSlots=it=>it&&it.slot==='w'?(it.r>=2||it.set?2:1):0;
 const SURV=[{k:'doktor',n:'Dr. Ahmet',d:'Jede Expedition startet mit einem Verband mehr',c:'#d6cfc0'},{k:'schmied',n:'Mira, Schmiedin',d:'Aufsätze kosten 30% weniger Schrott',c:'#8a4a32'},
- {k:'kurier',n:'Kurier Jonas',d:'Händler bieten ein viertes Teil an',c:'#3a6a8a'},{k:'koechin',n:'Oma Gerda',d:'Döner fallen doppelt so oft',c:'#7a3a6a'},
+ {k:'kurier',n:'Kurier Jonas',d:'Händler bieten ein viertes Teil an',c:'#3a6a8a'},{k:'koechin',n:'Oma Gerda',d:'Döner und Zutaten fallen doppelt so oft',c:'#7a3a6a'},
  {k:'spaeher',n:'Späherin Lin',d:'+1 Beuteglück',c:'#3B6D11'},{k:'mechaniker',n:'Kalle, Mechaniker',d:'-10% Sprint-Abklingzeit',c:'#c9a227'}];
 const hasS=k=>S.surv&&S.surv[k];
-const MEALS=[{k:'suppe',n:'Erbsensuppe',d:'+20% Leben',p:30},{k:'curry',n:'Currywurst',d:'+12% Schaden',p:40},{k:'kaffee',n:'Filterkaffee',d:'+10% Angriffs- und Lauftempo',p:40},{k:'soljanka',n:'Soljanka',d:'+1,5 Leben pro Sekunde',p:35},{k:'gurke',n:'Spreewaldgurken',d:'+2 Beuteglück',p:50,req:'garten'}];
+// v0.78 food: ingredients (Zutaten) drop from enemies and crates, meals cost only ingredients and last the whole next expedition
+const ZUT={fleisch:['Fleisch','#c0614a','🍖'],gemuese:['Gemüse','#8fd16a','🥕'],gewuerz:['Gewürze','#e0a43a','🌶️']},EZUT={ghoul:'fleisch',rat:'fleisch',brute:'fleisch',crow:'fleisch',howl:'fleisch',wurz:'gemuese',kern:'gemuese',spitter:'gemuese',shield:'gemuese'};
+const MEALS=[{k:'suppe',n:'Erbsensuppe',d:'+35% Leben',c:{gemuese:3}},{k:'curry',n:'Currywurst',d:'+25% Schaden',c:{fleisch:2,gewuerz:1}},{k:'kaffee',n:'Filterkaffee',d:'+18% Angriffs- und Lauftempo',c:{gewuerz:2}},{k:'soljanka',n:'Soljanka',d:'+3 Leben pro Sekunde, +10% Widerstand',c:{fleisch:2,gemuese:2}},{k:'gurke',n:'Spreewaldgurken',d:'+4 Beuteglück, +50% Material und Zutaten',c:{gemuese:3,gewuerz:1},req:'garten'}];
 // daily challenge: seeded world and spawns, two modifiers per day
 const DMODS={blut:['Blutmond','Gegner sind 30% schneller'],elite:['Elitenacht','Doppelt so viele Elite-Gegner'],glas:['Glaskanone','+50% Schaden, -40% Leben'],dunkel:['Stromausfall','Die Nacht ist stockdunkel'],gold:['Goldrausch','Doppelter Schrott'],horde:['Horde','40% mehr Gegner pro Welle'],eisen:['Eiserne Haut','Gegner haben 30% mehr Leben, Beute ist besser']};
 const dayKey=()=>{const t=new Date();return t.getFullYear()*10000+(t.getMonth()+1)*100+t.getDate();};

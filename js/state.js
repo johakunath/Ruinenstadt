@@ -4,17 +4,17 @@ function newPlayer(){P={x:SX,y:SY,r:12,hp:100,lvl:1,xp:0,face:-Math.PI/2,atkA:0,
 function gear(eq){const A={};for(const k in AFX)A[k]=0;
   for(const s of SLOTS){const it=eq[s];if(!it)continue;if(SSTAT[s])A[SSTAT[s]]+=it.val;if(s==='t'||s==='r'||s==='i')A[TM[it.kind]]+=it.val;
     (IMP[baseOf(it)]||[]).forEach(q=>A[q[0]]+=q[1]);(it.afx||[]).forEach(f=>A[f.k]+=f.v);
-    (it.mods||[]).forEach(k=>{const M=MODS.find(m=>m.k===k);if(!M)return;(M.a||[]).forEach(q=>A[q[0]]+=q[1]);if(M.el&&(it.el||(it.mods.find(x=>MODS.find(m=>m.k===x&&m.el))!==k)))A.el+=20;});}
+    (it.mods||[]).forEach(k=>{const M=MODS.find(m=>m.k===k);if(!M)return;(M.a||[]).forEach(q=>A[q[0]]+=q[1]);if(M.el)A.el+=35;});}
   if(S.camp&&S.camp.turm)A.res+=8;for(const k in SETB){const n=setCount(eq,k);for(const[need,fx]of SETB[k])if(n>=need)for(const a in fx)A[a]+=fx[a];}return A;}
-function stats(eq){eq=eq||S.eq;const w=eq.w,K=KIND[w.kind],A=gear(eq),lv=P?P.lvl:1,els=[];const wel=w.el||((w.mods||[]).map(k=>MODS.find(m=>m.k===k)).find(m=>m&&m.el)||{}).el;if(wel)els.push(wel);if(setCount(eq,'spree')>=3&&!els.includes('shock'))els.push('shock');['fire','acid','shock'].forEach(e=>{if(pk(e)&&!els.includes(e))els.push(e);});
-  const ml=run&&run.meal;if(dm_('glas'))A.dmg+=50;if(ml==='kaffee'){A.as+=10;A.spd+=10;}if(ml==='soljanka')A.regen+=1.5;if(ml==='gurke')A.luck+=2;if(ml==='curry')A.dmg+=12;
+function stats(eq){eq=eq||S.eq;const w=eq.w,K=KIND[w.kind],A=gear(eq),lv=P?P.lvl:1,els=[];const wm=(w.mods||[]).map(k=>MODS.find(m=>m.k===k)).filter(Boolean);if(w.el)els.push(w.el);for(const m of wm)if(m.el&&!els.includes(m.el))els.push(m.el);if(setCount(eq,'spree')>=3&&!els.includes('shock'))els.push('shock');['fire','acid','shock'].forEach(e=>{if(pk(e)&&!els.includes(e))els.push(e);});
+  const ml=run&&run.meal;if(dm_('glas'))A.dmg+=50;if(ml==='kaffee'){A.as+=18;A.spd+=18;}if(ml==='soljanka'){A.regen+=3;A.res+=10;}if(ml==='gurke')A.luck+=4;if(ml==='curry')A.dmg+=25;
   const asF=Math.max(.4,1+.12*pk('rate')+A.as/100+(SHR.as>0?.3:0)),cdr=clamp(A.cdr/100,0,.5);
-  return{kind:w.kind,K,A,els,elp:Math.max(0,1+A.el/100+.25*pk('elp')),dmg:Math.max(1,(w.val+(lv-1)*2*K.k)*(1+.07*S.upg.dmg+.15*pk('dmg')+A.dmg/100+.05*mLvl(w.kind))),
-    maxHp:Math.max(20,Math.round((100+(lv-1)*10+15*S.upg.hp+25*pk('hp')+A.hp)*(run&&run.meal==='suppe'?1.2:1)*(dm_('glas')?.6:1))),crit:clamp(.08+.08*pk('crit')+A.crit/100,0,.75),spd:182*clamp(1+.1*pk('spd')+A.spd/100+(SHR.spd>0?.25:0),.5,1.8),
+  return{kind:w.kind,K,A,els,elc:wm.some(m=>m.el)?.5:.3,eb:wm.reduce((a,m)=>a+(m.eb||0),0),wt:(wm.find(m=>m.wt)||{}).wt||0,elp:Math.max(0,1+A.el/100+.25*pk('elp')),dmg:Math.max(1,(w.val+(lv-1)*2*K.k)*(1+.07*S.upg.dmg+.15*pk('dmg')+A.dmg/100+.05*mLvl(w.kind))),
+    maxHp:Math.max(20,Math.round((100+(lv-1)*10+15*S.upg.hp+25*pk('hp')+A.hp)*(run&&run.meal==='suppe'?1.35:1)*(dm_('glas')?.6:1))),crit:clamp(.08+.08*pk('crit')+A.crit/100,0,.75),spd:182*clamp(1+.1*pk('spd')+A.spd/100+(SHR.spd>0?.25:0),.5,1.8),
     regen:Math.max(0,A.regen),res:clamp(A.res/100+.06*pk('res')+(SHR.res>0?.25:0),-.5,.75),leech:Math.max(0,A.leech)+2*pk('leech'),luck:A.luck+(hasS('spaeher')?1:0),
     rate:K.rate/asF,reach:(K.reach||0)*(1+.2*pk('reach')),pspd:560*(1+.2*pk('reach')),
     dashCd:Math.max(.4,1.4*(1-.08*S.upg.dash)*(1-.2*pk('dashcd'))*(1-cdr)*(hasS('mechaniker')?.9:1)),skCd:{blade:7,hammer:8,sling:6,spear:7}[w.kind]*(1-.2*pk('skill'))*(1-cdr)*(mLvl(w.kind)>=5?.85:1)};}
-function power(st){const dps=st.dmg*(1+st.crit)/st.rate*(1+(st.els.length?.18*st.elp:0)),ehp=st.maxHp/(1-st.res)*(1+st.regen*.04);return Math.round(Math.sqrt(dps*ehp)*(1+(st.spd/182-1)*.4)*(1+st.luck*.01));}
+function power(st){const dps=st.dmg*(1+st.crit)/st.rate*(1+(st.els.length?.18*st.elp*(st.elc||.3)/.3*Math.min(2,st.els.length):0))*(st.wt?1.12:1),ehp=st.maxHp/(1-st.res)*(1+st.regen*.04);return Math.round(Math.sqrt(dps*ehp)*(1+(st.spd/182-1)*.4)*(1+st.luck*.01));}
 function refresh(){if(!P){ST=stats();return;}const pct=ST?P.hp/ST.maxHp:1;ST=stats();P.hp=Math.min(ST.maxHp,Math.max(1,Math.round(ST.maxHp*pct)));}
 const ilvl=()=>D.lvl+(run?Math.max(1,Math.ceil(wE()))+run.th*3:1);
 function startRun(di,endless,daily,tun){// tun: line index for a U-Bahn tunnel run (js/ubahn.js)
