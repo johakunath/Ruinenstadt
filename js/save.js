@@ -14,6 +14,8 @@ function fix(s){if(!s.z78){s.z78=1;const M=s.mods||{};if(M.griff){M.gewicht=(M.g
   /* v0.65: Kodex discoveries (S.kx). Old saves: everything from districts already reached counts as met */if(nokx){s.kx={};if(s.rec&&s.rec.runs>0){const late={uhr:3,wurz:3,kern:3,kabel:4,bass:4};for(const k of KODEX){const t=k[3];if(!late[t]||s.unlocked>=late[t])s.kx[t]=1;}for(const k in EMN)s.kx['e'+k]=1;DIST.forEach((d,j)=>{if((s.best[j]||0)>=WAVES)s.kx['b'+d.b]=1;});}}
   s.unlocked=Math.min(s.unlocked,DIST.length);for(const k of SLOTS)if(!(k in s.eq))s.eq[k]=null;return s;}
 function load(){S=null;try{const s=JSON.parse(localStorage.getItem('rs2'));if(s&&s.upg&&s.eq)S=fix(s);}catch(e){}if(!S)S=defSave();}
+/* v0.84 sync conflicts: the save with more progress wins, not the last writer. Order: open districts, cleared lines, waves won, threat, wins, runs, then save time */
+const svProg=s=>{const r=s.rec||{};return[s.unlocked||1,(s.ln||[]).filter(Boolean).length,(s.best||[]).reduce((a,v)=>a+(v||0),0),s.tmax||0,r.wins||0,r.runs||0,s.t||0];},svMore=(a,b)=>{const x=svProg(a),y=svProg(b);for(let i=0;i<x.length;i++)if(x[i]!==y[i])return x[i]>y[i];return false;};
 const cloud={ref:null,state:'off',busy:false,dirty:false,timer:0};
 function save(){checkAch();S.t=Date.now();try{localStorage.setItem('rs2',JSON.stringify(S));}catch(e){}cloudQueue();osQueue();}
 function cloudQueue(){if(!cloud.ref||cloud.state==='err')return;cloud.dirty=true;clearTimeout(cloud.timer);cloud.timer=setTimeout(cloudPush,3000);}
@@ -30,8 +32,8 @@ async function initCloud(){
     const slow=setTimeout(()=>{if(cloud.state==='sync'){cloud.state='slow';if(state==='menu')renderMenu();}},10000);
     const snap=await cloud.ref.get();clearTimeout(slow);
     const rd=snap.exists?snap.data():null;let rs=null;try{rs=rd&&rd.s?JSON.parse(rd.s):null;}catch(e){}
-    if(rs&&(rs.t||0)>(S.t||0)&&state==='menu'){adoptSave(rs,'Cloud');toast('Spielstand aus der Cloud geladen');}
-    else if(S.t&&(!rs||(rs.t||0)<S.t)){cloud.dirty=true;await cloudPush();}
+    if(rs&&svMore(rs,S)&&state==='menu'){adoptSave(rs,'Cloud');toast('Spielstand aus der Cloud geladen');}
+    else if(S.t&&(!rs||svMore(S,rs))){if(rs)bak('Cloud verworfen',rd.s);cloud.dirty=true;await cloudPush();}
     cloud.state=cloud.state==='err'?'err':'on';if(state==='menu')renderMenu();
   }catch(e){cloud.state=cloud.ref?'err':'off';if(state==='menu')renderMenu();}}
 // a save from elsewhere (artifact cloud, online save) replaces the local one without pushing it back; backup first, the anonymous player id stays with the device's first save
@@ -41,7 +43,7 @@ S=defSave();// placeholder until data.js has run; the real load() runs in main.j
 const b64e=t=>btoa(String.fromCharCode(...new TextEncoder().encode(t))),b64d=t=>new TextDecoder().decode(Uint8Array.from(atob(t),c=>c.charCodeAt(0)));
 /* v0.70 save safety: rolling backups before every overwrite (import, cloud pull, new game) and a run history outside the save, both in localStorage (lost when the browser data is cleared, so „Alle Daten exportieren“ is the real safety net) */
 const lsGet=(k)=>{try{const a=JSON.parse(localStorage.getItem(k));return Array.isArray(a)?a:[];}catch(e){return[];}},lsSet=(k,a)=>{try{localStorage.setItem(k,JSON.stringify(a));return true;}catch(e){return false;}};
-function bak(why){if(!S||!(S.t||(S.rec&&S.rec.runs)))return;const a=lsGet('rs2bak');a.unshift({t:Date.now(),v:VERSION,why,s:JSON.stringify(S)});let n=5;while(n>0&&!lsSet('rs2bak',a.slice(0,n)))n--;}
+function bak(why,js){if(!js&&(!S||!(S.t||(S.rec&&S.rec.runs))))return;const a=lsGet('rs2bak');a.unshift({t:Date.now(),v:VERSION,why,s:js||JSON.stringify(S)});let n=5;while(n>0&&!lsSet('rs2bak',a.slice(0,n)))n--;}
 // merges every run of the save log (S.tlog) that the history does not have yet: seeds it for existing players, picks up runs of imported saves, no duplicates
 const hkey=e=>[e.v,e.day,e.d,e.m,e.end,e.wave,e.t,e.kills,e.dmg,e.lvl].join('|');
 function histSync(){const a=lsGet('rs2hist'),k=new Set(a.map(hkey));let n=0;for(const e of S.tlog||[])if(!k.has(hkey(e))){a.push(Object.assign({at:Date.now()},e));k.add(hkey(e));n++;}if(n){lsSet('rs2hist',a.slice(-500));if(typeof osTl==='function')setTimeout(osTl,1500);}}
