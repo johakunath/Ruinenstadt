@@ -1,0 +1,4729 @@
+{
+  "started": "2026-11-11T13:01:17.371Z",
+  "sourceHashes": {
+    "index.html": "14737c775694136bab11f22cee84ab582f5ae6832189b8d115ede2eff8065fe9",
+    "sw.js": "de203799f946c7730953a8ee66286cca174b70119a0075f41c5ba49fd925cbbe",
+    "assets/manifest.json": "b376a60f72a562b3c9b87606723ade8a447fa3443737a515143c51316a3ea7c9",
+    "tools/proof_vehicles.cjs": "39289fc39ba3314b9cbcff18f250b8303efb503ab5bed048a01bb831c196d961",
+    "js/alex.js": "623ff5a5223527ecb9f654cc092fbe31faf0b35cada01886ac00c2ff00cb0704",
+    "js/anim.js": "c2e44013ad1ff98349d6b7fe8b41ec980f6cc897df48b2a981d1c0550ff0a00a",
+    "js/art.js": "80ac71afc7ba58b281773023689a915d058fb8bab30cf5d1fa8c2d488fdfcd60",
+    "js/audio.js": "3c6f832ff8a2613aac74243d509e3f108304b4f2cfa8ecaee66f48d9ce84be56",
+    "js/base.js": "31be4018ec54467fe920135041267ac2a1b597eabea8583cfd16608b496c327d",
+    "js/biomes.js": "8f85bdcc844ab5b81dfbe350d59c39c7ed97042e26e34242255b0e1318046661",
+    "js/canvas.js": "d34cbe815e1873b7c0183e2b12421f0d148e801d3b4cbce41b34263bb1015fc9",
+    "js/combat.js": "c385433c9e7bc3e132ebd56e3f839375c6a2ede301a5d6c9653efc8f7d279221",
+    "js/core.js": "6c043dfe435332ca99210266d9afd65b0c7881984a4242c509c39dea44a13af2",
+    "js/data.js": "67efe7a86c5faa05caea2fd965482591e5f9bf22179a14d55d04db2fe9ba6b7e",
+    "js/feedback.js": "85014f11d8a9cc17a1f5a04b25c92351802401351118fa8cdcf59b5286b17dfc",
+    "js/gdr-assets.js": "55ecdf5d40153c52cb4c086d28bf9f630e809b76fe1acccd464b800850787e7e",
+    "js/geo.js": "e90401ecb4e49452baa003442afe48d344d754d28b1cd80dd8b1e6d4b0d21048",
+    "js/hero.js": "a4598c91612a33f3e09db0230cb25786b2eb047a06f0385c35dd59eaa68e6478",
+    "js/input.js": "10a5c000ebcfb7cc2ddb940e8fc0ef7e6e4fc50a3337e911389765949c2d0fdd",
+    "js/iso.js": "222b392f022a2b6bafdc5a70a1330caec2df9780ad61c6dc18c0623a1c3b46c1",
+    "js/items.js": "6a7432a89f3e781f0fc3e318a0dfe8814599f4b2e3149e4492d8fb0fab247208",
+    "js/koep-assets.js": "137e06476943145b696e9cd7773084106a11e3857e2ead51915d13959b7be576",
+    "js/main.js": "a5650a84377222ab4a8eb8de17d231ab0bd5b6d43112ac11ff0da3541bc64129",
+    "js/mitte.js": "e4c308c61318985360186b3e4c923813e415e1c5d3a12da8f7cab9fc204371f7",
+    "js/panels.js": "f432de72ea1f90211ae58ed9552d684f431b7af71aff1a83294033d47582e87e",
+    "js/props.js": "f4778342ae7c6c0686454ee80c7bb681edf8e23909e2263847f34a6ae07064cb",
+    "js/render.js": "3ea175ebaf680b61a69500d9f24135ffd1e45b607f2f19c98871ad3288a1b0bb",
+    "js/save.js": "a11377f8bf533476fab451d84d16d793ae87f7ec9f1464bc1434184d6d0c45f5",
+    "js/sprites.js": "b1787f5f565065b81c0d8fa0d2961722c5d6c2aa097280541a2ef599bec999b6",
+    "js/state.js": "84639cfc7b0782978f0b564f290ebf8ce4db7c5f835736c9ba7be81fb57ca48a",
+    "js/sync.js": "780f3f7ab823ca65df878d7a431dbdbdb78905cb4656a1530d2562974ae20835",
+    "js/ubahn.js": "cc1e3a89b921361cc15f780e51fbceb397850ef790ccaf7e595b9f8b69007395",
+    "js/update.js": "f0d82ee32b87d720674950b4a0104b43157da0d3a95c96147d62b4575f2be0ba",
+    "js/vehicle-art.js": "732d5a31b0939be45fa899d6d86bcab4e87d9af8cf1570e6d88b7e33f220148e",
+    "js/vfx.js": "623ef8f87d8ca82c74642af29694581db3cddee52f8069a680f2ac1d01ae8a10",
+    "js/world.js": "4a745291276f93fe80eaab844a019ca9665e1e891e0d80b832cc450d8a25f92e",
+    "assets/vehicles/bus-yellow-end.webp": "b7bd2fea6c5bd9cb4ac2429ba3ae7eb988e9d79a2d2770f51c68cb98438b8daa",
+    "assets/vehicles/bus-yellow-side.webp": "cd2a5e336ef06bf96ed3ba921c771543bf0c51a6ad1129fbdc995cd0c435ba5c",
+    "assets/vehicles/bus-yellow-top.webp": "ebeeff5de9ab4eda16bfa052250455ab8f6e0ed0672a7295850ea91b11d779a3",
+    "assets/vehicles/car-blue-end.webp": "97f94df70d14b0dc3035884166fadaa825b6ee601bb12d68e083f2ef900ae6f3",
+    "assets/vehicles/car-blue-glass-end.webp": "cecfd57041795a22c5bb34894942f20ecc8a671ecea4acfc6ab24568fde136ce",
+    "assets/vehicles/car-blue-glass-side.webp": "e49912649a7999c57d0b31391e1c097dd5723c5308965bc29914d60eb419e2a0",
+    "assets/vehicles/car-blue-roof.webp": "999897d09727509a95f522ce586bbd4940c063829f57a0226f0112657164d785",
+    "assets/vehicles/car-blue-side.webp": "9c9dba9b490c99cdcf1e96a2b211558133138f3aa6c8c7ca02d46b1fab4356dc",
+    "assets/vehicles/car-blue-top.webp": "e8ce537e0ae741227ecb13db198dc6f297f1def9fdad7dbccfcdf06c2104cc0d",
+    "assets/vehicles/car-burnt-end.webp": "6fd4e1529289826ad056f261a2298060fb7f60a415307b9baaefded35622340c",
+    "assets/vehicles/car-burnt-glass-end.webp": "d9b60969cff9f16c19aed1709759bb3088d81a1a1460947ace64c18b198d97cf",
+    "assets/vehicles/car-burnt-glass-side.webp": "a1a6abf4267858c3e4d2c2164293c7056b36aa519633cad3a3292ff7e55bde59",
+    "assets/vehicles/car-burnt-roof.webp": "6aa440b99cc5391e8891eb6ff13ce54ea771b971b8fc928b6d76f8a3a46625ca",
+    "assets/vehicles/car-burnt-side.webp": "680de1fe275d0daca1b43d9a29f222fc0417c7661a4d50039b94eeadcf61ee83",
+    "assets/vehicles/car-burnt-top.webp": "eeec649a541902649d7e305eddcd4be5f5123399d687441dc1b9ad22a38d8962",
+    "assets/vehicles/car-green-end.webp": "080bbd3f267eecda9346826f42062e0a4ec9d752c2a0f428681361784873290d",
+    "assets/vehicles/car-green-glass-end.webp": "d51ff8a15b478d2a4cef557b86b291ccc018ef5059c723a749e33fcf5811c73e",
+    "assets/vehicles/car-green-glass-side.webp": "5cc544be42b5b88636d71fc793015bb8009c27a49a50cd64e30d2dfead4b1030",
+    "assets/vehicles/car-green-roof.webp": "f03905f801e058776552e00b6c73eda5187064c06e06e8a72b054e02bf581e48",
+    "assets/vehicles/car-green-side.webp": "2a994ca1b640cb719c6254b5e45ac741dcd55646531d6f3963e78fad75a8db9f",
+    "assets/vehicles/car-green-top.webp": "786fa03a51e73d27ca766f54e40dfed790755a7602a134d1e40304f8b8ea13cc",
+    "assets/vehicles/trabi-cream-end.webp": "61306cdd299d56f1187da9804ed9c68885fe36d17bdc310dbcdb4bb8bb8cda91",
+    "assets/vehicles/trabi-cream-glass-end.webp": "94b327da32ec3635053c95208b602a4236bca8d9c202762ba292b327b5b9cf34",
+    "assets/vehicles/trabi-cream-glass-side.webp": "9f1293769ab94668d26db98091946d48e0140f6e29a075210637eb4755a467bc",
+    "assets/vehicles/trabi-cream-roof.webp": "c7d0f3cdad3873752598fc4b9eda1b504a29c5b8198c4aa24196730d1c761f3b",
+    "assets/vehicles/trabi-cream-side.webp": "49b387a275fe96bde2151949fe0596b99f4a948334a45046d130d870d9d01430",
+    "assets/vehicles/trabi-cream-top.webp": "f53619e089a9441dfef7629025947d9af3218d76b259eda4b2725b7f5c4d2d32",
+    "assets/vehicles/tram-yellow-end.webp": "1ccafeff37d59ff27be72b850d4195eda8cc3fcf16b8abe30cdd30196d480dc5",
+    "assets/vehicles/tram-yellow-side.webp": "2bb861c4191f3580a1c19448065c62bfc57c5c4706a80a7b3a73d770b1043ed1",
+    "assets/vehicles/tram-yellow-top.webp": "6d5ca16baada7fbe8159e58e1a4c2fc56d63e533f78b8f1b34849f524d955429",
+    "assets/vehicles/van-blue-end.webp": "a5bdbc567bd0e1b4c84210286094223ee06ded094bbff47847a108f9f42076d0",
+    "assets/vehicles/van-blue-glass-end.webp": "511c7c26b409fab4b5c44b4bacca435171373b73f52ce9e19147559f9558eda9",
+    "assets/vehicles/van-blue-glass-side.webp": "2a14bf326ae2e18377dc4b1e36f6bbd73b8b87a8f1a0582574ad53e015da37ab",
+    "assets/vehicles/van-blue-roof.webp": "903d608b65ee1580a21fed0d970ff6e5e069dd2575aa57bbef52f3257fac27d6",
+    "assets/vehicles/van-blue-side.webp": "a0166e2a669e125b91a1b1027a1bc97cb462fd8c217c544bcbba08d00059fa23",
+    "assets/vehicles/van-blue-top.webp": "ef68a9d56ae11c4fa299d04fdb1c1c706398ab2d04d5f4fe56facd71ed0a3cb1",
+    "assets/vehicles/van-cream-end.webp": "fcb70abeee192bbd83b285899f9b9f232b626eb85d0e100732a021dfc6dcf0b7",
+    "assets/vehicles/van-cream-glass-end.webp": "c3643f5d110d0c4c7fd4602fe46df64dea0016ad63d28290ea64e102607df055",
+    "assets/vehicles/van-cream-glass-side.webp": "d377ccf1c9344c6b096c3353dfd4c1ad4b8d5cc1092b78903954f1ea0a4cb860",
+    "assets/vehicles/van-cream-roof.webp": "c506def75e464878a4ffca2c4c0315b4c31c3f751006dea41cb8b465d96b2a60",
+    "assets/vehicles/van-cream-side.webp": "3301819cc91d81a854d7d54555b35e2c021f1a3933a646737398f9e46a4a59c7",
+    "assets/vehicles/van-cream-top.webp": "30d40917b34041c117e12e5922c3bc244cc397fc50223b7d35cdb8dd6d7181b2",
+    "assets/props/barrel.webp": "ee31724b5bacde9eb5e2a42bf0929bb0a9043b19c5cd03c83daa34af88353611",
+    "assets/props/bench.webp": "0598a14cf5888fb78f9436b5082cfc1b6f71098c76f31ea6c583010eec3e3bc5",
+    "assets/props/bin.webp": "7182e7153cd50a7dd1a16cb156359f8fdf84674608756ad8eb46e8a1d5e53486",
+    "assets/props/campfire.webp": "8a5ec4e970b5266aa83a38ec769338c97c2775b3daf132f87c82ad763d85327d",
+    "assets/props/chest.webp": "1d87897efbbc66de011037556d948e693ca4f4c655a1cda81da294b73904a998",
+    "assets/props/crate.webp": "66217ddd0229c70660078fc5636c2f8518d81dc538c2ea1c1b2a0dc4402d7c36",
+    "assets/props/fence.webp": "1509c14c02aa3b9bad9ff555d7d4d09ad32c33cec71d3a656000927c28c3c0e2",
+    "assets/props/flames.webp": "993033735aba77fc6c3b56b52facf251b4c867fc10a6b6654594d40da0bfbf0e",
+    "assets/props/lamp.webp": "9748c79d3d4a4489b84ea6ca60d0f410c0c1415deaf1c73b0ffeee7eb7f5c02f",
+    "assets/props/litfass.webp": "55e1ae626e161b20016adc7a425b6f3aaad29c0500db097f87168924ec54baff",
+    "assets/props/sandbags.webp": "8f8f190ecafae4ccf5b68ebaebc2b5a0a6ea0c4058aa8caede6aec4e112544df"
+  },
+  "errors": [],
+  "failedImages": [],
+  "sheets": [
+    {
+      "kind": "car",
+      "factor": 1,
+      "checker": true,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            15.999999999999975
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000295
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000462
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000295,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000462,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 3314688,
+        "totalBytes": 7047588,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 7047588
+      }
+    },
+    {
+      "kind": "car",
+      "factor": 2,
+      "checker": true,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            15.999999999999975
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000295
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000462
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000295,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000462,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 7458048,
+        "totalBytes": 11190948,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 11190948
+      }
+    },
+    {
+      "kind": "trabi",
+      "factor": 1,
+      "checker": true,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000295
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000462
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000295,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000462,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 2955200,
+        "totalBytes": 6688100,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 6688100
+      }
+    },
+    {
+      "kind": "trabi",
+      "factor": 2,
+      "checker": true,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000295
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000462
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000295,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000462,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 6649200,
+        "totalBytes": 10382100,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 10382100
+      }
+    },
+    {
+      "kind": "van",
+      "factor": 1,
+      "checker": true,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            15.999999999999975
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            15.999999999999975
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            15.999999999999979
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999979,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 3882880,
+        "totalBytes": 7615780,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 7615780
+      }
+    },
+    {
+      "kind": "van",
+      "factor": 2,
+      "checker": true,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            15.999999999999975
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            15.999999999999975
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            15.999999999999979
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999979,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 8736480,
+        "totalBytes": 12469380,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 12469380
+      }
+    },
+    {
+      "kind": "bus",
+      "factor": 1,
+      "checker": true,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.000000000000107
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000377
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.000000000000046
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000295
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            15.999999999999979
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000107,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000295,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000377,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000016,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000536,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 7588480,
+        "totalBytes": 11321380,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 11321380
+      }
+    },
+    {
+      "kind": "bus",
+      "factor": 2,
+      "checker": true,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.000000000000107
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000377
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.000000000000046
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000295
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            15.999999999999979
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000107,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000295,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000377,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000016,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000536,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 17074080,
+        "totalBytes": 20806980,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 20806980
+      }
+    },
+    {
+      "kind": "tram",
+      "factor": 1,
+      "checker": true,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000462
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000217,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999817,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999817,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000217,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000462,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 9302784,
+        "totalBytes": 13035684,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 13035684
+      }
+    },
+    {
+      "kind": "tram",
+      "factor": 2,
+      "checker": true,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000462
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000217,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999817,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999817,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000217,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000462,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 20931264,
+        "totalBytes": 24664164,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 24664164
+      }
+    },
+    {
+      "kind": "car",
+      "factor": 1,
+      "checker": false,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            15.999999999999975
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000295
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000462
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000295,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000462,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 3314688,
+        "totalBytes": 7047588,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 7047588
+      }
+    },
+    {
+      "kind": "car",
+      "factor": 2,
+      "checker": false,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            15.999999999999975
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000295
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000462
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000295,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000462,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 7458048,
+        "totalBytes": 11190948,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 11190948
+      }
+    },
+    {
+      "kind": "trabi",
+      "factor": 1,
+      "checker": false,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000295
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000462
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000295,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000462,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 2955200,
+        "totalBytes": 6688100,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 6688100
+      }
+    },
+    {
+      "kind": "trabi",
+      "factor": 2,
+      "checker": false,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000295
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000462
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000295,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000462,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 6649200,
+        "totalBytes": 10382100,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 10382100
+      }
+    },
+    {
+      "kind": "van",
+      "factor": 1,
+      "checker": false,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            15.999999999999975
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            15.999999999999975
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            15.999999999999979
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999979,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 3882880,
+        "totalBytes": 7615780,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 7615780
+      }
+    },
+    {
+      "kind": "van",
+      "factor": 2,
+      "checker": false,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            15.999999999999975
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            15.999999999999975
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            15.999999999999979
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999979,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 8736480,
+        "totalBytes": 12469380,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 12469380
+      }
+    },
+    {
+      "kind": "bus",
+      "factor": 1,
+      "checker": false,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.000000000000107
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000377
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.000000000000046
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000295
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            15.999999999999979
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000107,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000295,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000377,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000016,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000536,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 7588480,
+        "totalBytes": 11321380,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 11321380
+      }
+    },
+    {
+      "kind": "bus",
+      "factor": 2,
+      "checker": false,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.000000000000107
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000377
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.000000000000046
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000295
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            15.999999999999979
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000107,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000295,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000377,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000016,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000536,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 17074080,
+        "totalBytes": 20806980,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 20806980
+      }
+    },
+    {
+      "kind": "tram",
+      "factor": 1,
+      "checker": false,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000462
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000217,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999817,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999817,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000217,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000462,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 9302784,
+        "totalBytes": 13035684,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 13035684
+      }
+    },
+    {
+      "kind": "tram",
+      "factor": 2,
+      "checker": false,
+      "checks": [
+        {
+          "angle": 0,
+          "axis": "x",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "x",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "x",
+          "contacts": [
+            15.999999999999975,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "x",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000135,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000462
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "x",
+          "contacts": [
+            16.000000000000213,
+            16.000000000000234
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0,
+          "axis": "y",
+          "contacts": [
+            16,
+            16
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.00000000000036,
+            16.000000000000185
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.39269908169872414,
+          "axis": "y",
+          "contacts": [
+            16.000000000000185,
+            16.00000000000036
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000217,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999817,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7843981633974483,
+          "axis": "y",
+          "contacts": [
+            15.999999999999817,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7853981633974483,
+          "axis": "y",
+          "contacts": [
+            16.00000000000013,
+            16.00000000000013
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.7863981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000217,
+            16.000000000000135
+          ],
+          "ready": true
+        },
+        {
+          "angle": 0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000234,
+            16.000000000000213
+          ],
+          "ready": true
+        },
+        {
+          "angle": -0.8453981633974483,
+          "axis": "y",
+          "contacts": [
+            16.000000000000462,
+            16.000000000000234
+          ],
+          "ready": true
+        }
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 20931264,
+        "totalBytes": 24664164,
+        "cached": 22,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 24664164
+      }
+    }
+  ],
+  "world": [
+    {
+      "di": 0,
+      "factor": 1,
+      "vehicles": 28,
+      "version": "0.77",
+      "contact": [
+        16.000000000000284,
+        16.000000000000433
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 1818432,
+        "totalBytes": 5551332,
+        "cached": 4,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 5551332
+      }
+    },
+    {
+      "di": 0,
+      "factor": 2,
+      "vehicles": 28,
+      "version": "0.77",
+      "contact": [
+        16.000000000000284,
+        16.000000000000433
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 1818432,
+        "totalBytes": 5551332,
+        "cached": 4,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 5551332
+      }
+    },
+    {
+      "di": 1,
+      "factor": 1,
+      "vehicles": 39,
+      "version": "0.77",
+      "contact": [
+        15.999999999998252,
+        16.000000000000334
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 1464624,
+        "totalBytes": 5197524,
+        "cached": 4,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 5197524
+      }
+    },
+    {
+      "di": 1,
+      "factor": 2,
+      "vehicles": 39,
+      "version": "0.77",
+      "contact": [
+        15.999999999998252,
+        16.000000000000334
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 1464624,
+        "totalBytes": 5197524,
+        "cached": 4,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 5197524
+      }
+    },
+    {
+      "di": 2,
+      "factor": 1,
+      "vehicles": 39,
+      "version": "0.77",
+      "contact": [
+        16.00000000000131,
+        15.999999999999076
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 1642032,
+        "totalBytes": 5374932,
+        "cached": 4,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 5374932
+      }
+    },
+    {
+      "di": 2,
+      "factor": 2,
+      "vehicles": 39,
+      "version": "0.77",
+      "contact": [
+        16.00000000000131,
+        15.999999999999076
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 1642032,
+        "totalBytes": 5374932,
+        "cached": 4,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 5374932
+      }
+    },
+    {
+      "di": 3,
+      "factor": 1,
+      "vehicles": 39,
+      "version": "0.77",
+      "contact": [
+        16.000000000000814,
+        16.00000000000068
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 2540160,
+        "totalBytes": 6273060,
+        "cached": 6,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 6273060
+      }
+    },
+    {
+      "di": 3,
+      "factor": 2,
+      "vehicles": 39,
+      "version": "0.77",
+      "contact": [
+        16.000000000000814,
+        16.00000000000068
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 2540160,
+        "totalBytes": 6273060,
+        "cached": 6,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 6273060
+      }
+    },
+    {
+      "di": 4,
+      "factor": 1,
+      "vehicles": 30,
+      "version": "0.77",
+      "contact": [
+        16,
+        16
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 5935464,
+        "totalBytes": 9668364,
+        "cached": 7,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 9668364
+      }
+    },
+    {
+      "di": 4,
+      "factor": 2,
+      "vehicles": 30,
+      "version": "0.77",
+      "contact": [
+        16,
+        16
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 5935464,
+        "totalBytes": 9668364,
+        "cached": 7,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 9668364
+      }
+    },
+    {
+      "di": 5,
+      "factor": 1,
+      "vehicles": 15,
+      "version": "0.77",
+      "contact": [
+        16,
+        16
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 3542184,
+        "totalBytes": 7275084,
+        "cached": 6,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 7275084
+      }
+    },
+    {
+      "di": 5,
+      "factor": 2,
+      "vehicles": 15,
+      "version": "0.77",
+      "contact": [
+        16,
+        16
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 3542184,
+        "totalBytes": 7275084,
+        "cached": 6,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 7275084
+      }
+    },
+    {
+      "di": 6,
+      "factor": 1,
+      "vehicles": 41,
+      "version": "0.77",
+      "contact": [
+        16,
+        16
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 7394616,
+        "totalBytes": 11127516,
+        "cached": 14,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 11127516
+      }
+    },
+    {
+      "di": 6,
+      "factor": 2,
+      "vehicles": 41,
+      "version": "0.77",
+      "contact": [
+        16,
+        16
+      ],
+      "stats": {
+        "decodedBytes": 3732900,
+        "canvasBytes": 7394616,
+        "totalBytes": 11127516,
+        "cached": 14,
+        "limit": 40000000,
+        "pending": 0,
+        "evictions": 0,
+        "maxAllocatedBytes": 11127516
+      }
+    }
+  ],
+  "geometry": [
+    {
+      "di": 0,
+      "walls": 945,
+      "equal": true
+    },
+    {
+      "di": 1,
+      "walls": 923,
+      "equal": true
+    },
+    {
+      "di": 2,
+      "walls": 887,
+      "equal": true
+    },
+    {
+      "di": 3,
+      "walls": 1047,
+      "equal": true
+    },
+    {
+      "di": 4,
+      "walls": 165,
+      "equal": true
+    },
+    {
+      "di": 5,
+      "walls": 642,
+      "equal": true
+    },
+    {
+      "di": 6,
+      "walls": 223,
+      "equal": true
+    }
+  ],
+  "fallback": {
+    "ready": false,
+    "fills": 17,
+    "bytes": 0
+  },
+  "offline": {
+    "version": "0.77",
+    "decoded": 42,
+    "state": "play",
+    "controlled": true
+  },
+  "status": "passed"
+}

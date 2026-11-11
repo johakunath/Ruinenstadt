@@ -43,7 +43,7 @@ function gableRoof(b,Hs){const{x,y,w,h}=b,G_=b.gable,o=4,rc=b.rc||'#6a3a2a',ym=y
   const r0=P3(x-o,ym,Z),r1=P3(x+w+o,ym,Z);ctx.strokeStyle='rgba(255,230,200,.18)';ctx.beginPath();ctx.moveTo(r0[0],r0[1]);ctx.lineTo(r1[0],r1[1]);ctx.stroke();
   if(b.w>140&&!b.chim)b.chim=R(.15,.85);if(b.chim){const cx=x+w*b.chim;ibox(cx,ym-14,10,10,Z-G_*.5,Z+10,'#5a3a2e',INK);}}
 // upright sprite (tree, lamp, Litfaßsäule, crane): base row at b.top, anchored at the footprint centre
-function drawBB(b){const s=b.spr,sc=b.sc||1,ax=b.x+b.w/2,X=ix(ax,b.y),Y=iy(ax,b.y);ctx.drawImage(s,X-s.width*sc/2,Y-b.top*sc,s.width*sc,s.height*sc);}
+function drawBB(b){if(b.propKey&&paintedBillboard(b))return;const s=b.spr,sc=b.sc||1,ax=b.x+b.w/2,X=ix(ax,b.y),Y=iy(ax,b.y);ctx.drawImage(s,X-s.width*sc/2,Y-b.top*sc,s.width*sc,s.height*sc);}
 // light position (x,y on the ground, z height in screen px) for lights stored in the old 3/4 sprite coordinates
 function lpos(b,l){if(l.z!=null)return[l.x,l.y,l.z];if(l.inner)return[l.x,l.y,0];if(isBox(b)){const z=Math.max(0,b.y+b.h-l.y)*(b.vs||1);let p=[clamp(l.x,b.x,b.x+b.w),b.y+b.h];if(b.rot){ROT={cx:b.x+b.w/2,cy:b.y+b.h/2,c:Math.cos(b.rot),s:Math.sin(b.rot)};p=rw(p[0],p[1]);ROT=null;}return[p[0],p[1],z];}return[l.x,b.y,Math.max(0,b.y-l.y)*(b.sc||1)];}
 /* ---- vehicles: iso boxes. b={x,y,w,h,veh:{k,c,v}} ---- */
@@ -54,7 +54,7 @@ function addVeh(x,y,w,h,v,k){const c=k==='bus'?'#d8a818':k==='tram'?'#d6b436':k=
 function frust(x,y,w,h,z0,z1,li,si,side,top){const B=(a,b)=>P3(a,b,z0),T=(a,b)=>P3(a,b,z1),x1=x+w,y1=y+h,u0=x+li,u1=x1-li,v0=y+si,v1=y1-si;
   poly([B(x,y1),B(x1,y1),T(u1,v1),T(u0,v1)],side,INK);poly([B(x1,y1),B(x1,y),T(u1,v0),T(u1,v1)],dark(side,.7),INK);poly([T(u0,v0),T(u1,v0),T(u1,v1),T(u0,v1)],top,INK);}
 function wheel(x,y,z){const p=P3(x,y,z);ctx.fillStyle='#0b0908';ctx.beginPath();ctx.ellipse(p[0],p[1],5.5,5,0,0,7);ctx.fill();ctx.fillStyle='#3a3632';ctx.beginPath();ctx.ellipse(p[0],p[1],2.2,2,0,0,7);ctx.fill();}
-function drawVehBox(b){const{x,y,w,h}=b,V=b.veh,k=V.k,c=V.c,big=k==='bus'||k==='tram',hb=big?36:k==='van'?24:k==='trabi'?11:12,z0=big?7:7,zt=z0+hb,L=V.v?h:w;
+function drawVehBox(b){if(typeof drawVehicleArt==='function'&&drawVehicleArt(b))return;const{x,y,w,h}=b,V=b.veh,k=V.k,c=V.c,big=k==='bus'||k==='tram',hb=big?36:k==='van'?24:k==='trabi'?11:12,z0=big?7:7,zt=z0+hb,L=V.v?h:w;
   faceT(x+6,y+4,w,h,0,'rgba(0,0,0,.35)');ibox(x+3,y+3,w-6,h-6,0,z0+1,'#141010');
   for(const f of [.17,.83]){if(V.v)wheel(x+w,y+h*f,6);else wheel(x+w*f,y+h,6);}
   ibox(x,y,w,h,z0,zt,c,INK);

@@ -1,0 +1,236 @@
+{
+  "vehicles/bus-yellow-end": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      46,
+      36
+    ],
+    "for": "drawVehBox bus: orthographic end surface; actual P3 rotation",
+    "height": 36,
+    "source": "bus-yellow-end.png"
+  },
+  "vehicles/bus-yellow-side": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      230,
+      36
+    ],
+    "for": "drawVehBox bus: orthographic side surface; actual P3 rotation",
+    "height": 36,
+    "source": "bus-yellow-side.png"
+  },
+  "vehicles/bus-yellow-top": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      230,
+      46
+    ],
+    "for": "drawVehBox bus: orthographic top surface; actual P3 rotation",
+    "height": 46,
+    "source": "bus-yellow-top.png"
+  },
+  "vehicles/car-blue-end": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      44,
+      12
+    ],
+    "for": "drawVehBox car: orthographic end surface; actual P3 rotation",
+    "height": 12,
+    "source": "car-blue-end.png"
+  },
+  "vehicles/car-blue-glass-end": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox car: orthographic glass-end surface; actual P3 rotation",
+    "height": 11,
+    "source": "car-blue-glass-end.png"
+  },
+  "vehicles/car-blue-glass-side": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox car: orthographic glass-side surface; actual P3 rotation",
+    "height": 11,
+    "source": "car-blue-glass-side.png"
+  },
+  "vehicles/car-blue-roof": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      26,
+      32
+    ],
+    "for": "drawVehBox car: orthographic roof surface; actual P3 rotation",
+    "height": 32,
+    "source": "car-blue-roof.png"
+  },
+  "vehicles/car-blue-side": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      96,
+      12
+    ],
+    "for": "drawVehBox car: orthographic side surface; actual P3 rotation",
+    "height": 12,
+    "source": "car-blue-side.png"
+  },
+  "vehicles/car-blue-top": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      96,
+      44
+    ],
+    "for": "drawVehBox car: orthographic top surface; actual P3 rotation",
+    "height": 44,
+    "source": "car-blue-top.png"
+  },
+  "vehicles/car-green-end": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      44,
+      12
+    ],
+    "for": "drawVehBox car: orthographic end surface; actual P3 rotation",
+    "height": 12,
+    "source": "car-green-end.png"
+  },
+  "vehicles/car-green-glass-end": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox car: orthographic glass-end surface; actual P3 rotation",
+    "height": 11,
+    "source": "car-green-glass-end.png"
+  },
+  "vehicles/car-green-glass-side": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox car: orthographic glass-side surface; actual P3 rotation",
+    "height": 11,
+    "source": "car-green-glass-side.png"
+  },
+  "vehicles/car-green-roof": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      26,
+      32
+    ],
+    "for": "drawVehBox car: orthographic roof surface; actual P3 rotation",
+    "height": 32,
+    "source": "car-green-roof.png"
+  },
+  "vehicles/car-green-side": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      96,
+      12
+    ],
+    "for": "drawVehBox car: orthographic side surface; actual P3 rotation",
+    "height": 12,
+    "source": "car-green-side.png"
+  },
+  "vehicles/car-green-top": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      96,
+      44
+    ],
+    "for": "drawVehBox car: orthographic top surface; actual P3 rotation",
+    "height": 44,
+    "source": "car-green-top.png"
+  },
+  "vehicles/tram-yellow-end": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      44,
+      36
+    ],
+    "for": "drawVehBox tram: orthographic end surface; actual P3 rotation",
+    "height": 36,
+    "source": "tram-yellow-end.png"
+  },
+  "vehicles/tram-yellow-side": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      250,
+      36
+    ],
+    "for": "drawVehBox tram: orthographic side surface; actual P3 rotation",
+    "height": 36,
+    "source": "tram-yellow-side.png"
+  },
+  "vehicles/tram-yellow-top": {
+    "anchor": [
+      0,
+      0
+    ],
+    "footprint": [
+      250,
+      44
+    ],
+    "for": "drawVehBox tram: orthographic top surface; actual P3 rotation",
+    "height": 44,
+    "source": "tram-yellow-top.png"
+  }
+}

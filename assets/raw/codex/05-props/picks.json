@@ -1,0 +1,122 @@
+{
+  "props/barrel": {
+    "alpha_threshold": 8,
+    "crop": [
+      0,
+      296,
+      591,
+      591
+    ],
+    "for": "drawBarrel static body",
+    "height": 23,
+    "source": "bodies.png"
+  },
+  "props/bench": {
+    "alpha_threshold": 8,
+    "crop": [
+      0,
+      591,
+      591,
+      887
+    ],
+    "for": "drawBB bench",
+    "height": 26,
+    "source": "bodies.png"
+  },
+  "props/bin": {
+    "alpha_threshold": 8,
+    "crop": [
+      1183,
+      0,
+      1774,
+      296
+    ],
+    "for": "drawProp bin",
+    "height": 34,
+    "source": "bodies.png"
+  },
+  "props/campfire": {
+    "alpha_threshold": 8,
+    "crop": [
+      591,
+      296,
+      1183,
+      591
+    ],
+    "for": "drawBarrel camp static body",
+    "height": 16,
+    "source": "bodies.png"
+  },
+  "props/chest": {
+    "alpha_threshold": 8,
+    "crop": [
+      591,
+      0,
+      1183,
+      296
+    ],
+    "for": "drawProp chest",
+    "height": 28,
+    "source": "bodies.png"
+  },
+  "props/crate": {
+    "alpha_threshold": 8,
+    "crop": [
+      0,
+      0,
+      591,
+      296
+    ],
+    "for": "drawProp crate",
+    "height": 29,
+    "source": "bodies.png"
+  },
+  "props/fence": {
+    "alpha_threshold": 8,
+    "crop": [
+      0,
+      683,
+      1536,
+      1024
+    ],
+    "for": "drawFence projected shared face",
+    "height": 20,
+    "source": "fire-fence.png"
+  },
+  "props/lamp": {
+    "alpha_threshold": 8,
+    "crop": [
+      1183,
+      296,
+      1774,
+      591
+    ],
+    "for": "drawBB lamp",
+    "height": 94,
+    "source": "bodies.png"
+  },
+  "props/litfass": {
+    "alpha_threshold": 8,
+    "crop": [
+      591,
+      591,
+      1183,
+      887
+    ],
+    "for": "drawBB shrine",
+    "height": 100,
+    "source": "bodies.png"
+  },
+  "props/sandbags": {
+    "alpha_threshold": 8,
+    "crop": [
+      1183,
+      591,
+      1774,
+      887
+    ],
+    "for": "paintedSandbags",
+    "height": 40,
+    "source": "bodies.png"
+  }
+}

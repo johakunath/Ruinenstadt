@@ -110,7 +110,7 @@ function makeSpati(){const cands=lotCands();
       g.fillStyle='rgba(255,200,120,.06)';g.fillRect(x,y,w,h);
       walls.push({x,y,w,h:6},{x,y,w:6,h},{x:x+w-6,y,w:6,h},{x,y:y+h-6,w:dx,h:6},{x:x+dx+dw,y:y+h-6,w:w-dx-dw,h:6},{x:x+dx,y:y+h-6,w:dw,h:6,gate:1});
       // sandbag walls in front, leaving a lane to the door
-      const bag=(bx,by,n)=>{for(let i=0;i<n;i++)for(let r=0;r<2;r++){const px=bx+i*15+(r?7:0),py=by+r*-7;g.fillStyle=dk;g.beginPath();g.ellipse(px,py,9,6,0,0,7);g.fill();g.fillStyle=r?'#9a8a64':'#8a7a5a';g.beginPath();g.ellipse(px,py,7.5,4.8,0,0,7);g.fill();g.fillStyle='rgba(0,0,0,.25)';g.fillRect(px-1,py-3,2,6);}};
+      const bag=(bx,by,n)=>{blds.push({x:bx-8,y:by-14,w:n*15+12,h:18,H:14,top:14,R0:0,fe:1,lights:[],draw:drawSandbag});};
       const sy=y+h+26,ln=Math.max(2,Math.floor((dx-24)/15));bag(x+8,sy,ln);bag(x+dx+dw+16,sy,ln);walls.push({x:x,y:sy-14,w:ln*15+12,h:18},{x:x+dx+dw+8,y:sy-14,w:ln*15+12,h:18});
       // roof and facade sprite
       const c=cnv(w,h+H),t=c.getContext('2d');
@@ -157,12 +157,12 @@ function makeTree(tx,ty,kind){
 function makeLitfass(x,y){const mk=on=>{const c=cnv(30,84),g=c.getContext('2d');g.fillStyle='#2a2522';g.fillRect(3,76,24,8);g.fillStyle='#3d4a3a';g.fillRect(5,18,20,60);
     const cols=on?['#c23a2e','#f2d14b','#7d9bff','#ead9c0','#8fd16a','#d4537e']:['#3a332e','#4a4038','#2e2824'];for(let i=0;i<5;i++){g.fillStyle=pick(cols);g.fillRect(5,20+i*11,20,10);g.fillStyle='rgba(0,0,0,.25)';g.fillRect(5+R(2,12),22+i*11,R(4,8),2);}
     g.fillStyle='rgba(0,0,0,.3)';g.fillRect(18,18,7,60);g.fillStyle='#2c3a32';g.beginPath();g.ellipse(15,16,13,5,0,0,7);g.fill();g.beginPath();g.moveTo(3,16);g.lineTo(15,2);g.lineTo(27,16);g.fill();g.fillStyle='#c9a227';g.fillRect(14,0,2,4);return c;};
-  const o={x:x-15,y:y-4,w:30,h:8,H:0,top:80,sc:1.25,spr:mk(1),lights:[{x,y:y-40,r:70}]};blds.push(o);walls.push({x:x-11,y:y-6,w:22,h:10});shrines.push({x,y,o,off:mk(0),used:0});
+  const o={x:x-15,y:y-4,w:30,h:8,H:0,top:80,sc:1.25,spr:mk(1),propKey:'litfass',lights:[{x,y:y-40,r:70}]};blds.push(o);walls.push({x:x-11,y:y-6,w:22,h:10});shrines.push({x,y,o,off:mk(0),used:0});
   gx.fillStyle='rgba(0,0,0,.3)';gx.beginPath();gx.ellipse(x+6,y+2,16,6,0,0,7);gx.fill();}
 function makeLamp(lx_,ly,lit){
   const c=cnv(22,70),g=c.getContext('2d');g.fillStyle='#24201c';g.fillRect(4,8,4,62);g.fillRect(2,66,8,4);g.fillRect(4,8,14,3);
   g.fillStyle='#3a342e';g.fillRect(14,9,7,5);g.fillStyle=lit?'#f7d98a':'#1a1612';g.fillRect(15,13,5,2);
-  blds.push({x:lx_-6,y:ly,w:22,h:0,top:70,sc:1.35,spr:c,lights:lit?[{x:lx_+5,y:ly,z:0,r:105,fl:Math.random()<.25}]:[]});if(lit)neons.push({x:lx_+5,y:ly,z:77,dx:9,c:'#f7d98a',s:30});walls.push({x:lx_-3,y:ly-3,w:6,h:5});
+  blds.push({x:lx_-6,y:ly,w:22,h:0,top:70,sc:1.35,spr:c,propKey:'lamp',lights:lit?[{x:lx_+5,y:ly,z:0,r:105,fl:Math.random()<.25}]:[]});if(lit)neons.push({x:lx_+5,y:ly,z:77,dx:9,c:'#f7d98a',s:30});walls.push({x:lx_-3,y:ly-3,w:6,h:5});
 }
 function decorate(){
   const g=gx,greens=['#3b4a22','#4a5a2a','#2f3b1c','#56662e'];

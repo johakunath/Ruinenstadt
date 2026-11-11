@@ -1,6 +1,6 @@
 # 05 Props and fire
 
-Status: open (third in current queue; start with fire)
+Status: done (v0.81, Codex, 2026-11-11). Current browser/offline, collision parity, idempotent generation and paired RTX 4070 gates pass. Recorded integration GPU gate passes; PR #36; code review completed without findings; original draft preserved.
 
 Supply crates and cellar chests (the menu icons R06 and R07 in `assets/icons/` are the agreed look, redraw them at the iso angle), BSR bins, barrels with fire (`drawBarrel` in `js/render.js`), campfire, lamps, benches, Litfaßsäule (shrine, `shrines`), fences, sandbags. Breakable props (`drawProp`, `js/art.js`): the hit area is the footprint box, the art must fill it. These are the "items lying around" in the world.
 
@@ -19,3 +19,5 @@ Paint the body static, paint the flame separately, animate in code:
 Performance: one shared flame sheet in one image, `drawImage` with source rects, no per-frame canvas creation (tablet gets warm, see log).
 
 Test: 10 fires on screen at the same time with `?debug=perf`, no visible sync.
+
+User refinement: unused Litfaßsäulen have a faint cyan aura; consumed columns lose it. Existing buffs now last 60 s (explicit gameplay change requested by Johannes). New shared glow adds 65,536 decoded canvas bytes, total task memory 1,079,324. Lighting occlusion is deferred to Claude in BACKLOG.

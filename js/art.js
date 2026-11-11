@@ -213,7 +213,7 @@ function drawEnemy(e,t){
   if(e.stun>0){ctx.strokeStyle='#f2d14b';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(e.x,fy-H-4,e.r*.6,3,0,0,7);ctx.stroke();}
   if(e.elite||e.open>0){ctx.font='600 12px "Barlow Condensed",sans-serif';ctx.textAlign='center';ctx.fillStyle=e.open>0?'#f2d14b':EMC[e.elite];ctx.fillText(e.open>0?'Offen!':'Elite · '+EMN[e.elite],e.x,fy-H-14);}
   if(e.type!=='boss'&&(e.hp<e.max||e.elite)){ctx.fillStyle='#0d0907';ctx.fillRect(e.x-e.r,fy-H-10,e.r*2,3);ctx.fillStyle='#c23a2e';ctx.fillRect(e.x-e.r,fy-H-10,e.r*2*Math.max(0,e.hp)/e.max,3);}}
-function drawProp(b){const x=b.x,y=b.y,w=b.w,h=b.h,f=b.flash>0;
+function drawProp(b){if(paintedBreakable(b))return;const x=b.x,y=b.y,w=b.w,h=b.h,f=b.flash>0;
   ctx.fillStyle='rgba(0,0,0,.4)';ctx.fillRect(x+3,y+h-2,w,5);
   if(b.type==='crate'){ctx.fillStyle=f?'#ead9c0':'#9a7040';ctx.fillRect(x,y-8,w,h-2);ctx.fillStyle=f?'#ead9c0':'#6b4a2a';ctx.fillRect(x,y+h-10,w,10);
     ctx.strokeStyle='#3a2414';ctx.lineWidth=1.2;ctx.strokeRect(x+.5,y-7.5,w-1,h+7);ctx.beginPath();ctx.moveTo(x,y-1);ctx.lineTo(x+w,y-1);ctx.moveTo(x,y+5);ctx.lineTo(x+w,y+5);ctx.moveTo(x,y+h-10);ctx.lineTo(x+w,y+h-10);ctx.moveTo(x+2,y+h-9);ctx.lineTo(x+w-2,y+h-1);ctx.stroke();}

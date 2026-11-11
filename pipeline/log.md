@@ -555,3 +555,51 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Johannes authorized fixing findings, merging, then continuing shared props/fire and vehicles. PR #32 had one P2: fixed minimum grid tracks overflowed at 900–983 CSS px.
 - Retained the three-panel layout and proportional widths, but let each track shrink to zero instead of reserving 360+240+320 px. Backpack cells still use their 72 px minimum. Larger viewport proportions remain identical.
 - Expanded layout/active rare-comparison proof to 900, 920, 960, 983 and 984 px, alongside the existing desktop/tablet/phone matrix. Check scrolling, no horizontal overflow, visible values/actions and real item equip. Runtime JS and the previous GPU acceptance are unaffected (CSS-only fix).
+
+
+## 2026-11-11 · Codex · PR 32 merged; shared props/fire complete locally
+
+- PR #32 final review on `ce5f72a` completed with no findings; original thread resolved. Merged expected head as `8853689` and synced main. No checks were bypassed.
+- Resumed preserved task05 draft onto merged v0.75 on `codex/global-props-fire`, retaining current rig/building fixes. Eleven shared paintings, deterministic eight-frame fire, complete fallback and unchanged world/tunnel walls. No new painting was necessary; routine design remains the preserved source family. Original worktree is untouched.
+- Current smoke/gallery/all-district/tunnel, missing-image, phase diversity and offline v0.76 proof passes. Runtime build is byte-idempotent; 271-entry manifest; task memory 1,013,788 bytes with zero derived caches. Existing 66 JS checks, task assertions and 6 Python tests pass. Spati constructor test compares stable RNG/geometry/light ownership while its sandbags become dynamic props.
+- Paired RTX 4070 gate: Koepenick -0.29% CI [-3.05,2.29]; Alexanderplatz -0.41% CI [-2.13,0.56]; null +0.09% CI [-2.61,0.46]. 21 pairs, 1280×800 DPR2, 100+300 renders, zero timed canvas allocations. Raw report under `pipeline/proof/05-props/perf/`.
+- Automatic approval review rejected publishing the new props/fire branch because authorization for that new publication was not explicit enough. Continuing locally; request publication approval only when the asset changes are concrete and reviewable. No workaround attempted.
+- Isolated local vehicle continuation starts from merged PR #32 on `codex/vehicle-complete` in `.worktrees/vehicle-complete`; original dirty vehicle draft is preserved. Repairs required: scheduled, bounded device-scale caches; stable visible overflow; correct face/wheel visibility through the actual ±48.44° extremes; current geometry/visual/offline/GPU proof.
+
+
+## 2026-11-11 · Codex · shared assets, rounded vehicles and shrine refinement
+
+- Continued from merged PR #32, preserving original dirty equipment/props/vehicle drafts. Shared props/fire and vehicles are consolidated in one v0.77 candidate. Merged online save PR #33 is preserved; subsequent PR #34 changes only playtest/telemetry docs and will be retained too. The verified merged PR #32 branch was deleted locally/remotely with an exact-head lease.
+- Vehicle geometry checker preceded production paint. Corrected face/wheel visibility past ±45° through the actual ±48.44° road jitter; scheduled device-scale caches own every projected allocation, map/resize/geometry retirement and stable over-budget fallback. Decoded source and all caches share 40 MB; warm vehicles use one drawImage. Removed temporary arrays/object lookups from new draw hooks.
+- Johannes rejected the angular/two-tone Trabi and box van. Built-in imagegen produced new cream-only Trabi, windowed Barkas B1000 KB and independently painted partly burned sedan atlases. Rounded shells/cabins stay within unchanged collision rectangles; Trabi has a 34-unit body/cabin silhouette and properly proportioned round headlamps. The blue Barkas also supplies a clearly distinct cream enamel variant. Original raw paintings remain preserved; prompts/crop record in task03 refinement folder.
+- Forty-two active vehicle face files, 3,732,900 decoded bytes, 439,214 encoded bytes, largest 39,786. Full builder byte-idempotent; obsolete turquoise/red Trabi and old red sedan runtime files retired. Shared props source 1,013,788 bytes plus one prewarmed 65,536-byte cyan glow. No new gameplay RNG/placement/collision changes.
+- Explicit shrine change: faint unused Litfaßsäule aura, removed when consumed; existing buffs last 60 s instead of 45. Real update proof grants 60, counts to 59 after one second and prevents recollection. Light occlusion is deliberately untouched and placed at the very top of BACKLOG for Claude.
+- Final browser proof passes: 20 checker/painted sheets, 14 district views, all eight variants at 1×/2×, exact seven-district wall parity and tangent walks, HTTP404 fallback and offline v0.77 decoding all 42 faces. Maximum vehicle proof allocation 24,664,164 bytes (world max 11,127,516). No page errors/unexpected failed images. 73 JS tests + prop assertions + 6 Python tests pass; 313 manifest entries validate.
+- Harness corrections: seed only after initAudio (its first initialization consumes RNG); one intermediate offline decode failed because an image rebuild overlapped the proof. Froze all runtime files and reran current-source proof; no loader behavior or acceptance threshold was weakened.
+- Final combined GPU gate passes on hardware RTX 4070, 21 alternating pairs with two fresh contexts each, 100 warm + 300 timed full renders, 1280×800 DPR2, all-prop/10-fire and ten all-kind/axis vehicle fixtures plus 40 enemies. Zero timed canvas allocations/page errors; all source/image hashes match. Final report: `pipeline/proof/03-vehicles/perf/perf-2026-11-11T12-46-36-859Z.json`.
+
+| Scene | Paired median | 95% CI | Result |
+|---|---:|---|---|
+| Köpenick | -15.42% | -17.16% to -13.89% | pass |
+| Alexanderplatz | -9.28% | -9.76% to -6.92% | pass |
+| Null control | -2.51% | -4.04% to -1.17% | pass |
+
+- Earlier full candidate also passed; retain its report as history, superseded by the final allocation-cleaned/cream-variant run. Physical Tab S9 heat/battery and human feel remain open. New branch publication/review remains pending after the previously recorded automatic export rejection; no bypass was attempted.
+
+
+## 2026-11-11 · Codex · soft body shoulders and publication authorization
+
+- Johannes requested removal of the heavy black corner/rim on the top of the car body, then explicitly authorized publishing the combined branch and opening its PR. Removed the extra polygon stroke, trimmed the authored dark border through face UV sampling, and softened the rounded top contour. Footprints, wheels, source image bytes, cache dimensions and warm draw path remain unchanged.
+- Refreshed visual/default/2×, rotation, collision, missing-image, shrine and offline proof passes; 73 JS tests and prop assertions pass. Prior six Python tests remain applicable (no builder changes).
+- Johannes then clarified that full checks are unnecessary after each small cosmetic asset edit. Stopped the redundant GPU run; its completed Köpenick sample passed (-16.61%, CI -22.01 to -15.38), but no complete new gate verdict is claimed. Reuse the recorded complete integration gate (-15.42/-9.28% with a passing control); refreshed visual proof identifies the final appearance code. Documented proportionate checks in CLAUDE/workflow.
+- New publication authorization resolves the earlier export approval blocker. Publish one draft PR; no new asset merge requested.
+
+- Publication complete: one draft PR [#36](https://github.com/johakunath/Ruinenstadt/pull/36), `codex/shared-assets-vehicles` → main. Includes the softened body rim and all shared asset/shrine/backlog changes. No merge performed. The cosmetic-check preference is recorded in CLAUDE/workflow.
+
+
+## 2026-11-11 · Codex · PR 36 merge readiness
+
+- Merged current main (PR #35 through v0.80) into the asset branch. Resolved release/backlog conflicts as v0.81, preserving the latest gameplay, controller/inventory, DPR/sharpness and Claude lighting-occlusion changes as well as all assets and 60 s shrines. Updated stale lighting backlog status instead of reintroducing the already implemented work as a new task.
+- PR #36 initially had no review submissions/comments. Mark ready, request current-head review, address actionable findings, then merge under Johannes's explicit authorization. Checks are scoped to the actual merge/review changes.
+
+- Review completed on `2743e054f48d629fe40275b0789441e2ff11898e` with no findings or unresolved threads. All 73 JS checks plus prop assertions pass; brief integrated v0.81 play smoke has zero page errors. Final follow-up changes only backlog/task status. Merge authorized by Johannes; retain historical art/GPU proof without redundant reruns.

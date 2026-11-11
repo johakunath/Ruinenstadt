@@ -3042,5 +3042,607 @@
     },
     "units": 6,
     "w": 128
+  },
+  "props/barrel": {
+    "anchor": [
+      27.0,
+      69.737
+    ],
+    "for": "drawBarrel static body",
+    "h": 71,
+    "units": 3,
+    "w": 54
+  },
+  "props/bench": {
+    "anchor": [
+      54.0,
+      78.722
+    ],
+    "for": "drawBB bench",
+    "h": 80,
+    "units": 3,
+    "w": 108
+  },
+  "props/bin": {
+    "anchor": [
+      39.5,
+      102.647
+    ],
+    "for": "drawProp bin",
+    "h": 104,
+    "units": 3,
+    "w": 79
+  },
+  "props/campfire": {
+    "anchor": [
+      37.5,
+      48.776
+    ],
+    "for": "drawBarrel camp static body",
+    "h": 50,
+    "units": 3,
+    "w": 75
+  },
+  "props/chest": {
+    "anchor": [
+      48.0,
+      84.7
+    ],
+    "for": "drawProp chest",
+    "h": 86,
+    "units": 3,
+    "w": 96
+  },
+  "props/crate": {
+    "anchor": [
+      44.5,
+      87.689
+    ],
+    "for": "drawProp crate",
+    "h": 89,
+    "units": 3,
+    "w": 89
+  },
+  "props/fence": {
+    "anchor": [
+      145.5,
+      60.804
+    ],
+    "for": "drawFence projected shared face",
+    "h": 62,
+    "units": 3,
+    "w": 291
+  },
+  "props/flames": {
+    "anchor": [
+      48,
+      119
+    ],
+    "for": "paintedFire eight 96x120 source cells",
+    "h": 120,
+    "units": 3,
+    "w": 768
+  },
+  "props/lamp": {
+    "anchor": [
+      38.5,
+      282.034
+    ],
+    "for": "drawBB lamp",
+    "h": 284,
+    "units": 3,
+    "w": 77
+  },
+  "props/litfass": {
+    "anchor": [
+      82.0,
+      299.976
+    ],
+    "for": "drawBB shrine",
+    "h": 302,
+    "units": 3,
+    "w": 164
+  },
+  "props/sandbags": {
+    "anchor": [
+      128.0,
+      120.483
+    ],
+    "for": "paintedSandbags",
+    "h": 122,
+    "units": 3,
+    "w": 256
+  },
+  "vehicles/bus-yellow-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      46,
+      36
+    ],
+    "for": "drawVehBox bus: orthographic end surface; actual P3 rotation",
+    "h": 110,
+    "units": 3,
+    "w": 140
+  },
+  "vehicles/bus-yellow-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      230,
+      36
+    ],
+    "for": "drawVehBox bus: orthographic side surface; actual P3 rotation",
+    "h": 110,
+    "units": 3,
+    "w": 692
+  },
+  "vehicles/bus-yellow-top": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      230,
+      46
+    ],
+    "for": "drawVehBox bus: orthographic top surface; actual P3 rotation",
+    "h": 140,
+    "units": 3,
+    "w": 692
+  },
+  "vehicles/car-blue-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      12
+    ],
+    "for": "drawVehBox car: orthographic end surface; actual P3 rotation",
+    "h": 38,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/car-blue-glass-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox car: orthographic glass-end surface; actual P3 rotation",
+    "h": 35,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/car-blue-glass-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox car: orthographic glass-side surface; actual P3 rotation",
+    "h": 35,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/car-blue-roof": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      26,
+      32
+    ],
+    "for": "drawVehBox car: orthographic roof surface; actual P3 rotation",
+    "h": 98,
+    "units": 3,
+    "w": 80
+  },
+  "vehicles/car-blue-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      96,
+      12
+    ],
+    "for": "drawVehBox car: orthographic side surface; actual P3 rotation",
+    "h": 38,
+    "units": 3,
+    "w": 290
+  },
+  "vehicles/car-blue-top": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      96,
+      44
+    ],
+    "for": "drawVehBox car: orthographic top surface; actual P3 rotation",
+    "h": 134,
+    "units": 3,
+    "w": 290
+  },
+  "vehicles/car-burnt-end": {
+    "anchor": [
+      67.0,
+      19.0
+    ],
+    "for": "rounded car-burnt end",
+    "h": 38,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/car-burnt-glass-end": {
+    "anchor": [
+      58.0,
+      11.5
+    ],
+    "for": "rounded car-burnt glass-end",
+    "h": 23,
+    "units": 3,
+    "w": 116
+  },
+  "vehicles/car-burnt-glass-side": {
+    "anchor": [
+      73.0,
+      11.5
+    ],
+    "for": "rounded car-burnt glass-side",
+    "h": 23,
+    "units": 3,
+    "w": 146
+  },
+  "vehicles/car-burnt-roof": {
+    "anchor": [
+      55.0,
+      49.0
+    ],
+    "for": "rounded car-burnt roof",
+    "h": 98,
+    "units": 3,
+    "w": 110
+  },
+  "vehicles/car-burnt-side": {
+    "anchor": [
+      145.0,
+      19.0
+    ],
+    "for": "rounded car-burnt side",
+    "h": 38,
+    "units": 3,
+    "w": 290
+  },
+  "vehicles/car-burnt-top": {
+    "anchor": [
+      145.0,
+      67.0
+    ],
+    "for": "rounded car-burnt top",
+    "h": 134,
+    "units": 3,
+    "w": 290
+  },
+  "vehicles/car-green-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      12
+    ],
+    "for": "drawVehBox car: orthographic end surface; actual P3 rotation",
+    "h": 38,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/car-green-glass-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox car: orthographic glass-end surface; actual P3 rotation",
+    "h": 35,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/car-green-glass-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      11
+    ],
+    "for": "drawVehBox car: orthographic glass-side surface; actual P3 rotation",
+    "h": 35,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/car-green-roof": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      26,
+      32
+    ],
+    "for": "drawVehBox car: orthographic roof surface; actual P3 rotation",
+    "h": 98,
+    "units": 3,
+    "w": 80
+  },
+  "vehicles/car-green-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      96,
+      12
+    ],
+    "for": "drawVehBox car: orthographic side surface; actual P3 rotation",
+    "h": 38,
+    "units": 3,
+    "w": 290
+  },
+  "vehicles/car-green-top": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      96,
+      44
+    ],
+    "for": "drawVehBox car: orthographic top surface; actual P3 rotation",
+    "h": 134,
+    "units": 3,
+    "w": 290
+  },
+  "vehicles/trabi-cream-end": {
+    "anchor": [
+      67.0,
+      23.5
+    ],
+    "for": "rounded trabi-cream end",
+    "h": 47,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/trabi-cream-glass-end": {
+    "anchor": [
+      58.0,
+      19.0
+    ],
+    "for": "rounded trabi-cream glass-end",
+    "h": 38,
+    "units": 3,
+    "w": 116
+  },
+  "vehicles/trabi-cream-glass-side": {
+    "anchor": [
+      62.5,
+      19.0
+    ],
+    "for": "rounded trabi-cream glass-side",
+    "h": 38,
+    "units": 3,
+    "w": 125
+  },
+  "vehicles/trabi-cream-roof": {
+    "anchor": [
+      50.5,
+      52.0
+    ],
+    "for": "rounded trabi-cream roof",
+    "h": 104,
+    "units": 3,
+    "w": 101
+  },
+  "vehicles/trabi-cream-side": {
+    "anchor": [
+      119.5,
+      23.5
+    ],
+    "for": "rounded trabi-cream side",
+    "h": 47,
+    "units": 3,
+    "w": 239
+  },
+  "vehicles/trabi-cream-top": {
+    "anchor": [
+      119.5,
+      67.0
+    ],
+    "for": "rounded trabi-cream top",
+    "h": 134,
+    "units": 3,
+    "w": 239
+  },
+  "vehicles/tram-yellow-end": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      44,
+      36
+    ],
+    "for": "drawVehBox tram: orthographic end surface; actual P3 rotation",
+    "h": 110,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/tram-yellow-side": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      250,
+      36
+    ],
+    "for": "drawVehBox tram: orthographic side surface; actual P3 rotation",
+    "h": 110,
+    "units": 3,
+    "w": 752
+  },
+  "vehicles/tram-yellow-top": {
+    "anchor": [
+      1.0,
+      1.0
+    ],
+    "footprint": [
+      250,
+      44
+    ],
+    "for": "drawVehBox tram: orthographic top surface; actual P3 rotation",
+    "h": 134,
+    "units": 3,
+    "w": 752
+  },
+  "vehicles/van-blue-end": {
+    "anchor": [
+      67.0,
+      55.0
+    ],
+    "for": "rounded van-blue end",
+    "h": 110,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/van-blue-glass-end": {
+    "anchor": [
+      67.0,
+      19.0
+    ],
+    "for": "rounded van-blue glass-end",
+    "h": 38,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/van-blue-glass-side": {
+    "anchor": [
+      137.5,
+      19.0
+    ],
+    "for": "rounded van-blue glass-side",
+    "h": 38,
+    "units": 3,
+    "w": 275
+  },
+  "vehicles/van-blue-roof": {
+    "anchor": [
+      113.5,
+      49.0
+    ],
+    "for": "rounded van-blue roof",
+    "h": 98,
+    "units": 3,
+    "w": 227
+  },
+  "vehicles/van-blue-side": {
+    "anchor": [
+      160.0,
+      55.0
+    ],
+    "for": "rounded van-blue side",
+    "h": 110,
+    "units": 3,
+    "w": 320
+  },
+  "vehicles/van-blue-top": {
+    "anchor": [
+      160.0,
+      67.0
+    ],
+    "for": "rounded van-blue top",
+    "h": 134,
+    "units": 3,
+    "w": 320
+  },
+  "vehicles/van-cream-end": {
+    "anchor": [
+      67.0,
+      55.0
+    ],
+    "for": "rounded van-cream end",
+    "h": 110,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/van-cream-glass-end": {
+    "anchor": [
+      67.0,
+      19.0
+    ],
+    "for": "rounded van-cream glass-end",
+    "h": 38,
+    "units": 3,
+    "w": 134
+  },
+  "vehicles/van-cream-glass-side": {
+    "anchor": [
+      137.5,
+      19.0
+    ],
+    "for": "rounded van-cream glass-side",
+    "h": 38,
+    "units": 3,
+    "w": 275
+  },
+  "vehicles/van-cream-roof": {
+    "anchor": [
+      113.5,
+      49.0
+    ],
+    "for": "rounded van-cream roof",
+    "h": 98,
+    "units": 3,
+    "w": 227
+  },
+  "vehicles/van-cream-side": {
+    "anchor": [
+      160.0,
+      55.0
+    ],
+    "for": "rounded van-cream side",
+    "h": 110,
+    "units": 3,
+    "w": 320
+  },
+  "vehicles/van-cream-top": {
+    "anchor": [
+      160.0,
+      67.0
+    ],
+    "for": "rounded van-cream top",
+    "h": 134,
+    "units": 3,
+    "w": 320
   }
 }

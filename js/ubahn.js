@@ -41,7 +41,7 @@ function drawTile(b){const{x,y,w,h}=b,H=b.H,[ux,uy,vx,vy]=bAx();faceT(x+5,y+5,w,
   else{const q=P3(x+w,y+h,H);ctx.save();ctx.transform(-vx,-vy,0,1,q[0],q[1]);ctx.drawImage(b.tx,0,0,Math.min(h,200),96,0,0,h,H);ctx.restore();faceE(x,y,w,h,0,H,'rgba(8,5,4,.28)',INK);}
   faceT(x,y,w,h,H,'#100e0c',INK);}
 function drawCol(b){const{x,y,w,h}=b;faceT(x+4,y+4,w,h,0,'rgba(0,0,0,.35)');ibox(x,y,w,h,0,b.H,b.c||'#3f6a4a',INK);ibox(x-3,y-3,w+6,h+6,b.H-8,b.H,'#2c4a34',INK);if(b.yel)faceS(x,y,w,h,40,52,'#ed9e25');}
-function drawStone(b){ibox(b.x,b.y,b.w,b.h,0,b.H,b.c,INK);}
+function drawStone(b){if(b.sandbags&&paintedSandbags(b))return;ibox(b.x,b.y,b.w,b.h,0,b.H,b.c,INK);}
 function drawGate(b){const{x,y,w,h}=b,H=b.H;ibox(x,y,w,h,0,H,'#3a3632',INK,'#24211e');ctx.strokeStyle='#14110e';ctx.lineWidth=2;
   for(let f=.1;f<1;f+=.12){const a=P3(x+w*f,y+h,0),c=P3(x+w*f,y+h,H),d=P3(x+w,y+h*f,0),e=P3(x+w,y+h*f,H);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(c[0],c[1]);ctx.moveTo(d[0],d[1]);ctx.lineTo(e[0],e[1]);ctx.stroke();}
   for(let i=0;i<6;i++){faceS(x+w*i/6,y,w/12,h,H-12,H,i%2?'#14110e':'#ed9e25');faceE(x,y+h*i/6,w,h/12,H-12,H,i%2?'#14110e':'#ed9e25');}}
@@ -96,7 +96,7 @@ function buildTunnel(k){if(typeof koepResetCache==='function')koepResetCache(nul
   const solid=(b,draw)=>{b.lights=b.lights||[];b.top=b.top||b.H;b.R0=0;b.draw=draw;blds.push(b);walls.push(b.rot?obWall(b):b);return b;};
   // platforms: green iron columns, sandbags, fire barrels; trader on the start platform
   for(const s of TST)for(let x=s[0]+200;x<=s[1]-150;x+=300)for(const sd of [-1,1]){const p=at(x,sd*460);if(Math.hypot(p[0]-GEN.x,p[1]-GEN.y)>140)solid({x:p[0]-13,y:p[1]-13,w:26,h:26,H:120,yel:s[0]===TX0},drawCol);}
-  for(const[x,o]of[[1250,-360],[1330,-360],[6200,380],[13900,-380],[15300,380]]){const p=at(x,o);solid({x:p[0]-32,y:p[1]-12,w:64,h:24,H:22,c:'#8f7c45'},drawStone);}
+  for(const[x,o]of[[1250,-360],[1330,-360],[6200,380],[13900,-380],[15300,380]]){const p=at(x,o);solid({x:p[0]-32,y:p[1]-12,w:64,h:24,H:22,sandbags:1,c:'#8f7c45'},drawStone);}
   for(const[x,o]of[[400,-500],[1700,-500],[6000,500],[13600,-500],[15500,500]]){const p=at(x,o);barrels.push({x:p[0],y:p[1],ph:R(0,6)});walls.push({x:p[0]-9,y:p[1]-9,w:18,h:18});}
   {const p=at(1100,-470);TUN.npc={x:p[0],y:p[1],r:12,t:1e9,near:false,offers:[0,1,2].map(i=>{const it=makeItem(tradeLvl()+(i===2?2:0),i===2&&Math.random()<.3?3:2,0);return{it,price:scrapVal(it)*5+15};})};}
   // Betriebsraum: chests and crates; ghost station shrine; rubble stones; two wrecked trains along the curve
