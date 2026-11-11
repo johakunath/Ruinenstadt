@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import crypto from 'node:crypto';
+import {execFileSync} from 'node:child_process';
 const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
 const fn=(s,name)=>{const a=s.indexOf('function '+name+'('),b=s.indexOf('\nfunction ',a+1);return s.slice(a,b<0?s.length:b);};
 const keys=['a-window','a-wall','b-window','b-wall','c-window','c-wall','platte-window','platte-wall','roof','shopfront','ivy','damage','roof-ruin'].map(k=>'buildings/koep-'+k);
@@ -89,11 +90,11 @@ function construct(st,V=0,source=read('js/world.js'),district=true){let seed=123
  const context=()=>new Proxy({},{get(o,k){if(k in o)return o[k];if(k==='createRadialGradient'||k==='createLinearGradient')return(...args)=>{const id=++gid;trace.push([k,...args,id]);return{id,addColorStop(...p){trace.push(['color',id,...p]);}};};return(...args)=>trace.push([k,...args]);},set(o,k,v){trace.push(['set',k,v]);o[k]=v;return true;}});
  const D={walls:['#5a3f2e','#4e3a2c','#634634'],roof:['#3a2a22','#45302a','#33261f']},env=vm.createContext({Math:math,D,DIST:district?[D]:[{}],BHS:2,BSC:1.6,TAGS:['KIEZ','BERLIN','LIEBE','RUINE','WIR BLEIBEN','HALT DURCH','SPREE','B36','HOFFNUNG','KEIN AUSGANG'],gx:context(),bShadow(){},R:(a,b)=>a+(b-a)*math.random(),pick:a=>a[Math.floor(math.random()*a.length)],wpick:()=>{math.random();return V;},cnv(w,h){const g=context(),c={width:w,height:h,getContext:()=>g};canvases.push(c);return c;}});
  vm.runInContext(fn(source,'bricks'),env);
- if(st==='spati'){Object.assign(env,{walls:[],blds:[],neons:[],reserved:[],spati:null,lotCands:()=>[{x0:0,y0:0,x1:900,y1:900}],resHit:()=>false,addBrk:(...a)=>trace.push(['addBrk',...a])});vm.runInContext(fn(source,'makeSpati')+'\nmakeSpati();b=spati;',env);}
+ if(st==='spati'){Object.assign(env,{drawSandbag(){},walls:[],blds:[],neons:[],reserved:[],spati:null,lotCands:()=>[{x0:0,y0:0,x1:900,y1:900}],resHit:()=>false,addBrk:(...a)=>trace.push(['addBrk',...a])});vm.runInContext(fn(source,'makeSpati')+'\nmakeSpati();b=spati;',env);}
  else{vm.runInContext(fn(source,'makeB'),env);env.b={x:200,y:300,w:192,h:96,H:180,top:180,R0:0};vm.runInContext(`makeB(b,${JSON.stringify(st)})`,env);}
- const data={trace,count,seed,lights:env.b.lights,canvases:canvases.map(c=>[c.width,c.height]),...(st==='spati'?{walls:env.walls,neons:env.neons,reserved:env.reserved}: {})};return{...data,b:env.b,hash:crypto.createHash('sha256').update(JSON.stringify(data)).digest('hex')};}
-test('construction preserves legacy fallback pixels, RNG stream, lights, and one original canvas',()=>{
- for(const[fixture,hash]of Object.entries(fallbackFingerprints)){const[st,V]=fixture.split(':');const result=construct(st,+V);assert.equal(result.hash,hash,fixture);assert.equal(result.canvases.length,st==='spati'?2:1);}
+ const data={trace,count,seed,lights:env.b.lights,canvases:canvases.map(c=>[c.width,c.height]),...(st==='spati'?{walls:env.walls,neons:env.neons,reserved:env.reserved}: {})};return{...data,b:env.b,propCount:env.blds?.filter(b=>b.draw===env.drawSandbag).length||0,hash:crypto.createHash('sha256').update(JSON.stringify(data)).digest('hex')};}
+test('construction preserves building fallback pixels and RNG/geometry while Spati sandbags move to props',()=>{
+ for(const[fixture,hash]of Object.entries(fallbackFingerprints)){const[st,V]=fixture.split(':');const result=construct(st,+V);if(st==='spati'){const legacy=construct(st,+V,execFileSync('git',['show','8853689:js/world.js'],{encoding:'utf8'}));assert.equal(legacy.hash,hash,'frozen pre-props source');for(const k of ['count','seed','lights','walls','neons','reserved','canvases'])assert.equal(JSON.stringify(result[k]),JSON.stringify(legacy[k]),k);assert.equal(result.propCount,2,'promoted sandbags own their painted/fallback drawing');}else assert.equal(result.hash,hash,fixture);assert.equal(result.canvases.length,st==='spati'?2:1);}
  assert.ok(Object.keys(fallbackFingerprints).length>=10,'baseline fingerprints cover every legacy Altbau variant and non-target styles');
 });
 test('all recorded silhouette triangles equal the actual legacy destination-out paths',()=>{

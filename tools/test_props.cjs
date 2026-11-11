@@ -1,0 +1,12 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert'),path=require('path');
+const root=path.resolve(__dirname,'..'),manifest=JSON.parse(fs.readFileSync(path.join(root,'assets/manifest.json'))),draws=[];
+let images={},randCalls=0;
+const ctx={save(){},restore(){},drawImage(...a){draws.push(a);},translate(){},scale(){}};
+const env={ctx,Math:Object.assign(Object.create(Math),{random(){randCalls++;throw Error('render RNG');}}),spriteReady:new Promise(()=>{}),SPRITES:manifest,spr:k=>images[k]||null,IS:Math.SQRT1_2};
+vm.createContext(env);vm.runInContext(fs.readFileSync(path.join(root,'js/props.js'),'utf8'),env);
+const call=s=>vm.runInContext(s,env);const b={x:20,y:30,ph:2};env.b=b;
+assert.equal(call('paintedFire(b,1200)'),false);images['props/barrel']={width:20,height:30};assert.equal(call('paintedFire(b,1200)'),false);assert.equal(draws.length,0,'partial body before flame readiness');
+images={'props/flames':{width:768,height:120}};assert.equal(call('paintedFire(b,1200)'),false);assert.equal(draws.length,0,'partial flame before body readiness');images['props/barrel']={width:20,height:30};assert.equal(call('paintedFire(b,1200)'),true);assert.equal(draws.length,2);assert.equal(draws[1][3],96,'source cell width');assert.equal(draws[1][4],120);
+const original=JSON.stringify(b);for(let t=0;t<10000;t+=11){env.time=t;const frame=call('propFlameFrame(b,time)');assert(Number.isInteger(frame)&&frame>=0&&frame<8);}assert.equal(JSON.stringify(b),original);assert.equal(randCalls,0);
+assert(call('propAssetStats().decodedBytes')<40000000);const sw=fs.readFileSync(path.join(root,'sw.js'),'utf8');assert(sw.includes("'koep-assets','props','art'"));assert(sw.includes("'crate chest bin barrel campfire lamp bench litfass sandbags fence flames'"));assert(fs.readFileSync(path.join(root,'index.html'),'utf8').indexOf('js/props.js')<fs.readFileSync(path.join(root,'index.html'),'utf8').indexOf('js/art.js'));
+console.log('Task05: full readiness fallback, eight atlas rects, immutable deterministic phases, zero render RNG, memory/offline/script order pass.');

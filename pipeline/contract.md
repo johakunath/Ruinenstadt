@@ -223,3 +223,15 @@ Forward leg extension straightens before contact, and running torso lean is
 than translating the weapon away from the palm. Extra angular/vertical carry
 motion is disabled in attacks/dash. Attack stride is reduced to .4 so larger
 running geometry cannot shift the old attack grip beyond its existing bound.
+
+
+## Shared props and fire (v0.76)
+
+`js/props.js` supplies complete painted/fallback hooks for breakables, fire,
+lamps, benches, poster columns, fences and sandbags. The eight-cell flame
+strip is shared; per-instance phase/rate derive from existing `b.ph`, with
+no render RNG or gameplay changes. Bodies remain static; code owns lights
+and particles. Bench/sandbag ground art is promoted into depth-sorted props
+without changing collision walls; fences retain their actual projected axes.
+Task images decode to 1,013,788 bytes; no derived runtime caches. Script and
+all eleven images are in the service-worker shell.

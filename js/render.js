@@ -1,5 +1,5 @@
 /* ================= render ================= */
-function drawBarrel(b,t){const x=b.x,y=b.y;if(b.camp){ctx.fillStyle='rgba(0,0,0,.4)';ctx.beginPath();ctx.ellipse(x,y+2,20,9,0,0,7);ctx.fill();for(let k=0;k<9;k++){const q=k*.7;ctx.fillStyle=k%2?'#5a5650':'#6a6660';ctx.beginPath();ctx.ellipse(x+Math.cos(q)*16,y+Math.sin(q)*7,4,3,0,0,7);ctx.fill();}
+function drawBarrel(b,t){if(paintedFire(b,t))return;const x=b.x,y=b.y;if(b.camp){ctx.fillStyle='rgba(0,0,0,.4)';ctx.beginPath();ctx.ellipse(x,y+2,20,9,0,0,7);ctx.fill();for(let k=0;k<9;k++){const q=k*.7;ctx.fillStyle=k%2?'#5a5650':'#6a6660';ctx.beginPath();ctx.ellipse(x+Math.cos(q)*16,y+Math.sin(q)*7,4,3,0,0,7);ctx.fill();}
     ctx.fillStyle='#3a2414';ctx.fillRect(x-11,y-3,22,4);ctx.save();ctx.translate(x,y);ctx.rotate(.6);ctx.fillRect(-11,-2,22,4);ctx.restore();
     for(let k=0;k<5;k++){const h=15+Math.sin(t*.018+b.ph+k*1.7)*5+Math.sin(t*.031+k)*3,fx=x-8+k*4;ctx.fillStyle=k%2?'#EF9F27':'#FAC775';ctx.beginPath();ctx.moveTo(fx-3.5,y-1);ctx.lineTo(fx+3.5,y-1);ctx.lineTo(fx+Math.sin(t*.02+k)*2,y-1-h);ctx.fill();}return;}
   ctx.fillStyle='rgba(0,0,0,.45)';ctx.beginPath();ctx.ellipse(x+3,y+4,11,5,0,0,7);ctx.fill();

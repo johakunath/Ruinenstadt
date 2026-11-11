@@ -1,6 +1,6 @@
 # 05 Props and fire
 
-Status: in progress (Codex, 2026-11-11). Resume the preserved painted draft on merged v0.75; validate current browser/offline and paired GPU gates before review.
+Status: locally complete (v0.76, Codex, 2026-11-11). Current browser/offline, collision parity, idempotent generation and paired RTX 4070 gates pass. Publication/review pending; original draft preserved.
 
 Supply crates and cellar chests (the menu icons R06 and R07 in `assets/icons/` are the agreed look, redraw them at the iso angle), BSR bins, barrels with fire (`drawBarrel` in `js/render.js`), campfire, lamps, benches, Litfaßsäule (shrine, `shrines`), fences, sandbags. Breakable props (`drawProp`, `js/art.js`): the hit area is the footprint box, the art must fill it. These are the "items lying around" in the world.
 
