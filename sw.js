@@ -1,5 +1,5 @@
 // Bump CACHE with every release so installed copies pick up the new files.
-const CACHE='ruinenstadt-0.78';
+const CACHE='ruinenstadt-0.79';
 const SHELL=[
   ...["leg-shin","leg-shin-d","leg-thigh","leg-thigh-d","trousers-blaumann-shin","trousers-blaumann-shin-d","trousers-blaumann-thigh","trousers-blaumann-thigh-d","trousers-shin","trousers-shin-d","trousers-thigh","trousers-thigh-d"].map(n=>`assets/hero/rig/${n}.webp`),'./','index.html','css/style.css','manifest.webmanifest','icons/icon.svg','icons/icon-192.png','icons/icon-512.png',
   ...['core','save','sync','canvas','iso','data','items','audio','world','biomes','geo','mitte','alex','ubahn','base','state','feedback','vfx','anim','combat','input','panels','update','hero','sprites','gdr-assets','koep-assets','art','render','main'].map(n=>`js/${n}.js`),
