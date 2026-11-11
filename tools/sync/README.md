@@ -24,6 +24,8 @@ Sheet „Ruinenstadt Sync (live)“: https://docs.google.com/spreadsheets/d/14rG
 
 Claude reads `Telemetrie` through the Google Sheets connector. Rows as a JSON array (last column) work with `node tools/telemetry.mjs <file>`.
 
+Duplicates: the server appends without checking, and the "already sent" list is per device. The same run arrives again from every device that later loads a save containing it, and one person can show up under several player ids (each device created its own before syncing). Before any analysis, drop duplicates by the run key `hkey` from `js/save.js` (version, day, district, mode, end, wave, seconds, kills, damage, level), ignoring player id and `at`.
+
 ## Limits
 
 Sync codes are the only key: whoever knows a code can load and overwrite that save. Fine for friends, not for strangers. Apps Script allows 30 simultaneous executions; the game pushes at most every 3 s per player.
