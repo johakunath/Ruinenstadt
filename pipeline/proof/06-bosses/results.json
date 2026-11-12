@@ -1,0 +1,949 @@
+{
+  "started": "2026-11-12T09:07:02.478Z",
+  "errors": [],
+  "load": {
+    "version": "0.87",
+    "keys": [
+      "bosses/bassprediger-attack-a",
+      "bosses/bassprediger-attack-b",
+      "bosses/bassprediger-hit",
+      "bosses/bassprediger-idle",
+      "bosses/bassprediger-walk-a",
+      "bosses/bassprediger-walk-b",
+      "bosses/brand-attack-a",
+      "bosses/brand-attack-b",
+      "bosses/brand-hit",
+      "bosses/brand-idle",
+      "bosses/brand-walk-a",
+      "bosses/brand-walk-b",
+      "bosses/flieger-attack-a",
+      "bosses/flieger-attack-b",
+      "bosses/flieger-hit",
+      "bosses/flieger-idle",
+      "bosses/flieger-walk-a",
+      "bosses/flieger-walk-b",
+      "bosses/hauptmann-attack-a",
+      "bosses/hauptmann-attack-b",
+      "bosses/hauptmann-hit",
+      "bosses/hauptmann-idle",
+      "bosses/hauptmann-walk-a",
+      "bosses/hauptmann-walk-b",
+      "bosses/hexe-attack-a",
+      "bosses/hexe-attack-b",
+      "bosses/hexe-hit",
+      "bosses/hexe-idle",
+      "bosses/hexe-walk-a",
+      "bosses/hexe-walk-b",
+      "bosses/platte-attack-a",
+      "bosses/platte-attack-b",
+      "bosses/platte-hit",
+      "bosses/platte-idle",
+      "bosses/platte-walk-a",
+      "bosses/platte-walk-b",
+      "bosses/ratten-attack-a",
+      "bosses/ratten-attack-b",
+      "bosses/ratten-hit",
+      "bosses/ratten-idle",
+      "bosses/ratten-walk-a",
+      "bosses/ratten-walk-b",
+      "bosses/ritter-attack-a",
+      "bosses/ritter-attack-b",
+      "bosses/ritter-hit",
+      "bosses/ritter-idle",
+      "bosses/ritter-walk-a",
+      "bosses/ritter-walk-b",
+      "bosses/volk-attack-a",
+      "bosses/volk-attack-b",
+      "bosses/volk-hit",
+      "bosses/volk-idle",
+      "bosses/volk-walk-a",
+      "bosses/volk-walk-b"
+    ],
+    "decoded": 54
+  },
+  "gallery1x": [
+    {
+      "boss": "hauptmann",
+      "pose": "idle",
+      "key": "bosses/hauptmann-idle",
+      "painted": true,
+      "edge": 0,
+      "body": 4489
+    },
+    {
+      "boss": "hauptmann",
+      "pose": "walk-a",
+      "key": "bosses/hauptmann-walk-a",
+      "painted": true,
+      "edge": 0,
+      "body": 4012
+    },
+    {
+      "boss": "hauptmann",
+      "pose": "walk-b",
+      "key": "bosses/hauptmann-walk-b",
+      "painted": true,
+      "edge": 0,
+      "body": 4423
+    },
+    {
+      "boss": "hauptmann",
+      "pose": "attack-a",
+      "key": "bosses/hauptmann-attack-a",
+      "painted": true,
+      "edge": 0,
+      "body": 4654
+    },
+    {
+      "boss": "hauptmann",
+      "pose": "attack-b",
+      "key": "bosses/hauptmann-attack-b",
+      "painted": true,
+      "edge": 0,
+      "body": 3802
+    },
+    {
+      "boss": "hauptmann",
+      "pose": "hit",
+      "key": "bosses/hauptmann-hit",
+      "painted": true,
+      "edge": 0,
+      "body": 4932
+    },
+    {
+      "boss": "hexe",
+      "pose": "idle",
+      "key": "bosses/hexe-idle",
+      "painted": true,
+      "edge": 0,
+      "body": 3881
+    },
+    {
+      "boss": "hexe",
+      "pose": "walk-a",
+      "key": "bosses/hexe-walk-a",
+      "painted": true,
+      "edge": 0,
+      "body": 4241
+    },
+    {
+      "boss": "hexe",
+      "pose": "walk-b",
+      "key": "bosses/hexe-walk-b",
+      "painted": true,
+      "edge": 0,
+      "body": 3871
+    },
+    {
+      "boss": "hexe",
+      "pose": "attack-a",
+      "key": "bosses/hexe-attack-a",
+      "painted": true,
+      "edge": 0,
+      "body": 4171
+    },
+    {
+      "boss": "hexe",
+      "pose": "attack-b",
+      "key": "bosses/hexe-attack-b",
+      "painted": true,
+      "edge": 0,
+      "body": 4505
+    },
+    {
+      "boss": "hexe",
+      "pose": "hit",
+      "key": "bosses/hexe-hit",
+      "painted": true,
+      "edge": 0,
+      "body": 5049
+    },
+    {
+      "boss": "bassprediger",
+      "pose": "idle",
+      "key": "bosses/bassprediger-idle",
+      "painted": true,
+      "edge": 0,
+      "body": 5879
+    },
+    {
+      "boss": "bassprediger",
+      "pose": "walk-a",
+      "key": "bosses/bassprediger-walk-a",
+      "painted": true,
+      "edge": 0,
+      "body": 5342
+    },
+    {
+      "boss": "bassprediger",
+      "pose": "walk-b",
+      "key": "bosses/bassprediger-walk-b",
+      "painted": true,
+      "edge": 0,
+      "body": 5813
+    },
+    {
+      "boss": "bassprediger",
+      "pose": "attack-a",
+      "key": "bosses/bassprediger-attack-a",
+      "painted": true,
+      "edge": 0,
+      "body": 5487
+    },
+    {
+      "boss": "bassprediger",
+      "pose": "attack-b",
+      "key": "bosses/bassprediger-attack-b",
+      "painted": true,
+      "edge": 0,
+      "body": 6576
+    },
+    {
+      "boss": "bassprediger",
+      "pose": "hit",
+      "key": "bosses/bassprediger-hit",
+      "painted": true,
+      "edge": 0,
+      "body": 6267
+    },
+    {
+      "boss": "flieger",
+      "pose": "idle",
+      "key": "bosses/flieger-idle",
+      "painted": true,
+      "edge": 0,
+      "body": 4392
+    },
+    {
+      "boss": "flieger",
+      "pose": "walk-a",
+      "key": "bosses/flieger-walk-a",
+      "painted": true,
+      "edge": 0,
+      "body": 3808
+    },
+    {
+      "boss": "flieger",
+      "pose": "walk-b",
+      "key": "bosses/flieger-walk-b",
+      "painted": true,
+      "edge": 0,
+      "body": 4386
+    },
+    {
+      "boss": "flieger",
+      "pose": "attack-a",
+      "key": "bosses/flieger-attack-a",
+      "painted": true,
+      "edge": 0,
+      "body": 4222
+    },
+    {
+      "boss": "flieger",
+      "pose": "attack-b",
+      "key": "bosses/flieger-attack-b",
+      "painted": true,
+      "edge": 0,
+      "body": 3894
+    },
+    {
+      "boss": "flieger",
+      "pose": "hit",
+      "key": "bosses/flieger-hit",
+      "painted": true,
+      "edge": 0,
+      "body": 4859
+    },
+    {
+      "boss": "brand",
+      "pose": "idle",
+      "key": "bosses/brand-idle",
+      "painted": true,
+      "edge": 0,
+      "body": 4620
+    },
+    {
+      "boss": "brand",
+      "pose": "walk-a",
+      "key": "bosses/brand-walk-a",
+      "painted": true,
+      "edge": 0,
+      "body": 4477
+    },
+    {
+      "boss": "brand",
+      "pose": "walk-b",
+      "key": "bosses/brand-walk-b",
+      "painted": true,
+      "edge": 0,
+      "body": 4609
+    },
+    {
+      "boss": "brand",
+      "pose": "attack-a",
+      "key": "bosses/brand-attack-a",
+      "painted": true,
+      "edge": 0,
+      "body": 4557
+    },
+    {
+      "boss": "brand",
+      "pose": "attack-b",
+      "key": "bosses/brand-attack-b",
+      "painted": true,
+      "edge": 0,
+      "body": 4398
+    },
+    {
+      "boss": "brand",
+      "pose": "hit",
+      "key": "bosses/brand-hit",
+      "painted": true,
+      "edge": 0,
+      "body": 5097
+    },
+    {
+      "boss": "ratten",
+      "pose": "idle",
+      "key": "bosses/ratten-idle",
+      "painted": true,
+      "edge": 0,
+      "body": 5604
+    },
+    {
+      "boss": "ratten",
+      "pose": "walk-a",
+      "key": "bosses/ratten-walk-a",
+      "painted": true,
+      "edge": 0,
+      "body": 5122
+    },
+    {
+      "boss": "ratten",
+      "pose": "walk-b",
+      "key": "bosses/ratten-walk-b",
+      "painted": true,
+      "edge": 0,
+      "body": 5562
+    },
+    {
+      "boss": "ratten",
+      "pose": "attack-a",
+      "key": "bosses/ratten-attack-a",
+      "painted": true,
+      "edge": 0,
+      "body": 6521
+    },
+    {
+      "boss": "ratten",
+      "pose": "attack-b",
+      "key": "bosses/ratten-attack-b",
+      "painted": true,
+      "edge": 0,
+      "body": 6157
+    },
+    {
+      "boss": "ratten",
+      "pose": "hit",
+      "key": "bosses/ratten-hit",
+      "painted": true,
+      "edge": 0,
+      "body": 6116
+    },
+    {
+      "boss": "ritter",
+      "pose": "idle",
+      "key": "bosses/ritter-idle",
+      "painted": true,
+      "edge": 0,
+      "body": 6475
+    },
+    {
+      "boss": "ritter",
+      "pose": "walk-a",
+      "key": "bosses/ritter-walk-a",
+      "painted": true,
+      "edge": 0,
+      "body": 5783
+    },
+    {
+      "boss": "ritter",
+      "pose": "walk-b",
+      "key": "bosses/ritter-walk-b",
+      "painted": true,
+      "edge": 0,
+      "body": 6462
+    },
+    {
+      "boss": "ritter",
+      "pose": "attack-a",
+      "key": "bosses/ritter-attack-a",
+      "painted": true,
+      "edge": 0,
+      "body": 5785
+    },
+    {
+      "boss": "ritter",
+      "pose": "attack-b",
+      "key": "bosses/ritter-attack-b",
+      "painted": true,
+      "edge": 0,
+      "body": 6912
+    },
+    {
+      "boss": "ritter",
+      "pose": "hit",
+      "key": "bosses/ritter-hit",
+      "painted": true,
+      "edge": 0,
+      "body": 7318
+    },
+    {
+      "boss": "platte",
+      "pose": "idle",
+      "key": "bosses/platte-idle",
+      "painted": true,
+      "edge": 0,
+      "body": 9261
+    },
+    {
+      "boss": "platte",
+      "pose": "walk-a",
+      "key": "bosses/platte-walk-a",
+      "painted": true,
+      "edge": 0,
+      "body": 7457
+    },
+    {
+      "boss": "platte",
+      "pose": "walk-b",
+      "key": "bosses/platte-walk-b",
+      "painted": true,
+      "edge": 0,
+      "body": 9178
+    },
+    {
+      "boss": "platte",
+      "pose": "attack-a",
+      "key": "bosses/platte-attack-a",
+      "painted": true,
+      "edge": 0,
+      "body": 9835
+    },
+    {
+      "boss": "platte",
+      "pose": "attack-b",
+      "key": "bosses/platte-attack-b",
+      "painted": true,
+      "edge": 0,
+      "body": 8382
+    },
+    {
+      "boss": "platte",
+      "pose": "hit",
+      "key": "bosses/platte-hit",
+      "painted": true,
+      "edge": 0,
+      "body": 8508
+    },
+    {
+      "boss": "volk",
+      "pose": "idle",
+      "key": "bosses/volk-idle",
+      "painted": true,
+      "edge": 0,
+      "body": 9114
+    },
+    {
+      "boss": "volk",
+      "pose": "walk-a",
+      "key": "bosses/volk-walk-a",
+      "painted": true,
+      "edge": 0,
+      "body": 8504
+    },
+    {
+      "boss": "volk",
+      "pose": "walk-b",
+      "key": "bosses/volk-walk-b",
+      "painted": true,
+      "edge": 0,
+      "body": 9100
+    },
+    {
+      "boss": "volk",
+      "pose": "attack-a",
+      "key": "bosses/volk-attack-a",
+      "painted": true,
+      "edge": 0,
+      "body": 9755
+    },
+    {
+      "boss": "volk",
+      "pose": "attack-b",
+      "key": "bosses/volk-attack-b",
+      "painted": true,
+      "edge": 0,
+      "body": 9663
+    },
+    {
+      "boss": "volk",
+      "pose": "hit",
+      "key": "bosses/volk-hit",
+      "painted": true,
+      "edge": 0,
+      "body": 9568
+    }
+  ],
+  "gallery2x": [
+    {
+      "boss": "hauptmann",
+      "pose": "idle",
+      "key": "bosses/hauptmann-idle",
+      "painted": true,
+      "edge": 199,
+      "body": 17990
+    },
+    {
+      "boss": "hauptmann",
+      "pose": "walk-a",
+      "key": "bosses/hauptmann-walk-a",
+      "painted": true,
+      "edge": 229,
+      "body": 16071
+    },
+    {
+      "boss": "hauptmann",
+      "pose": "walk-b",
+      "key": "bosses/hauptmann-walk-b",
+      "painted": true,
+      "edge": 227,
+      "body": 17794
+    },
+    {
+      "boss": "hauptmann",
+      "pose": "attack-a",
+      "key": "bosses/hauptmann-attack-a",
+      "painted": true,
+      "edge": 258,
+      "body": 18848
+    },
+    {
+      "boss": "hauptmann",
+      "pose": "attack-b",
+      "key": "bosses/hauptmann-attack-b",
+      "painted": true,
+      "edge": 256,
+      "body": 15211
+    },
+    {
+      "boss": "hauptmann",
+      "pose": "hit",
+      "key": "bosses/hauptmann-hit",
+      "painted": true,
+      "edge": 186,
+      "body": 19744
+    },
+    {
+      "boss": "hexe",
+      "pose": "idle",
+      "key": "bosses/hexe-idle",
+      "painted": true,
+      "edge": 116,
+      "body": 15447
+    },
+    {
+      "boss": "hexe",
+      "pose": "walk-a",
+      "key": "bosses/hexe-walk-a",
+      "painted": true,
+      "edge": 146,
+      "body": 17020
+    },
+    {
+      "boss": "hexe",
+      "pose": "walk-b",
+      "key": "bosses/hexe-walk-b",
+      "painted": true,
+      "edge": 144,
+      "body": 15361
+    },
+    {
+      "boss": "hexe",
+      "pose": "attack-a",
+      "key": "bosses/hexe-attack-a",
+      "painted": true,
+      "edge": 175,
+      "body": 16551
+    },
+    {
+      "boss": "hexe",
+      "pose": "attack-b",
+      "key": "bosses/hexe-attack-b",
+      "painted": true,
+      "edge": 173,
+      "body": 18018
+    },
+    {
+      "boss": "hexe",
+      "pose": "hit",
+      "key": "bosses/hexe-hit",
+      "painted": true,
+      "edge": 103,
+      "body": 20147
+    },
+    {
+      "boss": "bassprediger",
+      "pose": "idle",
+      "key": "bosses/bassprediger-idle",
+      "painted": true,
+      "edge": 227,
+      "body": 23507
+    },
+    {
+      "boss": "bassprediger",
+      "pose": "walk-a",
+      "key": "bosses/bassprediger-walk-a",
+      "painted": true,
+      "edge": 257,
+      "body": 21453
+    },
+    {
+      "boss": "bassprediger",
+      "pose": "walk-b",
+      "key": "bosses/bassprediger-walk-b",
+      "painted": true,
+      "edge": 255,
+      "body": 23360
+    },
+    {
+      "boss": "bassprediger",
+      "pose": "attack-a",
+      "key": "bosses/bassprediger-attack-a",
+      "painted": true,
+      "edge": 286,
+      "body": 22044
+    },
+    {
+      "boss": "bassprediger",
+      "pose": "attack-b",
+      "key": "bosses/bassprediger-attack-b",
+      "painted": true,
+      "edge": 284,
+      "body": 26447
+    },
+    {
+      "boss": "bassprediger",
+      "pose": "hit",
+      "key": "bosses/bassprediger-hit",
+      "painted": true,
+      "edge": 214,
+      "body": 25155
+    },
+    {
+      "boss": "flieger",
+      "pose": "idle",
+      "key": "bosses/flieger-idle",
+      "painted": true,
+      "edge": 130,
+      "body": 17639
+    },
+    {
+      "boss": "flieger",
+      "pose": "walk-a",
+      "key": "bosses/flieger-walk-a",
+      "painted": true,
+      "edge": 160,
+      "body": 15213
+    },
+    {
+      "boss": "flieger",
+      "pose": "walk-b",
+      "key": "bosses/flieger-walk-b",
+      "painted": true,
+      "edge": 158,
+      "body": 17523
+    },
+    {
+      "boss": "flieger",
+      "pose": "attack-a",
+      "key": "bosses/flieger-attack-a",
+      "painted": true,
+      "edge": 189,
+      "body": 16870
+    },
+    {
+      "boss": "flieger",
+      "pose": "attack-b",
+      "key": "bosses/flieger-attack-b",
+      "painted": true,
+      "edge": 187,
+      "body": 15594
+    },
+    {
+      "boss": "flieger",
+      "pose": "hit",
+      "key": "bosses/flieger-hit",
+      "painted": true,
+      "edge": 117,
+      "body": 19417
+    },
+    {
+      "boss": "brand",
+      "pose": "idle",
+      "key": "bosses/brand-idle",
+      "painted": true,
+      "edge": 128,
+      "body": 18507
+    },
+    {
+      "boss": "brand",
+      "pose": "walk-a",
+      "key": "bosses/brand-walk-a",
+      "painted": true,
+      "edge": 158,
+      "body": 17980
+    },
+    {
+      "boss": "brand",
+      "pose": "walk-b",
+      "key": "bosses/brand-walk-b",
+      "painted": true,
+      "edge": 156,
+      "body": 18430
+    },
+    {
+      "boss": "brand",
+      "pose": "attack-a",
+      "key": "bosses/brand-attack-a",
+      "painted": true,
+      "edge": 187,
+      "body": 18153
+    },
+    {
+      "boss": "brand",
+      "pose": "attack-b",
+      "key": "bosses/brand-attack-b",
+      "painted": true,
+      "edge": 185,
+      "body": 17588
+    },
+    {
+      "boss": "brand",
+      "pose": "hit",
+      "key": "bosses/brand-hit",
+      "painted": true,
+      "edge": 115,
+      "body": 20355
+    },
+    {
+      "boss": "ratten",
+      "pose": "idle",
+      "key": "bosses/ratten-idle",
+      "painted": true,
+      "edge": 129,
+      "body": 22352
+    },
+    {
+      "boss": "ratten",
+      "pose": "walk-a",
+      "key": "bosses/ratten-walk-a",
+      "painted": true,
+      "edge": 159,
+      "body": 20463
+    },
+    {
+      "boss": "ratten",
+      "pose": "walk-b",
+      "key": "bosses/ratten-walk-b",
+      "painted": true,
+      "edge": 157,
+      "body": 22216
+    },
+    {
+      "boss": "ratten",
+      "pose": "attack-a",
+      "key": "bosses/ratten-attack-a",
+      "painted": true,
+      "edge": 188,
+      "body": 25980
+    },
+    {
+      "boss": "ratten",
+      "pose": "attack-b",
+      "key": "bosses/ratten-attack-b",
+      "painted": true,
+      "edge": 186,
+      "body": 24587
+    },
+    {
+      "boss": "ratten",
+      "pose": "hit",
+      "key": "bosses/ratten-hit",
+      "painted": true,
+      "edge": 116,
+      "body": 24403
+    },
+    {
+      "boss": "ritter",
+      "pose": "idle",
+      "key": "bosses/ritter-idle",
+      "painted": true,
+      "edge": 110,
+      "body": 25791
+    },
+    {
+      "boss": "ritter",
+      "pose": "walk-a",
+      "key": "bosses/ritter-walk-a",
+      "painted": true,
+      "edge": 140,
+      "body": 22877
+    },
+    {
+      "boss": "ritter",
+      "pose": "walk-b",
+      "key": "bosses/ritter-walk-b",
+      "painted": true,
+      "edge": 138,
+      "body": 25676
+    },
+    {
+      "boss": "ritter",
+      "pose": "attack-a",
+      "key": "bosses/ritter-attack-a",
+      "painted": true,
+      "edge": 169,
+      "body": 23037
+    },
+    {
+      "boss": "ritter",
+      "pose": "attack-b",
+      "key": "bosses/ritter-attack-b",
+      "painted": true,
+      "edge": 167,
+      "body": 27687
+    },
+    {
+      "boss": "ritter",
+      "pose": "hit",
+      "key": "bosses/ritter-hit",
+      "painted": true,
+      "edge": 97,
+      "body": 29152
+    },
+    {
+      "boss": "platte",
+      "pose": "idle",
+      "key": "bosses/platte-idle",
+      "painted": true,
+      "edge": 128,
+      "body": 36966
+    },
+    {
+      "boss": "platte",
+      "pose": "walk-a",
+      "key": "bosses/platte-walk-a",
+      "painted": true,
+      "edge": 158,
+      "body": 29715
+    },
+    {
+      "boss": "platte",
+      "pose": "walk-b",
+      "key": "bosses/platte-walk-b",
+      "painted": true,
+      "edge": 156,
+      "body": 36721
+    },
+    {
+      "boss": "platte",
+      "pose": "attack-a",
+      "key": "bosses/platte-attack-a",
+      "painted": true,
+      "edge": 187,
+      "body": 39423
+    },
+    {
+      "boss": "platte",
+      "pose": "attack-b",
+      "key": "bosses/platte-attack-b",
+      "painted": true,
+      "edge": 185,
+      "body": 33585
+    },
+    {
+      "boss": "platte",
+      "pose": "hit",
+      "key": "bosses/platte-hit",
+      "painted": true,
+      "edge": 115,
+      "body": 34045
+    },
+    {
+      "boss": "volk",
+      "pose": "idle",
+      "key": "bosses/volk-idle",
+      "painted": true,
+      "edge": 97,
+      "body": 36561
+    },
+    {
+      "boss": "volk",
+      "pose": "walk-a",
+      "key": "bosses/volk-walk-a",
+      "painted": true,
+      "edge": 127,
+      "body": 33886
+    },
+    {
+      "boss": "volk",
+      "pose": "walk-b",
+      "key": "bosses/volk-walk-b",
+      "painted": true,
+      "edge": 125,
+      "body": 36345
+    },
+    {
+      "boss": "volk",
+      "pose": "attack-a",
+      "key": "bosses/volk-attack-a",
+      "painted": true,
+      "edge": 156,
+      "body": 38962
+    },
+    {
+      "boss": "volk",
+      "pose": "attack-b",
+      "key": "bosses/volk-attack-b",
+      "painted": true,
+      "edge": 154,
+      "body": 38719
+    },
+    {
+      "boss": "volk",
+      "pose": "hit",
+      "key": "bosses/volk-hit",
+      "painted": true,
+      "edge": 84,
+      "body": 38259
+    }
+  ],
+  "fallback": {
+    "failed": true,
+    "choice": null,
+    "pixels": 38438,
+    "errors": []
+  },
+  "offline": {
+    "version": "0.87",
+    "state": "play",
+    "controller": true,
+    "expected": 54,
+    "decoded": 54,
+    "missing": [],
+    "errors": []
+  },
+  "status": "passed",
+  "finished": "2026-11-12T09:07:17.887Z"
+}

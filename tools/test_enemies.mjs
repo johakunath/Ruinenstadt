@@ -35,7 +35,7 @@ test('pose selection follows hit, contact, movement and attack timers for every 
   assert.equal(pose(variant,{stun:1,mv:60}),`enemies/${variant}-hit`);
  }
  assert.equal(pose('ghoul',{x:100,y:80,hcd:.1}),'enemies/ghoul-attack-a');
- assert.equal(pose('schrottkoloss',{big:true}),undefined,'district bosses remain canvas until task 06');
+ assert.equal(pose('schrottkoloss',{big:true,v:0}),'bosses/hauptmann-idle','district bosses use task 06 art');
  assert.equal(pose('unknown'),undefined);env.spr=()=>null;assert.equal(pose('brute'),undefined,'missing frame falls back');
 });
 test('mouth anchors are explicit for ranged frames and do not move combat positions',()=>{

@@ -1,0 +1,11 @@
+Create the third production style-canvas sheet for a hand-painted isometric post-collapse Berlin action RPG. Use the first two supplied square Kodex portraits as strict identity references for the first two bosses. The last two references are style/palette boards.
+
+Arrange exactly three isolated upright boss characters in one horizontal row, generous empty separation, all feet visible and bottom-aligned, three-quarter view facing screen-right, readable at small game size.
+
+Left: Der Zitadellenritter — portrait-matching undead fortress knight, battered steel plate armour, closed castle-like helmet, large chipped shield with faded castle emblem, brutal spiked medieval weapon, compact defensive silhouette with shield clearly separate from body.
+Centre: Der Plattenkönig — portrait-matching enormous humanoid made from cracked grey Plattenbau concrete slabs, exposed rusty rebar and a few faded East German facade colours, massive block arms and small embedded undead face, extremely broad rectangular silhouette.
+Right: Der Volkseigene Koloss — no portrait reference; design it as a walking Plattenbau slab machine on articulated clockwork legs, huge Weltzeituhr ring turning behind its torso, one heavy concrete hammer arm, one long compass/needle arm, a small pilot ghoul visible behind a cracked cab window, riveted GDR industrial construction, muted concrete with brass, red and turquoise accents. It must be visually distinct from the Plattenkönig: mechanical elevated legs, circular clock ring and asymmetric tool arms versus the king's solid concrete humanoid body.
+
+Gritty painterly comic art matching the supplied Köpenick and Alexanderplatz pioneer boards: dark ink accents, tactile rust and chipped materials, post-collapse wear, strong saturated signature colours, realistic proportions exaggerated about 1.3x for gameplay readability. The three silhouettes must be unmistakably different. Imposing, not cute or cosy. Direct design source for later animation sheets.
+
+Transparent background. No ground, no cast shadows, no scenery, no buildings, no frames, no grid lines, no labels, no letters, no numbers, no UI, no duplicate characters, no cropped heads, feet, shield, ring or weapons.

@@ -1,4 +1,544 @@
 {
+  "bosses/bassprediger-attack-a": {
+    "anchor": [
+      54.0,
+      329.0
+    ],
+    "for": "drawEnemy boss bassprediger attack-a",
+    "h": 336,
+    "units": 3,
+    "w": 225
+  },
+  "bosses/bassprediger-attack-b": {
+    "anchor": [
+      147.0,
+      321.0
+    ],
+    "for": "drawEnemy boss bassprediger attack-b",
+    "h": 328,
+    "units": 3,
+    "w": 261
+  },
+  "bosses/bassprediger-hit": {
+    "anchor": [
+      67.0,
+      310.0
+    ],
+    "for": "drawEnemy boss bassprediger hit",
+    "h": 317,
+    "units": 3,
+    "w": 239
+  },
+  "bosses/bassprediger-idle": {
+    "anchor": [
+      124.0,
+      320.0
+    ],
+    "for": "drawEnemy boss bassprediger idle",
+    "h": 327,
+    "units": 3,
+    "w": 214
+  },
+  "bosses/bassprediger-walk-a": {
+    "anchor": [
+      82.0,
+      295.0
+    ],
+    "for": "drawEnemy boss bassprediger walk-a",
+    "h": 303,
+    "units": 3,
+    "w": 277
+  },
+  "bosses/bassprediger-walk-b": {
+    "anchor": [
+      124.0,
+      320.0
+    ],
+    "for": "drawEnemy boss bassprediger walk-b",
+    "h": 327,
+    "units": 3,
+    "w": 214
+  },
+  "bosses/brand-attack-a": {
+    "anchor": [
+      152.0,
+      317.0
+    ],
+    "for": "drawEnemy boss brand attack-a",
+    "h": 324,
+    "units": 3,
+    "w": 198
+  },
+  "bosses/brand-attack-b": {
+    "anchor": [
+      52.0,
+      272.0
+    ],
+    "for": "drawEnemy boss brand attack-b",
+    "h": 279,
+    "units": 3,
+    "w": 264
+  },
+  "bosses/brand-hit": {
+    "anchor": [
+      104.0,
+      292.0
+    ],
+    "for": "drawEnemy boss brand hit",
+    "h": 300,
+    "units": 3,
+    "w": 210
+  },
+  "bosses/brand-idle": {
+    "anchor": [
+      107.0,
+      315.0
+    ],
+    "for": "drawEnemy boss brand idle",
+    "h": 322,
+    "units": 3,
+    "w": 198
+  },
+  "bosses/brand-walk-a": {
+    "anchor": [
+      136.0,
+      303.0
+    ],
+    "for": "drawEnemy boss brand walk-a",
+    "h": 311,
+    "units": 3,
+    "w": 217
+  },
+  "bosses/brand-walk-b": {
+    "anchor": [
+      107.0,
+      315.0
+    ],
+    "for": "drawEnemy boss brand walk-b",
+    "h": 322,
+    "units": 3,
+    "w": 198
+  },
+  "bosses/flieger-attack-a": {
+    "anchor": [
+      45.0,
+      334.0
+    ],
+    "for": "drawEnemy boss flieger attack-a",
+    "h": 341,
+    "units": 3,
+    "w": 207
+  },
+  "bosses/flieger-attack-b": {
+    "anchor": [
+      184.0,
+      260.0
+    ],
+    "for": "drawEnemy boss flieger attack-b",
+    "h": 267,
+    "units": 3,
+    "w": 235
+  },
+  "bosses/flieger-hit": {
+    "anchor": [
+      82.0,
+      285.0
+    ],
+    "for": "drawEnemy boss flieger hit",
+    "h": 292,
+    "units": 3,
+    "w": 236
+  },
+  "bosses/flieger-idle": {
+    "anchor": [
+      121.0,
+      320.0
+    ],
+    "for": "drawEnemy boss flieger idle",
+    "h": 327,
+    "units": 3,
+    "w": 192
+  },
+  "bosses/flieger-walk-a": {
+    "anchor": [
+      159.5,
+      307.0
+    ],
+    "for": "drawEnemy boss flieger walk-a",
+    "h": 315,
+    "units": 3,
+    "w": 220
+  },
+  "bosses/flieger-walk-b": {
+    "anchor": [
+      121.0,
+      320.0
+    ],
+    "for": "drawEnemy boss flieger walk-b",
+    "h": 327,
+    "units": 3,
+    "w": 192
+  },
+  "bosses/hauptmann-attack-a": {
+    "anchor": [
+      146.5,
+      325.0
+    ],
+    "for": "drawEnemy boss hauptmann attack-a",
+    "h": 332,
+    "units": 3,
+    "w": 229
+  },
+  "bosses/hauptmann-attack-b": {
+    "anchor": [
+      158.0,
+      292.0
+    ],
+    "for": "drawEnemy boss hauptmann attack-b",
+    "h": 299,
+    "units": 3,
+    "w": 283
+  },
+  "bosses/hauptmann-hit": {
+    "anchor": [
+      66.5,
+      294.0
+    ],
+    "for": "drawEnemy boss hauptmann hit",
+    "h": 301,
+    "units": 3,
+    "w": 213
+  },
+  "bosses/hauptmann-idle": {
+    "anchor": [
+      124.0,
+      319.0
+    ],
+    "for": "drawEnemy boss hauptmann idle",
+    "h": 326,
+    "units": 3,
+    "w": 185
+  },
+  "bosses/hauptmann-walk-a": {
+    "anchor": [
+      85.0,
+      316.0
+    ],
+    "for": "drawEnemy boss hauptmann walk-a",
+    "h": 323,
+    "units": 3,
+    "w": 218
+  },
+  "bosses/hauptmann-walk-b": {
+    "anchor": [
+      124.0,
+      319.0
+    ],
+    "for": "drawEnemy boss hauptmann walk-b",
+    "h": 326,
+    "units": 3,
+    "w": 185
+  },
+  "bosses/hexe-attack-a": {
+    "anchor": [
+      83.0,
+      321.0
+    ],
+    "for": "drawEnemy boss hexe attack-a",
+    "h": 328,
+    "units": 3,
+    "w": 187
+  },
+  "bosses/hexe-attack-b": {
+    "anchor": [
+      76.0,
+      308.0
+    ],
+    "for": "drawEnemy boss hexe attack-b",
+    "h": 316,
+    "units": 3,
+    "w": 265
+  },
+  "bosses/hexe-hit": {
+    "anchor": [
+      138.0,
+      305.0
+    ],
+    "for": "drawEnemy boss hexe hit",
+    "h": 312,
+    "units": 3,
+    "w": 211
+  },
+  "bosses/hexe-idle": {
+    "anchor": [
+      73.0,
+      320.0
+    ],
+    "for": "drawEnemy boss hexe idle",
+    "h": 327,
+    "units": 3,
+    "w": 171
+  },
+  "bosses/hexe-walk-a": {
+    "anchor": [
+      187.0,
+      308.0
+    ],
+    "for": "drawEnemy boss hexe walk-a",
+    "h": 316,
+    "units": 3,
+    "w": 236
+  },
+  "bosses/hexe-walk-b": {
+    "anchor": [
+      73.0,
+      320.0
+    ],
+    "for": "drawEnemy boss hexe walk-b",
+    "h": 327,
+    "units": 3,
+    "w": 171
+  },
+  "bosses/platte-attack-a": {
+    "anchor": [
+      145.0,
+      396.0
+    ],
+    "for": "drawEnemy boss platte attack-a",
+    "h": 404,
+    "units": 3,
+    "w": 322
+  },
+  "bosses/platte-attack-b": {
+    "anchor": [
+      89.0,
+      317.0
+    ],
+    "for": "drawEnemy boss platte attack-b",
+    "h": 324,
+    "units": 3,
+    "w": 278
+  },
+  "bosses/platte-hit": {
+    "anchor": [
+      127.0,
+      345.0
+    ],
+    "for": "drawEnemy boss platte hit",
+    "h": 353,
+    "units": 3,
+    "w": 289
+  },
+  "bosses/platte-idle": {
+    "anchor": [
+      114.0,
+      365.0
+    ],
+    "for": "drawEnemy boss platte idle",
+    "h": 372,
+    "units": 3,
+    "w": 272
+  },
+  "bosses/platte-walk-a": {
+    "anchor": [
+      96.0,
+      352.0
+    ],
+    "for": "drawEnemy boss platte walk-a",
+    "h": 360,
+    "units": 3,
+    "w": 235
+  },
+  "bosses/platte-walk-b": {
+    "anchor": [
+      114.0,
+      365.0
+    ],
+    "for": "drawEnemy boss platte walk-b",
+    "h": 372,
+    "units": 3,
+    "w": 272
+  },
+  "bosses/ratten-attack-a": {
+    "anchor": [
+      85.0,
+      326.0
+    ],
+    "for": "drawEnemy boss ratten attack-a",
+    "h": 333,
+    "units": 3,
+    "w": 243
+  },
+  "bosses/ratten-attack-b": {
+    "anchor": [
+      102.0,
+      304.0
+    ],
+    "for": "drawEnemy boss ratten attack-b",
+    "h": 311,
+    "units": 3,
+    "w": 303
+  },
+  "bosses/ratten-hit": {
+    "anchor": [
+      102.0,
+      309.0
+    ],
+    "for": "drawEnemy boss ratten hit",
+    "h": 316,
+    "units": 3,
+    "w": 218
+  },
+  "bosses/ratten-idle": {
+    "anchor": [
+      100.0,
+      320.0
+    ],
+    "for": "drawEnemy boss ratten idle",
+    "h": 327,
+    "units": 3,
+    "w": 229
+  },
+  "bosses/ratten-walk-a": {
+    "anchor": [
+      87.0,
+      300.0
+    ],
+    "for": "drawEnemy boss ratten walk-a",
+    "h": 308,
+    "units": 3,
+    "w": 251
+  },
+  "bosses/ratten-walk-b": {
+    "anchor": [
+      100.0,
+      320.0
+    ],
+    "for": "drawEnemy boss ratten walk-b",
+    "h": 327,
+    "units": 3,
+    "w": 229
+  },
+  "bosses/ritter-attack-a": {
+    "anchor": [
+      71.0,
+      263.0
+    ],
+    "for": "drawEnemy boss ritter attack-a",
+    "h": 270,
+    "units": 3,
+    "w": 235
+  },
+  "bosses/ritter-attack-b": {
+    "anchor": [
+      192.0,
+      274.0
+    ],
+    "for": "drawEnemy boss ritter attack-b",
+    "h": 281,
+    "units": 3,
+    "w": 278
+  },
+  "bosses/ritter-hit": {
+    "anchor": [
+      99.0,
+      302.0
+    ],
+    "for": "drawEnemy boss ritter hit",
+    "h": 309,
+    "units": 3,
+    "w": 295
+  },
+  "bosses/ritter-idle": {
+    "anchor": [
+      136.0,
+      319.0
+    ],
+    "for": "drawEnemy boss ritter idle",
+    "h": 327,
+    "units": 3,
+    "w": 230
+  },
+  "bosses/ritter-walk-a": {
+    "anchor": [
+      105.0,
+      313.0
+    ],
+    "for": "drawEnemy boss ritter walk-a",
+    "h": 321,
+    "units": 3,
+    "w": 216
+  },
+  "bosses/ritter-walk-b": {
+    "anchor": [
+      136.0,
+      319.0
+    ],
+    "for": "drawEnemy boss ritter walk-b",
+    "h": 327,
+    "units": 3,
+    "w": 230
+  },
+  "bosses/volk-attack-a": {
+    "anchor": [
+      138.0,
+      395.0
+    ],
+    "for": "drawEnemy boss volk attack-a",
+    "h": 402,
+    "units": 3,
+    "w": 381
+  },
+  "bosses/volk-attack-b": {
+    "anchor": [
+      148.0,
+      367.0
+    ],
+    "for": "drawEnemy boss volk attack-b",
+    "h": 374,
+    "units": 3,
+    "w": 447
+  },
+  "bosses/volk-hit": {
+    "anchor": [
+      114.0,
+      363.0
+    ],
+    "for": "drawEnemy boss volk hit",
+    "h": 370,
+    "units": 3,
+    "w": 364
+  },
+  "bosses/volk-idle": {
+    "anchor": [
+      159.0,
+      363.0
+    ],
+    "for": "drawEnemy boss volk idle",
+    "h": 370,
+    "units": 3,
+    "w": 337
+  },
+  "bosses/volk-walk-a": {
+    "anchor": [
+      247.5,
+      358.0
+    ],
+    "for": "drawEnemy boss volk walk-a",
+    "h": 365,
+    "units": 3,
+    "w": 331
+  },
+  "bosses/volk-walk-b": {
+    "anchor": [
+      159.0,
+      363.0
+    ],
+    "for": "drawEnemy boss volk walk-b",
+    "h": 370,
+    "units": 3,
+    "w": 337
+  },
   "buildings/gdr-banner-blue": {
     "anchor": [
       77.699,

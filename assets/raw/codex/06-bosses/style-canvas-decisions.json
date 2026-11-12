@@ -1,0 +1,12 @@
+{
+  "generator": "built-in image generation",
+  "mode": "transparent-background referenced-image generation",
+  "date": "2026-11-11",
+  "sheets": {
+    "style-canvas-a.png": ["hauptmann", "hexe", "bass"],
+    "style-canvas-b.png": ["flieger", "brand", "ratten"],
+    "style-canvas-c.png": ["ritter", "platte", "volk"]
+  },
+  "decision": "Use all nine portrait-faithful full-body designs as the production direction. Their silhouettes, signature colours and equipment are distinct enough to proceed to animation-source sheets without another variant round.",
+  "notes": "These are raw style canvases, not runtime sprites. Preserve the original PNGs; normalize and remove edge-key residue only in deterministic production builders."
+}
