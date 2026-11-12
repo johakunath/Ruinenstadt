@@ -6,6 +6,7 @@ Source of truth for the story backdrop, district eras and the tone of NPCs and a
 
 The GDR never fell. Its last big project, the **Zeitnormal**, ran every clock in Berlin from the Weltzeituhr, with the Fernsehturm as its antenna. One night it broke. Every district slipped into a different time and froze there. Time is not gone; it runs in each district in its own era, and the edges between districts are where eras grind against each other (ruins, overgrowth, things that should not exist together).
 
+- **Zombies everywhere: die Zeitlosen.** People who stood between two seconds when the clock broke. Their own time ran out while the world around them stopped, so they rot and keep walking. That is why ghouls, brutes and spitters appear in every district, whatever its era. Era-specific enemies come on top (dinosaurs, clockwork, Kabelghule).
 - **The player:** a Schaffner of the last U-Bahn that still runs on **Normalzeit**. Freeing a line pulls a district back into the present, which is why the U-Bahn network is the progression.
 - **Bosses:** each holds one **Zahnrad** (gear wheel) of the Weltzeituhr. A boss kill returns it; the camp gets its gears back one by one.
 - **Blessings:** **Zeitsplitter**. The Litfaßsäulen catch them; the hidden blessings are splinters that fell into corners.
@@ -14,9 +15,9 @@ The GDR never fell. Its last big project, the **Zeitnormal**, ran every clock in
 
 ## Districts and eras
 
-| Order | District | Era (intro banner: „District · Year“, `ERA` in `js/data.js`) | Hook | Boss (now) |
+| Order | District | Era (intro banner, network map and district card: „District · Year“, `ERA` in `js/data.js`) | Hook | Boss (now) |
 |---|---|---|---|---|
-| 1 | Köpenick | Prehistory (banner: Urzeit) | Jungle, raptors, Altstadt ruins; the Hauptmann (1906) slipped in and commands the beasts | Hauptmann von Köpenick |
+| 1 | Köpenick | Urzeit (banner and map) | Where the clock broke first, it spun backwards the furthest: jungle and dinosaurs grew back between the Altstadt ruins, the Zeitlose of Köpenick wander among them, and the Hauptmann of 1906 was dragged along on the way down, now commanding both. Köpenick shows the Stillstand at its rawest, which is why it is the start | Hauptmann von Köpenick |
 | 2 | Xhain | 1981, West Berlin squats | Squats, punks, Spree, Wrangelkiez; the Spreehexe as a punk witch of the squats | Spreehexe |
 | 3 | Alexanderplatz | 1989, frozen in autumn | The GDR that kept going and grew wild, clockwork, pioneers, daylight | Volkseigener Koloss |
 | 4 | Mitte / Potsdamer Platz | 2089, neon future | Rain, implants, Kabelghule, the club cult | Bassprediger |

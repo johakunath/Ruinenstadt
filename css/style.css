@@ -347,3 +347,5 @@ body.tab #ult{width:80px;height:80px;font-size:15px;right:calc(max(28px,env(safe
 body.mouse #ult::after,body.pad #ult::after{position:absolute;bottom:-4px;right:-4px;font:700 12px var(--f-ui);border:1px solid var(--edge);padding:1px 5px}
 body.mouse #ult::after{content:"R";background:#120d0a;border-radius:3px;color:var(--bone)}
 body.pad #ult::after{content:"LB";border-radius:8px;background:#5a5048;color:#fff;font-size:11px}
+.dyr{font:600 15px var(--f-ui);letter-spacing:.12em;color:var(--dim);margin-left:10px}.dtop .dn+.dyr{margin-right:auto}
+.nety{font:600 9px var(--f-ui);fill:#c9b79a;letter-spacing:.06em}
