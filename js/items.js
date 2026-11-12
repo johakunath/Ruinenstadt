@@ -34,8 +34,10 @@ function rollAfx(it){const r=it.r,il=it.ilvl,m=Math.sqrt(RAR[r].m);
 const dps=it=>it.val/KIND[it.kind].rate;
 function withItem(it){const e=Object.assign({},S.eq);e[it.slot]=it;return e;}
 // v0.87 item level is the basic comparison (Diablo style): higher ilvl than the equipped piece = better, empty slot = better
-function better(it){const e=S.eq[it.slot];return!e||(it.ilvl||0)>(e.ilvl||0);}
-const avgIl=()=>{const a=Object.values(S.eq).filter(Boolean);return a.length?Math.round(a.reduce((s,x)=>s+(x.ilvl||0),0)/a.length):0;};
+// rarity lifts the shown item level like WoW (a higher quality item counts as a few levels higher): +0 white, +3 magic, +6 rare and set, +10 legendary. Tunable.
+const RIL=[0,3,6,10],ilv=it=>(it.ilvl||0)+RIL[it.r||0];
+function better(it){const e=S.eq[it.slot];return!e||ilv(it)>ilv(e);}
+const avgIl=()=>{const a=Object.values(S.eq).filter(Boolean);return a.length?Math.round(a.reduce((s,x)=>s+ilv(x),0)/a.length):0;};
 function fmtA(f){const A=AFX[f.k];let v=A.neg?-f.v:f.v;return(v>0?'+':'−')+(A.d?Math.abs(v).toFixed(1):Math.abs(v))+A.u+' '+A.n;}
 function extraLines(it){let h='';if(it.set){const Q=SETS[it.set],n=setCount(S.eq,it.set);h+=`<div class="af" style="color:${SETC}">Set ${Q.n} · ${n}/${Object.keys(Q.p).length} angelegt</div><div class="af" style="color:${n>=2?SETC:'var(--dim)'}">(2) ${Q.b2}</div><div class="af" style="color:${n>=3?SETC:'var(--dim)'}">(3) ${Q.b3}</div><div class="af" style="color:${n>=5?SETC:'var(--dim)'}">(5) ${Q.b5}</div>`;}if(LEGP[baseOf(it)])h+=`<div class="af" style="color:${RAR[3].c};font-style:italic">${LEGP[baseOf(it)]}</div>`;if(it.el)h+=`<div class="st" style="color:${ELC[it.el]}">Element: ${ELN[it.el]}</div>`;if(modSlots(it)){const ms=it.mods||[];h+=`<div class="af" style="color:#f2a04b">Aufsätze ${ms.length}/${modSlots(it)}${ms.length?': '+ms.map(k=>(MODS.find(m=>m.k===k)||{}).n).join(', '):''}</div>`;}return h;}
 const afxAll=it=>[...(IMP[baseOf(it)]||[]).map(q=>({k:q[0],v:q[1]})),...(it.afx||[])];
@@ -54,7 +56,11 @@ function cmpBlock(it){const a=stats(),b=stats(withItem(it));let h='';
     h+=`<div class="cmp"><span>${n}</span><span>${x} → <b style="color:${good?'var(--good)':'var(--bad)'}">${y}</b></span></div>`;}
   if(a.els.join()!==b.els.join())h+=`<div class="cmp"><span>Element</span><span>${a.els.map(e=>ELN[e]).join(', ')||'keins'} → <b>${b.els.map(e=>ELN[e]).join(', ')||'keins'}</b></span></div>`;
   return h||'<div class="sub">Keine Veränderung</div>';}
-const scrapVal=it=>Math.round((it.r+1)*3*(1+it.ilvl*.08));
+const itemPrice=it=>Math.round((it.r+1)*3*(1+it.ilvl*.08));// trader price base (the old scrap value)
+// v0.87 salvage: rarer pieces give far more scrap and may also drop materials (slot decides which)
+const scrapVal=it=>Math.round([3,8,20,50][it.r||0]*(1+it.ilvl*.08)),SALVM={w:['metall','metall','kabel'],a:['stoff','stoff','metall'],h:['stoff','metall'],g:['stoff','chemie'],f:['stoff','metall'],t:['kabel','chemie'],r:['kabel','chemie'],i:['kabel','kabel','chemie']},SALVN=[.3,.7,1.5,3];
+function salvage(it,tot){const sc=scrapVal(it),n=SALVN[it.r||0],c=Math.floor(n)+(Math.random()<n%1?1:0);S.scrap+=sc;tot.sc+=sc;for(let i=0;i<c;i++){const k=pick(SALVM[it.slot]||['metall']);S.mat[k]=(S.mat[k]||0)+1;tot.m[k]=(tot.m[k]||0)+1;}retMods(it);}
+const salvMsg=t=>`+${t.sc} Schrott`+Object.entries(t.m).map(([k,v])=>` · <span style="color:${MATS[k][1]}">+${v} ${MATS[k][0]}</span>`).join('');
 function statLine(it){if(it.slot==='w')return`${it.val} Schaden · ${KIND[it.kind].n} · ${Math.round(dps(it))} DPS`;if(it.slot==='a')return`+${it.val} Leben`;if(SSTAT[it.slot])return`+${it.val}% ${AFX[SSTAT[it.slot]].n}`;return{krit:`+${it.val}% Krit-Chance`,tempo:`+${it.val}% Tempo`,heil:`+${it.val} Leben pro Sekunde`}[it.kind];}
 
 const Y='<path d="M12 21v-8M12 13L7 4M12 13l5-9"/><path d="M7 4q5 5 10 0" stroke-width="1.2"/>';

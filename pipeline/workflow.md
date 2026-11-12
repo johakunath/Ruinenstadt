@@ -12,6 +12,13 @@ How the painted in-world art is made, plugged in and handed over. Index for ever
 
 Tasks are written so they can be followed step by step: concrete files, functions, numbers and acceptance checks. If a step is unclear or does not work as written, stop at that step and write it into `log.md`.
 
+## Token budget rules (Johannes, 2026-11-12)
+
+- **Codex spends its tokens on creating assets** (generate, cut, normalise, manifest, a basic hookup so the asset shows up). Nothing else.
+- **Claude does** the deeper integration, performance optimization (perf gate) and the detailed testing after Codex hands over. Codex does not run broad regression suites or tuning passes.
+- **Codex reviews: one, at most two per PR.** A second review only after a large change (about 2 to 3 new commits or one big commit). Small fixes and follow-ups get no new review. Do not re-trigger `@codex review` after each push.
+- Both are mirrored in `BACKLOG.md` under Tech.
+
 ## Current queue (Johannes, 2026-11-10)
 
 This user-authorized order supersedes older queue/order notes below and in task
