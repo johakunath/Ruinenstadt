@@ -39,9 +39,9 @@ const ACH=[{k:'k100',n:'Aufräumer',d:'Besiege 100 Gegner',r:50,c:()=>S.rec.kill
   {k:'leg1',n:'Ein Fund fürs Leben',d:'Finde ein legendäres Teil',r:100,c:()=>S.rec.legs>=1},{k:'win1',n:'Befreier',d:'Befreie einen Bezirk',r:100,c:()=>S.rec.wins>=1},
   {k:'win5',n:'Berlin atmet',d:'Befreie fünf Bezirke',r:400,c:()=>S.best.filter(b=>b>=WAVES).length>=5},{k:'th3',n:'Gegen die Übermacht',d:'Schalte Bedrohung 3 frei',r:300,c:()=>S.tmax>=3},
   {k:'set3',n:'Komplett',d:'Trage ein vollständiges Set',r:250,c:()=>['kiez','spree','zit'].some(k=>setCount(S.eq,k)>=5)},{k:'camp',n:'Zuhause',d:'Baue alle Stationen im Lager auf Stufe 3 aus',r:300,c:()=>CST.every(x=>cLv(x.k)>=3)},
-  {k:'m5',n:'Meisterhand',d:'Erreiche Meisterschaft 5 mit einer Waffe',r:150,c:()=>['blade','hammer','sling','spear'].some(k=>mLvl(k)>=5)},{k:'chest5',n:'Kellerkind',d:'Öffne 5 Kellertruhen',r:150,c:()=>S.rec.chests>=5},
+  {k:'m5',n:'Meisterhand',d:'Erreiche Drill-Rang 5',r:150,c:()=>(S.drill||0)>=5},{k:'chest5',n:'Kellerkind',d:'Öffne 5 Kellertruhen',r:150,c:()=>S.rec.chests>=5},
   {k:'surv6',n:'Volles Lager',d:'Befreie alle sechs Gefangenen',r:300,c:()=>SURV.every(s=>hasS(s.k))},{k:'streak50',n:'Kettenreaktion',d:'Erreiche eine Serie von 50',r:150,c:()=>(S.rec.streak||0)>=50},{k:'endl20',n:'Nachtschicht',d:'Erreiche Welle 20 im Endlos-Modus',r:300,c:()=>(S.eb||[]).some(w=>w>=20)},
-  {k:'legall',n:'Sammler',d:'Finde alle legendären Teile',r:500,c:()=>Object.keys(LEGP).every(k=>S.found&&S.found[k])},{k:'mods3',n:'Bastler',d:'Baue 3 Aufsätze in Waffen ein',r:100,c:()=>(S.rec.mods||0)>=3},{k:'spear5',n:'Lanzenreiter',d:'Erreiche Speer-Meisterschaft 5',r:150,c:()=>mLvl('spear')>=5},{k:'th5',n:'Unaufhaltsam',d:'Schalte Bedrohung 5 frei',r:500,c:()=>S.tmax>=5},
+  {k:'legall',n:'Sammler',d:'Finde alle legendären Teile',r:500,c:()=>Object.keys(LEGP).every(k=>S.found&&S.found[k])},{k:'mods3',n:'Bastler',d:'Baue 3 Aufsätze in Waffen ein',r:100,c:()=>(S.rec.mods||0)>=3},{k:'spear5',n:'Schleifer',d:'Erreiche Drill-Rang 20',r:300,c:()=>(S.drill||0)>=20},{k:'th5',n:'Unaufhaltsam',d:'Schalte Bedrohung 5 frei',r:500,c:()=>S.tmax>=5},
   {k:'win8',n:'Ganz Berlin',d:'Befreie Marzahn',r:800,c:()=>S.best[DI('Marzahn')]>=WAVES},{k:'boss10',n:'Bezwinger',d:'Besiege 10 Endgegner',r:250,c:()=>S.rec.bosses>=10}];
 let tipQ=[],tipT=0;function tip(k,txt){if(!S.tips||S.tips[k])return;S.tips[k]=1;tipQ.push(txt);}
 function checkAch(){for(const a of ACH)if(!S.ach[a.k]&&a.c()){S.ach[a.k]=1;S.scrap+=a.r;toast(`Erfolg: <span style="color:var(--ember)">${a.n}</span> · +${a.r} Schrott`);sfx('win');}}
@@ -88,9 +88,10 @@ function rngFrom(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>
 function dailyPlan(){const r=rngFrom(dayKey()*7+13),ks=Object.keys(DMODS),a=ks[Math.floor(r()*ks.length)];let b;do{b=ks[Math.floor(r()*ks.length)];}while(b===a);return{d:Math.floor(r()*Math.max(1,S.unlocked)),mods:[a,b]};}
 let RNG0=null;const dm_=k=>run&&run.dmods&&run.dmods.includes(k);
 function endDaily(){if(RNG0){Math.random=RNG0;RNG0=null;}if(run&&run.daily){const sc=run.kills*10+run.wave*50+(P.hp>0&&run.wave>=WAVES?1000:0);run.score=sc;const k=dayKey();if(!S.daily||S.daily.k!==k)S.daily={k,best:0,tries:0};S.daily.tries++;S.daily.best=Math.max(S.daily.best,sc);save();}}
-const MAST_N={blade:'Klingen',hammer:'Hammer',sling:'Werfer',spear:'Speer'};
-// v0.77 (playtest: mastery came too fast): level l needs 40*l^2.6 EP (level 10 at about 16000 EP instead of 4000). Levels already reached before v0.77 are kept (S.mfl)
-const mXP=l=>Math.round(40*Math.pow(l,2.6)),mLvl=k=>{const x=(S.mast&&S.mast[k])||0;let l=0;while(l<10&&x>=mXP(l+1))l++;return Math.max(l,(S.mfl&&S.mfl[k])||0);},mNext=k=>{const l=mLvl(k);return l>=10?0:mXP(l+1);};
+// v0.85 Drill (Exerzierplatz): endless scrap sink that replaces weapon mastery. Each rank +2% damage and +2% life, cost grows linearly
+// v0.86 implant modes: every implant has 3 passive settings, switchable anytime in the inventory (it.im)
+const IMODE=[{k:'lauf',n:'Laufwerk',d:'+12% Lauftempo',a:{spd:12}},{k:'takt',n:'Taktgeber',d:'+10% Angriffstempo',a:{as:10}},{k:'haut',n:'Panzerhaut',d:'+8% Widerstand',a:{res:8}}];
+const DRILL_D=.02,DRILL_H=.02,drillCost=()=>300+60*(S.drill||0);
 const JOBT=[
  {k:'ghoul',n:t=>`Besiege ${t} Ghule`,t:()=>pick([30,40,50])},{k:'brute',n:t=>`Besiege ${t} Brocken`,t:()=>pick([8,12])},{k:'spitter',n:t=>`Besiege ${t} Speier`,t:()=>pick([10,15])},
  {k:'elite',n:t=>`Besiege ${t} Elite-Gegner`,t:()=>pick([2,3,4])},{k:'props',n:t=>`Zerschlage ${t} Kisten oder Tonnen`,t:()=>pick([12,18])},{k:'spati',n:t=>`Plündere ${t} Kisten in einem Späti`,t:()=>3},
@@ -138,6 +139,8 @@ const DIST=[
  {i:5,b:6,n:'Spandau',lvl:54,ground:'#25231b',road:'#1f1c16',walls:['#5a4a38','#4e4032','#66523e'],roof:['#35291f','#3f3126','#2d231b'],dark:.82,spit:.24,brute:.26,sw:1,bw:1,trees:16,spati:'Späti an der Havel'},
  {i:6,b:7,n:'Marzahn',lvl:66,ground:'#26231f',road:'#1f1c19',walls:['#5e5a52','#54504a','#66625a'],roof:['#35322e','#3d3a35','#2e2b28'],dark:.84,spit:.26,brute:.28,sw:1,bw:1,trees:8,spati:'Späti Helle Mitte'}];
 const DI=n=>DIST.findIndex(d=>d.n===n);
+// v0.86 story „Der Stillstand“ (docs/story.md): the era each district froze in, shown in the intro banner. Wedding: 'bald', Charlottenburg: 1920 once they exist
+const ERA=['Urzeit','1981','1989','2089','1948','',''],eraN=i=>DIST[i].n+(ERA[i]?' · '+ERA[i]:'');
 // extra enemy mix per district: [rat, bomb, shield, crow, howl, kabel, bass, uhr, wurz, kern]
 const MIX=[[0,0,0,.06,0],[.14,.05,0,0,0],[0,.03,0,.05,0,0,0,.1,.08,.09],[0,.04,.08,0,0,.2,.07],[0,.08,0,.12,0],[0,.06,.1,.1,.05],[.08,.12,.1,.06,.07]];
 const UPG=[{k:'dmg',n:'Schärfen',d:l=>`+${l*7}% Schaden`,max:10,base:15},{k:'hp',n:'Panzerung',d:l=>`+${l*15} Leben`,max:10,base:15},{k:'dash',n:'Ausdauer',d:l=>`-${l*8}% Sprint-Abklingzeit`,max:5,base:25},{k:'luck',n:'Spürnase',d:l=>`+${l} Beuteglück`,max:5,base:30}];
@@ -170,7 +173,7 @@ const PERKS=[
  {k:'m_rund',n:'Rundumschlag',d:'Dein Finisher trifft rundherum, +20% Reichweite',max:1,w:'blade'},{k:'m_dampf',n:'Dampfhammer',d:'30% langsamer, +70% Schaden, jeder Hieb schickt eine Druckwelle',max:1,w:'hammer'},
  {k:'m_schrot',n:'Schrotladung',d:'Jeder Schuss feuert 3 Kugeln mit je 55% Schaden, kürzere Reichweite',max:1,w:'sling'},{k:'m_spiess',n:'Wurfspieße',d:'Jeder Finisher wirft zusätzlich einen Speer, der 4 Gegner durchbohrt',max:1,w:'spear'}];
 const pFam=p=>p.duo||p.f||[],famHeld=()=>{const h=new Set();if(run)for(const k in run.perks)if(run.perks[k]>0){const p=PERKS.find(x=>x.k===k);if(p&&!p.duo&&!p.w)(p.f||[]).forEach(f=>h.add(f));}return h;};
-// v0.82 weapon powers (Kräfte): 3 per weapon class, picked before the run (S.kr[kind]); the third is an ultimate with a long cooldown. Names: [default, Potsdamer Platz neon bases, Alexanderplatz bases]
+// v0.82 weapon powers (Kräfte): 3 per weapon class; since v0.86 power 1 or 2 is set on the weapon item (w.kr) and the third, the ultimate, is always equipped; the third is an ultimate with a long cooldown. Names: [default, Potsdamer Platz neon bases, Alexanderplatz bases]
 const KR={blade:[{k:'saege',n:['Kreissäge','Neonwirbel','Ernteschlacht'],d:'Du wirbelst 1,2 s lang und triffst alles um dich herum',cd:7},
   {k:'fecht',n:['Fechtsprung','Phasensprung','Sonderschicht'],d:'Sprung durch die Gegner mit 180% Schaden. Ein Kill lädt die Kraft sofort auf',cd:6},
   {k:'saebel',n:['Säbeltanz','Übertakten','Übersoll'],d:'5 s lang +80% Angriffstempo, jeder Treffer kritisch',cd:24,u:1}],
@@ -183,5 +186,6 @@ const KR={blade:[{k:'saege',n:['Kreissäge','Neonwirbel','Ernteschlacht'],d:'Du 
  spear:[{k:'spiess',n:['Spießrute','Rückkopplung','Stundenschlag'],d:'Speerwurf, durchbohrt alles in einer Linie',cd:7},
   {k:'stab',n:['Stabhochsprung','Stagedive','Sprungfeder'],d:'Sprung nach vorn, die Landung trifft alles im Kreis mit 220% Schaden',cd:6},
   {k:'stand',n:['Standarte','Verstärker','Weltzeituhr'],d:'Pflanzt 8 s eine Standarte. Darin +50% Schaden und Heilung, Gegner langsamer',cd:26,u:1}]};
-const krVar=b=>({leucht:1,boxh:1,neonfl:1,mikro:1,sichel:2,werkh:2,aufzieh:2,zeiger:2})[b]||0,krOf=w=>{w=w||S.eq.w;return KR[w.kind][Math.min(2,(S.kr&&S.kr[w.kind])||0)];},krName=(p,w)=>p.n[krVar(baseOf(w||S.eq.w))];
+const krVar=b=>({leucht:1,boxh:1,neonfl:1,mikro:1,sichel:2,werkh:2,aufzieh:2,zeiger:2})[b]||0,krOf=w=>{w=w||S.eq.w;return KR[w.kind][w.kr===1?1:0];},ulOf=w=>KR[(w||S.eq.w).kind][2],// v0.86: the regular power is chosen per weapon (w.kr 0/1, anytime in the inventory), the ultimate is always equipped on its own button
+krName=(p,w)=>p.n[krVar(baseOf(w||S.eq.w))];
 let run=null;const pk=k=>(run&&run.perks[k])||0;

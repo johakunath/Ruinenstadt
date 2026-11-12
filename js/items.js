@@ -146,7 +146,9 @@ const ICOI={latte:'I01',rohr:'I02',stahl:'I03',machete:'I04',brech:'I05',vorschl
  spaeti:'I49',panzer:'I50',zitklinge:'I51',pbrecher:'I52',kraehe:'I53',rattenmantel:'I54',ritter:'I55',siegsp:'I56',khemd:'I57',karm:'I58',bassarm:'I58',
  leucht:'I59',boxh:'I60',neonfl:'I61',mikro:'I62',poncho:'I63',kmantel:'I64',nbrille:'I65',nauge:'I66',zchip:'I67',reflex:'I68',bherz:'I69',npumpe:'I70',doener:'D01',
  verband:'C01',molotow:'C02',suppe:'C03',curry:'C04',kaffee:'C05',soljanka:'C06',gurke:'C07',m_nagel:'M01',griff:'M02',gewicht:'M03',batt:'M04',tank:'M05',phiole:'M06',dorn:'M07',
- stoff:'R01',metall:'R02',chemie:'R03',kabel:'R04',schrott:'R05'};
+ stoff:'R01',metall:'R02',chemie:'R03',kabel:'R04',schrott:'R05',
+ sichel:'I71',werkh:'I72',aufzieh:'I73',zeiger:'I74',blaumann:'I75',stroh:'I76',gartenh:'I77',pickel:'I78',kiezhelm:'I79',kiezhand:'I80',spreestief:'I81',spreering:'I82',topfhelm:'I83',eisenstief:'I84',
+ kiezbox:'I85',schaffner:'I86',weltuhr:'I87',fleisch:'Z01',gemuese:'Z02',gewuerz:'Z03'};
 const PORTI={ghoul:'E01',brute:'E02',spitter:'E03',rat:'E04',crow:'E05',shield:'E06',bomb:'E07',howl:'E08',raser:'E09',boss:'E10',
  doktor:'S01',schmied:'S02',kurier:'S03',koechin:'S04',spaeher:'S05',mechaniker:'S06',kabel:'E13',bass:'E14',hauptmann:'X01',hexe:'X02',turm:'X09',flieger:'X04',brand:'X05',ratten:'X06',ritter:'X07',platte:'X08'};
 const pImgSrc=k=>PORTI[k]&&`assets/portraits/${PORTI[k]}.webp`;

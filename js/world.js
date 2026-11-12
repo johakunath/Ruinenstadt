@@ -320,7 +320,7 @@ function makeB(b,st){if(st==='hoch'||st==='buero')return modernB(b,st);if(st==='
   bShadow(b);
   for(let i=0;i<(L_?2:10);i++){gx.fillStyle=pick(['#4a3a2e','#3d3027','#5a4636']);const s=R(3,9);gx.fillRect(b.x+R(-12,b.w+6),b.y+b.h+R(0,14),s,s*.7);}
 }
-function stamp(x,y,col,r){gx.fillStyle=col;for(let i=0;i<5;i++){gx.beginPath();gx.ellipse(x+R(-r,r)*.6,y+R(-r,r)*.4,R(r*.3,r*.7),R(r*.2,r*.45),R(0,3),0,7);gx.fill();}}
+function stamp(x,y,col,r){if(typeof GCD!=="undefined")GCD.push([x-1.5*r,y-1.5*r,3*r,3*r]);gx.fillStyle=col;for(let i=0;i<5;i++){gx.beginPath();gx.ellipse(x+R(-r,r)*.6,y+R(-r,r)*.4,R(r*.3,r*.7),R(r*.2,r*.45),R(0,3),0,7);gx.fill();}}
 // spatial hash for walls: built after world generation, used by collide() and wallAt() every frame
 let WG=new Map();const WC=128,wk=(x,y)=>x*1000+y;
 function gridCells(o,f){const x0=Math.floor(o.x/WC),x1=Math.floor((o.x+o.w)/WC),y0=Math.floor(o.y/WC),y1=Math.floor((o.y+o.h)/WC);for(let x=x0;x<=x1;x++)for(let y=y0;y<=y1;y++)f(wk(x,y));}

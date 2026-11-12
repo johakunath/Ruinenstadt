@@ -11,16 +11,32 @@ let last=performance.now();const TN=[],LCOL=()=>D.cyber?'#6a8cff':'#ffb060';
 const PERF=/[?&]debug=perf\b/.test(location.search),PM={},PX_={};let pfN=0;function pmk(k,t0){const n=performance.now(),d=n-t0;PM[k]=PM[k]==null?d:PM[k]*.94+d*.06;if(!(PX_[k]>d))PX_[k]=d;return n;}
 function drawPerf(){if(++pfN%120===0)for(const k in PX_)PX_[k]=0;ctx.setTransform(DPR,0,0,DPR,0,0);const f=k=>PM[k]==null?'-':PM[k].toFixed(1)+' ('+PX_[k].toFixed(0)+')',L=['frame '+f('frame')+' ms · '+(1000/(PM.frame||16.7)).toFixed(0)+' fps','update '+f('update')+' · ground '+f('ground')+' · world '+f('world'),'light '+f('light')+' · fx '+f('fx')+' · ui '+f('ui'),'enemies '+enemies.length+' · fx '+fx.length+' · parts '+parts.length+' · boxes '+blds.length,cv.width+'x'+cv.height+' · DPR '+DPR+' · Z '+Z.toFixed(2)+(S.eco?' · eco':'')];
   ctx.font='12px monospace';ctx.textAlign='left';ctx.fillStyle='rgba(0,0,0,.7)';ctx.fillRect(6,SH-L.length*15-12,330,L.length*15+8);ctx.fillStyle=(PM.frame||0)>20?'#ff8a3d':'#8fd16a';L.forEach((l,i)=>ctx.fillText(l,12,SH-L.length*15+6+i*15));}
+/* v0.85 ground cache: the skewed blit of the big ground canvas G cost about 5 ms per frame (worse on software canvases, e.g. Firefox).
+   GC holds the projected ground in screen space with a margin; per frame it is one axis-aligned blit. When the view nears the edge the cache
+   shifts onto itself (whole device pixels) and only the uncovered strips are projected again. stamp() marks dirty world rects. ?debug=nogc = old path */
+let RAWDT=0;const NOGC=/[?&]debug=nogc\b/.test(location.search);let GC=null,GCD=[];
+function gcPaint(c,rx,ry,rw,rh){const g=c.g,s=c.s;g.save();g.setTransform(s,0,0,s,-c.x0*s,-c.y0*s);g.beginPath();g.rect(rx,ry,rw,rh);g.clip();g.fillStyle='#17110d';g.fillRect(rx,ry,rw,rh);g.transform(IS,IS/2,-IS,IS/2,0,0);
+  const q=[[rx,ry],[rx+rw,ry],[rx,ry+rh],[rx+rw,ry+rh]].map(p=>s2w(p[0],p[1])),k=G.k||1,x0=clamp(Math.floor(Math.min(...q.map(p=>p[0]))),0,WS),x1=clamp(Math.ceil(Math.max(...q.map(p=>p[0]))),0,WS),y0=clamp(Math.floor(Math.min(...q.map(p=>p[1]))),0,WH),y1=clamp(Math.ceil(Math.max(...q.map(p=>p[1]))),0,WH);
+  if(x1>x0&&y1>y0)g.drawImage(G,x0*k,y0*k,(x1-x0)*k,(y1-y0)*k,x0,y0,x1-x0,y1-y0);g.restore();}
+function groundBlit(){const s=DPR*Z,M=160/Z,vx=-OX,vy=-OY,sn=v=>Math.floor(v*s)/s;let c=GC;
+  if(!c||c.src!==G||c.s!==s||c.vw!==VW||c.vh!==VH){const w=VW+2*M,h=VH+2*M,cv=c&&c.cv||document.createElement('canvas');cv.width=Math.ceil(w*s)+2;cv.height=Math.ceil(h*s)+2;c=GC={cv,g:cv.getContext('2d'),src:G,s,vw:VW,vh:VH,w:cv.width/s,h:cv.height/s,x0:sn(vx-M),y0:sn(vy-M)};GCD.length=0;gcPaint(c,c.x0,c.y0,c.w,c.h);}
+  else if(vx<c.x0||vy<c.y0||vx+VW>c.x0+c.w||vy+VH>c.y0+c.h){const nx=sn(vx-M),ny=sn(vy-M),g=c.g;g.save();g.setTransform(1,0,0,1,0,0);g.globalCompositeOperation='copy';g.drawImage(c.cv,Math.round((c.x0-nx)*s),Math.round((c.y0-ny)*s));g.restore();
+    const ox=c.x0,oy=c.y0;c.x0=nx;c.y0=ny;if(nx<ox)gcPaint(c,nx,ny,ox-nx,c.h);else if(nx>ox)gcPaint(c,ox+c.w,ny,nx-ox,c.h);if(ny<oy)gcPaint(c,nx,ny,c.w,oy-ny);else if(ny>oy)gcPaint(c,nx,oy+c.h,c.w,ny-oy);}
+  for(const d of GCD){const q=[[d[0],d[1]],[d[0]+d[2],d[1]],[d[0],d[1]+d[3]],[d[0]+d[2],d[1]+d[3]]],X=q.map(p=>ix(p[0],p[1])),Y=q.map(p=>iy(p[0],p[1])),x0=Math.min(...X),y0=Math.min(...Y);gcPaint(c,x0-1,y0-1,Math.max(...X)-x0+2,Math.max(...Y)-y0+2);}GCD.length=0;
+  ctx.drawImage(c.cv,c.x0,c.y0,c.w,c.h);}
 function render(t){koepBeginFrame();vehicleBeginFrame();let pt=PERF?performance.now():0;
   ctx.setTransform(DPR*Z,0,0,DPR*Z,0,0);ctx.globalCompositeOperation='source-over';
-  const tx=P.x+(state==='play'?P.mvx*80:0),ty=P.y+(state==='play'?P.mvy*80:0);if(cam.x==null||Math.hypot(cam.x-tx,cam.y-ty)>600){cam.x=tx;cam.y=ty;}else{cam.x+=(tx-cam.x)*.12;cam.y+=(ty-cam.y)*.12;}
-  OX=VW/2-ix(cam.x,cam.y)+R(-shake,shake)+KX;OY=VH/2-iy(cam.x,cam.y)+24+R(-shake,shake)+KY;
+  // v0.85 camera (playtest: erratic with a pad at high speed): the look-ahead follows the stick slowly (~0.45 s), then the camera eases to it frame-rate independent
+  {const dt=cam.t?Math.min(.1,(t-cam.t)/1000):0,lk=state==='play'?70:0;cam.t=t;if(cam.lx==null){cam.lx=0;cam.ly=0;}const kl=1-Math.exp(-dt*2.2);cam.lx+=(P.mvx*lk-cam.lx)*kl;cam.ly+=(P.mvy*lk-cam.ly)*kl;
+  const tx=P.x+cam.lx,ty=P.y+cam.ly;if(cam.x==null||Math.hypot(cam.x-tx,cam.y-ty)>600){cam.x=tx;cam.y=ty;cam.lx=cam.ly=0;}else{const k=1-Math.exp(-dt*5.5);cam.x+=(tx-cam.x)*k;cam.y+=(ty-cam.y)*k;}}
+  OX=VW/2-ix(cam.x,cam.y)+R(-shake,shake)+KX;OY=VH/2-iy(cam.x,cam.y)+24+R(-shake,shake)+KY;{const q=DPR*Z;OX=Math.round(OX*q)/q;OY=Math.round(OY*q)/q;}// whole device pixels: the ground cache blits without resampling
   {const c=[[0,0],[VW,0],[0,VH],[VW,VH]].map(q=>s2w(q[0]-OX,q[1]-OY));VB.x0=Math.min(...c.map(q=>q[0]));VB.x1=Math.max(...c.map(q=>q[0]));VB.y0=Math.min(...c.map(q=>q[1]));VB.y1=Math.max(...c.map(q=>q[1]));}
   ctx.fillStyle='#17110d';ctx.fillRect(0,0,VW,VH);
   ctx.save();ctx.translate(OX,OY);
   /* ---- ground layer: flat decals in world coords ---- */
   ctx.save();isoGround();
-  {const x0=clamp(Math.floor(VB.x0),0,WS),y0=clamp(Math.floor(VB.y0),0,WH),x1=clamp(Math.ceil(VB.x1),0,WS),y1=clamp(Math.ceil(VB.y1),0,WH),k=G.k||1;if(x1>x0&&y1>y0)ctx.drawImage(G,x0*k,y0*k,(x1-x0)*k,(y1-y0)*k,x0,y0,x1-x0,y1-y0);}// G.k: ground canvas scale (the long tunnel keeps its ground at half resolution)
+  if(NOGC){const x0=clamp(Math.floor(VB.x0),0,WS),y0=clamp(Math.floor(VB.y0),0,WH),x1=clamp(Math.ceil(VB.x1),0,WS),y1=clamp(Math.ceil(VB.y1),0,WH),k=G.k||1;if(x1>x0&&y1>y0)ctx.drawImage(G,x0*k,y0*k,(x1-x0)*k,(y1-y0)*k,x0,y0,x1-x0,y1-y0);}// G.k: ground canvas scale (the long tunnel keeps its ground at half resolution)
+  else{ctx.restore();ctx.save();groundBlit();isoGround();}
   drawWaters(t);
   for(const tl of teles){const p=1-tl.t/tl.max;ctx.fillStyle=tl.root?`rgba(90,120,40,${.14+.28*p})`:`rgba(194,58,46,${.12+.25*p})`;ctx.beginPath();ctx.arc(tl.x,tl.y,tl.r,0,7);ctx.fill();ctx.strokeStyle=tl.root?'rgba(151,196,89,.85)':'rgba(255,140,90,.8)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(tl.x,tl.y,tl.r,0,7);ctx.stroke();ctx.beginPath();ctx.arc(tl.x,tl.y,tl.r*p,0,7);ctx.stroke();}
   if(P.root>0){ctx.strokeStyle='#5a4a2a';ctx.lineWidth=3;ctx.lineCap='round';for(let k=0;k<7;k++){const a=k/7*6.283+.3,r0=P.r+16,r1=P.r+2;ctx.beginPath();ctx.moveTo(P.x+Math.cos(a)*r0,P.y+Math.sin(a)*r0);ctx.quadraticCurveTo(P.x+Math.cos(a+.6)*(r0-4),P.y+Math.sin(a+.6)*(r0-4),P.x+Math.cos(a+.2)*r1,P.y+Math.sin(a+.2)*r1);ctx.stroke();}ctx.lineCap='butt';}// rooted by a Wurzler
@@ -40,7 +56,7 @@ function render(t){koepBeginFrame();vehicleBeginFrame();let pt=PERF?performance.
   if(trove){const a=.5+.3*Math.sin(t*.008);ctx.strokeStyle=`rgba(242,209,75,${a})`;ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(trove.x-14,trove.y-14);ctx.lineTo(trove.x+14,trove.y+14);ctx.moveTo(trove.x+14,trove.y-14);ctx.lineTo(trove.x-14,trove.y+14);ctx.stroke();ctx.strokeStyle='#f2d14b';ctx.lineWidth=3;ctx.beginPath();ctx.arc(trove.x,trove.y,26,-1.57,-1.57+6.283*trove.t/50);ctx.stroke();}
   if(crate){ctx.strokeStyle='#f2d14b';ctx.lineWidth=3;ctx.beginPath();ctx.arc(crate.x,crate.y,26,-1.57,-1.57+6.283*crate.t/28);ctx.stroke();}
   if(P.spin>0){ctx.strokeStyle='rgba(250,199,117,.75)';ctx.lineWidth=5;const a=t*.03,rr_=72*(1+.2*pk('reach'));for(let k=0;k<3;k++){ctx.beginPath();ctx.arc(P.x,P.y,rr_,a+k*2.09,a+k*2.09+1.1);ctx.stroke();}}
-  if(P.frenzy>0){const a=.35+.25*Math.sin(t*.02);ctx.strokeStyle=`rgba(194,58,46,${a})`;ctx.lineWidth=4;ctx.beginPath();ctx.arc(P.x,P.y,30+4*Math.sin(t*.03),0,7);ctx.stroke();}
+  if(P.frenzy>0){const a=.55+.25*Math.sin(t*.02),q=Math.min(1,P.frenzy);ctx.lineCap='round';for(let i=0;i<3;i++){const b=t*.011+i*2.094;ctx.strokeStyle=`rgba(255,74,58,${a*q})`;ctx.lineWidth=6;ctx.beginPath();ctx.arc(P.x,P.y,40,b,b+.9);ctx.stroke();ctx.strokeStyle=`rgba(255,220,200,${.8*q})`;ctx.lineWidth=2;ctx.beginPath();ctx.arc(P.x,P.y,40,b+.5,b+.9);ctx.stroke();}ctx.lineCap='butt';}// v0.85 Säbeltanz: three orbiting red blades instead of a thin ring
   if(P.banner){const B=P.banner,a=Math.min(1,B.t)*(.5+.15*Math.sin(t*.006));ctx.fillStyle=`rgba(242,209,75,${.07*a})`;ctx.strokeStyle=`rgba(242,209,75,${a})`;ctx.lineWidth=3;ctx.setLineDash([12,8]);ctx.beginPath();ctx.arc(B.x,B.y,B.r,0,7);ctx.fill();ctx.stroke();ctx.setLineDash([]);}
   if(run)for(const k of run.strikes){const p=1-k.t/k.max;ctx.fillStyle=`rgba(255,138,61,${.1+.25*p})`;ctx.strokeStyle=`rgba(255,138,61,${.5+.4*p})`;ctx.lineWidth=2;ctx.beginPath();ctx.arc(k.x,k.y,k.r,0,7);ctx.fill();ctx.stroke();ctx.beginPath();ctx.arc(k.x,k.y,k.r*(1-p),0,7);ctx.stroke();}
   // swings: fxSwings() in js/vfx.js, drawn additively after the darkness
@@ -87,7 +103,7 @@ function render(t){koepBeginFrame();vehicleBeginFrame();let pt=PERF?performance.
     ctx.save();ctx.translate(ex,ey);ctx.rotate(a);ctx.fillStyle=col;ctx.beginPath();ctx.moveTo(16,0);ctx.lineTo(-8,-11);ctx.lineTo(-8,11);ctx.fill();ctx.restore();}}
   if(spati&&(spati.inside||spati.calm<60)&&run){const x=scx(spati.x+spati.w/2,spati.y+spati.h/2),y=scy(spati.x+spati.w/2,spati.y+spati.h/2)-spati.H-20,c=spati.calm;ctx.font='700 16px "Barlow Condensed",sans-serif';ctx.textAlign='center';ctx.fillStyle=c>0?'#f2d14b':'#c23a2e';ctx.fillText(c>0?`RUHE ${Math.ceil(c)} s`:'GITTER OFFEN',x,y);}
   if(aimOn()){const a=wAng(Math.atan2(aim.dy,aim.dx));ctx.save();ctx.translate(OX,OY);ctx.strokeStyle='rgba(242,209,75,.75)';ctx.fillStyle='rgba(242,209,75,.18)';ctx.lineWidth=3;ctx.setLineDash([10,8]);
-    if(aim.k==='skill'){const L={spiess:420,nagel:300,brand:300,fecht:160,abriss:300,stab:200}[krOf().k]||0;if(L){ctx.save();isoGround();ctx.beginPath();ctx.moveTo(P.x,P.y);ctx.lineTo(P.x+Math.cos(a)*L,P.y+Math.sin(a)*L);ctx.stroke();ctx.restore();}}
+    if(aim.k==='skill'||aim.k==='ult'){const L={spiess:420,nagel:300,brand:300,fecht:160,abriss:300,stab:200}[(aim.k==='ult'?ulOf():krOf()).k]||0;if(L){ctx.save();isoGround();ctx.beginPath();ctx.moveTo(P.x,P.y);ctx.lineTo(P.x+Math.cos(a)*L,P.y+Math.sin(a)*L);ctx.stroke();ctx.restore();}}
     else{const q=aimTgt(a),px=ix(P.x,P.y),py=iy(P.x,P.y)-14,qx=ix(q.x,q.y),qy=iy(q.x,q.y);ctx.beginPath();ctx.moveTo(px,py);ctx.quadraticCurveTo((px+qx)/2,Math.min(py,qy)-70,qx,qy);ctx.stroke();ctx.setLineDash([]);
       ctx.save();isoGround();const k=pk('blast')?1.5:1;ctx.beginPath();ctx.ellipse(q.x,q.y,65*k,40*k,0,0,7);ctx.fill();ctx.stroke();ctx.restore();}ctx.setLineDash([]);ctx.restore();}
   ctx.setTransform(DPR,0,0,DPR,0,0);if(joy.id!==null){ctx.strokeStyle='rgba(234,217,192,.3)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(joy.ox,joy.oy,JR,0,7);ctx.stroke();ctx.fillStyle='rgba(234,217,192,.35)';ctx.beginPath();ctx.arc(joy.ox+joy.x*JR,joy.oy+joy.y*JR,JR*.4,0,7);ctx.fill();}if(PERF)pmk('ui',pt);
@@ -142,7 +158,8 @@ function hud(){if(!P||!ST)return;fsBtn();setW('hpf',100*Math.max(0,P.hp)/ST.maxH
   const b=run&&run.boss;$('boss').hidden=!b;if(b){setT('bossn',b.name);setW('bossf',100*Math.max(0,b.hp)/b.max);}
   const cd=P.dashCd>0?Math.round(360*(1-P.dashCd/ST.dashCd)):360;if(cache.cd!==cd){cache.cd=cd;$('dash').style.setProperty('--cd',cd+'deg');}
   {const kn=krName(krOf());if(cache.kn!==kn){cache.kn=kn;const b=$('skill');b.textContent=kn;b.style.fontSize=kn.length>12?'11px':kn.length>9?'13px':'';}}// v0.82 power name on the button
-  const sk=P.skCd>0?Math.round(360*(1-P.skCd/ST.skCd)):360;if(cache.sk!==sk){cache.sk=sk;$('skill').style.setProperty('--sk',sk+'deg');$('skill').classList.toggle('ready',sk>=360);}}
+  const sk=P.skCd>0?Math.round(360*(1-P.skCd/ST.skCd)):360;if(cache.sk!==sk){cache.sk=sk;$('skill').style.setProperty('--sk',sk+'deg');$('skill').classList.toggle('ready',sk>=360);}
+  {const un=krName(ulOf());if(cache.un!==un){cache.un=un;const b=$('ult');b.textContent=un;b.style.fontSize=un.length>12?'10px':un.length>9?'12px':'';}const u=P.ulCd>0?Math.round(360*(1-P.ulCd/ST.ulCd)):360;if(cache.ul!==u){cache.ul=u;$('ult').style.setProperty('--sk',u+'deg');$('ult').classList.toggle('ready',u>=360);}}}
 const mini=$('mini'),mx_=mini.getContext('2d');
 function drawMini(){if(!MB)return;const k=WS>WH?192/3200:192/WS,dot=(x,y,r,c)=>{mx_.fillStyle=c;mx_.fillRect(x*k-r,y*k-r,r*2,r*2);};mx_.setTransform(1,0,0,1,0,0);mx_.fillStyle='#0d0907';mx_.fillRect(0,0,192,192);
   // rotated 45 degrees so screen-up on the minimap matches screen-up in the iso view
@@ -160,6 +177,6 @@ function drawDebug(){if(!P)return;ctx.setTransform(DPR*Z,0,0,DPR*Z,0,0);ctx.line
   ring(P.x,P.y,P.r,'#ff3366');for(const e of enemies)ring(e.x,e.y,e.r,'#ffd23f');
   const K=ST&&KIND[ST.kind];if(K&&K.reach&&P.swingT>0){ctx.strokeStyle='#00ff88';ctx.beginPath();ctx.moveTo(scx(P.x,P.y),scy(P.x,P.y));for(let i=0;i<=24;i++){const a=P.atkA-K.arc+2*K.arc*i/24,x=P.x+Math.cos(a)*ST.reach,y=P.y+Math.sin(a)*ST.reach;ctx.lineTo(scx(x,y),scy(x,y));}ctx.closePath();ctx.stroke();}}
 function loop(t){requestAnimationFrame(loop);const minF=S.eco?1000/31:1000/61;if(t-last<minF-3)return;// v0.77: -3 ms slack. Without it 144 Hz screens dropped to an uneven ~48 fps and Firefox rAF jitter (16.2 ms) skipped whole frames
-  fpsTick(t);const dt=Math.min(.05,(t-last)/1000);if(PERF)pmk('frame',last);last=t;
+  fpsTick(t);RAWDT=(t-last)/1000;const dt=Math.min(.05,RAWDT);if(PERF)pmk('frame',last);last=t;
   if(state==='menu'){P.walk+=dt*6;P.mvx=.6;P.face=Math.sin(t*.0004)>0?0:Math.PI;}
   if(freeze>0&&state==='play'){freeze-=dt;render(t);hud();return;}{const u=PERF?performance.now():0;update(dt);if(PERF)pmk('update',u);}if(state==='paused'){padPoll();if(run&&run.tl)run.tl.pt+=dt;}render(t);if(DBG)drawDebug();if(PERF)drawPerf();hud();const mh=!run;if(cache.mh!==mh){cache.mh=mh;mini.hidden=mh;document.body.classList.toggle('inrun',!mh);}if(run&&(++mf%(S.eco?6:3)===0))drawMini();if(state==='menu')P.mvx=0;}

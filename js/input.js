@@ -1,6 +1,6 @@
 /* ================= input ================= */
-const keys={};let atkHeld=false,dashReq=false,skillReq=false;const joy={id:null,ox:0,oy:0,x:0,y:0};let rightId=null;
-addEventListener('keydown',e=>{keys[e.code]=true;document.body.classList.remove('pad');if(e.code==='Space'){atkHeld=true;e.preventDefault();}if(e.code==='ShiftLeft'||e.code==='ShiftRight')dashReq=true;if(e.code==='KeyE'){if(manA!=null)aimA=manA;skillReq=true;}if(state==='play'&&!e.repeat){if(e.code==='KeyQ'||e.code==='Digit1')useCons('verband');if(e.code==='KeyF'||e.code==='Digit2')useCons('molotow',manTgt());}
+const keys={};let atkHeld=false,dashReq=false,skillReq=false,ulReq=false;const joy={id:null,ox:0,oy:0,x:0,y:0};let rightId=null;
+addEventListener('keydown',e=>{keys[e.code]=true;document.body.classList.remove('pad');if(e.code==='Space'){atkHeld=true;e.preventDefault();}if(e.code==='ShiftLeft'||e.code==='ShiftRight')dashReq=true;if(e.code==='KeyE'){if(manA!=null)aimA=manA;skillReq=true;}if(e.code==='KeyR'||e.code==='Digit3'){if(manA!=null)aimA=manA;ulReq=true;}if(state==='play'&&!e.repeat){if(e.code==='KeyQ'||e.code==='Digit1')useCons('verband');if(e.code==='KeyF'||e.code==='Digit2')useCons('molotow',manTgt());}
   if(e.code==='Escape'&&!$('optv').hidden){closeOpts();return;}
   if(e.code==='Escape'||e.code==='KeyP'){if(state==='play')pauseGame();else if(state==='paused')resume();else if(state==='base')baseMenu('bag');else if(state==='stn')closeStn();else if(state==='baseinv')$('invbox').querySelector('[data-a=close]').click();}
   // v0.57 menu keys: Tab or I inventory, M map, J jobs, B blessings, K Kodex. The same key again closes
@@ -26,9 +26,9 @@ const aimOn=()=>aim.id!==null&&Math.hypot(aim.dx,aim.dy)>AIMD;
 function aimStart(k,e){e.preventDefault();if(state!=='play')return;aim.id=e.pointerId;aim.k=k;aim.ox=e.clientX;aim.oy=e.clientY;aim.dx=aim.dy=0;try{e.target.setPointerCapture(e.pointerId);}catch(_){}}
 function aimMove(e){if(e.pointerId!==aim.id)return;aim.dx=e.clientX-aim.ox;aim.dy=e.clientY-aim.oy;}
 function aimEnd(e){if(e.pointerId!==aim.id)return;const on=aimOn(),a=wAng(Math.atan2(aim.dy,aim.dx)),k=aim.k;aim.id=null;if(e.type==='pointercancel')return;
-  if(k==='skill'){aimA=on?a:null;skillReq=true;}else useCons('molotow',on?aimTgt(a):null);}
+  if(k==='skill'){aimA=on?a:null;skillReq=true;}else if(k==='ult'){aimA=on?a:null;ulReq=true;}else useCons('molotow',on?aimTgt(a):null);}
 const aimTgt=a=>{const d=clamp(Math.hypot(aim.dx,aim.dy)*2.4,60,320);return{x:P.x+Math.cos(a)*d,y:P.y+Math.sin(a)*d};};
-for(const[id,k]of[['skill','skill'],['c2','mol']]){const b=$(id);b.addEventListener('pointerdown',e=>aimStart(k,e));b.addEventListener('pointermove',aimMove);b.addEventListener('pointerup',aimEnd);b.addEventListener('pointercancel',aimEnd);}
+for(const[id,k]of[['skill','skill'],['ult','ult'],['c2','mol']]){const b=$(id);b.addEventListener('pointerdown',e=>aimStart(k,e));b.addEventListener('pointermove',aimMove);b.addEventListener('pointerup',aimEnd);b.addEventListener('pointercancel',aimEnd);}
 /* mouse and keyboard (v0.54): WASD or arrows move, the cursor aims (manA), left button attacks, right button dashes, Space attacks, Shift dashes, E skill towards the cursor,
    Q or 1 Verband, F or 2 Molotov at the cursor, Esc or P pause. body.mouse hides the touch buttons until the next touch */
 const mouse={on:false,x:0,y:0};let manA=null;
@@ -44,7 +44,7 @@ function padPoll(){const gs=navigator.getGamepads?navigator.getGamepads():[],gp=
   const rx=gp.axes[2]||0,ry=gp.axes[3]||0;pad.aim=Math.hypot(rx,ry)>.3?wAng(Math.atan2(ry,rx)):null;pad.atk=b(0)||b(7);
   if(pad.mx||pad.my||pad.atk||gp.buttons.some(x=>x.pressed)){mouse.on=false;document.body.classList.add('mouse','pad');}
   if(pr(9)){if(state==='play')pauseGame();else if(state==='paused')resume();}if(pr(8)){if(state==='play')pauseGame('map');else if(state==='paused')resume();}
-  if(state==='play'){if(pr(1)||pr(6))dashReq=true;if(pr(3)||pr(4)){if(manA!=null)aimA=manA;skillReq=true;}if(pr(5))useCons('verband');if(pr(2))useCons('molotow',manTgt());}
+  if(state==='play'){if(pr(1)||pr(6))dashReq=true;if(pr(3)){if(manA!=null)aimA=manA;skillReq=true;}if(pr(4)){if(manA!=null)aimA=manA;ulReq=true;}if(pr(5))useCons('verband');if(pr(2))useCons('molotow',manTgt());}
   padPrev=gp.buttons.map(x=>x.pressed);}
 // manual aim this frame: cursor (mouse) or right stick (pad); null = auto-aim
 function manAim(){manA=pad.aim!=null?pad.aim:mouse.on&&state==='play'?(()=>{const m=mouseW();return Math.atan2(m.y-P.y,m.x-P.x);})():null;}
@@ -54,7 +54,7 @@ const autoAtk=()=>S.auto==null?matchMedia('(pointer:coarse)').matches:!!S.auto;
 let hapT=0;function buzz(ms){const h=S.hap==null?1:S.hap;if(!h||!navigator.vibrate)return;const n=performance.now();if(n<hapT)return;hapT=n+120;try{navigator.vibrate(Math.round(ms*(h===2?2:1)));}catch(_){}}
 $('pause').addEventListener('click',()=>{if(state==='play')pauseGame();else if(state==='base')baseMenu('bag');});
 document.addEventListener('visibilitychange',()=>{try{if(AC){if(document.hidden)AC.suspend();else AC.resume();}}catch(e){}if(document.hidden){if(state==='play')pauseGame();if(cloud.dirty){clearTimeout(cloud.timer);cloudPush();}}});
-function clearInput(){joy.id=null;joy.x=joy.y=0;rightId=null;aim.id=null;atkHeld=false;dashReq=false;skillReq=false;atkB.classList.remove('on');}
+function clearInput(){joy.id=null;joy.x=joy.y=0;rightId=null;aim.id=null;atkHeld=false;dashReq=false;skillReq=false;ulReq=false;atkB.classList.remove('on');}
 function pauseGame(t){state='paused';clearInput();invTab=t||'bag';openInv('run');}
 function resume(){$('inv').hidden=true;$('toasts').classList.remove('low');state='play';last=performance.now();updateHot();}
 /* tablet comfort: fullscreen and keep the screen on during expeditions */

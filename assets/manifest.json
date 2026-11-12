@@ -3043,6 +3043,86 @@
     "units": 6,
     "w": 128
   },
+  "hero/rig/weapon-i71": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i71",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        20,
+        111
+      ],
+      "tip": [
+        113,
+        18
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i72": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i72",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        17,
+        111
+      ],
+      "tip": [
+        89,
+        39
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i73": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i73",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        63,
+        102
+      ],
+      "tip": [
+        63,
+        10
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
+  "hero/rig/weapon-i74": {
+    "anchor": [
+      64.0,
+      64.0
+    ],
+    "for": "drawHero weapon-i74",
+    "h": 128,
+    "pivots": {
+      "grip": [
+        22,
+        106
+      ],
+      "tip": [
+        126,
+        2
+      ]
+    },
+    "units": 6,
+    "w": 128
+  },
   "props/barrel": {
     "anchor": [
       27.0,

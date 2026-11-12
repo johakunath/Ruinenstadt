@@ -446,5 +446,73 @@
       ]
     },
     "note": "Grip on shaft below microphone; the pointed lower-left stand end is the spear tip (the selected v1 orientation)."
+  },
+  "I71": {
+    "source": "assets/icons/I71.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        20,
+        111
+      ],
+      "tip": [
+        113,
+        18
+      ]
+    }
+  },
+  "I72": {
+    "source": "assets/icons/I72.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        17,
+        111
+      ],
+      "tip": [
+        89,
+        39
+      ]
+    }
+  },
+  "I73": {
+    "source": "assets/icons/I73.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        63,
+        102
+      ],
+      "tip": [
+        63,
+        10
+      ]
+    }
+  },
+  "I74": {
+    "source": "assets/icons/I74.webp",
+    "size": [
+      128,
+      128
+    ],
+    "pivots": {
+      "grip": [
+        22,
+        106
+      ],
+      "tip": [
+        126,
+        2
+      ]
+    }
   }
 }
