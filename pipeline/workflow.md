@@ -43,6 +43,7 @@ Painted (Codex, this pipeline) only where it pays off most: things that move and
 |---|---|---|
 | Hero rig: body, clothing layers, held weapons | Painted (Codex) | `tools/build_hero.py`, `js/hero.js` |
 | Enemies and bosses (animated) | Painted (Codex) | Boss queue continues (`06-bosses.md`) |
+| Ground pickups (Döner, heal drops, materials) | Painted, glow added in code | Decision 2026-11-12, `tasks/15-pickups.md` |
 | Item and menu icons (weapons, armour, jewellery, implants, ingredients, power icons) | SVG, rasterized to 128 px WebP | Approved after the v0.85 batch I71 to I87; existing ChatGPT icons stay |
 | Environment: props, ground, nature, camp stations and dressing, decals | SVG / canvas code | `js/camp-art.js`, `js/glyphs.js` pattern |
 | Buildings of new districts (Wedding, Tempelhof, Charlottenburg) | SVG / canvas textures on the iso faces | The painted Köpenick and GDR kits stay; repaint only if a district looks clearly worse |

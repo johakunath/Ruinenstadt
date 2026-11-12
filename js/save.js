@@ -57,7 +57,7 @@ async function exportSave(){save();const code='RS1:'+b64e(JSON.stringify(S))+'\n
 function importSave(){const code=(prompt('Spielstand-Code einfügen. Der aktuelle Spielstand wird ersetzt.')||'').trim();if(!code)return;
   let rs=null;try{rs=JSON.parse(b64d(code.replace(/\s*END\s*$/,'').replace(/^RS1:/,'')));}catch(e){}
   // dry run on a copy: only replace the current save if the game can compute stats with it
-  let ok=false;const old=S;if(rs&&rs.upg&&rs.eq)try{S=fix(JSON.parse(JSON.stringify(rs)));ok=!!KIND[S.eq.w.kind]&&isFinite(power(stats()));}catch(e){}S=old;
+  let ok=false;const old=S;if(rs&&rs.upg&&rs.eq)try{S=fix(JSON.parse(JSON.stringify(rs)));ok=!!KIND[S.eq.w.kind]&&isFinite(stats().dmg);}catch(e){}S=old;
   if(!ok){toast('Ungültiger Code · vollständig kopiert? Er endet mit END');return;}applySave(rs);renderMenu();toast('Spielstand geladen');}
 
 // v0.70: everything in one file for analysis: active save, run history (all runs ever, outside the save), backups; every run carries its game version (`v`)

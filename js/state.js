@@ -15,7 +15,7 @@ function stats(eq){eq=eq||S.eq;const w=eq.w,K=KIND[w.kind],A=gear(eq),lv=P?P.lvl
     regen:Math.max(0,A.regen),res:clamp(A.res/100+.06*pk('res')+(SHR.res>0?.25:0),-.5,.75),leech:Math.max(0,A.leech)+2*pk('leech'),luck:A.luck+(hasS('spaeher')?1:0),
     rate:K.rate/asF*(pk('m_dampf')&&w.kind==='hammer'?1.3:1),reach:(K.reach||0)*(1+.2*pk('reach')),pspd:560*(1+.2*pk('reach')),
     dashCd:Math.max(.4,1.4*(1-.08*S.upg.dash)*(1-.2*pk('dashcd'))*(1-cdr)*(hasS('mechaniker')?.9:1)),skCd:krOf(w).cd*(1-.2*pk('skill'))*(1-cdr),ulCd:ulOf(w).cd*(1-.2*pk('skill'))*(1-cdr)};}
-// Kampfkraft = sqrt(damage per second × effective life) × move speed factor × luck factor. pwParts feeds the comparison breakdown (v0.85)
+// v0.87: no longer shown in the UI (item level replaced it), kept for run telemetry and tools/sim.js. power = sqrt(damage per second × effective life) × move speed factor × luck factor. pwParts feeds the comparison breakdown (v0.85)
 function pwParts(st){return{dps:st.dmg*(1+st.crit)/st.rate*(1+(st.els.length?.18*st.elp*(st.elc||.3)/.3*Math.min(2,st.els.length):0))*(st.wt?1.12:1),ehp:st.maxHp/(1-st.res)*(1+st.regen*.04),mob:1+(st.spd/182-1)*.4,lk:1+st.luck*.01};}
 function power(st){const q=pwParts(st);return Math.round(Math.sqrt(q.dps*q.ehp)*q.mob*q.lk);}
 function refresh(){if(!P){ST=stats();return;}const pct=ST?P.hp/ST.maxHp:1;ST=stats();P.hp=Math.min(ST.maxHp,Math.max(1,Math.round(ST.maxHp*pct)));}
