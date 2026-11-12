@@ -18,6 +18,11 @@ test('district boss variant and pose selection are deterministic and use the bos
  env.spr=()=>null;env.e={type:'boss',big:true,v:0,x:0,y:0,r:42,hcd:1,t:0};assert.equal(run('enemySprite(e)'),null,'missing art keeps canvas fallback');
  env.spr=key=>manifest[key]?{naturalWidth:manifest[key].w}:null;run('BOSS_ART_ENABLED=false');assert.equal(run('enemySprite(e)'),null,'performance toggle keeps canvas fallback');
 });
+test('Volkseigener Koloss gear volley holds the authored attack cue',()=>{
+ const {env,run}=setup();env.e={type:'boss',big:true,v:8,x:0,y:0,r:42,hcd:1,t:1,mv:60,spin:1};
+ assert.equal(run('enemySprite(e)?.key'),'bosses/volk-attack-b');
+ env.e.spin=0;assert.match(run('enemySprite(e)?.key'),/^bosses\/volk-walk-/);
+});
 test('builder records five source cells and the deliberate idle-to-walk-b reuse',()=>{
  const picks=JSON.parse(read('assets/raw/codex/06-bosses/poses/picks.json'));
  for(const boss of bosses){assert.equal(picks[`${boss}-idle`].cell,0,boss);assert.equal(picks[`${boss}-walk-a`].cell,1,boss);assert.equal(picks[`${boss}-walk-b`].cell,0,boss);assert.equal(picks[`${boss}-attack-a`].cell,2,boss);assert.equal(picks[`${boss}-attack-b`].cell,3,boss);assert.equal(picks[`${boss}-hit`].cell,4,boss);}

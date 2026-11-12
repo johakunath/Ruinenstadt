@@ -629,5 +629,6 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 ## 2026-11-12 · Codex · task 06 reconciled onto v0.86 main
 
 - Main advanced through v0.84 save fixes, v0.85 playtest/icons/ground cache and v0.86 powers/story while PR #40 opened. Preserved all upstream work and moved the boss candidate to v0.87.
-- Prior performance reports remain retained and accurately labelled; their source hashes predate this reconciliation. Current v0.87 head passes 70 JS tests, 6 Python tests, 371 sprite checks and refreshed browser/fallback/offline proof for all 54 boss frames. Performance acceptance remains with Johannes because the latest off/off control was inconclusive.
+- Prior performance reports remain retained and accurately labelled; their source hashes predate this reconciliation. Current v0.87 head passes 71 JS tests, 6 Python tests, 371 sprite checks and refreshed browser/fallback/offline proof for all 54 boss frames. Performance acceptance remains with Johannes because the latest off/off control was inconclusive.
 - PR #40 review P2: restored the Zitadellenritter's existing `e.fa`-directional, `e.guard`-aware shield overlay over painted art so frontal damage reduction and guard-break state remain visible while circling. Added a regression assertion.
+- PR #40 current-head review P2: the Volkseigener Koloss now holds its authored attack-release frame for the full `e.spin` gear volley instead of walking idly through the sustained damaging attack. Added a regression assertion.
