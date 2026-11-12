@@ -12,6 +12,13 @@ How the painted in-world art is made, plugged in and handed over. Index for ever
 
 Tasks are written so they can be followed step by step: concrete files, functions, numbers and acceptance checks. If a step is unclear or does not work as written, stop at that step and write it into `log.md`.
 
+## Token budget rules (Johannes, 2026-11-12)
+
+- **Codex spends its tokens on creating assets** (generate, cut, normalise, manifest, a basic hookup so the asset shows up). Nothing else.
+- **Claude does** the deeper integration, performance optimization (perf gate) and the detailed testing after Codex hands over. Codex does not run broad regression suites or tuning passes.
+- **Codex reviews: one, at most two per PR.** A second review only after a large change (about 2 to 3 new commits or one big commit). Small fixes and follow-ups get no new review. Do not re-trigger `@codex review` after each push.
+- Both are mirrored in `BACKLOG.md` under Tech.
+
 ## Current queue (Johannes, 2026-11-10)
 
 This user-authorized order supersedes older queue/order notes below and in task
@@ -43,6 +50,7 @@ Painted (Codex, this pipeline) only where it pays off most: things that move and
 |---|---|---|
 | Hero rig: body, clothing layers, held weapons | Painted (Codex) | `tools/build_hero.py`, `js/hero.js` |
 | Enemies and bosses (animated) | Painted (Codex) | Boss queue continues (`06-bosses.md`) |
+| Ground pickups (Döner, heal drops, materials) | Painted, glow added in code | Decision 2026-11-12, `tasks/15-pickups.md` |
 | Item and menu icons (weapons, armour, jewellery, implants, ingredients, power icons) | SVG, rasterized to 128 px WebP | Approved after the v0.85 batch I71 to I87; existing ChatGPT icons stay |
 | Environment: props, ground, nature, camp stations and dressing, decals | SVG / canvas code | `js/camp-art.js`, `js/glyphs.js` pattern |
 | Buildings of new districts (Wedding, Tempelhof, Charlottenburg) | SVG / canvas textures on the iso faces | The painted Köpenick and GDR kits stay; repaint only if a district looks clearly worse |

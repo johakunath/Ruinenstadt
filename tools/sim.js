@@ -52,9 +52,9 @@ SIM.run=function(di,opt){opt=opt||{};S.eq.w.kr=opt.kr!=null?opt.kr:Math.floor(Ma
   state='menu';run=null;enemies=[];refresh();return r;};
 SIM.equip=function(){let ch=true,n=0;while(ch&&n++<20){ch=false;for(let i=0;i<S.bag.length;i++){const it=S.bag[i];if(better(it)){const old=S.eq[it.slot];S.eq[it.slot]=it;if(old)S.bag[i]=old;else S.bag.splice(i,1);refresh();ch=true;break;}}}};
 /* v0.68: since v0.65 a full bag leaves loot on the ground (the guaranteed boss legendary was never picked up, telemetry showed 0 legendaries): equip, then salvage the weakest items like a player would */
-SIM.tidy=function(){SIM.equip();S.bag.sort((x,y)=>((y.set?3:y.r)-(x.set?3:x.r))||(y.ilvl-x.ilvl));while(S.bag.length>BAG-6){const it=S.bag.pop();S.scrap+=scrapVal(it);}};
+SIM.tidy=function(){SIM.equip();S.bag.sort((x,y)=>((y.set?3:y.r)-(x.set?3:x.r))||(y.ilvl-x.ilvl));while(S.bag.length>BAG-6){salvage(S.bag.pop(),{sc:0,m:{}});}};
 SIM.camp=function(){SIM.equip();
-  for(const it of S.bag.splice(0))S.scrap+=scrapVal(it);
+  for(const it of S.bag.splice(0))salvage(it,{sc:0,m:{}});
   if(campOpen())for(const c of CONS)while((S.cons[c.k]||0)<3&&S.scrap>=c.p*3){S.scrap-=c.p;S.cons[c.k]=(S.cons[c.k]||0)+1;}
   let buy=true;while(buy){buy=false;const u=UPG.filter(u=>campOpen()&&S.upg[u.k]<upMax(u)).sort((a,b)=>upCost(a)-upCost(b))[0];if(u&&S.scrap>=upCost(u)){S.scrap-=upCost(u);S.upg[u.k]++;buy=true;}else if(!u&&campOpen()&&S.scrap>=drillCost()+300){S.scrap-=drillCost();S.drill=(S.drill||0)+1;buy=true;}
     else{const c=CST.find(c=>{const n=cNext(c);return n&&n.ok;});if(c){cBuy(c);buy=true;}}}

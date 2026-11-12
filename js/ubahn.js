@@ -98,7 +98,7 @@ function buildTunnel(k){if(typeof koepResetCache==='function')koepResetCache(nul
   for(const s of TST)for(let x=s[0]+200;x<=s[1]-150;x+=300)for(const sd of [-1,1]){const p=at(x,sd*460);if(Math.hypot(p[0]-GEN.x,p[1]-GEN.y)>140)solid({x:p[0]-13,y:p[1]-13,w:26,h:26,H:120,yel:s[0]===TX0},drawCol);}
   for(const[x,o]of[[1250,-360],[1330,-360],[6200,380],[13900,-380],[15300,380]]){const p=at(x,o);solid({x:p[0]-32,y:p[1]-12,w:64,h:24,H:22,sandbags:1,c:'#8f7c45'},drawStone);}
   for(const[x,o]of[[400,-500],[1700,-500],[6000,500],[13600,-500],[15500,500]]){const p=at(x,o);barrels.push({x:p[0],y:p[1],ph:R(0,6)});walls.push({x:p[0]-9,y:p[1]-9,w:18,h:18});}
-  {const p=at(1100,-470);TUN.npc={x:p[0],y:p[1],r:12,t:1e9,near:false,offers:[0,1,2].map(i=>{const it=makeItem(tradeLvl()+(i===2?2:0),i===2&&Math.random()<.3?3:2,0);return{it,price:scrapVal(it)*5+15};})};}
+  {const p=at(1100,-470);TUN.npc={x:p[0],y:p[1],r:12,t:1e9,near:false,offers:[0,1,2].map(i=>{const it=makeItem(tradeLvl()+(i===2?2:0),i===2&&Math.random()<.3?3:2,0);return{it,price:itemPrice(it)*5+15};})};}
   // Betriebsraum: chests and crates; ghost station shrine; rubble stones; two wrecked trains along the curve
   {const[x,y,w]=ROOM;addBrk(x+120,y+60,'chest',true);addBrk(x+w-160,y+60,'chest',true);for(const q of [[x+60,y+200],[x+w-80,y+220],[x+w/2,y+70]])addBrk(q[0],q[1],'crate',true);}
   {const p=at(6500,-480);makeLitfass(p[0],p[1]);}for(let i=0;i<14;i++){const x=R(RUBX[0],RUBX[1]-60),p=at(x,R(-THW,THW-60)),w=R(50,110),h=R(50,100);solid({x:p[0],y:p[1],w,h,H:R(30,110),c:pick(['#4a4038','#5a5048','#3e362e'])},drawStone);}
