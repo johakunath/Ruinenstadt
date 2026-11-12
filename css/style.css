@@ -309,3 +309,25 @@ body.tab #fsb{top:calc(env(safe-area-inset-top,0px) + 82px);right:calc(max(24px,
 .mslot{display:flex;align-items:center;gap:10px;min-height:58px;padding:8px 10px;border:1px dashed var(--edge);border-radius:4px}.mslot.on{border:1px solid #f2a04b;background:#2a1d12}
 .mslot .un{font-size:17px;font-weight:600}.mslot .ud,.mrow .ud{font-size:14px;color:var(--dim)}.mrow{padding:8px 10px}.mrow .un{font-size:17px}.mrow .kico .ico,.mslot .kico .ico{width:40px;height:40px}
 .mbtn{display:grid;gap:6px}.mats.sm{font-size:14px;gap:10px;justify-content:flex-start}.mats.sm .mico{width:22px;height:22px}.mats .zic{width:auto;height:auto;font-style:normal;background:none;margin:0;font-size:20px;line-height:1}
+/* v0.82 blessing families (variant B), duo and mod cards, weapon power picker, pre-run reminder, weapon class badge */
+.pcard{position:relative}.pcard[style*="--fc"]{border-left:4px solid var(--fc)}.pfam{position:absolute;top:8px;right:8px;display:flex;gap:3px}.pfam .fg{opacity:.45;filter:grayscale(.5)}.pfam .fg.on{opacity:1;filter:drop-shadow(0 0 5px var(--fc,#f2d14b))}
+.pcard.duo{border:2px solid #f2d14b;box-shadow:0 0 26px rgba(242,209,75,.35);background:linear-gradient(160deg,rgba(242,209,75,.1),var(--panel) 55%)}.pcard.duo .prar{color:#f2d14b}.pcard.duo .pfam .fg{opacity:1;filter:none}
+.pcard.mod{border:2px solid #b48cff;box-shadow:0 0 24px rgba(180,140,255,.3)}.pcard.mod .prar{color:#b48cff}
+.sgb{position:relative}.sgf{position:absolute;top:4px;right:4px;display:flex;gap:2px}
+.krsel{display:grid;gap:6px}.krrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.krb{display:grid;justify-items:center;gap:2px;padding:8px 4px;background:var(--panel);border:1px solid var(--edge);border-radius:4px;color:var(--bone);cursor:pointer;font-family:var(--f-ui)}
+.krb.sel{border:2px solid var(--ember);box-shadow:0 0 16px rgba(239,159,39,.25)}.krb.ult .krc{color:#f2d14b}.krn{font:20px/1.05 var(--f-display);color:var(--ember);text-align:center;overflow-wrap:anywhere}.krc{font-size:13px;color:var(--dim)}.krd{margin:0}
+.gowarn{margin:0;color:#e0b84a}
+.cell,.slot .ic{position:relative}.wcb{position:absolute;left:2px;bottom:2px;display:flex;padding:1px;border-radius:3px;background:rgba(18,13,10,.75);pointer-events:none}
+#skill{line-height:1.05;text-align:center;overflow-wrap:anywhere;hyphens:auto;padding:4px}
+/* v0.83 station window (variant A): compact, the camp stays visible behind it */
+.ov.stn{background:rgba(14,10,7,.55)}#stnbox{max-width:620px;border:1px solid var(--ember);background:var(--panel);border-radius:6px;padding:14px 16px;display:grid;gap:8px}
+.sthead{display:flex;gap:12px;align-items:center}.sthead>div{flex:1}.sthead h2{margin:0;font:30px/1.05 var(--f-display);color:var(--ember)}.stpic{width:64px;height:64px;border-radius:50%;object-fit:cover;background:#2a211b;border:2px solid var(--edge);flex:none}
+.stlv{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--dim)}.stp{display:inline-flex;gap:4px}.stp i{width:30px;height:7px;border-radius:2px;background:#3a2c22}.stp i.f{background:var(--ember)}.stx{align-self:flex-start}
+.stnow{color:var(--dim)}.stbody{gap:8px}.stnx{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 10px;border:1px dashed var(--edge);border-radius:4px}.pips i.x{opacity:.25;border-style:dashed}
+@media (min-width:900px){#stnbox .stbody{grid-template-columns:1fr}}
+/* v0.83 station window (variant A): compact, the camp stays visible behind it */
+.ov.stn{background:rgba(14,10,7,.55)}#stnbox{max-width:620px;border:1px solid var(--ember);background:var(--panel);border-radius:6px;padding:14px 16px;display:grid;gap:8px}
+.sthead{display:flex;gap:12px;align-items:center}.sthead>div{flex:1}.sthead h2{margin:0;font:30px/1.05 var(--f-display);color:var(--ember)}.stpic{width:64px;height:64px;border-radius:50%;object-fit:cover;background:#2a211b;border:2px solid var(--edge);flex:none}
+.stlv{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--dim)}.stp{display:inline-flex;gap:4px}.stp i{width:30px;height:7px;border-radius:2px;background:#3a2c22}.stp i.f{background:var(--ember)}.stx{align-self:flex-start}
+.stnow{color:var(--dim)}.stbody{gap:8px}.stnx{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 10px;border:1px dashed var(--edge);border-radius:4px}.pips i.x{opacity:.25;border-style:dashed}
+@media (min-width:900px){#stnbox .stbody{grid-template-columns:1fr}}

@@ -1,0 +1,66 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lager-Stationen</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#120d0a;--panel:#1c140f;--edge:#3a2c22;--bone:#ead9c0;--dim:#a8957d;--ember:#ef9f27;--good:#8fd16a}
+body{margin:0;background:var(--bg);color:var(--bone);font-family:"Barlow Condensed",sans-serif;padding:16px}
+h1{font:700 40px "Barlow Condensed",sans-serif;color:var(--ember);margin:0 0 4px}h2{font:700 28px "Barlow Condensed",sans-serif;color:var(--ember);margin:18px 0 6px}
+p{margin:2px 0 10px;color:var(--dim);font-size:17px;max-width:1180px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:1500px}
+.alt{background:#0e0a08;border:1px solid var(--edge);border-radius:6px;padding:10px}.alt b{color:var(--ember);font-size:20px}.alt.rec{border-color:var(--ember)}svg{width:100%;height:auto;display:block}
+</style></head><body>
+<h1>Lager-Stationen #37</h1>
+<p>Beispielwerte, keine echten Assets. Oben: wie sich eine Station öffnet, wenn du im Lager in ihren Ring läufst (3 Varianten). Unten: Lageplan mit 7 Stationen im U-Bahnhof.</p>
+<div class="grid">
+
+<div class="alt rec"><b>A · Stationskarte (Empfehlung)</b><p>Kompaktes Fenster nur für diese Station: NPC, Stufe, Aktionen, Ausbau. Spiel bleibt im Hintergrund sichtbar.</p>
+<svg viewBox="0 0 480 400"><rect width="480" height="400" fill="#2a211b"/><rect x="0" y="0" width="480" height="400" fill="rgba(0,0,0,.45)"/>
+<rect x="40" y="24" width="400" height="356" rx="6" fill="#1c140f" stroke="#ef9f27" stroke-width="1.5"/>
+<circle cx="88" cy="74" r="32" fill="#7a3a6a"/><circle cx="88" cy="66" r="12" fill="#d9b48f"/><path d="M66 100q22-22 44 0" fill="#d6cfc0"/>
+<text x="132" y="62" font-family="Barlow Condensed" font-weight="700" font-size="26" fill="#ef9f27">Gulaschkanone</text><text x="132" y="84" font-size="15" fill="#a8957d">Oma Gerda · „Erst essen, dann kämpfen.“</text>
+<g transform="translate(132 94)"><rect width="34" height="8" rx="2" fill="#ef9f27"/><rect x="38" width="34" height="8" rx="2" fill="#ef9f27"/><rect x="76" width="34" height="8" rx="2" fill="#3a2c22"/><text x="118" y="8" font-size="13" fill="#a8957d">Stufe 2 von 3</text></g>
+<text x="60" y="140" font-size="13" letter-spacing="1.5" fill="#a8957d">KOCHEN</text>
+<g font-size="16"><rect x="60" y="148" width="360" height="40" rx="3" fill="#241a14" stroke="#3a2c22"/><text x="72" y="173" fill="#ead9c0">Currywurst · +25% Schaden</text><text x="300" y="173" fill="#a8957d">🍖2 🌶1</text><rect x="352" y="156" width="58" height="24" rx="3" fill="#8a3a1a"/><text x="364" y="173" fill="#ead9c0">Kochen</text>
+<rect x="60" y="194" width="360" height="40" rx="3" fill="#241a14" stroke="#3a2c22"/><text x="72" y="219" fill="#ead9c0">Soljanka · +3 Leben/s, +10% Wid.</text><text x="300" y="219" fill="#a8957d">🍖2 🥕2</text><rect x="352" y="202" width="58" height="24" rx="3" fill="#3a2c22"/><text x="364" y="219" fill="#a8957d">Kochen</text>
+<rect x="60" y="240" width="360" height="40" rx="3" fill="#241a14" stroke="#3a2c22" stroke-dasharray="4 3"/><text x="72" y="265" fill="#a8957d">Spreewaldgurken · ab Stufe 3</text></g>
+<text x="60" y="306" font-size="13" letter-spacing="1.5" fill="#a8957d">AUSBAU AUF STUFE 3</text><text x="60" y="328" font-size="16" fill="#ead9c0">Zwei Mahlzeiten gleichzeitig, Gurken-Rezept</text>
+<text x="60" y="350" font-size="15" fill="#a8957d">400 Schrott · 6 Metall · 4 Stoff · nach Mitte</text><rect x="320" y="330" width="100" height="30" rx="3" fill="#8a3a1a" stroke="#ef9f27"/><text x="337" y="351" font-size="17" fill="#ead9c0">Ausbauen</text>
+<text x="420" y="50" font-size="22" fill="#a8957d">✕</text></svg></div>
+
+<div class="alt"><b>B · Inventarfenster, gefiltert</b><p>Heutiges Vollbild-Fenster, aber nur der Reiter der Station plus NPC-Kopfzeile. Wenig Aufwand, wirkt aber wie ein Menü, nicht wie ein Ort.</p>
+<svg viewBox="0 0 480 400"><rect width="480" height="400" fill="#120d0a"/>
+<rect x="12" y="12" width="456" height="44" fill="#1c140f" stroke="#3a2c22"/><circle cx="40" cy="34" r="16" fill="#7a3a6a"/><text x="66" y="40" font-family="Barlow Condensed" font-weight="700" font-size="22" fill="#ef9f27">Gulaschkanone</text><text x="236" y="40" font-size="15" fill="#a8957d">Oma Gerda · Stufe 2/3</text><rect x="388" y="20" width="70" height="28" fill="#8a3a1a"/><text x="400" y="40" font-size="15" fill="#ead9c0">ZURÜCK</text>
+<g font-size="15"><text x="16" y="84" fill="#a8957d" letter-spacing="1.5">KOCHEN</text>
+<rect x="12" y="92" width="224" height="64" fill="#1c140f" stroke="#3a2c22"/><text x="22" y="114" fill="#ead9c0">Currywurst</text><text x="22" y="134" fill="#a8957d">+25% Schaden</text><rect x="168" y="128" width="58" height="22" fill="#8a3a1a"/><text x="176" y="144" fill="#ead9c0">Kochen</text>
+<rect x="244" y="92" width="224" height="64" fill="#1c140f" stroke="#3a2c22"/><text x="254" y="114" fill="#ead9c0">Soljanka</text><text x="254" y="134" fill="#a8957d">+3 Leben/s</text>
+<rect x="12" y="162" width="224" height="64" fill="#1c140f" stroke="#3a2c22"/><text x="22" y="184" fill="#ead9c0">Erbsensuppe</text><text x="22" y="204" fill="#a8957d">+35% Leben</text>
+<rect x="244" y="162" width="224" height="64" fill="#1c140f" stroke="#3a2c22"/><text x="254" y="184" fill="#ead9c0">Filterkaffee</text><text x="254" y="204" fill="#a8957d">+18% Tempo</text>
+<text x="16" y="256" fill="#a8957d" letter-spacing="1.5">AUSBAU</text><rect x="12" y="264" width="456" height="60" fill="#1c140f" stroke="#3a2c22"/><text x="22" y="288" fill="#ead9c0">Stufe 3: zwei Mahlzeiten gleichzeitig</text><text x="22" y="310" fill="#a8957d">400 Schrott · 6 Metall · 4 Stoff</text><rect x="378" y="280" width="80" height="28" fill="#8a3a1a"/><text x="388" y="299" fill="#ead9c0">Ausbauen</text>
+<text x="16" y="350" fill="#a8957d" letter-spacing="1.5">ZUTATEN</text><text x="16" y="374" fill="#ead9c0">🍖 Fleisch 4 · 🥕 Gemüse 2 · 🌶 Gewürze 3</text></g></svg></div>
+
+<div class="alt"><b>C · Gespräch (Hades-Stil)</b><p>Großes Porträt, ein Satz, Auswahl rechts. Am meisten Charakter, braucht gemalte Porträts je NPC und einen Klick mehr.</p>
+<svg viewBox="0 0 480 400"><rect width="480" height="400" fill="#2a211b"/><rect width="480" height="400" fill="rgba(0,0,0,.5)"/>
+<path d="M20 400V210q0-60 70-80q-30-20-30-55a48 48 0 0 1 96 0q0 35-30 55q70 20 70 80v190z" fill="#7a3a6a"/><circle cx="108" cy="74" r="40" fill="#d9b48f"/><path d="M68 64q40-50 80 0" fill="#d6cfc0"/>
+<rect x="190" y="40" width="270" height="74" rx="6" fill="#1c140f" stroke="#ef9f27"/><text x="204" y="66" font-family="Barlow Condensed" font-weight="700" font-size="20" fill="#ef9f27">Oma Gerda</text><text x="204" y="92" font-size="16" fill="#ead9c0">„Kind, du bist ja nur Haut und Knochen.“</text>
+<g font-size="18"><rect x="250" y="140" width="210" height="40" rx="4" fill="#8a3a1a" stroke="#ef9f27"/><text x="266" y="166" fill="#ead9c0">Kochen (4 Rezepte)</text>
+<rect x="250" y="188" width="210" height="40" rx="4" fill="#1c140f" stroke="#3a2c22"/><text x="266" y="214" fill="#ead9c0">Ausbauen · Stufe 3</text>
+<rect x="250" y="236" width="210" height="40" rx="4" fill="#1c140f" stroke="#3a2c22"/><text x="266" y="262" fill="#ead9c0">Auftrag: 6 Gemüse</text>
+<rect x="250" y="284" width="210" height="40" rx="4" fill="#1c140f" stroke="#3a2c22"/><text x="266" y="310" fill="#a8957d">Tschüss</text></g>
+<g transform="translate(250 344)"><rect width="40" height="8" rx="2" fill="#ef9f27"/><rect x="44" width="40" height="8" rx="2" fill="#ef9f27"/><rect x="88" width="40" height="8" rx="2" fill="#3a2c22"/><text x="136" y="9" font-size="14" fill="#a8957d">Gulaschkanone 2/3</text></g></svg></div>
+</div>
+
+<h2>Lageplan: U-Bahnhof Lindenstraße mit 7 Stationen</h2>
+<p>Gleise oben (Zug = Netzplan), Bahnsteighalle mit Lagerfeuer in der Mitte. Jede Station startet als Bauplatz, Stufe 1 bis 3 sind je ein eigenes Asset. Der NPC steht an seiner Station, sobald er befreit ist.</p>
+<svg viewBox="0 0 1200 520" style="max-width:1500px;border:1px solid #3a2c22;border-radius:6px"><rect width="1200" height="520" fill="#0b0a09"/>
+<rect x="40" y="20" width="1120" height="110" fill="#1d1a17"/><g stroke="#6a6258" stroke-width="3"><line x1="40" y1="52" x2="1160" y2="52"/><line x1="40" y1="70" x2="1160" y2="70"/><line x1="40" y1="88" x2="1160" y2="88"/><line x1="40" y1="106" x2="1160" y2="106"/></g>
+<rect x="380" y="40" width="440" height="56" rx="8" fill="#c9a227" opacity=".85"/><text x="600" y="75" text-anchor="middle" font-size="20" fill="#1c140f" font-weight="700">Zug · Abfahrt zum Netzplan</text>
+<rect x="40" y="130" width="1120" height="8" fill="#ed9e25"/><rect x="40" y="138" width="1120" height="362" fill="#3e3d38"/>
+<ellipse cx="600" cy="320" rx="110" ry="60" fill="rgba(239,159,39,.18)"/><circle cx="600" cy="320" r="14" fill="#ef9f27"/><text x="600" y="360" text-anchor="middle" font-size="16" fill="#ead9c0">Lagerfeuer</text>
+<g font-size="16" text-anchor="middle">
+<g><rect x="80" y="170" width="190" height="96" rx="4" fill="#1c140f" stroke="#ef9f27"/><text x="175" y="196" fill="#ef9f27" font-weight="700">Rüstkammer</text><text x="175" y="216" fill="#ead9c0">Mira · Tüftlerin</text><text x="175" y="236" fill="#a8957d">Aufsätze, Umschmieden,</text><text x="175" y="254" fill="#a8957d">Kräfte (später)</text></g>
+<g><rect x="80" y="300" width="190" height="96" rx="4" fill="#1c140f" stroke="#ef9f27"/><text x="175" y="326" fill="#ef9f27" font-weight="700">Schrauberei</text><text x="175" y="346" fill="#ead9c0">Kalle · Schrauber</text><text x="175" y="366" fill="#a8957d">Schärfen, Panzerung,</text><text x="175" y="384" fill="#a8957d">Schrottpresse, Stirnlampe</text></g>
+<g><rect x="320" y="400" width="190" height="86" rx="4" fill="#1c140f" stroke="#ef9f27"/><text x="415" y="426" fill="#ef9f27" font-weight="700">Gulaschkanone</text><text x="415" y="446" fill="#ead9c0">Oma Gerda</text><text x="415" y="466" fill="#a8957d">Kochen, später Garten</text></g>
+<g><rect x="690" y="400" width="190" height="86" rx="4" fill="#1c140f" stroke="#ef9f27"/><text x="785" y="426" fill="#ef9f27" font-weight="700">Poliklinik</text><text x="785" y="446" fill="#ead9c0">Dr. Ahmet</text><text x="785" y="466" fill="#a8957d">Verbände, Molotows</text></g>
+<g><rect x="930" y="170" width="190" height="96" rx="4" fill="#1c140f" stroke="#ef9f27"/><text x="1025" y="196" fill="#ef9f27" font-weight="700">Funkbude</text><text x="1025" y="216" fill="#ead9c0">Ilse</text><text x="1025" y="236" fill="#a8957d">Quests, Funkmast,</text><text x="1025" y="254" fill="#a8957d">Wachturm</text></g>
+<g><rect x="930" y="300" width="190" height="96" rx="4" fill="#1c140f" stroke="#ef9f27"/><text x="1025" y="326" fill="#ef9f27" font-weight="700">Kiosk</text><text x="1025" y="346" fill="#ead9c0">Kurier Jonas</text><text x="1025" y="366" fill="#a8957d">Lager, Lagerhalle,</text><text x="1025" y="384" fill="#a8957d">Tausch</text></g>
+<g><rect x="505" y="160" width="190" height="80" rx="4" fill="#1c140f" stroke="#ef9f27"/><text x="600" y="186" fill="#ef9f27" font-weight="700">Trimm-dich-Pfad</text><text x="600" y="206" fill="#ead9c0">Späherin Lin</text><text x="600" y="226" fill="#a8957d">Ausdauer, Spürnase</text></g>
+</g></svg>
+</body></html>

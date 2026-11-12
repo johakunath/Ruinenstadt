@@ -17,8 +17,9 @@ RTX 4070, hardware ANGLE/D3D11, 1280×800 at DPR 2. One real district boss plus 
 
 | Scene | Pairs | Paired median | 95% CI | Verdict |
 |---|---:|---:|---:|---|
-| Köpenick | 41 | -2.91% | -5.53% to -0.48% | pass |
-| Alexanderplatz | 41 | -2.04% | -3.63% to +1.60% | pass |
-| Alexanderplatz off/off control | 41 | +0.15% | -1.77% to +2.28% | pass |
+| Köpenick, current v0.84 | 21 | -1.51% | -5.62% to +1.24% | pass |
+| Alexanderplatz, current v0.84 | 21 | -3.30% | -9.29% to +0.08% | pass |
+| Alexanderplatz off/off, current v0.84 | 21 | +0.95% | -2.62% to +6.53% | inconclusive |
+| Alexanderplatz off/off, current v0.84 rerun | 41 | -0.84% | -5.40% to +2.24% | inconclusive |
 
-The retained 21-pair run passed Köpenick and the null control but was inconclusive for Alexanderplatz (+2.15%, CI -2.09% to +6.18%). The required 41-pair rerun resolved it as pass; no optimisation attempt was needed. Raw reports are under `perf/`.
+The retained pre-merge 21-pair run passed Köpenick and its null control but was inconclusive for Alexanderplatz. Its required 41-pair rerun passed both painted comparisons and the control. Main then advanced from v0.81 to v0.83, so v0.84 was retested: both painted comparisons pass, while the current-source control stayed narrowly inconclusive even at 41 pairs. No art optimisation is indicated by an off/off comparison. Per the gate, all reports are retained under `perf/` and Johannes must decide whether to accept the current control noise before merge.

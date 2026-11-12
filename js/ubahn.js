@@ -135,7 +135,7 @@ function tunUpdate(dt){const T=TUN;if(!T||T.done)return;P.wet=P.x>=FLOOD[0]&&P.x
 // generator ring on the ground (charge), drawn in the ground layer
 function tunDraw(t){const T=TUN;if(!T||!T.hold||T.lit)return;const p=T.p/GEN.need;ctx.fillStyle='rgba(242,209,75,.06)';ctx.beginPath();ctx.arc(GEN.x,GEN.y,GEN.r,0,7);ctx.fill();ctx.strokeStyle='rgba(242,209,75,.45)';ctx.lineWidth=2;ctx.setLineDash([8,8]);ctx.beginPath();ctx.arc(GEN.x,GEN.y,GEN.r,0,7);ctx.stroke();ctx.setLineDash([]);
   ctx.strokeStyle='#f2d14b';ctx.lineWidth=6;ctx.beginPath();ctx.arc(GEN.x,GEN.y,GEN.r-8,-1.57,-1.57+6.283*p);ctx.stroke();}
-function tunWin(){logRun('win');state='over';clearInput();const k=TUN.k;S.ln=S.ln||[];const first=!S.ln[k];S.ln[k]=1;S.dist=k+1;const unl=S.unlocked<k+2;if(unl)S.unlocked=k+2;
+function tunWin(){logRun('win');state='over';clearInput();const k=TUN.k;S.ln=S.ln||[];const first=!S.ln[k];S.ln[k]=1;S.dist=k+1;if(first&&k===0)setTimeout(()=>toast('<span style="color:var(--ember)">S+U Warschauer Straße</span> ist jetzt dein Lager. Dort baust du Stationen aus.'),1500);const unl=S.unlocked<k+2;if(unl)S.unlocked=k+2;
   const bonus=Math.round(40*(k+1)*DF().sc);S.scrap+=bonus;run.sg+=bonus;run.bonus=bonus;run.unl=unl;run.first=first;save();sfx('win');setTimeout(()=>showEnd(true),900);}
 // start a tunnel run on line k (startRun with the tunnel flag)
 const startTunnel=k=>startRun(k,false,false,k);
