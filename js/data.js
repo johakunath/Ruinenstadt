@@ -139,6 +139,8 @@ const DIST=[
  {i:5,b:6,n:'Spandau',lvl:54,ground:'#25231b',road:'#1f1c16',walls:['#5a4a38','#4e4032','#66523e'],roof:['#35291f','#3f3126','#2d231b'],dark:.82,spit:.24,brute:.26,sw:1,bw:1,trees:16,spati:'Späti an der Havel'},
  {i:6,b:7,n:'Marzahn',lvl:66,ground:'#26231f',road:'#1f1c19',walls:['#5e5a52','#54504a','#66625a'],roof:['#35322e','#3d3a35','#2e2b28'],dark:.84,spit:.26,brute:.28,sw:1,bw:1,trees:8,spati:'Späti Helle Mitte'}];
 const DI=n=>DIST.findIndex(d=>d.n===n);
+// v0.86 story „Der Stillstand“ (docs/story.md): the era each district froze in, shown in the intro banner. Wedding: 'bald', Charlottenburg: 1920 once they exist
+const ERA=['Urzeit','1981','1989','2089','1948','',''],eraN=i=>DIST[i].n+(ERA[i]?' · '+ERA[i]:'');
 // extra enemy mix per district: [rat, bomb, shield, crow, howl, kabel, bass, uhr, wurz, kern]
 const MIX=[[0,0,0,.06,0],[.14,.05,0,0,0],[0,.03,0,.05,0,0,0,.1,.08,.09],[0,.04,.08,0,0,.2,.07],[0,.08,0,.12,0],[0,.06,.1,.1,.05],[.08,.12,.1,.06,.07]];
 const UPG=[{k:'dmg',n:'Schärfen',d:l=>`+${l*7}% Schaden`,max:10,base:15},{k:'hp',n:'Panzerung',d:l=>`+${l*15} Leben`,max:10,base:15},{k:'dash',n:'Ausdauer',d:l=>`-${l*8}% Sprint-Abklingzeit`,max:5,base:25},{k:'luck',n:'Spürnase',d:l=>`+${l} Beuteglück`,max:5,base:30}];

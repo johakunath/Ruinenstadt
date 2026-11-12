@@ -14,15 +14,15 @@ The GDR never fell. Its last big project, the **Zeitnormal**, ran every clock in
 
 ## Districts and eras
 
-| Order | District | Era | Hook | Boss (now) |
+| Order | District | Era (intro banner: „District · Year“, `ERA` in `js/data.js`) | Hook | Boss (now) |
 |---|---|---|---|---|
-| 1 | Köpenick | Prehistory | Jungle, raptors, Altstadt ruins; the Hauptmann (1906) slipped in and commands the beasts | Hauptmann von Köpenick |
-| 2 | Xhain | 1980s West Berlin | Squats, punks, Spree, Wrangelkiez; the Spreehexe as a punk witch of the squats | Spreehexe |
-| 3 | Alexanderplatz | Autumn 1989, frozen | The GDR that kept going and grew wild, clockwork, pioneers, daylight | Volkseigener Koloss |
-| 4 | Mitte / Potsdamer Platz | Neon future | Rain, implants, Kabelghule, the club cult | Bassprediger |
-| 5 | **Wedding** | **The eternal "soon"** | See below | new |
+| 1 | Köpenick | Prehistory (banner: Urzeit) | Jungle, raptors, Altstadt ruins; the Hauptmann (1906) slipped in and commands the beasts | Hauptmann von Köpenick |
+| 2 | Xhain | 1981, West Berlin squats | Squats, punks, Spree, Wrangelkiez; the Spreehexe as a punk witch of the squats | Spreehexe |
+| 3 | Alexanderplatz | 1989, frozen in autumn | The GDR that kept going and grew wild, clockwork, pioneers, daylight | Volkseigener Koloss |
+| 4 | Mitte / Potsdamer Platz | 2089, neon future | Rain, implants, Kabelghule, the club cult | Bassprediger |
+| 5 | **Wedding** | **The eternal "soon"** (banner: bald) | See below | new |
 | 6 | **Tempelhof** | **1948, airlift** | Airfield, hangars, airport building, Rosinenbomber ghosts circling, cargo cult around the planes, kites on the Feld | Fliegerkönig |
-| 7 | **Charlottenburg** | **1920s, Golden Twenties** (recommended, see below) | Ku'damm cabarets and cinemas, Art Deco, jazz, Ringverein gangsters; the Schloss as the boss arena | new |
+| 7 | **Charlottenburg** | **1920, Golden Twenties** (decided 2026-11-12) | Ku'damm cabarets and cinemas, Art Deco, jazz, Ringverein gangsters; the Schloss as the boss arena | new |
 | Finale | Fernsehturm | All eras at once | The clock room in the sphere | new |
 
 Spandau and Marzahn are dropped (Johannes, 2026-11-11). Their content stays in the game as loot and enemies: the Zitadelle set can drop everywhere, the Zitadellenritter and Plattenkönig can return as elites or as a boss of a new district. The two grid placeholders stay until Wedding and Charlottenburg exist (district index, saves and telemetry depend on the order; migrate in one step).
@@ -42,7 +42,7 @@ The running joke: "Wedding kommt" has been said for decades. In the Stillstand W
 | **1920s, Golden Twenties (recommended)** | Ku'damm with cabarets, cinemas, neon signs of the time, Art Deco, jazz, gangsters, flappers; the Schloss lit up for a never-ending revue | Ku'damm is at its most iconic in this decade; strong contrast to the prehistoric east and the GDR; the boss can be a revue queen or a Ringverein boss in the Schloss |
 | Prussian baroque, around 1700 | Schloss Charlottenburg as built for Sophie Charlotte, baroque garden, powdered wigs, court automatons | Strongest for the Schloss, weaker for the Ku'damm (did not exist), and automatons overlap with the Alexanderplatz clockwork |
 
-Recommendation: 1920s for the district, with the Schloss as the place where it bleeds into baroque (garden labyrinth, mirror halls) for the boss.
+Decided (Johannes, 2026-11-12): 1920s for the district, with the Schloss as the place where it bleeds into baroque (garden labyrinth, mirror halls) for the boss.
 
 ## NPCs and art follow the eras
 
