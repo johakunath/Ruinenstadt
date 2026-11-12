@@ -1,8 +1,8 @@
 {
-  "started": "2026-11-11T20:42:08.458Z",
+  "started": "2026-11-12T09:05:03.032Z",
   "errors": [],
   "load": {
-    "version": "0.84",
+    "version": "0.87",
     "keys": [
       "bosses/bassprediger-attack-a",
       "bosses/bassprediger-attack-b",
@@ -932,11 +932,11 @@
   "fallback": {
     "failed": true,
     "choice": null,
-    "pixels": 37851,
+    "pixels": 37698,
     "errors": []
   },
   "offline": {
-    "version": "0.84",
+    "version": "0.87",
     "state": "play",
     "controller": true,
     "expected": 54,
@@ -945,5 +945,5 @@
     "errors": []
   },
   "status": "passed",
-  "finished": "2026-11-11T20:42:26.321Z"
+  "finished": "2026-11-12T09:05:18.923Z"
 }

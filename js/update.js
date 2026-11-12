@@ -4,7 +4,7 @@
 function steer(e,vx,vy,d){let sx=0,sy=0;for(const o of enemies){if(o===e||o.fly!==e.fly)continue;const ax=e.x-o.x,ay=e.y-o.y,m=e.r+o.r+6;if(ax>m||ax<-m||ay>m||ay<-m)continue;const q=Math.hypot(ax,ay)||.01;if(q<m){const w=(1-q/m)*(o.r>e.r?1.5:1);sx+=ax/q*w;sy+=ay/q*w;}}
   const ch=(vx*(P.x-e.x)+vy*(P.y-e.y))/d>.8&&d>60&&d<300&&!e.fly&&e.type!=='boss'?.4*e.side*Math.min(1,(d-60)/80):0,X=vx+sx*1.3-vy*ch,Y=vy+sy*1.3+vx*ch,n=Math.max(1,Math.hypot(X,Y));return[X/n,Y/n];}
 function update(dt){dt=fxTime(dt);
-  if(run&&run.tl&&state==='play'){run.tl.t+=dt;run.tl.fr++;if(dt>.034)run.tl.sl++;}
+  if(run&&run.tl&&state==='play'){run.tl.t+=dt;run.tl.fr++;if(dt>.034)run.tl.sl++;if(RAWDT>.05&&RAWDT<.5)run.tl.sp=(run.tl.sp||0)+1;if(RAWDT<.5&&RAWDT>(run.tl.mx||0))run.tl.mx=RAWDT;}// v0.85 spikes: frames over 50 ms and the longest frame (pauses excluded)
   if(bannerT>0){bannerT-=dt;if(bannerT<=0){const b=$('banner');b.style.opacity=0;b.style.transform='translateY(-48px)';}}
   for(const p of parts){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=.9;p.vy*=.9;p.life-=dt;}parts=parts.filter(p=>p.life>0);fxUpdate(dt);audioTick(dt);
   for(const n of nums){n.y-=32*dt;n.life-=dt;}nums=nums.filter(n=>n.life>0);
@@ -28,7 +28,7 @@ function update(dt){dt=fxTime(dt);
    if(dz&&!dz.seen){dz.seen=true;toast(P.torch?'<span style="color:#f2d14b">Dunkelzone</span> · Fackel entzündet':S.camp.lampe?'<span style="color:#f2d14b">Dunkelzone</span> · Stirnlampe an':'<span style="color:#f2d14b">Dunkelzone</span> · Zweihändige Waffe, keine Fackel');sfx('ignite');}}
   padPoll();manAim();let mx=joy.x+pad.mx,my=joy.y+pad.my;if(keys.KeyA||keys.ArrowLeft)mx-=1;if(keys.KeyD||keys.ArrowRight)mx+=1;if(keys.KeyW||keys.ArrowUp)my-=1;if(keys.KeyS||keys.ArrowDown)my+=1;
   let ml=Math.hypot(mx,my);if(ml>1){mx/=ml;my/=ml;ml=1;}if(ml>0){const q=s2w(mx,my);mx=q[0];my=q[1];}/* v0.65: constant SCREEN speed (vertical used to be half as fast in 2:1 iso) */P.mvx=mx;P.mvy=my;
-  if(dashReq){dashReq=false;dash();}if(skillReq){skillReq=false;skill();}
+  if(dashReq){dashReq=false;dash();}if(skillReq){skillReq=false;skill();}if(ulReq){ulReq=false;skill(1);}
   if(P.ratT>0)P.ratT-=dt;if(P.root>0)P.root-=dt;if(P.rootI>0)P.rootI-=dt;
   const gaitX=P.x,gaitY=P.y,gaitDash=P.dashT>0;
   if(P.dashT>0){P.dashT-=dt;if(P.dashT<=0&&hasL('ritter')){shocks.push({x:P.x,y:P.y,r:10,max:110,hit:[],small:1});sfx('boom');shake=Math.max(shake,5);}P.x+=P.ddx*640*dt;P.y+=P.ddy*640*dt;parts.push({x:P.x,y:P.y-12,vx:0,vy:0,life:.22,max:.22,col:P.fecht?'rgba(250,199,117,.45)':'rgba(234,217,192,.35)',size:14});
@@ -38,7 +38,7 @@ function update(dt){dt=fxTime(dt);
     if(q>=1){P.leap=null;P.hz=0;const ab=L.k==='abriss';shocks.push({x:P.x,y:P.y,r:10,max:ab?210:95,hit:[],mul:ab?4:2.2,stun:ab?1.8:.5});shake=Math.max(shake,ab?15:8);sfx('boom');burst(P.x,P.y,'#5a4636',ab?40:20,ab?300:200);stamp(P.x,P.y,'rgba(8,5,3,.4)',ab?70:40);propsInRadius(P.x,P.y,ab?200:90,ST.dmg*3);if(ab)freeze=Math.max(freeze,.08);}}
   else if(!(P.root>0)){const wf=(P.wet?.7:1)*(P.guard>0?.55:1);P.x+=mx*ST.spd*wf*dt;P.y+=my*ST.spd*wf*dt;}// rooted by a Wurzler: no walking, a dash breaks free
   if(ml>.15&&P.swingT<=0)P.face=Math.atan2(my,mx);
-  collide(P);heroAdvance(P,ST,gaitX,gaitY,dt,gaitDash);P.comboT-=dt;P.cd-=dt;P.inv-=dt;P.dashCd-=dt;P.swingT-=dt;P.skCd-=dt;
+  collide(P);heroAdvance(P,ST,gaitX,gaitY,dt,gaitDash);P.comboT-=dt;P.cd-=dt;P.inv-=dt;P.dashCd-=dt;P.swingT-=dt;P.skCd-=dt;P.ulCd-=dt;
   if(ST.regen)P.hp=Math.min(ST.maxHp,P.hp+ST.regen*dt);
   if(P.frenzy>0)P.frenzy-=dt;if(P.hus>0)P.hus-=dt;if(P.stT>0)P.stT-=dt;if(P.jft>0){P.jft-=dt;if(P.jft<=0)P.jfn=0;}
   if(P.guard>0){P.guard-=dt;if(P.guard<=0){shocks.push({x:P.x,y:P.y,r:10,max:120,hit:[],mul:1.6,stun:.6});sfx('boom');shake=Math.max(shake,7);burst(P.x,P.y,'#6a6e76',16,200);}}
@@ -55,9 +55,9 @@ function update(dt){dt=fxTime(dt);
     if(m.soft||m.br){if(t-(run.areaT||-99)<40)continue;run.areaT=t;toast(`<span style="color:var(--dim)">${m.n}</span>`);}else if(bannerT<=0&&t>4&&t-(run.lmT||-99)>20){run.lmT=t;banner(m.n);}else if(t-(run.areaT||-99)>=12){run.areaT=t;toast(`<span style="color:var(--ember)">${m.n}</span>`);}}// v0.57: fewer area messages
   if(run.tun){tunUpdate(dt);if(state!=='play')return;}// U-Bahn tunnel: sections instead of waves
   else if(run.toSpawn>0){run.spawnT-=dt;if(run.spawnT<=0){spawnOne();run.toSpawn--;run.spawnT=Math.max(.3,1-wE()*.05);}}
-  else if(!enemies.length&&!run.cleared){run.cleared=true;run.perkDone=false;progWave(run.wave);if(run.wave>=WAVES&&!run.endless){run.winT=9;banner('Bezirk befreit!');toast('Sammle die Beute ein · der Abschluss folgt in wenigen Sekunden');sfx('win');}if(run.endless&&run.wave>WAVES){const b=Math.round(5*(run.wave-WAVES)*(1+.1*D.i)*DF().sc);S.scrap+=b;run.sg+=b;S.eb[run.d]=Math.max(S.eb[run.d]||0,run.wave);}toast('Welle '+run.wave+' geschafft');S.best[run.d]=Math.max(S.best[run.d],run.wave);save();run.breakT=2;}
-  if(run.winT>0){run.winT-=dt;if(run.winT<=0){win();return;}}// v0.65: a few seconds to collect the loot after the final boss
-  if(run.cleared&&!run.tun&&!(run.winT>0)){run.breakT-=dt;if(run.breakT<=0){if(!run.perkDone){if(run.wave%2){run.perkDone=true;return;}offerPerks();if(state!=='play')return;}/* v0.45: blessing after every second wave */else{run.cleared=false;startWave();}}}
+  else if(!enemies.length&&!run.cleared){run.cleared=true;run.perkDone=false;progWave(run.wave);if(run.wave>=WAVES&&!run.endless){run.exit={x:SX,y:SY-(D.geo?15:0),r:55};banner('Bezirk befreit!');toast('Sieh dich in Ruhe um · zum Verlassen zurück zur Station, der Pfeil zeigt den Weg');sfx('win');}if(run.endless&&run.wave>WAVES){const b=Math.round(5*(run.wave-WAVES)*(1+.1*D.i)*DF().sc);S.scrap+=b;run.sg+=b;S.eb[run.d]=Math.max(S.eb[run.d]||0,run.wave);}toast('Welle '+run.wave+' geschafft');S.best[run.d]=Math.max(S.best[run.d],run.wave);save();run.breakT=2;}
+  if(run.exit&&Math.hypot(P.x-run.exit.x,P.y-run.exit.y)<run.exit.r){run.exit=null;win();return;}// v0.84: after the final boss the district stays open, the run ends at the start station
+  if(run.cleared&&!run.tun&&!run.exit){run.breakT-=dt;if(run.breakT<=0){if(!run.perkDone){if(run.wave%2){run.perkDone=true;return;}offerPerks();if(state!=='play')return;}/* v0.45: blessing after every second wave */else{run.cleared=false;startWave();}}}
   for(const k in SHR)if(SHR[k]>0){SHR[k]-=dt;if(SHR[k]<=0){SHR[k]=0;refresh();toast(`<span style="color:var(--dim)">${SHRN[k][0]} ist verflogen</span>`);}}
   for(const h of shrines)if(!h.used&&Math.hypot(h.x-P.x,h.y+10-P.y)<46){h.used=1;h.o.spr=h.off;h.o.lights=[];const k=pick(Object.keys(SHRN));SHR[k]=60;refresh();toast(`Litfaßsäule · <span style="color:#7dd3ff">${SHRN[k][0]}</span>: ${SHRN[k][1]} (60 s)`);sfx('legend');burst(h.x,h.y-30,'#7dd3ff',24,200);rings.push({x:h.x,y:h.y,r:10,max:120,col:'125,211,255'});prog('shrine');}
   if(run.crateIn>0){run.crateIn-=dt;if(run.crateIn<=0)spawnCrate();}

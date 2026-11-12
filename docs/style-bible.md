@@ -187,7 +187,7 @@ New enemies, NPCs and props are designed from the **style boards** (`docs/style/
 3. U-Bahn on the same base, keep the combat-to-travel role.
 4. Potsdamer Platz and Alexanderplatz later from their boards.
 
-Asset rules, folder layout and renderer contract: `pipeline/workflow.md`.
+Asset rules, folder layout and renderer contract: `pipeline/workflow.md`. Which families are painted and which are SVG/code art: `pipeline/workflow.md` › Source per asset family (2026-11-11). Story and district eras: `docs/story.md`.
 
 ## Still open
 

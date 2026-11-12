@@ -25,18 +25,18 @@ function fxLight(lit){for(const f of fx)if(f.l)lit(f.x,f.y,f.l*f.life/f.max,f.z,
    D.cyber adds a magenta fringe. The hit arc itself is unchanged (attack() in js/combat.js), the crescent stays inside it. */
 function fxSwings(){if(!swings.length)return;const c=FXC();ctx.save();ctx.translate(OX,OY-12);isoGround();
   for(const s of swings){if(s.d==null){s.d=(SWN++&1)?-1:1;s.life+=.09;s.max+=.09;if(s.kind==='hammer')fxRing(P.x+Math.cos(s.a)*s.reach*.7,P.y+Math.sin(s.a)*s.reach*.7,c.hv,s.reach*.6,.25,5);}
-    const a=s.life/s.max,p=1-a,fade=Math.min(1,a*2.4),col=s.fin?c.fin:s.kind==='hammer'?c.hv:c.sw;
+    const a=s.life/s.max,p=1-a,fade=Math.min(1,a*2.4),col=s.fz?'#ff4a3a':s.fin?c.fin:s.kind==='hammer'?c.hv:c.sw;
     if(s.kind==='spear'){const cs=Math.cos(s.a),sn=Math.sin(s.a),h=20+(s.reach-20)*Math.min(1,p/.35),tl=20+(s.reach-20)*clamp((p-.2)/.8,0,1),w=s.fin?9:6;
       for(const[cc,o,al]of c.alt?[[c.alt,3,.5],[col,0,1]]:[[col,0,1]]){ctx.globalAlpha=fade*al*.8;ctx.fillStyle=cc;ctx.beginPath();ctx.moveTo(P.x+cs*tl-sn*(w+o),P.y+sn*tl+cs*(w+o));ctx.lineTo(P.x+cs*(h+o*2),P.y+sn*(h+o*2));ctx.lineTo(P.x+cs*tl+sn*(w+o),P.y+sn*tl-cs*(w+o));ctx.fill();}
       ctx.globalAlpha=fade;ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(P.x+cs*tl,P.y+sn*tl);ctx.lineTo(P.x+cs*h,P.y+sn*h);ctx.stroke();ctx.drawImage(glow(col),P.x+cs*h-16,P.y+sn*h-16,32,32);continue;}
-    const hd=Math.min(1,p/.4),h=1-(1-hd)*(1-hd),tl=clamp((p-.22)/.78,0,1),A=u=>s.a+s.arc*s.d*(2*u-1),Rr=s.reach-6,W=(s.kind==='hammer'?26:17)+(s.fin?7:0),N=6;if(h<=tl)continue;
+    const hd=Math.min(1,p/.4),h=1-(1-hd)*(1-hd),tl=clamp((p-.22)/.78,0,1),A=u=>s.a+s.arc*s.d*(2*u-1),Rr=s.reach-6,W=(s.kind==='hammer'?26:17)+(s.fin?7:0)+(s.fz?8:0),N=6;if(h<=tl)continue;
     for(const[cc,o,al]of c.alt?[[c.alt,4,.45],[col,0,1]]:[[col,0,1]])for(let i=0;i<N;i++){const u0=tl+(h-tl)*i/N,u1=tl+(h-tl)*(i+1)/N,w=W*(.2+.8*(i+1)/N);ctx.globalAlpha=fade*al*.75*Math.pow((i+1)/N,1.6);ctx.fillStyle=cc;ctx.beginPath();ctx.arc(P.x,P.y,Rr+o,A(u0),A(u1),s.d<0);ctx.arc(P.x,P.y,Rr+o-w,A(u1),A(u0),s.d>0);ctx.fill();}
     ctx.globalAlpha=fade*.9;ctx.strokeStyle='#fff';ctx.lineWidth=1.6;ctx.beginPath();ctx.arc(P.x,P.y,Rr,A(tl+(h-tl)*.35),A(h),s.d<0);ctx.stroke();
     if(hd<1){const q=A(h);ctx.drawImage(glow(col),P.x+Math.cos(q)*Rr-18,P.y+Math.sin(q)*Rr-18,36,36);}}
   ctx.globalAlpha=1;ctx.restore();}
 // additive pass, screen space, ctx is already 'lighter'. Order: ground rings, swings, projectile trails, bolts, sparks, flashes
 function fxDraw(t){const c=FXC(),cy=D.cyber;
-  for(const s of shocks){const X=scx(s.x,s.y),Y=scy(s.x,s.y);if(X<-s.r||X>VW+s.r||s.r<=0)continue;ctx.globalAlpha=.55*(1-s.r/s.max);ctx.strokeStyle=s.acid?'#97c459':c.hv;ctx.lineWidth=5;ctx.beginPath();ctx.ellipse(X,Y,s.r,s.r/2,0,0,7);ctx.stroke();}
+  for(const s of shocks){const X=scx(s.x,s.y),Y=scy(s.x,s.y);if(X<-s.r||X>VW+s.r||s.r<=0)continue;ctx.globalAlpha=.55*(1-s.r/s.max);ctx.strokeStyle=s.acid?'#97c459':s.col||c.hv;ctx.lineWidth=s.col?9:5;ctx.beginPath();ctx.ellipse(X,Y,s.r,s.r/2,0,0,7);ctx.stroke();}
   for(const r of rings){if(r.r<=0)continue;ctx.globalAlpha=.5*(1-r.r/r.max);ctx.strokeStyle=`rgb(${r.col})`;ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(scx(r.x,r.y),scy(r.x,r.y),r.r,r.r/2,0,0,7);ctx.stroke();}
   for(const f of fx)if(f.k===1){const a=f.life/f.max,r=f.r1*(1-a*a);ctx.globalAlpha=a;ctx.strokeStyle=f.col;ctx.lineWidth=f.w*a+.5;ctx.beginPath();ctx.ellipse(scx(f.x,f.y),scy(f.x,f.y),r,r/2,0,0,7);ctx.stroke();if(cy){ctx.globalAlpha=a*.5;ctx.strokeStyle=c.alt;ctx.lineWidth=1;ctx.beginPath();ctx.ellipse(scx(f.x,f.y),scy(f.x,f.y),r*.8,r*.4,0,0,7);ctx.stroke();}}
   ctx.globalAlpha=1;fxSwings();

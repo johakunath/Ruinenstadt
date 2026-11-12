@@ -625,3 +625,8 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Merged current main after it advanced through v0.83 camp stations; preserved v0.82 blessings and v0.83 camp work, and moved bosses to v0.84. All 69 JS tests, 6 Python tests, 367 sprite checks and refreshed browser/fallback/offline proof pass.
 - Current-source RTX 4070 painted comparisons pass: Köpenick -1.51% CI [-5.62,+1.24], Alexanderplatz -3.30% [-9.29,+0.08]. The 21-pair off/off control was inconclusive at +0.95% [-2.62,+6.53]; the required 41-pair control-only rerun remained narrowly inconclusive at -0.84% [-5.40,+2.24]. Zero timed canvas allocations/page errors.
 - Retain every report; do not select the earlier favourable control. No asset optimisation is indicated by off/off noise. Open/review the PR, but require Johannes performance acceptance before merge.
+
+## 2026-11-12 · Codex · task 06 reconciled onto v0.86 main
+
+- Main advanced through v0.84 save fixes, v0.85 playtest/icons/ground cache and v0.86 powers/story while PR #40 opened. Preserved all upstream work and moved the boss candidate to v0.87.
+- Prior performance reports remain retained and accurately labelled; their source hashes predate this reconciliation. Current v0.87 head passes 69 JS tests, 6 Python tests, 371 sprite checks and refreshed browser/fallback/offline proof for all 54 boss frames. Performance acceptance remains with Johannes because the latest off/off control was inconclusive.

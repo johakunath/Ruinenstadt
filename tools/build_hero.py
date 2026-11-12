@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / 'assets/raw/codex/07-player-rig-v2'
 OUT = ROOT / 'assets/hero/rig'
 RS = 6
-WEAP = 'I01 I02 I03 I04 I05 I06 I07 I08 I09 I10 I11 I12 I13 I14 I15 I16 I32 I48 I51 I52 I53 I56 I59 I60 I61 I62'.split()
+WEAP = 'I01 I02 I03 I04 I05 I06 I07 I08 I09 I10 I11 I12 I13 I14 I15 I16 I32 I48 I51 I52 I53 I56 I59 I60 I61 I62 I71 I72 I73 I74'.split()
 
 # Every rectangle is in source-sheet pixels. The placement [x,y,w,h] is in
 # shared rig coordinates, or relative to the named joint for articulated parts.
