@@ -208,7 +208,7 @@ function drawEnemy(e,t){
     if(boss)H+=10*s;}
   ctx.restore();H*=1.15;
   if(e.type==='uhr')gdrShield(e,fy,C);
-  else if(SHD(e)&&!(g&&e.type==='boss'&&e.big)&&!drawEnemyShield(e,fy)){const fa=e.fa,sr=e.r+(e.type==='boss'?6:4),cx=e.x+Math.cos(fa)*sr,cy=fy-14+Math.sin(fa)*sr*.6,px=-Math.sin(fa),py=Math.cos(fa)*.6,L=e.type==='boss'?26:15,op=e.guard>0;
+  else if(SHD(e)&&!drawEnemyShield(e,fy)){const fa=e.fa,sr=e.r+(e.type==='boss'?6:4),cx=e.x+Math.cos(fa)*sr,cy=fy-14+Math.sin(fa)*sr*.6,px=-Math.sin(fa),py=Math.cos(fa)*.6,L=e.type==='boss'?26:15,op=e.guard>0;
     ctx.lineCap='round';ctx.strokeStyle=op?'rgba(120,110,100,.6)':C('#5a6470');ctx.lineWidth=e.type==='boss'?11:8;ctx.beginPath();ctx.moveTo(cx-px*L,cy-py*L-(op?-6:0));ctx.lineTo(cx+px*L,cy+py*L-(op?-6:0));ctx.stroke();
     if(!op){ctx.strokeStyle=C('#9aa4b0');ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx-px*L*.8,cy-py*L*.8-3);ctx.lineTo(cx+px*L*.8,cy+py*L*.8-3);ctx.stroke();}ctx.lineCap='butt';}
   if(e.buff>0&&e.type!=='howl'){ctx.strokeStyle='rgba(214,90,140,.55)';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(e.x,fy,e.r*1.25,e.r*.45,0,0,7);ctx.stroke();}

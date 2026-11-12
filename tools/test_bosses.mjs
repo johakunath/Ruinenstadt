@@ -22,3 +22,8 @@ test('builder records five source cells and the deliberate idle-to-walk-b reuse'
  const picks=JSON.parse(read('assets/raw/codex/06-bosses/poses/picks.json'));
  for(const boss of bosses){assert.equal(picks[`${boss}-idle`].cell,0,boss);assert.equal(picks[`${boss}-walk-a`].cell,1,boss);assert.equal(picks[`${boss}-walk-b`].cell,0,boss);assert.equal(picks[`${boss}-attack-a`].cell,2,boss);assert.equal(picks[`${boss}-attack-b`].cell,3,boss);assert.equal(picks[`${boss}-hit`].cell,4,boss);}
 });
+test('painted Zitadellenritter retains the directional guard-aware shield overlay',()=>{
+ const art=read('js/art.js');
+ assert.match(art,/else if\(SHD\(e\)&&!drawEnemyShield\(e,fy\)\)/);
+ assert.doesNotMatch(art,/SHD\(e\)&&!\(g&&e\.type==='boss'&&e\.big\)/);
+});

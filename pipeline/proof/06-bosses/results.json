@@ -1,5 +1,5 @@
 {
-  "started": "2026-11-12T09:05:03.032Z",
+  "started": "2026-11-12T09:07:02.478Z",
   "errors": [],
   "load": {
     "version": "0.87",
@@ -356,7 +356,7 @@
       "key": "bosses/ritter-idle",
       "painted": true,
       "edge": 0,
-      "body": 5999
+      "body": 6475
     },
     {
       "boss": "ritter",
@@ -364,7 +364,7 @@
       "key": "bosses/ritter-walk-a",
       "painted": true,
       "edge": 0,
-      "body": 5307
+      "body": 5783
     },
     {
       "boss": "ritter",
@@ -372,7 +372,7 @@
       "key": "bosses/ritter-walk-b",
       "painted": true,
       "edge": 0,
-      "body": 5986
+      "body": 6462
     },
     {
       "boss": "ritter",
@@ -380,7 +380,7 @@
       "key": "bosses/ritter-attack-a",
       "painted": true,
       "edge": 0,
-      "body": 5456
+      "body": 5785
     },
     {
       "boss": "ritter",
@@ -388,7 +388,7 @@
       "key": "bosses/ritter-attack-b",
       "painted": true,
       "edge": 0,
-      "body": 6436
+      "body": 6912
     },
     {
       "boss": "ritter",
@@ -396,7 +396,7 @@
       "key": "bosses/ritter-hit",
       "painted": true,
       "edge": 0,
-      "body": 7108
+      "body": 7318
     },
     {
       "boss": "platte",
@@ -790,7 +790,7 @@
       "key": "bosses/ritter-idle",
       "painted": true,
       "edge": 110,
-      "body": 24015
+      "body": 25791
     },
     {
       "boss": "ritter",
@@ -798,7 +798,7 @@
       "key": "bosses/ritter-walk-a",
       "painted": true,
       "edge": 140,
-      "body": 21102
+      "body": 22877
     },
     {
       "boss": "ritter",
@@ -806,7 +806,7 @@
       "key": "bosses/ritter-walk-b",
       "painted": true,
       "edge": 138,
-      "body": 23900
+      "body": 25676
     },
     {
       "boss": "ritter",
@@ -814,7 +814,7 @@
       "key": "bosses/ritter-attack-a",
       "painted": true,
       "edge": 169,
-      "body": 21790
+      "body": 23037
     },
     {
       "boss": "ritter",
@@ -822,7 +822,7 @@
       "key": "bosses/ritter-attack-b",
       "painted": true,
       "edge": 167,
-      "body": 25911
+      "body": 27687
     },
     {
       "boss": "ritter",
@@ -830,7 +830,7 @@
       "key": "bosses/ritter-hit",
       "painted": true,
       "edge": 97,
-      "body": 28391
+      "body": 29152
     },
     {
       "boss": "platte",
@@ -932,7 +932,7 @@
   "fallback": {
     "failed": true,
     "choice": null,
-    "pixels": 37698,
+    "pixels": 38438,
     "errors": []
   },
   "offline": {
@@ -945,5 +945,5 @@
     "errors": []
   },
   "status": "passed",
-  "finished": "2026-11-12T09:05:18.923Z"
+  "finished": "2026-11-12T09:07:17.887Z"
 }
