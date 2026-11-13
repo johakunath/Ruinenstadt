@@ -1,0 +1,89 @@
+{
+  "errors": [],
+  "scenes": [
+    {
+      "district": "Köpenick",
+      "buildMs": 940.7999999998137,
+      "rng": 0.9807693297043443,
+      "assets": {
+        "ready": 12,
+        "total": 12,
+        "decodedBytes": 3198096,
+        "canvasBytes": 3147744,
+        "projectedCacheBytes": 7808664
+      },
+      "bridges": 7,
+      "taskBytes": 14154504,
+      "global": {
+        "decodedBytes": 15728640,
+        "canvasBytes": 15679584,
+        "ready": 42,
+        "total": 42
+      }
+    },
+    {
+      "district": "Köpenick",
+      "buildMs": 588.5,
+      "rng": 0.19056691089645028,
+      "assets": {
+        "ready": 12,
+        "total": 12,
+        "decodedBytes": 3198096,
+        "canvasBytes": 3147744,
+        "projectedCacheBytes": 7808664
+      },
+      "bridges": 7,
+      "taskBytes": 14154504,
+      "global": {
+        "decodedBytes": 15728640,
+        "canvasBytes": 15679584,
+        "ready": 42,
+        "total": 42
+      }
+    },
+    {
+      "district": "Köpenick",
+      "buildMs": 581.0999999996275,
+      "rng": 0.5196028768550605,
+      "assets": {
+        "ready": 12,
+        "total": 12,
+        "decodedBytes": 3198096,
+        "canvasBytes": 3147744,
+        "projectedCacheBytes": 7808664
+      },
+      "bridges": 7,
+      "taskBytes": 14154504,
+      "global": {
+        "decodedBytes": 15728640,
+        "canvasBytes": 15679584,
+        "ready": 42,
+        "total": 42
+      }
+    }
+  ],
+  "version": "0.94",
+  "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "measurements": [],
+  "fallback": {
+    "district": "Köpenick",
+    "buildMs": 739.5,
+    "rng": 0.9807693297043443,
+    "assets": {
+      "ready": 0,
+      "total": 12,
+      "decodedBytes": 3198096,
+      "canvasBytes": 0,
+      "projectedCacheBytes": 0
+    },
+    "bridges": 7,
+    "taskBytes": 3198096,
+    "global": {
+      "decodedBytes": 15728640,
+      "canvasBytes": 15679584,
+      "ready": 42,
+      "total": 42
+    }
+  },
+  "status": "passed"
+}

@@ -49,3 +49,7 @@ collision, map/district/save mappings, gameplay RNG or light anchors.
 ## Current runtime audit (v0.91)
 
 See [texture coverage](../../docs/texture-coverage.md): all 42 shared sources load, but custom district building renderers and named plaza/ground painters still bypass or cover the shared foundation. The report lists concrete remaining drawing paths for Köpenick, Alexanderplatz, Mitte and Tempelhof. Foundation delivery is not complete environment-art coverage.
+
+## v0.94 Köpenick special architecture
+
+Actual Rathaus, station and bridge paths plus custom surfaces are implemented; see task 18 and docs/texture-coverage.md. Ordinary kits are preserved. Other districts and nature remain separate.
