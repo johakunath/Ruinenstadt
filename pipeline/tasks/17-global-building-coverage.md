@@ -1,6 +1,6 @@
 # 17 Köpenick and global building coverage
 
-Status: shared wall/roof foundation integrated (v0.88, 2026-11-13); named landmark/billboard coverage remains open. Final performance acceptance and review deferred to Claude.
+Status: shared wall/roof foundation integrated (v0.88, 2026-11-13); named landmark/billboard coverage remains open. Tablet performance accepted by Johannes; dedicated custom art/hook coverage remains open.
 
 Complete painted coverage for Köpenick and the shared/global building family,
 and use that foundation in districts without district-specific painted assets.
@@ -45,3 +45,7 @@ Six orthographic material sources are in
 `assets/raw/codex/16-shared-materials/`; normalization and manifest updates
 use `tools/build_shared_materials.py`. New art changes no footprints,
 collision, map/district/save mappings, gameplay RNG or light anchors.
+
+## Current runtime audit (v0.91)
+
+See [texture coverage](../../docs/texture-coverage.md): all 42 shared sources load, but custom district building renderers and named plaza/ground painters still bypass or cover the shared foundation. The report lists concrete remaining drawing paths for Köpenick, Alexanderplatz, Mitte and Tempelhof. Foundation delivery is not complete environment-art coverage.

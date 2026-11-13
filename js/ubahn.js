@@ -131,11 +131,11 @@ function tunUpdate(dt){const T=TUN;if(!T||T.done)return;P.wet=P.x>=FLOOD[0]&&P.x
     if(T.hold&&!T.lit){if(d<GEN.r){T.p+=dt;T.sp-=dt;}if(T.sp<=0){T.sp=R(1.6,2.4);const q=mouth();tunSpawn(pick('ggsgxr'),q[0],q[1],9);if(T.p>GEN.need*.5&&!T.el){T.el=1;const e=mouth();tunSpawn('B',e[0],e[1],9);}}
       if(T.p>=GEN.need){T.lit=1;T.gen.lights.push({x:GEN.x,y:GEN.y,z:40,r:260});for(const b of blds)if(b.draw===drawCol&&b.x>TST[2][0])b.lights.push({x:b.x+13,y:b.y+26,z:110,r:150});neons.push({x:GEN.x,y:GEN.y,z:70,c:'#f2d14b',s:70});
         sfx('win');flashT=.2;banner('Strom!',1);const q=at(TX1-260,0),b=mkEnemy('boss',q[0],q[1],false);b.st=run.tl?run.tl.t:0;b.name='Der Schaffner';b.v=-1;b.col='#3a4a5a';enemies.push(b);run.boss=b;T.boss=1;for(let i=0;i<3;i++){const e=mouth();tunSpawn('g',e[0],e[1],9);}toast('Aus dem Tunnel kommt etwas Großes');}}
-    if(T.boss&&!run.boss&&!enemies.length){T.done=1;tunWin();}}}
+    if(T.boss&&!run.boss&&!enemies.length&&!run.exit&&!run.lootExitHold){tunWin();}}}
 // generator ring on the ground (charge), drawn in the ground layer
 function tunDraw(t){const T=TUN;if(!T||!T.hold||T.lit)return;const p=T.p/GEN.need;ctx.fillStyle='rgba(242,209,75,.06)';ctx.beginPath();ctx.arc(GEN.x,GEN.y,GEN.r,0,7);ctx.fill();ctx.strokeStyle='rgba(242,209,75,.45)';ctx.lineWidth=2;ctx.setLineDash([8,8]);ctx.beginPath();ctx.arc(GEN.x,GEN.y,GEN.r,0,7);ctx.stroke();ctx.setLineDash([]);
   ctx.strokeStyle='#f2d14b';ctx.lineWidth=6;ctx.beginPath();ctx.arc(GEN.x,GEN.y,GEN.r-8,-1.57,-1.57+6.283*p);ctx.stroke();}
-function tunWin(){logRun('win');state='over';clearInput();const k=TUN.k;S.ln=S.ln||[];const first=!S.ln[k];S.ln[k]=1;S.dist=k+1;if(first&&k===0)setTimeout(()=>toast('<span style="color:var(--ember)">S+U Warschauer Straße</span> ist jetzt dein Lager. Dort baust du Stationen aus.'),1500);const unl=S.unlocked<k+2;if(unl)S.unlocked=k+2;
+function tunWin(force){if(!force&&warnLootExit('tunnel'))return;TUN.done=1;run.exit=null;resetLootExit();logRun('win');state='over';clearInput();const k=TUN.k;S.ln=S.ln||[];const first=!S.ln[k];S.ln[k]=1;S.dist=k+1;if(first&&k===0)setTimeout(()=>toast('<span style="color:var(--ember)">S+U Warschauer Straße</span> ist jetzt dein Lager. Dort baust du Stationen aus.'),1500);const unl=S.unlocked<k+2;if(unl)S.unlocked=k+2;
   const bonus=Math.round(40*(k+1)*DF().sc);S.scrap+=bonus;run.sg+=bonus;run.bonus=bonus;run.unl=unl;run.first=first;save();sfx('win');setTimeout(()=>showEnd(true),900);}
 // start a tunnel run on line k (startRun with the tunnel flag)
 // v0.85 keep: straight from a won district into its tunnel, the blessings of that run come along (from the camp you start without)

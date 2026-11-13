@@ -352,3 +352,5 @@ body.pad #ult::after{content:"LB";border-radius:8px;background:#5a5048;color:#ff
 
 /* A drag marks only its actual destination cell/gear icon. */
 .slot.dgover{outline:0}.slot.dgover .ic{outline:2px dashed var(--ember);outline-offset:2px}
+
+#lootwarn{align-content:center;z-index:60;background:rgba(14,10,7,.86)}

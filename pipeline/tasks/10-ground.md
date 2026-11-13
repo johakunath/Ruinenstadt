@@ -40,3 +40,5 @@ patch repeats span about 683 world units, versus 170 units before.
 
 User tablet-performance acceptance is recorded in BACKLOG Done and
 docs/playtests.md. District-specific transition/decal expansion remains open.
+
+Coverage audit v0.91: shared surface variation is delivered, but named plazas/platforms and custom ground overlays still have procedural fills. See `docs/texture-coverage.md`; do not equate the shared tile kit with every visible surface being textured.

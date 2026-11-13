@@ -9,6 +9,7 @@
 - ChatGPT menu art (icons, portraits): batch list `docs/chatgpt-assets.md`, raw sheets land in `assets/raw/`.
 - Game text is German. Keep player-facing copy short and precise: a few words or one short line by default, no explanatory paragraphs in normal screens. Put necessary details behind a tooltip or in the Kodex. It is a game, not a professional tool (Johannes, 2026-11-13).
 - Code style is dense one-liners; match it.
+- Ground loot/exit protection: `js/loot.js` handles collection and legendary/set exit confirmation; names/glow/pointers in `js/render.js` and `js/pickup-art.js`. Current environment art gaps: `docs/texture-coverage.md`.
 - Release: bump `VERSION` (`js/core.js`) and `CACHE` (`sw.js`) together, update `BACKLOG.md`.
 - Critical visual/design decisions: show clearly distinct alternatives before implementation. Routine assets: choose within the approved style, create and show the result, continue unless Johannes objects. Do not require A/B/C choices for every asset (Johannes, 2026-11-10). Use SVG mockups for critical code-native layouts and painted canvases for critical art choices.
 - Smoke test: serve with `python3 -m http.server`, load in Playwright, start a run, check for page errors.
