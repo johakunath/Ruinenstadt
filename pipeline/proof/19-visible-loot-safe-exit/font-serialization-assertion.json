@@ -1,0 +1,60 @@
+{
+  "started": "2026-11-13T15:47:29.231Z",
+  "errors": [],
+  "warning": {
+    "state": "lootwarn",
+    "exit": true,
+    "wins": 0,
+    "logs": 0,
+    "text": "Wertvolle Beute liegt noch."
+  },
+  "resume": {
+    "state": "play",
+    "hold": true,
+    "guide": "kiez"
+  },
+  "collect": {
+    "bag": 1,
+    "set": true,
+    "next": 3
+  },
+  "rareOnly": {
+    "state": "over",
+    "warning": false
+  },
+  "tunnelSearch": {
+    "state": "play",
+    "exit": true,
+    "done": false
+  },
+  "tunnelWin": {
+    "state": "over",
+    "line": true,
+    "done": true
+  },
+  "labels": [
+    {
+      "text": "Beute 0",
+      "font": "12px \"Barlow Condensed\", sans-serif"
+    },
+    {
+      "text": "Beute 1",
+      "font": "12px \"Barlow Condensed\", sans-serif"
+    },
+    {
+      "text": "Beute 2",
+      "font": "12px \"Barlow Condensed\", sans-serif"
+    },
+    {
+      "text": "Beute 3",
+      "font": "12px \"Barlow Condensed\", sans-serif"
+    },
+    {
+      "text": "Set-Beute",
+      "font": "12px \"Barlow Condensed\", sans-serif"
+    }
+  ],
+  "status": "failed",
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(report.labels.every(t=>t.font.startsWith('400 12px')))\n\n    at /workspace/Ruinenstadt/tools/proof_loot.cjs:10:631",
+  "finished": "2026-11-13T15:47:39.246Z"
+}

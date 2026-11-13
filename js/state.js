@@ -21,7 +21,7 @@ function power(st){const q=pwParts(st);return Math.round(Math.sqrt(q.dps*q.ehp)*
 function refresh(){if(!P){ST=stats();return;}const pct=ST?P.hp/ST.maxHp:1;ST=stats();P.hp=Math.min(ST.maxHp,Math.max(1,Math.round(ST.maxHp*pct)));}
 const ilvl=()=>D.lvl+(run?Math.max(1,Math.ceil(wE()))+run.th*3:1);
 function startRun(di,endless,daily,tun){// tun: line index for a U-Bahn tunnel run (js/ubahn.js)
-  initAudio();if(RNG0){Math.random=RNG0;RNG0=null;}let plan=null;if(daily){plan=dailyPlan();di=plan.d;RNG0=Math.random;Math.random=rngFrom(dayKey());}
+  resetLootExit();initAudio();if(RNG0){Math.random=RNG0;RNG0=null;}let plan=null;if(daily){plan=dailyPlan();di=plan.d;RNG0=Math.random;Math.random=rngFrom(dayKey());}
   initAudio();immerse();S.dist=di;save();
   S.rec.runs++;run={d:di,th:S.threat||0,wave:0,toSpawn:0,spawnT:0,cleared:true,perkDone:true,strikes:[],breakT:1.5,kills:0,sg:0,crateIn:-1,boss:null,quitArm:false,perks:{},booms:[],blasts:[],seen:{},second:false,endless:!!endless,meal:S.meal||null,daily:!!daily,dmods:plan?plan.mods:[]};S.meal=null;
   if(tun!=null)buildTunnel(tun);else{TUN=null;buildWorld(DIST[di]);}run.tun=tun!=null?1:0;run.hid=run.tun?[]:hidSpots();if(run.tun){run.cleared=false;run.wave=1;}newPlayer();ST=stats();P.hp=ST.maxHp;run.tl={t:0,ws:[],dmg:0,pw0:power(ST),lo:[0,0,0,0],hm:1,cu:0,bt:[],fr:0,sl:0,da:0,eq:0,pt:0,up:Object.values(S.upg).reduce((a,b)=>a+b,0)};// v0.53 telemetry: loot by rarity, lowest life share, consumables used, boss kill seconds
