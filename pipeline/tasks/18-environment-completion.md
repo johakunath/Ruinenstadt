@@ -1,6 +1,6 @@
 # 18 Environment coverage and water
 
-Status: Köpenick surface/special-building batch implemented (v0.94, 2026-11-13), merged in PR #49; Xhain in progress (Codex, 2026-11-13); other districts open. User requests complete Köpenick first, review and merge before proceeding map by map. Special buildings use more realistic architectural detail with restrained post-apocalyptic wear and district emblems.
+Status: Köpenick surface/special-building batch implemented (v0.94, 2026-11-13), merged in PR #49; Xhain sources/basic hookup implemented (v0.95, Codex, 2026-11-13), PR review/merge and Claude optimization pending; other districts open. User requests complete Köpenick first, review and merge before proceeding map by map. Special buildings use more realistic architectural detail with restrained post-apocalyptic wear and district emblems.
 
 1. Complete missing shared and custom district building textures/hooks; cover
    custom plazas and landmark surfaces. Audit: `docs/texture-coverage.md`.
@@ -24,3 +24,5 @@ is included in this backlog-only task creation.
 ## Xhain batch
 
 Audit the existing Oberbaumbrücke arcade/towers, Berghain, Ostbahnhof, East Side Gallery, elevated rail, station entrances, bridge decks and Spree/Landwehrkanal. Preserve all constructors, footprints, collision, placement and RNG. Reuse ordinary building/terrain kits. Painted sources with cached projected hooks; one bounded visual/smoke/performance run, then Claude handoff. Nature remains task 04.
+
+Xhain proof: `pipeline/proof/23-xhain-completion/`. All twelve sources load; geometry/RNG, fallback and cache release pass. The 40 MB cap retains fallback on overflow (133/152 parts cached at normal proof scale; 77/152 at 2×). This is basic integration, not full painted coverage at every zoom or hardware acceptance. Review/merge this map batch before proceeding to Alexanderplatz.

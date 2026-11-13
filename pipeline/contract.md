@@ -252,3 +252,23 @@ is prewarmed outside draw (+65,536 derived bytes for task05; total 1,079,324).
 Johannes explicitly increased the existing shrine buff duration from 45 to
 60 seconds. No new buff effects or selection rules. Building-light occlusion
 is explicitly deferred; this batch does not change the light-mask algorithm.
+
+## Xhain custom architecture (v0.95)
+
+`js/xhain-assets.js` projects twelve authored materials onto existing custom
+geometry. `xhBox` only adds painted faces during scheduled baking; the live
+fallback retains the original geometry, openings and lights. `withRot` is
+applied to both bake bounds and painting, so railway/bridge orientation stays
+exact. Berghain, Ostbahnhof, Oberbaumbrücke, gallery walls, U1/Stadtbahn
+spans/pillars and station parapets keep their original sorting and collision.
+The original drawing functions remain complete fallbacks when images or a
+scale-matched cache are unavailable.
+
+`xhPrepareMap` schedules four objects per job; no image decode/cache creation
+runs inside drawing. Device-scale projected caches and source canvases share
+a hard 40,000,000-byte task cap. Named architecture is prioritized; overflow
+uses the original drawing. Resize rebuilds caches at `koepScale()` and map,
+base and tunnel constructors cancel jobs and clear departed canvas dimensions.
+Materials use face-local coordinates (manifest upright anchors are metadata).
+Water/forecourts/decks paint into the existing ground canvas; ripple visibility
+is increased within the existing animation loop. No new placement/RNG draws.
