@@ -1,0 +1,157 @@
+{
+  "started": "2026-11-13T14:03:30.191Z",
+  "errors": [],
+  "touch": [
+    {
+      "targets": [
+        {
+          "tag": "BUTTON",
+          "eq": "h",
+          "cell": false,
+          "group": false
+        }
+      ],
+      "tag": "bag0",
+      "drag": false,
+      "ghosts": 0,
+      "highlights": 0
+    },
+    {
+      "targets": [
+        {
+          "tag": "BUTTON",
+          "eq": "h",
+          "cell": false,
+          "group": false
+        }
+      ],
+      "tag": "old",
+      "drag": false,
+      "ghosts": 0,
+      "highlights": 0
+    },
+    {
+      "targets": [
+        {
+          "tag": "BUTTON",
+          "eq": "h",
+          "cell": false,
+          "group": false
+        }
+      ],
+      "tag": "bag0",
+      "drag": false,
+      "ghosts": 0,
+      "highlights": 0
+    },
+    {
+      "targets": [
+        {
+          "tag": "BUTTON",
+          "eq": "h",
+          "cell": false,
+          "group": false
+        }
+      ],
+      "tag": "old",
+      "drag": false,
+      "ghosts": 0,
+      "highlights": 0
+    }
+  ],
+  "mouse": [
+    [
+      {
+        "eq": "h",
+        "group": false
+      }
+    ],
+    [
+      {
+        "eq": "h",
+        "group": false
+      }
+    ]
+  ],
+  "touchVertical": {
+    "targets": [
+      {
+        "tag": "BUTTON",
+        "cell": true,
+        "group": false
+      }
+    ],
+    "tag": "old",
+    "drag": false,
+    "ghosts": 0,
+    "highlights": 0
+  },
+  "quickSwipe": "no drag",
+  "art": {
+    "version": "0.89",
+    "stats": {
+      "decodedBytes": 15728640,
+      "canvasBytes": 15679584,
+      "ready": 42,
+      "total": 42
+    },
+    "variants": {
+      "asphalt": [
+        "props/ground-asphalt-v1",
+        "props/ground-asphalt-v2",
+        "props/ground-asphalt",
+        "props/ground-asphalt-v3"
+      ],
+      "cobble": [
+        "props/ground-cobble-v2",
+        "props/ground-cobble-v1",
+        "props/ground-cobble",
+        "props/ground-cobble-v3"
+      ],
+      "pavement": [
+        "props/ground-pavement-v1",
+        "props/ground-pavement-v3",
+        "props/ground-pavement-v2",
+        "props/ground-pavement"
+      ],
+      "dirt": [
+        "props/ground-dirt-v3",
+        "props/ground-dirt",
+        "props/ground-dirt-v1",
+        "props/ground-dirt-v2"
+      ],
+      "grass": [
+        "props/ground-grass",
+        "props/ground-grass-v1",
+        "props/ground-grass-v2",
+        "props/ground-grass-v3"
+      ],
+      "sand": [
+        "props/ground-sand-v1",
+        "props/ground-sand",
+        "props/ground-sand-v3",
+        "props/ground-sand-v2"
+      ],
+      "plaza": [
+        "props/ground-plaza",
+        "props/ground-plaza-v1",
+        "props/ground-plaza-v2",
+        "props/ground-plaza-v3"
+      ],
+      "ballast": [
+        "props/ground-ballast",
+        "props/ground-ballast-v3",
+        "props/ground-ballast-v2",
+        "props/ground-ballast-v1"
+      ],
+      "concrete": [
+        "props/ground-concrete-v1",
+        "props/ground-concrete-v3",
+        "props/ground-concrete",
+        "props/ground-concrete-v2"
+      ]
+    }
+  },
+  "status": "passed",
+  "finished": "2026-11-13T14:03:42.505Z"
+}

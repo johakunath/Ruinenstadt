@@ -125,18 +125,26 @@ function invMove(src,i,dst,j){const L=src==='eq'?null:invList(src),it=L?L[i]:S.e
     else if(src===dst){if(j!=null&&j!==i&&j<D_.length){D_[i]=tg;D_[j]=it;ok=true;}}
     else if(tg){L[i]=tg;D_[j]=it;ok=true;}else if(D_.length>=N)invMsg=dst==='stash'?'Das Lager ist voll.':'Der Rucksack ist voll.';else{L.splice(i,1);D_.push(it);ok=true;}}
   if(ok){sel=null;refresh();save();sfx('ui');}}
-// drag and drop in the inventory: mouse and pen drag after 8 px, touch after a 250 ms hold (a quick swipe still scrolls)
-let dg=null,dgJust=false;
-$('invbox').addEventListener('pointerdown',e=>{const c=e.target.closest('[data-dg]');if(!c||e.button>0)return;const[src,i]=c.dataset.dg.split(':');dg={src,i:src==='eq'?i:+i,el:c,x:e.clientX,y:e.clientY,sx:e.clientX,sy:e.clientY,on:false,id:e.pointerId,touch:e.pointerType==='touch',t0:performance.now()};
-  if(dg.touch)dg.hold=setTimeout(()=>{if(dg&&!dg.on)dgStart(dg.x,dg.y);},250);});
+// Mouse/pen use pointer events; touch keeps its cancellable touch stream after a hold.
+let dg=null,dgJust=false,dgClickTimer=0;
+function dgBegin(c,x,y,id,touch){if(dg)dgEnd({clientX:x,clientY:y},1);const[src,i]=c.dataset.dg.split(':');dg={src,i:src==='eq'?i:+i,el:c,x,y,sx:x,sy:y,on:false,id,touch};if(touch)dg.hold=setTimeout(()=>{if(dg&&!dg.on)dgStart(dg.x,dg.y);},250);}
+$('invbox').addEventListener('pointerdown',e=>{if(e.pointerType==='touch')return;const c=e.target.closest('[data-dg]');if(!c||e.button>0)return;dgBegin(c,e.clientX,e.clientY,e.pointerId,false);});
+$('invbox').addEventListener('touchstart',e=>{if(e.touches.length!==1){if(dg)dgEnd(e,1);return;}const c=e.target.closest('[data-dg]'),t=e.changedTouches[0];if(c&&t)dgBegin(c,t.clientX,t.clientY,t.identifier,true);},{passive:true});
+$('invbox').addEventListener('dragstart',e=>e.preventDefault());
+$('invbox').addEventListener('contextmenu',e=>{if(dg||e.target.closest('[data-dg]'))e.preventDefault();});
 function dgStart(x,y){dg.on=true;const g=dg.el.cloneNode(true);g.className+=' dghost';g.removeAttribute('data-dg');g.style.width=dg.el.offsetWidth+'px';g.style.height=dg.el.offsetHeight+'px';document.body.appendChild(g);dg.g=g;dg.el.classList.add('dgsrc');dgPos(x,y);buzz(8);}
-function dgPos(x,y){if(dg&&dg.g){dg.g.style.left=x+'px';dg.g.style.top=y+'px';const t=document.elementFromPoint(x,y),z=t&&t.closest('[data-dg],[data-eq],[data-dz]');document.querySelectorAll('#invbox .dgover').forEach(q=>q!==z&&q.classList.remove('dgover'));if(z)z.classList.add('dgover');}}
-addEventListener('pointermove',e=>{if(!dg||e.pointerId!==dg.id)return;dg.x=e.clientX;dg.y=e.clientY;if(!dg.on){if(!dg.touch&&Math.hypot(e.clientX-dg.sx,e.clientY-dg.sy)>8)dgStart(e.clientX,e.clientY);return;}dgPos(e.clientX,e.clientY);});
-addEventListener('touchmove',e=>{if(dg&&dg.on)e.preventDefault();else if(dg&&dg.hold){clearTimeout(dg.hold);dg.hold=0;}},{passive:false});
-function dgEnd(e,cancel){if(!dg)return;clearTimeout(dg.hold);const d_=dg;dg=null;if(!d_.on)return;d_.g.remove();d_.el.classList.remove('dgsrc');document.querySelectorAll('#invbox .dgover').forEach(q=>q.classList.remove('dgover'));dgJust=true;setTimeout(()=>dgJust=false,0);if(cancel)return;
-  const t=document.elementFromPoint(e.clientX,e.clientY);if(!t)return;invMsg='';const se=t.closest('[data-eq]'),si=t.closest('[data-dg]'),sz=t.closest('[data-dz]');
+function dgTarget(x,y){const t=document.elementFromPoint(x,y);if(!t||!$('invbox').contains(t)||!dg)return null;const it=dg.src==='eq'?S.eq[dg.i]:invList(dg.src)[dg.i];if(!it)return null;let z=t.closest('[data-eq],.cell[data-dg],.cell[data-dz]');const area=t.closest('[data-dz]');if(!z&&area){if(area.dataset.dz==='eq')z=area.querySelector('[data-eq="'+it.slot+'"]');else{let dist=Infinity;for(const c of area.querySelectorAll('.cell')){const r=c.getBoundingClientRect(),d=Math.hypot(x-r.x-r.width/2,y-r.y-r.height/2);if(d<dist){dist=d;z=c;}}}}if(!z)return null;
+  if(z.dataset.eq)return dg.src!=='eq'&&it.slot===z.dataset.eq&&!z.classList.contains('lockd')?z:null;
+  const dst=z.dataset.dg?z.dataset.dg.split(':')[0]:z.dataset.dz,j=z.dataset.dg?+z.dataset.dg.split(':')[1]:null,tg=j!=null?invList(dst)[j]:null;if(dst===dg.src)return j!=null&&j!==dg.i?z:null;
+  if(!tg||dg.src==='eq'&&tg.slot!==it.slot){if(dg.src==='eq'&&dg.i==='w'||invList(dst).length>=(dst==='stash'?stashMax():BAG))return null;z=$('invbox').querySelector('.grid[data-dz="'+dst+'"] .cell[data-dz="'+dst+'"]');}return z;}
+function dgPos(x,y){if(dg&&dg.g){dg.g.style.left=x+'px';dg.g.style.top=y+'px';const z=dgTarget(x,y);document.querySelectorAll('#invbox .dgover').forEach(q=>q!==z&&q.classList.remove('dgover'));if(z)z.classList.add('dgover');}}
+addEventListener('pointermove',e=>{if(!dg||dg.touch||e.pointerId!==dg.id)return;dg.x=e.clientX;dg.y=e.clientY;if(!dg.on){if(!dg.touch&&Math.hypot(e.clientX-dg.sx,e.clientY-dg.sy)>8)dgStart(e.clientX,e.clientY);return;}dgPos(e.clientX,e.clientY);});
+addEventListener('touchmove',e=>{if(!dg||!dg.touch)return;const t=Array.from(e.changedTouches).find(t=>t.identifier===dg.id);if(!t)return;dg.x=t.clientX;dg.y=t.clientY;if(dg.on){e.preventDefault();dgPos(dg.x,dg.y);}else if(Math.hypot(dg.x-dg.sx,dg.y-dg.sy)>8)dgEnd(t,1);},{passive:false});
+function dgEnd(e,cancel){if(!dg)return;clearTimeout(dg.hold);const d_=dg,t=d_.on&&!cancel?dgTarget(e.clientX,e.clientY):null;dg=null;if(!d_.on)return;d_.g.remove();d_.el.classList.remove('dgsrc');document.querySelectorAll('#invbox .dgover').forEach(q=>q.classList.remove('dgover'));dgJust=true;clearTimeout(dgClickTimer);dgClickTimer=setTimeout(()=>dgJust=false,450);if(cancel||!t)return;
+  invMsg='';const se=t.closest('[data-eq]'),si=t.closest('[data-dg]'),sz=t.closest('[data-dz]');
   if(se&&!(si&&si!==se))invMove(d_.src,d_.i,'eq',se.dataset.eq);else if(si){const[ds,j]=si.dataset.dg.split(':');if(ds==='eq')invMove(d_.src,d_.i,'eq',j);else invMove(d_.src,d_.i,ds,+j);}else if(sz)invMove(d_.src,d_.i,sz.dataset.dz,null);else return;renderInv();}
-addEventListener('pointerup',e=>{if(dg&&e.pointerId===dg.id)dgEnd(e);});addEventListener('pointercancel',e=>{if(dg&&e.pointerId===dg.id)dgEnd(e,1);});
+addEventListener('pointerup',e=>{if(dg&&!dg.touch&&e.pointerId===dg.id)dgEnd(e);});addEventListener('pointercancel',e=>{if(dg&&!dg.touch&&e.pointerId===dg.id)dgEnd(e,1);});
+for(const event of ['touchend','touchcancel'])addEventListener(event,e=>{if(!dg||!dg.touch)return;const t=Array.from(e.changedTouches).find(t=>t.identifier===dg.id);if(!t)return;if(dg.on&&e.cancelable)e.preventDefault();dgEnd(t,event==='touchcancel');},{passive:false});
 // v0.83 shared camp actions (station window and inventory): u workshop upgrade, ml cook, cr craft, j/jr quests, lv station level
 function campAct(d){
   if(d.u){const u=UPG.find(x=>x.k===d.u),c=upCost(u);if(S.upg[u.k]>=upMax(u))invMsg='Erst die Station ausbauen.';else if(S.scrap>=c){S.scrap-=c;S.upg[u.k]++;refresh();save();sfx('coin');}else invMsg=`Dir fehlen ${c-S.scrap} Schrott.`;}

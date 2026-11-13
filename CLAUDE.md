@@ -15,3 +15,5 @@
 - Small cosmetic asset tweaks: quick visual check; reuse existing validation when behavior, collision, cache dimensions and warm rendering cost are unchanged. Do not rerun full suites/GPU gates for every appearance change (Johannes, 2026-11-11; `pipeline/workflow.md`).
 
 - Asset continuation (Johannes, 2026-11-13): pickups/loot bags, then painted global ground and remaining shared building materials (overrides older SVG-only rule for these families). Basic integration plus one visual/smoke and performance pass; Claude handles optimization and final acceptance later. Bosses already merged in PR #40; acceptance/review are tracked follow-ups in BACKLOG.md.
+
+- Playtest follow-up (Johannes, 2026-11-13): tablet performance accepted, topic #20 Done. Final boss visual/behavior review with Claude remains. Incoming enemy damage must never one-shot a full-health player: v0.89 caps post-mitigation attacks at 45% max HP, ordinary contact at 10% and heavy bodies at 18%; charges/dives remain attacks. Ground now mixes four painted variants per shared surface. Shadow-box proximity bug is backlog #41.

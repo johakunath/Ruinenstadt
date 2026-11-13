@@ -1,5 +1,17 @@
 # Playtest history
 
+## 2026-11-13 · v0.88 tablet, inventory and asset feedback
+
+- Johannes: tablet performance is good, nothing to complain about. Move performance topic #20 to Done; this accepts the current device behavior rather than changing historical measurement results.
+- Painted pickups look good. Remove foil from the Döner and paper from the meat so their silhouettes read better.
+- Ground is too even/repetitive: three or four material versions, irregular distribution and patchiness for the broad surfaces.
+- Touch inventory drag worked once, then stopped; desktop mouse drag works. Highlight only the actual destination slot, not a whole group.
+- Black/shadowy rectangular box around cars/buildings while approaching; disappears closer. Backlog #41; no rendering fix requested in this pass.
+- Enemy full-health one-shots are unfair/frustrating. Contact from small mobs should be lighter; large bodies and especially actual/special attacks should hurt more, but require at least two or three hits from full health.
+
+Implemented follow-up v0.89: post-mitigation hit cap and contact categories, repeated touch drag/finger tolerance, destination-only highlight, unwrapped food and four variants of each shared ground material. Final boss appearance/behavior review with Claude remains separate from accepted tablet performance.
+
+
 Recorded device observations. Current actions live in [BACKLOG.md](../BACKLOG.md).
 
 ## Playtest 1 (v0.34, Tab S9 portrait, 15 min Köpenick)

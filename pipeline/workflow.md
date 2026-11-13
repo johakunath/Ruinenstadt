@@ -4,9 +4,7 @@ How the painted in-world art is made, plugged in and handed over. Index for ever
 
 ## Active direction (Johannes, 2026-11-13)
 
-Bosses are already merged in v0.87 (PR #40). Performance acceptance and final
-review with Claude are explicit deferred items at the top of `BACKLOG.md`, not
-preconditions for integrating the next assets. Older queue notes below are history.
+Bosses are already merged in v0.87 (PR #40). Johannes accepted tablet performance on 2026-11-13 (good, nothing to complain about); topic #20 is Done. Final appearance/behavior review with Claude remains at the top of `BACKLOG.md`. Older queue notes below are history.
 
 Next: (1) painted pickups and rarity-specific loot bags (`tasks/15-pickups.md`),
 (2) painted global ground materials (`tasks/10-ground.md`), (3) remaining shared
