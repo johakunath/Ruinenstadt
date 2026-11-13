@@ -969,6 +969,126 @@
     "units": 3,
     "w": 512
   },
+  "buildings/xhain-arcade": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: arcade",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-ceramic": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: ceramic",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-concrete": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: concrete",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-copper": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: copper",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-glass": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: glass",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-iron": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: iron",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-mural": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: mural",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-paving": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: paving",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-rail-brick": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: rail-brick",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-station": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: station",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-tower": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: tower",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-water": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: water",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
   "enemies/bass-attack-a": {
     "anchor": [
       45.777,

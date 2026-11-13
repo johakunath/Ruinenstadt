@@ -1,0 +1,170 @@
+[
+  {
+    "key": "buildings/xhain-arcade",
+    "source": "material-atlas.png",
+    "crop": [
+      3,
+      3,
+      359,
+      359
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/xhain-tower",
+    "source": "material-atlas.png",
+    "crop": [
+      365,
+      3,
+      721,
+      359
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/xhain-copper",
+    "source": "material-atlas.png",
+    "crop": [
+      727,
+      3,
+      1083,
+      359
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/xhain-concrete",
+    "source": "material-atlas.png",
+    "crop": [
+      1089,
+      3,
+      1445,
+      359
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/xhain-station",
+    "source": "material-atlas.png",
+    "crop": [
+      3,
+      365,
+      359,
+      721
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/xhain-glass",
+    "source": "material-atlas.png",
+    "crop": [
+      365,
+      365,
+      721,
+      721
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/xhain-iron",
+    "source": "material-atlas.png",
+    "crop": [
+      727,
+      365,
+      1083,
+      721
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/xhain-rail-brick",
+    "source": "material-atlas.png",
+    "crop": [
+      1089,
+      365,
+      1445,
+      721
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/xhain-mural",
+    "source": "material-atlas.png",
+    "crop": [
+      3,
+      727,
+      359,
+      1083
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/xhain-ceramic",
+    "source": "material-atlas.png",
+    "crop": [
+      365,
+      727,
+      721,
+      1083
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/xhain-water",
+    "source": "material-atlas.png",
+    "crop": [
+      727,
+      727,
+      1083,
+      1083
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/xhain-paving",
+    "source": "material-atlas.png",
+    "crop": [
+      1089,
+      727,
+      1445,
+      1083
+    ],
+    "output": [
+      258,
+      258
+    ]
+  }
+]
