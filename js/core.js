@@ -1,4 +1,4 @@
-const VERSION='0.92';
+const VERSION='0.93';
 // v0.45: 20 waves per district (was 10). wE() is the wave on the old 10-wave scale, used wherever difficulty, loot or pacing grew per wave
 const WAVES=20,wE=()=>run?run.wave/2:.5;
 const $=id=>document.getElementById(id);

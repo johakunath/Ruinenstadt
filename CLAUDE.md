@@ -21,3 +21,5 @@
 - Playtest follow-up (Johannes, 2026-11-13): tablet performance accepted, topic #20 Done. Final boss visual/behavior review with Claude remains. Incoming enemy damage must never one-shot a full-health player: v0.89 caps post-mitigation attacks at 45% max HP, ordinary contact at 10% and heavy bodies at 18%; charges/dives remain attacks. Ground now mixes four painted variants per shared surface. Shadow-box proximity bug is backlog #42.
 
 - Latest playtest (Johannes, 2026-11-13): ground loot stays where it drops; no end-wave vacuum or magnetic flight. Elster extends pickup reach only. Warn for rare/yellow, legendary and set items before exit. Next asset priority is missing environment/custom building/plaza/landmark, station/bridge and water art/animation (pipeline/tasks/18-environment-completion.md). Expedition XP-level redesign is a high-priority backlog decision, not implemented yet.
+
+- Healing feedback (Johannes, 2026-11-13): visibility, not extra healing, was the problem. v0.93 restores pre-v0.92 food/orb strength and drop rates; actual healing shows green +X Leben and a brief character aura. Keep buffs distinct from health restored.
