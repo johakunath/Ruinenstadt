@@ -1,9 +1,10 @@
 # 16 District design directions
 
-Status: done (nine proposal boards generated, Codex, 2026-11-13). Johannes's
-selection/mixing remains pending; no production direction is approved.
+Status: done (nine explorations plus three expanded final boards, Codex,
+2026-11-13). Johannes selected B / C / A+C as recorded below. Runtime
+production, stats and mechanics remain outside this concept-art package.
 
-Final refinement: in progress (Codex, 2026-11-13). Johannes selected Tempelhof
+Final refinement: complete (Codex, 2026-11-13). Johannes selected Tempelhof
 B, Wedding C and Charlottenburg A+C. Produce three expanded final boards:
 no BVG branding or transit costume/livery; at least three enemy types plus a
 separate legendary boss, buildings, full set front/back and legendary weapon.

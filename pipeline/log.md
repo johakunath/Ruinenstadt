@@ -679,3 +679,51 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   request was posted (comment 6848537842) after no automatic review/reaction
   was visible. Review completion is pending; do not re-trigger it. This
   follow-up records publication status only. No merge or game deployment.
+
+## 2026-11-13 · Codex · three final selected district boards
+
+- Johannes selected Tempelhof B, Wedding C and Charlottenburg A+C, and
+  requested three more detailed final boards. Generated three new portrait
+  1024×1536 paintings with the image tool using the selected exploration images
+  as references. Every final was visually inspected: key scene, three building
+  studies, three separate ordinary enemy types, separate legendary boss,
+  emblematic outfit front/back and one legendary weapon with detail views.
+- Removed BVG branding, transit livery and transit-costume motifs throughout.
+  Shared ink/material/wear, red scarf and warm/cool lighting unify districts;
+  the style bible no longer mandates BVG yellow or brown starter clothing in
+  every new district set. Wedding is an explicit warm/playful tone exception.
+- Tempelhof: frightening 1948 wind/airplane cult; Windkantor, Leinensegler and
+  Ballastträger; spectral Fliegerkönig; Ornat des Gegenwinds and Sturmliturgie.
+  Parachute vestments, ritual kites, ghost planes, storm eclipse, mint witchfire
+  and violet lightning replace the technology/zombie emphasis.
+- Wedding: title “WEDDING · KOMMT BALD”, scene banner “DER WEDDING KOMMT BALD”.
+  Gold/emerald feast fantasy with carpets, lamps, baklava, Döner, shisha and
+  tea; Tee-Ifrit, Baklava-Brocken and Teppichschlinger; Sultan Nimmersatt / Der
+  Ewige Gastgeber, Pracht des Ewigen Gasts and Die Letzte Bestellung. Living
+  neighbours are friendly hosts/allies; enchanted feast beings are adversaries.
+  The old crane-golem emphasis is historical, not the current visual brief.
+- Charlottenburg: 1920 silver/diamond/glass revue and localized Schloss mirror
+  fantasy, much less gold; Scherbentänzerin, Logenbrecher and Spiegelsouffleur;
+  Diamantene Diva; Ornat des Letzten Vorhangs and Schlussapplaus.
+- Canonical references: `docs/style/tempelhof.png`, `wedding.png` and
+  `charlottenburg.png`. Raw originals, exact prompts and source/copy mapping:
+  `assets/raw/codex/16-district-design-boards/finals/`. All old nine exploration
+  paintings are preserved. Updated gallery/brief, style bible, story, backlog,
+  CLAUDE index, workflow, task 16 and asset batch index with actual selections.
+  New names/weapon effects remain art concepts, not implemented combat/stats.
+  Wedding's documented era wording is corrected; runtime ERA/migration remains
+  for future district implementation, with no game code edited here.
+- **One final-batch validation pass: pass.** All three PNGs fully decode,
+  originals/raw/canonical copies match byte for byte, prompt reference files
+  and gallery/README links exist, no runtime files changed, diff check passes.
+  Report: `finals/validation.json`. Unique encoded bytes: 12,245,685; unique
+  conservative RGBA: 18,874,368 bytes. Canonical copies are duplicates, not new
+  generations. Added game texture/cache memory: **0 bytes**. Frame milliseconds,
+  5% regression and slow-frame telemetry are not measured/not applicable for
+  documentation-only boards. No game performance pass or deployment claimed.
+- PR #42 is the existing publication target. The original exploration review
+  completed without findings on `54a2247`; that review does not cover these
+  new final paintings/document changes. No additional review is requested in
+  this refinement session. Preserve the maximum-one-run handoff: next-session
+  pickups/equipment gaps, then Köpenick/global building coverage; Claude owns
+  deeper integration, optimization and detailed testing. No merge performed.

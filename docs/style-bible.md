@@ -1,14 +1,14 @@
 # Style bible
 
-Reference for all art, content and district work. Source: four finished reference boards from ChatGPT (Nov 2026) plus the art-direction handover. When text and image disagree, the image wins, except for a newer explicit user art-direction update such as the GDR/Pioneer direction below. New ideas that are not in the boards or the handover are marked **Proposal**.
+Reference for all art, content and district work. Source: the finished reference boards from ChatGPT (Nov 2026), the art-direction handover and dated user refinements below. When text and image disagree, the image wins, except for a newer explicit user art-direction update. New ideas outside the selected directions are marked **Proposal**.
 
 ## Reference boards
 
-New district **proposals** (2026-11-13): three directions each for Tempelhof,
-Charlottenburg and Wedding are indexed in
-[district-design-directions.md](district-design-directions.md). Johannes has
-not selected or mixed them yet. They do not replace the approved references
-below. Eras and narrative constraints remain in `docs/story.md`.
+New district directions (2026-11-13): Johannes selected **Tempelhof B**,
+**Wedding C**, and **Charlottenburg A+C** for expanded final boards, indexed in
+[district-design-directions.md](district-design-directions.md). The refined
+district direction overrides conflicting motifs in the nine exploration
+boards. Existing Köpenick/U-Bahn/Mitte/GDR references remain intact.
 
 | Board | File | Subtitle on board | Role |
 |---|---|---|---|
@@ -16,10 +16,20 @@ below. Eras and narrative constraints remain in `docs/story.md`.
 | U-Bahn | `docs/style/ubahn.png` | Below the Ring · Ash Frontier | Shared underground layer, later fast travel |
 | Potsdamer Platz | `docs/style/potsdamer-platz.png` | Cyberpunk · Bassline Underworld | Future district: dark cyberpunk and techno |
 | Alexanderplatz | `docs/style/alexanderplatz.png` | GDR Clockwork Gardens | Future district: socialist retro-futurism |
+| Tempelhof | `docs/style/tempelhof.png` | 1948 · Die Windpilger | Final B refinement: frightening wind/airplane cult, dark magic, elaborate sailcloth sets, no BVG |
+| Wedding | `docs/style/wedding.png` | kommt bald · Das ewige Fest | Final C refinement: gold/emerald banquet fantasy, carpets/lamps/tea/food, friendly Kiez, no BVG |
+| Charlottenburg | `docs/style/charlottenburg.png` | 1920 · Die diamantene Revue | Final A+C refinement: silver/diamond/glass revue, elaborate stage couture, no BVG |
 
-Each board has the same layout: key scene on top, lineup below (player in front and back view, enemies, NPC, vehicle, props, weapon), title and palette on a dark teal panel.
+The legacy boards have a scene above a lineup. The three new final district
+boards use taller expanded layouts: key scene, building studies, three ordinary
+enemy types, separate legendary boss, emblematic set front/back and legendary
+weapon, title and palette on a dark teal panel.
 
-The exploratory boards (A Prussian Clockwork, B Concrete Orchard, C Bassline Underworld, D Velvet Radio Noir, F, H Below the Ring) and the earlier first references are not in the repo. Only the four finals count.
+Older exploratory boards (A Prussian Clockwork, B Concrete Orchard, C Bassline
+Underworld, D Velvet Radio Noir, F, H Below the Ring) are not in the repo. The
+nine 2026-11-13 A/B/C district boards are preserved as history; the three final
+refinements supersede their unwanted motifs. Use the final references listed
+above and the active Alexanderplatz Pioneer update below.
 
 ## GDR / Pioneer direction (Johannes, 2026-11-10)
 
@@ -69,12 +79,12 @@ the updated Pioneer board includes the wear pass.
 | Topic | Rule |
 |---|---|
 | Look | Painted comic. Dark ink outlines, painterly fills with visible texture, stylized, not realistic. Fun but serious |
-| Tone | Gritty enough for zombies. Never bright and friendly, never so dark that the screen is unreadable. Earlier "clean BioShock" directions were rejected as too positive |
+| Tone | Default: gritty, serious and readable; avoid pristine optimism or unreadable darkness. **2026-11-13 district exceptions:** Tempelhof is frightening occult wind/airplane ritual with less zombie anatomy; Wedding's selected banquet fantasy is deliberately warm, playful, lavish and less scary; Charlottenburg is uncanny glamorous revue/glass spectacle |
 | Light | Warm light sources (lanterns, fires, neon) against cool teal or green shadow. Strong warm-cool split in every board |
 | Berlin | Recognizable through everyday details: BVG yellow, Trabis, Spätis, Döner, Altbau, Plattenbau, Berlin bear, tiled U-Bahn stations, landmarks |
-| Unifier | BVG yellow appears in every board (bus, U-Bahn train, tram). Keep it as the recurring motif across districts |
+| Unifier | Shared ink, painterly material, wear, red scarf and warm/cool light unify districts. **2026-11-13 override:** BVG may be an occasional background detail in the wider world; it is not the player identity or a mandatory board motif. No BVG logos, yellow transit livery, transit costumes or branded gear in the final Tempelhof, Wedding and Charlottenburg boards |
 | Nature | Overgrowth everywhere (ivy, ferns, sunflowers). Reclaimed and unsettling, not cosy |
-| Player | One survivor across all districts: dark brown hair, **red scarf**, long brown leather coat, harness with pouches, heavy boots. Districts add one piece (gas tank, cyber arm, clockwork gauntlet) |
+| Player | One survivor: dark brown hair and **red scarf**, baseline long brown leather coat and heavy boots. **2026-11-13:** emblematic district sets may replace the whole outfit with elaborate cult robes, banquet finery or revue couture; do not keep every set in generic brown starter gear or transit-worker costume |
 | Readability | Characters, enemies, paths and pickups must read at gameplay scale on the Tab S9. Applies to every asset |
 | Item colour (v0.52) | The first item sets (B01 to B10, H03 to H07) are starter gear and stay rust, brown and ochre. **Everything new is brighter and more saturated**: each item gets one strong signature colour (enamel red, BVG yellow, cobalt blue, bottle green, violet, cyan, magenta, gold) on a clean light base, so items and outfits tell apart at 48 px and on the 60 px player. Rarer items get more colour, legendaries a glow. Rust and dirt stay as a light overlay, not as the main colour |
 

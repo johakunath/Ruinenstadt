@@ -19,9 +19,15 @@ Current actions are tracked below.
 ## Next
 
 **Asset priority (Johannes, 2026-11-13, supersedes older art queues/D4):**
-Now generate three painted direction boards each for Tempelhof (1948 airlift),
-Charlottenburg (1920, baroque bleed at Schloss) and Wedding (eternal “bald”).
-Johannes will pick/mix directions before implementation. See
+Nine exploration boards are complete. Johannes selected **Tempelhof B** (wind
+cult / airplane dark magic; scarier, less zombie/technology), **Wedding C**
+(lavish gold, feast/sultan/carpet/lamp/tea fantasy; era label **“kommt bald”**),
+and **Charlottenburg A+C** (revue couture, silver/diamond/glass, less gold).
+Produce three expanded final boards with buildings, at least three ordinary
+enemy types, a separate legendary boss, a full outfit set and legendary
+weapon. Remove BVG logos, transit livery and transit-themed costumes/gear
+from these districts. Wedding neighbours remain allies; fantastic enchanted
+adversaries supply the playful banquet conflict. See
 `docs/district-design-directions.md` and task 16. Next session: global pickup
 icons (Döner, healing, scrap, crafting materials and ingredients), small painted
 equipment drop icons with rarity glow (reuse existing art; paint SVG-only
@@ -39,7 +45,7 @@ testing. Production follows PR → completed Codex review → deploy.
 | # | Decision | Next |
 |---|---|---|
 | D1 | Story A „Der Stillstand“: every district froze in another era, the player is the Schaffner of the last U-Bahn on Normalzeit, bosses hold gears of the Weltzeituhr. NPCs and art follow the eras. `docs/story.md` | NPC one-liners per era with the station quests (#36/#39), story artefacts (#14) |
-| D2 | Districts: Köpenick, Xhain, Alexanderplatz, Mitte, **Wedding** (the eternal „soon“, Turkish and Arab Kiez as allies, Der Ewige Bauherr as boss), **Tempelhof** (1948 airlift, airfield, hangars), **Charlottenburg** (1920, confirmed 2026-11-12, Schloss as boss arena), finale Fernsehturm. Spandau and Marzahn dropped, their set and bosses reused | Mockup and board for Wedding first, then replace the two grid placeholders in one save migration |
+| D2 | Districts: Köpenick, Xhain, Alexanderplatz, Mitte, **Wedding** (eternal „kommt bald“, Kiez allies, selected C banquet/carpet/lamp fantasy), **Tempelhof** (1948, selected B wind/airplane cult), **Charlottenburg** (1920, selected A+C silver/glass revue and Schloss), finale Fernsehturm. Spandau and Marzahn dropped, content reused | Final expanded boards; boss/set/weapon designs are art concepts, no gameplay or save migration in this package |
 | D3 | Regular power chosen per weapon anytime, ultimate always equipped on its own button (built in v0.86) | Playtest: is the ultimate too strong now that it is always there? |
 | D4 | Asset sources: 2026-11-11 SVG/code default, **overridden 2026-11-13** for pickup/equipment gaps and Köpenick/global painted building foundation; see current asset priority and workflow | Nine district direction proposals first; Johannes picks/mixes before district production |
 | D5 | Item level (built in v0.87, extended): Kampfkraft is gone from the UI. Shown item level = `ilvl` (+3 per district) plus a rarity bonus (white 0, magic +3, rare and set +6, legendary +10), after WoW where quality makes up a limited level gap. Higher shown level than the equipped piece = ▲ | Playtest: are the bonuses `RIL` in `js/items.js` right? |

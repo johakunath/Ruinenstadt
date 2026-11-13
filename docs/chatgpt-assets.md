@@ -1,7 +1,9 @@
 # ChatGPT asset batches
 
-2026-11-13 priority override: Codex is generating nine district design boards
-first (`docs/district-design-directions.md`, task 16). Next session covers all
+2026-11-13 priority override: nine district exploration boards are complete;
+Johannes selected Tempelhof B, Wedding C and Charlottenburg A+C for three
+expanded final refinements (`docs/district-design-directions.md`, task 16).
+No BVG branding/livery/costumes on these; Wedding's label is “kommt bald”. Next session covers all
 global pickups/materials/ingredients and SVG-only equipment gaps (task 15),
 then Köpenick/global building coverage (task 17). Reuse existing painted item
 icons for small equipment drops with code rarity glow. Existing menu sheets

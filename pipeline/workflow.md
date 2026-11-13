@@ -23,10 +23,15 @@ Tasks are written so they can be followed step by step: concrete files, function
 
 ### Superseding direction (Johannes, 2026-11-13)
 
-1. **Now:** task `16-district-design-boards.md`: three painted design directions
-   each for Tempelhof (1948), Charlottenburg (1920) and Wedding (the eternal
-   “soon”). These are proposals for Johannes to pick and mix; no district
-   implementation or runtime art is implied by producing a board.
+1. **Now:** task `16-district-design-boards.md`: the nine exploration boards
+   are complete. Johannes selected Tempelhof B (scarier wind/airplane cult,
+   less zombie/technology), Wedding C (gold banquet/sultan/carpet/lamp fantasy,
+   label “kommt bald”) and Charlottenburg A+C (silver/diamond/glass revue).
+   Expand into three final boards: buildings, at least three ordinary enemy
+   types plus separate legendary boss, full outfit set and legendary weapon.
+   No BVG branding, transit livery or transit-costume motifs on these boards.
+   Wedding neighbours remain allies, enchanted banquet beings are adversaries.
+   No district implementation or runtime art is implied by producing a board.
 2. **Next session:** global pickup icons first, including Döner, healing,
    scrap, all crafting materials/ingredients and equipment drops. Preserve
    code glow/rarity glow. Reuse already painted equipment icons as small
