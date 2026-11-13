@@ -22,3 +22,7 @@ After the measured pass, moved plaza paint before fountains/scenery so water and
 Screenshots show each selected target at default zoom and 2× on the actual generated map. The tall Fernsehturm naturally extends beyond the normal gameplay viewport. Nature remains task 04. Water uses a new painted static surface with the existing brighter/thicker procedural ripple animation; no new animation sheet. Small code window details, dome seams and signs remain over the painted faces.
 
 User authorizes merge after completed Codex review/checks, then Potsdamer Platz/Mitte.
+
+## Completed review correction
+
+Codex review of `255ed52` found the Haus des Lehrers entrance platform extended outside the 16-unit default padding. The corrected 36-unit landmark envelope includes all eight actual platform corners. `node tools/proof_alex_platform.cjs` checks those points, captures an explicitly isolated architecture screenshot and verifies the full-map 2× task memory remains below cap; no performance rerun. Final full-map memory is **39,948,548 bytes / 51 cached parts** normally and **39,885,804 bytes / 19 cached parts** at 2×. Earlier scene reports above remain historical. The code change only enlarges this cache canvas.
