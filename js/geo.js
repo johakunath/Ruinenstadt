@@ -203,7 +203,7 @@ function geoWater(K){const g=gx;
   for(let i=0;i<500;i++){const x=R(0,WS),y=R(0,WS);if(isWater(x,y)||!isWater(x+R(-30,30),y+R(-30,30)))continue;g.strokeStyle=pick(['#4a5a2a','#5a6a30','#3b4a22']);g.lineWidth=1.5;for(let k=0;k<3;k++){g.beginPath();g.moveTo(x+k*2,y);g.lineTo(x+k*2+R(-2,2),y-R(8,14));g.stroke();}}}
 function geoRoads(K,d){const g=gx;
   const stroke=(w,c,dash)=>{g.strokeStyle=c;g.lineWidth=w;g.lineCap='round';g.lineJoin='round';g.setLineDash(dash||[]);for(const n in K.roads){const p=K.roads[n];g.beginPath();p.forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.stroke();}g.setLineDash([]);};
-  stroke(110,globalGroundPattern(g,'pavement')||'#3a2f27');stroke(86,globalGroundPattern(g,'asphalt')||d.road);stroke(3,'rgba(234,217,192,.09)',[24,30]);
+  stroke(110,globalGroundPattern(g,'pavement')||'#3a2f27');stroke(86,globalGroundPattern(g,'asphalt')||d.road);const wear=ksPattern(g,'asphalt');if(wear){g.save();g.globalAlpha=.18;stroke(80,wear);g.restore();}stroke(3,'rgba(234,217,192,.09)',[24,30]);
   // bridges: railings where the road edge is over water, brick deck tint
   for(const s of ROADS)for(let t=0;t<s.len;t+=8){const cx=s.ax+s.ux*t,cy=s.ay+s.uy*t;if(!isWater(cx,cy))continue;g.fillStyle='rgba(107,54,38,.12)';g.fillRect(cx-40,cy-40,80,80);if(koepSpecialOn()){g.save();g.translate(cx,cy);g.rotate(Math.atan2(s.uy,s.ux));ksRect(g,'bridge-deck',-4,-43,8,86);g.restore();}
     for(const sd of [-1,1]){const x=cx-s.uy*56*sd,y=cy+s.ux*56*sd;g.fillStyle='#2a221c';g.fillRect(x-3,y-3,6,6);if(t%32<8){g.fillStyle='#4a3a2e';g.fillRect(x-2,y-6,4,8);}}}

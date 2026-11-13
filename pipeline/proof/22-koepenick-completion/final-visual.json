@@ -3,7 +3,7 @@
   "scenes": [
     {
       "district": "Köpenick",
-      "buildMs": 974.7999999998137,
+      "buildMs": 1100.699999999255,
       "rng": 0.3028213393408805,
       "assets": {
         "ready": 12,
@@ -23,7 +23,7 @@
     },
     {
       "district": "Köpenick",
-      "buildMs": 669.6000000005588,
+      "buildMs": 719.8000000007451,
       "rng": 0.19056691089645028,
       "assets": {
         "ready": 12,
@@ -43,7 +43,7 @@
     },
     {
       "district": "Köpenick",
-      "buildMs": 640.9000000003725,
+      "buildMs": 654.6000000005588,
       "rng": 0.5196028768550605,
       "assets": {
         "ready": 12,
@@ -67,7 +67,7 @@
   "measurements": [],
   "fallback": {
     "district": "Köpenick",
-    "buildMs": 874.1000000005588,
+    "buildMs": 911.4000000003725,
     "rng": 0.3028213393408805,
     "assets": {
       "ready": 0,

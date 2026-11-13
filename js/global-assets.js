@@ -7,8 +7,8 @@ const GLOBAL_TEX=Object.create(null),GLOBAL_PAT=new WeakMap();
 const GLOBAL_MIX=Object.create(null);
 let GLOBAL_ART=true;
 function globalPattern(g,key){if(!GLOBAL_ART||!GLOBAL_TEX[key])return null;let a=GLOBAL_PAT.get(g);if(!a)GLOBAL_PAT.set(g,a=Object.create(null));if(!a[key]){const p=g.createPattern(GLOBAL_TEX[key].image,'repeat');if(!p)return null;p.setTransform(new DOMMatrix().scale(1/GLOBAL_TEX[key].units));a[key]=p;}return a[key];}
-const globalGroundPattern=(g,k)=>(typeof ksPattern==='function'&&{cobble:'plaza',pavement:'pavement',asphalt:'asphalt'}[k]?ksPattern(g,{cobble:'plaza',pavement:'pavement',asphalt:'asphalt'}[k]):null)||globalPattern(g,'props/ground-'+k),globalBuildingPattern=(g,k)=>globalPattern(g,'buildings/shared-'+k);
-function globalPaintRect(g,key,x,y,w,h,alpha=1){const p=key.startsWith('props/ground-')?globalGroundPattern(g,key.slice('props/ground-'.length)):globalPattern(g,key);if(!p)return false;g.save();g.globalAlpha*=alpha;g.fillStyle=p;g.fillRect(x,y,w,h);g.restore();return true;}
+const globalGroundPattern=(g,k)=>globalPattern(g,'props/ground-'+k),globalBuildingPattern=(g,k)=>globalPattern(g,'buildings/shared-'+k);
+function globalPaintRect(g,key,x,y,w,h,alpha=1){const p=globalPattern(g,key);if(!p)return false;g.save();g.globalAlpha*=alpha;g.fillStyle=p;g.fillRect(x,y,w,h);g.restore();return true;}
 function globalLotGround(g,b){const k={market:'cobble',parking:'asphalt',construction:'sand',plattenbau:'pavement',ruins:'dirt',hochhaus:'plaza',buero:'plaza',hinterhof:'cobble',zucker:'plaza',houses:'pavement'}[b.lot];if(k)globalPaintRect(g,'props/ground-'+k,b.x0+8,b.y0+8,b.w-16,b.h-16,.9);}
 // A roof slope is a parallelogram in the same P3 geometry as the legacy roof.
 function globalRoofFace(g,a,b,d,w,h,key){const p=globalBuildingPattern(g,key);if(!p||w<=0||h<=0)return false;g.save();g.transform((b[0]-a[0])/w,(b[1]-a[1])/w,(d[0]-a[0])/h,(d[1]-a[1])/h,a[0],a[1]);g.fillStyle=p;g.fillRect(0,0,w,h);g.restore();return true;}
