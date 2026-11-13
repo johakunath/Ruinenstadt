@@ -38,7 +38,7 @@ async function initCloud(){
     cloud.state=cloud.state==='err'?'err':'on';if(state==='menu')renderMenu();
   }catch(e){cloud.state=cloud.ref?'err':'off';if(state==='menu')renderMenu();}}
 // a save from elsewhere (artifact cloud, online save) replaces the local one without pushing it back; backup first, the anonymous player id stays with the device's first save
-function adoptSave(rs,why){bak(why);const pid=S.pid;S=fix(rs);if(!S.pid)S.pid=pid;fillJobs();try{localStorage.setItem('rs2',JSON.stringify(S));}catch(e){}resize();S.dist=Math.min(S.dist,S.unlocked-1);buildWorld(DIST[S.dist]);ST=stats();P.hp=ST.maxHp;if(state==='menu')renderMenu();}
+function adoptSave(rs,why){bak(why);const pid=S.pid;S=fix(rs);if(!S.pid)S.pid=pid;fillJobs();try{localStorage.setItem('rs2',JSON.stringify(S));}catch(e){}resize();S.dist=Math.min(S.dist,S.unlocked-1);if(state==='base'||state==='baseinv')buildBase(1);else buildWorld(DIST[S.dist]);ST=stats();P.hp=ST.maxHp;if(state==='baseinv'){sel=null;invMsg='';allArm=false;if(!$('inv').hidden)renderInv();}if(state==='menu')renderMenu();}
 S=defSave();// placeholder until data.js has run; the real load() runs in main.js because fix() needs DIST and SLOTS from data.js
 /* save code: copy and paste the save as text, works without any backend */
 const b64e=t=>btoa(String.fromCharCode(...new TextEncoder().encode(t))),b64d=t=>new TextDecoder().decode(Uint8Array.from(atob(t),c=>c.charCodeAt(0)));
