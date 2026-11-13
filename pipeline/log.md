@@ -820,3 +820,5 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Final memory/cached-part totals: 39976864 bytes / 31 of 170 normally; 39950768 bytes / 15 at 2×. Both below 40 MB. Review/merge pending.
 
 - Synced concurrent main PR #51 (`5c8df0d`, cloud-save/camp settings) before merge. Its v0.97 is retained; this asset release advances VERSION/CACHE to **v0.98**. Source/proof numbers above were captured on the 0.97 asset candidate and remain unchanged. PR #53 is the asset delivery target; no cloud account/save mutation performed.
+
+- PR #53 Codex review completed on asset head `3974fb1` with **no findings**. Later commits only sync already-reviewed cloud/camp main and update version/cache/docs; a fresh smoke and existing sync tests pass. No art/renderer code changes since the reviewed asset head. Marked task done v0.98, keeping cache-overflow/Claude hardware-acceptance limits explicit. Merge authorized by the continuous session; expected head will be checked by GitHub without bypassing protections. Alexanderplatz PR #52 is already merged; no next district is started beyond Johannes's requested two batches.

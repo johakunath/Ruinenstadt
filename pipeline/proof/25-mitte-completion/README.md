@@ -32,3 +32,5 @@ After measurements, the visual-only `proof_mitte_final.cjs` adds plain-stone col
 ## Concurrent main merge
 
 Main PR #51 shipped cloud/camp settings as v0.97 during asset production. Synced it intact and advanced this release to v0.98. Focused fresh-context smoke passes play/HP100, zero page errors and 18 ready images; external network requests were blocked and no cloud save/account was mutated. Existing `tools/test_sync.mjs` passes 8/8. Offline SHELL has 667 valid paths and the v0.98 cache key. No repeated art performance pass.
+
+Codex review completed on asset commit `3974fb1` without findings (PR #53). Subsequent changes sync main and update release metadata only; no changed renderer/assets. Task done v0.98 with the documented Claude acceptance/overflow follow-ups.

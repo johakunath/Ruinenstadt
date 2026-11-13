@@ -29,4 +29,4 @@ Xhain proof: `pipeline/proof/23-xhain-completion/`. All twelve sources load; geo
 
 Alexanderplatz: merged in PR #52, v0.96 (Codex, 2026-11-13). Cache overflow and hardware optimization explicitly remain Claude follow-ups. User explicitly requests Alexanderplatz review/merge, then Potsdamer Platz/Mitte immediately. This overrides the older district order.
 
-Potsdamer Platz/Mitte: implemented v0.98 (Codex, 2026-11-13), following Alexanderplatz merge f9ad807; review/merge pending. Eighteen sources/basic hooks, 40 MB overflow fallback; detailed cache optimization/hardware acceptance remain Claude follow-ups.
+Potsdamer Platz/Mitte: done (v0.98, Codex, 2026-11-13), PR #53; completed Codex review without findings, merge authorized. Follows Alexanderplatz PR #52 (f9ad807). Eighteen sources/basic hooks, 40 MB overflow fallback; detailed cache optimization/hardware acceptance remain Claude follow-ups.
