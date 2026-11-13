@@ -17,13 +17,13 @@ const {chromium}=require('playwright');
   });
   await page.click('[data-a="opts"]');
   assert.equal(await page.locator('[data-o="oson"]').count(),1);
-  // Confirmation uses the real handler; successful upload persists device metadata.
-  page.once('dialog',d=>d.accept());await page.click('[data-o="oson"]');
+  // The real handler starts an upload and persists device metadata.
+  await page.click('[data-o="oson"]');
   await page.waitForFunction(()=>os.state==='on');
   assert.equal(await page.evaluate(()=>!!JSON.parse(localStorage.getItem('rs2sync')).c),true);
   assert.equal(await page.locator('[data-o="osoff"]').count(),1);
   page.once('dialog',d=>d.accept());await page.click('[data-o="osoff"]');
-  assert.equal(await page.evaluate(()=>localStorage.getItem('rs2sync')),null);
+  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('rs2sync')).off),1);
   await page.evaluate(()=>{remoteSave=JSON.stringify({...S,scrap:987,t:20});window.campPosition=[P.x,P.y];});
   page.once('dialog',d=>d.accept('ABCD-EFGH'));await page.click('[data-o="osjoin"]');
   await page.waitForFunction(()=>S.scrap===987&&os.state==='on');
@@ -39,6 +39,29 @@ const {chromium}=require('playwright');
   await page.evaluate(async()=>{remoteSave=JSON.stringify({...S,scrap:999,t:40});os.base=0;await osPull();});
   assert.deepEqual(await page.evaluate(()=>({scrap:S.scrap,pending:os.pend,run:!!run})),{scrap:988,pending:true,run:true});
   assert.deepEqual(errors,[]);
-  console.log('Camp activation, disconnect, code join, backup, camp preservation and expedition deferral passed; no real sync requests.');
+  await page.close();
+  // Exercise the real boot on a public hostname, with a fully mocked backend.
+  const live=await browser.newPage({viewport:{width:1280,height:800},serviceWorkers:'block'}),requests=[];let remote=null;
+  live.setDefaultTimeout(15000);
+  live.on('pageerror',e=>errors.push(e.message));live.on('dialog',()=>errors.push('Unexpected startup dialog'));
+  await live.route('http://ruinenstadt.test/**',async r=>{
+   const url=new URL(r.request().url());url.host='localhost:8765';
+   await r.continue({url:url.href});
+  });
+  await live.route('https://script.google.com/**',async r=>{
+   const q=r.request().postDataJSON();requests.push(q);
+   if(q.a==='put')remote={s:q.s,t:q.t||Date.now()};
+   await r.fulfill({headers:{'access-control-allow-origin':'*'},json:q.a==='get'?{ok:true,...(remote||{s:null,t:0})}:{ok:true,t:remote&&remote.t}});
+  });
+  await live.goto('http://ruinenstadt.test/');await live.waitForFunction(()=>os.state==='on');
+  const code=await live.evaluate(()=>os.code);assert.match(code,/^[A-Z2-9]{8}$/);
+  assert.equal(requests[0].a,'put');
+  await live.reload();await live.waitForFunction(()=>os.state==='on');assert.equal(await live.evaluate(()=>os.code),code);
+  assert.equal(requests.filter(q=>q.a==='get').length,1);
+  await live.evaluate(()=>{startRun(0,false);S.scrap=321;save();});
+  await live.waitForFunction(()=>os.state==='on'&&!os.dirty&&!os.busy);
+  assert.equal(JSON.parse(requests.filter(q=>q.a==='put').at(-1).s).scrap,321);
+  assert.deepEqual(errors,[]);
+  console.log('Automatic public startup, reload/code reuse, mission upload, camp controls, backup and expedition deferral passed; all sync requests mocked.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

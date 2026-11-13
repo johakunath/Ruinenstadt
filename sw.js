@@ -1,5 +1,5 @@
 // Bump CACHE with every release so installed copies pick up the new files.
-const CACHE='ruinenstadt-0.96';
+const CACHE='ruinenstadt-0.97';
 const SHELL=[
   ...'arcade tower copper concrete station glass iron rail-brick mural ceramic water paving'.split(' ').map(n=>`assets/buildings/xhain-${n}.webp`),
   ...'facade roof tower station bridge-wall water plaza pavement asphalt path platform bridge-deck'.split(' ').map(n=>`assets/buildings/koep-special-${n}.webp`),

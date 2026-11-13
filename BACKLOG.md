@@ -282,3 +282,5 @@ Focus: gameplay and content. Art runs in parallel through Codex (`pipeline/workf
 | v0.93 | Healing made explicit: opaque green +X Leben using actual restored HP, plus a brief green aura and rising plus signs on the character. Restored pre-v0.92 healing (Döner 25%, orb 30%) and drop rates; food/orbs still drop from boxes. Full-health orbs remain available. |
 
 | v0.96 | Online-save activation, sync-code connection and disconnection are available from camp inventory settings as well as the network menu. Loading a cloud save in camp preserves the camp world; expedition controls remain hidden and remote replacements wait until camp/menu. |
+
+| v0.97 | Public games automatically create a cloud-save code and upload on startup, then keep syncing through camp and expeditions. Existing codes are reused; explicit disconnection stays off across reloads and can be re-enabled in settings. Local development and simulations do not auto-enable. Run telemetry remains independent. |
