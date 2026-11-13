@@ -172,7 +172,7 @@ function renderInv(){
     body=`<div class="inv3 wide"><section class="ichar"><div class="doll" data-dz="eq"><canvas id="dollc" width="480" height="640" aria-hidden="true"></canvas>${SLOTS.map(slotBtn).join('')}${modsOpen()?`<button class="wmod${sel&&sel.src==='mods'?' on':''}" data-a="mods" aria-label="Aufsätze der Waffe" title="Aufsätze">${ui('wrench',14)}<b>${(S.eq.w.mods||[]).length}/${modSlots(S.eq.w)}</b></button>`:''}</div>
       ${statTable()}</section>
       <section class="ibag"><div class="bagh"><div class="lbl">Rucksack ${S.bag.length}/${BAG}</div>${chips.length?`<div class="chips salv">${ui('scrap',14)}${chips.join('')}</div>`:''}</div><div class="grid" data-dz="bag">${cells}</div>
-      <p class="hint" style="text-align:left">▲ = höherer Item Level als dein angelegtes Teil. Der Item Level zählt die Seltenheit mit. „Rest“ verschrottet alles ohne ▲, behält aber Gesperrtes, Legendäres und Set-Teile.${camp?' Ziehen verschiebt zwischen Ausrüstung, Rucksack und Lager.':' Ziehen auf die Ausrüstung legt an.'}</p>
+      <p class="hint" style="text-align:left">▲ Höherer Item Level.</p>
       ${camp?`<div class="bagh"><div class="lbl">Lager ${S.stash.length}/${stashMax()}</div></div><div class="grid stash" data-dz="stash">${stc}</div>`:''}</section>
       <section class="idet">${detail()}</section></div>`;}
   else if(invTab==='segen'&&run)body=segenTab();

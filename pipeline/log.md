@@ -748,3 +748,10 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Referenced-image generation removes foil from Döner and paper from meat, replacing only those two cells. Three additional ground atlases provide four authored versions per surface. Broad local-hash blends bake once; no gameplay RNG use or new per-frame ground work. Original raw generations are preserved; source/cut records updated.
 - Focused damage regression and native browser proof pass: four consecutive touch swaps with pre-hold jitter plus a purely vertical bag swap, two mouse swaps, grid-gap target-only highlighting, quick swipe/no drag, nine materials each using all four variants, zero page errors. 429 sprite entries validate; all 605 offline shell entries exist. Source/material/pickup memory 32,456,800 bytes (<40 MB). No new GPU/performance tuning loop. Evidence: pipeline/proof/18-fair-damage-touch-ground/.
 - Initial proof screenshot helper used missing closeInv after all interaction/art assertions passed; retained that report, fixed helper and completed the workflow. VERSION/CACHE v0.89 together.
+
+## 2026-11-13 · Codex · concise inventory text; hit/death backlog
+
+- Johannes requests concise game copy. Standing rule added to CLAUDE.md and backlog intent: short labels/one-line hints, explanations only on demand. Inventory paragraph becomes „▲ Höherer Item Level.“ No mechanics changed. VERSION/CACHE v0.90.
+- Player hit feedback is backlog #43: brief flash/recoil with sound, stronger heavy-hit stumble, invulnerability blinking, quick control recovery rather than stun chains. Player collapse/death before the end screen is backlog #44. Both explicitly remain later work; no animation/combat implementation in this change.
+- Corrected the shadow-box item to #42 because #41 already belongs to quests; updated active references. Historical log entries retain their original numbering.
+- Browser check: v0.90 inventory shows exactly „▲ Höherer Item Level.“, no horizontal overflow or page errors. JS syntax and whitespace checks pass.
