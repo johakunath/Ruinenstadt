@@ -26,3 +26,5 @@ is included in this backlog-only task creation.
 Audit the existing Oberbaumbrücke arcade/towers, Berghain, Ostbahnhof, East Side Gallery, elevated rail, station entrances, bridge decks and Spree/Landwehrkanal. Preserve all constructors, footprints, collision, placement and RNG. Reuse ordinary building/terrain kits. Painted sources with cached projected hooks; one bounded visual/smoke/performance run, then Claude handoff. Nature remains task 04.
 
 Xhain proof: `pipeline/proof/23-xhain-completion/`. All twelve sources load; geometry/RNG, fallback and cache release pass. The 40 MB cap retains fallback on overflow (133/152 parts cached at normal proof scale; 77/152 at 2×). This is basic integration, not full painted coverage at every zoom or hardware acceptance. Review/merge this map batch before proceeding to Alexanderplatz.
+
+Alexanderplatz: in progress (Codex, 2026-11-13). User explicitly requests Alexanderplatz review/merge, then Potsdamer Platz/Mitte immediately. This overrides the older district order.
