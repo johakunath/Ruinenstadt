@@ -15,6 +15,10 @@ Code changes later: Deploy → Manage deployments → edit → Version: New vers
 
 Sheet „Ruinenstadt Sync (live)“: https://docs.google.com/spreadsheets/d/14rG_toEJ88HeYDmMmW2jFbHVgQVO21PnAgNx1dJlxsQ (owner Johannes, the script is bound to this one). The web app URL is in `js/sync.js`.
 
+## Client defaults
+
+Public games enable online saving on startup, creating and persisting a sync code before the first upload. Existing connections are reused; an explicit disconnection is remembered on that device until re-enabled. Localhost, file previews and simulations do not auto-enable. Progress is uploaded on save events in both camp and expeditions; an expedition itself cannot be resumed. Run telemetry uploads separately and does not require cloud saving. The anonymous player id (`pid`) is present in save JSON and telemetry.
+
 ## Data
 
 | Tab | Content |
