@@ -283,4 +283,4 @@ Focus: gameplay and content. Art runs in parallel through Codex (`pipeline/workf
 
 | v0.96 | Online-save activation, sync-code connection and disconnection are available from camp inventory settings as well as the network menu. Loading a cloud save in camp preserves the camp world; expedition controls remain hidden and remote replacements wait until camp/menu. |
 
-| v0.97 | Public games automatically create a cloud-save code and upload on startup, then keep syncing through camp and expeditions. Existing codes are reused; explicit disconnection stays off across reloads and can be re-enabled in settings. Local development and simulations do not auto-enable. Run telemetry remains independent. |
+| v0.97 | Public games automatically create a cloud-save code and upload on startup, then keep syncing through camp and expeditions. Existing codes are reused; explicit disconnection stays off across reloads and can be re-enabled in settings. Local development and simulations do not auto-enable. Run telemetry remains independent. Camp cloud adoption clears old item selections/actions and refreshes an open inventory. |

@@ -29,7 +29,18 @@ const {chromium}=require('playwright');
   await page.waitForFunction(()=>S.scrap===987&&os.state==='on');
   assert.deepEqual(await page.evaluate(()=>({state,camp:!!D.base,pos:[P.x,P.y],expected:campPosition,backedUp:lsGet('rs2bak').some(b=>JSON.parse(b.s).scrap===0)})),
    {state:'baseinv',camp:true,pos:await page.evaluate(()=>campPosition),expected:await page.evaluate(()=>campPosition),backedUp:true});
-  await page.click('[data-o="close"]');await page.click('[data-a="close"]');
+  await page.click('[data-o="close"]');
+  // A background pull must invalidate item actions from the previous save.
+  await page.evaluate(()=>{S.bag=[{...START_W(),id:201,name:'Old first item'},{...START_W(),id:202,name:'Old selected item'}];renderInv();});
+  await page.click('[data-b="1"]');assert.equal(await page.locator('[data-a="salv"]').count(),1);
+  await page.evaluate(async()=>{
+   allArm=true;invMsg='Old save message';
+   remoteSave=JSON.stringify({...S,t:25,bag:[{...START_W(),id:301,name:'Downloaded item'}]});await osPull();
+  });
+  assert.deepEqual(await page.evaluate(()=>({selection:sel,armed:allArm,message:invMsg,ids:S.bag.map(it=>it.id)})),{selection:null,armed:false,message:'',ids:[301]});
+  assert.equal(await page.locator('[aria-label="Downloaded item"]').count(),1);
+  assert.equal(await page.locator('[data-a="salv"], [aria-label="Old selected item"]').count(),0);
+  await page.click('[data-a="close"]');
   assert.equal(await page.evaluate(()=>state),'base');
   // Conflict downloads can update camp, but must wait while an expedition is active.
   await page.evaluate(async()=>{remoteSave=JSON.stringify({...S,scrap:988,t:30});await osPull();});
