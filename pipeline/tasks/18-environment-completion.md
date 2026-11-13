@@ -1,6 +1,6 @@
 # 18 Environment coverage and water
 
-Status: Köpenick surface/special-building batch implemented (v0.94, 2026-11-13), review/merge in progress; other districts open. User requests complete Köpenick first, review and merge before proceeding map by map. Special buildings use more realistic architectural detail with restrained post-apocalyptic wear and district emblems.
+Status: Köpenick surface/special-building batch implemented (v0.94, 2026-11-13), Codex review findings addressed; merge in progress; other districts open. User requests complete Köpenick first, review and merge before proceeding map by map. Special buildings use more realistic architectural detail with restrained post-apocalyptic wear and district emblems.
 
 1. Complete missing shared and custom district building textures/hooks; cover
    custom plazas and landmark surfaces. Audit: `docs/texture-coverage.md`.

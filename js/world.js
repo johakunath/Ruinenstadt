@@ -186,7 +186,7 @@ function wpick(o){let t=0;for(const k in o)t+=o[k];let r=Math.random()*t;for(con
 function lotCands(){return BLK.filter(b=>!b.center&&['houses','hinterhof','ruins','plattenbau','market','parking','construction','kleingarten'].includes(b.lot)&&b.w>=330&&b.h>=300).sort(()=>Math.random()-.5);}
 function buildWorld(d){
   D=d;const K=d.geo;WS=WH=K?K.ws:2400;[SX,SY]=K?K.start:[1200,1220];const A=WS*WS/5.76e6;// A: area relative to the 2400 grid map, scales scatter counts
-  if(typeof koepResetCache==='function')koepResetCache(null);
+  if(typeof koepResetCache==='function')koepResetCache(null);if(typeof ksResetCache==='function')ksResetCache();
   G=cnv(WS,WS);gx=G.getContext('2d');walls=[];blds=[];barrels=[];reserved=[];marks=[];brk=[];spati=null;darks=[];waters=[];neons=[];const g=gx;
   if(K)geoLayout(K);else{makeLayout(d);roadsFromGrid();}
   g.fillStyle=globalGroundPattern(g,d.i===4?'sand':'dirt')||d.ground;g.fillRect(0,0,WS,WS);

@@ -28,7 +28,8 @@ function ksBridgeLive(b){const{s,t0,t1}=b;for(const sd of [-1,1]){const x=s.ax+s
   ctx.strokeStyle='#273a38';ctx.lineWidth=2;for(const z of [9,21]){const a=P3(x,y,z),q=P3(x+s.ux*L,y+s.uy*L,z);ctx.beginPath();ctx.moveTo(...a);ctx.lineTo(...q);ctx.stroke();}
   for(let t=0;t<=L;t+=12){const px=x+s.ux*t,py=y+s.uy*t,a=P3(px,py,7),q=P3(px,py,t%36===0?24:21);ctx.lineWidth=t%36===0?3:1;ctx.beginPath();ctx.moveTo(...a);ctx.lineTo(...q);ctx.stroke();}}}
 function ksBake(b,live){const points=[];for(const z of [0,b.ksRathaus?b.top*1.5:26])for(const[u,v]of [[0,0],[b.w,0],[b.w,b.h],[0,b.h]])points.push(P3(b.x+u,b.y+v,z));const x=Math.floor(Math.min(...points.map(p=>p[0]))-8),y=Math.floor(Math.min(...points.map(p=>p[1]))-8),w=Math.ceil(Math.max(...points.map(p=>p[0]))-x+8),h=Math.ceil(Math.max(...points.map(p=>p[1]))-y+8),scale=koepScale(),image=cnv(w*scale,h*scale),old=ctx;ctx=image.getContext('2d');try{ctx.scale(scale,scale);ctx.translate(-x,-y);live(b);}finally{ctx=old;}KS_CACHE.set(b,{image,x,y,w,h,scale});}
-function ksPrepareMap(){for(const c of KS_CACHE.values())c.image.width=c.image.height=0;KS_CACHE=new Map();if(!koepSpecialOn())return;
+function ksResetCache(){for(const c of KS_CACHE.values())c.image.width=c.image.height=0;KS_CACHE=new Map();}
+function ksPrepareMap(){ksResetCache();if(!koepSpecialOn())return;
   if(['facade','roof','tower'].every(n=>KS_TEX[n]))for(const b of blds)if(b.ksRathaus)ksBake(b,ksRathausLive);
   if(KS_TEX.station)for(const b of blds)if(b.draw===ksStationWall)ksBake(b,ksStationLive);
   if(KS_TEX['bridge-wall'])for(const b of blds)if(b.ksBridge)ksBake(b,ksBridgeLive);
