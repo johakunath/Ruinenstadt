@@ -673,3 +673,9 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
   during generation. Publish complete boards/docs, then request one Codex
   review. Runtime production and its deployment belong to the next session;
   no district art is being hooked into the game before design selection.
+
+- Publication complete: PR #42 is ready for review at
+  `54a22477bc4d5eb21c4cb4e89b82b8204f5e8586`; one explicit `@codex review`
+  request was posted (comment 6848537842) after no automatic review/reaction
+  was visible. Review completion is pending; do not re-trigger it. This
+  follow-up records publication status only. No merge or game deployment.
