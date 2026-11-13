@@ -114,7 +114,7 @@ DIST[DI('Alexanderplatz')].geo=ALEX;
 // paved plaza with a slab grid, kept clear of lots and street fronts
 function aPlaza(){const g=gx,P_=ALEX.plaza;g.save();g.beginPath();P_.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.closePath();g.clip();g.fillStyle='#5a5244';g.fillRect(2300,1000,650,950);
   for(let x=2300;x<2950;x+=40)for(let y=1000;y<1950;y+=40){g.fillStyle=pick(['#625a4a','#585042','#6a6250','#544c3e']);g.fillRect(x+1,y+1,38,38);}
-  for(let i=0;i<260;i++){g.strokeStyle='rgba(60,90,30,.5)';g.lineWidth=1.5;const x=R(2300,2950),y=R(1000,1950);g.beginPath();g.moveTo(x,y);g.lineTo(x+R(-6,6),y-R(4,10));g.stroke();}g.restore();
+  for(let i=0;i<260;i++){g.strokeStyle='rgba(60,90,30,.5)';g.lineWidth=1.5;const x=R(2300,2950),y=R(1000,1950);g.beginPath();g.moveTo(x,y);g.lineTo(x+R(-6,6),y-R(4,10));g.stroke();}g.restore();axGround();
   for(let x=2330;x<2900;x+=60)for(let y=1050;y<1880;y+=60)if(inPoly(P_,x,y))reserved.push({x:x-30,y:y-30,w:60,h:60});
   reserved.push({x:2400,y:1880,w:560,h:380});}// open band south of the plaza: tall fronts there would cover it in the iso view
 // stone rim tiers around a fountain basin
@@ -131,8 +131,8 @@ function fernsehturm(x,y){const W=130,H=860,c=cnv(W,H),t=c.getContext('2d'),cx=W
   t.fillStyle='#2a3438';t.fillRect(cx-46,sy-6,92,12);for(let i=-5;i<=5;i++){t.fillStyle=Math.random()<.5?'#f2c868':'#3a4448';t.fillRect(cx+i*8-3,sy-4,5,8);}t.strokeStyle='#14100c';t.lineWidth=2;t.beginPath();t.arc(cx,sy,46,0,7);t.stroke();
   t.fillStyle='#c8c2a8';t.fillRect(cx-6,sy-110,12,64);t.fillStyle='#8a856e';t.fillRect(cx+1,sy-110,5,64);for(let i=0;i<9;i++){t.fillStyle=i%2?'#ead9c0':'#af4237';t.fillRect(cx-3,sy-110-(i+1)*14,6,14);}
   blds.push({x:x-W/2,y,w:W,h:0,top:base,spr:c,sc:1.2,lights:[{x,y,z:720,r:90}]});walls.push({x:x-28,y:y-26,w:56,h:44});neons.push({x,y,z:720,c:'#f2c868',s:60});
-  const g=gx;g.fillStyle='#5a5244';g.beginPath();g.arc(x,y,150,0,7);g.fill();for(let a=0;a<6;a++){g.fillStyle=a%2?'#8a856e':'#a09a80';g.beginPath();g.moveTo(x,y);g.arc(x,y,130,a*1.047,a*1.047+.6);g.fill();}
-  reserved.push({x:x-170,y:y-170,w:340,h:340});marks.push({x,y:y+60,n:'Fernsehturm'});}
+  blds[blds.length-1].axSprite='fernsehturm';const g=gx;g.fillStyle='#5a5244';g.beginPath();g.arc(x,y,150,0,7);g.fill();for(let a=0;a<6;a++){g.fillStyle=a%2?'#8a856e':'#a09a80';g.beginPath();g.moveTo(x,y);g.arc(x,y,130,a*1.047,a*1.047+.6);g.fill();}
+  g.save();g.beginPath();g.arc(x,y,150,0,7);g.clip();axRect(g,'plaza',x-150,y-150,300,300);g.restore();reserved.push({x:x-170,y:y-170,w:340,h:340});marks.push({x,y:y+60,n:'Fernsehturm'});}
 // Weltzeituhr: column, ring of city panels, orbit sculpture above with gear teeth and a glowing sun. Upright sprite
 function weltzeit(x,y){const W=110,H=200,c=cnv(W,H),t=c.getContext('2d'),cx=W/2,base=H-4;t.fillStyle='#5a5446';t.beginPath();t.ellipse(cx,base-4,40,8,0,0,7);t.fill();
   t.fillStyle='#7a7060';t.fillRect(cx-6,base-104,12,100);for(let i=0;i<5;i++){t.fillStyle='#c8902a';t.fillRect(cx-7,base-24-i*16,14,3);}
@@ -141,67 +141,67 @@ function weltzeit(x,y){const W=110,H=200,c=cnv(W,H),t=c.getContext('2d'),cx=W/2,
   t.strokeStyle='#d4a27e';t.lineWidth=2;for(let r=0;r<3;r++){t.beginPath();t.ellipse(cx,base-168,16+r*11,(16+r*11)*.42,-.25+r*.25,0,7);t.stroke();}
   for(let a=0;a<14;a++){const q=a/14*6.283;t.fillStyle='#c8902a';t.fillRect(cx+Math.cos(q)*44-3,base-168+Math.sin(q)*18-3,6,6);}t.fillStyle='#e7982b';t.beginPath();t.arc(cx,base-168,8,0,7);t.fill();
   t.fillStyle='#8aa0a4';t.beginPath();t.arc(cx+26,base-174,4,0,7);t.fill();t.fillStyle=GRD;t.beginPath();t.arc(cx-20,base-160,3,0,7);t.fill();
-  blds.push({x:x-W/2,y,w:W,h:0,top:base,spr:c,sc:1.3,lights:[{x,y,z:210,r:60}]});walls.push({x:x-12,y:y-10,w:24,h:20});neons.push({x,y,z:215,c:GOC,s:40});reserved.push({x:x-80,y:y-80,w:160,h:160});marks.push({x,y:y+40,n:'Weltzeituhr'});}
+  blds.push({x:x-W/2,y,w:W,h:0,top:base,spr:c,sc:1.3,lights:[{x,y,z:210,r:60}]});walls.push({x:x-12,y:y-10,w:24,h:20});neons.push({x,y,z:215,c:GOC,s:40});reserved.push({x:x-80,y:y-80,w:160,h:160});marks.push({x,y:y+40,n:'Weltzeituhr'});blds[blds.length-1].axSprite='weltzeit';}
 // Neptunbrunnen: bronze Neptune on a rock in the basin
 function neptun(x,y){const c=cnv(40,80),t=c.getContext('2d');t.fillStyle='#6a6458';t.beginPath();t.ellipse(20,74,16,5,0,0,7);t.fill();t.fillStyle='#3a5a4a';t.fillRect(14,38,12,34);t.beginPath();t.arc(20,32,7,0,7);t.fill();t.fillRect(8,40,6,18);t.fillStyle='#4a7a5a';t.fillRect(27,14,2,48);t.fillRect(23,12,10,3);
-  blds.push({x:x-20,y,w:40,h:0,top:76,spr:c,sc:1.2,lights:[]});marks.push({x,y:y+40,n:'Neptunbrunnen'});}
+  blds.push({x:x-20,y,w:40,h:0,top:76,spr:c,sc:1.2,lights:[]});marks.push({x,y:y+40,n:'Neptunbrunnen'});blds[blds.length-1].axSprite='neptun';}
 // market on the Alex: stalls with striped awnings, crates
-function drawStall(b){const{x,y,w,h}=b;faceT(x+3,y+3,w,h,0,'rgba(0,0,0,.3)');ibox(x,y+h*.4,w,h*.6,0,20,'#6a4a2e',INK,'#8a6a44');for(const q of [[x,y],[x+w-4,y],[x,y+h-4],[x+w-4,y+h-4]])ibox(q[0],q[1],4,4,0,40,'#3a2a1e');
-  for(let u=0;u<w;u+=10)poly([P3(x+u,y-4,46),P3(x+u+10,y-4,46),P3(x+u+10,y+h+4,36),P3(x+u,y+h+4,36)],(u/10)%2?b.c:'#ead9c0',INK);
-  for(let i=0;i<4;i++)ibox(x+6+i*(w-14)/4,y+h*.5,6,6,20,26,(b.gc||(b.gc=Array.from({length:4},()=>pick(['#e7982b','#af4237','#7b9a3a','#f2c230']))))[i]);}// v0.65: goods colours fixed per stall (random per frame flickered)
+function drawStall(b){if(axCached(b))return;const{x,y,w,h}=b;faceT(x+3,y+3,w,h,0,'rgba(0,0,0,.3)');axBox(x,y+h*.4,w,h*.6,0,20,'#6a4a2e',INK,'#8a6a44');for(const q of [[x,y],[x+w-4,y],[x,y+h-4],[x+w-4,y+h-4]])axBox(q[0],q[1],4,4,0,40,'#3a2a1e');
+  for(let u=0;u<w;u+=10)poly([P3(x+u,y-4,46),P3(x+u+10,y-4,46),P3(x+u+10,y+h+4,36),P3(x+u,y+h+4,36)],(u/10)%2?b.c:'#ead9c0',INK);axFace(P3(x,y-4,46),P3(x+w,y-4,46),P3(x,y+h+4,36),w,h+8,'awning');
+  for(let i=0;i<4;i++)axBox(x+6+i*(w-14)/4,y+h*.5,6,6,20,26,(b.gc||(b.gc=Array.from({length:4},(_,i)=>['#e7982b','#af4237','#7b9a3a','#f2c230'][Math.abs((b.x*13+b.y*7+i*3)|0)%4])))[i]);}// v0.65: goods colours fixed per stall (random per frame flickered)
 function aMarket(cx,cy){for(let i=0;i<8;i++){const x=cx-200+(i%4)*110,y=cy+Math.floor(i/4)*90,o={x,y,w:70,h:40,H:46,top:46,R0:0,c:pick([GRD,'#3a6a8a','#7b6a32',GOC]),lights:[],draw:drawStall};blds.push(o);walls.push({x,y:y+16,w:70,h:24});if(Math.random()<.6)addBrk(x+80,y+20,'crate',false);}marks.push({x:cx-40,y:cy+60,n:'Markt am Alex'});}
 // Bahnhof Alexanderplatz: station hall on the viaduct (same art as the Ostbahnhof), closed
 function aStation(cx,cy){const s=segsOf(ALEX.rail)[3],rot=rotN(Math.atan2(s.uy,s.ux)),w=360,h=96,b={x:cx-w/2,y:cy-h/2,w,h,hb:70,H:96,top:96,R0:0,rot,lw:Array.from({length:16},()=>Math.random()<.05),lights:[],draw:drawOstbf};
   blds.push(b);bShadow({...b,H:70});const ow=obWall(b);walls.push(ow);reserved.push({x:ow.x-20,y:ow.y-20,w:ow.w+40,h:ow.h+40});marks.push({x:cx,y:cy+20,n:'Bahnhof Alexanderplatz'});}
 /* ---- buildings ---- */
 const brickRows=(x,y,w,h,z1,c)=>{for(let z=8;z<z1;z+=8){ln3(P3(x,y+h,z),P3(x+w,y+h,z),c);ln3(P3(x+w,y+h,z),P3(x+w,y,z),c);}};
-function drawRathaus(b){const{x,y,w,h}=b,c='#a84a36',Z=70;faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,0,Z,c,INK,'#6a3a2e');brickRows(x,y,w,h,Z,'rgba(0,0,0,.12)');
+function drawRathaus(b){if(axCached(b))return;const{x,y,w,h}=b,c='#a84a36',Z=70;faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');axBox(x,y,w,h,0,Z,c,INK,'#6a3a2e');brickRows(x,y,w,h,Z,'rgba(0,0,0,.12)');
   for(let u=12;u<w-10;u+=18)for(const z of [12,40])poly([P3(x+u,y+h,z),P3(x+u+9,y+h,z),P3(x+u+9,y+h,z+16),P3(x+u+4.5,y+h,z+21),P3(x+u,y+h,z+16)],'#1a1410');
   for(let v=12;v<h-10;v+=18)for(const z of [12,40])faceE(x,y+v,w,9,z,z+16,'#1a1410');faceS(x,y,w,h,Z-6,Z-3,'#d8a040');faceE(x,y,w,h,Z-6,Z-3,'#a87830');
-  const tx=x+w/2-24,ty=y+h-60;ibox(tx,ty,48,48,Z,Z+70,c,INK,'#6a3a2e');ibox(tx-3,ty-3,54,54,Z+70,Z+76,'#c8a070',INK);ibox(tx+8,ty+8,32,32,Z+76,Z+92,c,INK);
+  const tx=x+w/2-24,ty=y+h-60;axBox(tx,ty,48,48,Z,Z+70,c,INK,'#6a3a2e');axBox(tx-3,ty-3,54,54,Z+70,Z+76,'#c8a070',INK);axBox(tx+8,ty+8,32,32,Z+76,Z+92,c,INK);
   const cp=P3(tx+24,ty+48,Z+48);ctx.fillStyle='#efe2c4';ctx.beginPath();ctx.ellipse(cp[0],cp[1],9,9,0,0,7);ctx.fill();ctx.strokeStyle='#14100c';ctx.lineWidth=1.2;ctx.stroke();ctx.beginPath();ctx.moveTo(cp[0],cp[1]);ctx.lineTo(cp[0],cp[1]-6);ctx.moveTo(cp[0],cp[1]);ctx.lineTo(cp[0]+4,cp[1]+2);ctx.stroke();
   const fp=P3(tx+24,ty+24,Z+92);ln3(fp,[fp[0],fp[1]-28],'#3a3632');ctx.fillStyle=GRD;ctx.fillRect(fp[0],fp[1]-28,14,8);}
-function drawMarien(b){const{x,y,w,h}=b,c='#8a5a40',Z=50;faceT(x+6,y+4,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h-40,0,Z,c,INK,'#5a3a2e');brickRows(x,y,w,h-40,Z,'rgba(0,0,0,.12)');
+function drawMarien(b){if(axCached(b))return;const{x,y,w,h}=b,c='#8a5a40',Z=50;faceT(x+6,y+4,w,h,0,'rgba(0,0,0,.4)');axBox(x,y,w,h-40,0,Z,c,INK,'#5a3a2e');brickRows(x,y,w,h-40,Z,'rgba(0,0,0,.12)');
   for(let v=12;v<h-50;v+=20)faceE(x,y+v,w,8,12,40,'#1a1410');poly([P3(x,y,Z),P3(x+w,y,Z),P3(x+w,y+(h-40)/2,Z+28),P3(x,y+(h-40)/2,Z+28)],'#3e5a4a',INK);poly([P3(x,y+(h-40)/2,Z+28),P3(x+w,y+(h-40)/2,Z+28),P3(x+w,y+h-40,Z),P3(x,y+h-40,Z)],'#4a6a58',INK);
-  const tx=x+w/2-20,ty=y+h-42;ibox(tx,ty,40,40,0,110,c,INK,'#5a3a2e');brickRows(tx,ty,40,40,110,'rgba(0,0,0,.12)');faceS(tx+14,ty,12,40,70,96,'#1a1410');
+  const tx=x+w/2-20,ty=y+h-42;axBox(tx,ty,40,40,0,110,c,INK,'#5a3a2e');brickRows(tx,ty,40,40,110,'rgba(0,0,0,.12)');faceS(tx+14,ty,12,40,70,96,'#1a1410');
   const A=P3(tx+20,ty+20,190);poly([P3(tx,ty+40,110),P3(tx+40,ty+40,110),A],'#4a7a68',INK);poly([P3(tx+40,ty+40,110),P3(tx+40,ty,110),A],'#34584a',INK);ctx.fillStyle='#c8a040';ctx.beginPath();ctx.arc(A[0],A[1]-3,2.5,0,7);ctx.fill();}
-function drawBDom(b){const{x,y,w,h}=b,c='#a89a7c',Z=80;faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,0,Z,c,INK,'#8a7e64');
-  for(let u=18;u<w-14;u+=22){ibox(x+u,y+h,6,8,0,Z-10,'#c8bc9c',INK);faceS(x+u+8,y,8,h,16,Z-24,'#1a1814');}for(let v=18;v<h-14;v+=22)faceE(x,y+v,w,8,16,Z-24,'#1a1814');
-  for(const q of [[x+4,y+4],[x+w-30,y+4],[x+4,y+h-30],[x+w-30,y+h-30]]){ibox(q[0],q[1],26,26,Z,Z+30,c,INK,'#8a7e64');domeAt(q[0]+13,q[1]+13,Z+30,10,'#5a7a68','#4a6a58');}
+function drawBDom(b){if(axCached(b))return;const{x,y,w,h}=b,c='#a89a7c',Z=80;faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');axBox(x,y,w,h,0,Z,c,INK,'#8a7e64');
+  for(let u=18;u<w-14;u+=22){axBox(x+u,y+h,6,8,0,Z-10,'#c8bc9c',INK);faceS(x+u+8,y,8,h,16,Z-24,'#1a1814');}for(let v=18;v<h-14;v+=22)faceE(x,y+v,w,8,16,Z-24,'#1a1814');
+  for(const q of [[x+4,y+4],[x+w-30,y+4],[x+4,y+h-30],[x+w-30,y+h-30]]){axBox(q[0],q[1],26,26,Z,Z+30,c,INK,'#8a7e64');domeAt(q[0]+13,q[1]+13,Z+30,10,'#5a7a68','#4a6a58');}
   domeAt(x+w/2,y+h/2,Z,58,'#6a8a72','#4a7a68');}
-function drawAltes(b){const{x,y,w,h}=b,c='#d4c4a0',Z=60;faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');ibox(x,y+18,w,h-18,0,8,'#b8a888',INK);ibox(x+10,y,w-20,h-20,0,Z,c,INK,'#b8a888');
-  for(let u=16;u<w-14;u+=13)ibox(x+u,y+h-14,6,6,8,Z-6,'#ece0c4',INK);ibox(x+6,y+h-20,w-12,12,Z-6,Z,'#e0d4b4',INK);ibox(x+w/2-30,y+h/2-26,60,40,Z,Z+18,c,INK,'#a89878');}
+function drawAltes(b){if(axCached(b))return;const{x,y,w,h}=b,c='#d4c4a0',Z=60;faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');axBox(x,y+18,w,h-18,0,8,'#b8a888',INK);axBox(x+10,y,w-20,h-20,0,Z,c,INK,'#b8a888');
+  for(let u=16;u<w-14;u+=13)axBox(x+u,y+h-14,6,6,8,Z-6,'#ece0c4',INK);axBox(x+6,y+h-20,w-12,12,Z-6,Z,'#e0d4b4',INK);axBox(x+w/2-30,y+h/2-26,60,40,Z,Z+18,c,INK,'#a89878');}
 // Palast der Republik: bronze mirror glass on the long east face, white marble ends, a glass greenhouse vault on the roof, ivy on the facade
-function drawPalast(b){const{x,y,w,h}=b,Z=64;faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,0,Z,'#e8e0cc',INK,'#5a4a3a');faceE(x,y,w,h,0,Z,'#8a5030');
+function drawPalast(b){if(axCached(b))return;const{x,y,w,h}=b,Z=64;faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');axBox(x,y,w,h,0,Z,'#e8e0cc',INK,'#5a4a3a');faceE(x,y,w,h,0,Z,'#8a5030');
   for(let v=6;v<h-6;v+=14)for(let z=6;z<Z-6;z+=14){const lit=(v*7+z*3)%5;faceE(x,y+v,w,10,z,z+10,lit?'#e8a050':'#3a2414');}faceE(x,y,w,h,0,5,'#d8d0bc');faceE(x,y,w,h,Z-5,Z,'#d8d0bc');
   for(let u=20;u<w-20;u+=40)faceS(x+u,y,22,h,10,Z-14,'#c8c0aa');
-  const N=8,R0=40,zz=k=>Z+R0*Math.sin(Math.PI*k/N);for(let k=0;k<N;k++)poly([P3(x+w*k/N,y+20,zz(k)),P3(x+w*(k+1)/N,y+20,zz(k+1)),P3(x+w*(k+1)/N,y+h-20,zz(k+1)),P3(x+w*k/N,y+h-20,zz(k))],k<N/2?'rgba(140,200,180,.3)':'rgba(180,225,205,.42)');
+  const N=8,R0=40,zz=k=>Z+R0*Math.sin(Math.PI*k/N);for(let k=0;k<N;k++){poly([P3(x+w*k/N,y+20,zz(k)),P3(x+w*(k+1)/N,y+20,zz(k+1)),P3(x+w*(k+1)/N,y+h-20,zz(k+1)),P3(x+w*k/N,y+h-20,zz(k))],k<N/2?'rgba(140,200,180,.3)':'rgba(180,225,205,.42)');axFace(P3(x+w*k/N,y+20,zz(k)),P3(x+w*(k+1)/N,y+20,zz(k+1)),P3(x+w*k/N,y+h-20,zz(k)),w/N,h-40,'greenhouse',false,.12);}
   ctx.fillStyle='rgba(74,138,58,.75)';for(const q of b.pl){const p=P3(x+w*q[0],y+h*q[1],Z+q[2]);ctx.beginPath();ctx.arc(p[0],p[1],5,0,7);ctx.fill();}
   ctx.strokeStyle='rgba(40,60,50,.8)';ctx.lineWidth=1;for(let v=20;v<=h-20;v+=40){ctx.beginPath();for(let k=0;k<=N;k++){const p=P3(x+w*k/N,y+v,zz(k));k?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]);}ctx.stroke();}
   ctx.strokeStyle='#4a7a3a';ctx.lineWidth=2;for(const v of b.iv){const a=P3(x+w,y+h*v,0);ctx.beginPath();ctx.moveTo(a[0],a[1]);for(let z=0;z<Z;z+=8){const p=P3(x+w,y+h*v+Math.sin(z*.3)*4,z);ctx.lineTo(p[0],p[1]);}ctx.stroke();}}
-function drawHdL(b){const{x,y,w,h}=b,Z=240;faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,0,Z,'#4a5a5e',INK,'#3a4446');glassRows(x,y,w,h,90,Z-6,'#8aa8b0',14);
+function drawHdL(b){if(axCached(b))return;const{x,y,w,h}=b,Z=240;faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');axBox(x,y,w,h,0,Z,'#4a5a5e',INK,'#3a4446');glassRows(x,y,w,h,90,Z-6,'#8aa8b0',14);
   faceS(x,y,w,h,24,82,GRD);faceE(x,y,w,h,24,82,'#8a3530');const cs=[GOC,'#2a6a8a','#ead9c0',GOL,GOC,'#2a6a8a'];for(let i=0;i<6;i++){faceS(x+6+i*(w-12)/6,y,(w-12)/6-6,h,32,74,cs[i]);faceE(x,y+6+i*(h-12)/6,w,(h-12)/6-6,32,74,cs[(i+2)%6]);}
-  ibox(x-30,y+h-6,w+60,30,0,20,'#5a6e72',INK);}
-function drawHotel(b){const{x,y,w,h}=b,Z=320;faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,0,Z,'#d8d4c8',INK,'#a8a498');for(let u=6;u<w-4;u+=10)faceS(x+u,y,6,h,10,Z-10,'#5a6470');for(let v=6;v<h-4;v+=10)faceE(x,y+v,w,6,10,Z-10,'#4a545e');
+  axBox(x-30,y+h-6,w+60,30,0,20,'#5a6e72',INK);}
+function drawHotel(b){if(axCached(b))return;const{x,y,w,h}=b,Z=320;faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');axBox(x,y,w,h,0,Z,'#d8d4c8',INK,'#a8a498');for(let u=6;u<w-4;u+=10)faceS(x+u,y,6,h,10,Z-10,'#5a6470');for(let v=6;v<h-4;v+=10)faceE(x,y+v,w,6,10,Z-10,'#4a545e');
   for(let z=10;z<Z;z+=12){faceS(x,y,w,h,z,z+1.5,'#e8e4d8');faceE(x,y,w,h,z,z+1.5,'#b8b4a8');}}
-function drawKino(b){const{x,y,w,h}=b,Z=58;faceT(x+6,y+4,w,h,0,'rgba(0,0,0,.4)');ibox(x+10,y+10,w-20,h-20,0,24,'#2a3438',INK);ibox(x,y,w,h,24,Z,'#d8c8a0',INK,'#b8a888');for(let u=6;u<w;u+=14)faceS(x+u,y,8,h,30,52,'#e8d8b0');
+function drawKino(b){if(axCached(b))return;const{x,y,w,h}=b,Z=58;faceT(x+6,y+4,w,h,0,'rgba(0,0,0,.4)');axBox(x+10,y+10,w-20,h-20,0,24,'#2a3438',INK);axBox(x,y,w,h,24,Z,'#d8c8a0',INK,'#b8a888');for(let u=6;u<w;u+=14)faceS(x+u,y,8,h,30,52,'#e8d8b0');
   ctx.fillStyle='#14100c';ctx.font='700 9px sans-serif';const p=P3(x+w*.2,y+h,40);ctx.save();ctx.translate(p[0],p[1]);ctx.transform(1,.5,0,1,0,0);ctx.fillText('INTERNATIONAL',0,0);ctx.restore();}
-function drawVolks(b){const{x,y,w,h}=b,c='#8a7860',Z=80;faceT(x+6,y+4,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,0,Z,c,INK,'#6a5a48');for(let u=14;u<w-10;u+=16)ibox(x+u,y+h,6,10,0,Z-14,'#a8967a',INK);
-  ibox(x+10,y+h+10,w-20,10,Z-14,Z-6,'#a8967a',INK);poly([P3(x+20,y+h+10,Z-6),P3(x+w-20,y+h+10,Z-6),P3(x+w/2,y+h+10,Z+14)],c,INK);ctx.fillStyle=GRD;const p=P3(x+w/2-12,y+h+10,Z+2);ctx.font='800 10px sans-serif';ctx.fillText('OST',p[0],p[1]);}
-function drawMMus(b){const{x,y,w,h}=b,c='#8a4430',Z=60;faceT(x+6,y+4,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,0,Z,c,INK,'#5a2a20');brickRows(x,y,w,h,Z,'rgba(0,0,0,.14)');for(let u=12;u<w-8;u+=18)faceS(x+u,y,8,h,14,46,'#1a1410');
+function drawVolks(b){if(axCached(b))return;const{x,y,w,h}=b,c='#8a7860',Z=80;faceT(x+6,y+4,w,h,0,'rgba(0,0,0,.4)');axBox(x,y,w,h,0,Z,c,INK,'#6a5a48');for(let u=14;u<w-10;u+=16)axBox(x+u,y+h,6,10,0,Z-14,'#a8967a',INK);
+  axBox(x+10,y+h+10,w-20,10,Z-14,Z-6,'#a8967a',INK);poly([P3(x+20,y+h+10,Z-6),P3(x+w-20,y+h+10,Z-6),P3(x+w/2,y+h+10,Z+14)],c,INK);ctx.fillStyle=GRD;const p=P3(x+w/2-12,y+h+10,Z+2);ctx.font='800 10px sans-serif';ctx.fillText('OST',p[0],p[1]);}
+function drawMMus(b){if(axCached(b))return;const{x,y,w,h}=b,c='#8a4430',Z=60;faceT(x+6,y+4,w,h,0,'rgba(0,0,0,.4)');axBox(x,y,w,h,0,Z,c,INK,'#5a2a20');brickRows(x,y,w,h,Z,'rgba(0,0,0,.14)');for(let u=12;u<w-8;u+=18)faceS(x+u,y,8,h,14,46,'#1a1410');
   poly([P3(x,y,Z),P3(x+w,y,Z),P3(x+w,y+h/2,Z+26),P3(x,y+h/2,Z+26)],'#5a3a30',INK);poly([P3(x,y+h/2,Z+26),P3(x+w,y+h/2,Z+26),P3(x+w,y+h,Z),P3(x,y+h,Z)],'#6a4434',INK);
-  const tx=x+w-46,ty=y+h-40;ibox(tx,ty,36,36,0,130,c,INK,'#5a2a20');brickRows(tx,ty,36,36,130,'rgba(0,0,0,.14)');for(let i=0;i<4;i++){ibox(tx+i*10,ty+32,5,4,130,138,c,INK);ibox(tx+32,ty+i*10,4,5,130,138,c,INK);}}
+  const tx=x+w-46,ty=y+h-40;axBox(tx,ty,36,36,0,130,c,INK,'#5a2a20');brickRows(tx,ty,36,36,130,'rgba(0,0,0,.14)');for(let i=0;i<4;i++){axBox(tx+i*10,ty+32,5,4,130,138,c,INK);axBox(tx+32,ty+i*10,4,5,130,138,c,INK);}}
 // Zuckerbäcker tower (Strausberger Platz): tiered cream tower with a golden spire
-function drawZTower(b){const{x,y,w,h}=b,c='#efe2c0';faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,0,150,c,INK,'#c8b490');for(let u=8;u<w-6;u+=12)faceS(x+u,y,6,h,16,140,'#5a4a3a');for(let v=8;v<h-6;v+=12)faceE(x,y+v,w,6,16,140,'#4a3a2a');
-  for(let u=0;u<=w;u+=24){faceS(x+u-2,y,4,h,10,148,'#fff6dc');}faceS(x,y,w,h,0,12,'#c8b490');ibox(x+12,y+12,w-24,h-24,150,190,c,INK,'#c8b490');ibox(x+24,y+24,w-48,h-48,190,214,c,INK,'#c8b490');
+function drawZTower(b){if(axCached(b))return;const{x,y,w,h}=b,c='#efe2c0';faceT(x+8,y+5,w,h,0,'rgba(0,0,0,.4)');axBox(x,y,w,h,0,150,c,INK,'#c8b490');for(let u=8;u<w-6;u+=12)faceS(x+u,y,6,h,16,140,'#5a4a3a');for(let v=8;v<h-6;v+=12)faceE(x,y+v,w,6,16,140,'#4a3a2a');
+  for(let u=0;u<=w;u+=24){faceS(x+u-2,y,4,h,10,148,'#fff6dc');}faceS(x,y,w,h,0,12,'#c8b490');axBox(x+12,y+12,w-24,h-24,150,190,c,INK,'#c8b490');axBox(x+24,y+24,w-48,h-48,190,214,c,INK,'#c8b490');
   const A=P3(x+w/2,y+h/2,214);ln3(A,[A[0],A[1]-40],GBR);ctx.fillStyle=GOC;ctx.beginPath();ctx.arc(A[0],A[1]-42,4,0,7);ctx.fill();faceS(x,y,w,h,146,150,GBR);faceE(x,y,w,h,146,150,'#a87020');}
 function strausberg(cx,cy){const g=gx;g.strokeStyle='#3a2f27';g.lineWidth=110;g.beginPath();g.arc(cx,cy,120,0,7);g.stroke();g.strokeStyle=D.road;g.lineWidth=86;g.beginPath();g.arc(cx,cy,120,0,7);g.stroke();
   g.fillStyle='#46582a';g.beginPath();g.arc(cx,cy,74,0,7);g.fill();pond(cx,cy,46,30);aRim(cx,cy,46,30);
   mBox(cx-110,cy-190,90,90,drawZTower,'Haus Berlin',214);mBox(cx-90,cy+90,90,90,drawZTower,'Haus des Kindes',214);reserved.push({x:cx-210,y:cy-240,w:420,h:480});marks.push({x:cx,y:cy+40,n:'Strausberger Platz'});}
 // greenhouse: glass barrel vault on a low brick base, plants inside, garden beds around
-function drawGlas(b){const{x,y,w,h}=b,Z=16,N=6,R0=34,zz=k=>Z+R0*Math.sin(Math.PI*k/N);faceT(x+5,y+4,w,h,0,'rgba(0,0,0,.3)');ibox(x,y,w,h,0,Z,'#8a5a40',INK,'#5a4a3a');
+function drawGlas(b){if(axCached(b))return;const{x,y,w,h}=b,Z=16,N=6,R0=34,zz=k=>Z+R0*Math.sin(Math.PI*k/N);faceT(x+5,y+4,w,h,0,'rgba(0,0,0,.3)');axBox(x,y,w,h,0,Z,'#8a5a40',INK,'#5a4a3a');
   ctx.fillStyle='rgba(74,138,58,.85)';for(const q of b.pl){const p=P3(x+w*q[0],y+h*q[1],Z+q[2]);ctx.beginPath();ctx.arc(p[0],p[1],q[3],0,7);ctx.fill();}ctx.fillStyle=GOC;for(const q of b.pl.slice(0,3)){const p=P3(x+w*q[0],y+h*q[1],Z+q[2]+4);ctx.beginPath();ctx.arc(p[0],p[1],2.4,0,7);ctx.fill();}
-  for(let k=0;k<N;k++)poly([P3(x,y+h*k/N,zz(k)),P3(x+w,y+h*k/N,zz(k)),P3(x+w,y+h*(k+1)/N,zz(k+1)),P3(x,y+h*(k+1)/N,zz(k+1))],k<N/2?'rgba(150,210,190,.28)':'rgba(190,230,215,.4)');
+  for(let k=0;k<N;k++){poly([P3(x,y+h*k/N,zz(k)),P3(x+w,y+h*k/N,zz(k)),P3(x+w,y+h*(k+1)/N,zz(k+1)),P3(x,y+h*(k+1)/N,zz(k+1))],k<N/2?'rgba(150,210,190,.28)':'rgba(190,230,215,.4)');axFace(P3(x,y+h*k/N,zz(k)),P3(x+w,y+h*k/N,zz(k)),P3(x,y+h*(k+1)/N,zz(k+1)),w,h/N,'greenhouse',false,.1);}
   ctx.strokeStyle='rgba(40,60,50,.85)';ctx.lineWidth=1;for(let u=0;u<=w;u+=w/6){ctx.beginPath();for(let k=0;k<=N;k++){const p=P3(x+u,y+h*k/N,zz(k));k?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]);}ctx.stroke();}
   const gp=[];for(let k=0;k<=N;k++)gp.push(P3(x+w,y+h*k/N,zz(k)));poly(gp,'rgba(170,215,200,.35)',INK);}
 function glashaus(cx,cy,w,h){if(resHit(cx-w/2,cy-h/2,w,h,1)||isWater(cx,cy)||roadD(cx,cy)<w/2+60)return null;const b={x:cx-w/2,y:cy-h/2,w,h,H:50,top:50,R0:0,pl:Array.from({length:9},()=>[R(.1,.9),R(.15,.85),R(2,18),R(4,8)]),lights:[],draw:drawGlas};
