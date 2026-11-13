@@ -1,6 +1,6 @@
 # 06 District bosses
 
-Status: merged (v0.87, PR #40, 2026-11-12). Johannes performance acceptance and final review with Claude remain deferred follow-ups in BACKLOG.md (confirmed 2026-11-13).
+Status: merged (v0.87, PR #40, 2026-11-12). Tablet performance accepted by Johannes on 2026-11-13; final appearance/behavior review with Claude remains in BACKLOG.md.
 
 One per district, designs from the Kodex portraits: X01 Hauptmann von Köpenick, X02 Spreehexe, X09 Bassprediger, X04 Fliegerkönig, X05 Brandmeister, X06 Rattenmutter, X07 Zitadellenritter, X08 Plattenkönig; Volkseigener Koloss (Alexanderplatz) from its code drawing in `js/alex.js`. Boss radius 34, big 42 (`mkEnemy`). Boss attacks (rings, shocks, projectiles in `js/combat.js` and `js/update.js`) must start at the visible body.
 
@@ -12,4 +12,6 @@ Nine five-pose source sheets now produce 54 anchored runtime frames (idle, two-f
 
 Browser proof passes at 1×/2×, including all frames, HTTP404 fallback and a fresh offline reload decoding all 54 assets. Runtime memory is 17,699,360 decoded bytes, below the 40 MB task budget. On the current v0.84 sources, the RTX 4070 painted comparisons pass: Köpenick -1.51% (95% CI -5.62% to +1.24%) and Alexanderplatz -3.30% (-9.29% to +0.08%). The 21-pair off/off control was inconclusive (+0.95%, -2.62% to +6.53%); the required 41-pair control-only rerun remained narrowly inconclusive (-0.84%, -5.40% to +2.24%). A full 41-pair run before current main advanced passed both districts and its control; it is retained as history, not substituted for current-source evidence. No optimisation attempt was indicated; Johannes will review the control noise with Claude after integration (2026-11-13 instruction).
 
-Current v0.87 reconciliation passes 71 JS tests, 6 Python tests, 371 sprite checks and refreshed browser/fallback/offline proof. Evidence: `pipeline/proof/06-bosses/`. Merged as 0ea7042 (PR #40). Remaining follow-up: Johannes performance acceptance and final review with Claude, after integration.
+Current v0.87 reconciliation passes 71 JS tests, 6 Python tests, 371 sprite checks and refreshed browser/fallback/offline proof. Evidence: `pipeline/proof/06-bosses/`. Merged as 0ea7042 (PR #40). Remaining follow-up: final appearance/behavior review with Claude. Tablet performance accepted by Johannes (2026-11-13).
+
+2026-11-13 acceptance update: Johannes reports tablet performance is good, nothing to complain about; performance topic closed. Retain all historical control evidence. Final visual/behavior review with Claude remains separate.

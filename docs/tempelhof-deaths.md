@@ -30,3 +30,19 @@ Claude follow-up: review compounded district scaling and the intended Normal
 one-shot policy; record recent hits and the killing source in telemetry so
 future reports can be diagnosed directly. No speculative balance change was
 made during this asset task.
+
+## v0.89 fix (2026-11-13)
+
+Johannes explicitly rules out enemy full-health one-shots and requests lighter
+contact, with stronger actual/special attacks. `hurt` now caps post-mitigation
+attack damage at 45% maximum HP in every difficulty and district. This is
+not protection from death when already injured: the third strongest hit can
+kill, and ordinary invulnerability still prevents same-frame hit stacking.
+
+Ordinary body contact uses 30% raw damage and caps at 10% maximum HP; large-body (radius ≥17, including brutes,
+bosses and Uhr) contact uses 40% and caps at 18%. Charges and dives are
+classified as attacks, so they keep their force. Slams, projectiles, rings
+and other existing damage paths share the 45% ceiling. Guard, resistance
+and stance still reduce damage before the ceiling. Focused regression tests
+exercise the real production functions, including low HP, resistance extremes,
+large incoming values, lethal repeated hits and invulnerability.

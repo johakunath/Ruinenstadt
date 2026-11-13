@@ -3805,93 +3805,363 @@
   },
   "props/ground-asphalt": {
     "anchor": [
-      256,
-      511
+      128,
+      255
     ],
     "for": "global painted material asphalt",
-    "h": 512,
+    "h": 256,
     "units": 3,
-    "w": 512
+    "w": 256
+  },
+  "props/ground-asphalt-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material asphalt-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-asphalt-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material asphalt-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-asphalt-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material asphalt-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
   },
   "props/ground-ballast": {
     "anchor": [
-      256,
-      511
+      128,
+      255
     ],
     "for": "global painted material ballast",
-    "h": 512,
+    "h": 256,
     "units": 3,
-    "w": 512
+    "w": 256
+  },
+  "props/ground-ballast-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material ballast-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-ballast-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material ballast-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-ballast-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material ballast-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
   },
   "props/ground-cobble": {
     "anchor": [
-      256,
-      511
+      128,
+      255
     ],
     "for": "global painted material cobble",
-    "h": 512,
+    "h": 256,
     "units": 3,
-    "w": 512
+    "w": 256
+  },
+  "props/ground-cobble-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material cobble-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-cobble-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material cobble-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-cobble-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material cobble-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
   },
   "props/ground-concrete": {
     "anchor": [
-      256,
-      511
+      128,
+      255
     ],
     "for": "global painted material concrete",
-    "h": 512,
+    "h": 256,
     "units": 3,
-    "w": 512
+    "w": 256
+  },
+  "props/ground-concrete-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material concrete-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-concrete-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material concrete-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-concrete-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material concrete-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
   },
   "props/ground-dirt": {
     "anchor": [
-      256,
-      511
+      128,
+      255
     ],
     "for": "global painted material dirt",
-    "h": 512,
+    "h": 256,
     "units": 3,
-    "w": 512
+    "w": 256
+  },
+  "props/ground-dirt-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material dirt-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-dirt-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material dirt-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-dirt-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material dirt-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
   },
   "props/ground-grass": {
     "anchor": [
-      256,
-      511
+      128,
+      255
     ],
     "for": "global painted material grass",
-    "h": 512,
+    "h": 256,
     "units": 3,
-    "w": 512
+    "w": 256
+  },
+  "props/ground-grass-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material grass-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-grass-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material grass-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-grass-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material grass-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
   },
   "props/ground-pavement": {
     "anchor": [
-      256,
-      511
+      128,
+      255
     ],
     "for": "global painted material pavement",
-    "h": 512,
+    "h": 256,
     "units": 3,
-    "w": 512
+    "w": 256
+  },
+  "props/ground-pavement-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material pavement-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-pavement-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material pavement-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-pavement-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material pavement-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
   },
   "props/ground-plaza": {
     "anchor": [
-      256,
-      511
+      128,
+      255
     ],
     "for": "global painted material plaza",
-    "h": 512,
+    "h": 256,
     "units": 3,
-    "w": 512
+    "w": 256
+  },
+  "props/ground-plaza-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material plaza-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-plaza-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material plaza-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-plaza-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material plaza-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
   },
   "props/ground-sand": {
     "anchor": [
-      256,
-      511
+      128,
+      255
     ],
     "for": "global painted material sand",
-    "h": 512,
+    "h": 256,
     "units": 3,
-    "w": 512
+    "w": 256
+  },
+  "props/ground-sand-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material sand-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-sand-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material sand-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-sand-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material sand-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
   },
   "props/lamp": {
     "anchor": [

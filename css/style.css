@@ -349,3 +349,6 @@ body.mouse #ult::after{content:"R";background:#120d0a;border-radius:3px;color:va
 body.pad #ult::after{content:"LB";border-radius:8px;background:#5a5048;color:#fff;font-size:11px}
 .dyr{font:600 15px var(--f-ui);letter-spacing:.12em;color:var(--dim);margin-left:10px}.dtop .dn+.dyr{margin-right:auto}
 .nety{font:600 9px var(--f-ui);fill:#c9b79a;letter-spacing:.06em}
+
+/* A drag marks only its actual destination cell/gear icon. */
+.slot.dgover{outline:0}.slot.dgover .ic{outline:2px dashed var(--ember);outline-offset:2px}

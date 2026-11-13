@@ -12,5 +12,32 @@
     "generator": "built-in imagegen",
     "selected": true,
     "date": "2026-11-13"
+  },
+  {
+    "source": "ground-variant-1.png",
+    "sha256": "38e1f897e025c397424147fe6facfab1040da75dcaec2bafd5cfa6be51456f9b",
+    "generator": "built-in imagegen referenced-image edit",
+    "reference": "ground-source.png",
+    "selected": true,
+    "date": "2026-11-13",
+    "instruction": "damp dark patches and moss, variable stone wear, grass density and soil islands; keep the exact nine material cells, palette and orthographic painted style, no scene/props/text."
+  },
+  {
+    "source": "ground-variant-2.png",
+    "sha256": "8334cba3e48a63383dde4dbee2f9e1cd5d77ed1dfe2584fd73ad45f679306c8d",
+    "generator": "built-in imagegen referenced-image edit",
+    "reference": "ground-source.png",
+    "selected": true,
+    "date": "2026-11-13",
+    "instruction": "dry pale wear and irregular repairs, clover/bare/grass patches and displaced stones; keep the exact nine material cells, palette and orthographic painted style, no scene/props/text."
+  },
+  {
+    "source": "ground-variant-3.png",
+    "sha256": "d91581d718e76f14b45430f684a8c653eafca9ad813136dbce46f782570e0034",
+    "generator": "built-in imagegen referenced-image edit",
+    "reference": "ground-source.png",
+    "selected": true,
+    "date": "2026-11-13",
+    "instruction": "mixed weathering, meandering seams, grit, weeds and light aggregate patches; keep the exact nine material cells, palette and orthographic painted style, no scene/props/text."
   }
 ]

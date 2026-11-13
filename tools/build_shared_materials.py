@@ -13,11 +13,13 @@ def build():
     manifest_path = ROOT / 'assets/manifest.json'
     manifest = json.loads(manifest_path.read_text())
     recipes = []
-    for folder, source, names, cols, rows, prefix, size in [
+    batches = [
         ('15-pickups', 'pickups-source.png', PICKUPS, 4, 4, 'props/pickup-', 128),
-        ('16-shared-materials', 'ground-source.png', GROUND, 3, 3, 'props/ground-', 512),
+        ('16-shared-materials', 'ground-source.png', GROUND, 3, 3, 'props/ground-', 256),
         ('16-shared-materials', 'building-source.png', BUILDING, 3, 2, 'buildings/shared-', 512),
-    ]:
+    ]
+    batches += [('16-shared-materials', f'ground-variant-{v}.png', [n + f'-v{v}' for n in GROUND], 3, 3, 'props/ground-', 256) for v in range(1, 4)]
+    for folder, source, names, cols, rows, prefix, size in batches:
         raw = ROOT / 'assets/raw/codex' / folder
         im = Image.open(raw / source).convert('RGBA')
         for n, name in enumerate(names):
@@ -25,6 +27,13 @@ def build():
             box = [round(col * im.width / cols), round(row * im.height / rows),
                    round((col + 1) * im.width / cols), round((row + 1) * im.height / rows)]
             crop = im.crop(box)
+            selected_source = source
+            if prefix == 'props/pickup-' and name in ('doener', 'fleisch'):
+                unwrapped = Image.open(raw / 'unwrapped-source.png').convert('RGBA')
+                cell = 0 if name == 'doener' else 1
+                box = [round(cell * unwrapped.width / 2), 0, round((cell + 1) * unwrapped.width / 2), unwrapped.height]
+                crop = unwrapped.crop(box)
+                selected_source = 'unwrapped-source.png'
             if size == 128:
                 bounds = crop.getchannel('A').point(lambda a: 255 if a > 12 else 0).getbbox()
                 if not bounds:
@@ -36,10 +45,10 @@ def build():
             else:
                 # Normalization only: preserve authored pixels, removing the cell boundary.
                 crop = crop.crop((2, 2, crop.width - 2, crop.height - 2))
-                out = crop.resize((512, 512), Image.Resampling.LANCZOS)
+                out = crop.resize((size, size), Image.Resampling.LANCZOS)
                 # Renderer discards this border; preserve normalized-sprite alpha convention.
-                alpha = Image.new('L', (512, 512), 0)
-                alpha.paste(255, (1, 1, 511, 511))
+                alpha = Image.new('L', (size, size), 0)
+                alpha.paste(255, (1, 1, size - 1, size - 1))
                 out.putalpha(alpha)
             key = prefix + name
             path = ROOT / 'assets' / (key + '.webp')
@@ -47,7 +56,7 @@ def build():
             out.save(path, 'WEBP', quality=88, method=6)
             manifest[key] = {'w': size, 'h': size, 'anchor': [size // 2, size - 1],
                              'units': 3, 'for': 'paintedDrop' if size == 128 else 'global painted material ' + name}
-            recipes.append({'key': key, 'source': folder + '/' + source, 'crop': box})
+            recipes.append({'key': key, 'source': folder + '/' + selected_source, 'crop': box})
     manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True, ensure_ascii=False) + '\n')
     raw = ROOT / 'assets/raw/codex/16-shared-materials'
     (raw / 'cuts.json').write_text(json.dumps(recipes, indent=2) + '\n')

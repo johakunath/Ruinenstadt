@@ -5,5 +5,14 @@
     "generator": "built-in imagegen",
     "selected": true,
     "date": "2026-11-13"
+  },
+  {
+    "source": "unwrapped-source.png",
+    "sha256": "f663809ab84efb90e7509150ddfdfc385694e0289324d529a12f46d59463605f",
+    "generator": "built-in imagegen referenced-image edit",
+    "reference": "pickups-source.png",
+    "selected": true,
+    "date": "2026-11-13",
+    "instruction": "Two isolated transparent sprites: same D\u00f6ner without any aluminium or wrapper, same bare meat without butcher paper; preserve painted ink/material style."
   }
 ]

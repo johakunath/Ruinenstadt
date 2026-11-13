@@ -25,3 +25,18 @@ district/lot/road/tunnel ground canvases once at construction, retaining
 procedural details, road markings, rails, water and full fallback. This is
 one shared variant per material; the older three-variant/decal expansion is
 not claimed complete. Proof: `pipeline/proof/15-pickups-shared/`.
+
+## v0.89 variation follow-up (Johannes, 2026-11-13)
+
+All nine shared surfaces now have four painted versions (original plus three
+new generated atlases), distributed in locally shuffled, offset, softly
+blended patches. Organic materials also rotate by quarter-turns; paving
+keeps its orientation. A local seeded hash consumes no gameplay RNG. The
+shared composites bake once before map construction; rendering still uses
+the existing ground canvas. Runtime ground sources are 256px and combine
+into 512px broad patterns, keeping decoded source/cache memory at the
+v0.88 budget while avoiding a simple four-cell checkerboard. Ground
+patch repeats span about 683 world units, versus 170 units before.
+
+User tablet-performance acceptance is recorded in BACKLOG Done and
+docs/playtests.md. District-specific transition/decal expansion remains open.

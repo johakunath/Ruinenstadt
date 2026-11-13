@@ -1,12 +1,12 @@
 [
   {
     "key": "props/pickup-doener",
-    "source": "15-pickups/pickups-source.png",
+    "source": "15-pickups/unwrapped-source.png",
     "crop": [
       0,
       0,
-      316,
-      312
+      887,
+      887
     ]
   },
   {
@@ -81,12 +81,12 @@
   },
   {
     "key": "props/pickup-fleisch",
-    "source": "15-pickups/pickups-source.png",
+    "source": "15-pickups/unwrapped-source.png",
     "crop": [
+      887,
       0,
-      623,
-      316,
-      934
+      1774,
+      887
     ]
   },
   {
@@ -307,6 +307,276 @@
       512,
       1536,
       1024
+    ]
+  },
+  {
+    "key": "props/ground-asphalt-v1",
+    "source": "16-shared-materials/ground-variant-1.png",
+    "crop": [
+      0,
+      0,
+      418,
+      418
+    ]
+  },
+  {
+    "key": "props/ground-cobble-v1",
+    "source": "16-shared-materials/ground-variant-1.png",
+    "crop": [
+      418,
+      0,
+      836,
+      418
+    ]
+  },
+  {
+    "key": "props/ground-pavement-v1",
+    "source": "16-shared-materials/ground-variant-1.png",
+    "crop": [
+      836,
+      0,
+      1254,
+      418
+    ]
+  },
+  {
+    "key": "props/ground-dirt-v1",
+    "source": "16-shared-materials/ground-variant-1.png",
+    "crop": [
+      0,
+      418,
+      418,
+      836
+    ]
+  },
+  {
+    "key": "props/ground-grass-v1",
+    "source": "16-shared-materials/ground-variant-1.png",
+    "crop": [
+      418,
+      418,
+      836,
+      836
+    ]
+  },
+  {
+    "key": "props/ground-sand-v1",
+    "source": "16-shared-materials/ground-variant-1.png",
+    "crop": [
+      836,
+      418,
+      1254,
+      836
+    ]
+  },
+  {
+    "key": "props/ground-plaza-v1",
+    "source": "16-shared-materials/ground-variant-1.png",
+    "crop": [
+      0,
+      836,
+      418,
+      1254
+    ]
+  },
+  {
+    "key": "props/ground-ballast-v1",
+    "source": "16-shared-materials/ground-variant-1.png",
+    "crop": [
+      418,
+      836,
+      836,
+      1254
+    ]
+  },
+  {
+    "key": "props/ground-concrete-v1",
+    "source": "16-shared-materials/ground-variant-1.png",
+    "crop": [
+      836,
+      836,
+      1254,
+      1254
+    ]
+  },
+  {
+    "key": "props/ground-asphalt-v2",
+    "source": "16-shared-materials/ground-variant-2.png",
+    "crop": [
+      0,
+      0,
+      418,
+      418
+    ]
+  },
+  {
+    "key": "props/ground-cobble-v2",
+    "source": "16-shared-materials/ground-variant-2.png",
+    "crop": [
+      418,
+      0,
+      836,
+      418
+    ]
+  },
+  {
+    "key": "props/ground-pavement-v2",
+    "source": "16-shared-materials/ground-variant-2.png",
+    "crop": [
+      836,
+      0,
+      1254,
+      418
+    ]
+  },
+  {
+    "key": "props/ground-dirt-v2",
+    "source": "16-shared-materials/ground-variant-2.png",
+    "crop": [
+      0,
+      418,
+      418,
+      836
+    ]
+  },
+  {
+    "key": "props/ground-grass-v2",
+    "source": "16-shared-materials/ground-variant-2.png",
+    "crop": [
+      418,
+      418,
+      836,
+      836
+    ]
+  },
+  {
+    "key": "props/ground-sand-v2",
+    "source": "16-shared-materials/ground-variant-2.png",
+    "crop": [
+      836,
+      418,
+      1254,
+      836
+    ]
+  },
+  {
+    "key": "props/ground-plaza-v2",
+    "source": "16-shared-materials/ground-variant-2.png",
+    "crop": [
+      0,
+      836,
+      418,
+      1254
+    ]
+  },
+  {
+    "key": "props/ground-ballast-v2",
+    "source": "16-shared-materials/ground-variant-2.png",
+    "crop": [
+      418,
+      836,
+      836,
+      1254
+    ]
+  },
+  {
+    "key": "props/ground-concrete-v2",
+    "source": "16-shared-materials/ground-variant-2.png",
+    "crop": [
+      836,
+      836,
+      1254,
+      1254
+    ]
+  },
+  {
+    "key": "props/ground-asphalt-v3",
+    "source": "16-shared-materials/ground-variant-3.png",
+    "crop": [
+      0,
+      0,
+      418,
+      418
+    ]
+  },
+  {
+    "key": "props/ground-cobble-v3",
+    "source": "16-shared-materials/ground-variant-3.png",
+    "crop": [
+      418,
+      0,
+      836,
+      418
+    ]
+  },
+  {
+    "key": "props/ground-pavement-v3",
+    "source": "16-shared-materials/ground-variant-3.png",
+    "crop": [
+      836,
+      0,
+      1254,
+      418
+    ]
+  },
+  {
+    "key": "props/ground-dirt-v3",
+    "source": "16-shared-materials/ground-variant-3.png",
+    "crop": [
+      0,
+      418,
+      418,
+      836
+    ]
+  },
+  {
+    "key": "props/ground-grass-v3",
+    "source": "16-shared-materials/ground-variant-3.png",
+    "crop": [
+      418,
+      418,
+      836,
+      836
+    ]
+  },
+  {
+    "key": "props/ground-sand-v3",
+    "source": "16-shared-materials/ground-variant-3.png",
+    "crop": [
+      836,
+      418,
+      1254,
+      836
+    ]
+  },
+  {
+    "key": "props/ground-plaza-v3",
+    "source": "16-shared-materials/ground-variant-3.png",
+    "crop": [
+      0,
+      836,
+      418,
+      1254
+    ]
+  },
+  {
+    "key": "props/ground-ballast-v3",
+    "source": "16-shared-materials/ground-variant-3.png",
+    "crop": [
+      418,
+      836,
+      836,
+      1254
+    ]
+  },
+  {
+    "key": "props/ground-concrete-v3",
+    "source": "16-shared-materials/ground-variant-3.png",
+    "crop": [
+      836,
+      836,
+      1254,
+      1254
     ]
   }
 ]
