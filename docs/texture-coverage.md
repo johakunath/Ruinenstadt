@@ -67,7 +67,7 @@ This is asset delivery/basic integration, not unlimited cache coverage: the 40 M
 
 Sources: `assets/raw/codex/22-alexanderplatz-completion/`. Proof: `pipeline/proof/24-alexanderplatz-completion/`. Johannes explicitly sets Potsdamer Platz/Mitte next after this PR merges.
 
-## Potsdamer Platz / Mitte — v0.97
+## Potsdamer Platz / Mitte — v0.98
 
 Eighteen painted sources: sandstone, pale concrete, curtain glass, Kollhoff brick, steel, roof glass, magenta canopy, Philharmonie gold, station ceramic, viaduct brick, wet plaza, reflected water, speakers, clinic, bear mural, train panels, Siegessäule and Quadriga. Explicit hooks cover named civic architecture, Sony canopy/DB/Kollhoff, stage/clinic/wall, Kulturforum, Anhalter portal, Hauptbahnhof roof/bridges/shops/train/walls, station parapets and rail parts. A narrow plain-stone derivative avoids facade windows on columns. Stage equalizer/speaker pulses remain live. Existing art, map identities, collision and passage geometry remain.
 

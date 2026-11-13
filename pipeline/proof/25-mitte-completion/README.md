@@ -4,7 +4,7 @@ Eighteen generated paintings and explicit material/sculpture hooks; exact prompt
 
 ## Bounded validation
 
-`node tools/proof_mitte_completion.cjs`: Chromium 1280×800, DPR 2, seed 231113; eighteen images load, identical walls/structural footprints/rotations, hidden blessings, events, lights/neons and immediate next RNG on/off. Missing all images uses the complete original drawing with no new projected caches. Base/tunnel transitions cancel jobs and clear cache dimensions/bytes. The cached stage still calls its live pulse twice. Live smoke reaches play with HP 100; zero page errors. 486 manifest entries and all 667 offline SHELL paths exist. VERSION/CACHE both 0.97.
+`node tools/proof_mitte_completion.cjs`: Chromium 1280×800, DPR 2, seed 231113; eighteen images load, identical walls/structural footprints/rotations, hidden blessings, events, lights/neons and immediate next RNG on/off. Missing all images uses the complete original drawing with no new projected caches. Base/tunnel transitions cancel jobs and clear cache dimensions/bytes. The cached stage still calls its live pulse twice. Live smoke reaches play with HP 100; zero page errors. 486 manifest entries and all 667 offline SHELL paths exist. VERSION/CACHE both 0.98 (art measurements captured on candidate 0.97 before the concurrent cloud-save release).
 
 Default/2× screenshots are actual map scenes; foreground buildings can obscure landmarks. Additional `*-isolated.png` images explicitly remove unrelated buildings for inspecting architecture. No collision is changed by these proof fixtures.
 
@@ -28,3 +28,7 @@ The gate and station preserve passages, collision, fade groups and lights. The Q
 `initial-stage-fixture.json` failed before measurements because the stage animation check inherited 2× zoom after visual captures, where cache overflow is expected. The corrected fixture resets zoom/prepares caches. Before the single measured pass, core cache priority and complete canopy bounds were corrected, and canopy fabric was mapped onto the existing apex/rim triangles. No earlier timing samples were collected or discarded.
 
 After measurements, the visual-only `proof_mitte_final.cjs` adds plain-stone column normalization, painted Reichstag glazing and isolated architecture inspection. A further narrow column crop avoids the adjacent facade aperture; `proof_mitte_column.cjs` refreshes only that target and current memory, without timings. These source/appearance refinements do not add gameplay or per-frame cache work. Detailed acceptance remains with Claude.
+
+## Concurrent main merge
+
+Main PR #51 shipped cloud/camp settings as v0.97 during asset production. Synced it intact and advanced this release to v0.98. Focused fresh-context smoke passes play/HP100, zero page errors and 18 ready images; external network requests were blocked and no cloud save/account was mutated. Existing `tools/test_sync.mjs` passes 8/8. Offline SHELL has 667 valid paths and the v0.98 cache key. No repeated art performance pass.
