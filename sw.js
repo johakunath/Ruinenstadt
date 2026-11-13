@@ -1,5 +1,5 @@
 // Bump CACHE with every release so installed copies pick up the new files.
-const CACHE='ruinenstadt-0.89';
+const CACHE='ruinenstadt-0.90';
 const SHELL=[
   ...'doener bandage bottle scrap stoff metall chemie kabel fleisch gemuese gewuerz bag-common bag-magic bag-rare bag-legendary bag-set'.split(' ').map(n=>`assets/props/pickup-${n}.webp`),
   ...'asphalt cobble pavement dirt grass sand plaza ballast concrete'.split(' ').flatMap(n=>[0,1,2,3].map(v=>`assets/props/ground-${n}${v?'-v'+v:''}.webp`)),

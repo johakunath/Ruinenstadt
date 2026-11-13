@@ -14,4 +14,4 @@ One harness screenshot helper initially referenced an absent `closeInv`; interac
 
 User acceptance is separate evidence: Johannes reports v0.88 performance on the tablet is good, nothing to complain about. Backlog #20 moved to Done. Historical software/GPU reports remain intact. No v0.89 hardware performance measurement is claimed.
 
-Remaining graphics issue: black/shadowy rectangular box around cars/buildings at medium proximity, disappearing closer. Tracked in backlog #41 for later investigation.
+Remaining graphics issue: black/shadowy rectangular box around cars/buildings at medium proximity, disappearing closer. Tracked in backlog #42 for later investigation.
