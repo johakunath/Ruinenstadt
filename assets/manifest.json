@@ -1059,6 +1059,186 @@
     "units": 3,
     "w": 258
   },
+  "buildings/mitte-brick": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: brick",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-canopy": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: canopy",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-ceramic": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: ceramic",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-clinic": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: clinic",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-concrete": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: concrete",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-curtain": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: curtain",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-glass": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: glass",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-gold": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: gold",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-mural": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: mural",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-plaza": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: plaza",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-quadriga": {
+    "anchor": [
+      193,
+      314
+    ],
+    "for": "Potsdamer Platz/Mitte upright quadriga",
+    "h": 315,
+    "units": 3,
+    "w": 386
+  },
+  "buildings/mitte-rail-brick": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: rail-brick",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-sandstone": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: sandstone",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-siegessaeule": {
+    "anchor": [
+      145,
+      376
+    ],
+    "for": "Potsdamer Platz/Mitte upright siegessaeule",
+    "h": 377,
+    "units": 3,
+    "w": 290
+  },
+  "buildings/mitte-speaker": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: speaker",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-steel": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: steel",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-train": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: train",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-water": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: water",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
   "buildings/shared-brick": {
     "anchor": [
       256,

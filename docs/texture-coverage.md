@@ -66,3 +66,11 @@ Fifteen new paintings supply Rathaus brick, limestone, bronze Palast glass, blue
 This is asset delivery/basic integration, not unlimited cache coverage: the 40 MB task cap deliberately leaves overflow on the original renderer. Seed 231113 has 169 eligible parts; 51 projected parts fit at ordinary zoom and 19 at 2× after the review platform-bound correction. Prioritize named architecture before repetitive viaduct parts. More efficient caches/visible-part scheduling and detailed hardware acceptance belong to Claude. Trees, sunflowers, nature and independently animated water artwork remain separate; the existing procedural water ripples are brighter/thicker in this district. No new map objects, collision or missions.
 
 Sources: `assets/raw/codex/22-alexanderplatz-completion/`. Proof: `pipeline/proof/24-alexanderplatz-completion/`. Johannes explicitly sets Potsdamer Platz/Mitte next after this PR merges.
+
+## Potsdamer Platz / Mitte — v0.97
+
+Eighteen painted sources: sandstone, pale concrete, curtain glass, Kollhoff brick, steel, roof glass, magenta canopy, Philharmonie gold, station ceramic, viaduct brick, wet plaza, reflected water, speakers, clinic, bear mural, train panels, Siegessäule and Quadriga. Explicit hooks cover named civic architecture, Sony canopy/DB/Kollhoff, stage/clinic/wall, Kulturforum, Anhalter portal, Hauptbahnhof roof/bridges/shops/train/walls, station parapets and rail parts. A narrow plain-stone derivative avoids facade windows on columns. Stage equalizer/speaker pulses remain live. Existing art, map identities, collision and passage geometry remain.
+
+New static paving is placed before puddles, tracks and scenery, including Hauptbahnhof, Gendarmenmarkt, Sony courtyard, core roads/plaza, station forecourts and road-bridge decks. Spree, Landwehrkanal and Neuer See use the new water surface with stronger existing moving ripples.
+
+Basic asset delivery, not simultaneous painted coverage of every part: the 40 MB cache cap uses original fallback on overflow, particularly station/rail structures and higher zoom. Optimize cache residency/coverage and do detailed hardware acceptance with Claude. Ordinary shared buildings, nature, neon sign sprites and independently animated water sheets are separate. Sources: `assets/raw/codex/23-mitte-completion/`; proof: `pipeline/proof/25-mitte-completion/`.

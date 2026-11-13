@@ -1,0 +1,338 @@
+{
+  "errors": [],
+  "scenes": [
+    {
+      "district": "Mitte",
+      "version": "0.97",
+      "target": "sony",
+      "buildMs": 2253.899999999907,
+      "nextRng": 0.2821088631171733,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at R (http://127.0.0.1:8767/js/core.js:6:40)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:45:164)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 15,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:49:98)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 320823
+      },
+      "assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29678168,
+        "totalBytes": 39969016,
+        "cached": 30,
+        "limit": 40000000
+      },
+      "eligible": 170,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29626956,
+        "totalBytes": 39917804,
+        "cached": 11,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Mitte",
+      "version": "0.97",
+      "target": "stage",
+      "buildMs": 747.1000000000931,
+      "nextRng": 0.2821088631171733,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at noise (http://127.0.0.1:8767/js/audio.js:14:197)\n    at chord (http://127.0.0.1:8767/js/audio.js:76:94)": 8,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at chord (http://127.0.0.1:8767/js/audio.js:79:31)": 3,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at pick (http://127.0.0.1:8767/js/core.js:6:122)\n    at chord (http://127.0.0.1:8767/js/audio.js:79:52)": 2,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at chord (http://127.0.0.1:8767/js/audio.js:79:92)": 2
+      },
+      "assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29678168,
+        "totalBytes": 39969016,
+        "cached": 30,
+        "limit": 40000000
+      },
+      "eligible": 170,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29626956,
+        "totalBytes": 39917804,
+        "cached": 11,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Mitte",
+      "version": "0.97",
+      "target": "clinic",
+      "buildMs": 729.8999999999069,
+      "nextRng": 0.2821088631171733,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29678168,
+        "totalBytes": 39969016,
+        "cached": 30,
+        "limit": 40000000
+      },
+      "eligible": 170,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29626956,
+        "totalBytes": 39917804,
+        "cached": 11,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Mitte",
+      "version": "0.97",
+      "target": "tor",
+      "buildMs": 701.9000000001397,
+      "nextRng": 0.2821088631171733,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29678168,
+        "totalBytes": 39969016,
+        "cached": 30,
+        "limit": 40000000
+      },
+      "eligible": 170,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29626956,
+        "totalBytes": 39917804,
+        "cached": 11,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Mitte",
+      "version": "0.97",
+      "target": "reichstag",
+      "buildMs": 757,
+      "nextRng": 0.2821088631171733,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at noise (http://127.0.0.1:8767/js/audio.js:14:197)\n    at chord (http://127.0.0.1:8767/js/audio.js:76:94)": 8,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at chord (http://127.0.0.1:8767/js/audio.js:79:31)": 3,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at pick (http://127.0.0.1:8767/js/core.js:6:122)\n    at chord (http://127.0.0.1:8767/js/audio.js:79:52)": 2,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at chord (http://127.0.0.1:8767/js/audio.js:79:92)": 2
+      },
+      "assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29678168,
+        "totalBytes": 39969016,
+        "cached": 30,
+        "limit": 40000000
+      },
+      "eligible": 170,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29626956,
+        "totalBytes": 39917804,
+        "cached": 11,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Mitte",
+      "version": "0.97",
+      "target": "phil",
+      "buildMs": 782.7999999998137,
+      "nextRng": 0.2821088631171733,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29678168,
+        "totalBytes": 39969016,
+        "cached": 30,
+        "limit": 40000000
+      },
+      "eligible": 170,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29626956,
+        "totalBytes": 39917804,
+        "cached": 11,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Mitte",
+      "version": "0.97",
+      "target": "kollhoff",
+      "buildMs": 783.5999999998603,
+      "nextRng": 0.2821088631171733,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29678168,
+        "totalBytes": 39969016,
+        "cached": 30,
+        "limit": 40000000
+      },
+      "eligible": 170,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29626956,
+        "totalBytes": 39917804,
+        "cached": 11,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Mitte",
+      "version": "0.97",
+      "target": "hbf",
+      "buildMs": 771.3000000000466,
+      "nextRng": 0.2821088631171733,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at noise (http://127.0.0.1:8767/js/audio.js:14:197)\n    at chord (http://127.0.0.1:8767/js/audio.js:76:94)": 8,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at chord (http://127.0.0.1:8767/js/audio.js:79:31)": 3,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at pick (http://127.0.0.1:8767/js/core.js:6:122)\n    at chord (http://127.0.0.1:8767/js/audio.js:79:52)": 2,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at chord (http://127.0.0.1:8767/js/audio.js:79:92)": 2
+      },
+      "assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29678168,
+        "totalBytes": 39969016,
+        "cached": 30,
+        "limit": 40000000
+      },
+      "eligible": 170,
+      "targetCached": false,
+      "zoom2Assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29626956,
+        "totalBytes": 39917804,
+        "cached": 11,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Mitte",
+      "version": "0.97",
+      "target": "wall",
+      "buildMs": 709.1999999999534,
+      "nextRng": 0.2821088631171733,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29678168,
+        "totalBytes": 39969016,
+        "cached": 30,
+        "limit": 40000000
+      },
+      "eligible": 170,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29626956,
+        "totalBytes": 39917804,
+        "cached": 11,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Mitte",
+      "version": "0.97",
+      "target": "siegessaeule",
+      "buildMs": 697.5,
+      "nextRng": 0.2821088631171733,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29678168,
+        "totalBytes": 39969016,
+        "cached": 30,
+        "limit": 40000000
+      },
+      "eligible": 170,
+      "targetCached": null,
+      "zoom2Assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5107072,
+        "sourceBytes": 10290848,
+        "projectedCacheBytes": 29626956,
+        "totalBytes": 39917804,
+        "cached": 11,
+        "limit": 40000000
+      }
+    }
+  ],
+  "measurements": [],
+  "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "gameplayUnchanged": true,
+  "departure": {
+    "base": {
+      "bytes": 0,
+      "released": true
+    },
+    "tunnel": {
+      "bytes": 0,
+      "released": true
+    }
+  },
+  "status": "failed",
+  "failure": "page.evaluate: Error: stage cache missing\n    at eval (eval at evaluate (:311:30), <anonymous>:1:165)\n    at async <anonymous>:337:30\n    at /workspace/Ruinenstadt/tools/proof_mitte_completion.cjs:13:635"
+}
