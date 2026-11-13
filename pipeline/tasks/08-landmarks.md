@@ -2,6 +2,12 @@
 
 Status: open (after 02 step 0 is decided)
 
+2026-11-13 queue: district direction boards first, then next-session global
+pickups/equipment gaps and Köpenick/global building coverage (task 17).
+Coordinate its landmark audit with this package; the completed facade kit in
+task 02 does not close this task. Maximum one measurement run by Codex;
+optimization and detailed testing belong to Claude under the revised workflow.
+
 Method B (full iso sprite per landmark): landmarks are one of a kind, so one finished painting each is right. Footprint and collision stay as coded, the sprite replaces the drawing function. Light from the top left, no baked shadow.
 
 Order (cheap and upright first):

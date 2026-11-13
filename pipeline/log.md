@@ -632,3 +632,44 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Prior performance reports remain retained and accurately labelled; their source hashes predate this reconciliation. Current v0.87 head passes 71 JS tests, 6 Python tests, 371 sprite checks and refreshed browser/fallback/offline proof for all 54 boss frames. Performance acceptance remains with Johannes because the latest off/off control was inconclusive.
 - PR #40 review P2: restored the Zitadellenritter's existing `e.fa`-directional, `e.guard`-aware shield overlay over painted art so frontal damage reduction and guard-break state remain visible while circling. Added a regression assertion.
 - PR #40 current-head review P2: the Volkseigener Koloss now holds its authored attack-release frame for the full `e.spin` gear volley instead of walking idly through the sustained damaging attack. Added a regression assertion.
+
+## 2026-11-13 · Codex · nine district design proposals
+
+- Johannes moved design boards ahead of runtime production: three each for
+  Tempelhof 1948, Charlottenburg 1920 and Wedding's eternal “bald”. Generated
+  all nine with the image tool using the Köpenick board as visual reference
+  and `docs/story.md` as narrative source. Each includes scene, survivor
+  front/back, enemies, friendly NPCs, equipment, props and palette. No workers
+  were needed for the small metadata/documentation work.
+- Tempelhof: foggy airlift / wind-and-parachute pilgrims / hangar night shift.
+  Charlottenburg: last revue / street jazz and Ringverein / mirror palace.
+  Wedding: Leopoldplatz market / Panke AEG-Osram industry / wedding-hall refuge.
+  The Kiez's Turkish, Lebanese and Arab neighbours remain allies; enemies are
+  construction, developer promises and Zeitlose. New names are proposals only.
+- Originals, exact prompts and generation-to-file mapping are preserved under
+  `assets/raw/codex/16-district-design-boards/`. All nine were visually inspected.
+  `docs/district-design-directions.md` compares them and supports mixing parts.
+  **Johannes's choices remain pending.** No direction or new mechanic is
+  approved by archiving these boards. Existing finished references are intact.
+- Updated backlog, CLAUDE index, workflow, style/story links, batch index and
+  task 15; added tasks 16/17. Next session: all global pickups/materials and
+  SVG-only equipment gaps, reuse existing painted equipment icons for drops,
+  preserve code rarity glow; then audit/complete Köpenick/global buildings as
+  shared fallback. Completed task 02 was a facade/roof kit, not the still-open
+  landmark package. Audit missing art versus missing hooks before painting.
+- Maximum one Codex measurement run per production batch is now explicit,
+  including 40 MB decoded memory, 5% frame regression, actual milliseconds,
+  slow frames over 50 ms and longest frame when available. Claude owns deeper
+  integration, optimization and detailed testing. No broad tests/tuning here.
+- **One validation pass: pass.** Nine unique 1536×1024 PNGs fully decode, copied
+  originals match, prompts/references and comparison links exist, no runtime
+  files changed, diff whitespace check passes. Report: raw folder's
+  `validation.json`. Encoded boards: 34,529,360 bytes. Conservative RGBA for
+  viewing all nine: 56,623,104 bytes (documentation, not a game allocation).
+  Added game texture/cache memory: **0 bytes**. Frame ms, regression, slow-frame
+  share and longest frame: **not measured / not applicable** to this batch.
+  No hardware-performance pass is claimed. No manifest/SHELL/version bump.
+- PR [#42](https://github.com/johakunath/Ruinenstadt/pull/42) opened as draft
+  during generation. Publish complete boards/docs, then request one Codex
+  review. Runtime production and its deployment belong to the next session;
+  no district art is being hooked into the game before design selection.

@@ -47,6 +47,11 @@ Decided (Johannes, 2026-11-12): 1920s for the district, with the Schloss as the 
 
 ## NPCs and art follow the eras
 
+Art exploration (2026-11-13): [nine district direction proposals](district-design-directions.md)
+cover Tempelhof, Charlottenburg and Wedding. Names of new enemies/bosses and
+equipment in those boards are proposals, not decided lore or new mechanics.
+Johannes will choose/mix directions before production.
+
 - Camp NPCs come from different eras (Oma Gerda from 1989, Lin from the neon future, Jonas the Schwarzmarkt dealer from the 1920s, Ilse from the Kiezwache of the present ...). Write their one-liners from that (station quests and NPC lines, #36/#39).
 - Every district palette, enemy family and prop set follows its era; the shared post-apocalyptic wear from `docs/style-bible.md` stays on top of it.
 - Story artefacts per district (#14): a tape, a plaque or a timetable page from that era that explains one piece of the Stillstand.

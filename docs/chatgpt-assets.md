@@ -1,5 +1,12 @@
 # ChatGPT asset batches
 
+2026-11-13 priority override: Codex is generating nine district design boards
+first (`docs/district-design-directions.md`, task 16). Next session covers all
+global pickups/materials/ingredients and SVG-only equipment gaps (task 15),
+then Köpenick/global building coverage (task 17). Reuse existing painted item
+icons for small equipment drops with code rarity glow. Existing menu sheets
+and finished art remain usable; this note does not queue duplicate paintings.
+
 Work order for generating menu art (item icons, portraits) with ChatGPT image generation. One batch = one image = one step. Johannes hands the finished sheets to Claude, who cuts and integrates them. In-world sprites (player, enemies, buildings, vehicles) are not part of this; they follow `pipeline/workflow.md` with Codex.
 
 ## How to work

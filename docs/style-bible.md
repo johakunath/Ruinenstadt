@@ -4,6 +4,12 @@ Reference for all art, content and district work. Source: four finished referenc
 
 ## Reference boards
 
+New district **proposals** (2026-11-13): three directions each for Tempelhof,
+Charlottenburg and Wedding are indexed in
+[district-design-directions.md](district-design-directions.md). Johannes has
+not selected or mixed them yet. They do not replace the approved references
+below. Eras and narrative constraints remain in `docs/story.md`.
+
 | Board | File | Subtitle on board | Role |
 |---|---|---|---|
 | Köpenick | `docs/style/koepenick.png` | Dinosaur Jungle · Steampunk Noir | **Default look.** Starting biome, character baseline, first assets |

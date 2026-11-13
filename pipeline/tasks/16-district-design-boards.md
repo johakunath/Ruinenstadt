@@ -1,6 +1,7 @@
 # 16 District design directions
 
-Status: in progress (Codex, 2026-11-13).
+Status: done (nine proposal boards generated, Codex, 2026-11-13). Johannes's
+selection/mixing remains pending; no production direction is approved.
 
 Johannes explicitly moved concept boards ahead of production on 2026-11-13.
 Generate three substantially different painted boards each for Tempelhof,

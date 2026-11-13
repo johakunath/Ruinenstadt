@@ -1,0 +1,47 @@
+[
+  {
+    "id": "tempelhof-a",
+    "source": "/workspace/generated_images/exec-a38f327e-e478-447b-8555-64b15ea3ef05.png",
+    "destination": "assets/raw/codex/16-district-design-boards/tempelhof-a.png"
+  },
+  {
+    "id": "tempelhof-b",
+    "source": "/workspace/generated_images/exec-bf994f52-0d3b-40fc-9381-4df014e8bcdc.png",
+    "destination": "assets/raw/codex/16-district-design-boards/tempelhof-b.png"
+  },
+  {
+    "id": "tempelhof-c",
+    "source": "/workspace/generated_images/exec-036afc5f-a203-4cec-ac64-33d86600ad8e.png",
+    "destination": "assets/raw/codex/16-district-design-boards/tempelhof-c.png"
+  },
+  {
+    "id": "charlottenburg-a",
+    "source": "/workspace/generated_images/exec-46fb79d4-7164-4646-9b06-d713807f68a8.png",
+    "destination": "assets/raw/codex/16-district-design-boards/charlottenburg-a.png"
+  },
+  {
+    "id": "charlottenburg-b",
+    "source": "/workspace/generated_images/exec-447ff6f4-564d-4527-b6c7-5b89c5ff2df6.png",
+    "destination": "assets/raw/codex/16-district-design-boards/charlottenburg-b.png"
+  },
+  {
+    "id": "charlottenburg-c",
+    "source": "/workspace/generated_images/exec-2828201d-3106-400a-816b-83aa17fb4da8.png",
+    "destination": "assets/raw/codex/16-district-design-boards/charlottenburg-c.png"
+  },
+  {
+    "id": "wedding-a",
+    "source": "/workspace/generated_images/exec-217290fe-6b1f-42a6-8c06-a08ff7c1f491.png",
+    "destination": "assets/raw/codex/16-district-design-boards/wedding-a.png"
+  },
+  {
+    "id": "wedding-b",
+    "source": "/workspace/generated_images/exec-46a76236-a4a3-4d9f-a058-3ec558bbeb4c.png",
+    "destination": "assets/raw/codex/16-district-design-boards/wedding-b.png"
+  },
+  {
+    "id": "wedding-c",
+    "source": "/workspace/generated_images/exec-b203f16e-96f4-4cb4-8072-8d4edab39166.png",
+    "destination": "assets/raw/codex/16-district-design-boards/wedding-c.png"
+  }
+]
