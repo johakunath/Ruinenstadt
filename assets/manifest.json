@@ -789,6 +789,66 @@
     "units": 3,
     "w": 272
   },
+  "buildings/shared-brick": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material brick",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "buildings/shared-glass": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material glass",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "buildings/shared-plaster": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material plaster",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "buildings/shared-slate": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material slate",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "buildings/shared-terracotta": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material terracotta",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "buildings/shared-wood": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material wood",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
   "enemies/bass-attack-a": {
     "anchor": [
       45.777,
@@ -3743,6 +3803,96 @@
     "units": 3,
     "w": 768
   },
+  "props/ground-asphalt": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material asphalt",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "props/ground-ballast": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material ballast",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "props/ground-cobble": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material cobble",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "props/ground-concrete": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material concrete",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "props/ground-dirt": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material dirt",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "props/ground-grass": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material grass",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "props/ground-pavement": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material pavement",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "props/ground-plaza": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material plaza",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "props/ground-sand": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material sand",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
   "props/lamp": {
     "anchor": [
       38.5,
@@ -3762,6 +3912,166 @@
     "h": 302,
     "units": 3,
     "w": 164
+  },
+  "props/pickup-bag-common": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-bag-legendary": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-bag-magic": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-bag-rare": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-bag-set": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-bandage": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-bottle": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-chemie": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-doener": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-fleisch": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-gemuese": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-gewuerz": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-kabel": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-metall": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-scrap": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-stoff": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
   },
   "props/sandbags": {
     "anchor": [

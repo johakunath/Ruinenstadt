@@ -1,0 +1,312 @@
+[
+  {
+    "key": "props/pickup-doener",
+    "source": "15-pickups/pickups-source.png",
+    "crop": [
+      0,
+      0,
+      316,
+      312
+    ]
+  },
+  {
+    "key": "props/pickup-bandage",
+    "source": "15-pickups/pickups-source.png",
+    "crop": [
+      316,
+      0,
+      632,
+      312
+    ]
+  },
+  {
+    "key": "props/pickup-bottle",
+    "source": "15-pickups/pickups-source.png",
+    "crop": [
+      632,
+      0,
+      947,
+      312
+    ]
+  },
+  {
+    "key": "props/pickup-scrap",
+    "source": "15-pickups/pickups-source.png",
+    "crop": [
+      947,
+      0,
+      1263,
+      312
+    ]
+  },
+  {
+    "key": "props/pickup-stoff",
+    "source": "15-pickups/pickups-source.png",
+    "crop": [
+      0,
+      312,
+      316,
+      623
+    ]
+  },
+  {
+    "key": "props/pickup-metall",
+    "source": "15-pickups/pickups-source.png",
+    "crop": [
+      316,
+      312,
+      632,
+      623
+    ]
+  },
+  {
+    "key": "props/pickup-chemie",
+    "source": "15-pickups/pickups-source.png",
+    "crop": [
+      632,
+      312,
+      947,
+      623
+    ]
+  },
+  {
+    "key": "props/pickup-kabel",
+    "source": "15-pickups/pickups-source.png",
+    "crop": [
+      947,
+      312,
+      1263,
+      623
+    ]
+  },
+  {
+    "key": "props/pickup-fleisch",
+    "source": "15-pickups/pickups-source.png",
+    "crop": [
+      0,
+      623,
+      316,
+      934
+    ]
+  },
+  {
+    "key": "props/pickup-gemuese",
+    "source": "15-pickups/pickups-source.png",
+    "crop": [
+      316,
+      623,
+      632,
+      934
+    ]
+  },
+  {
+    "key": "props/pickup-gewuerz",
+    "source": "15-pickups/pickups-source.png",
+    "crop": [
+      632,
+      623,
+      947,
+      934
+    ]
+  },
+  {
+    "key": "props/pickup-bag-common",
+    "source": "15-pickups/pickups-source.png",
+    "crop": [
+      947,
+      623,
+      1263,
+      934
+    ]
+  },
+  {
+    "key": "props/pickup-bag-magic",
+    "source": "15-pickups/pickups-source.png",
+    "crop": [
+      0,
+      934,
+      316,
+      1246
+    ]
+  },
+  {
+    "key": "props/pickup-bag-rare",
+    "source": "15-pickups/pickups-source.png",
+    "crop": [
+      316,
+      934,
+      632,
+      1246
+    ]
+  },
+  {
+    "key": "props/pickup-bag-legendary",
+    "source": "15-pickups/pickups-source.png",
+    "crop": [
+      632,
+      934,
+      947,
+      1246
+    ]
+  },
+  {
+    "key": "props/pickup-bag-set",
+    "source": "15-pickups/pickups-source.png",
+    "crop": [
+      947,
+      934,
+      1263,
+      1246
+    ]
+  },
+  {
+    "key": "props/ground-asphalt",
+    "source": "16-shared-materials/ground-source.png",
+    "crop": [
+      0,
+      0,
+      418,
+      418
+    ]
+  },
+  {
+    "key": "props/ground-cobble",
+    "source": "16-shared-materials/ground-source.png",
+    "crop": [
+      418,
+      0,
+      836,
+      418
+    ]
+  },
+  {
+    "key": "props/ground-pavement",
+    "source": "16-shared-materials/ground-source.png",
+    "crop": [
+      836,
+      0,
+      1254,
+      418
+    ]
+  },
+  {
+    "key": "props/ground-dirt",
+    "source": "16-shared-materials/ground-source.png",
+    "crop": [
+      0,
+      418,
+      418,
+      836
+    ]
+  },
+  {
+    "key": "props/ground-grass",
+    "source": "16-shared-materials/ground-source.png",
+    "crop": [
+      418,
+      418,
+      836,
+      836
+    ]
+  },
+  {
+    "key": "props/ground-sand",
+    "source": "16-shared-materials/ground-source.png",
+    "crop": [
+      836,
+      418,
+      1254,
+      836
+    ]
+  },
+  {
+    "key": "props/ground-plaza",
+    "source": "16-shared-materials/ground-source.png",
+    "crop": [
+      0,
+      836,
+      418,
+      1254
+    ]
+  },
+  {
+    "key": "props/ground-ballast",
+    "source": "16-shared-materials/ground-source.png",
+    "crop": [
+      418,
+      836,
+      836,
+      1254
+    ]
+  },
+  {
+    "key": "props/ground-concrete",
+    "source": "16-shared-materials/ground-source.png",
+    "crop": [
+      836,
+      836,
+      1254,
+      1254
+    ]
+  },
+  {
+    "key": "buildings/shared-plaster",
+    "source": "16-shared-materials/building-source.png",
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ]
+  },
+  {
+    "key": "buildings/shared-brick",
+    "source": "16-shared-materials/building-source.png",
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ]
+  },
+  {
+    "key": "buildings/shared-wood",
+    "source": "16-shared-materials/building-source.png",
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ]
+  },
+  {
+    "key": "buildings/shared-terracotta",
+    "source": "16-shared-materials/building-source.png",
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ]
+  },
+  {
+    "key": "buildings/shared-slate",
+    "source": "16-shared-materials/building-source.png",
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ]
+  },
+  {
+    "key": "buildings/shared-glass",
+    "source": "16-shared-materials/building-source.png",
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ]
+  }
+]

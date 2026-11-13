@@ -1,5 +1,14 @@
 # ChatGPT asset batches
 
+
+2026-11-13 delivery (v0.88): global pickups and rarity-specific loot bags are
+painted and integrated. Sixteen source cells are saved under
+`assets/raw/codex/15-pickups/`, cut by `tools/build_shared_materials.py` into
+`assets/props/pickup-*.webp`. Includes all crafting materials and ingredients.
+The latest explicit request chooses loot bags for equipment drops. Existing
+menu item icons stay in use. Ground/shared building materials follow in the
+same batch; final performance acceptance and review with Claude are deferred.
+
 2026-11-13 priority override: nine district exploration boards are complete;
 Johannes selected Tempelhof B, Wedding C and Charlottenburg A+C for three
 expanded final refinements (`docs/district-design-directions.md`, task 16).

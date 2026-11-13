@@ -1,0 +1,16 @@
+[
+  {
+    "source": "ground-source.png",
+    "sha256": "f749af0ebdcd531c06a73d858e5d993b4a2f8d6b342183cec4897002e1e1cf7a",
+    "generator": "built-in imagegen",
+    "selected": true,
+    "date": "2026-11-13"
+  },
+  {
+    "source": "building-source.png",
+    "sha256": "264f3e4a048007d322242f4569fd44c22fbd313fe16db9e1ae13625fd8e876ba",
+    "generator": "built-in imagegen",
+    "selected": true,
+    "date": "2026-11-13"
+  }
+]

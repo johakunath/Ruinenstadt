@@ -189,16 +189,17 @@ function buildWorld(d){
   if(typeof koepResetCache==='function')koepResetCache(null);
   G=cnv(WS,WS);gx=G.getContext('2d');walls=[];blds=[];barrels=[];reserved=[];marks=[];brk=[];spati=null;darks=[];waters=[];neons=[];const g=gx;
   if(K)geoLayout(K);else{makeLayout(d);roadsFromGrid();}
-  g.fillStyle=d.ground;g.fillRect(0,0,WS,WS);
+  g.fillStyle=globalGroundPattern(g,d.i===4?'sand':'dirt')||d.ground;g.fillRect(0,0,WS,WS);
   const sp=['rgba(255,230,200,.04)','rgba(0,0,0,.18)','rgba(0,0,0,.1)','rgba(120,80,50,.08)'];
   for(let i=0;i<11000*A;i++){g.fillStyle=pick(sp);const s=R(1,5);g.fillRect(R(0,WS),R(0,WS),s,s);}
   for(const b of BLK)lotGround(b);
   if(K){geoWater(K);geoRoads(K,d);}else{
   const cob=['#3a2e25','#342920','#40332a','#2f251e'];
   for(let y=975;y<1425;y+=10)for(let x=975+((y/10)%2)*6;x<1425;x+=12){g.fillStyle=pick(cob);g.fillRect(x,y,10,8);}
-  for(const p of RX){g.fillStyle=d.road;g.fillRect(p-55,0,110,WS);}for(const p of RY){g.fillStyle=d.road;g.fillRect(0,p-55,WS,110);}
-  for(const p of RX){g.fillStyle='#3a2f27';g.fillRect(p-55,0,12,WS);g.fillRect(p+43,0,12,WS);}for(const p of RY){g.fillStyle='#3a2f27';g.fillRect(0,p-55,WS,12);g.fillRect(0,p+43,WS,12);}
-  for(const p of RX)for(const q of RY){g.fillStyle=d.road;g.fillRect(p-43,q-43,86,86);
+  globalPaintRect(g,'props/ground-cobble',975,975,450,450,.9);
+  for(const p of RX){g.fillStyle=globalGroundPattern(g,'asphalt')||d.road;g.fillRect(p-55,0,110,WS);}for(const p of RY){g.fillStyle=globalGroundPattern(g,'asphalt')||d.road;g.fillRect(0,p-55,WS,110);}
+  for(const p of RX){g.fillStyle=globalGroundPattern(g,'pavement')||'#3a2f27';g.fillRect(p-55,0,12,WS);g.fillRect(p+43,0,12,WS);}for(const p of RY){g.fillStyle=globalGroundPattern(g,'pavement')||'#3a2f27';g.fillRect(0,p-55,WS,12);g.fillRect(0,p+43,WS,12);}
+  for(const p of RX)for(const q of RY){g.fillStyle=globalGroundPattern(g,'asphalt')||d.road;g.fillRect(p-43,q-43,86,86);
     g.fillStyle='rgba(234,217,192,.1)';for(let k=0;k<6;k++){g.fillRect(p-40+k*14,q-62,8,14);g.fillRect(p-40+k*14,q+48,8,14);g.fillRect(p-62,q-40+k*14,14,8);g.fillRect(p+48,q-40+k*14,14,8);}}
   g.strokeStyle='rgba(234,217,192,.09)';g.lineWidth=3;g.setLineDash([24,30]);
   for(const p of RX){g.beginPath();g.moveTo(p,0);g.lineTo(p,WS);g.stroke();}for(const p of RY){if(p===1480)continue;g.beginPath();g.moveTo(0,p);g.lineTo(WS,p);g.stroke();}g.setLineDash([]);
@@ -258,6 +259,9 @@ function makeB(b,st){if(st==='hoch'||st==='buero')return modernB(b,st);if(st==='
   g.fillStyle=wall;g.fillRect(0,b.h,b.w,b.H);
   if(P_){g.fillStyle='rgba(0,0,0,.18)';for(let x=0;x<b.w;x+=36)g.fillRect(x,b.h,1.5,b.H);for(let y=b.h;y<b.h+b.H;y+=18)g.fillRect(0,y,b.w,1.5);}
   else if(L_){g.fillStyle='rgba(0,0,0,.2)';for(let x=0;x<b.w;x+=5)g.fillRect(x,b.h,1,b.H);}else if(V===1||RU||st==='reihen'&&Math.random()<.4)bricks(g,0,b.h,b.w,b.H,6);else plaster(0,b.h,b.w,b.H);
+  // Paint beneath the unchanged doors, windows and wear; all legacy RNG above still runs.
+  b.sharedWall=L_?'wood':RU||V===1?'brick':'plaster';b.sharedRoof=EF?'terracotta':'slate';
+  globalPaintRect(g,'buildings/shared-'+b.sharedWall,0,b.h,b.w,b.H,.85);
   b.lights=[];const k=BHS;
   // no power grid: a lit window is a candle (dim, flickering, small light). Shattered panes and boarded windows are common
   const win=(wx,wy,ww,wh,lit)=>{if(lit){g.fillStyle='#2a1608';g.fillRect(wx,wy,ww,wh);const gr=g.createRadialGradient(wx+ww/2,wy+wh*.7,0,wx+ww/2,wy+wh*.7,ww*.8);gr.addColorStop(0,'rgba(240,160,70,.85)');gr.addColorStop(1,'rgba(240,160,70,0)');g.fillStyle=gr;g.fillRect(wx,wy,ww,wh);b.lights.push({x:b.x+wx+ww/2,y:b.y-b.H+wy+wh/2,r:22,fl:1});}
@@ -298,7 +302,7 @@ function makeB(b,st){if(st==='hoch'||st==='buero')return modernB(b,st);if(st==='
     g.translate(R(6,b.w*.5),b.h+b.H-R(4,10));g.rotate(R(-.12,.06));g.fillText(pick(TAGS),0,0);g.restore();}
   g.fillStyle='rgba(0,0,0,.45)';g.fillRect(0,b.h,b.w,4);g.fillStyle='rgba(0,0,0,.35)';g.fillRect(0,b.h+b.H-3,b.w,3);
   for(let i=0;i<(L_?1:3);i++){const x=R(0,b.w),y=R(b.h,b.h+b.H),r=R(10,24),gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,'rgba(5,3,2,.55)');gr.addColorStop(1,'rgba(5,3,2,0)');g.fillStyle=gr;g.fillRect(x-r,y-r,r*2,r*2);}
-  g.fillStyle=roof;g.fillRect(0,0,b.w,b.h);
+  g.fillStyle=roof;g.fillRect(0,0,b.w,b.h);globalPaintRect(g,'buildings/shared-'+b.sharedRoof,0,0,b.w,b.h,.85);
   for(let i=0;i<b.w*b.h/30;i++){g.fillStyle=Math.random()<.5?'rgba(0,0,0,.15)':'rgba(255,230,200,.04)';g.fillRect(R(0,b.w),R(0,b.h),2,2);}
   if(RU){for(let i=0;i<b.w*b.h/60;i++){g.fillStyle=pick(['#4a3a2e','#5a4636','#3a2c22','#6b5543']);g.fillRect(R(0,b.w-4),R(0,b.h-3),R(2,6),R(2,4));}
     g.fillStyle='rgba(0,0,0,.35)';g.fillRect(0,0,b.w,4);g.fillRect(0,0,4,b.h);g.fillRect(b.w-4,0,4,b.h);

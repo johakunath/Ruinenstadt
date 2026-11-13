@@ -1,0 +1,471 @@
+{
+  "started": "2026-11-13T13:38:41.582Z",
+  "method": "One workflow: visual/smoke, fallback/offline, then 7 alternating on/off pairs, 30 warm + 100 timed full renders, seeded maps with 40 enemies and 80 pickups, 1280x800 DPR2. Software rendering does not establish the 5% GPU budget.",
+  "errors": [],
+  "scenes": [
+    {
+      "district": "K\u00f6penick",
+      "buildMs": {
+        "off": 410.30000000004657,
+        "on": 513.6000000000931
+      },
+      "medianOffMs": 24.457000000001862,
+      "medianOnMs": 29.02,
+      "medianPairedPct": 17.43282615733468,
+      "samples": [
+        {
+          "on": {
+            "meanMs": 29.330999999996276,
+            "slowPct": 13,
+            "maximumMs": 213.4000000001397,
+            "canvasAllocations": 0
+          },
+          "off": {
+            "meanMs": 23.083000000000467,
+            "slowPct": 10,
+            "maximumMs": 223.69999999995343,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 24.457000000001862,
+            "slowPct": 10,
+            "maximumMs": 225,
+            "canvasAllocations": 0
+          },
+          "on": {
+            "meanMs": 29.474000000003727,
+            "slowPct": 12,
+            "maximumMs": 248.69999999995343,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 29.90600000000093,
+            "slowPct": 12,
+            "maximumMs": 232.39999999990687,
+            "canvasAllocations": 0
+          },
+          "off": {
+            "meanMs": 23.503999999999067,
+            "slowPct": 10,
+            "maximumMs": 212.89999999990687,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 24.711999999999534,
+            "slowPct": 10,
+            "maximumMs": 238.80000000004657,
+            "canvasAllocations": 0
+          },
+          "on": {
+            "meanMs": 29.02,
+            "slowPct": 12,
+            "maximumMs": 234,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 28.115999999998603,
+            "slowPct": 12,
+            "maximumMs": 229.9000000001397,
+            "canvasAllocations": 0
+          },
+          "off": {
+            "meanMs": 25.62200000000186,
+            "slowPct": 10,
+            "maximumMs": 243.4000000001397,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 22.56,
+            "slowPct": 10,
+            "maximumMs": 205.80000000004657,
+            "canvasAllocations": 0
+          },
+          "on": {
+            "meanMs": 26.228000000000467,
+            "slowPct": 12,
+            "maximumMs": 214.19999999995343,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 28.176000000000933,
+            "slowPct": 12,
+            "maximumMs": 228.20000000018626,
+            "canvasAllocations": 0
+          },
+          "off": {
+            "meanMs": 25.75999999999767,
+            "slowPct": 10,
+            "maximumMs": 251.60000000009313,
+            "canvasAllocations": 0
+          }
+        }
+      ],
+      "verdict": "software-raster; GPU acceptance deferred"
+    },
+    {
+      "district": "Alexanderplatz",
+      "buildMs": {
+        "off": 513.1999999999534,
+        "on": 655
+      },
+      "medianOffMs": 28.15399999999907,
+      "medianOnMs": 29.263000000000467,
+      "medianPairedPct": 6.442193968067733,
+      "samples": [
+        {
+          "on": {
+            "meanMs": 30.696000000000932,
+            "slowPct": 14,
+            "maximumMs": 186.4000000001397,
+            "canvasAllocations": 0
+          },
+          "off": {
+            "meanMs": 28.740999999996276,
+            "slowPct": 13,
+            "maximumMs": 207.10000000009313,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 27.58399999999907,
+            "slowPct": 13,
+            "maximumMs": 212,
+            "canvasAllocations": 0
+          },
+          "on": {
+            "meanMs": 28.696999999999534,
+            "slowPct": 14,
+            "maximumMs": 195,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 28.799000000001396,
+            "slowPct": 14,
+            "maximumMs": 219.5999999998603,
+            "canvasAllocations": 0
+          },
+          "off": {
+            "meanMs": 27.05600000000093,
+            "slowPct": 13,
+            "maximumMs": 177.80000000004657,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 27.2159999999986,
+            "slowPct": 13,
+            "maximumMs": 205.9000000001397,
+            "canvasAllocations": 0
+          },
+          "on": {
+            "meanMs": 29.683000000000465,
+            "slowPct": 14,
+            "maximumMs": 204.69999999995343,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 29.263000000000467,
+            "slowPct": 14,
+            "maximumMs": 208.5,
+            "canvasAllocations": 0
+          },
+          "off": {
+            "meanMs": 28.545,
+            "slowPct": 13,
+            "maximumMs": 206.89999999990687,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 28.15399999999907,
+            "slowPct": 13,
+            "maximumMs": 231.29999999981374,
+            "canvasAllocations": 0
+          },
+          "on": {
+            "meanMs": 30.17399999999674,
+            "slowPct": 14,
+            "maximumMs": 197.60000000009313,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 27.90700000000186,
+            "slowPct": 14,
+            "maximumMs": 184.39999999990687,
+            "canvasAllocations": 0
+          },
+          "off": {
+            "meanMs": 28.302999999998136,
+            "slowPct": 13,
+            "maximumMs": 206.10000000009313,
+            "canvasAllocations": 0
+          }
+        }
+      ],
+      "verdict": "software-raster; GPU acceptance deferred"
+    },
+    {
+      "district": "Tempelhof",
+      "buildMs": {
+        "off": 97.10000000009313,
+        "on": 219.60000000009313
+      },
+      "medianOffMs": 23.17600000000326,
+      "medianOnMs": 24.932000000001864,
+      "medianPairedPct": 5.75176589302917,
+      "samples": [
+        {
+          "on": {
+            "meanMs": 25.151999999999536,
+            "slowPct": 12,
+            "maximumMs": 199.60000000009313,
+            "canvasAllocations": 0
+          },
+          "off": {
+            "meanMs": 23.7840000000014,
+            "slowPct": 10,
+            "maximumMs": 221.5,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 22.786999999999534,
+            "slowPct": 10,
+            "maximumMs": 209.80000000004657,
+            "canvasAllocations": 0
+          },
+          "on": {
+            "meanMs": 23.99,
+            "slowPct": 11,
+            "maximumMs": 213.60000000009313,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 24.985999999998604,
+            "slowPct": 11,
+            "maximumMs": 231.60000000009313,
+            "canvasAllocations": 0
+          },
+          "off": {
+            "meanMs": 23.17600000000326,
+            "slowPct": 10,
+            "maximumMs": 219.89999999990687,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 23.085,
+            "slowPct": 10,
+            "maximumMs": 213.0999999998603,
+            "canvasAllocations": 0
+          },
+          "on": {
+            "meanMs": 23.825,
+            "slowPct": 11,
+            "maximumMs": 212.0999999998603,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 26.27399999999907,
+            "slowPct": 11,
+            "maximumMs": 253.9000000001397,
+            "canvasAllocations": 0
+          },
+          "off": {
+            "meanMs": 24.628000000000466,
+            "slowPct": 10,
+            "maximumMs": 243.70000000018626,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 23.045999999998603,
+            "slowPct": 10,
+            "maximumMs": 240.0999999998603,
+            "canvasAllocations": 0
+          },
+          "on": {
+            "meanMs": 24.932000000001864,
+            "slowPct": 11,
+            "maximumMs": 229.19999999995343,
+            "canvasAllocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 23.95,
+            "slowPct": 11,
+            "maximumMs": 211.5,
+            "canvasAllocations": 0
+          },
+          "off": {
+            "meanMs": 24.038999999999067,
+            "slowPct": 10,
+            "maximumMs": 219.89999999990687,
+            "canvasAllocations": 0
+          }
+        }
+      ],
+      "verdict": "software-raster; GPU acceptance deferred"
+    }
+  ],
+  "version": "0.88",
+  "assets": {
+    "global": {
+      "decodedBytes": 15728640,
+      "canvasBytes": 15606000,
+      "ready": 15,
+      "total": 15
+    },
+    "pickups": 16
+  },
+  "gpu": {
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "software": true
+  },
+  "gallery": [
+    {
+      "key": "doener",
+      "loaded": true
+    },
+    {
+      "key": "bandage",
+      "loaded": true
+    },
+    {
+      "key": "bottle",
+      "loaded": true
+    },
+    {
+      "key": "scrap",
+      "loaded": true
+    },
+    {
+      "key": "stoff",
+      "loaded": true
+    },
+    {
+      "key": "metall",
+      "loaded": true
+    },
+    {
+      "key": "chemie",
+      "loaded": true
+    },
+    {
+      "key": "kabel",
+      "loaded": true
+    },
+    {
+      "key": "fleisch",
+      "loaded": true
+    },
+    {
+      "key": "gemuese",
+      "loaded": true
+    },
+    {
+      "key": "gewuerz",
+      "loaded": true
+    },
+    {
+      "key": "bag-common",
+      "loaded": true
+    },
+    {
+      "key": "bag-magic",
+      "loaded": true
+    },
+    {
+      "key": "bag-rare",
+      "loaded": true
+    },
+    {
+      "key": "bag-legendary",
+      "loaded": true
+    },
+    {
+      "key": "bag-set",
+      "loaded": true
+    }
+  ],
+  "fallback": {
+    "ready": 14,
+    "missing": true
+  },
+  "offline": {
+    "version": "0.88",
+    "global": 15,
+    "pickups": 16
+  },
+  "hashes": {
+    "js/global-assets.js": "4f09069b25646c0be65e39acaa7d4dcdfd5d89472f0d06efa3ef076dce314999",
+    "js/pickup-art.js": "5f368e64172241aa5de46ede0c4b55114ff0cb5400de9e1ef26cdeff3a017c7b",
+    "js/world.js": "ab3658407ca70c3b578332de725914ca077608d2e9f4f7c5b68d52f89b3d96f4",
+    "js/render.js": "0a18f3223fb0e25e253b2c8b178f3e64dadd68cd46d82a12ba90690990d7873f",
+    "assets/manifest.json": "a7802096967844af2f60d3c956db9b5d77f1a93378daad9558959a2f79d84af6"
+  },
+  "status": "passed",
+  "finished": "2026-11-13T13:41:42.717Z",
+  "measuredAssetHashes": {
+    "assets/props/pickup-bag-set.webp": "42300bf5372deb65f78cd8a0580648d318750bbc780e1cacc211e9d18006c7cb",
+    "assets/props/pickup-chemie.webp": "d8bf706481a0544fb1f3b13718ac6cda2fc6b4802898c7745abc858d020a971d",
+    "assets/props/pickup-kabel.webp": "4e55e5168b1659900da06f694e85ee0ca0cbbf7eb00f30516bfdb63a8a434fe5",
+    "assets/props/pickup-bag-legendary.webp": "2a8f06f914798f5e7e0e7e4d0e44bd9d4c9095e01509f9b487e0f03c03c55b20",
+    "assets/props/pickup-metall.webp": "9892352ed10c08db2d8431b98ee8be370c9366f3c8978bee18298dd6cbe31ee2",
+    "assets/props/pickup-gewuerz.webp": "ec0f2d2f20c9a5f6402d46533e7adeac0f7b024674aac9dfc556bf176dde64f5",
+    "assets/props/pickup-scrap.webp": "5f28d0480ef1d27d3922dfdd714dcdb1bc4d56ba176c401b67117d3aca5d0d6a",
+    "assets/props/pickup-fleisch.webp": "c8d0bd92966aefe8c3034bb8cfdfc31d29e5d4b1a375b686f34011b55b74e763",
+    "assets/props/pickup-bag-rare.webp": "ef462d335dd8f5e9fdd94d5ba570898b71bcb8cf46356d7ec8fb0b271ebd1163",
+    "assets/props/pickup-stoff.webp": "43f1e704b4d12f85b5acdebfd7f72bc37f4b50f459841146222b8064fe4482fe",
+    "assets/props/pickup-bag-common.webp": "67a1009b524cfee5b26d0c306fc5b3844794ab6b8187aca2c8b01896364f1b55",
+    "assets/props/pickup-gemuese.webp": "cf1baff76b27ca596dc642c1d67e03f20ab100e03f4b4afbd7c179d4cd497cbc",
+    "assets/props/pickup-doener.webp": "76de194daefcca2164211427f689d2f4faa1c4a3771a56dd66f0e6b0c3d3f115",
+    "assets/props/pickup-bag-magic.webp": "fdd05bfc545d1d8c00bbfc14cde0bc7249a5ae20d69f90145cc42ba9df1ce9f0",
+    "assets/props/pickup-bottle.webp": "b6f93ba7e3ea5db1e81fd92df560b48a5510dacc81771612a6b1615d6c59d79a",
+    "assets/props/pickup-bandage.webp": "4057ab6505ae6fa16312586983610ff134f9838b373a8f0fcc2ddc618198e6cc",
+    "assets/props/ground-grass.webp": "479ca00c804360f4b82ebde97ad6de1aaa6da2284f43c6ed40fe1d3614a66b4b",
+    "assets/props/ground-plaza.webp": "fb7124bd10a98f40c36664c139052d9134222a6ff237b98944bcd068c1a59a05",
+    "assets/props/ground-sand.webp": "ead3c630edcfc646bca28ce3cf4c04d18bf2b6fdfb23d0ff53b35f7e500dd9a2",
+    "assets/props/ground-concrete.webp": "c285076f66c150fbdba237af4a7e35810afafd365f54e711eaa5f71ef3aae01f",
+    "assets/props/ground-ballast.webp": "376ab57bbefdc4596e9b60a60775e91d8b3de26c3d2da3c5b8ff52f66b080850",
+    "assets/props/ground-pavement.webp": "ccd74b59d8425a86a7ef369d9415218061d752b0c2bd716ad04683684885489b",
+    "assets/props/ground-dirt.webp": "ebf80f3a25c24d9d8e67a4c26d22a38d228a1a45d3b0faf313c26cbe270bb399",
+    "assets/props/ground-asphalt.webp": "93189064bd07c1a9c6db0619d5f95267d3f6eb2a937ecc3c5d14a14ef463dfdf",
+    "assets/props/ground-cobble.webp": "ce739631e294fe2f2b05bd372c1a8836db203fb01920287d8bafebc22fd55d9b",
+    "assets/buildings/shared-wood.webp": "dc170a100729a74b5da65c3e167f5392844a643f06569ace1272432ca1beadaf",
+    "assets/buildings/shared-brick.webp": "e86d67ddb25b19bf38a67de5fc21ad308a224d4521118dfd5353ff47346f1063",
+    "assets/buildings/shared-terracotta.webp": "4604d18e1395ce8c6a027505e5666576dcc7e8e0ab3686f321cc5e66ed1960c7",
+    "assets/buildings/shared-glass.webp": "6edee88ab4327d9ed61bfb5bf1cb590f052412949e26a89415473206364657ef",
+    "assets/buildings/shared-slate.webp": "107b26eb33989b2c1fde807af1f466777d52890a503ea5ec3b616159e0c5ee12",
+    "assets/buildings/shared-plaster.webp": "e67f7bfa5a82cef5ea0ffce631ff3de1541d81b6226a607d29bd296b53edd314"
+  }
+}
