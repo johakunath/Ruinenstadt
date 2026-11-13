@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-13",
+  "batch": "three final selected-direction refinements",
+  "validation_runs": 1,
+  "result": "pass",
+  "checks": [
+    "three unique portrait PNGs fully decode",
+    "source/raw/canonical byte equality",
+    "exact prompts and reference files present",
+    "gallery and final README links exist",
+    "no runtime files changed",
+    "git diff --check"
+  ],
+  "boards": [
+    {
+      "id": "tempelhof-final",
+      "raw": "assets/raw/codex/16-district-design-boards/finals/tempelhof-final.png",
+      "canonical": "docs/style/tempelhof.png",
+      "width": 1024,
+      "height": 1536,
+      "encoded_bytes": 4097312,
+      "unique_rgba_decoded_bytes": 6291456,
+      "sha256": "0a975f1ae09feda803215093a90480bbeb8bb1c59d2c3410dadae11afd17adf1",
+      "original_and_canonical_match": true,
+      "visual_review": "three buildings; three ordinary enemy types plus separate boss; set front/back; legendary weapon; no visible BVG branding/transit livery"
+    },
+    {
+      "id": "wedding-final",
+      "raw": "assets/raw/codex/16-district-design-boards/finals/wedding-final.png",
+      "canonical": "docs/style/wedding.png",
+      "width": 1024,
+      "height": 1536,
+      "encoded_bytes": 4157264,
+      "unique_rgba_decoded_bytes": 6291456,
+      "sha256": "0565f0a40d9a8aeb2cf9188054afdb74822b9f71b473a7544c9e43e52de24dfd",
+      "original_and_canonical_match": true,
+      "visual_review": "three buildings; three ordinary enemy types plus separate boss; set front/back; legendary weapon; no visible BVG branding/transit livery"
+    },
+    {
+      "id": "charlottenburg-final",
+      "raw": "assets/raw/codex/16-district-design-boards/finals/charlottenburg-final.png",
+      "canonical": "docs/style/charlottenburg.png",
+      "width": 1024,
+      "height": 1536,
+      "encoded_bytes": 3991109,
+      "unique_rgba_decoded_bytes": 6291456,
+      "sha256": "88b2c32781d27d4435cb277d563552ba62f5ffc1f6a4251a5f9d1f0ed2ef564c",
+      "original_and_canonical_match": true,
+      "visual_review": "three buildings; three ordinary enemy types plus separate boss; set front/back; legendary weapon; no visible BVG branding/transit livery"
+    }
+  ],
+  "total_unique_encoded_bytes": 12245685,
+  "total_unique_rgba_decoded_bytes": 18874368,
+  "canonical_copies_are_duplicates": true,
+  "runtime_added_decoded_bytes": 0,
+  "runtime_memory_budget_bytes": 40000000,
+  "frame_ms": null,
+  "regression_percent": null,
+  "regression_budget_percent": 5,
+  "slow_frame_over_50ms_percent": null,
+  "longest_frame_ms": null,
+  "timing_status": "not measured/not applicable: documentation references outside runtime manifest and service-worker shell"
+}

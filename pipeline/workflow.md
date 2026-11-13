@@ -21,6 +21,42 @@ Tasks are written so they can be followed step by step: concrete files, function
 
 ## Current queue (Johannes, 2026-11-10)
 
+### Superseding direction (Johannes, 2026-11-13)
+
+1. **Now:** task `16-district-design-boards.md`: the nine exploration boards
+   are complete. Johannes selected Tempelhof B (scarier wind/airplane cult,
+   less zombie/technology), Wedding C (gold banquet/sultan/carpet/lamp fantasy,
+   label “kommt bald”) and Charlottenburg A+C (silver/diamond/glass revue).
+   Expand into three final boards: buildings, at least three ordinary enemy
+   types plus separate legendary boss, full outfit set and legendary weapon.
+   No BVG branding, transit livery or transit-costume motifs on these boards.
+   Wedding neighbours remain allies, enchanted banquet beings are adversaries.
+   No district implementation or runtime art is implied by producing a board.
+2. **Next session:** global pickup icons first, including Döner, healing,
+   scrap, all crafting materials/ingredients and equipment drops. Preserve
+   code glow/rarity glow. Reuse already painted equipment icons as small
+   readable ground drops; paint gaps that currently have only SVG art.
+   Slightly larger than today's drops is welcome, but choose sizes from a
+   game-scale comparison rather than applying a blanket 64 px size.
+3. Then audit and complete **all Köpenick/global building coverage**, including
+   missing hooks for existing art. This painted foundation is also the fallback
+   for areas without their own assets. Monsters are not in this batch.
+4. Production asset batch: open PR, obtain Codex review, then deploy after
+   review/checks and applicable findings are handled. The current board batch
+   is for design selection, not automatic approval of any A/B/C identity.
+
+This supersedes older queue/source decisions for the named families. Codex
+focuses on actual image generation, cutting/normalization, manifest and basic
+hookup. **Maximum one test/measurement run per batch**: document decoded source
+and cache memory against 40 MB, frame milliseconds and regression against 5%,
+the share of frames over 50 ms (`sp`) and longest frame (`mx`) when available,
+and any unavailable measurements honestly. Do not repeat runs or optimize to
+make numbers pass; hand results to Claude for deeper integration, optimization
+and detailed testing. Concept boards are not runtime textures: no game perf
+run, cache/version bump or SHELL entry is needed for them. Use the image tool
+for painting; routine metadata work should stay small. Delegate only useful
+bounded work; no worker is needed merely to wait for generation.
+
 This user-authorized order supersedes older queue/order notes below and in task
 headers: (1) Köpenick building kit (`02-buildings-koepenick.md`; GDR method A is
 already selected), (2) ten legendary/set icons (`12-legendaries-and-sets.md`,
@@ -55,6 +91,11 @@ Painted (Codex, this pipeline) only where it pays off most: things that move and
 | Environment: props, ground, nature, camp stations and dressing, decals | SVG / canvas code | `js/camp-art.js`, `js/glyphs.js` pattern |
 | Buildings of new districts (Wedding, Tempelhof, Charlottenburg) | SVG / canvas textures on the iso faces | The painted Köpenick and GDR kits stay; repaint only if a district looks clearly worse |
 | Landmarks (Fernsehturm, Schloss, Hangar) | Decide per landmark | Painted if it is a one-off hero image, SVG if it is modular |
+
+2026-11-13 override: paint missing SVG-only equipment/pickup art and complete
+the Köpenick/global painted building foundation next session. Reuse existing
+painted equipment icons instead of regenerating them. Other source-family
+decisions remain in force; new district directions await board selection.
 
 Why: at draw time both end up as cached bitmaps, so the GPU cost per frame is the same for the same pixel area (`drawImage` of a canvas or a decoded WebP). The real costs are pixels drawn per frame, draw calls and live path drawing. SVG wins on iteration speed (Claude can make and change it in the same session, Codex is the bottleneck), download size, crispness at any DPR and recolouring per district or era. Painted wins on organic, textured, animated figures.
 
@@ -95,6 +136,14 @@ design selection, not merge authorization or technical acceptance checks.
 | Commits | One task per PR. Raw generations may be committed under `assets/raw/codex/` |
 
 ## Testing (required before a PR)
+
+**2026-11-13 ownership override:** the full production matrix below is Claude's
+integration/acceptance work. Codex performs at most one relevant run, records
+results and limitations, and opens the asset PR for handoff. Do not interpret
+the older workflow/definition-of-done wording as requiring Codex to repeat
+the matrix, tune performance or obtain hardware measurements unavailable in
+the current environment. Documentation-only direction boards get one file
+validation pass and no game performance claim.
 
 | Check | How |
 |---|---|
