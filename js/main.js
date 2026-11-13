@@ -1,5 +1,5 @@
 /* ================= boot ================= */
-Promise.all([globalAssetReady,koepSpecialReady,xhainAssetReady]).then(()=>{
+Promise.all([globalAssetReady,koepSpecialReady,xhainAssetReady,alexAssetReady]).then(()=>{
 load();histSync();resize();heroPre();
 fillJobs();S.dist=Math.min(S.dist,S.unlocked-1);buildWorld(DIST[S.dist]);newPlayer();ST=stats();P.hp=ST.maxHp;renderMenu();requestAnimationFrame(loop);
 setTimeout(initCloud,0);initSync();

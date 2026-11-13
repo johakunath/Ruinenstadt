@@ -58,3 +58,11 @@ proof; this asset batch does not move buildings.
 Proof: `pipeline/proof/23-xhain-completion/`; production sources/cuts and
 64px comparison: `assets/raw/codex/22-xhain-completion/`. Next map after review
 and merge is Alexanderplatz; its custom paths above remain open.
+
+## Alexanderplatz environment — v0.96
+
+Fifteen new paintings supply Rathaus brick, limestone, bronze Palast glass, blue curtain glass, Kino relief, greenhouse glass, station ceramics, copper, plaza stone, viaduct brick, reflected water and Pioneer awnings, plus upright Fernsehturm, Weltzeituhr and Neptunbrunnen. Custom named buildings, glass vaults/domes, station parapets and viaduct parts have explicit hooks. Existing Zuckerbäcker/ordinary-building kits remain. Plaza, tower forecourt, station forecourts, bridge decks, Spree/Kupfergraben and fountain basins receive their surfaces at construction time.
+
+This is asset delivery/basic integration, not unlimited cache coverage: the 40 MB task cap deliberately leaves overflow on the original renderer. Seed 231113 has 169 eligible parts; 55 projected parts fit at ordinary zoom and 16 at 2× after clipping-bound corrections. Prioritize named architecture before repetitive viaduct parts. More efficient caches/visible-part scheduling and detailed hardware acceptance belong to Claude. Trees, sunflowers, nature and independently animated water artwork remain separate; the existing procedural water ripples are brighter/thicker in this district. No new map objects, collision or missions.
+
+Sources: `assets/raw/codex/22-alexanderplatz-completion/`. Proof: `pipeline/proof/24-alexanderplatz-completion/`. Johannes explicitly sets Potsdamer Platz/Mitte next after this PR merges.

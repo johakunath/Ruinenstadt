@@ -27,3 +27,5 @@
 - Köpenick v0.94: custom surface/Rathaus/station/bridge/water art is integrated; next district is Xhain. `js/koep-special.js` owns the new projected caches, cleared by world/base/tunnel constructors. Decorative `ksBridge` bounds are excluded from hidden-blessing placement. Nature remains task 04; hardware optimization/acceptance remains with Claude.
 
 - Xhain v0.95 asset batch: painted custom architecture/surfaces in `js/xhain-assets.js`; original geometry and light apertures retained. Scheduled projected caches share a 40 MB task cap; overflow retains canvas fallback. Map/base/tunnel resets release caches. See task 18 and `pipeline/proof/23-xhain-completion/` for the bounded handoff; Claude owns optimization and hardware acceptance.
+
+- Alexanderplatz v0.96: fifteen new painted environment assets and dedicated custom-building/landmark hooks in `js/alex-assets.js`; named architecture first, original fallback on 40 MB cache overflow. Departed caches are released by world/base/tunnel constructors. User explicitly orders review/merge, then Potsdamer Platz/Mitte immediately. Claude owns deeper cache optimization and hardware acceptance.

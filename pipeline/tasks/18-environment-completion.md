@@ -27,4 +27,4 @@ Audit the existing Oberbaumbrücke arcade/towers, Berghain, Ostbahnhof, East Sid
 
 Xhain proof: `pipeline/proof/23-xhain-completion/`. All twelve sources load; geometry/RNG, fallback and cache release pass. The 40 MB cap retains fallback on overflow (133/152 parts cached at normal proof scale; 77/152 at 2×). This is basic integration, not full painted coverage at every zoom or hardware acceptance. Review/merge this map batch before proceeding to Alexanderplatz.
 
-Alexanderplatz: in progress (Codex, 2026-11-13). User explicitly requests Alexanderplatz review/merge, then Potsdamer Platz/Mitte immediately. This overrides the older district order.
+Alexanderplatz: implemented v0.96 (Codex, 2026-11-13), review/merge pending. Cache overflow and hardware optimization explicitly remain Claude follow-ups. User explicitly requests Alexanderplatz review/merge, then Potsdamer Platz/Mitte immediately. This overrides the older district order.
