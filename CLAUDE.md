@@ -13,3 +13,5 @@
 - Smoke test: serve with `python3 -m http.server`, load in Playwright, start a run, check for page errors.
 
 - Small cosmetic asset tweaks: quick visual check; reuse existing validation when behavior, collision, cache dimensions and warm rendering cost are unchanged. Do not rerun full suites/GPU gates for every appearance change (Johannes, 2026-11-11; `pipeline/workflow.md`).
+
+- Asset continuation (Johannes, 2026-11-13): pickups/loot bags, then painted global ground and remaining shared building materials (overrides older SVG-only rule for these families). Basic integration plus one visual/smoke and performance pass; Claude handles optimization and final acceptance later. Bosses already merged in PR #40; acceptance/review are tracked follow-ups in BACKLOG.md.

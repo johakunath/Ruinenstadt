@@ -38,7 +38,9 @@ function drawBox(b){const x=b.x,y=b.y,w=b.w,h=b.h,s=b.spr,vs=b.vs||1,FH=b.FH||b.
 function gableRoof(b,Hs){const{x,y,w,h}=b,G_=b.gable,o=4,rc=b.rc||'#6a3a2a',ym=y+h/2,Z=Hs+G_;faceS(x,y,w,h,0,Hs,0,INK);faceE(x,y,w,h,0,Hs,0,INK);
   const tri=[P3(x+w,y,Hs),P3(x+w,y+h,Hs),P3(x+w,ym,Z)];poly(tri,b.wc||'#b8a888');poly(tri,'rgba(8,5,4,.42)',INK);
   poly([P3(x-o,y-o,Hs-2),P3(x+w+o,y-o,Hs-2),P3(x+w+o,ym,Z),P3(x-o,ym,Z)],dark(rc,.8),INK);
+  if(b.sharedRoof&&globalRoofFace(ctx,P3(x-o,y-o,Hs-2),P3(x+w+o,y-o,Hs-2),P3(x-o,ym,Z),w+o*2,h/2+o,b.sharedRoof))poly([P3(x-o,y-o,Hs-2),P3(x+w+o,y-o,Hs-2),P3(x+w+o,ym,Z),P3(x-o,ym,Z)],'rgba(0,0,0,.2)',INK);
   poly([P3(x-o,ym,Z),P3(x+w+o,ym,Z),P3(x+w+o,y+h+o,Hs-2),P3(x-o,y+h+o,Hs-2)],rc,INK);
+  if(b.sharedRoof&&globalRoofFace(ctx,P3(x-o,ym,Z),P3(x+w+o,ym,Z),P3(x-o,y+h+o,Hs-2),w+o*2,h/2+o,b.sharedRoof))poly([P3(x-o,ym,Z),P3(x+w+o,ym,Z),P3(x+w+o,y+h+o,Hs-2),P3(x-o,y+h+o,Hs-2)],0,INK);
   ctx.strokeStyle='rgba(0,0,0,.22)';ctx.lineWidth=1;for(let f=.2;f<1;f+=.2){const a=P3(x-o,ym+(h/2+o)*f,Z-(G_+2)*f),c=P3(x+w+o,ym+(h/2+o)*f,Z-(G_+2)*f);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(c[0],c[1]);ctx.stroke();}
   const r0=P3(x-o,ym,Z),r1=P3(x+w+o,ym,Z);ctx.strokeStyle='rgba(255,230,200,.18)';ctx.beginPath();ctx.moveTo(r0[0],r0[1]);ctx.lineTo(r1[0],r1[1]);ctx.stroke();
   if(b.w>140&&!b.chim)b.chim=R(.15,.85);if(b.chim){const cx=x+w*b.chim;ibox(cx,ym-14,10,10,Z-G_*.5,Z+10,'#5a3a2e',INK);}}

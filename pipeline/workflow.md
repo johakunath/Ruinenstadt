@@ -2,6 +2,22 @@
 
 How the painted in-world art is made, plugged in and handed over. Index for everything is `CLAUDE.md`; this file is one of its topics. Related: `contract.md` (renderer contract and hitbox rules), `tasks/` (work packages, take the first `open` one), `log.md` (handover log, append only), `history.md` (old prompts, context only). Before visual work also read `docs/style-bible.md` and the boards in `docs/style/`.
 
+## Active direction (Johannes, 2026-11-13)
+
+Bosses are already merged in v0.87 (PR #40). Performance acceptance and final
+review with Claude are explicit deferred items at the top of `BACKLOG.md`, not
+preconditions for integrating the next assets. Older queue notes below are history.
+
+Next: (1) painted pickups and rarity-specific loot bags (`tasks/15-pickups.md`),
+(2) painted global ground materials (`tasks/10-ground.md`), (3) remaining shared
+building materials, starting with Köpenick's houses and garden sheds. The newer
+instruction overrides the code-native source rule for these ground/building
+families. Existing painted kits remain. Keep geometry and gameplay intact.
+Codex creates the assets and basic hookup, runs one visual/smoke workflow and
+one recorded performance comparison, then hands optimization, detailed testing
+and final acceptance to Claude. No repeated performance runs to chase a pass.
+Tempelhof death investigation and cloud-save age UI run in parallel. v0.88 delivers the first pickup/shared-material kit; see `proof/15-pickups-shared/README.md`. Unique landmarks and nature remain open.
+
 ## Roles
 
 | Who | Does | Does not |

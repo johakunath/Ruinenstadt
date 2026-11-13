@@ -52,16 +52,16 @@ function drawTrain(b){const{x,y,w,h}=b,H=b.TH||46,z=v=>v*H/46;faceT(x+5,y+5,w,h,
 const tLine=(g,o,x0,x1,st)=>{g.beginPath();for(let x=x0;x<=x1;x+=st){const p=at(x,o);x===x0?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}g.stroke();};
 function tunGround(){const g=gx;g.fillStyle='#0b0a09';g.fillRect(0,0,TW,TH);for(let i=0;i<14000;i++){g.fillStyle=pick(['rgba(255,240,220,.03)','rgba(0,0,0,.4)']);const s=R(2,6);g.fillRect(R(0,TW),R(0,TH),s,s);}
   // track bed and platforms
-  g.beginPath();for(let x=TX0;x<=TX1;x+=40){const p=at(x,-hwAt(x));x===TX0?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}for(let x=TX1;x>=TX0;x-=40){const p=at(x,hwAt(x));g.lineTo(p[0],p[1]);}g.closePath();g.fillStyle='#3e3d38';g.fill();
-  g.beginPath();for(let x=TX0;x<=TX1;x+=40){const p=at(x,-THW);x===TX0?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}for(let x=TX1;x>=TX0;x-=40){const p=at(x,THW);g.lineTo(p[0],p[1]);}g.closePath();g.fillStyle='#1d1a17';g.fill();
-  for(let x=TX0;x<TX1;x+=40){const h=hwAt(x);if(h<=THW+20)continue;for(const sd of [-1,1])for(let o=THW+20;o<h-10;o+=40){const p=at(x,sd*(o+20));g.fillStyle=pick(['#46453f','#3a3934','#42413b','#4a4842']);g.fillRect(p[0]-19,p[1]-19,38,38);}}
+  g.beginPath();for(let x=TX0;x<=TX1;x+=40){const p=at(x,-hwAt(x));x===TX0?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}for(let x=TX1;x>=TX0;x-=40){const p=at(x,hwAt(x));g.lineTo(p[0],p[1]);}g.closePath();g.fillStyle=globalGroundPattern(g,'concrete')||'#3e3d38';g.fill();
+  g.beginPath();for(let x=TX0;x<=TX1;x+=40){const p=at(x,-THW);x===TX0?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}for(let x=TX1;x>=TX0;x-=40){const p=at(x,THW);g.lineTo(p[0],p[1]);}g.closePath();g.fillStyle=globalGroundPattern(g,'ballast')||'#1d1a17';g.fill();
+  for(let x=TX0;x<TX1;x+=40){const h=hwAt(x);if(h<=THW+20)continue;for(const sd of [-1,1])for(let o=THW+20;o<h-10;o+=40){const p=at(x,sd*(o+20)),tc=pick(['#46453f','#3a3934','#42413b','#4a4842']);g.fillStyle=globalGroundPattern(g,'concrete')||tc;g.fillRect(p[0]-19,p[1]-19,38,38);}}
   g.lineWidth=14;for(const s of TST)for(const sd of [-1,1]){g.strokeStyle='#ed9e25';g.setLineDash([]);tLine(g,sd*(THW+8),s[0]+60,s[1]-60,40);g.strokeStyle='rgba(0,0,0,.35)';g.setLineDash([8,20]);tLine(g,sd*(THW+8),s[0]+60,s[1]-60,40);}g.setLineDash([]);
   for(let i=0;i<16000;i++){const x=R(TX0,TX1),p=at(x,R(-THW,THW));g.fillStyle=pick(['#26221e','#16130f','#2c2722']);g.fillRect(p[0],p[1],R(3,8),R(3,6));}
   // sleepers across, then rails (gauge 72), two tracks 300 apart
   for(const o of [-150,150]){g.strokeStyle='#2e2219';g.lineWidth=16;for(let x=TX0+20;x<TX1;x+=46){const p=at(x,o-62),q=at(x,o+62);g.beginPath();g.moveTo(p[0],p[1]);g.lineTo(q[0],q[1]);g.stroke();}
     for(const r of [-36,36]){g.strokeStyle='#6a6258';g.lineWidth=6;tLine(g,o+r,TX0,TX1,40);g.strokeStyle='rgba(255,240,220,.14)';g.lineWidth=2;tLine(g,o+r-2,TX0,TX1,40);}}
   // side room, maintenance bypass, water, rubble, blotches
-  g.fillStyle='#34302a';g.fillRect(...ROOM);g.fillStyle='#2b2926';for(let x=BYP[0];x<BYP[1];x+=40){const y=cy(x)+THW-60;g.fillRect(x,y,42,230);}
+  g.fillStyle=globalGroundPattern(g,'concrete')||'#34302a';g.fillRect(...ROOM);g.fillStyle=globalGroundPattern(g,'concrete')||'#2b2926';for(let x=BYP[0];x<BYP[1];x+=40){const y=cy(x)+THW-60;g.fillRect(x,y,42,230);}
   g.strokeStyle='rgba(0,0,0,.4)';g.lineWidth=2;for(let i=0;i<60;i++){let a=R(ROOM[0],ROOM[0]+ROOM[2]),b=R(ROOM[1],ROOM[1]+ROOM[3]);g.beginPath();g.moveTo(a,b);for(let j=0;j<3;j++){a+=R(-20,20);b+=R(-20,20);g.lineTo(a,b);}g.stroke();}
   g.beginPath();for(let x=FLOOD[0];x<=FLOOD[1];x+=40){const p=at(x,-THW);x===FLOOD[0]?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}for(let x=FLOOD[1];x>=FLOOD[0];x-=40){const p=at(x,THW);g.lineTo(p[0],p[1]);}g.closePath();g.fillStyle='rgba(30,58,68,.84)';g.fill();
   g.strokeStyle='rgba(140,190,200,.2)';g.lineWidth=3;for(let i=0;i<200;i++){const x=R(FLOOD[0],FLOOD[1]-60),p=at(x,R(-THW+20,THW-20));g.beginPath();g.moveTo(p[0],p[1]);g.quadraticCurveTo(p[0]+20,p[1]-6,p[0]+R(30,70),p[1]);g.stroke();}

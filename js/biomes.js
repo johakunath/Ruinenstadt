@@ -11,7 +11,7 @@ const BIOME=[
 const LOTN={hochhaus:'Hochhäuser',buero:'Bürotürme',efh:'Einfamilienhäuser',reihen:'Reihenhäuser',park:'Park',forest:'Wald',kleingarten:'Kleingärten',market:'Markt',plattenbau:'Plattenbau',hinterhof:'Hinterhof',ruins:'Trümmerfeld',construction:'Baustelle',parking:'Parkplatz',water:'See',airfield:'Rollfeld',houses:'Altbau'};
 const BGAP=48;// min gap between buildings in a lot (v0.41: was 24)
 const inB=(b,m)=>({x:R(b.x0+m,b.x1-m),y:R(b.y0+m,b.y1-m)});
-function grassFill(b,pal,dens){const g=gx;g.fillStyle=pal[0];g.fillRect(b.x0+6,b.y0+6,b.w-12,b.h-12);
+function grassFill(b,pal,dens){const g=gx;g.fillStyle=pal[0];g.fillRect(b.x0+6,b.y0+6,b.w-12,b.h-12);globalPaintRect(g,'props/ground-'+(b.lot==='airfield'?'sand':'grass'),b.x0+6,b.y0+6,b.w-12,b.h-12,.85);
   for(let i=0;i<b.w*b.h/260*(dens||1);i++){g.fillStyle=pick(pal);g.globalAlpha=R(.4,.9);g.fillRect(R(b.x0+6,b.x1-8),R(b.y0+6,b.y1-8),R(2,7),R(2,5));}g.globalAlpha=1;
   g.strokeStyle='rgba(120,150,70,.18)';g.lineWidth=1;for(let i=0;i<b.w*b.h/900;i++){const x=R(b.x0+8,b.x1-8),y=R(b.y0+8,b.y1-8);g.beginPath();g.moveTo(x,y);g.lineTo(x+R(-2,2),y-R(3,7));g.stroke();}}
 function lotGround(b){const g=gx,B=BIOME[D.i];
@@ -25,7 +25,7 @@ function lotGround(b){const g=gx,B=BIOME[D.i];
   else if(b.lot==='plattenbau'){g.fillStyle='#2b2723';g.fillRect(b.x0+8,b.y0+8,b.w-16,b.h-16);g.strokeStyle='rgba(0,0,0,.25)';g.lineWidth=1;for(let x=b.x0+8;x<b.x1-8;x+=40){g.beginPath();g.moveTo(x,b.y0+8);g.lineTo(x,b.y1-8);g.stroke();}for(let y=b.y0+8;y<b.y1-8;y+=40){g.beginPath();g.moveTo(b.x0+8,y);g.lineTo(b.x1-8,y);g.stroke();}}
   else if(b.lot==='ruins'){for(let i=0;i<b.w*b.h/120;i++){g.fillStyle=pick(['#3a2e25','#4a3a2e','#2a211b','#55443a','rgba(0,0,0,.25)']);g.fillRect(R(b.x0+8,b.x1-10),R(b.y0+8,b.y1-10),R(2,8),R(2,6));}}
   else if(b.lot==='hochhaus'||b.lot==='buero'){g.fillStyle='#2e2b28';g.fillRect(b.x0+8,b.y0+8,b.w-16,b.h-16);g.strokeStyle='rgba(255,240,220,.05)';g.lineWidth=1;for(let x=b.x0+8;x<b.x1-8;x+=30){g.beginPath();g.moveTo(x,b.y0+8);g.lineTo(x,b.y1-8);g.stroke();}for(let y=b.y0+8;y<b.y1-8;y+=30){g.beginPath();g.moveTo(b.x0+8,y);g.lineTo(b.x1-8,y);g.stroke();}}
-  else if(b.lot==='hinterhof'){g.fillStyle='#2e2620';g.fillRect(b.x0+8,b.y0+8,b.w-16,b.h-16);}}
+  else if(b.lot==='hinterhof'){g.fillStyle='#2e2620';g.fillRect(b.x0+8,b.y0+8,b.w-16,b.h-16);}globalLotGround(g,b);}
 function lotFill(b){if(b.center)return;const f=LOTS[b.lot];if(f)f(b);}// v0.57: no generic lot-type labels (Hinterhof, Bürotürme ...): the map should feel empty, only real places are named
 function tryB(x,y,w,h,H,st,force){const gb=st==='efh'?R(.55,.7)*h:st==='reihen'?R(.45,.55)*h:0;H+=gb*.5;const T=D.geo?20:H;// geo maps check the footprint only (iso facades rise on screen, not into the street north of the house)
   if(w<30||h<20||resHit(x,y-T,w,h+T)||!force&&blds.some(o=>o.h>0&&!o.fe&&x<o.x+o.w+BGAP&&x+w+BGAP>o.x&&y-T<o.y+o.h+BGAP&&y+h+BGAP>o.y-(D.geo?0:o.top)))return null;const bb={x,y,w,h,H:Math.round((H-gb*.5)*(st==='laube'?1.2:2)),top:H,R0:0,gable:gb};makeB(bb,st);blds.push(bb);walls.push(bb);return bb;}

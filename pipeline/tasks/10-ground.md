@@ -1,6 +1,6 @@
 # 10 Ground
 
-Status: open, low priority (after 09). Johannes: the ground looked good so far, but it should get painted at some point.
+Status: first shared painted material kit integrated (v0.88, 2026-11-13). New user order promotes this after pickups. Additional district variants, transition/marking and decal paintings below remain open; optimization and final acceptance belong to Claude.
 
 Do not repaint whole district maps. Ground is generated per district into one big canvas (`G`, `gx` in `js/world.js`, `biomes.js`, geo files), so the painted version has to be a **tile and decal kit**:
 
@@ -16,3 +16,12 @@ Method: a style canvas per district first (workflow step 3), then tiles. A mocku
 Hook: the ground canvas is built once per district, so the cost is at load, not per frame. Keep the generator as fallback. Budget: load time on the tablet under 1.5 s more per district, memory as in `workflow.md`.
 
 Test: Köpenick, Xhain, Alexanderplatz, Mitte, one tunnel; screenshots at 1x and 2x, `?debug=perf` before and after (frame time must not change, only load time).
+
+## Delivered first shared kit (v0.88)
+
+Nine generated material tiles: asphalt, cobble, pavement, earth/rubble, grass,
+sand, plaza stone, ballast and tunnel concrete. They paint the existing
+district/lot/road/tunnel ground canvases once at construction, retaining
+procedural details, road markings, rails, water and full fallback. This is
+one shared variant per material; the older three-variant/decal expansion is
+not claimed complete. Proof: `pipeline/proof/15-pickups-shared/`.

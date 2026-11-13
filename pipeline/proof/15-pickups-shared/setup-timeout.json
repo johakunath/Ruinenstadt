@@ -1,0 +1,9 @@
+{
+  "started": "2026-11-13T13:36:50.213Z",
+  "method": "One workflow: visual/smoke, fallback/offline, then 7 alternating on/off pairs, 30 warm + 100 timed full renders, seeded maps with 40 enemies and 80 pickups, 1280x800 DPR2. Software rendering does not establish the 5% GPU budget.",
+  "errors": [],
+  "scenes": [],
+  "status": "failed",
+  "failure": "page.waitForFunction: Timeout 30000ms exceeded.\n    at load (/workspace/Ruinenstadt/tools/proof_shared_materials.cjs:8:465)\n    at async /workspace/Ruinenstadt/tools/proof_shared_materials.cjs:12:10",
+  "finished": "2026-11-13T13:37:20.978Z"
+}
