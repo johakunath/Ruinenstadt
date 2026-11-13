@@ -272,3 +272,5 @@ base and tunnel constructors cancel jobs and clear departed canvas dimensions.
 Materials use face-local coordinates (manifest upright anchors are metadata).
 Water/forecourts/decks paint into the existing ground canvas; ripple visibility
 is increased within the existing animation loop. No new placement/RNG draws.
+
+Alexanderplatz environment v0.96: `axBox`/`axFace` add paintings only during scheduled `axBake` calls; regular draws use a scale-matching projected cache or the complete original implementation. Rotated station/viaduct parts retain `withRot`/`P3`. `axBillboard` preserves original foot anchors and visual height for three upright landmarks. No object/wall or RNG is added. Material sources plus derived canvases and projected caches share a 40,000,000-byte batch cap; overflow stays on fallback. Named structures precede repetitive viaduct parts. `axResetCache` cancels jobs and releases canvases on world/base/tunnel transitions.

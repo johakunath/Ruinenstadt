@@ -1,0 +1,359 @@
+{
+  "errors": [],
+  "scenes": [
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "rathaus",
+      "buildMs": 2209.0999999999767,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at R (http://127.0.0.1:8767/js/core.js:6:40)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:45:164)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 15,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:49:98)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 320823
+      },
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29634524,
+        "totalBytes": 39961988,
+        "cached": 55,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29663028,
+        "totalBytes": 39990492,
+        "cached": 16,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "dom",
+      "buildMs": 723.2000000000698,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29634524,
+        "totalBytes": 39961988,
+        "cached": 55,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29663028,
+        "totalBytes": 39990492,
+        "cached": 16,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "palast",
+      "buildMs": 668.1999999999534,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29634524,
+        "totalBytes": 39961988,
+        "cached": 55,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29663028,
+        "totalBytes": 39990492,
+        "cached": 16,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "teacher",
+      "buildMs": 647.0999999999767,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29634524,
+        "totalBytes": 39961988,
+        "cached": 55,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29663028,
+        "totalBytes": 39990492,
+        "cached": 16,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "station",
+      "buildMs": 669.0999999999767,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29634524,
+        "totalBytes": 39961988,
+        "cached": 55,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29663028,
+        "totalBytes": 39990492,
+        "cached": 16,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "rail",
+      "buildMs": 623.0999999999767,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29634524,
+        "totalBytes": 39961988,
+        "cached": 55,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29663028,
+        "totalBytes": 39990492,
+        "cached": 16,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "market",
+      "buildMs": 728.8999999999069,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29634524,
+        "totalBytes": 39961988,
+        "cached": 55,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29663028,
+        "totalBytes": 39990492,
+        "cached": 16,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "fernsehturm",
+      "buildMs": 671.4000000000233,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29634524,
+        "totalBytes": 39961988,
+        "cached": 55,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": null,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29663028,
+        "totalBytes": 39990492,
+        "cached": 16,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "weltzeit",
+      "buildMs": 629.2999999999302,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29634524,
+        "totalBytes": 39961988,
+        "cached": 55,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": null,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29663028,
+        "totalBytes": 39990492,
+        "cached": 16,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "neptun",
+      "buildMs": 636.9000000000233,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29634524,
+        "totalBytes": 39961988,
+        "cached": 55,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": null,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29663028,
+        "totalBytes": 39990492,
+        "cached": 16,
+        "limit": 40000000
+      }
+    }
+  ],
+  "measurements": [],
+  "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "gameplayUnchanged": true,
+  "departure": {
+    "base": {
+      "bytes": 0,
+      "released": true
+    },
+    "tunnel": {
+      "bytes": 0,
+      "released": true
+    }
+  },
+  "fallback": {
+    "district": "Alexanderplatz",
+    "version": "0.96",
+    "target": "rathaus",
+    "buildMs": 1120.5,
+    "nextRng": 0.11375770554877818,
+    "rngDuringWait": {
+      "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at R (http://127.0.0.1:8767/js/core.js:6:40)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:45:164)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 12,
+      "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:49:98)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 96522
+    },
+    "assets": {
+      "ready": 0,
+      "decodedBytes": 5198248,
+      "canvasBytes": 0,
+      "sourceBytes": 5198248,
+      "projectedCacheBytes": 0,
+      "totalBytes": 5198248,
+      "cached": 0,
+      "limit": 40000000
+    },
+    "eligible": 169,
+    "targetCached": false
+  },
+  "smoke": {
+    "state": "play",
+    "hp": 100,
+    "assets": {
+      "ready": 15,
+      "decodedBytes": 5198248,
+      "canvasBytes": 5129216,
+      "sourceBytes": 10327464,
+      "projectedCacheBytes": 29658224,
+      "totalBytes": 39985688,
+      "cached": 55,
+      "limit": 40000000
+    }
+  },
+  "status": "passed"
+}

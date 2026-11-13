@@ -132,9 +132,9 @@ function hbf(cx,cy){const w=700,h=280,x0=cx-w/2,y0=cy-h/2,g=gx,G_={},dk=600;
     for(const ly of [by,by+bh-60]){const o={x:bx,y:ly,w:44,h:60,H:124,top:124,R0:0,c:'#8a949c',cap:'#7a848c',lights:[],draw:drawPillar};blds.push(o);walls.push({x:bx,y:ly,w:44,h:60});}}
   reserved.push({x:x0-30,y:y0-100,w:w+60,h:h+200});marks.push({x:cx,y:cy,n:'Hauptbahnhof'});}
 /* ---- Gendarmenmarkt (Konzerthaus between the Französischer and the Deutscher Dom) and Checkpoint Charlie ---- */
-function domeAt(cx,cy,z,r,c,top){const B=P3(cx,cy,z),T=P3(cx,cy,z+r*.9);ctx.fillStyle=c;ctx.beginPath();ctx.ellipse(B[0],B[1],r,r/2,0,0,Math.PI);ctx.lineTo(T[0]-r,T[1]);ctx.ellipse(T[0],T[1],r,r/2,0,Math.PI,2*Math.PI);ctx.closePath();ctx.fill();ctx.strokeStyle=INK;ctx.lineWidth=1;ctx.stroke();
+function domeAt(cx,cy,z,r,c,top){const B=P3(cx,cy,z),T=P3(cx,cy,z+r*.9);ctx.fillStyle=AX_BAKING?axPattern(ctx,'copper')||c:c;ctx.beginPath();ctx.ellipse(B[0],B[1],r,r/2,0,0,Math.PI);ctx.lineTo(T[0]-r,T[1]);ctx.ellipse(T[0],T[1],r,r/2,0,Math.PI,2*Math.PI);ctx.closePath();ctx.fill();ctx.strokeStyle=INK;ctx.lineWidth=1;ctx.stroke();
   for(let k=1;k<6;k++){const u=T[0]-r+k*r/3;ctx.strokeStyle='rgba(0,0,0,.2)';ctx.beginPath();ctx.moveTo(u,T[1]+Math.sqrt(Math.max(0,1-Math.pow((u-T[0])/r,2)))*r/2);ctx.lineTo(u,B[1]+Math.sqrt(Math.max(0,1-Math.pow((u-T[0])/r,2)))*r/2);ctx.stroke();}
-  ctx.fillStyle=top;ctx.beginPath();ctx.ellipse(T[0],T[1],r*1.05,r*1.05,0,Math.PI,0);ctx.closePath();ctx.fill();ctx.stroke();ibox(cx-3,cy-3,6,6,z+r*.9+r,z+r*.9+r+14,top,INK);}
+  ctx.fillStyle=AX_BAKING?axPattern(ctx,'copper')||top:top;ctx.beginPath();ctx.ellipse(T[0],T[1],r*1.05,r*1.05,0,Math.PI,0);ctx.closePath();ctx.fill();ctx.stroke();ibox(cx-3,cy-3,6,6,z+r*.9+r,z+r*.9+r+14,top,INK);}
 function drawDom(b){const{x,y,w,h}=b,c='#d8ccb0';faceT(x+6,y+4,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,0,50,c,INK,'#b8ac94');for(const f of [.5])for(let i=0;i<4;i++){ibox(x+w*.3+i*w*.13,y+h,5,8,0,40,'#e4dac0',INK);ibox(x+w,y+h*.3+i*h*.13,8,5,0,40,'#e4dac0',INK);}
   poly([P3(x+w*.25,y+h+8,40),P3(x+w*.75,y+h+8,40),P3(x+w*.5,y+h+8,58)],c,INK);domeAt(x+w/2,y+h/2,50,w*.32,'#cfc3a8','#4a7a68');}
 function drawKonz(b){const{x,y,w,h}=b,c='#ddd2b8';faceT(x+6,y+4,w,h,0,'rgba(0,0,0,.4)');ibox(x,y,w,h,0,58,c,INK,'#b8ac94');for(let u=10;u<w-10;u+=14)faceS(x+u,y,6,h,14,44,'#2a2418');ibox(x+w*.2,y+h*.2,w*.6,h*.6,58,84,c,INK,'#a89c84');

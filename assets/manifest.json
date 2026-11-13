@@ -539,6 +539,156 @@
     "units": 3,
     "w": 337
   },
+  "buildings/alex-awning": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: awning",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-bronze": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: bronze",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-copper": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: copper",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-curtain": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: curtain",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-fernsehturm": {
+    "anchor": [
+      193,
+      569
+    ],
+    "for": "Alexanderplatz upright fernsehturm",
+    "h": 570,
+    "units": 3,
+    "w": 386
+  },
+  "buildings/alex-greenhouse": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: greenhouse",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-limestone": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: limestone",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-neptun": {
+    "anchor": [
+      130,
+      385
+    ],
+    "for": "Alexanderplatz upright neptun",
+    "h": 386,
+    "units": 3,
+    "w": 260
+  },
+  "buildings/alex-plaza": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: plaza",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-rail-brick": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: rail-brick",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-rathaus": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: rathaus",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-relief": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: relief",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-station": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: station",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-water": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: water",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-weltzeit": {
+    "anchor": [
+      175,
+      513
+    ],
+    "for": "Alexanderplatz upright weltzeit",
+    "h": 514,
+    "units": 3,
+    "w": 351
+  },
   "buildings/gdr-banner-blue": {
     "anchor": [
       77.699,
