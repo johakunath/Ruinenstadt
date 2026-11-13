@@ -2,19 +2,25 @@
 
 How the painted in-world art is made, plugged in and handed over. Index for everything is `CLAUDE.md`; this file is one of its topics. Related: `contract.md` (renderer contract and hitbox rules), `tasks/` (work packages, take the first `open` one), `log.md` (handover log, append only), `history.md` (old prompts, context only). Before visual work also read `docs/style-bible.md` and the boards in `docs/style/`.
 
-## Active direction (Johannes, 2026-11-13)
+## Active direction (Johannes, 2026-11-13, latest)
 
-Bosses are already merged in v0.87 (PR #40). Johannes accepted tablet performance on 2026-11-13 (good, nothing to complain about); topic #20 is Done. Final appearance/behavior review with Claude remains at the top of `BACKLOG.md`. Older queue notes below are history.
+**Next asset priority:** finish environment coverage, not more shared-kit
+repainting. See `tasks/18-environment-completion.md` and
+`docs/texture-coverage.md`:
 
-Next: (1) painted pickups and rarity-specific loot bags (`tasks/15-pickups.md`),
-(2) painted global ground materials (`tasks/10-ground.md`), (3) remaining shared
-building materials, starting with Köpenick's houses and garden sheds. The newer
-instruction overrides the code-native source rule for these ground/building
-families. Existing painted kits remain. Keep geometry and gameplay intact.
-Codex creates the assets and basic hookup, runs one visual/smoke workflow and
-one recorded performance comparison, then hands optimization, detailed testing
-and final acceptance to Claude. No repeated performance runs to chase a pass.
-Tempelhof death investigation and cloud-save age UI run in parallel. v0.88 delivers the first pickup/shared-material kit; see `proof/15-pickups-shared/README.md`. Unique landmarks and nature remain open.
+1. Missing global and district-specific building textures/hooks, custom plazas
+   and landmarks.
+2. Dedicated art for stations, bridges and one-off buildings.
+3. Water surface textures and clearly more visible water animation.
+
+The shared terrain kit has four variants per surface, and ordinary building
+materials are integrated, but custom renderers/overlays still leave gaps.
+Reuse working art; preserve footprints, collision and district identity.
+Codex generates and does basic hookup with one relevant measurement pass;
+Claude handles deeper optimization/testing. Tablet performance was accepted
+by Johannes; final boss appearance/behavior review remains separate.
+This order supersedes older queues below. New environment/water art is queued,
+not implemented by the v0.92 healing/inventory changes.
 
 ## Roles
 

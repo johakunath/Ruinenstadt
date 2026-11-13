@@ -354,3 +354,21 @@ body.pad #ult::after{content:"LB";border-radius:8px;background:#5a5048;color:#ff
 .slot.dgover{outline:0}.slot.dgover .ic{outline:2px dashed var(--ember);outline-offset:2px}
 
 #lootwarn{align-content:center;z-index:60;background:rgba(14,10,7,.86)}
+
+/* Phone landscape: survivor, backpack and comparison each get about one third. */
+@media (orientation:landscape) and (max-height:540px) and (pointer:coarse){
+  .inv3,.inv3.wide{grid-template-columns:minmax(0,.98fr) minmax(0,1.02fr) minmax(0,1fr);gap:10px}
+  .inv3 .doll{max-width:none;grid-template-columns:52px minmax(0,1fr) 52px;gap:4px}
+  .inv3 .doll #dollc{grid-row:1/5;aspect-ratio:3/4}
+  .inv3 .doll .slot{width:52px;font-size:11px}.inv3 .doll .slot .ic{width:50px;height:50px}
+  .inv3 .doll .slot .ic .ico{width:44px;height:44px}.inv3 .doll .slot .ic svg{width:32px;height:32px}
+  .inv3 .idet{position:static}.inv3 .cmp2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .inv3 .cmp2 .card{min-width:0;grid-template-columns:minmax(0,1fr)}
+  .inv3 .cmp2 .card>*{min-width:0;max-width:100%}.inv3 .cmp2 .chead{grid-template-columns:36px minmax(0,1fr);gap:4px}
+  .inv3 .cmp2 .dic{width:32px;height:32px}.inv3 .cmp2 .dic .ico{width:28px;height:28px}
+  .inv3 .cmp2 .nm,.inv3 .cmp2 .sub{overflow-wrap:anywhere}.inv3 .ckp{flex-wrap:wrap}
+}
+@media (orientation:portrait) and (max-width:599px){#inv .ichar{order:0}#inv .ibag{order:1}#inv .idet{order:2}}
+
+@media (orientation:landscape) and (max-width:740px) and (pointer:coarse){.inv3 .cmp2{grid-template-columns:minmax(0,1fr)}}
+@media (orientation:portrait) and (max-width:599px){.inv3 .cmp2 .card{min-width:0;grid-template-columns:minmax(0,1fr)}.inv3 .cmp2 .chead{grid-template-columns:auto minmax(0,1fr)}.inv3 .cmp2 .card>*{min-width:0;max-width:100%}.inv3 .cmp2 .nm,.inv3 .cmp2 .sub{overflow-wrap:anywhere}}

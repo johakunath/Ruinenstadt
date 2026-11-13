@@ -1,0 +1,133 @@
+{
+  "started": "2026-11-13T16:03:35.447Z",
+  "errors": [],
+  "warning": {
+    "state": "lootwarn",
+    "exit": true,
+    "wins": 0,
+    "logs": 0,
+    "text": "Wertvolle Beute liegt noch."
+  },
+  "resume": {
+    "state": "play",
+    "hold": true,
+    "guide": "kiez"
+  },
+  "collect": {
+    "bag": 1,
+    "set": true,
+    "next": 2
+  },
+  "rareOnly": {
+    "state": "lootwarn",
+    "warning": true
+  },
+  "tunnelSearch": {
+    "state": "play",
+    "exit": true,
+    "done": false
+  },
+  "tunnelWin": {
+    "state": "over",
+    "line": true,
+    "done": true
+  },
+  "labels": [
+    {
+      "text": "Beute 0",
+      "font": "12px \"Barlow Condensed\", sans-serif"
+    },
+    {
+      "text": "Beute 1",
+      "font": "12px \"Barlow Condensed\", sans-serif"
+    },
+    {
+      "text": "Beute 2",
+      "font": "12px \"Barlow Condensed\", sans-serif"
+    },
+    {
+      "text": "Beute 3",
+      "font": "12px \"Barlow Condensed\", sans-serif"
+    },
+    {
+      "text": "Set-Beute",
+      "font": "12px \"Barlow Condensed\", sans-serif"
+    }
+  ],
+  "coverage": [
+    {
+      "district": "Köpenick",
+      "sharedMaterialsReady": 42,
+      "largeStructures": 53,
+      "withPaintedFoundation": 51,
+      "remainingCustomRenderers": [
+        "custom sprite"
+      ]
+    },
+    {
+      "district": "Alexanderplatz",
+      "sharedMaterialsReady": 42,
+      "largeStructures": 208,
+      "withPaintedFoundation": 65,
+      "remainingCustomRenderers": [
+        "drawDeck",
+        "drawPillar",
+        "drawOstbf",
+        "drawStall",
+        "drawRathaus",
+        "drawMarien",
+        "drawBDom",
+        "drawAltes",
+        "drawPalast",
+        "drawHdL",
+        "drawHotel",
+        "drawKino",
+        "drawVolks",
+        "drawMMus",
+        "drawZTower",
+        "drawGlas",
+        "custom sprite"
+      ]
+    },
+    {
+      "district": "Mitte",
+      "sharedMaterialsReady": 42,
+      "largeStructures": 214,
+      "withPaintedFoundation": 90,
+      "remainingCustomRenderers": [
+        "drawShop",
+        "drawICE",
+        "drawHbfRoof",
+        "drawBuegel",
+        "drawPillar",
+        "drawDeck",
+        "drawReichstag",
+        "drawKanzler",
+        "drawPLH",
+        "custom sprite",
+        "drawAttic",
+        "drawTent",
+        "drawRound",
+        "drawKoll",
+        "drawStage",
+        "drawClinic",
+        "drawPhil",
+        "drawNNG",
+        "drawAnh",
+        "drawDom",
+        "drawKonz"
+      ]
+    },
+    {
+      "district": "Tempelhof",
+      "sharedMaterialsReady": 42,
+      "largeStructures": 3,
+      "withPaintedFoundation": 1,
+      "remainingCustomRenderers": [
+        "custom sprite"
+      ]
+    }
+  ],
+  "status": "passed",
+  "finished": "2026-11-13T16:03:52.507Z"
+}

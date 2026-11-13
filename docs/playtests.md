@@ -1,5 +1,16 @@
 # Playtest history
 
+## 2026-11-13 · v0.91 recovery, visibility and phone feedback
+
+Tablet view feels small; desktop zoom is fine. Requested stronger daylight item
+glow, larger phone character/backpack with roughly equal landscape thirds,
+more healing and food/orbs in boxes. Prefer searching for stationary loot to
+end-wave attraction; exit warning must include yellow rares as well as
+legendary/set items. Implemented in v0.92; device feedback still welcome.
+Expedition-level progression needs a decision rather than passive growth;
+recorded near the top of the backlog only. Missing custom buildings, plazas,
+landmarks, stations, bridges and moving water lead the next asset queue.
+
 ## 2026-11-13 · v0.88 tablet, inventory and asset feedback
 
 - Johannes: tablet performance is good, nothing to complain about. Move performance topic #20 to Done; this accepts the current device behavior rather than changing historical measurement results.

@@ -9,7 +9,7 @@
 - ChatGPT menu art (icons, portraits): batch list `docs/chatgpt-assets.md`, raw sheets land in `assets/raw/`.
 - Game text is German. Keep player-facing copy short and precise: a few words or one short line by default, no explanatory paragraphs in normal screens. Put necessary details behind a tooltip or in the Kodex. It is a game, not a professional tool (Johannes, 2026-11-13).
 - Code style is dense one-liners; match it.
-- Ground loot/exit protection: `js/loot.js` handles collection and legendary/set exit confirmation; names/glow/pointers in `js/render.js` and `js/pickup-art.js`. Current environment art gaps: `docs/texture-coverage.md`.
+- Ground loot/exit protection: `js/loot.js` handles collection and rare/legendary/set exit confirmation; names/glow/pointers in `js/render.js` and `js/pickup-art.js`. Current environment art gaps: `docs/texture-coverage.md`.
 - Release: bump `VERSION` (`js/core.js`) and `CACHE` (`sw.js`) together, update `BACKLOG.md`.
 - Critical visual/design decisions: show clearly distinct alternatives before implementation. Routine assets: choose within the approved style, create and show the result, continue unless Johannes objects. Do not require A/B/C choices for every asset (Johannes, 2026-11-10). Use SVG mockups for critical code-native layouts and painted canvases for critical art choices.
 - Smoke test: serve with `python3 -m http.server`, load in Playwright, start a run, check for page errors.
@@ -19,3 +19,5 @@
 - Asset continuation (Johannes, 2026-11-13): pickups/loot bags, then painted global ground and remaining shared building materials (overrides older SVG-only rule for these families). Basic integration plus one visual/smoke and performance pass; Claude handles optimization and final acceptance later. Bosses already merged in PR #40; acceptance/review are tracked follow-ups in BACKLOG.md.
 
 - Playtest follow-up (Johannes, 2026-11-13): tablet performance accepted, topic #20 Done. Final boss visual/behavior review with Claude remains. Incoming enemy damage must never one-shot a full-health player: v0.89 caps post-mitigation attacks at 45% max HP, ordinary contact at 10% and heavy bodies at 18%; charges/dives remain attacks. Ground now mixes four painted variants per shared surface. Shadow-box proximity bug is backlog #42.
+
+- Latest playtest (Johannes, 2026-11-13): ground loot stays where it drops; no end-wave vacuum or magnetic flight. Elster extends pickup reach only. Warn for rare/yellow, legendary and set items before exit. Next asset priority is missing environment/custom building/plaza/landmark, station/bridge and water art/animation (pipeline/tasks/18-environment-completion.md). Expedition XP-level redesign is a high-priority backlog decision, not implemented yet.
