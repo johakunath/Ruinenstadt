@@ -1,5 +1,12 @@
 # Playtest history
 
+## 2026-11-13 · healing clarification
+
+Johannes did not realize Döner/orbs restored health; recovery frequency and
+strength were sufficient. Prioritize clear green healing numbers and character
+feedback rather than increasing healing. v0.93 restores the pre-v0.92 amounts
+and drop rates, with explicit healing feedback.
+
 ## 2026-11-13 · v0.91 recovery, visibility and phone feedback
 
 Tablet view feels small; desktop zoom is fine. Requested stronger daylight item

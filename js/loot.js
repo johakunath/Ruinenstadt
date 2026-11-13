@@ -16,10 +16,9 @@ function updateDrops(dt){
     if(d.heal&&P.hp>=ST.maxHp)continue;
     const dx=P.x-d.x,dy=P.y-d.y,dd=Math.hypot(dx,dy),full=!!d.item&&S.bag.length>=BAG;// v0.65: full bag = items stay on the ground
     if(full){if(dd<pr+14&&bagFullT<=0){{bagFullT=6;toast('<span style="color:#c23a2e">Rucksack voll</span> · Beute bleibt liegen');}}continue;}
-    if(dd<pr){d.taken=true;if(d.mat){S.mat[d.mat]=(S.mat[d.mat]||0)+1;nums.push({x:P.x,y:P.y-46,t:'+1 '+MATS[d.mat][0],col:MATS[d.mat][1],life:.9,pu:1});sfx('coin');}else if(d.zut){S.mat[d.zut]=(S.mat[d.zut]||0)+1;nums.push({x:P.x,y:P.y-46,t:'+1 '+ZUT[d.zut][0],col:ZUT[d.zut][1],life:.9,pu:1});sfx('coin');}else if(d.food){healDrop(.3);P.fed=30;toast(img('doener',26,'mico')+'Satt · +10% Schaden · 30 s');sfx('heal');}else if(d.heal){healDrop(.4);sfx('heal');}else addToBag(d.item);}}
+    if(dd<pr){d.taken=true;if(d.mat){S.mat[d.mat]=(S.mat[d.mat]||0)+1;nums.push({x:P.x,y:P.y-46,t:'+1 '+MATS[d.mat][0],col:MATS[d.mat][1],life:.9,pu:1});sfx('coin');}else if(d.zut){S.mat[d.zut]=(S.mat[d.zut]||0)+1;nums.push({x:P.x,y:P.y-46,t:'+1 '+ZUT[d.zut][0],col:ZUT[d.zut][1],life:.9,pu:1});sfx('coin');}else if(d.food){healDrop(.25);P.fed=30;toast(img('doener',26,'mico')+'Satt · +10% Schaden · 30 s');sfx('heal');}else if(d.heal){healDrop(.3);sfx('heal');}else addToBag(d.item);}}
   bagFullT-=dt;drops=drops.filter(d=>!d.taken);
 }
 
-function healDrop(fraction){const h=Math.min(Math.max(0,ST.maxHp-P.hp),Math.round(ST.maxHp*fraction));P.hp=Math.min(ST.maxHp,P.hp+h);if(h>0)nums.push({x:P.x,y:P.y-40,t:'+'+h,col:'#8fd16a',life:.9,pu:1});}
-function dropRecovery(x,y,source){const food=source==='box'?.14:.03*(hasL('spaeti')?2:1)*(hasS('koechin')?2:1);if(Math.random()<food)drops.push({x:x+10,y,food:true,t:0});if(Math.random()<(source==='box'?.2:.1))drops.push({x,y:y+8,heal:true,t:0});}
+function healDrop(fraction){const h=Math.min(Math.max(0,ST.maxHp-P.hp),Math.round(ST.maxHp*fraction));P.hp=Math.min(ST.maxHp,P.hp+h);if(h>0){nums.push({x:P.x,y:P.y-55,t:'+'+h+' Leben',col:'#8fd16a',life:1.3,heal:1});fxHeal();}}
 function drawLootGlow(d,bob,c,hh,gs){ctx.drawImage(glow(c),d.x-gs,d.y+bob-gs-hh,gs*2,gs*2);if(d.item){ctx.strokeStyle=c+'aa';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(d.x,d.y+bob-hh+6,16,5,0,0,7);ctx.stroke();}}

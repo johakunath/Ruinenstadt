@@ -1,0 +1,43 @@
+{
+  "errors": [],
+  "checks": [
+    {
+      "district": 0,
+      "kind": "food",
+      "max": 100,
+      "h": 35,
+      "number": {
+        "x": 1552,
+        "y": 765,
+        "t": "+25 Leben",
+        "col": "#8fd16a",
+        "life": 1.3,
+        "heal": 1
+      },
+      "effects": 1
+    },
+    {
+      "district": 2,
+      "kind": "heal",
+      "max": 100,
+      "h": 40,
+      "number": {
+        "x": 2420,
+        "y": 1445,
+        "t": "+30 Leben",
+        "col": "#8fd16a",
+        "life": 1.3,
+        "heal": 1
+      },
+      "effects": 1
+    }
+  ],
+  "limits": {
+    "capped": "+5 Leben",
+    "fullCount": 1,
+    "oneAura": 1,
+    "expired": 0,
+    "orbRetained": true
+  },
+  "status": "passed"
+}
