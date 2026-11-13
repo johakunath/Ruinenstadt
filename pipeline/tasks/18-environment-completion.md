@@ -1,6 +1,6 @@
 # 18 Environment coverage and water
 
-Status: Köpenick surface/special-building batch implemented (v0.94, 2026-11-13), merged in PR #49; Xhain sources/basic hookup implemented (v0.95, Codex, 2026-11-13), PR review/merge and Claude optimization pending; other districts open. User requests complete Köpenick first, review and merge before proceeding map by map. Special buildings use more realistic architectural detail with restrained post-apocalyptic wear and district emblems.
+Status: Köpenick surface/special-building batch implemented (v0.94, 2026-11-13), merged in PR #49; Xhain sources/basic hookup merged in PR #50 (v0.95), Claude optimization pending; other districts open. User requests complete Köpenick first, review and merge before proceeding map by map. Special buildings use more realistic architectural detail with restrained post-apocalyptic wear and district emblems.
 
 1. Complete missing shared and custom district building textures/hooks; cover
    custom plazas and landmark surfaces. Audit: `docs/texture-coverage.md`.
@@ -27,4 +27,6 @@ Audit the existing Oberbaumbrücke arcade/towers, Berghain, Ostbahnhof, East Sid
 
 Xhain proof: `pipeline/proof/23-xhain-completion/`. All twelve sources load; geometry/RNG, fallback and cache release pass. The 40 MB cap retains fallback on overflow (133/152 parts cached at normal proof scale; 77/152 at 2×). This is basic integration, not full painted coverage at every zoom or hardware acceptance. Review/merge this map batch before proceeding to Alexanderplatz.
 
-Alexanderplatz: implemented v0.96 (Codex, 2026-11-13), review/merge pending. Cache overflow and hardware optimization explicitly remain Claude follow-ups. User explicitly requests Alexanderplatz review/merge, then Potsdamer Platz/Mitte immediately. This overrides the older district order.
+Alexanderplatz: merged in PR #52, v0.96 (Codex, 2026-11-13). Cache overflow and hardware optimization explicitly remain Claude follow-ups. User explicitly requests Alexanderplatz review/merge, then Potsdamer Platz/Mitte immediately. This overrides the older district order.
+
+Potsdamer Platz/Mitte: done (v0.98, Codex, 2026-11-13), PR #53; completed Codex review without findings, merge authorized. Follows Alexanderplatz PR #52 (f9ad807). Eighteen sources/basic hooks, 40 MB overflow fallback; detailed cache optimization/hardware acceptance remain Claude follow-ups.

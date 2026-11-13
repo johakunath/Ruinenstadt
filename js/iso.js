@@ -45,7 +45,7 @@ function gableRoof(b,Hs){const{x,y,w,h}=b,G_=b.gable,o=4,rc=b.rc||'#6a3a2a',ym=y
   const r0=P3(x-o,ym,Z),r1=P3(x+w+o,ym,Z);ctx.strokeStyle='rgba(255,230,200,.18)';ctx.beginPath();ctx.moveTo(r0[0],r0[1]);ctx.lineTo(r1[0],r1[1]);ctx.stroke();
   if(b.w>140&&!b.chim)b.chim=R(.15,.85);if(b.chim){const cx=x+w*b.chim;ibox(cx,ym-14,10,10,Z-G_*.5,Z+10,'#5a3a2e',INK);}}
 // upright sprite (tree, lamp, Litfaßsäule, crane): base row at b.top, anchored at the footprint centre
-function drawBB(b){if(axBillboard(b))return;if(b.propKey&&paintedBillboard(b))return;const s=b.spr,sc=b.sc||1,ax=b.x+b.w/2,X=ix(ax,b.y),Y=iy(ax,b.y);ctx.drawImage(s,X-s.width*sc/2,Y-b.top*sc,s.width*sc,s.height*sc);}
+function drawBB(b){if(mtBillboard(b))return;if(axBillboard(b))return;if(b.propKey&&paintedBillboard(b))return;const s=b.spr,sc=b.sc||1,ax=b.x+b.w/2,X=ix(ax,b.y),Y=iy(ax,b.y);ctx.drawImage(s,X-s.width*sc/2,Y-b.top*sc,s.width*sc,s.height*sc);}
 // light position (x,y on the ground, z height in screen px) for lights stored in the old 3/4 sprite coordinates
 function lpos(b,l){if(b.ksRathaus&&l.ksClock&&koepSpecialOn()&&KS_CACHE.has(b))return[b.x+62,b.y+b.h,b.top*1.5*(1-250/512)];if(l.z!=null)return[l.x,l.y,l.z];if(l.inner)return[l.x,l.y,0];if(isBox(b)){const z=Math.max(0,b.y+b.h-l.y)*(b.vs||1);let p=[clamp(l.x,b.x,b.x+b.w),b.y+b.h];if(b.rot){ROT={cx:b.x+b.w/2,cy:b.y+b.h/2,c:Math.cos(b.rot),s:Math.sin(b.rot)};p=rw(p[0],p[1]);ROT=null;}return[p[0],p[1],z];}return[l.x,b.y,Math.max(0,b.y-l.y)*(b.sc||1)];}
 /* ---- vehicles: iso boxes. b={x,y,w,h,veh:{k,c,v}} ---- */

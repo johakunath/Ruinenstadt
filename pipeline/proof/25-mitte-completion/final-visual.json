@@ -1,0 +1,169 @@
+{
+  "errors": [],
+  "scenes": [
+    {
+      "district": "Mitte",
+      "version": "0.97",
+      "target": "sony",
+      "buildMs": 2619,
+      "nextRng": 0.2821088631171733,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at R (http://127.0.0.1:8767/js/core.js:6:40)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:45:164)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 18,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:49:98)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 345165
+      },
+      "assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5160320,
+        "sourceBytes": 10344096,
+        "projectedCacheBytes": 29655360,
+        "totalBytes": 39999456,
+        "cached": 31,
+        "limit": 40000000
+      },
+      "eligible": 170,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5160320,
+        "sourceBytes": 10344096,
+        "projectedCacheBytes": 29635344,
+        "totalBytes": 39979440,
+        "cached": 15,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Mitte",
+      "version": "0.97",
+      "target": "tor",
+      "buildMs": 683.6000000000931,
+      "nextRng": 0.2821088631171733,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5160320,
+        "sourceBytes": 10344096,
+        "projectedCacheBytes": 29655360,
+        "totalBytes": 39999456,
+        "cached": 31,
+        "limit": 40000000
+      },
+      "eligible": 170,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5160320,
+        "sourceBytes": 10344096,
+        "projectedCacheBytes": 29635344,
+        "totalBytes": 39979440,
+        "cached": 15,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Mitte",
+      "version": "0.97",
+      "target": "stage",
+      "buildMs": 731.3000000000466,
+      "nextRng": 0.2821088631171733,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5160320,
+        "sourceBytes": 10344096,
+        "projectedCacheBytes": 29655360,
+        "totalBytes": 39999456,
+        "cached": 31,
+        "limit": 40000000
+      },
+      "eligible": 170,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5160320,
+        "sourceBytes": 10344096,
+        "projectedCacheBytes": 29635344,
+        "totalBytes": 39979440,
+        "cached": 15,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Mitte",
+      "version": "0.97",
+      "target": "clinic",
+      "buildMs": 699.5999999998603,
+      "nextRng": 0.2821088631171733,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5160320,
+        "sourceBytes": 10344096,
+        "projectedCacheBytes": 29655360,
+        "totalBytes": 39999456,
+        "cached": 31,
+        "limit": 40000000
+      },
+      "eligible": 170,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5160320,
+        "sourceBytes": 10344096,
+        "projectedCacheBytes": 29635344,
+        "totalBytes": 39979440,
+        "cached": 15,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Mitte",
+      "version": "0.97",
+      "target": "reichstag",
+      "buildMs": 699,
+      "nextRng": 0.2821088631171733,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5160320,
+        "sourceBytes": 10344096,
+        "projectedCacheBytes": 29655360,
+        "totalBytes": 39999456,
+        "cached": 31,
+        "limit": 40000000
+      },
+      "eligible": 170,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5160320,
+        "sourceBytes": 10344096,
+        "projectedCacheBytes": 29635344,
+        "totalBytes": 39979440,
+        "cached": 15,
+        "limit": 40000000
+      }
+    }
+  ],
+  "isolated": {
+    "ready": 18,
+    "decodedBytes": 5183776,
+    "canvasBytes": 5160320,
+    "sourceBytes": 10344096,
+    "projectedCacheBytes": 29655360,
+    "totalBytes": 39999456,
+    "cached": 31,
+    "limit": 40000000
+  },
+  "status": "passed"
+}
