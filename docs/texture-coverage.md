@@ -27,3 +27,9 @@ Seed 231113. Counts below are **structural objects/parts with h >20 and H >40**,
 Next asset work: audit the visible custom ground overlays and named architecture per district, then add missing art/hooks without replacing the existing shared kits. Task `pipeline/tasks/17-global-building-coverage.md` and landmark task `08-landmarks.md` remain open. Ground variation is delivered; custom-surface coverage remains. No new terrain or building art was created during the loot-visibility change.
 
 Evidence: `pipeline/proof/19-visible-loot-safe-exit/results.json`. Tablet performance remains accepted; this is a coverage audit, not a performance gate.
+
+## Köpenick completion — v0.94
+
+The actual Köpenick map contains one named building (Rathaus), one working station stairwell and three named river crossings. Their active paths are now covered: Gothic Rathaus facade/roof/clock tower with fish-and-key emblems; tiled station parapets and forecourt; painted bridge deck and stone/iron parapets; Rathausplatz, paving/asphalt, park paths, and painted Spree/Dahme/Müggelsee water. Existing water movement is made more visible. Shared four-variant nature/soil surfaces and existing ordinary-building art remain.
+
+No Schloss building, railway station hall or dinosaur park building exists in this map definition; map labels and reserved land are not missing runtime buildings. No new landmark or gameplay is invented. Trees/nature remain task 04. Other districts' custom architecture and surfaces remain open; Xhain is next in map order. Sources, 64px comparison and proof: `assets/raw/codex/21-koepenick-completion/`, `pipeline/proof/22-koepenick-completion/`.

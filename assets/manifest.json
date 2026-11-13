@@ -789,6 +789,126 @@
     "units": 3,
     "w": 272
   },
+  "buildings/koep-special-asphalt": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: asphalt",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-bridge-deck": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: bridge-deck",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-bridge-wall": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: bridge-wall",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-facade": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: facade",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-path": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: path",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-pavement": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: pavement",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-platform": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: platform",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-plaza": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: plaza",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-roof": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: roof",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-station": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: station",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-tower": {
+    "anchor": [
+      1,
+      509
+    ],
+    "for": "Köpenick special architecture and surfaces: tower",
+    "h": 510,
+    "units": 3,
+    "w": 132
+  },
+  "buildings/koep-special-water": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: water",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
   "buildings/shared-brick": {
     "anchor": [
       256,

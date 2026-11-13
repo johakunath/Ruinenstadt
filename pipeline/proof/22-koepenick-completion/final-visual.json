@@ -1,0 +1,89 @@
+{
+  "errors": [],
+  "scenes": [
+    {
+      "district": "Köpenick",
+      "buildMs": 1100.699999999255,
+      "rng": 0.3028213393408805,
+      "assets": {
+        "ready": 12,
+        "total": 12,
+        "decodedBytes": 3198096,
+        "canvasBytes": 3147744,
+        "projectedCacheBytes": 7808664
+      },
+      "bridges": 7,
+      "taskBytes": 14154504,
+      "global": {
+        "decodedBytes": 15728640,
+        "canvasBytes": 15679584,
+        "ready": 42,
+        "total": 42
+      }
+    },
+    {
+      "district": "Köpenick",
+      "buildMs": 719.8000000007451,
+      "rng": 0.19056691089645028,
+      "assets": {
+        "ready": 12,
+        "total": 12,
+        "decodedBytes": 3198096,
+        "canvasBytes": 3147744,
+        "projectedCacheBytes": 7808664
+      },
+      "bridges": 7,
+      "taskBytes": 14154504,
+      "global": {
+        "decodedBytes": 15728640,
+        "canvasBytes": 15679584,
+        "ready": 42,
+        "total": 42
+      }
+    },
+    {
+      "district": "Köpenick",
+      "buildMs": 654.6000000005588,
+      "rng": 0.5196028768550605,
+      "assets": {
+        "ready": 12,
+        "total": 12,
+        "decodedBytes": 3198096,
+        "canvasBytes": 3147744,
+        "projectedCacheBytes": 7808664
+      },
+      "bridges": 7,
+      "taskBytes": 14154504,
+      "global": {
+        "decodedBytes": 15728640,
+        "canvasBytes": 15679584,
+        "ready": 42,
+        "total": 42
+      }
+    }
+  ],
+  "version": "0.94",
+  "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "measurements": [],
+  "fallback": {
+    "district": "Köpenick",
+    "buildMs": 911.4000000003725,
+    "rng": 0.3028213393408805,
+    "assets": {
+      "ready": 0,
+      "total": 12,
+      "decodedBytes": 3198096,
+      "canvasBytes": 0,
+      "projectedCacheBytes": 0
+    },
+    "bridges": 7,
+    "taskBytes": 3198096,
+    "global": {
+      "decodedBytes": 15728640,
+      "canvasBytes": 15679584,
+      "ready": 42,
+      "total": 42
+    }
+  },
+  "status": "passed"
+}

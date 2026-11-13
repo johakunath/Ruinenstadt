@@ -57,7 +57,7 @@ const LOTS={
  houses(b){const n=Math.max(2,Math.round(b.w*b.h/(60000*BSC*BSC)));let k=0,t=0;while(k<n&&t++<n*40){const w=Math.min(b.w-60,R(100,220)*BSC),h=R(50,105)*BSC,H=R(38,72)*BHS,x=R(b.x0+24,b.x1-24-w),y=R(b.y0+24+H,b.y1-24-h);if(tryB(x,y,w,h,H))k++;}
    for(let i=0;i<4;i++){const q=inB(b,40);if(!inWall(q.x,q.y,30)&&!resHit(q.x-28,q.y-60,56,62))makeTree(q.x,q.y,pick(BIOME[D.i].trees));}},
  park(b){const g=gx,pts=[];const sx=b.x0,sy=R(b.y0+60,b.y1-60),ex=b.x1,ey=R(b.y0+60,b.y1-60),mx=(sx+ex)/2+R(-80,80),my=R(b.y0+40,b.y1-40);
-   g.strokeStyle='#3a3127';g.lineWidth=30;g.lineCap='round';g.beginPath();g.moveTo(sx,sy);g.quadraticCurveTo(mx,my,ex,ey);g.stroke();g.strokeStyle='#4a4034';g.lineWidth=24;g.stroke();g.lineCap='butt';
+   g.strokeStyle='#3a3127';g.lineWidth=30;g.lineCap='round';g.beginPath();g.moveTo(sx,sy);g.quadraticCurveTo(mx,my,ex,ey);g.stroke();g.strokeStyle=ksPattern(g,'path')||'#4a4034';g.lineWidth=24;g.stroke();g.lineCap='butt';
    for(let i=0;i<=20;i++){const t=i/20,x=(1-t)*(1-t)*sx+2*(1-t)*t*mx+t*t*ex,y=(1-t)*(1-t)*sy+2*(1-t)*t*my+t*t*ey;pts.push([x,y]);if(i%7===3){bench(x+R(-6,6),y-26);}}
    const nearP=(x,y,m)=>pts.some(p=>Math.hypot(p[0]-x,p[1]-y)<m);
    if(b.w>300&&b.h>260&&Math.random()<.7){for(let t=0;t<20;t++){const rx=R(60,Math.min(130,b.w/4)),ry=rx*R(.5,.75),q=inB(b,rx+30);if(!nearP(q.x,q.y,rx+40)&&!resHit(q.x-rx-10,q.y-ry-10,rx*2+20,ry*2+20)){pond(q.x,q.y,rx,ry);break;}}}
@@ -144,7 +144,7 @@ function drawWeather(t,dt){if(D.tun||D.base)return;const k=BIOME[D.i].wx,n=S.eco
     else if(k==='snow'){m.y+=m.s*dt*.09;m.w+=dt;if(m.y>1.02){m.y=-.02;m.x=Math.random();}ctx.fillStyle=`rgba(235,235,240,${.35+.3*m.s})`;ctx.beginPath();ctx.arc(m.x*VW+Math.sin(m.w)*10,m.y*VH,m.z*.8,0,7);ctx.fill();}
     else if(k==='fog'){if(i>10)break;m.x+=dt*.008*m.s;if(m.x>1.3)m.x=-.3;const fx=m.x*VW,fy=m.y*VH;ctx.globalAlpha=.07;ctx.drawImage(glow('#c8ccd0'),fx-180,fy-90,360,180);ctx.globalAlpha=1;}
     else{if(i>36)break;m.y-=m.s*.016*.06;m.w+=.02;if(m.y<-.02){m.y=1.02;m.x=Math.random();}ctx.fillStyle=`rgba(239,159,39,${.25+.25*Math.sin(m.w*2)})`;ctx.fillRect(m.x*VW+Math.sin(m.w)*12,m.y*VH,m.z,m.z);}}}
-function drawWaters(t){const camX=VB.x0,camY=VB.y0,VW_=VB.x1-VB.x0,VH_=VB.y1-VB.y0;ctx.strokeStyle='rgba(185,220,230,.34)';ctx.lineWidth=2.2;// v0.41: stronger ripples, water was hard to read
+function drawWaters(t){const camX=VB.x0,camY=VB.y0,VW_=VB.x1-VB.x0,VH_=VB.y1-VB.y0;ctx.strokeStyle=koepSpecialOn()?'rgba(192,225,212,.48)':'rgba(185,220,230,.34)';ctx.lineWidth=koepSpecialOn()?2.8:2.2;// v0.41: stronger ripples, water was hard to read
   for(const w of waters){if(w.ex!=null){if(w.ex+w.rx<camX||w.ex-w.rx>camX+VW_||w.ey+w.ry<camY||w.ey-w.ry>camY+VH_)continue;for(let i=0;i<10;i++){const a=i*2.4+t*.0002*(i%3+1),r=.25+.6*((i*.37)%1),x=w.ex+Math.cos(a)*w.rx*r,y=w.ey+Math.sin(a*1.3)*w.ry*r*.8,l=12+9*Math.sin(t*.002+i);ctx.beginPath();ctx.moveTo(x-l,y);ctx.lineTo(x+l,y);ctx.stroke();}}
     else{if(w.y>camY+VH_||w.y+w.h<camY)continue;const a=Math.max(w.x,camX-30),b=Math.min(w.x+w.w,camX+VW_+30),span=b-a;if(span<=20)continue;// ripples only over this strip's own x range
       for(let i=0,n=Math.min(36,Math.ceil(36*span/(VW_+60)));i<n;i++){const x=a+((i*97+t*.03*(1+i%3))%span),y=w.y+10+((i*37)%(w.h-20)),l=14+9*Math.sin(t*.003+i);ctx.beginPath();ctx.moveTo(x-l,y);ctx.lineTo(x+l,y);ctx.stroke();}}}}

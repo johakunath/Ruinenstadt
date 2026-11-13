@@ -36,7 +36,7 @@ function lmRathaus(){
   g.fillStyle='#2c3a32';g.beginPath();g.moveTo(tx-4,40);g.lineTo(tx+tw+4,40);g.lineTo(tx+tw/2,0);g.fill();g.fillStyle='#3d5045';g.beginPath();g.moveTo(tx-4,40);g.lineTo(tx+tw/2,40);g.lineTo(tx+tw/2,0);g.fill();
   g.fillStyle='#f2d14b';g.beginPath();g.arc(tx+tw/2,66,11,0,7);g.fill();g.strokeStyle='#3a2414';g.lineWidth=2;g.beginPath();g.moveTo(tx+tw/2,66);g.lineTo(tx+tw/2,58);g.moveTo(tx+tw/2,66);g.lineTo(tx+tw/2+6,68);g.stroke();
   b.lights.push({x:b.x+tx+tw/2,y:b.y-b.top+66,r:70});
-  b.spr=c;addLm(b);marks.push({x:790,y:420,n:'Rathaus Köpenick'});
+  b.spr=c;b.ksRathaus=true;b.draw=drawKoepRathaus;b.lights[b.lights.length-1].ksClock=true;addLm(b);marks.push({x:790,y:420,n:'Rathaus Köpenick'});
   bShadow(b);
 }
 function lmTempelhof(){
@@ -186,7 +186,7 @@ function wpick(o){let t=0;for(const k in o)t+=o[k];let r=Math.random()*t;for(con
 function lotCands(){return BLK.filter(b=>!b.center&&['houses','hinterhof','ruins','plattenbau','market','parking','construction','kleingarten'].includes(b.lot)&&b.w>=330&&b.h>=300).sort(()=>Math.random()-.5);}
 function buildWorld(d){
   D=d;const K=d.geo;WS=WH=K?K.ws:2400;[SX,SY]=K?K.start:[1200,1220];const A=WS*WS/5.76e6;// A: area relative to the 2400 grid map, scales scatter counts
-  if(typeof koepResetCache==='function')koepResetCache(null);
+  if(typeof koepResetCache==='function')koepResetCache(null);if(typeof ksResetCache==='function')ksResetCache();
   G=cnv(WS,WS);gx=G.getContext('2d');walls=[];blds=[];barrels=[];reserved=[];marks=[];brk=[];spati=null;darks=[];waters=[];neons=[];const g=gx;
   if(K)geoLayout(K);else{makeLayout(d);roadsFromGrid();}
   g.fillStyle=globalGroundPattern(g,d.i===4?'sand':'dirt')||d.ground;g.fillRect(0,0,WS,WS);
@@ -243,7 +243,7 @@ function buildWorld(d){
     if(inWall(x,y,34)||resHit(x-28,y-60,56,62)||Math.hypot(x-SX,y-SY)<200||Math.hypot(x-1200,y-1100)<80)continue;makeTree(x,y,pick(BIOME[d.i].trees));tn++;}}
   let bt=0,bn=0;while(bn<28*A&&bt++<800*A){const x=R(40,WS-40),y=R(40,WS-40),ty=D.cyber&&Math.random()<.3?'akku':Math.random()<.45?'bin':'crate';if(inWall(x,y,26)||resHit(x-12,y-12,24,24,1)||onRoad(x,y,-20)||!far(x,y,120))continue;addBrk(x,y,ty,false);bn++;}
   if(K&&K.post)K.post();
-  decorate();gridBuild();
+  decorate();gridBuild();ksBridgeObjects();ksPrepareMap();
   const k2=600/WS;MB2=cnv(600,600);const m2=MB2.getContext('2d');m2.drawImage(G,0,0,600,600);m2.fillStyle='rgba(0,0,0,.25)';m2.fillRect(0,0,600,600);m2.fillStyle='rgba(234,217,192,.38)';for(const b of blds)if(b.h>0&&!b.veh&&!b.fe){m2.beginPath();(b.rot?obbC(b):[[b.x,b.y],[b.x+b.w,b.y],[b.x+b.w,b.y+b.h],[b.x,b.y+b.h]]).forEach((p,i)=>m2[i?'lineTo':'moveTo'](p[0]*k2,p[1]*k2));m2.fill();}
   const k=192/WS;MB=cnv(192,192);const mg=MB.getContext('2d');mg.drawImage(G,0,0,192,192);mg.fillStyle='rgba(0,0,0,.3)';mg.fillRect(0,0,192,192);mg.fillStyle='rgba(234,217,192,.32)';for(const b of blds)if(b.h>0&&!b.veh&&!b.fe){mg.beginPath();(b.rot?obbC(b):[[b.x,b.y],[b.x+b.w,b.y],[b.x+b.w,b.y+b.h],[b.x,b.y+b.h]]).forEach((p,i)=>mg[i?'lineTo':'moveTo'](p[0]*k,p[1]*k));mg.fill();}mg.fillStyle='rgba(0,0,0,.65)';for(const z of darks)mg.fillRect(z.x*k,z.y*k,z.w*k,z.h*k);mg.fillStyle='#1d4a8a';for(const z of darks)mg.fillRect(z.x*k,z.y*k-3,4,4);
 }
