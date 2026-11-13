@@ -117,7 +117,7 @@ function drawDrop(d){const bob=Math.sin(d.t*4)*2;
   if(d.heal){ctx.drawImage(glow('#ff5040'),d.x-16,d.y+bob-16,32,32);ctx.fillStyle='#c23a2e';ctx.beginPath();ctx.arc(d.x,d.y+bob,6,0,7);ctx.fill();return;}
   const c=rc(d.item),gs=dropGlowRadius(d),hh=d.h||0;if(d.item.r>=2&&!hh){ctx.fillStyle=c+'30';ctx.fillRect(d.x-3,d.y-(d.item.r>=3?140:70),6,d.item.r>=3?140:70);}
   if(hh){ctx.fillStyle='rgba(0,0,0,.35)';ctx.beginPath();ctx.ellipse(d.x,d.y+4,6,2.5,0,0,7);ctx.fill();}
-  ctx.drawImage(glow(c),d.x-gs,d.y+bob-gs-hh,gs*2,gs*2);ctx.save();ctx.translate(d.x,d.y+bob-hh);ctx.rotate(Math.PI/4+(hh?d.t*12:0));ctx.fillStyle=c;ctx.fillRect(-6,-6,12,12);ctx.restore();}
+  drawLootGlow(d,bob,c,hh,gs);ctx.save();ctx.translate(d.x,d.y+bob-hh);ctx.rotate(Math.PI/4+(hh?d.t*12:0));ctx.fillStyle=c;ctx.fillRect(-6,-6,12,12);ctx.restore();}
 /* v0.82 light occlusion: a light whose source stands behind an opaque box is cut out of the darkness only outside that box's screen silhouette,
    so fire, lamps and windows behind a building no longer brighten its facade. Lights without an occluder keep the fast path. */
 let SBX=[];const LT=document.createElement('canvas'),ltx=LT.getContext('2d');

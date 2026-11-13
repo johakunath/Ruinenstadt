@@ -1,0 +1,22 @@
+# 18 Environment coverage and water
+
+Status: open, top asset priority (Johannes, 2026-11-13).
+
+1. Complete missing shared and custom district building textures/hooks; cover
+   custom plazas and landmark surfaces. Audit: `docs/texture-coverage.md`.
+2. Produce dedicated art for stations, bridges and one-off buildings, keeping
+   existing footprints/collision and the selected district boards.
+3. Add painted water surface textures and stronger visible animation: ripples,
+   current/reflections and bank interaction as appropriate. Water should read
+   as moving at ordinary tablet/phone zoom, without becoming distracting.
+
+Reuse the four-variant terrain foundation and existing Köpenick/GDR art.
+Check custom renderers and ground overlays individually; kit availability
+alone is not coverage. Texture kit task 10, building task 17 and landmark
+task 08 remain linked work, not completed by this priority note.
+
+Generate from the style bible/selected boards, prepare sources/manifest and
+basic hookups. Record one relevant visual/performance pass, then hand deeper
+optimization and detailed tests to Claude. Water collision/gameplay and
+map/save identities stay unchanged. No production or animation implementation
+is included in this backlog-only task creation.
