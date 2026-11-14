@@ -42,12 +42,13 @@ SIM.think=function(dt){
   if(st.t>.8){if(Math.hypot(mx,my)>.4&&Math.hypot(P.x-st.x,P.y-st.y)<10){const a=Math.atan2(my,mx)+(Math.random()<.5?1.6:-1.6);st.ax=Math.cos(a)*1.5;st.ay=Math.sin(a)*1.5;st.at=.7;}st.t=0;st.x=P.x;st.y=P.y;}
   // joystick is in screen space (iso view): project the world direction
   const sx=(mx-my)*IS,sy=(mx+my)*IS/2,l=Math.hypot(mx,my),sl=Math.hypot(sx,sy);joy.x=l>.05?sx/sl:0;joy.y=l>.05?sy/sl:0;atkHeld=true;};
-SIM.run=function(di,opt){opt=opt||{};S.eq.w.kr=opt.kr!=null?opt.kr:Math.floor(Math.random()*2);/* v0.86: random regular power per run unless given, the ultimate is always there */const tl0=(S.tlog||[]).slice(-1)[0];if(opt.tun)startTunnel(di);else startRun(di,opt.endless);gridFree();const dt=1/30;let t=0,thinkT=0,hp0=0,dmgTaken=0,lastHp=P.hp,wv=0,wt=0,slow=[0,0,''],diag='';const p0=power(ST);
+SIM.run=function(di,opt){opt=opt||{};S.eq.w.kr=opt.kr!=null?opt.kr:Math.floor(Math.random()*2);/* v0.86: random regular power per run unless given, the ultimate is always there */const tl0=(S.tlog||[]).slice(-1)[0];if(opt.tun)startTunnel(di);else startRun(di,opt.endless);gridFree();const dt=1/30;let exT=0,t=0,thinkT=0,hp0=0,dmgTaken=0,lastHp=P.hp,wv=0,wt=0,slow=[0,0,''],diag='';const p0=power(ST);
   while(state!=='over'&&t<(opt.maxT||1500)){
     if(state==='perk'){SIM.equip(true);const cs=[...document.querySelectorAll('#perkbox .pcard')];const c=Math.random()<.1?cs[Math.floor(Math.random()*cs.length)]:cs.map(b=>[b,SIM.perkScore(b.dataset.p,+b.dataset.lv||1)]).sort((a,b)=>b[1]-a[1])[0][0];c.click();SIM.loadout();continue;}// a new blessing can change which attachments and implant mode fit
     if(state==='trade'){if(npc)npc.offers.forEach((o,i)=>{if(o&&S.scrap>=o.price&&better(o.it)&&S.bag.length<BAG){S.scrap-=o.price;S.bag.push(o.it);npc.offers[i]=null;}});$('trade').hidden=true;state='play';continue;}
     if(state==='paused'){resume();continue;}
-    if(state==='lootwarn'){finishLootExit(true);continue;}// v0.91 exit warning: the bot leaves remaining loot
+    if(state==='lootwarn'){finishLootExit(true);continue;}
+    if(run.exit&&!run.tun){exT+=dt;if(exT>90){win(true);continue;}}// district liberated: if the bot cannot path back to the station in 90 s, count the liberation (it timed out as a death before)// v0.91 exit warning: the bot leaves remaining loot
     if(freeze>0){freeze-=dt;continue;}
     thinkT-=dt;if(thinkT<=0){thinkT=.1;if(S.bag.length>=BAG-2)SIM.tidy();SIM.think(.1);}
     update(dt);t+=dt;if(run.wave!==wv){if(t-wt>slow[1])slow=[wv,Math.round(t-wt),slow[2]];wv=run.wave;wt=t;diag='';}if(t-wt>90&&!diag){diag='w'+run.wave+' stuck with '+enemies.length+': '+[...new Set(enemies.map(e=>e.type+(e.fly?'(f)':'')))].join(',')+' toSpawn '+run.toSpawn;}if(P.hp<lastHp)dmgTaken+=lastHp-P.hp;lastHp=P.hp;}
