@@ -372,3 +372,6 @@ body.pad #ult::after{content:"LB";border-radius:8px;background:#5a5048;color:#ff
 
 @media (orientation:landscape) and (max-width:740px) and (pointer:coarse){.inv3 .cmp2{grid-template-columns:minmax(0,1fr)}}
 @media (orientation:portrait) and (max-width:599px){.inv3 .cmp2 .card{min-width:0;grid-template-columns:minmax(0,1fr)}.inv3 .cmp2 .chead{grid-template-columns:auto minmax(0,1fr)}.inv3 .cmp2 .card>*{min-width:0;max-width:100%}.inv3 .cmp2 .nm,.inv3 .cmp2 .sub{overflow-wrap:anywhere}}
+
+/* v0.100 intro window over the menu */
+#intro{z-index:55}#introbox{max-width:560px}.isteps{margin:0;padding-left:22px;display:grid;gap:4px;font-size:16px;color:var(--dim);line-height:1.4}.isteps b{color:var(--bone)}
