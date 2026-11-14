@@ -99,9 +99,9 @@ const JOBT=[
  {k:'chest',n:t=>t>1?`Öffne ${t} Kellertruhen`:'Öffne eine Kellertruhe',t:()=>pick([1,2])},{k:'zone',n:t=>t>1?`Halte ${t} Funksignale`:'Halte ein Funksignal',t:()=>pick([1,2])},{k:'trade',n:t=>`Kaufe ${t} Teile beim Händler`,t:()=>pick([1,2])},
  {k:'boss',n:t=>t>1?`Besiege ${t} Endgegner`:'Besiege einen Endgegner',t:()=>pick([1,2])},{k:'rescue',n:t=>'Befreie eine gefangene Person',t:()=>1},{k:'shrine',n:t=>t>1?`Nutze ${t} Litfaßsäulen`:'Nutze eine Litfaßsäule',t:()=>pick([1,2])},{k:'rat',n:t=>`Besiege ${t} Ratten`,t:()=>pick([30,50])},{k:'bomb',n:t=>`Besiege ${t} Zünder`,t:()=>pick([6,10])},{k:'shield',n:t=>`Besiege ${t} Schildträger`,t:()=>pick([5,8])},{k:'wave',n:t=>`Erreiche Welle ${t} in einem Bezirk`,t:()=>pick([10,14,18])}];
 const CONS=[{k:'verband',n:'Verband',d:'Heilt 40% Leben über 3 Sekunden',p:15},{k:'molotow',n:'Molotow',d:'Wirft ein Feuerfeld, das Gegner in Brand setzt',p:25}],RZ=[0,.06,.03,.04,.14,.18,.2];
-const DIFF=[{n:'Leicht',hp:.7,dmg:.6,luck:0,sc:1},{n:'Normal',hp:1.5,dmg:1.25,luck:0,sc:1},{n:'Schwer',hp:1.85,dmg:1.5,luck:4,sc:1.3}];
+const DIFF=[{n:'Leicht',hp:.7,dmg:.6,luck:0,sc:1},{n:'Normal',hp:1.75,dmg:1.45,luck:0,sc:1},{n:'Schwer',hp:2.15,dmg:1.75,luck:4,sc:1.3}];
 const DF=()=>DIFF[S.diff==null?1:S.diff];
-const KIND={blade:{n:'Klinge',k:1,rate:.3,reach:60,arc:1.1,knock:240},hammer:{n:'Hammer',k:2.3,rate:.68,reach:74,arc:1.6,knock:430,stun:.6},sling:{n:'Werfer',k:.85,rate:.42,knock:120},spear:{n:'Speer',k:1.45,rate:.5,reach:98,arc:.34,knock:300}};
+const KIND={blade:{n:'Klinge',k:1,rate:.3,reach:60,arc:1.35,knock:240},hammer:{n:'Hammer',k:2.3,rate:.68,reach:74,arc:1.6,knock:430,stun:.6},sling:{n:'Werfer',k:.85,rate:.42,knock:120},spear:{n:'Speer',k:1.45,rate:.5,reach:98,arc:.34,knock:300}};
 const NW={blade:['Rostiges Rohr','Bewehrungsstahl','Machete','Brechstange'],hammer:['Vorschlaghammer','Pflasterhammer','Rohrzange'],sling:['Jagdzwille','Nagelwerfer','Steinschleuder'],spear:['Rohrspeer','Fahnenstange','Harpune']};
 const LEGW={blade:['Fernsehturm-Splitter','Klinge der Zitadelle'],hammer:['Mauerbrecher','Plattenbrecher'],sling:['Zorn der Ringbahn','Krähenschleuder'],spear:['Speer der Siegessäule']},LEGT=['Herz der Spree','Auge des Fernsehturms'],
 // v0.68: legendaries for head, hands, feet and ring
@@ -143,14 +143,14 @@ const DI=n=>DIST.findIndex(d=>d.n===n);
 const ERA=['Urzeit','1981','1989','2089','1948','',''],eraN=i=>DIST[i].n+(ERA[i]?' · '+ERA[i]:'');
 // extra enemy mix per district: [rat, bomb, shield, crow, howl, kabel, bass, uhr, wurz, kern]
 const MIX=[[0,0,0,.06,0],[.14,.05,0,0,0],[0,.03,0,.05,0,0,0,.1,.08,.09],[0,.04,.08,0,0,.2,.07],[0,.08,0,.12,0],[0,.06,.1,.1,.05],[.08,.12,.1,.06,.07]];
-const UPG=[{k:'dmg',n:'Schärfen',d:l=>`+${l*7}% Schaden`,max:10,base:15},{k:'hp',n:'Panzerung',d:l=>`+${l*15} Leben`,max:10,base:15},{k:'dash',n:'Ausdauer',d:l=>`-${l*8}% Sprint-Abklingzeit`,max:5,base:25},{k:'luck',n:'Spürnase',d:l=>`+${l} Beuteglück`,max:5,base:30}];
+const UPG=[{k:'dmg',n:'Schärfen',d:l=>`+${l*7}% Schaden`,max:10,base:15},{k:'hp',n:'Panzerung',d:l=>`+${l*5}% Leben`,max:10,base:15},{k:'dash',n:'Ausdauer',d:l=>`-${l*8}% Sprint-Abklingzeit`,max:5,base:25},{k:'luck',n:'Spürnase',d:l=>`+${l} Beuteglück`,max:5,base:30}];
 const upCost=u=>Math.round(u.base*1.25*Math.pow(1.65,S.upg[u.k]));// v0.77: about twice the total cost (was base*1.55^l)
 // v0.82 blessing families (Hades-style): a held family is offered 2.5x as often, two held families unlock their Doppelsegen (duo). Weapon mods (w) are rare one-per-run cards that change how the weapon attacks
 const FAM={el:['Element','#7dd3ff'],krit:['Kombo und Krit','#f2d14b'],sprint:['Sprint','#9fd8c8'],serie:['Serie','#e05050'],glut:['Glut','#ff7a2a'],boll:['Bollwerk','#9aa4b0'],dist:['Distanz','#b8e05a']};
 const PERKS=[
- {k:'dmg',n:'Kiezwut',d:'+15% Schaden',max:5},{k:'hp',n:'Dickes Fell',d:'+25 maximales Leben',max:5,f:['boll']},{k:'spd',n:'Fersengeld',d:'+10% Lauftempo',max:3,f:['sprint']},
+ {k:'dmg',n:'Kiezwut',d:'+15% Schaden',max:5},{k:'hp',n:'Dickes Fell',d:'+10% maximales Leben',max:5,f:['boll']},{k:'spd',n:'Fersengeld',d:'+10% Lauftempo',max:3,f:['sprint']},
  {k:'crit',n:'Adlerblick',d:'+8% Krit-Chance',max:4,f:['krit']},{k:'rate',n:'Akkordarbeit',d:'+12% Angriffstempo',max:4,f:['serie']},{k:'reach',n:'Langer Kerl',d:'+20% Reichweite und Geschossgeschwindigkeit',max:3,f:['dist']},
- {k:'leech',n:'Aderlass',d:'Jeder Kill heilt 2 Leben',max:3,f:['serie']},{k:'ram',n:'Rammbock',d:'Sprint trifft Gegner auf dem Weg mit 120% Waffenschaden je Stufe',max:3,f:['sprint']},{k:'stun',n:'Kopfnuss',d:'Krits betäuben Gegner 0,6 s (Endgegner kürzer)',max:1,f:['krit']},
+ {k:'leech',n:'Aderlass',d:'Jeder Kill heilt 1% Leben',max:3,f:['serie']},{k:'ram',n:'Rammbock',d:'Sprint trifft Gegner auf dem Weg mit 120% Waffenschaden je Stufe',max:3,f:['sprint']},{k:'stun',n:'Kopfnuss',d:'Krits betäuben Gegner 0,6 s (Endgegner kürzer)',max:1,f:['krit']},
  {k:'boom',n:'Splitterleichen',d:'Gegner explodieren beim Tod: 35% Waffenschaden je Stufe an Nachbarn',max:3,f:['serie']},{k:'second',n:'Stehaufmännchen',d:'Überlebe einmal pro Lauf einen tödlichen Treffer',max:1},
  {k:'scrap',n:'SERO-Sammler',d:'+50% Schrott in diesem Lauf',max:2},{k:'dashcd',n:'Hakenschlag',d:'-20% Sprint-Abklingzeit',max:2,f:['sprint']},
  {k:'thorns',n:'Igelstellung',d:'Wer dich im Nahkampf trifft, nimmt 60% Waffenschaden je Stufe',max:3,f:['boll']},{k:'skill',n:'Notstrom',d:'-20% Abklingzeit deiner Kraft',max:2},{k:'magnet',n:'Elster',d:'Größerer Aufsammelradius',max:2},
