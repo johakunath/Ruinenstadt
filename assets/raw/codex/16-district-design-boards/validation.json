@@ -1,0 +1,117 @@
+{
+  "date": "2026-11-13",
+  "validation_runs": 1,
+  "result": "pass",
+  "checks": [
+    "nine unique PNGs fully decode",
+    "original copies match",
+    "exact prompts and reference paths present",
+    "comparison links exist",
+    "no runtime changes",
+    "git diff --check"
+  ],
+  "boards": [
+    {
+      "id": "tempelhof-a",
+      "file": "assets/raw/codex/16-district-design-boards/tempelhof-a.png",
+      "width": 1536,
+      "height": 1024,
+      "encoded_bytes": 3673953,
+      "rgba_decoded_bytes": 6291456,
+      "sha256": "da444e8f8bc50f2a46ae92fa1d28948edba6cf1f2ccdd3291a556f119aaf73e4",
+      "original_copy_matches": true
+    },
+    {
+      "id": "tempelhof-b",
+      "file": "assets/raw/codex/16-district-design-boards/tempelhof-b.png",
+      "width": 1536,
+      "height": 1024,
+      "encoded_bytes": 3870953,
+      "rgba_decoded_bytes": 6291456,
+      "sha256": "636b90b26b3bf072a56a2fa855d289b471249eee2cea9ed2a5895c6156012a0d",
+      "original_copy_matches": true
+    },
+    {
+      "id": "tempelhof-c",
+      "file": "assets/raw/codex/16-district-design-boards/tempelhof-c.png",
+      "width": 1536,
+      "height": 1024,
+      "encoded_bytes": 3657613,
+      "rgba_decoded_bytes": 6291456,
+      "sha256": "98412d7fbf24ea4761306b89d32cc3c2fb11231a2cc9757550776cafb78dd7f1",
+      "original_copy_matches": true
+    },
+    {
+      "id": "charlottenburg-a",
+      "file": "assets/raw/codex/16-district-design-boards/charlottenburg-a.png",
+      "width": 1536,
+      "height": 1024,
+      "encoded_bytes": 3937354,
+      "rgba_decoded_bytes": 6291456,
+      "sha256": "307af82a972f177531da5b93d7217c60c407adf70ee725d88dea32013332f258",
+      "original_copy_matches": true
+    },
+    {
+      "id": "charlottenburg-b",
+      "file": "assets/raw/codex/16-district-design-boards/charlottenburg-b.png",
+      "width": 1536,
+      "height": 1024,
+      "encoded_bytes": 3865496,
+      "rgba_decoded_bytes": 6291456,
+      "sha256": "9514e64dca79b4983a9d82d3c804723c097e701abbd2a7af4710abaf2c7a1d8b",
+      "original_copy_matches": true
+    },
+    {
+      "id": "charlottenburg-c",
+      "file": "assets/raw/codex/16-district-design-boards/charlottenburg-c.png",
+      "width": 1536,
+      "height": 1024,
+      "encoded_bytes": 3911071,
+      "rgba_decoded_bytes": 6291456,
+      "sha256": "ab64fb4064709a769a567e17e45f30db573d7c68207cea564ea4a05286e0658f",
+      "original_copy_matches": true
+    },
+    {
+      "id": "wedding-a",
+      "file": "assets/raw/codex/16-district-design-boards/wedding-a.png",
+      "width": 1536,
+      "height": 1024,
+      "encoded_bytes": 3828753,
+      "rgba_decoded_bytes": 6291456,
+      "sha256": "eb56f735e673a4c0f0c0794d0ff53b0bd1e533cbdd3e8d217082f5d7a3a2009e",
+      "original_copy_matches": true
+    },
+    {
+      "id": "wedding-b",
+      "file": "assets/raw/codex/16-district-design-boards/wedding-b.png",
+      "width": 1536,
+      "height": 1024,
+      "encoded_bytes": 3871475,
+      "rgba_decoded_bytes": 6291456,
+      "sha256": "f4a23eaca081d7d9768e6c45ddb153ab82bfa1f105cc53bd379198df2c1c319c",
+      "original_copy_matches": true
+    },
+    {
+      "id": "wedding-c",
+      "file": "assets/raw/codex/16-district-design-boards/wedding-c.png",
+      "width": 1536,
+      "height": 1024,
+      "encoded_bytes": 3912692,
+      "rgba_decoded_bytes": 6291456,
+      "sha256": "b030f2d00399fdb9dd2459f01007859f9476adb6c5a2090b7948e8c58237ab94",
+      "original_copy_matches": true
+    }
+  ],
+  "total_encoded_bytes": 34529360,
+  "total_board_rgba_bytes": 56623104,
+  "runtime_added_decoded_bytes": 0,
+  "runtime_memory_budget_bytes": 40000000,
+  "runtime_memory_status": "no runtime additions; board viewing memory is separate",
+  "frame_ms": null,
+  "regression_percent": null,
+  "regression_budget_percent": 5,
+  "slow_frame_over_50ms_percent": null,
+  "longest_frame_ms": null,
+  "timing_status": "not measured; documentation-only boards outside runtime manifest and shell",
+  "optimization": "deferred to Claude for future integrated assets"
+}

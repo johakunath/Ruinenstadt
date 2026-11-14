@@ -52,16 +52,16 @@ function drawTrain(b){const{x,y,w,h}=b,H=b.TH||46,z=v=>v*H/46;faceT(x+5,y+5,w,h,
 const tLine=(g,o,x0,x1,st)=>{g.beginPath();for(let x=x0;x<=x1;x+=st){const p=at(x,o);x===x0?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}g.stroke();};
 function tunGround(){const g=gx;g.fillStyle='#0b0a09';g.fillRect(0,0,TW,TH);for(let i=0;i<14000;i++){g.fillStyle=pick(['rgba(255,240,220,.03)','rgba(0,0,0,.4)']);const s=R(2,6);g.fillRect(R(0,TW),R(0,TH),s,s);}
   // track bed and platforms
-  g.beginPath();for(let x=TX0;x<=TX1;x+=40){const p=at(x,-hwAt(x));x===TX0?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}for(let x=TX1;x>=TX0;x-=40){const p=at(x,hwAt(x));g.lineTo(p[0],p[1]);}g.closePath();g.fillStyle='#3e3d38';g.fill();
-  g.beginPath();for(let x=TX0;x<=TX1;x+=40){const p=at(x,-THW);x===TX0?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}for(let x=TX1;x>=TX0;x-=40){const p=at(x,THW);g.lineTo(p[0],p[1]);}g.closePath();g.fillStyle='#1d1a17';g.fill();
-  for(let x=TX0;x<TX1;x+=40){const h=hwAt(x);if(h<=THW+20)continue;for(const sd of [-1,1])for(let o=THW+20;o<h-10;o+=40){const p=at(x,sd*(o+20));g.fillStyle=pick(['#46453f','#3a3934','#42413b','#4a4842']);g.fillRect(p[0]-19,p[1]-19,38,38);}}
+  g.beginPath();for(let x=TX0;x<=TX1;x+=40){const p=at(x,-hwAt(x));x===TX0?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}for(let x=TX1;x>=TX0;x-=40){const p=at(x,hwAt(x));g.lineTo(p[0],p[1]);}g.closePath();g.fillStyle=globalGroundPattern(g,'concrete')||'#3e3d38';g.fill();
+  g.beginPath();for(let x=TX0;x<=TX1;x+=40){const p=at(x,-THW);x===TX0?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}for(let x=TX1;x>=TX0;x-=40){const p=at(x,THW);g.lineTo(p[0],p[1]);}g.closePath();g.fillStyle=globalGroundPattern(g,'ballast')||'#1d1a17';g.fill();
+  for(let x=TX0;x<TX1;x+=40){const h=hwAt(x);if(h<=THW+20)continue;for(const sd of [-1,1])for(let o=THW+20;o<h-10;o+=40){const p=at(x,sd*(o+20)),tc=pick(['#46453f','#3a3934','#42413b','#4a4842']);g.fillStyle=globalGroundPattern(g,'concrete')||tc;g.fillRect(p[0]-19,p[1]-19,38,38);}}
   g.lineWidth=14;for(const s of TST)for(const sd of [-1,1]){g.strokeStyle='#ed9e25';g.setLineDash([]);tLine(g,sd*(THW+8),s[0]+60,s[1]-60,40);g.strokeStyle='rgba(0,0,0,.35)';g.setLineDash([8,20]);tLine(g,sd*(THW+8),s[0]+60,s[1]-60,40);}g.setLineDash([]);
   for(let i=0;i<16000;i++){const x=R(TX0,TX1),p=at(x,R(-THW,THW));g.fillStyle=pick(['#26221e','#16130f','#2c2722']);g.fillRect(p[0],p[1],R(3,8),R(3,6));}
   // sleepers across, then rails (gauge 72), two tracks 300 apart
   for(const o of [-150,150]){g.strokeStyle='#2e2219';g.lineWidth=16;for(let x=TX0+20;x<TX1;x+=46){const p=at(x,o-62),q=at(x,o+62);g.beginPath();g.moveTo(p[0],p[1]);g.lineTo(q[0],q[1]);g.stroke();}
     for(const r of [-36,36]){g.strokeStyle='#6a6258';g.lineWidth=6;tLine(g,o+r,TX0,TX1,40);g.strokeStyle='rgba(255,240,220,.14)';g.lineWidth=2;tLine(g,o+r-2,TX0,TX1,40);}}
   // side room, maintenance bypass, water, rubble, blotches
-  g.fillStyle='#34302a';g.fillRect(...ROOM);g.fillStyle='#2b2926';for(let x=BYP[0];x<BYP[1];x+=40){const y=cy(x)+THW-60;g.fillRect(x,y,42,230);}
+  g.fillStyle=globalGroundPattern(g,'concrete')||'#34302a';g.fillRect(...ROOM);g.fillStyle=globalGroundPattern(g,'concrete')||'#2b2926';for(let x=BYP[0];x<BYP[1];x+=40){const y=cy(x)+THW-60;g.fillRect(x,y,42,230);}
   g.strokeStyle='rgba(0,0,0,.4)';g.lineWidth=2;for(let i=0;i<60;i++){let a=R(ROOM[0],ROOM[0]+ROOM[2]),b=R(ROOM[1],ROOM[1]+ROOM[3]);g.beginPath();g.moveTo(a,b);for(let j=0;j<3;j++){a+=R(-20,20);b+=R(-20,20);g.lineTo(a,b);}g.stroke();}
   g.beginPath();for(let x=FLOOD[0];x<=FLOOD[1];x+=40){const p=at(x,-THW);x===FLOOD[0]?g.moveTo(p[0],p[1]):g.lineTo(p[0],p[1]);}for(let x=FLOOD[1];x>=FLOOD[0];x-=40){const p=at(x,THW);g.lineTo(p[0],p[1]);}g.closePath();g.fillStyle='rgba(30,58,68,.84)';g.fill();
   g.strokeStyle='rgba(140,190,200,.2)';g.lineWidth=3;for(let i=0;i<200;i++){const x=R(FLOOD[0],FLOOD[1]-60),p=at(x,R(-THW+20,THW-20));g.beginPath();g.moveTo(p[0],p[1]);g.quadraticCurveTo(p[0]+20,p[1]-6,p[0]+R(30,70),p[1]);g.stroke();}
@@ -74,7 +74,7 @@ function tunMapTab(c){const g=c.getContext('2d'),k=600/TW,oy=300-TH*k/2,T=(x,y)=
   {const[x,y]=T(GEN.x,GEN.y);g.fillStyle='#f2d14b';g.beginPath();g.arc(x,y,4,0,7);g.fill();}{const[x,y]=T(P.x,P.y);g.fillStyle='#fff';g.beginPath();g.arc(x,y,5,0,7);g.fill();}
   g.fillStyle='#a8957d';g.textAlign='left';g.fillText(tunName(TUN.k,TSEC[TUN.sec].n)+' · Abschnitt '+(TUN.sec+1)+' von '+TSEC.length,12,oy+TH*k+30);}
 // build the tunnel map for line k (instead of buildWorld)
-function buildTunnel(k){if(typeof koepResetCache==='function')koepResetCache(null);const L=LINES[k];D=Object.assign({},DIST[k],{n:L.l+' · '+DIST[k].n+' → '+DIST[k+1].n,tun:1,lvl:DIST[k].lvl+6,geo:null,wet:0,day:0,cyber:0,dark:.93,nc:'5,6,7'});
+function buildTunnel(k){if(typeof koepResetCache==='function')koepResetCache(null);if(typeof ksResetCache==='function')ksResetCache();if(typeof xhResetCache==='function')xhResetCache();if(typeof axResetCache==='function')axResetCache();if(typeof mtResetCache==='function')mtResetCache();const L=LINES[k];D=Object.assign({},DIST[k],{n:L.l+' · '+DIST[k].n+' → '+DIST[k+1].n,tun:1,lvl:DIST[k].lvl+6,geo:null,wet:0,day:0,cyber:0,dark:.93,nc:'5,6,7'});
   WS=TW;WH=TH;const sp=at(700,-440);[SX,SY]=sp;G=cnv(TW/2,TH/2);G.k=.5;gx=G.getContext('2d');gx.scale(.5,.5);walls=[];blds=[];barrels=[];reserved=[];marks=[];brk=[];spati=null;darks=[{x:0,y:0,w:TW,h:TH,seen:1}];waters=[];neons=[];shrines=[];ROADS=[];BLK=[];
   TUN={k,sec:0,live:[],gates:[],gen:null,lit:0,hold:0,boss:0,done:0};
   {const rc=cy(2730)-THW-420;ROOM[1]=Math.round(rc/20)*20;ROOM[3]=540;const g_=at(GENX,-450);GEN.y=g_[1];GEN.x=g_[0];}
@@ -131,11 +131,11 @@ function tunUpdate(dt){const T=TUN;if(!T||T.done)return;P.wet=P.x>=FLOOD[0]&&P.x
     if(T.hold&&!T.lit){if(d<GEN.r){T.p+=dt;T.sp-=dt;}if(T.sp<=0){T.sp=R(1.6,2.4);const q=mouth();tunSpawn(pick('ggsgxr'),q[0],q[1],9);if(T.p>GEN.need*.5&&!T.el){T.el=1;const e=mouth();tunSpawn('B',e[0],e[1],9);}}
       if(T.p>=GEN.need){T.lit=1;T.gen.lights.push({x:GEN.x,y:GEN.y,z:40,r:260});for(const b of blds)if(b.draw===drawCol&&b.x>TST[2][0])b.lights.push({x:b.x+13,y:b.y+26,z:110,r:150});neons.push({x:GEN.x,y:GEN.y,z:70,c:'#f2d14b',s:70});
         sfx('win');flashT=.2;banner('Strom!',1);const q=at(TX1-260,0),b=mkEnemy('boss',q[0],q[1],false);b.st=run.tl?run.tl.t:0;b.name='Der Schaffner';b.v=-1;b.col='#3a4a5a';enemies.push(b);run.boss=b;T.boss=1;for(let i=0;i<3;i++){const e=mouth();tunSpawn('g',e[0],e[1],9);}toast('Aus dem Tunnel kommt etwas Großes');}}
-    if(T.boss&&!run.boss&&!enemies.length){T.done=1;tunWin();}}}
+    if(T.boss&&!run.boss&&!enemies.length&&!run.exit&&!run.lootExitHold){tunWin();}}}
 // generator ring on the ground (charge), drawn in the ground layer
 function tunDraw(t){const T=TUN;if(!T||!T.hold||T.lit)return;const p=T.p/GEN.need;ctx.fillStyle='rgba(242,209,75,.06)';ctx.beginPath();ctx.arc(GEN.x,GEN.y,GEN.r,0,7);ctx.fill();ctx.strokeStyle='rgba(242,209,75,.45)';ctx.lineWidth=2;ctx.setLineDash([8,8]);ctx.beginPath();ctx.arc(GEN.x,GEN.y,GEN.r,0,7);ctx.stroke();ctx.setLineDash([]);
   ctx.strokeStyle='#f2d14b';ctx.lineWidth=6;ctx.beginPath();ctx.arc(GEN.x,GEN.y,GEN.r-8,-1.57,-1.57+6.283*p);ctx.stroke();}
-function tunWin(){logRun('win');state='over';clearInput();const k=TUN.k;S.ln=S.ln||[];const first=!S.ln[k];S.ln[k]=1;S.dist=k+1;if(first&&k===0)setTimeout(()=>toast('<span style="color:var(--ember)">S+U Warschauer Straße</span> ist jetzt dein Lager. Dort baust du Stationen aus.'),1500);const unl=S.unlocked<k+2;if(unl)S.unlocked=k+2;
+function tunWin(force){if(!force&&warnLootExit('tunnel'))return;TUN.done=1;run.exit=null;resetLootExit();logRun('win');state='over';clearInput();const k=TUN.k;S.ln=S.ln||[];const first=!S.ln[k];S.ln[k]=1;S.dist=k+1;if(first&&k===0)setTimeout(()=>toast('<span style="color:var(--ember)">S+U Warschauer Straße</span> ist jetzt dein Lager. Dort baust du Stationen aus.'),1500);const unl=S.unlocked<k+2;if(unl)S.unlocked=k+2;
   const bonus=Math.round(40*(k+1)*DF().sc);S.scrap+=bonus;run.sg+=bonus;run.bonus=bonus;run.unl=unl;run.first=first;save();sfx('win');setTimeout(()=>showEnd(true),900);}
 // start a tunnel run on line k (startRun with the tunnel flag)
 // v0.85 keep: straight from a won district into its tunnel, the blessings of that run come along (from the camp you start without)

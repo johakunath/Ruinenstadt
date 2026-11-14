@@ -1,0 +1,246 @@
+{
+  "errors": [],
+  "scenes": [
+    {
+      "district": "Köpenick",
+      "buildMs": 780.7000000001863,
+      "rng": 0.9807693297043443,
+      "assets": {
+        "ready": 12,
+        "total": 12,
+        "decodedBytes": 3014080,
+        "canvasBytes": 2966528,
+        "projectedCacheBytes": 7808664
+      },
+      "bridges": 7,
+      "taskBytes": 13789272,
+      "global": {
+        "decodedBytes": 15728640,
+        "canvasBytes": 15679584,
+        "ready": 42,
+        "total": 42
+      }
+    },
+    {
+      "district": "Köpenick",
+      "buildMs": 578.0999999996275,
+      "rng": 0.19056691089645028,
+      "assets": {
+        "ready": 12,
+        "total": 12,
+        "decodedBytes": 3014080,
+        "canvasBytes": 2966528,
+        "projectedCacheBytes": 7808664
+      },
+      "bridges": 7,
+      "taskBytes": 13789272,
+      "global": {
+        "decodedBytes": 15728640,
+        "canvasBytes": 15679584,
+        "ready": 42,
+        "total": 42
+      }
+    },
+    {
+      "district": "Köpenick",
+      "buildMs": 599.9000000003725,
+      "rng": 0.5196028768550605,
+      "assets": {
+        "ready": 12,
+        "total": 12,
+        "decodedBytes": 3014080,
+        "canvasBytes": 2966528,
+        "projectedCacheBytes": 7808664
+      },
+      "bridges": 7,
+      "taskBytes": 13789272,
+      "global": {
+        "decodedBytes": 15728640,
+        "canvasBytes": 15679584,
+        "ready": 42,
+        "total": 42
+      }
+    }
+  ],
+  "version": "0.94",
+  "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "measurements": [
+    {
+      "district": "Köpenick",
+      "medianOffMs": 8.271250000002329,
+      "medianOnMs": 10.322500000009313,
+      "pairedPct": 30.4669077190471,
+      "pairs": [
+        {
+          "on": {
+            "meanMs": 11.868749999988358,
+            "sp": 3.75,
+            "mx": 295.70000000018626,
+            "allocations": 0
+          },
+          "off": {
+            "meanMs": 8.85625,
+            "sp": 2.5,
+            "mx": 306.5,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 9.310000000009314,
+            "sp": 2.5,
+            "mx": 338,
+            "allocations": 0
+          },
+          "on": {
+            "meanMs": 9.994999999995343,
+            "sp": 3.75,
+            "mx": 252.5,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 9.8625,
+            "sp": 3.75,
+            "mx": 247.59999999962747,
+            "allocations": 0
+          },
+          "off": {
+            "meanMs": 8.271250000002329,
+            "sp": 2.5,
+            "mx": 302.59999999962747,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 7.777500000002329,
+            "sp": 2.5,
+            "mx": 275.59999999962747,
+            "allocations": 0
+          },
+          "on": {
+            "meanMs": 10.322500000009313,
+            "sp": 3.75,
+            "mx": 252.1000000005588,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 10.373750000004657,
+            "sp": 3.75,
+            "mx": 253.3999999994412,
+            "allocations": 0
+          },
+          "off": {
+            "meanMs": 7.951249999995343,
+            "sp": 2.5,
+            "mx": 286.3999999994412,
+            "allocations": 0
+          }
+        }
+      ]
+    },
+    {
+      "district": "Alexanderplatz",
+      "medianOffMs": 14.366249999997672,
+      "medianOnMs": 14.3625,
+      "pairedPct": 0.08945271208908867,
+      "pairs": [
+        {
+          "on": {
+            "meanMs": 14.129999999993014,
+            "sp": 6.25,
+            "mx": 199,
+            "allocations": 0
+          },
+          "off": {
+            "meanMs": 14.228749999997671,
+            "sp": 6.25,
+            "mx": 210.5,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 14.366249999997672,
+            "sp": 6.25,
+            "mx": 188.6000000005588,
+            "allocations": 0
+          },
+          "on": {
+            "meanMs": 15.13125,
+            "sp": 6.25,
+            "mx": 214.90000000037253,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 14.189999999990686,
+            "sp": 6.25,
+            "mx": 195,
+            "allocations": 0
+          },
+          "off": {
+            "meanMs": 14.742499999993015,
+            "sp": 6.25,
+            "mx": 211,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 15.371249999990686,
+            "sp": 6.25,
+            "mx": 228.6000000005588,
+            "allocations": 0
+          },
+          "on": {
+            "meanMs": 15.384999999997671,
+            "sp": 6.25,
+            "mx": 223,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 14.3625,
+            "sp": 6.25,
+            "mx": 203.59999999962747,
+            "allocations": 0
+          },
+          "off": {
+            "meanMs": 13.921249999990687,
+            "sp": 6.25,
+            "mx": 190.20000000018626,
+            "allocations": 0
+          }
+        }
+      ]
+    }
+  ],
+  "fallback": {
+    "district": "Köpenick",
+    "buildMs": 713.6000000005588,
+    "rng": 0.9807693297043443,
+    "assets": {
+      "ready": 0,
+      "total": 12,
+      "decodedBytes": 3014080,
+      "canvasBytes": 0,
+      "projectedCacheBytes": 0
+    },
+    "bridges": 7,
+    "taskBytes": 3014080,
+    "global": {
+      "decodedBytes": 15728640,
+      "canvasBytes": 15679584,
+      "ready": 42,
+      "total": 42
+    }
+  },
+  "status": "passed"
+}

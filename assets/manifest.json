@@ -539,6 +539,156 @@
     "units": 3,
     "w": 337
   },
+  "buildings/alex-awning": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: awning",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-bronze": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: bronze",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-copper": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: copper",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-curtain": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: curtain",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-fernsehturm": {
+    "anchor": [
+      193,
+      569
+    ],
+    "for": "Alexanderplatz upright fernsehturm",
+    "h": 570,
+    "units": 3,
+    "w": 386
+  },
+  "buildings/alex-greenhouse": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: greenhouse",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-limestone": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: limestone",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-neptun": {
+    "anchor": [
+      130,
+      385
+    ],
+    "for": "Alexanderplatz upright neptun",
+    "h": 386,
+    "units": 3,
+    "w": 260
+  },
+  "buildings/alex-plaza": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: plaza",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-rail-brick": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: rail-brick",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-rathaus": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: rathaus",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-relief": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: relief",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-station": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: station",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-water": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Alexanderplatz custom projected architecture/surfaces: water",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/alex-weltzeit": {
+    "anchor": [
+      175,
+      513
+    ],
+    "for": "Alexanderplatz upright weltzeit",
+    "h": 514,
+    "units": 3,
+    "w": 351
+  },
   "buildings/gdr-banner-blue": {
     "anchor": [
       77.699,
@@ -788,6 +938,486 @@
     "h": 182,
     "units": 3,
     "w": 272
+  },
+  "buildings/koep-special-asphalt": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: asphalt",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-bridge-deck": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: bridge-deck",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-bridge-wall": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: bridge-wall",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-facade": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: facade",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-path": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: path",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-pavement": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: pavement",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-platform": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: platform",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-plaza": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: plaza",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-roof": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: roof",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-station": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: station",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/koep-special-tower": {
+    "anchor": [
+      1,
+      509
+    ],
+    "for": "Köpenick special architecture and surfaces: tower",
+    "h": 510,
+    "units": 3,
+    "w": 132
+  },
+  "buildings/koep-special-water": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Köpenick special architecture and surfaces: water",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-brick": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: brick",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-canopy": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: canopy",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-ceramic": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: ceramic",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-clinic": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: clinic",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-concrete": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: concrete",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-curtain": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: curtain",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-glass": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: glass",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-gold": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: gold",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-mural": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: mural",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-plaza": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: plaza",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-quadriga": {
+    "anchor": [
+      193,
+      314
+    ],
+    "for": "Potsdamer Platz/Mitte upright quadriga",
+    "h": 315,
+    "units": 3,
+    "w": 386
+  },
+  "buildings/mitte-rail-brick": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: rail-brick",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-sandstone": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: sandstone",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-siegessaeule": {
+    "anchor": [
+      145,
+      376
+    ],
+    "for": "Potsdamer Platz/Mitte upright siegessaeule",
+    "h": 377,
+    "units": 3,
+    "w": 290
+  },
+  "buildings/mitte-speaker": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: speaker",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-steel": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: steel",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-train": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: train",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/mitte-water": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Potsdamer Platz/Mitte custom projected architecture/surfaces: water",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/shared-brick": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material brick",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "buildings/shared-glass": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material glass",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "buildings/shared-plaster": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material plaster",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "buildings/shared-slate": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material slate",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "buildings/shared-terracotta": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material terracotta",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "buildings/shared-wood": {
+    "anchor": [
+      256,
+      511
+    ],
+    "for": "global painted material wood",
+    "h": 512,
+    "units": 3,
+    "w": 512
+  },
+  "buildings/xhain-arcade": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: arcade",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-ceramic": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: ceramic",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-concrete": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: concrete",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-copper": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: copper",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-glass": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: glass",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-iron": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: iron",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-mural": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: mural",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-paving": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: paving",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-rail-brick": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: rail-brick",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-station": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: station",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-tower": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: tower",
+    "h": 258,
+    "units": 3,
+    "w": 258
+  },
+  "buildings/xhain-water": {
+    "anchor": [
+      1,
+      257
+    ],
+    "for": "Xhain custom projected architecture/surfaces: water",
+    "h": 258,
+    "units": 3,
+    "w": 258
   },
   "enemies/bass-attack-a": {
     "anchor": [
@@ -3743,6 +4373,366 @@
     "units": 3,
     "w": 768
   },
+  "props/ground-asphalt": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material asphalt",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-asphalt-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material asphalt-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-asphalt-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material asphalt-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-asphalt-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material asphalt-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-ballast": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material ballast",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-ballast-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material ballast-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-ballast-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material ballast-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-ballast-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material ballast-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-cobble": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material cobble",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-cobble-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material cobble-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-cobble-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material cobble-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-cobble-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material cobble-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-concrete": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material concrete",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-concrete-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material concrete-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-concrete-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material concrete-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-concrete-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material concrete-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-dirt": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material dirt",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-dirt-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material dirt-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-dirt-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material dirt-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-dirt-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material dirt-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-grass": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material grass",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-grass-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material grass-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-grass-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material grass-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-grass-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material grass-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-pavement": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material pavement",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-pavement-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material pavement-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-pavement-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material pavement-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-pavement-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material pavement-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-plaza": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material plaza",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-plaza-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material plaza-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-plaza-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material plaza-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-plaza-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material plaza-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-sand": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material sand",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-sand-v1": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material sand-v1",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-sand-v2": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material sand-v2",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
+  "props/ground-sand-v3": {
+    "anchor": [
+      128,
+      255
+    ],
+    "for": "global painted material sand-v3",
+    "h": 256,
+    "units": 3,
+    "w": 256
+  },
   "props/lamp": {
     "anchor": [
       38.5,
@@ -3762,6 +4752,166 @@
     "h": 302,
     "units": 3,
     "w": 164
+  },
+  "props/pickup-bag-common": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-bag-legendary": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-bag-magic": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-bag-rare": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-bag-set": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-bandage": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-bottle": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-chemie": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-doener": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-fleisch": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-gemuese": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-gewuerz": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-kabel": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-metall": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-scrap": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
+  },
+  "props/pickup-stoff": {
+    "anchor": [
+      64,
+      127
+    ],
+    "for": "paintedDrop",
+    "h": 128,
+    "units": 3,
+    "w": 128
   },
   "props/sandbags": {
     "anchor": [

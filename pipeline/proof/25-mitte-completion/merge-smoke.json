@@ -1,0 +1,16 @@
+{
+  "version": "0.98",
+  "state": "play",
+  "hp": 100,
+  "assets": {
+    "ready": 18,
+    "decodedBytes": 5183776,
+    "canvasBytes": 5131648,
+    "sourceBytes": 10315424,
+    "projectedCacheBytes": 29648844,
+    "totalBytes": 39964268,
+    "cached": 79,
+    "limit": 40000000
+  },
+  "errors": []
+}

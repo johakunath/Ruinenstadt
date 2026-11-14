@@ -21,7 +21,7 @@ The GDR never fell. Its last big project, the **Zeitnormal**, ran every clock in
 | 2 | Xhain | 1981, West Berlin squats | Squats, punks, Spree, Wrangelkiez; the Spreehexe as a punk witch of the squats | Spreehexe |
 | 3 | Alexanderplatz | 1989, frozen in autumn | The GDR that kept going and grew wild, clockwork, pioneers, daylight | Volkseigener Koloss |
 | 4 | Mitte / Potsdamer Platz | 2089, neon future | Rain, implants, Kabelghule, the club cult | Bassprediger |
-| 5 | **Wedding** | **The eternal "soon"** (banner: bald) | See below | new |
+| 5 | **Wedding** | **The eternal "soon"** (banner/board: **kommt bald**, corrected 2026-11-13) | See below | banquet boss concept below |
 | 6 | **Tempelhof** | **1948, airlift** | Airfield, hangars, airport building, Rosinenbomber ghosts circling, cargo cult around the planes, kites on the Feld | Fliegerkönig |
 | 7 | **Charlottenburg** | **1920, Golden Twenties** (decided 2026-11-12) | Ku'damm cabarets and cinemas, Art Deco, jazz, Ringverein gangsters; the Schloss as the boss arena | new |
 | Finale | Fernsehturm | All eras at once | The clock room in the sphere | new |
@@ -33,8 +33,35 @@ Spandau and Marzahn are dropped (Johannes, 2026-11-11). Their content stays in t
 The running joke: "Wedding kommt" has been said for decades. In the Stillstand Wedding is stuck in a near future that never arrives: scaffolding everywhere, cranes that never finish, billboards for lofts that never open. The streets belong to the people who always lived there: Turkish, Lebanese and Arab families, Teestuben, shisha bars, barbers, bakeries, gold shops, wedding halls (Hochzeitssäle in Wedding), the Leopoldplatz market, the Panke, the old AEG and Osram halls.
 
 - Tone: affectionate and funny, the Kiez is on the player's side. The locals are allies, traders and quest givers (a family that runs the Teestube, a barber who knows every rumour), never the enemy.
-- The enemy is the promise: **Der Ewige Bauherr**, a crane-and-scaffold golem of the developer who swore Wedding would be cool next year. Enemies: construction drones, scaffold ghouls, "Coming soon" billboard creatures.
+- Initial 2026-11-11 enemy proposal: **Der Ewige Bauherr**, a crane-and-scaffold golem, construction drones, scaffold ghouls and billboard creatures. The 2026-11-13 selected banquet refinement below supersedes this visual emphasis; unfinished developer promises remain the background joke.
 - Set pieces: a wedding hall with a party that never ends, a market with stalls as cover, an AEG hall arena.
+
+### Selected district art refinements (2026-11-13)
+
+Wedding C is selected. Strengthen the
+lavish gold/emerald banquet and storybook sultan fantasy: flying carpets,
+wish lamps, baklava, Döner, shisha and black tea. Exact joke: **“Der Wedding
+kommt bald”**; era label **“kommt bald”**, not isolated “bald”. The feast is
+playful and extravagant rather than zombie horror. Living neighbours remain
+hosts/allies; enchanted tea spirits, pastry golems and animated carpets provide
+the absurd conflict. The final board develops **Sultan Nimmersatt / Der Ewige
+Gastgeber** as a fictional enchanted banquet sovereign. This is an art concept
+superseding the crane-golem emphasis for this direction; no boss replacement,
+enemy mechanics or district migration is implemented by a concept board.
+
+Tempelhof refinement (2026-11-13): B's windpilgrim identity is selected. Keep
+1948 airlift planes, Feld, terminal and hangars, but emphasize frightening wind
+cult ritual, elaborate parachute vestments, spectral planes and dark magic;
+less technology and fewer zombie-coded designs. The Fliegerkönig becomes a
+wind-priest art concept rather than an engine-armour machine.
+
+Charlottenburg refinement (2026-11-13): combine A's revue and costume spectacle
+with C's mirror/Schloss fantasy. Silver, diamonds, glass creatures and elaborate
+stage gowns dominate; much less gold. The Diamantene Diva is the legendary
+boss art concept. 1920 and the Schloss's localized baroque bleed remain.
+
+All three refined boards omit BVG branding, transit livery and transit-costume
+motifs. These visual selections do not rewrite the shared Zeitnormal premise.
 
 ### Charlottenburg: which period
 
@@ -46,6 +73,12 @@ The running joke: "Wedding kommt" has been said for decades. In the Stillstand W
 Decided (Johannes, 2026-11-12): 1920s for the district, with the Schloss as the place where it bleeds into baroque (garden labyrinth, mirror halls) for the boss.
 
 ## NPCs and art follow the eras
+
+Art direction (2026-11-13): [district boards](district-design-directions.md)
+record the selected Tempelhof B, Wedding C and Charlottenburg A+C directions,
+their three final refinements and the historical nine alternatives. New named
+enemies, bosses and equipment are art concepts, with no stats or mechanics
+implemented by these documents.
 
 - Camp NPCs come from different eras (Oma Gerda from 1989, Lin from the neon future, Jonas the Schwarzmarkt dealer from the 1920s, Ilse from the Kiezwache of the present ...). Write their one-liners from that (station quests and NPC lines, #36/#39).
 - Every district palette, enemy family and prop set follows its era; the shared post-apocalyptic wear from `docs/style-bible.md` stays on top of it.

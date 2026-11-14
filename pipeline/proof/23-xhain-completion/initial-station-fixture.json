@@ -1,0 +1,163 @@
+{
+  "errors": [],
+  "scenes": [
+    {
+      "district": "Xhain",
+      "version": "0.95",
+      "target": "bridge",
+      "buildMs": 1038.0999999999767,
+      "nextRng": 0.7113548032939434,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:225)\n    at R (http://127.0.0.1:8767/js/core.js:6:40)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:45:164)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 12,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:225)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:49:98)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 87765
+      },
+      "assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33563720,
+        "totalBytes": 39904520,
+        "cached": 100,
+        "limit": 40000000
+      },
+      "eligible": 152,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33610392,
+        "totalBytes": 39951192,
+        "cached": 55,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Xhain",
+      "version": "0.95",
+      "target": "berghain",
+      "buildMs": 710.5,
+      "nextRng": 0.7113548032939434,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33563720,
+        "totalBytes": 39904520,
+        "cached": 100,
+        "limit": 40000000
+      },
+      "eligible": 152,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33610392,
+        "totalBytes": 39951192,
+        "cached": 55,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Xhain",
+      "version": "0.95",
+      "target": "ostbahnhof",
+      "buildMs": 736.4000000000233,
+      "nextRng": 0.7113548032939434,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33563720,
+        "totalBytes": 39904520,
+        "cached": 100,
+        "limit": 40000000
+      },
+      "eligible": 152,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33610392,
+        "totalBytes": 39951192,
+        "cached": 55,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Xhain",
+      "version": "0.95",
+      "target": "gallery",
+      "buildMs": 691.5,
+      "nextRng": 0.7113548032939434,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33563720,
+        "totalBytes": 39904520,
+        "cached": 100,
+        "limit": 40000000
+      },
+      "eligible": 152,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33610392,
+        "totalBytes": 39951192,
+        "cached": 55,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Xhain",
+      "version": "0.95",
+      "target": "rail",
+      "buildMs": 754.2999999999302,
+      "nextRng": 0.7113548032939434,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33563720,
+        "totalBytes": 39904520,
+        "cached": 100,
+        "limit": 40000000
+      },
+      "eligible": 152,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33610392,
+        "totalBytes": 39951192,
+        "cached": 55,
+        "limit": 40000000
+      }
+    }
+  ],
+  "measurements": [],
+  "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "gameplayUnchanged": true,
+  "status": "failed",
+  "failure": "AssertionError [ERR_ASSERTION]: station missing cache\n    at /workspace/Ruinenstadt/tools/proof_xhain_completion.cjs:12:222"
+}

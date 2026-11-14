@@ -38,14 +38,16 @@ function drawBox(b){const x=b.x,y=b.y,w=b.w,h=b.h,s=b.spr,vs=b.vs||1,FH=b.FH||b.
 function gableRoof(b,Hs){const{x,y,w,h}=b,G_=b.gable,o=4,rc=b.rc||'#6a3a2a',ym=y+h/2,Z=Hs+G_;faceS(x,y,w,h,0,Hs,0,INK);faceE(x,y,w,h,0,Hs,0,INK);
   const tri=[P3(x+w,y,Hs),P3(x+w,y+h,Hs),P3(x+w,ym,Z)];poly(tri,b.wc||'#b8a888');poly(tri,'rgba(8,5,4,.42)',INK);
   poly([P3(x-o,y-o,Hs-2),P3(x+w+o,y-o,Hs-2),P3(x+w+o,ym,Z),P3(x-o,ym,Z)],dark(rc,.8),INK);
+  if(b.sharedRoof&&globalRoofFace(ctx,P3(x-o,y-o,Hs-2),P3(x+w+o,y-o,Hs-2),P3(x-o,ym,Z),w+o*2,h/2+o,b.sharedRoof))poly([P3(x-o,y-o,Hs-2),P3(x+w+o,y-o,Hs-2),P3(x+w+o,ym,Z),P3(x-o,ym,Z)],'rgba(0,0,0,.2)',INK);
   poly([P3(x-o,ym,Z),P3(x+w+o,ym,Z),P3(x+w+o,y+h+o,Hs-2),P3(x-o,y+h+o,Hs-2)],rc,INK);
+  if(b.sharedRoof&&globalRoofFace(ctx,P3(x-o,ym,Z),P3(x+w+o,ym,Z),P3(x-o,y+h+o,Hs-2),w+o*2,h/2+o,b.sharedRoof))poly([P3(x-o,ym,Z),P3(x+w+o,ym,Z),P3(x+w+o,y+h+o,Hs-2),P3(x-o,y+h+o,Hs-2)],0,INK);
   ctx.strokeStyle='rgba(0,0,0,.22)';ctx.lineWidth=1;for(let f=.2;f<1;f+=.2){const a=P3(x-o,ym+(h/2+o)*f,Z-(G_+2)*f),c=P3(x+w+o,ym+(h/2+o)*f,Z-(G_+2)*f);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(c[0],c[1]);ctx.stroke();}
   const r0=P3(x-o,ym,Z),r1=P3(x+w+o,ym,Z);ctx.strokeStyle='rgba(255,230,200,.18)';ctx.beginPath();ctx.moveTo(r0[0],r0[1]);ctx.lineTo(r1[0],r1[1]);ctx.stroke();
   if(b.w>140&&!b.chim)b.chim=R(.15,.85);if(b.chim){const cx=x+w*b.chim;ibox(cx,ym-14,10,10,Z-G_*.5,Z+10,'#5a3a2e',INK);}}
 // upright sprite (tree, lamp, Litfaßsäule, crane): base row at b.top, anchored at the footprint centre
-function drawBB(b){if(b.propKey&&paintedBillboard(b))return;const s=b.spr,sc=b.sc||1,ax=b.x+b.w/2,X=ix(ax,b.y),Y=iy(ax,b.y);ctx.drawImage(s,X-s.width*sc/2,Y-b.top*sc,s.width*sc,s.height*sc);}
+function drawBB(b){if(mtBillboard(b))return;if(axBillboard(b))return;if(b.propKey&&paintedBillboard(b))return;const s=b.spr,sc=b.sc||1,ax=b.x+b.w/2,X=ix(ax,b.y),Y=iy(ax,b.y);ctx.drawImage(s,X-s.width*sc/2,Y-b.top*sc,s.width*sc,s.height*sc);}
 // light position (x,y on the ground, z height in screen px) for lights stored in the old 3/4 sprite coordinates
-function lpos(b,l){if(l.z!=null)return[l.x,l.y,l.z];if(l.inner)return[l.x,l.y,0];if(isBox(b)){const z=Math.max(0,b.y+b.h-l.y)*(b.vs||1);let p=[clamp(l.x,b.x,b.x+b.w),b.y+b.h];if(b.rot){ROT={cx:b.x+b.w/2,cy:b.y+b.h/2,c:Math.cos(b.rot),s:Math.sin(b.rot)};p=rw(p[0],p[1]);ROT=null;}return[p[0],p[1],z];}return[l.x,b.y,Math.max(0,b.y-l.y)*(b.sc||1)];}
+function lpos(b,l){if(b.ksRathaus&&l.ksClock&&koepSpecialOn()&&KS_CACHE.has(b))return[b.x+62,b.y+b.h,b.top*1.5*(1-250/512)];if(l.z!=null)return[l.x,l.y,l.z];if(l.inner)return[l.x,l.y,0];if(isBox(b)){const z=Math.max(0,b.y+b.h-l.y)*(b.vs||1);let p=[clamp(l.x,b.x,b.x+b.w),b.y+b.h];if(b.rot){ROT={cx:b.x+b.w/2,cy:b.y+b.h/2,c:Math.cos(b.rot),s:Math.sin(b.rot)};p=rw(p[0],p[1]);ROT=null;}return[p[0],p[1],z];}return[l.x,b.y,Math.max(0,b.y-l.y)*(b.sc||1)];}
 /* ---- vehicles: iso boxes. b={x,y,w,h,veh:{k,c,v}} ---- */
 function addVeh(x,y,w,h,v,k){const c=k==='bus'?'#d8a818':k==='tram'?'#d6b436':k==='trabi'?pick(['#8ab0a8','#c8b890','#a87a6a','#7a8aa8','#d6cfc0']):k==='van'?pick(['#c8c0b0','#5a7a8a','#8a4a32']):pick(['#6b3a24','#4a4038','#5c4a2e','#55524c','#5a2e22','#3a4a5a']);
   const g=gx;g.fillStyle='rgba(0,0,0,.3)';g.fillRect(x-3,y-3,w+6,h+6);for(let i=0;i<4;i++){g.fillStyle='rgba(20,10,5,.35)';g.beginPath();g.ellipse(x+R(0,w),y+R(0,h),R(6,14),R(4,9),R(0,3),0,7);g.fill();}

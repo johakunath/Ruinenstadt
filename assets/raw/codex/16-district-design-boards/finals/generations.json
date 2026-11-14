@@ -1,0 +1,30 @@
+[
+  {
+    "id": "tempelhof-final",
+    "references": [
+      "assets/raw/codex/16-district-design-boards/tempelhof-b.png"
+    ],
+    "source": "/workspace/generated_images/exec-99cbb759-c3ea-46ed-8982-61ef67e53f1d.png",
+    "raw": "assets/raw/codex/16-district-design-boards/finals/tempelhof-final.png",
+    "canonical": "docs/style/tempelhof.png"
+  },
+  {
+    "id": "wedding-final",
+    "references": [
+      "assets/raw/codex/16-district-design-boards/wedding-c.png"
+    ],
+    "source": "/workspace/generated_images/exec-e3eb3c7d-41ce-4e2c-a9e8-9274f6833f89.png",
+    "raw": "assets/raw/codex/16-district-design-boards/finals/wedding-final.png",
+    "canonical": "docs/style/wedding.png"
+  },
+  {
+    "id": "charlottenburg-final",
+    "references": [
+      "assets/raw/codex/16-district-design-boards/charlottenburg-a.png",
+      "assets/raw/codex/16-district-design-boards/charlottenburg-c.png"
+    ],
+    "source": "/workspace/generated_images/exec-645f698a-5285-4aa7-a80e-5e3bd098bbf7.png",
+    "raw": "assets/raw/codex/16-district-design-boards/finals/charlottenburg-final.png",
+    "canonical": "docs/style/charlottenburg.png"
+  }
+]

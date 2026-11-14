@@ -55,8 +55,9 @@ function update(dt){dt=fxTime(dt);
     if(m.soft||m.br){if(t-(run.areaT||-99)<40)continue;run.areaT=t;toast(`<span style="color:var(--dim)">${m.n}</span>`);}else if(bannerT<=0&&t>4&&t-(run.lmT||-99)>20){run.lmT=t;banner(m.n);}else if(t-(run.areaT||-99)>=12){run.areaT=t;toast(`<span style="color:var(--ember)">${m.n}</span>`);}}// v0.57: fewer area messages
   if(run.tun){tunUpdate(dt);if(state!=='play')return;}// U-Bahn tunnel: sections instead of waves
   else if(run.toSpawn>0){run.spawnT-=dt;if(run.spawnT<=0){spawnOne();run.toSpawn--;run.spawnT=Math.max(.3,1-wE()*.05);}}
-  else if(!enemies.length&&!run.cleared){run.cleared=true;run.perkDone=false;progWave(run.wave);if(run.wave>=WAVES&&!run.endless){run.exit={x:SX,y:SY-(D.geo?15:0),r:55};banner('Bezirk befreit!');toast('Sieh dich in Ruhe um · zum Verlassen zurück zur Station, der Pfeil zeigt den Weg');sfx('win');}if(run.endless&&run.wave>WAVES){const b=Math.round(5*(run.wave-WAVES)*(1+.1*D.i)*DF().sc);S.scrap+=b;run.sg+=b;S.eb[run.d]=Math.max(S.eb[run.d]||0,run.wave);}toast('Welle '+run.wave+' geschafft');S.best[run.d]=Math.max(S.best[run.d],run.wave);save();run.breakT=2;}
-  if(run.exit&&Math.hypot(P.x-run.exit.x,P.y-run.exit.y)<run.exit.r){run.exit=null;win();return;}// v0.84: after the final boss the district stays open, the run ends at the start station
+  else if(!enemies.length&&!run.cleared){run.cleared=true;run.perkDone=false;progWave(run.wave);if(run.wave>=WAVES&&!run.endless){run.exit={x:SX,y:SY-(D.geo?15:0),r:55};banner('Bezirk befreit!');toast('Beute sichern · zurück zur Station');sfx('win');}if(run.endless&&run.wave>WAVES){const b=Math.round(5*(run.wave-WAVES)*(1+.1*D.i)*DF().sc);S.scrap+=b;run.sg+=b;S.eb[run.d]=Math.max(S.eb[run.d]||0,run.wave);}toast('Welle '+run.wave+' geschafft');S.best[run.d]=Math.max(S.best[run.d],run.wave);save();run.breakT=2;}
+  if(run.exit&&Math.hypot(P.x-run.exit.x,P.y-run.exit.y)>=run.exit.r+16)run.lootExitHold=false;
+  if(run.exit&&!run.lootExitHold&&Math.hypot(P.x-run.exit.x,P.y-run.exit.y)<run.exit.r){run.tun?tunWin():win();return;}// v0.84: after the final boss the district stays open, the run ends at the start station
   if(run.cleared&&!run.tun&&!run.exit){run.breakT-=dt;if(run.breakT<=0){if(!run.perkDone){if(run.wave%2){run.perkDone=true;return;}offerPerks();if(state!=='play')return;}/* v0.45: blessing after every second wave */else{run.cleared=false;startWave();}}}
   for(const k in SHR)if(SHR[k]>0){SHR[k]-=dt;if(SHR[k]<=0){SHR[k]=0;refresh();toast(`<span style="color:var(--dim)">${SHRN[k][0]} ist verflogen</span>`);}}
   for(const h of shrines)if(!h.used&&Math.hypot(h.x-P.x,h.y+10-P.y)<46){h.used=1;h.o.spr=h.off;h.o.lights=[];const k=pick(Object.keys(SHRN));SHR[k]=60;refresh();toast(`Litfaßsäule · <span style="color:#7dd3ff">${SHRN[k][0]}</span>: ${SHRN[k][1]} (60 s)`);sfx('legend');burst(h.x,h.y-30,'#7dd3ff',24,200);rings.push({x:h.x,y:h.y,r:10,max:120,col:'125,211,255'});prog('shrine');}
@@ -133,7 +134,7 @@ function update(dt){dt=fxTime(dt);
         else if(v===7){if(e.sum<=0){e.sum=e.rage?3.4:4.6;e.k7=(e.k7||0)+1;for(let i=0;i<5;i++){const q=1+i*.15,o=i?{x:P.x+R(-170,170),y:P.y+R(-140,140)}:{x:P.x,y:P.y};teles.push({x:o.x,y:o.y,r:52,t:q,max:q,dmg:Math.round(e.dmg*.95),slab:1});}sfx('horn');
           if(e.k7%2===0)for(let i=0;i<2;i++)enemies.push(mkEnemy('bomb',e.x+R(-60,60),e.y+R(-60,60)));}}
         else{if(e.sum<=0){e.sum=9;for(let i=0;i<3;i++)enemies.push(mkEnemy('ghoul',e.x+R(-50,50),e.y+R(-50,50)));}e.trail=(e.trail||0)-dt;if(e.trail<=0&&(e.mv||0)>8){e.trail=.4;hazards.push({x:e.x,y:e.y+e.r*.6,r:26,t:4,dmg:Math.max(1,Math.round(e.dmg*.35))});}}}}
-    if(d<e.r+P.r+2&&e.hcd<=0&&e.stun<=0&&e.hp>0&&e.type!=='bomb'&&(!e.fly||e.dive>0)){e.hcd=.9;e.atk=.25;const landed=hurt(e.type==='boss'?e.dmg*.6:e.dmg,e.type==='boss'||e.type==='brute'?9:5);if(state!=='play')return;if(landed&&pk('thorns'))hit(e,ST.dmg*.6*pk('thorns'),false,{knock:300});if(landed&&pk('d_mauer')&&e.hp>0){const W=ER(e,'fire');if(W>0){e.bdps=Math.max(e.burn>0?e.bdps:0,ST.dmg*.8*W);e.burn=3;burst(e.x,e.y-10,ELC.fire,8,120);}}}
+    if(d<e.r+P.r+2&&e.hcd<=0&&e.stun<=0&&e.hp>0&&e.type!=='bomb'&&(!e.fly||e.dive>0)){e.hcd=.9;e.atk=.25;const landed=hurt(e.type==='boss'?e.dmg*.6:e.dmg,e.type==='boss'||e.type==='brute'?9:5,enemyContactKind(e));if(state!=='play')return;if(landed&&pk('thorns'))hit(e,ST.dmg*.6*pk('thorns'),false,{knock:300});if(landed&&pk('d_mauer')&&e.hp>0){const W=ER(e,'fire');if(W>0){e.bdps=Math.max(e.burn>0?e.bdps:0,ST.dmg*.8*W);e.burn=3;burst(e.x,e.y-10,ELC.fire,8,120);}}}
     if(e.atk>0)e.atk-=dt;
   }
   for(let i=0;i<enemies.length;i++)for(let j=i+1;j<enemies.length;j++){const a=enemies[i],b=enemies[j];if(a.fly||b.fly)continue;const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy),m=a.r+b.r;
@@ -157,12 +158,5 @@ if(t.root&&!(P.dashT>0)&&!(P.rootI>0)){P.root=.8;P.rootI=2.5;nums.push({x:P.x,y:
     if(P.inv<=0&&Math.hypot(P.x-h.x,(P.y+9-h.y)*1.6)<h.r+6){hurt(h.dmg,2);if(state!=='play')return;}}
   hazards=hazards.filter(h=>h.t>0);if(hazards.length>60)hazards.splice(0,hazards.length-60);
   enemies=enemies.filter(e=>e.hp>0);
-  const mr=90*pk('magnet'),pr=26*(1+.5*pk('magnet'));
-  for(const d of drops){d.t+=dt;if(d.vh===undefined){d.vh=R(150,210);d.h=0;const a=R(0,6.28),s=R(30,80);d.vx=Math.cos(a)*s;d.vy=Math.sin(a)*s;if(d.item&&d.item.r>=3){goldT=.6;sfx('legend');banner('Legendär!');}}
-    if(d.vh!==null){d.h+=d.vh*dt;d.vh-=620*dt;d.x+=d.vx*dt;d.y+=d.vy*dt;if(inWall(d.x,d.y,4)){d.x-=d.vx*dt;d.y-=d.vy*dt;d.vx=d.vy=0;}if(d.h<=0){d.h=0;d.vh=null;if(d.item&&d.item.r>=1)sfx('coin');}continue;}
-    const dx=P.x-d.x,dy=P.y-d.y,dd=Math.hypot(dx,dy),full=!!d.item&&S.bag.length>=BAG;// v0.65: full bag = items stay on the ground
-    if(full){if(dd<pr+14&&bagFullT<=0){{bagFullT=6;toast('<span style="color:#c23a2e">Rucksack voll</span> · Beute bleibt liegen');}}continue;}
-    if(dd>1&&(run.cleared||dd<mr)){const sp=run.cleared?520:280;d.x+=dx/dd*Math.min(dd,sp*dt);d.y+=dy/dd*Math.min(dd,sp*dt);}
-    if(dd<pr){d.taken=true;if(d.mat){S.mat[d.mat]=(S.mat[d.mat]||0)+1;nums.push({x:P.x,y:P.y-46,t:'+1 '+MATS[d.mat][0],col:MATS[d.mat][1],life:.9,pu:1});sfx('coin');}else if(d.zut){S.mat[d.zut]=(S.mat[d.zut]||0)+1;nums.push({x:P.x,y:P.y-46,t:'+1 '+ZUT[d.zut][0],col:ZUT[d.zut][1],life:.9,pu:1});sfx('coin');}else if(d.food){P.hp=Math.min(ST.maxHp,P.hp+ST.maxHp*.25);P.fed=30;toast(img('doener',26,'mico')+'Döner · <span style="color:var(--good)">satt: +10% Schaden für 30 Sekunden</span>');sfx('heal');}else if(d.heal){const h=Math.round(ST.maxHp*.3);P.hp=Math.min(ST.maxHp,P.hp+h);nums.push({x:P.x,y:P.y-40,t:'+'+h,col:'#8fd16a',life:.9,pu:1});sfx('heal');}else addToBag(d.item);}}
-  bagFullT-=dt;drops=drops.filter(d=>!d.taken);
+  updateDrops(dt);
 }

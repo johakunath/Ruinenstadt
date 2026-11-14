@@ -13,7 +13,7 @@ const bBoard=(x,y,spr,top)=>blds.push({x:x-spr.width/2,y,w:spr.width,h:0,top:top
 const SVGC={};function svgCnv(k,svg){if(SVGC[k])return SVGC[k];const m=svg.match(/width="(\d+)"[^>]*height="(\d+)"/),c=cnv(+m[1],+m[2]),im=new Image();im.onload=()=>c.getContext('2d').drawImage(im,0,0);im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);return SVGC[k]=c;}
 const cArt=(grp,k,i)=>typeof CAMPSVG!=='undefined'&&CAMPSVG[grp]&&CAMPSVG[grp][k]?svgCnv(grp+k+(i||0),i==null?CAMPSVG[grp][k]:CAMPSVG[grp][k][i]):null;
 function floorT(g,x0,y0,x1,y1,t,cols,ln){for(let y=y0;y<y1;y+=t)for(let x=x0;x<x1;x+=t){g.fillStyle=cols[((x-x0)/t+(y-y0)/t)%cols.length|0];g.fillRect(x+(ln||1),y+(ln||1),Math.min(t,x1-x)-(ln||1),Math.min(t,y1-y)-(ln||1));}}
-function buildBase(keepPos){if(typeof koepResetCache==='function')koepResetCache(null);D=Object.assign({},DIST[1],{n:'S+U Warschauer Straße',base:1,tun:0,geo:null,wet:0,day:0,cyber:0,dark:.62,nc:'6,5,4'});TUN=null;
+function buildBase(keepPos){if(typeof koepResetCache==='function')koepResetCache(null);if(typeof ksResetCache==='function')ksResetCache();if(typeof xhResetCache==='function')xhResetCache();if(typeof axResetCache==='function')axResetCache();if(typeof mtResetCache==='function')mtResetCache();D=Object.assign({},DIST[1],{n:'S+U Warschauer Straße',base:1,tun:0,geo:null,wet:0,day:0,cyber:0,dark:.62,nc:'6,5,4'});TUN=null;
   WS=2400;WH=1760;[SX,SY]=[1200,780];G=cnv(WS,WH);G.k=1;gx=G.getContext('2d');walls=[];blds=[];barrels=[];reserved=[];marks=[];brk=[];spati=null;darks=[];waters=[];neons=[];shrines=[];ROADS=[];BLK=[];BZ.length=0;
   const g=gx;g.fillStyle='#0b0a09';g.fillRect(0,0,WS,WH);
   // track bed with two tracks, platform edge

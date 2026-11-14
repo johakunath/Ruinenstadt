@@ -632,3 +632,193 @@ Newest at the bottom. One entry per handover: date, who, what changed, what is o
 - Prior performance reports remain retained and accurately labelled; their source hashes predate this reconciliation. Current v0.87 head passes 71 JS tests, 6 Python tests, 371 sprite checks and refreshed browser/fallback/offline proof for all 54 boss frames. Performance acceptance remains with Johannes because the latest off/off control was inconclusive.
 - PR #40 review P2: restored the Zitadellenritter's existing `e.fa`-directional, `e.guard`-aware shield overlay over painted art so frontal damage reduction and guard-break state remain visible while circling. Added a regression assertion.
 - PR #40 current-head review P2: the Volkseigener Koloss now holds its authored attack-release frame for the full `e.spin` gear volley instead of walking idly through the sustained damaging attack. Added a regression assertion.
+
+## 2026-11-13 · Codex · nine district design proposals
+
+- Johannes moved design boards ahead of runtime production: three each for
+  Tempelhof 1948, Charlottenburg 1920 and Wedding's eternal “bald”. Generated
+  all nine with the image tool using the Köpenick board as visual reference
+  and `docs/story.md` as narrative source. Each includes scene, survivor
+  front/back, enemies, friendly NPCs, equipment, props and palette. No workers
+  were needed for the small metadata/documentation work.
+- Tempelhof: foggy airlift / wind-and-parachute pilgrims / hangar night shift.
+  Charlottenburg: last revue / street jazz and Ringverein / mirror palace.
+  Wedding: Leopoldplatz market / Panke AEG-Osram industry / wedding-hall refuge.
+  The Kiez's Turkish, Lebanese and Arab neighbours remain allies; enemies are
+  construction, developer promises and Zeitlose. New names are proposals only.
+- Originals, exact prompts and generation-to-file mapping are preserved under
+  `assets/raw/codex/16-district-design-boards/`. All nine were visually inspected.
+  `docs/district-design-directions.md` compares them and supports mixing parts.
+  **Johannes's choices remain pending.** No direction or new mechanic is
+  approved by archiving these boards. Existing finished references are intact.
+- Updated backlog, CLAUDE index, workflow, style/story links, batch index and
+  task 15; added tasks 16/17. Next session: all global pickups/materials and
+  SVG-only equipment gaps, reuse existing painted equipment icons for drops,
+  preserve code rarity glow; then audit/complete Köpenick/global buildings as
+  shared fallback. Completed task 02 was a facade/roof kit, not the still-open
+  landmark package. Audit missing art versus missing hooks before painting.
+- Maximum one Codex measurement run per production batch is now explicit,
+  including 40 MB decoded memory, 5% frame regression, actual milliseconds,
+  slow frames over 50 ms and longest frame when available. Claude owns deeper
+  integration, optimization and detailed testing. No broad tests/tuning here.
+- **One validation pass: pass.** Nine unique 1536×1024 PNGs fully decode, copied
+  originals match, prompts/references and comparison links exist, no runtime
+  files changed, diff whitespace check passes. Report: raw folder's
+  `validation.json`. Encoded boards: 34,529,360 bytes. Conservative RGBA for
+  viewing all nine: 56,623,104 bytes (documentation, not a game allocation).
+  Added game texture/cache memory: **0 bytes**. Frame ms, regression, slow-frame
+  share and longest frame: **not measured / not applicable** to this batch.
+  No hardware-performance pass is claimed. No manifest/SHELL/version bump.
+- PR [#42](https://github.com/johakunath/Ruinenstadt/pull/42) opened as draft
+  during generation. Publish complete boards/docs, then request one Codex
+  review. Runtime production and its deployment belong to the next session;
+  no district art is being hooked into the game before design selection.
+
+- Publication complete: PR #42 is ready for review at
+  `54a22477bc4d5eb21c4cb4e89b82b8204f5e8586`; one explicit `@codex review`
+  request was posted (comment 6848537842) after no automatic review/reaction
+  was visible. Review completion is pending; do not re-trigger it. This
+  follow-up records publication status only. No merge or game deployment.
+
+## 2026-11-13 · Codex · three final selected district boards
+
+- Johannes selected Tempelhof B, Wedding C and Charlottenburg A+C, and
+  requested three more detailed final boards. Generated three new portrait
+  1024×1536 paintings with the image tool using the selected exploration images
+  as references. Every final was visually inspected: key scene, three building
+  studies, three separate ordinary enemy types, separate legendary boss,
+  emblematic outfit front/back and one legendary weapon with detail views.
+- Removed BVG branding, transit livery and transit-costume motifs throughout.
+  Shared ink/material/wear, red scarf and warm/cool lighting unify districts;
+  the style bible no longer mandates BVG yellow or brown starter clothing in
+  every new district set. Wedding is an explicit warm/playful tone exception.
+- Tempelhof: frightening 1948 wind/airplane cult; Windkantor, Leinensegler and
+  Ballastträger; spectral Fliegerkönig; Ornat des Gegenwinds and Sturmliturgie.
+  Parachute vestments, ritual kites, ghost planes, storm eclipse, mint witchfire
+  and violet lightning replace the technology/zombie emphasis.
+- Wedding: title “WEDDING · KOMMT BALD”, scene banner “DER WEDDING KOMMT BALD”.
+  Gold/emerald feast fantasy with carpets, lamps, baklava, Döner, shisha and
+  tea; Tee-Ifrit, Baklava-Brocken and Teppichschlinger; Sultan Nimmersatt / Der
+  Ewige Gastgeber, Pracht des Ewigen Gasts and Die Letzte Bestellung. Living
+  neighbours are friendly hosts/allies; enchanted feast beings are adversaries.
+  The old crane-golem emphasis is historical, not the current visual brief.
+- Charlottenburg: 1920 silver/diamond/glass revue and localized Schloss mirror
+  fantasy, much less gold; Scherbentänzerin, Logenbrecher and Spiegelsouffleur;
+  Diamantene Diva; Ornat des Letzten Vorhangs and Schlussapplaus.
+- Canonical references: `docs/style/tempelhof.png`, `wedding.png` and
+  `charlottenburg.png`. Raw originals, exact prompts and source/copy mapping:
+  `assets/raw/codex/16-district-design-boards/finals/`. All old nine exploration
+  paintings are preserved. Updated gallery/brief, style bible, story, backlog,
+  CLAUDE index, workflow, task 16 and asset batch index with actual selections.
+  New names/weapon effects remain art concepts, not implemented combat/stats.
+  Wedding's documented era wording is corrected; runtime ERA/migration remains
+  for future district implementation, with no game code edited here.
+- **One final-batch validation pass: pass.** All three PNGs fully decode,
+  originals/raw/canonical copies match byte for byte, prompt reference files
+  and gallery/README links exist, no runtime files changed, diff check passes.
+  Report: `finals/validation.json`. Unique encoded bytes: 12,245,685; unique
+  conservative RGBA: 18,874,368 bytes. Canonical copies are duplicates, not new
+  generations. Added game texture/cache memory: **0 bytes**. Frame milliseconds,
+  5% regression and slow-frame telemetry are not measured/not applicable for
+  documentation-only boards. No game performance pass or deployment claimed.
+- PR #42 is the existing publication target. The original exploration review
+  completed without findings on `54a2247`; that review does not cover these
+  new final paintings/document changes. No additional review is requested in
+  this refinement session. Preserve the maximum-one-run handoff: next-session
+  pickups/equipment gaps, then Köpenick/global building coverage; Claude owns
+  deeper integration, optimization and detailed testing. No merge performed.
+
+## 2026-11-13 · Codex · pickups, shared materials, cloud-save age and deferred acceptance
+
+- Verified PR #40 already merged as `0ea7042`; bosses are in the game. Fixed stale backlog/task status and added Johannes's outstanding performance acceptance and final review with Claude near the top. The user explicitly chooses integration before final acceptance; no redundant boss tests/merge attempt.
+- Synced merged PR #42 district boards (`354793c`) and retained its selected directions. Current request promotes painted pickups/loot bags, then global ground and shared buildings; generation/basic integration now, optimization and final acceptance with Claude later.
+- Built-in imagegen produced one transparent 4×4 pickup source, nine opaque ground tiles and six wall/roof material sources. Deterministic cutter outputs 31 runtime WebPs (16 pickups, 9 ground, 6 building). Existing game drops now use painted food/heal/material/ingredient sprites and rarity/set bags with dynamic glow. Scrap sprite is supplied, but scrap still awards directly under existing gameplay.
+- Basic shared materials preserve map/building geometry, windows, light positions, RNG, water and rail/road detail. Initial world waits for shared texture decode, so no live-map rebuild. Missing art retains the original drawing. Ordinary houses/sheds/other-district buildings get shared textures; existing Koep/GDR kits remain. Dedicated landmarks and nature remain open.
+- Cloud menu displays live minutes/seconds since an acknowledged successful upload, persisted across reloads. Failed uploads/downloads do not reset it. Mid-expedition progress can save on existing save events, but full run/position/health/enemies/blessings are not serialized; mission resume is unsupported. Materials/ingredients/scrap reach storage at the next save event. No actual cloud save was mutated during tests.
+- Read-only latest cloud-save investigation found Tempelhof Normal deaths on waves 2/3, at 27/60 seconds. Actual stats reproduce 461/468 max HP versus 613/625 resisted brute slam damage. This demonstrates a possible full-health one-shot, not proof of the killing source because telemetry is aggregate only. Evidence and Claude balance/hit-source-telemetry follow-up: `docs/tempelhof-deaths.md`. No speculative gameplay change.
+- One combined browser workflow passed visual/smoke, missing-image and offline checks, zero page errors, all 31 new images, matching on/off geometry and no timed canvas allocations. One SwiftShader software performance pass: Koepenick 24.46 → 29.02 ms (+17.43% paired), Alexanderplatz 28.15 → 29.26 ms (+6.44%), Tempelhof 23.18 → 24.93 ms (+5.75%). These are not a hardware GPU acceptance claim. Combined new decoded images/shared canvases: 32,383,216 bytes (<40 MB). No tuning/repeated performance loop. Full retained evidence and limitations: `pipeline/proof/15-pickups-shared/README.md`.
+- Initial harness polling setup timed out without samples (RAF disabled by fixture); fixed polling before the single measured pass. Then corrected material normalization with 1px transparent borders, already cropped by the loader; source/cache dimensions and warm rendering path are unchanged. Sprite validation passes 402 entries; cloud-age focused tests pass. Version/cache are v0.88; new scripts/assets are in the offline shell.
+
+## 2026-11-13 · Codex · v0.89 playtest follow-ups
+
+- Johannes accepts tablet performance (good, nothing to complain about). Move backlog #20 to Done and record the device acceptance in docs/playtests.md. Final boss appearance/behavior review with Claude remains separate. Historical measurements are retained unchanged.
+- New black shadow-box report around approaching cars/buildings is backlog #41; no speculative rendering change.
+- Full-health enemy one-shots are explicitly forbidden. `hurt` applies a post-mitigation 45%-max-HP cap to all incoming attacks in all districts/difficulties. Ordinary body contact uses 30% raw damage capped at 10% max HP; large-body contact (radius ≥17, including brutes/bosses/Uhr) uses 40% capped at 18%. Charges/dives remain attacks. Three strongest hits can still kill; invulnerability and defense reductions remain. Existing scaling is retained for enemy stats; the incoming path enforces fairness.
+- Fixed touch hold cancellation by allowing 8px jitter and using a cancellable native touch stream for long-press dragging; quick swipes continue scrolling. Mouse/pen retain pointer handling. Destination resolution/highlight/drop share one helper; only actual target cells or gear icons are outlined, never whole inventory groups.
+- Referenced-image generation removes foil from Döner and paper from meat, replacing only those two cells. Three additional ground atlases provide four authored versions per surface. Broad local-hash blends bake once; no gameplay RNG use or new per-frame ground work. Original raw generations are preserved; source/cut records updated.
+- Focused damage regression and native browser proof pass: four consecutive touch swaps with pre-hold jitter plus a purely vertical bag swap, two mouse swaps, grid-gap target-only highlighting, quick swipe/no drag, nine materials each using all four variants, zero page errors. 429 sprite entries validate; all 605 offline shell entries exist. Source/material/pickup memory 32,456,800 bytes (<40 MB). No new GPU/performance tuning loop. Evidence: pipeline/proof/18-fair-damage-touch-ground/.
+- Initial proof screenshot helper used missing closeInv after all interaction/art assertions passed; retained that report, fixed helper and completed the workflow. VERSION/CACHE v0.89 together.
+
+## 2026-11-13 · Codex · concise inventory text; hit/death backlog
+
+- Johannes requests concise game copy. Standing rule added to CLAUDE.md and backlog intent: short labels/one-line hints, explanations only on demand. Inventory paragraph becomes „▲ Höherer Item Level.“ No mechanics changed. VERSION/CACHE v0.90.
+- Player hit feedback is backlog #43: brief flash/recoil with sound, stronger heavy-hit stumble, invulnerability blinking, quick control recovery rather than stun chains. Player collapse/death before the end screen is backlog #44. Both explicitly remain later work; no animation/combat implementation in this change.
+- Corrected the shadow-box item to #42 because #41 already belongs to quests; updated active references. Historical log entries retain their original numbering.
+- Browser check: v0.90 inventory shows exactly „▲ Höherer Item Level.“, no horizontal overflow or page errors. JS syntax and whitespace checks pass.
+
+## 2026-11-13 · Codex · v0.91 visible loot and safe mission exits
+
+- Ground-item glow radius grows from 24±4 to 30±3 with unchanged sprite size and rarity/set color. Night lighting also uses rarity colors. Labels use regular 12px instead of semibold 13px; common labels appear within 360 rather than 160 units. Higher-rarity on-screen labels retain their previous visibility.
+- Base pickup radius 26→36; Elster attraction 90→150 units per level, pull speed 280→420/s, pickup scaling +65% per level. Existing between-wave attraction and full-bag preservation remain. Collection code is centralized in js/loot.js.
+- Central district/tunnel win guards pause for dropped, untaken legendary/set items only. Yellow rares and unopened loot are ignored. Short warning offers Beute suchen / Trotzdem gehen, default focus on search and Escape returns to search. No reward/log/unlock until actual completion. Search latches the current exit so it cannot immediately reopen; a rarity-colored guide targets the nearest valuable drop and retargets after collection. Tunnel search gets a return exit at the generator and does not auto-finish during search. Post-boss options/death-safety routes use the same guard.
+- User texture concern confirmed: shared materials load, but custom landmarks/district structures and named plaza/ground overlays remain procedural. Added docs/texture-coverage.md, linked from backlog/task 17, with qualified runtime samples and concrete drawing-path names. No claim that the environment art pass is complete.
+- Production collection/guard tests and actual district/tunnel browser proof pass; normal 12px label rendering, nearest-guide retargeting, rare exclusion and no immediate warning loop verified, zero page errors. Retain an initial font-serialization harness assertion failure; Canvas omits default 400 in its normalized font string. Evidence: pipeline/proof/19-visible-loot-safe-exit/. Existing damage tests, syntax and offline-shell paths pass. VERSION/CACHE v0.91; new helper script in shell.
+
+## 2026-11-13 · Codex · v0.92 recovery, tablet zoom and phone inventory
+
+- Tablet/coarse-pointer camera zoom increases 10%; desktop is unchanged. Phone landscape inventory uses balanced thirds with larger gear/backpack and a narrower comparison; phone portrait orders survivor, backpack, comparison. Smallest-phone comparison overflow found and fixed.
+- Döner heals 30% max life and keeps its existing food buff. Orbs heal 40%, roll independently at 10% from ordinary enemies and 20% from crates; crate food rolls at 14%. Full-health players leave orbs for later. Boss guaranteed healing stays.
+- Settled loot never flies toward the player, including cleared waves and Elster. Elster increases pickup reach only. Stronger 48px rarity glow plus a small ground ring improves daylight visibility. Exit/search protection now includes rare/yellow items alongside legendary and sets.
+- Expedition XP-level redesign is high-priority backlog #45 only; current kill-XP progression is unchanged. Missing shared/custom buildings, plazas/landmarks, dedicated stations/bridges/one-off buildings, water textures and stronger water animation lead task 18 and the asset pipeline. No new environment art is claimed.
+- Focused loot/damage regressions and actual browser loot/exit/recovery proof pass. Seven emulated phone/tablet/desktop layouts pass comparison/equipping and overflow checks, zero page errors. Syntax, offline-shell paths and diff checks pass. Evidence: pipeline/proof/20-recovery-tablet-phone/. VERSION/CACHE v0.92. No repeated performance gate; tablet acceptance stands and Claude review remains open.
+
+## 2026-11-13 · Codex · v0.93 visible healing
+
+- Johannes clarifies that recovery frequency/strength was sufficient; healing was not obvious. Restored pre-v0.92 drop logic and Döner 25% / orb 30% healing. Crates retain both existing recovery types; full-health orbs remain for later.
+- Both pickups now show opaque green +X Leben for actual clamped HP restored, without the material-pickup offset/dimming or oversized initial text. A 0.7-second green aura with rising plus signs follows the character; overlapping pickups refresh one effect. No aura/number when no HP is restored. Food buff copy stays short and separate.
+- Focused loot and incoming-damage tests, syntax/diff checks and day/night browser proof pass with zero page errors. Browser verifies capped healing, full-health orb retention, effect coalescing and expiry. Evidence: pipeline/proof/21-healing-feedback/. VERSION/CACHE v0.93.
+
+## 2026-11-13 · Codex · Köpenick surfaces and special buildings (v0.94)
+
+- User authorizes completing Köpenick first and merging it before continuing map by map. Synced main through v0.93 (`697248d`), preserving loot/recovery/healing changes. Special architecture now uses more realistic detail with restrained post-apocalyptic wear, within the Köpenick river-town/jungle/steampunk direction.
+- Generated one style canvas and two 3×2 production atlases. Twelve normalized sources cover Gothic Rathaus facade/roof/tower with blue fish/key emblems, station ceramics, bridge stone and deck, plaza/paving/asphalt/path/platform, and river/lake water. Sources and 64px preview: `assets/raw/codex/21-koepenick-completion/`; idempotent builder: `tools/build_koep_completion.py`.
+- Dedicated hook draws the Rathaus on its unchanged 300×90 footprint, with a separate tower facade plane and clock light aligned to the painted clock. Existing window emitters and all collision remain. Station parapets and bridge surfaces use current geometry. Seven visual bridge/approach spans are added only after all gameplay placement; no wall or RNG is added. Shared ground/nature foundation and existing facade kits remain. No unimplemented Schloss/dinosaur park/station hall is invented. Trees remain task 04; Xhain is the next district.
+- One visual/smoke/performance workflow passes no-page-error, 12-image, exact collision geometry and next-RNG on/off, missing-image fallback and zero timed canvas allocations. Five-pair software comparison: Köpenick 8.27→10.32 ms, paired +30.47%; Alexanderplatz control 14.37→14.36 ms, +0.09%. SwiftShader is not hardware acceptance. No tuning/repeated measurements; Claude owns deeper optimization/final acceptance. Full `sp`/`mx` samples retained in proof results. The tower's first cut retained atlas-edge pixels and distorted its proportions; corrected normalization and clock-light alignment, then refreshed visual screenshots without another performance pass. Final sources decode to 3,198,096 bytes, cropped shared canvases 3,147,744, normal-scale projected caches 7,808,664: task total 14,154,504 bytes (<40 MB); separate older/shared caches are not claimed as total-game memory.
+- 441 manifest entries validate; runtime files and 12 WebPs added to offline SHELL; VERSION/CACHE v0.94 together. Proof: `pipeline/proof/22-koepenick-completion/`. Hardware/tablet frame pacing and build-time acceptance remain unmeasured. Review/merge pending on `codex/koepenick-surfaces-landmarks`.
+
+- Pre-merge cosmetic correction preserves the existing four-variant road/lot composites. New asphalt wear is now an 18% static road overlay; new paving stays on the station/Rathausplatz. Focused visual screenshots refreshed, including corrected 2× camera dimensions. No performance rerun. Builder byte-idempotence and all 619 offline shell paths checked. Small follow-up receives no extra review request under the dated token-budget rule.
+
+- Completed Codex review on `44d2bf2` found two P2 issues: decorative bridge bounds could affect hidden-blessing candidates, and projected caches survived entry to base/tunnel. Fixed `hidSpots` to exclude only `ksBridge` decorations; world/base/tunnel constructors now call independent special-cache release. Targeted actual-constructor proof passes 25 seeds: identical hidden blessings, wave events, collision walls and next RNG on/off; both transitions reduce projected special cache bytes to zero and clear departed canvas dimensions. Initial fixture failures (first audio initialization consumed RNG; camp entry lacked its S3 unlock) are retained separately; final proof passes with zero page errors. No performance rerun. Request the permitted second review after these two post-review commits (terrain preservation plus review fixes).
+
+## 2026-11-13 · Codex · Xhain custom environment (v0.95 handoff)
+
+- Continued from merged Köpenick PR #49 (`ff6eb49`) on `codex/xhain-environment`, following the saved map-by-map queue. Claimed task 18 separately; no new district design decision. Used Potsdamer Platz/U-Bahn references for one new style canvas and one twelve-cell material atlas. Original generations, exact prompts, cuts and 64px preview are in `assets/raw/codex/22-xhain-completion/`; idempotent cutter: `tools/build_xhain_completion.py`.
+- Dedicated painted hooks cover Oberbaumbrücke brick/copper, Berghain concrete, Ostbahnhof stone/glass, original East Side Gallery murals, U1 green iron/Stadtbahn brick, station ceramics/forecourts, bridge paving and Spree/Landwehrkanal reflected water. Existing apertures, doors, lights, train drawings, shadows, footprints, collision, map placement and constructor RNG remain. Water uses the existing moving ripple loop at increased contrast/width. Ordinary terrain/building kits are reused; nature and rolling-stock redesign are separate.
+- `js/xhain-assets.js` bakes actual rotated geometry in four-object scheduled jobs, at `koepScale()`, with a hard task budget including decoded/cropped sources. Each cached object draws once; missing/overflow art keeps the complete old drawing. World/base/tunnel constructors cancel jobs and release canvas dimensions; resize prepares the new scale. Named architecture/station walls are prioritized.
+- One completed bounded visual/smoke/software measurement pass, zero page errors. All twelve sources decode; exact walls/structural positions/rotation, lights, neons, hidden blessings, events and constructor next-RNG match on/off. Missing images retain fallback. Base/tunnel release is verified. Default/2x captures show actual placement, including ordinary blocks obscuring Ostbahnhof; buildings were not moved to improve proof.
+- Five alternating fresh-context pairs per scene: Xhain bridge median 15.24 → 14.87 ms, median paired −1.76%; Alexanderplatz null control 14.83 → 14.61 ms, −1.50%. SwiftShader software raster is **not hardware acceptance**. Xhain timed canvas allocations: zero; unrelated control: five total. Raw sp/mx retained: Xhain 3.75–10% over 50 ms, longest 435.5 ms; control 6.25%, longest 245.8 ms. No repeated measurements/tuning. Claude owns hardware/build-time acceptance and optimization.
+- Task memory at normal proof scale: images 3,195,072 + cropped canvases 3,145,728 + projected caches 33,651,500 = **39,992,300 bytes**; 2x total **39,876,780 bytes**. **Coverage limitation:** cap leaves original drawing on railway overflow (133/152 eligible parts cached normally, 77/152 at 2x). Sources/basic hookups delivered, not fully painted coverage at every zoom; residency/coverage optimization explicitly handed to Claude. Not total-game memory.
+- Initial fixture attempts compared RNG after asynchronous sound sample generation, identified by retained call stacks in `audio.js/fxRender`; final comparison happens immediately after constructor. A station selector initially matched a building with undefined draw; fixed fixture. All failures occurred before samples and remain in proof. Cache bounds tightened before the sole measured pass. Evidence: `pipeline/proof/23-xhain-completion/README.md` and `results.json`.
+- Twelve new WebPs/script in offline shell; all 632 shell paths exist, sources decode/manifest dimensions and diff/syntax checks pass. VERSION/CACHE v0.95 together. No broad regression suite, performance rerun or deployment. Review/merge this batch before proceeding to Alexanderplatz.
+
+## 2026-11-13 · Codex · Alexanderplatz environment (v0.96)
+
+- Synced main through Xhain PR #50 (`5925f52`); user explicitly orders Alexanderplatz review/merge, then Potsdamer Platz/Mitte. Claim branch `codex/alexanderplatz-environment`. Fifteen new image-tool paintings normalized by `tools/build_alex_completion.py`; style canvas, source atlas, alpha sheet, exact crops and 64px preview preserved.
+- Explicit named architecture, station/viaduct, market and greenhouse hooks; upright Fernsehturm/Weltzeituhr/Neptune; plazas, forecourts, bridge decks, rivers and fountains. Existing geometry, GDR kit and game/save identities retained. Scheduled scale-aware cache, complete fallback, departed-job cancellation/release, hard 40 MB task cap. Overflow remains native (55/169 parts cached normally, 16 at 2×); efficient visible-part caches remain Claude work.
+- One combined visual/smoke/software performance run passed image/geometry/fallback/transitions and zero page errors. Five pairs: Alexanderplatz 14.205→15.870 ms, paired +10.913%; Köpenick control 13.319→13.541, +0.676%. SwiftShader, not hardware ≤5% acceptance. No repeated measurement/tuning. Final art corrections (plaza layering, roof material selection, flag/spire bounds) and deterministic market-goods colors get a visual-only refresh. Corrected proof camera distance to prevent its built-in snap following the displaced player.
+- Final source+canvas+cache total normal zoom 39,961,988 bytes; at 2× 39,990,492 (<40 MB). 468 manifest entries; 648 offline paths. VERSION/CACHE v0.96. Full evidence/limitations in `pipeline/proof/24-alexanderplatz-completion/README.md`. Review/merge pending; no hardware acceptance claim.
+
+- PR #52 completed Codex review on `255ed52` with one P2: Haus des Lehrers entrance-platform clipping. Expanded only that landmark cache envelope to 36 units; focused proof validates all eight platform corners and supplies isolated normal/2× architecture screenshots. Final memory 39,948,548 bytes (51 parts) normally, 39,885,804 (19 parts) at 2×. No repeated performance run or extra review request for this small fix, per the dated token-budget rule. Head/merge recorded in the next continuation entry.
+
+## 2026-11-13 · Codex · Potsdamer Platz / Mitte environment (v0.97)
+
+- Alexanderplatz PR #52 merged as `f9ad807`, corrected head `86d521c`; its one P2 platform-bound issue is fixed and thread resolved. Continued directly on `codex/mitte-environment`, claim `a239258`, as Johannes requests.
+- One style canvas, 16-cell material atlas and two alpha-separated sculptures yield eighteen runtime sources: civic stone/concrete/glass, neon core/canopy/stage/clinic/wall, station/train/rail, plaza/water, Siegessäule/Quadriga. Exact prompts/cuts, 64px preview and idempotent builder retained. Plain column stone is a small cropped derivative of the same source. All existing footprints, collision, passages, fade groups, lights and game/save identities remain.
+- Scheduled scale-aware hard-40-MB caches with complete fallback, departed job cancellation/canvas release. Potsdamer core precedes government/station/rail parts; overflow remains original. Live stage pulse/equalizer survives static caching. Peaked canopy triangles and full pole/Quadriga bounds are retained. Ground paint precedes puddles/tracks/scenery; stronger existing water ripples, no new water animation sheet. Nature and dedicated neon signs remain separate.
+- One combined measurement workflow: 18 images; actual map scenes default/2×; identical geometry/hidden blessings/events/lights/neons and immediate next RNG on/off; missing-image fallback; base/tunnel release; live stage pulse calls; play smoke HP100; zero page errors. 486 manifest entries / 667 offline files, matching VERSION/CACHE 0.97. Initial stage fixture inherited 2× zoom and failed before timings; retained report, fixed fixture and core priority/bounds before the sole measured run.
+- Five-pair SwiftShader software comparison: Mitte 15.818→17.614 ms (+9.677% paired), Alexanderplatz control 13.184→13.222 (+1.153%). Not hardware acceptance/≤5% pass; no repeated performance run or tuning. Timed canvas allocations zero. Full sp/mx samples and memory/overflow limits in `pipeline/proof/25-mitte-completion/README.md`. Visual-only follow-up normalizes columns, textures Reichstag glazing and supplies isolated architecture proof. Detailed cache optimization/coverage and hardware acceptance remain with Claude.
+- Final memory/cached-part totals: 39976864 bytes / 31 of 170 normally; 39950768 bytes / 15 at 2×. Both below 40 MB. Review/merge pending.
+
+- Synced concurrent main PR #51 (`5c8df0d`, cloud-save/camp settings) before merge. Its v0.97 is retained; this asset release advances VERSION/CACHE to **v0.98**. Source/proof numbers above were captured on the 0.97 asset candidate and remain unchanged. PR #53 is the asset delivery target; no cloud account/save mutation performed.
+
+- PR #53 Codex review completed on asset head `3974fb1` with **no findings**. Later commits only sync already-reviewed cloud/camp main and update version/cache/docs; a fresh smoke and existing sync tests pass. No art/renderer code changes since the reviewed asset head. Marked task done v0.98, keeping cache-overflow/Claude hardware-acceptance limits explicit. Merge authorized by the continuous session; expected head will be checked by GitHub without bypassing protections. Alexanderplatz PR #52 is already merged; no next district is started beyond Johannes's requested two batches.

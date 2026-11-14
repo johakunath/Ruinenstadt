@@ -1,0 +1,266 @@
+[
+  {
+    "key": "buildings/mitte-sandstone",
+    "source": "material-atlas.png",
+    "crop": [
+      3,
+      3,
+      308,
+      312
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/mitte-concrete",
+    "source": "material-atlas.png",
+    "crop": [
+      314,
+      3,
+      620,
+      312
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/mitte-curtain",
+    "source": "material-atlas.png",
+    "crop": [
+      626,
+      3,
+      932,
+      312
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/mitte-brick",
+    "source": "material-atlas.png",
+    "crop": [
+      938,
+      3,
+      1244,
+      312
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/mitte-steel",
+    "source": "material-atlas.png",
+    "crop": [
+      3,
+      318,
+      308,
+      627
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/mitte-glass",
+    "source": "material-atlas.png",
+    "crop": [
+      314,
+      318,
+      620,
+      627
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/mitte-canopy",
+    "source": "material-atlas.png",
+    "crop": [
+      626,
+      318,
+      932,
+      627
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/mitte-gold",
+    "source": "material-atlas.png",
+    "crop": [
+      938,
+      318,
+      1244,
+      627
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/mitte-ceramic",
+    "source": "material-atlas.png",
+    "crop": [
+      3,
+      633,
+      308,
+      942
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/mitte-rail-brick",
+    "source": "material-atlas.png",
+    "crop": [
+      314,
+      633,
+      620,
+      942
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/mitte-plaza",
+    "source": "material-atlas.png",
+    "crop": [
+      626,
+      633,
+      932,
+      942
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/mitte-water",
+    "source": "material-atlas.png",
+    "crop": [
+      938,
+      633,
+      1244,
+      942
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/mitte-speaker",
+    "source": "material-atlas.png",
+    "crop": [
+      3,
+      948,
+      308,
+      1258
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/mitte-clinic",
+    "source": "material-atlas.png",
+    "crop": [
+      314,
+      948,
+      620,
+      1258
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/mitte-mural",
+    "source": "material-atlas.png",
+    "crop": [
+      626,
+      948,
+      932,
+      1258
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/mitte-train",
+    "source": "material-atlas.png",
+    "crop": [
+      938,
+      948,
+      1244,
+      1258
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/mitte-siegessaeule",
+    "source": "landmark-sheet.png",
+    "crop": [
+      0,
+      0,
+      700,
+      887
+    ],
+    "alphaBounds": [
+      0,
+      0,
+      681,
+      887
+    ],
+    "output": [
+      290,
+      377
+    ]
+  },
+  {
+    "key": "buildings/mitte-quadriga",
+    "source": "landmark-sheet.png",
+    "crop": [
+      700,
+      0,
+      1774,
+      887
+    ],
+    "alphaBounds": [
+      9,
+      13,
+      1060,
+      871
+    ],
+    "output": [
+      386,
+      315
+    ]
+  }
+]

@@ -1,0 +1,230 @@
+[
+  {
+    "key": "buildings/alex-rathaus",
+    "source": "material-atlas.png",
+    "crop": [
+      3,
+      3,
+      359,
+      359
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/alex-limestone",
+    "source": "material-atlas.png",
+    "crop": [
+      365,
+      3,
+      721,
+      359
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/alex-bronze",
+    "source": "material-atlas.png",
+    "crop": [
+      727,
+      3,
+      1083,
+      359
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/alex-curtain",
+    "source": "material-atlas.png",
+    "crop": [
+      1089,
+      3,
+      1445,
+      359
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/alex-relief",
+    "source": "material-atlas.png",
+    "crop": [
+      3,
+      365,
+      359,
+      721
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/alex-greenhouse",
+    "source": "material-atlas.png",
+    "crop": [
+      365,
+      365,
+      721,
+      721
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/alex-station",
+    "source": "material-atlas.png",
+    "crop": [
+      727,
+      365,
+      1083,
+      721
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/alex-copper",
+    "source": "material-atlas.png",
+    "crop": [
+      1089,
+      365,
+      1445,
+      721
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/alex-plaza",
+    "source": "material-atlas.png",
+    "crop": [
+      3,
+      727,
+      359,
+      1083
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/alex-rail-brick",
+    "source": "material-atlas.png",
+    "crop": [
+      365,
+      727,
+      721,
+      1083
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/alex-water",
+    "source": "material-atlas.png",
+    "crop": [
+      727,
+      727,
+      1083,
+      1083
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/alex-awning",
+    "source": "material-atlas.png",
+    "crop": [
+      1089,
+      727,
+      1445,
+      1083
+    ],
+    "output": [
+      258,
+      258
+    ]
+  },
+  {
+    "key": "buildings/alex-fernsehturm",
+    "source": "landmark-sheet.png",
+    "crop": [
+      0,
+      0,
+      591,
+      887
+    ],
+    "alphaBounds": [
+      0,
+      13,
+      591,
+      887
+    ],
+    "output": [
+      386,
+      570
+    ]
+  },
+  {
+    "key": "buildings/alex-weltzeit",
+    "source": "landmark-sheet.png",
+    "crop": [
+      591,
+      0,
+      1182,
+      887
+    ],
+    "alphaBounds": [
+      1,
+      21,
+      591,
+      887
+    ],
+    "output": [
+      351,
+      514
+    ]
+  },
+  {
+    "key": "buildings/alex-neptun",
+    "source": "landmark-sheet.png",
+    "crop": [
+      1182,
+      0,
+      1774,
+      887
+    ],
+    "alphaBounds": [
+      0,
+      27,
+      578,
+      887
+    ],
+    "output": [
+      260,
+      386
+    ]
+  }
+]

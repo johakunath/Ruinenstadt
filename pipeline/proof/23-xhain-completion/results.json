@@ -1,0 +1,396 @@
+{
+  "errors": [],
+  "scenes": [
+    {
+      "district": "Xhain",
+      "version": "0.95",
+      "target": "bridge",
+      "buildMs": 1897.2999999999302,
+      "nextRng": 0.7113548032939434,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at R (http://127.0.0.1:8767/js/core.js:6:40)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:45:164)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 12,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:49:98)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 263538
+      },
+      "assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33651500,
+        "totalBytes": 39992300,
+        "cached": 133,
+        "limit": 40000000
+      },
+      "eligible": 152,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33535980,
+        "totalBytes": 39876780,
+        "cached": 77,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Xhain",
+      "version": "0.95",
+      "target": "berghain",
+      "buildMs": 796.9000000000233,
+      "nextRng": 0.7113548032939434,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33651500,
+        "totalBytes": 39992300,
+        "cached": 133,
+        "limit": 40000000
+      },
+      "eligible": 152,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33535980,
+        "totalBytes": 39876780,
+        "cached": 77,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Xhain",
+      "version": "0.95",
+      "target": "ostbahnhof",
+      "buildMs": 693.8999999999069,
+      "nextRng": 0.7113548032939434,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33651500,
+        "totalBytes": 39992300,
+        "cached": 133,
+        "limit": 40000000
+      },
+      "eligible": 152,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33535980,
+        "totalBytes": 39876780,
+        "cached": 77,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Xhain",
+      "version": "0.95",
+      "target": "gallery",
+      "buildMs": 720.1000000000931,
+      "nextRng": 0.7113548032939434,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33651500,
+        "totalBytes": 39992300,
+        "cached": 133,
+        "limit": 40000000
+      },
+      "eligible": 152,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33535980,
+        "totalBytes": 39876780,
+        "cached": 77,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Xhain",
+      "version": "0.95",
+      "target": "rail",
+      "buildMs": 782.5,
+      "nextRng": 0.7113548032939434,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33651500,
+        "totalBytes": 39992300,
+        "cached": 133,
+        "limit": 40000000
+      },
+      "eligible": 152,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33535980,
+        "totalBytes": 39876780,
+        "cached": 77,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Xhain",
+      "version": "0.95",
+      "target": "station",
+      "buildMs": 817.0999999999767,
+      "nextRng": 0.7113548032939434,
+      "rngDuringWait": {},
+      "assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33651500,
+        "totalBytes": 39992300,
+        "cached": 133,
+        "limit": 40000000
+      },
+      "eligible": 152,
+      "targetCached": null,
+      "zoom2Assets": {
+        "ready": 12,
+        "decodedBytes": 3195072,
+        "canvasBytes": 3145728,
+        "sourceBytes": 6340800,
+        "projectedCacheBytes": 33535980,
+        "totalBytes": 39876780,
+        "cached": 77,
+        "limit": 40000000
+      }
+    }
+  ],
+  "measurements": [
+    {
+      "district": 1,
+      "medianOffMs": 15.24375,
+      "medianOnMs": 14.866249999997672,
+      "pairedPct": -1.7551020408163365,
+      "pairs": [
+        {
+          "on": {
+            "meanMs": 14.866249999997672,
+            "sp": 3.75,
+            "mx": 372.30000000004657,
+            "allocations": 0
+          },
+          "off": {
+            "meanMs": 16.280000000000292,
+            "sp": 10,
+            "mx": 146.60000000009313,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 14.251250000001164,
+            "sp": 10,
+            "mx": 128.10000000009313,
+            "allocations": 0
+          },
+          "on": {
+            "meanMs": 14.616250000000582,
+            "sp": 3.75,
+            "mx": 344.29999999993015,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 15.04375,
+            "sp": 3.75,
+            "mx": 379.9000000000233,
+            "allocations": 0
+          },
+          "off": {
+            "meanMs": 15.3125,
+            "sp": 10,
+            "mx": 142.79999999993015,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 14.988750000001165,
+            "sp": 10,
+            "mx": 139.40000000002328,
+            "allocations": 0
+          },
+          "on": {
+            "meanMs": 14.21374999999971,
+            "sp": 3.75,
+            "mx": 347.30000000004657,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 15.38000000000029,
+            "sp": 3.75,
+            "mx": 435.5,
+            "allocations": 0
+          },
+          "off": {
+            "meanMs": 15.24375,
+            "sp": 10,
+            "mx": 136.29999999993015,
+            "allocations": 0
+          }
+        }
+      ]
+    },
+    {
+      "district": 2,
+      "medianOffMs": 14.828750000000582,
+      "medianOnMs": 14.611250000000291,
+      "pairedPct": -1.503695522891324,
+      "pairs": [
+        {
+          "on": {
+            "meanMs": 16.547499999999125,
+            "sp": 6.25,
+            "mx": 245.80000000004657,
+            "allocations": 1
+          },
+          "off": {
+            "meanMs": 14.828750000000582,
+            "sp": 6.25,
+            "mx": 205.70000000006985,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 15.011250000000292,
+            "sp": 6.25,
+            "mx": 215.59999999997672,
+            "allocations": 1
+          },
+          "on": {
+            "meanMs": 13.483749999999418,
+            "sp": 6.25,
+            "mx": 187.09999999997672,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 14.611250000000291,
+            "sp": 6.25,
+            "mx": 194.69999999995343,
+            "allocations": 1
+          },
+          "off": {
+            "meanMs": 13.784999999999126,
+            "sp": 6.25,
+            "mx": 192.59999999997672,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 14.71374999999971,
+            "sp": 6.25,
+            "mx": 189.19999999995343,
+            "allocations": 1
+          },
+          "on": {
+            "meanMs": 14.492500000000291,
+            "sp": 6.25,
+            "mx": 207.19999999995343,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 14.6375,
+            "sp": 6.25,
+            "mx": 205,
+            "allocations": 1
+          },
+          "off": {
+            "meanMs": 15.09499999999971,
+            "sp": 6.25,
+            "mx": 230.29999999993015,
+            "allocations": 0
+          }
+        }
+      ]
+    }
+  ],
+  "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "gameplayUnchanged": true,
+  "departure": {
+    "base": {
+      "bytes": 0,
+      "released": true
+    },
+    "tunnel": {
+      "bytes": 0,
+      "released": true
+    }
+  },
+  "fallback": {
+    "district": "Xhain",
+    "version": "0.95",
+    "target": "bridge",
+    "buildMs": 1234.5,
+    "nextRng": 0.7113548032939434,
+    "rngDuringWait": {
+      "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at R (http://127.0.0.1:8767/js/core.js:6:40)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:45:164)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 12,
+      "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:49:98)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 111129
+    },
+    "assets": {
+      "ready": 0,
+      "decodedBytes": 3195072,
+      "canvasBytes": 0,
+      "sourceBytes": 3195072,
+      "projectedCacheBytes": 0,
+      "totalBytes": 3195072,
+      "cached": 0,
+      "limit": 40000000
+    },
+    "eligible": 152,
+    "targetCached": false
+  },
+  "smoke": {
+    "state": "play",
+    "hp": 100,
+    "assets": {
+      "ready": 12,
+      "decodedBytes": 3195072,
+      "canvasBytes": 3145728,
+      "sourceBytes": 6340800,
+      "projectedCacheBytes": 25492600,
+      "totalBytes": 31833400,
+      "cached": 104,
+      "limit": 40000000
+    }
+  },
+  "status": "passed"
+}

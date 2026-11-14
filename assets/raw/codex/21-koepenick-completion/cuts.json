@@ -1,0 +1,122 @@
+[
+  {
+    "key": "buildings/koep-special-facade",
+    "source": "architecture-atlas.png",
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ]
+  },
+  {
+    "key": "buildings/koep-special-roof",
+    "source": "architecture-atlas.png",
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ]
+  },
+  {
+    "key": "buildings/koep-special-tower",
+    "source": "architecture-atlas.png",
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ]
+  },
+  {
+    "key": "buildings/koep-special-station",
+    "source": "architecture-atlas.png",
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ]
+  },
+  {
+    "key": "buildings/koep-special-bridge-wall",
+    "source": "architecture-atlas.png",
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ]
+  },
+  {
+    "key": "buildings/koep-special-water",
+    "source": "architecture-atlas.png",
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ]
+  },
+  {
+    "key": "buildings/koep-special-plaza",
+    "source": "surfaces-atlas.png",
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ]
+  },
+  {
+    "key": "buildings/koep-special-pavement",
+    "source": "surfaces-atlas.png",
+    "crop": [
+      512,
+      0,
+      1024,
+      512
+    ]
+  },
+  {
+    "key": "buildings/koep-special-asphalt",
+    "source": "surfaces-atlas.png",
+    "crop": [
+      1024,
+      0,
+      1536,
+      512
+    ]
+  },
+  {
+    "key": "buildings/koep-special-path",
+    "source": "surfaces-atlas.png",
+    "crop": [
+      0,
+      512,
+      512,
+      1024
+    ]
+  },
+  {
+    "key": "buildings/koep-special-platform",
+    "source": "surfaces-atlas.png",
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ]
+  },
+  {
+    "key": "buildings/koep-special-bridge-deck",
+    "source": "surfaces-atlas.png",
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ]
+  }
+]

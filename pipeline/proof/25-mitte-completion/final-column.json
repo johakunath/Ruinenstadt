@@ -1,0 +1,49 @@
+{
+  "errors": [],
+  "scenes": [
+    {
+      "district": "Mitte",
+      "version": "0.97",
+      "target": "tor",
+      "buildMs": 2753.399999999907,
+      "nextRng": 0.2821088631171733,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at R (http://127.0.0.1:8767/js/core.js:6:40)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:45:164)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 18,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:214)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:49:98)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 345165
+      },
+      "assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5131648,
+        "sourceBytes": 10315424,
+        "projectedCacheBytes": 29661440,
+        "totalBytes": 39976864,
+        "cached": 31,
+        "limit": 40000000
+      },
+      "eligible": 170,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 18,
+        "decodedBytes": 5183776,
+        "canvasBytes": 5131648,
+        "sourceBytes": 10315424,
+        "projectedCacheBytes": 29635344,
+        "totalBytes": 39950768,
+        "cached": 15,
+        "limit": 40000000
+      }
+    }
+  ],
+  "isolated": {
+    "ready": 18,
+    "decodedBytes": 5183776,
+    "canvasBytes": 5131648,
+    "sourceBytes": 10315424,
+    "projectedCacheBytes": 29661440,
+    "totalBytes": 39976864,
+    "cached": 31,
+    "limit": 40000000
+  },
+  "status": "passed"
+}

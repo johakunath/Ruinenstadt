@@ -1,0 +1,5 @@
+{
+  "errors": [],
+  "status": "failed",
+  "failure": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'match')\n    at svgCnv (http://127.0.0.1:8767/js/base.js:13:76)\n    at cArt (http://127.0.0.1:8767/js/base.js:14:83)\n    at buildBase (http://127.0.0.1:8767/js/base.js:50:43)\n    at eval (eval at evaluate (:311:30), <anonymous>:2:179)\n    at async <anonymous>:337:30\n    at /workspace/Ruinenstadt/tools/proof_koep_review.cjs:3:457"
+}

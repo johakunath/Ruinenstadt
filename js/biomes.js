@@ -11,7 +11,7 @@ const BIOME=[
 const LOTN={hochhaus:'Hochhäuser',buero:'Bürotürme',efh:'Einfamilienhäuser',reihen:'Reihenhäuser',park:'Park',forest:'Wald',kleingarten:'Kleingärten',market:'Markt',plattenbau:'Plattenbau',hinterhof:'Hinterhof',ruins:'Trümmerfeld',construction:'Baustelle',parking:'Parkplatz',water:'See',airfield:'Rollfeld',houses:'Altbau'};
 const BGAP=48;// min gap between buildings in a lot (v0.41: was 24)
 const inB=(b,m)=>({x:R(b.x0+m,b.x1-m),y:R(b.y0+m,b.y1-m)});
-function grassFill(b,pal,dens){const g=gx;g.fillStyle=pal[0];g.fillRect(b.x0+6,b.y0+6,b.w-12,b.h-12);
+function grassFill(b,pal,dens){const g=gx;g.fillStyle=pal[0];g.fillRect(b.x0+6,b.y0+6,b.w-12,b.h-12);globalPaintRect(g,'props/ground-'+(b.lot==='airfield'?'sand':'grass'),b.x0+6,b.y0+6,b.w-12,b.h-12,.85);
   for(let i=0;i<b.w*b.h/260*(dens||1);i++){g.fillStyle=pick(pal);g.globalAlpha=R(.4,.9);g.fillRect(R(b.x0+6,b.x1-8),R(b.y0+6,b.y1-8),R(2,7),R(2,5));}g.globalAlpha=1;
   g.strokeStyle='rgba(120,150,70,.18)';g.lineWidth=1;for(let i=0;i<b.w*b.h/900;i++){const x=R(b.x0+8,b.x1-8),y=R(b.y0+8,b.y1-8);g.beginPath();g.moveTo(x,y);g.lineTo(x+R(-2,2),y-R(3,7));g.stroke();}}
 function lotGround(b){const g=gx,B=BIOME[D.i];
@@ -25,7 +25,7 @@ function lotGround(b){const g=gx,B=BIOME[D.i];
   else if(b.lot==='plattenbau'){g.fillStyle='#2b2723';g.fillRect(b.x0+8,b.y0+8,b.w-16,b.h-16);g.strokeStyle='rgba(0,0,0,.25)';g.lineWidth=1;for(let x=b.x0+8;x<b.x1-8;x+=40){g.beginPath();g.moveTo(x,b.y0+8);g.lineTo(x,b.y1-8);g.stroke();}for(let y=b.y0+8;y<b.y1-8;y+=40){g.beginPath();g.moveTo(b.x0+8,y);g.lineTo(b.x1-8,y);g.stroke();}}
   else if(b.lot==='ruins'){for(let i=0;i<b.w*b.h/120;i++){g.fillStyle=pick(['#3a2e25','#4a3a2e','#2a211b','#55443a','rgba(0,0,0,.25)']);g.fillRect(R(b.x0+8,b.x1-10),R(b.y0+8,b.y1-10),R(2,8),R(2,6));}}
   else if(b.lot==='hochhaus'||b.lot==='buero'){g.fillStyle='#2e2b28';g.fillRect(b.x0+8,b.y0+8,b.w-16,b.h-16);g.strokeStyle='rgba(255,240,220,.05)';g.lineWidth=1;for(let x=b.x0+8;x<b.x1-8;x+=30){g.beginPath();g.moveTo(x,b.y0+8);g.lineTo(x,b.y1-8);g.stroke();}for(let y=b.y0+8;y<b.y1-8;y+=30){g.beginPath();g.moveTo(b.x0+8,y);g.lineTo(b.x1-8,y);g.stroke();}}
-  else if(b.lot==='hinterhof'){g.fillStyle='#2e2620';g.fillRect(b.x0+8,b.y0+8,b.w-16,b.h-16);}}
+  else if(b.lot==='hinterhof'){g.fillStyle='#2e2620';g.fillRect(b.x0+8,b.y0+8,b.w-16,b.h-16);}globalLotGround(g,b);}
 function lotFill(b){if(b.center)return;const f=LOTS[b.lot];if(f)f(b);}// v0.57: no generic lot-type labels (Hinterhof, Bürotürme ...): the map should feel empty, only real places are named
 function tryB(x,y,w,h,H,st,force){const gb=st==='efh'?R(.55,.7)*h:st==='reihen'?R(.45,.55)*h:0;H+=gb*.5;const T=D.geo?20:H;// geo maps check the footprint only (iso facades rise on screen, not into the street north of the house)
   if(w<30||h<20||resHit(x,y-T,w,h+T)||!force&&blds.some(o=>o.h>0&&!o.fe&&x<o.x+o.w+BGAP&&x+w+BGAP>o.x&&y-T<o.y+o.h+BGAP&&y+h+BGAP>o.y-(D.geo?0:o.top)))return null;const bb={x,y,w,h,H:Math.round((H-gb*.5)*(st==='laube'?1.2:2)),top:H,R0:0,gable:gb};makeB(bb,st);blds.push(bb);walls.push(bb);return bb;}
@@ -33,7 +33,7 @@ function tryB(x,y,w,h,H,st,force){const gb=st==='efh'?R(.55,.7)*h:st==='reihen'?
 function towersLot(b,st){const n=Math.max(1,Math.round(b.w*b.h/160000));for(let k=0,t=0;k<n&&t<n*12;t++){const O=st==='buero',w=O?R(150,220):R(110,150),h=R(90,120),H=O?R(110,150):R(130,170),x=R(b.x0+30,b.x1-30-w),y=R(b.y0+30,b.y1-30-h);if(x<b.x0+20||y<b.y0+20)continue;if(tryB(x,y,w,h,H,st))k++;}
   for(let i=0;i<3;i++){const q=inB(b,40);if(!inWall(q.x,q.y,30)&&!resHit(q.x-28,q.y-60,56,62)){gx.fillStyle='#4a4640';gx.fillRect(q.x-14,q.y-8,28,16);makeTree(q.x,q.y,'green');}}}
 function bench(x,y){const c=cnv(40,26),g=c.getContext('2d');g.fillStyle='rgba(0,0,0,.35)';g.fillRect(2,19,38,6);g.fillStyle='#4a3424';for(let k=0;k<3;k++)g.fillRect(2,10+k*4,36,3);g.fillStyle='#24201c';g.fillRect(4,20,3,5);g.fillRect(33,20,3,5);blds.push({x:x-20,y:y+9,w:40,h:0,top:26,sc:1,spr:c,propKey:'bench',lights:[]});}
-function pond(cx,cy,rx,ry){const g=gx;g.fillStyle='#3a3226';g.beginPath();g.ellipse(cx,cy,rx+8,ry+7,0,0,7);g.fill();g.fillStyle='#1e3a44';g.beginPath();g.ellipse(cx,cy,rx,ry,0,0,7);g.fill();
+function pond(cx,cy,rx,ry){const g=gx;g.fillStyle='#3a3226';g.beginPath();g.ellipse(cx,cy,rx+8,ry+7,0,0,7);g.fill();g.fillStyle=axPattern(g,'water',1.5)||mtPattern(g,'water',1.5)||'#1e3a44';g.beginPath();g.ellipse(cx,cy,rx,ry,0,0,7);g.fill();
   g.fillStyle='rgba(120,170,180,.12)';g.beginPath();g.ellipse(cx-rx*.2,cy-ry*.3,rx*.6,ry*.35,0,0,7);g.fill();
   for(let y=cy-ry+8;y<cy+ry-8;y+=16){const hw=rx*Math.sqrt(Math.max(0,1-Math.pow((y+8-cy)/ry,2)))-10;if(hw>10)walls.push({x:cx-hw,y,w:hw*2,h:16,water:1});}
   for(let i=0;i<Math.round(rx/6);i++){const a=R(0,6.28);g.strokeStyle=pick(['#4a5a2a','#5a6a30','#3b4a22']);g.lineWidth=1.5;const x=cx+Math.cos(a)*(rx+4),y=cy+Math.sin(a)*(ry+3);for(let k=0;k<3;k++){g.beginPath();g.moveTo(x+k*2,y);g.lineTo(x+k*2+R(-2,2),y-R(8,14));g.stroke();}}
@@ -57,7 +57,7 @@ const LOTS={
  houses(b){const n=Math.max(2,Math.round(b.w*b.h/(60000*BSC*BSC)));let k=0,t=0;while(k<n&&t++<n*40){const w=Math.min(b.w-60,R(100,220)*BSC),h=R(50,105)*BSC,H=R(38,72)*BHS,x=R(b.x0+24,b.x1-24-w),y=R(b.y0+24+H,b.y1-24-h);if(tryB(x,y,w,h,H))k++;}
    for(let i=0;i<4;i++){const q=inB(b,40);if(!inWall(q.x,q.y,30)&&!resHit(q.x-28,q.y-60,56,62))makeTree(q.x,q.y,pick(BIOME[D.i].trees));}},
  park(b){const g=gx,pts=[];const sx=b.x0,sy=R(b.y0+60,b.y1-60),ex=b.x1,ey=R(b.y0+60,b.y1-60),mx=(sx+ex)/2+R(-80,80),my=R(b.y0+40,b.y1-40);
-   g.strokeStyle='#3a3127';g.lineWidth=30;g.lineCap='round';g.beginPath();g.moveTo(sx,sy);g.quadraticCurveTo(mx,my,ex,ey);g.stroke();g.strokeStyle='#4a4034';g.lineWidth=24;g.stroke();g.lineCap='butt';
+   g.strokeStyle='#3a3127';g.lineWidth=30;g.lineCap='round';g.beginPath();g.moveTo(sx,sy);g.quadraticCurveTo(mx,my,ex,ey);g.stroke();g.strokeStyle=ksPattern(g,'path')||'#4a4034';g.lineWidth=24;g.stroke();g.lineCap='butt';
    for(let i=0;i<=20;i++){const t=i/20,x=(1-t)*(1-t)*sx+2*(1-t)*t*mx+t*t*ex,y=(1-t)*(1-t)*sy+2*(1-t)*t*my+t*t*ey;pts.push([x,y]);if(i%7===3){bench(x+R(-6,6),y-26);}}
    const nearP=(x,y,m)=>pts.some(p=>Math.hypot(p[0]-x,p[1]-y)<m);
    if(b.w>300&&b.h>260&&Math.random()<.7){for(let t=0;t<20;t++){const rx=R(60,Math.min(130,b.w/4)),ry=rx*R(.5,.75),q=inB(b,rx+30);if(!nearP(q.x,q.y,rx+40)&&!resHit(q.x-rx-10,q.y-ry-10,rx*2+20,ry*2+20)){pond(q.x,q.y,rx,ry);break;}}}
@@ -144,7 +144,7 @@ function drawWeather(t,dt){if(D.tun||D.base)return;const k=BIOME[D.i].wx,n=S.eco
     else if(k==='snow'){m.y+=m.s*dt*.09;m.w+=dt;if(m.y>1.02){m.y=-.02;m.x=Math.random();}ctx.fillStyle=`rgba(235,235,240,${.35+.3*m.s})`;ctx.beginPath();ctx.arc(m.x*VW+Math.sin(m.w)*10,m.y*VH,m.z*.8,0,7);ctx.fill();}
     else if(k==='fog'){if(i>10)break;m.x+=dt*.008*m.s;if(m.x>1.3)m.x=-.3;const fx=m.x*VW,fy=m.y*VH;ctx.globalAlpha=.07;ctx.drawImage(glow('#c8ccd0'),fx-180,fy-90,360,180);ctx.globalAlpha=1;}
     else{if(i>36)break;m.y-=m.s*.016*.06;m.w+=.02;if(m.y<-.02){m.y=1.02;m.x=Math.random();}ctx.fillStyle=`rgba(239,159,39,${.25+.25*Math.sin(m.w*2)})`;ctx.fillRect(m.x*VW+Math.sin(m.w)*12,m.y*VH,m.z,m.z);}}}
-function drawWaters(t){const camX=VB.x0,camY=VB.y0,VW_=VB.x1-VB.x0,VH_=VB.y1-VB.y0;ctx.strokeStyle='rgba(185,220,230,.34)';ctx.lineWidth=2.2;// v0.41: stronger ripples, water was hard to read
+function drawWaters(t){const camX=VB.x0,camY=VB.y0,VW_=VB.x1-VB.x0,VH_=VB.y1-VB.y0;ctx.strokeStyle=koepSpecialOn()||xhainArtOn()||alexArtOn()||mitteArtOn()?'rgba(192,225,212,.48)':'rgba(185,220,230,.34)';ctx.lineWidth=koepSpecialOn()||xhainArtOn()||alexArtOn()||mitteArtOn()?2.8:2.2;// v0.41: stronger ripples, water was hard to read
   for(const w of waters){if(w.ex!=null){if(w.ex+w.rx<camX||w.ex-w.rx>camX+VW_||w.ey+w.ry<camY||w.ey-w.ry>camY+VH_)continue;for(let i=0;i<10;i++){const a=i*2.4+t*.0002*(i%3+1),r=.25+.6*((i*.37)%1),x=w.ex+Math.cos(a)*w.rx*r,y=w.ey+Math.sin(a*1.3)*w.ry*r*.8,l=12+9*Math.sin(t*.002+i);ctx.beginPath();ctx.moveTo(x-l,y);ctx.lineTo(x+l,y);ctx.stroke();}}
     else{if(w.y>camY+VH_||w.y+w.h<camY)continue;const a=Math.max(w.x,camX-30),b=Math.min(w.x+w.w,camX+VW_+30),span=b-a;if(span<=20)continue;// ripples only over this strip's own x range
       for(let i=0,n=Math.min(36,Math.ceil(36*span/(VW_+60)));i<n;i++){const x=a+((i*97+t*.03*(1+i%3))%span),y=w.y+10+((i*37)%(w.h-20)),l=14+9*Math.sin(t*.003+i);ctx.beginPath();ctx.moveTo(x-l,y);ctx.lineTo(x+l,y);ctx.stroke();}}}}

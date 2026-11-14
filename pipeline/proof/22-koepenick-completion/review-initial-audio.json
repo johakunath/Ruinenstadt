@@ -1,0 +1,5 @@
+{
+  "errors": [],
+  "status": "failed",
+  "failure": "page.evaluate: Error: Gameplay changed for seed 1: {\"off\":{\"hidden\":[{\"x\":754.3594880774617,\"y\":2682.1860552951694},{\"x\":1508.8962876051664,\"y\":3391.3398990780115},{\"x\":721.3719334825873,\"y\":733.4108190983534}],\"events\":{\"3\":\"rescue\",\"4\":\"trader\",\"7\":\"ambush\",\"8\":\"zone\",\"16\":\"cache\",\"17\":\"rescue\"},\"nextRng\":0.14356093341484666},\"on\":{\"hidden\":[{\"x\":2057.1802995353937,\"y\":1773.122230656445},{\"x\":2392.0811208710074,\"y\":2525.8561711013317},{\"x\":1057.8707955032587,\"y\":2620.7233368605375}],\"events\":{\"3\":\"zone\",\"6\":\"trader\",\"7\":\"rescue\",\"13\":\"rescue\",\"17\":\"horde\",\"18\":\"ambush\"},\"nextRng\":0.46076721022836864},\"wallsEqual\":false}\n    at eval (eval at evaluate (:311:30), <anonymous>:1:531)\n    at async <anonymous>:337:30\n    at /workspace/Ruinenstadt/tools/proof_koep_review.cjs:3:457"
+}

@@ -1,5 +1,23 @@
 # ChatGPT asset batches
 
+
+2026-11-13 delivery (v0.88): global pickups and rarity-specific loot bags are
+painted and integrated. Sixteen source cells are saved under
+`assets/raw/codex/15-pickups/`, cut by `tools/build_shared_materials.py` into
+`assets/props/pickup-*.webp`. Includes all crafting materials and ingredients.
+The latest explicit request chooses loot bags for equipment drops. Existing
+menu item icons stay in use. Ground/shared building materials follow in the
+same batch; final performance acceptance and review with Claude are deferred.
+
+2026-11-13 priority override: nine district exploration boards are complete;
+Johannes selected Tempelhof B, Wedding C and Charlottenburg A+C for three
+expanded final refinements (`docs/district-design-directions.md`, task 16).
+No BVG branding/livery/costumes on these; Wedding's label is “kommt bald”. Next session covers all
+global pickups/materials/ingredients and SVG-only equipment gaps (task 15),
+then Köpenick/global building coverage (task 17). Reuse existing painted item
+icons for small equipment drops with code rarity glow. Existing menu sheets
+and finished art remain usable; this note does not queue duplicate paintings.
+
 Work order for generating menu art (item icons, portraits) with ChatGPT image generation. One batch = one image = one step. Johannes hands the finished sheets to Claude, who cuts and integrates them. In-world sprites (player, enemies, buildings, vehicles) are not part of this; they follow `pipeline/workflow.md` with Codex.
 
 ## How to work

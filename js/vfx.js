@@ -19,6 +19,8 @@ function fxTime(dt){const f=Math.pow(1e-5,dt);KX*=f;KY*=f;if(SLOW>0){SLOW-=dt;re
 function fxHit(e,crit,col,dmg){const c=FXC(),a=Math.atan2(e.y-P.y,e.x-P.x),k=crit?1.5:1;if(!col){const sh=clamp((dmg||0)/e.max,0,1);fxKick(a,crit?4:1.5+3*sh);if(sh>.3&&e.type!=='boss')freeze=Math.max(freeze,.015+.03*sh);}fxFlash(e.x,e.y,e.r+8,col||(crit?c.crit:c.hit),e.r*.8*k,e.r*2.6*k,crit?.16:.11,crit?90:50);fxSparks(e.x,e.y,e.r+8,col||c.hit,crit?10:5,crit?320:230,a,1.5);if(crit)fxRing(e.x,e.y,col||c.crit,e.r*3.2,.2,3);}
 function fxKill(e){const c=FXC();if(e.type==='boss')SLOW=1.1;else if(e.elite)SLOW=Math.max(SLOW,.35);fxFlash(e.x,e.y,e.r,c.kill,e.r,e.r*3.4,.2,80);fxRing(e.x,e.y,c.kill,e.r*3.6,.28,3);fxSparks(e.x,e.y,e.r,c.kill,e.type==='boss'?26:8,260);}
 function fxPulse(x,y,col,r){fxFlash(x,y,10,col,r*.3,r*1.1,.22,r*1.4);fxRing(x,y,col,r,.3,5);fxSparks(x,y,8,col,10,r*2.4);}
+// A brief green aura and rising plus signs follow the healed character.
+function fxHeal(){const f=fx.find(f=>f.k===3);if(f)f.life=f.max;else fxAdd({k:3,life:.7});}
 function fxUpdate(dt){for(const f of fx){f.life-=dt;if(f.k===2){f.x+=f.vx*dt;f.y+=f.vy*dt;if(D.cyber){f.vx*=.9;f.vy*=.9;}else{f.z+=f.vz*dt;f.vz-=520*dt;if(f.z<0){f.z=0;f.vz*=-.35;f.vx*=.5;f.vy*=.5;}}}}fx=fx.filter(f=>f.life>0);}
 function fxLight(lit){for(const f of fx)if(f.l)lit(f.x,f.y,f.l*f.life/f.max,f.z,f.col);if(swings.length)lit(P.x,P.y,90,12);}
 /* swings: crescent that sweeps the hit arc and fades from behind (sword, hammer), thrust wedge (spear). Drawn on the ground plane at weapon height.
@@ -39,6 +41,7 @@ function fxDraw(t){const c=FXC(),cy=D.cyber;
   for(const s of shocks){const X=scx(s.x,s.y),Y=scy(s.x,s.y);if(X<-s.r||X>VW+s.r||s.r<=0)continue;ctx.globalAlpha=.55*(1-s.r/s.max);ctx.strokeStyle=s.acid?'#97c459':s.col||c.hv;ctx.lineWidth=s.col?9:5;ctx.beginPath();ctx.ellipse(X,Y,s.r,s.r/2,0,0,7);ctx.stroke();}
   for(const r of rings){if(r.r<=0)continue;ctx.globalAlpha=.5*(1-r.r/r.max);ctx.strokeStyle=`rgb(${r.col})`;ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(scx(r.x,r.y),scy(r.x,r.y),r.r,r.r/2,0,0,7);ctx.stroke();}
   for(const f of fx)if(f.k===1){const a=f.life/f.max,r=f.r1*(1-a*a);ctx.globalAlpha=a;ctx.strokeStyle=f.col;ctx.lineWidth=f.w*a+.5;ctx.beginPath();ctx.ellipse(scx(f.x,f.y),scy(f.x,f.y),r,r/2,0,0,7);ctx.stroke();if(cy){ctx.globalAlpha=a*.5;ctx.strokeStyle=c.alt;ctx.lineWidth=1;ctx.beginPath();ctx.ellipse(scx(f.x,f.y),scy(f.x,f.y),r*.8,r*.4,0,0,7);ctx.stroke();}}
+  for(const f of fx)if(f.k===3){const a=f.life/f.max,p=1-a,X=scx(P.x,P.y),Y=scy(P.x,P.y)-(P.hz||0)-24;ctx.globalAlpha=a*.5;ctx.drawImage(glow('#8fd16a'),X-30,Y-38,60,76);ctx.strokeStyle='#a5f27b';ctx.lineWidth=2;ctx.globalAlpha=a;for(let i=0;i<3;i++){const x=X+(i-1)*18,y=Y+18-i*12-p*24;ctx.beginPath();ctx.moveTo(x-3,y);ctx.lineTo(x+3,y);ctx.moveTo(x,y-3);ctx.lineTo(x,y+3);ctx.stroke();}}
   ctx.globalAlpha=1;fxSwings();
   // projectile trails: stateless, glows stepped back along the velocity
   for(const p of pproj){const X=scx(p.x,p.y),Y=scy(p.x,p.y)-14,g=glow(p.fin?'#f2d14b':p.el?ELC[p.el]:p.spear?c.fin:c.sw),dx=ix(p.vx,p.vy)*.012,dy=iy(p.vx,p.vy)*.012,r=(p.r||4)*2.6;if(X<-60||X>VW+60||Y<-60||Y>VH+60)continue;for(let k=0;k<(S.eco?3:5);k++){const q=r*(1-k*.15);ctx.globalAlpha=.7-k*.13;ctx.drawImage(g,X-dx*k-q,Y-dy*k-q,q*2,q*2);}}

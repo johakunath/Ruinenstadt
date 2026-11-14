@@ -1,0 +1,535 @@
+{
+  "errors": [],
+  "scenes": [
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "rathaus",
+      "buildMs": 2058.100000000035,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at R (http://127.0.0.1:8767/js/core.js:6:40)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:45:164)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 15,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:49:98)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 308784,
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at pick (http://127.0.0.1:8767/js/core.js:6:122)\n    at http://127.0.0.1:8767/js/alex.js:151:100\n    at Array.from (<anonymous>)\n    at Object.drawStall [as draw] (http://127.0.0.1:8767/js/alex.js:151:80)\n    at http://127.0.0.1:8767/js/alex-assets.js:19:149\n    at withRot (http://127.0.0.1:8767/js/iso.js:16:40)\n    at axBake (http://127.0.0.1:8767/js/alex-assets.js:19:133)\n    at step (http://127.0.0.1:8767/js/alex-assets.js:22:174)": 32
+      },
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29666752,
+        "totalBytes": 39994216,
+        "cached": 56,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29577024,
+        "totalBytes": 39904488,
+        "cached": 17,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "dom",
+      "buildMs": 678.2000000000116,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at pick (http://127.0.0.1:8767/js/core.js:6:122)\n    at http://127.0.0.1:8767/js/alex.js:151:100\n    at Array.from (<anonymous>)\n    at Object.drawStall [as draw] (http://127.0.0.1:8767/js/alex.js:151:80)\n    at http://127.0.0.1:8767/js/alex-assets.js:19:149\n    at withRot (http://127.0.0.1:8767/js/iso.js:16:40)\n    at axBake (http://127.0.0.1:8767/js/alex-assets.js:19:133)\n    at step (http://127.0.0.1:8767/js/alex-assets.js:22:174)": 32
+      },
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29666752,
+        "totalBytes": 39994216,
+        "cached": 56,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29577024,
+        "totalBytes": 39904488,
+        "cached": 17,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "palast",
+      "buildMs": 652.0999999999767,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at pick (http://127.0.0.1:8767/js/core.js:6:122)\n    at http://127.0.0.1:8767/js/alex.js:151:100\n    at Array.from (<anonymous>)\n    at Object.drawStall [as draw] (http://127.0.0.1:8767/js/alex.js:151:80)\n    at http://127.0.0.1:8767/js/alex-assets.js:19:149\n    at withRot (http://127.0.0.1:8767/js/iso.js:16:40)\n    at axBake (http://127.0.0.1:8767/js/alex-assets.js:19:133)\n    at step (http://127.0.0.1:8767/js/alex-assets.js:22:174)": 32
+      },
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29666752,
+        "totalBytes": 39994216,
+        "cached": 56,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29577024,
+        "totalBytes": 39904488,
+        "cached": 17,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "teacher",
+      "buildMs": 769.7999999999884,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at pick (http://127.0.0.1:8767/js/core.js:6:122)\n    at http://127.0.0.1:8767/js/alex.js:151:100\n    at Array.from (<anonymous>)\n    at Object.drawStall [as draw] (http://127.0.0.1:8767/js/alex.js:151:80)\n    at http://127.0.0.1:8767/js/alex-assets.js:19:149\n    at withRot (http://127.0.0.1:8767/js/iso.js:16:40)\n    at axBake (http://127.0.0.1:8767/js/alex-assets.js:19:133)\n    at step (http://127.0.0.1:8767/js/alex-assets.js:22:174)": 32
+      },
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29666752,
+        "totalBytes": 39994216,
+        "cached": 56,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29577024,
+        "totalBytes": 39904488,
+        "cached": 17,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "station",
+      "buildMs": 770,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at pick (http://127.0.0.1:8767/js/core.js:6:122)\n    at http://127.0.0.1:8767/js/alex.js:151:100\n    at Array.from (<anonymous>)\n    at Object.drawStall [as draw] (http://127.0.0.1:8767/js/alex.js:151:80)\n    at http://127.0.0.1:8767/js/alex-assets.js:19:149\n    at withRot (http://127.0.0.1:8767/js/iso.js:16:40)\n    at axBake (http://127.0.0.1:8767/js/alex-assets.js:19:133)\n    at step (http://127.0.0.1:8767/js/alex-assets.js:22:174)": 32
+      },
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29666752,
+        "totalBytes": 39994216,
+        "cached": 56,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29577024,
+        "totalBytes": 39904488,
+        "cached": 17,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "rail",
+      "buildMs": 709.2999999999884,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at pick (http://127.0.0.1:8767/js/core.js:6:122)\n    at http://127.0.0.1:8767/js/alex.js:151:100\n    at Array.from (<anonymous>)\n    at Object.drawStall [as draw] (http://127.0.0.1:8767/js/alex.js:151:80)\n    at http://127.0.0.1:8767/js/alex-assets.js:19:149\n    at withRot (http://127.0.0.1:8767/js/iso.js:16:40)\n    at axBake (http://127.0.0.1:8767/js/alex-assets.js:19:133)\n    at step (http://127.0.0.1:8767/js/alex-assets.js:22:174)": 32
+      },
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29666752,
+        "totalBytes": 39994216,
+        "cached": 56,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29577024,
+        "totalBytes": 39904488,
+        "cached": 17,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "market",
+      "buildMs": 730.7999999999884,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at pick (http://127.0.0.1:8767/js/core.js:6:122)\n    at http://127.0.0.1:8767/js/alex.js:151:100\n    at Array.from (<anonymous>)\n    at Object.drawStall [as draw] (http://127.0.0.1:8767/js/alex.js:151:80)\n    at http://127.0.0.1:8767/js/alex-assets.js:19:149\n    at withRot (http://127.0.0.1:8767/js/iso.js:16:40)\n    at axBake (http://127.0.0.1:8767/js/alex-assets.js:19:133)\n    at step (http://127.0.0.1:8767/js/alex-assets.js:22:174)": 32
+      },
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29666752,
+        "totalBytes": 39994216,
+        "cached": 56,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": true,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29577024,
+        "totalBytes": 39904488,
+        "cached": 17,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "fernsehturm",
+      "buildMs": 627.6999999999534,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at pick (http://127.0.0.1:8767/js/core.js:6:122)\n    at http://127.0.0.1:8767/js/alex.js:151:100\n    at Array.from (<anonymous>)\n    at Object.drawStall [as draw] (http://127.0.0.1:8767/js/alex.js:151:80)\n    at http://127.0.0.1:8767/js/alex-assets.js:19:149\n    at withRot (http://127.0.0.1:8767/js/iso.js:16:40)\n    at axBake (http://127.0.0.1:8767/js/alex-assets.js:19:133)\n    at step (http://127.0.0.1:8767/js/alex-assets.js:22:174)": 32
+      },
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29666752,
+        "totalBytes": 39994216,
+        "cached": 56,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": null,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29577024,
+        "totalBytes": 39904488,
+        "cached": 17,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "weltzeit",
+      "buildMs": 644,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at pick (http://127.0.0.1:8767/js/core.js:6:122)\n    at http://127.0.0.1:8767/js/alex.js:151:100\n    at Array.from (<anonymous>)\n    at Object.drawStall [as draw] (http://127.0.0.1:8767/js/alex.js:151:80)\n    at http://127.0.0.1:8767/js/alex-assets.js:19:149\n    at withRot (http://127.0.0.1:8767/js/iso.js:16:40)\n    at axBake (http://127.0.0.1:8767/js/alex-assets.js:19:133)\n    at step (http://127.0.0.1:8767/js/alex-assets.js:22:174)": 32
+      },
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29666752,
+        "totalBytes": 39994216,
+        "cached": 56,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": null,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29577024,
+        "totalBytes": 39904488,
+        "cached": 17,
+        "limit": 40000000
+      }
+    },
+    {
+      "district": "Alexanderplatz",
+      "version": "0.96",
+      "target": "neptun",
+      "buildMs": 720.5999999999767,
+      "nextRng": 0.11375770554877818,
+      "rngDuringWait": {
+        "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at pick (http://127.0.0.1:8767/js/core.js:6:122)\n    at http://127.0.0.1:8767/js/alex.js:151:100\n    at Array.from (<anonymous>)\n    at Object.drawStall [as draw] (http://127.0.0.1:8767/js/alex.js:151:80)\n    at http://127.0.0.1:8767/js/alex-assets.js:19:149\n    at withRot (http://127.0.0.1:8767/js/iso.js:16:40)\n    at axBake (http://127.0.0.1:8767/js/alex-assets.js:19:133)\n    at step (http://127.0.0.1:8767/js/alex-assets.js:22:174)": 32
+      },
+      "assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29666752,
+        "totalBytes": 39994216,
+        "cached": 56,
+        "limit": 40000000
+      },
+      "eligible": 169,
+      "targetCached": null,
+      "zoom2Assets": {
+        "ready": 15,
+        "decodedBytes": 5198248,
+        "canvasBytes": 5129216,
+        "sourceBytes": 10327464,
+        "projectedCacheBytes": 29577024,
+        "totalBytes": 39904488,
+        "cached": 17,
+        "limit": 40000000
+      }
+    }
+  ],
+  "measurements": [
+    {
+      "district": 2,
+      "medianOffMs": 14.205000000000291,
+      "medianOnMs": 15.86999999999971,
+      "pairedPct": 10.913121323215758,
+      "pairs": [
+        {
+          "on": {
+            "meanMs": 15.86999999999971,
+            "sp": 3.75,
+            "mx": 399.79999999998836,
+            "allocations": 0
+          },
+          "off": {
+            "meanMs": 14.205000000000291,
+            "sp": 3.75,
+            "mx": 329.5,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 12.91125000000029,
+            "sp": 3.75,
+            "mx": 331.20000000001164,
+            "allocations": 0
+          },
+          "on": {
+            "meanMs": 12.81875,
+            "sp": 2.5,
+            "mx": 424.70000000001164,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 17.321250000000145,
+            "sp": 3.75,
+            "mx": 445.69999999995343,
+            "allocations": 0
+          },
+          "off": {
+            "meanMs": 14.680000000000291,
+            "sp": 3.75,
+            "mx": 362.20000000001164,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 12.709999999999855,
+            "sp": 3.75,
+            "mx": 309,
+            "allocations": 0
+          },
+          "on": {
+            "meanMs": 11.915000000000145,
+            "sp": 2.5,
+            "mx": 408.5,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 16.26125000000029,
+            "sp": 3.75,
+            "mx": 415.9000000000233,
+            "allocations": 0
+          },
+          "off": {
+            "meanMs": 14.66125000000029,
+            "sp": 3.75,
+            "mx": 357.70000000006985,
+            "allocations": 0
+          }
+        }
+      ]
+    },
+    {
+      "district": 0,
+      "medianOffMs": 13.31875,
+      "medianOnMs": 13.541249999999128,
+      "pairedPct": 0.6757390896249271,
+      "pairs": [
+        {
+          "on": {
+            "meanMs": 14.153749999999127,
+            "sp": 6.25,
+            "mx": 207.69999999995343,
+            "allocations": 0
+          },
+          "off": {
+            "meanMs": 13.167500000000292,
+            "sp": 6.25,
+            "mx": 192.19999999995343,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 13.31875,
+            "sp": 6.25,
+            "mx": 193.40000000002328,
+            "allocations": 0
+          },
+          "on": {
+            "meanMs": 13.408749999999419,
+            "sp": 6.25,
+            "mx": 193.20000000006985,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 13.544999999999709,
+            "sp": 6.25,
+            "mx": 195.89999999990687,
+            "allocations": 0
+          },
+          "off": {
+            "meanMs": 13.241249999999127,
+            "sp": 6.25,
+            "mx": 200.59999999997672,
+            "allocations": 0
+          }
+        },
+        {
+          "off": {
+            "meanMs": 13.546250000000873,
+            "sp": 6.25,
+            "mx": 206.69999999995343,
+            "allocations": 0
+          },
+          "on": {
+            "meanMs": 13.541249999999128,
+            "sp": 6.25,
+            "mx": 202,
+            "allocations": 0
+          }
+        },
+        {
+          "on": {
+            "meanMs": 13.455000000000291,
+            "sp": 6.25,
+            "mx": 201.69999999995343,
+            "allocations": 0
+          },
+          "off": {
+            "meanMs": 14.111250000000291,
+            "sp": 6.25,
+            "mx": 210.40000000002328,
+            "allocations": 0
+          }
+        }
+      ]
+    }
+  ],
+  "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "gameplayUnchanged": true,
+  "departure": {
+    "base": {
+      "bytes": 0,
+      "released": true
+    },
+    "tunnel": {
+      "bytes": 0,
+      "released": true
+    }
+  },
+  "fallback": {
+    "district": "Alexanderplatz",
+    "version": "0.96",
+    "target": "rathaus",
+    "buildMs": 1230.6999999999534,
+    "nextRng": 0.11375770554877818,
+    "rngDuringWait": {
+      "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at R (http://127.0.0.1:8767/js/core.js:6:40)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:45:164)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 12,
+      "Error\n    at Math.random (eval at evaluate (:311:30), <anonymous>:1:213)\n    at fxRender (http://127.0.0.1:8767/js/audio.js:49:98)\n    at http://127.0.0.1:8767/js/audio.js:56:48\n    at Array.map (<anonymous>)\n    at fxBuf (http://127.0.0.1:8767/js/audio.js:56:40)\n    at pre (http://127.0.0.1:8767/js/audio.js:12:69)": 111129
+    },
+    "assets": {
+      "ready": 0,
+      "decodedBytes": 5198248,
+      "canvasBytes": 0,
+      "sourceBytes": 5198248,
+      "projectedCacheBytes": 0,
+      "totalBytes": 5198248,
+      "cached": 0,
+      "limit": 40000000
+    },
+    "eligible": 169,
+    "targetCached": false
+  },
+  "smoke": {
+    "state": "play",
+    "hp": 100,
+    "assets": {
+      "ready": 15,
+      "decodedBytes": 5198248,
+      "canvasBytes": 5129216,
+      "sourceBytes": 10327464,
+      "projectedCacheBytes": 29595356,
+      "totalBytes": 39922820,
+      "cached": 55,
+      "limit": 40000000
+    }
+  },
+  "status": "passed"
+}
