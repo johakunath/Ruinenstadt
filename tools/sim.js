@@ -22,6 +22,7 @@ SIM.think=function(dt){
   const ranged=ST.kind==='sling';
   // v0.99: below half life the bot walks to a nearby landed heal orb or Döner when the closest enemy is not on top of it (below 30% always)
   let heal=null;if(P.hp<ST.maxHp*.5){let hd=500;for(const d of drops)if((d.heal||d.food)&&!d.botSkip&&d.vh===null){const q=dist(d,P);if(q<hd){hd=q;heal=d;}}}
+  if(heal&&heal===SIM.healT){SIM.healS+=dt;if(SIM.healS>6){heal.botSkip=1;heal=null;}}else{SIM.healT=heal;SIM.healS=0;}/* unreachable heal drop: give up after 6 s like ordinary loot */
   if(heal&&(!near||nd>140||P.hp<ST.maxHp*.3)){const g=SIM.goto(heal.x,heal.y);mx+=g.x*1.5;my+=g.y*1.5;if(near&&nd<200)skillReq=true;}
   else if(near&&nd<700){const ux=(near.x-P.x)/nd,uy=(near.y-P.y)/nd,crowd=es.filter(e=>dist(e,P)<150).length;
     if(ranged){if(nd<170){mx-=ux;my-=uy;}else if(nd>300||SIM.blocked(near.x,near.y)){const g=SIM.goto(near.x,near.y);mx+=g.x;my+=g.y;}else{mx+=-uy*.8;my+=ux*.8;}}
