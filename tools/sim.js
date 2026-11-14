@@ -44,6 +44,7 @@ SIM.run=function(di,opt){opt=opt||{};S.eq.w.kr=opt.kr!=null?opt.kr:Math.floor(Ma
     if(state==='perk'){SIM.equip();const cs=[...document.querySelectorAll('#perkbox .pcard')];const c=cs.find(b=>b.classList.contains('duo'))||cs.find(b=>b.classList.contains('mod'))||cs.find(b=>b.classList.contains('fon')&&Math.random()<.75)||cs.find(b=>b.classList.contains('ep'))||cs.find(b=>b.classList.contains('ra'))||cs[Math.floor(Math.random()*cs.length)];c.click();continue;}
     if(state==='trade'){if(npc)npc.offers.forEach((o,i)=>{if(o&&S.scrap>=o.price&&better(o.it)&&S.bag.length<BAG){S.scrap-=o.price;S.bag.push(o.it);npc.offers[i]=null;}});$('trade').hidden=true;state='play';continue;}
     if(state==='paused'){resume();continue;}
+    if(state==='lootwarn'){finishLootExit(true);continue;}// v0.91 exit warning: the bot leaves remaining loot
     if(freeze>0){freeze-=dt;continue;}
     thinkT-=dt;if(thinkT<=0){thinkT=.1;if(S.bag.length>=BAG-2)SIM.tidy();SIM.think(.1);}
     update(dt);t+=dt;if(run.wave!==wv){if(t-wt>slow[1])slow=[wv,Math.round(t-wt),slow[2]];wv=run.wave;wt=t;diag='';}if(t-wt>90&&!diag){diag='w'+run.wave+' stuck with '+enemies.length+': '+[...new Set(enemies.map(e=>e.type+(e.fly?'(f)':'')))].join(',')+' toSpawn '+run.toSpawn;}if(P.hp<lastHp)dmgTaken+=lastHp-P.hp;lastHp=P.hp;}
