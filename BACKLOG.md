@@ -9,7 +9,7 @@ Isometric loot ARPG in post-collapse Berlin. Hobby project to learn game develop
 - **Difficulty:** fun first, but big attacks must be dodged (Playtest 5: too easy). Köpenick stays gentle, from Mitte on a death per district is normal on Normal. Hard mode opt-in.
 - **Session:** 5 to 15 minutes. Devices: Galaxy Tab S9 first, Xiaomi 17 phone second. Later Xbox controller, Steam Deck, 2K monitor.
 - **Inspirations:** Diablo 2/3 (loot, acts), Hades (dash, boons, weapon = playstyle, hand-drawn look), V Rising (boss-gated unlocks, base), Valheim (weak to strong), Enshrouded (authored points of interest).
-- **Out of scope:** multiplayer, 3D, hunger as a timer, story dialogue trees.
+- **Out of scope:** multiplayer, hunger as a timer, story dialogue trees. 3D is being tested in a separate repo (D8).
 
 ## Playtests
 
@@ -30,6 +30,7 @@ Current actions are tracked below.
 | D4 | Asset sources: painted only for the hero rig and animated enemies/bosses; icons, environment, ground, props, camp and new-district buildings as SVG/code art (`pipeline/workflow.md` › Source per asset family) | Wedding kit in SVG as the first test of the rule |
 | D5 | Item level (built in v0.87, extended): Kampfkraft is gone from the UI. Shown item level = `ilvl` (+3 per district) plus a rarity bonus (white 0, magic +3, rare and set +6, legendary +10), after WoW where quality makes up a limited level gap. Higher shown level than the equipped piece = ▲ | Playtest: are the bonuses `RIL` in `js/items.js` right? |
 | D6 | Ultimate and skill animations: the Klinger ultimate still looks too weak. Rework ultimate, power and skill animations (spell VFX, charge-up, impact, screen read), start with Klinger | Mockup or short capture of 2 to 3 variants before building (`js/combat.js`, `js/art.js`) |
+| D8 | **3D pivot test (2026-11-14):** 3-week experiment in a new repo `Ruinenstadt-3D` (Three.js, TypeScript, Vite, CI, Pages), Qualität profile for PC and Leistung for tablet, real hitboxes, custom hero from gate 2. The 2D game stays playable. Plan: `docs/plan-3d.md`, one-shot prompt for gate 1: `docs/3d-oneshot-prompt.md` | First #35 (combat flow, 2D, one session), then gate 1 in the new repo. Model: Fable 5.2 for the gate 1 kickoff if usage allows, else Opus 5.5 high |
 | D7 | Pickups (Döner and other drops) are still small SVGs. They need proper painted icons with material feel that still glow. Overrides the D4 row for this one family | Asset task in `pipeline/tasks/15-pickups.md`, list in `docs/chatgpt-assets.md` |
 
 **Camp stations:** small variant v0.83 and the iso station art (task 14) are in and approved (playtest 2026-11-11). Later: station quests and NPC lines (#36), garden minigame in the Imbiss (#33), more rooms or a second floor.
@@ -95,8 +96,42 @@ Focus: gameplay and content. Art runs in parallel through Codex (`pipeline/workf
 | 37 | Camp stations with levels and NPCs (small variant in v0.83) | Extends #16: every station (Schmied, Koch, Lehrer, Händler...) is upgraded in steps with materials, each step a visible new asset, and has its own NPC to trade, upgrade and give quests. Asset pipeline: one painted prop per station level |
 | 33 | Garden minigame | Gemüsegarten as beds: plant seeds (drops), harvest 1 to 3 expeditions later, better seeds give rare ingredients. Ties into #25 and #16 (camp as a place). Mockup first |
 | 34 | Smith, enchanter, epic materials | Diablo-style: smith crafts items of a chosen slot from materials, enchanter rerolls one affix (= #17 Umschmieden with control), rare district materials from bosses and elites (e.g. Fernsehturm-Splitter) for legendary crafting or a 3rd attachment slot. Decide with #32 |
-| 35 | Combat flow | Hades/V Rising feel: input buffer, attack and dash cancel windows, dash attack, hitstop per weapon, enemy stagger, faster skill feedback. Browser is not the limit (input arrives within a frame, Hades runs at fixed 60 fps too); limits are our render cost on big canvases and Firefox. Measure input-to-frame latency first, then tune per weapon with #7 |
+| 42 | **3D pivot (D8)** | Gates 1 to 3 in `docs/plan-3d.md`: look, feel and perf → hero and combat → vertical slice, then decide on migrating |
+| 35 | **Combat flow (next session, 2026-11-14)** | Goal: on an Xbox controller it feels like Hades. Full task below › #35 Combat flow |
 | - | GitHub Pages | When playtesting outside the dev setup |
+
+### #35 Combat flow
+
+**Goal:** with a controller it feels like Hades: no swallowed inputs, instant reaction, every hit lands audibly and visibly. Tablet touch second, with a reworked button layout. Browser is not the limit (input arrives within a frame, Hades runs at a fixed 60 fps too); the limits are our render cost on big canvases and Firefox.
+
+**Model:** Opus 5.5 on high is enough. Feel is tuned by playing, so the bottleneck is the playtest loop, not reasoning depth. Fable 5.2 is optional; no verified benchmark says it tunes game feel better.
+
+**Verified state (v0.87):** `loop` in `js/render.js` uses a variable `dt` (capped at 50 ms, frame cap ~61 fps), no fixed step. Hitstop exists as the global `freeze` (crit .03 s, finisher .035, elite kill .08, boss kill .25, shocks). While `freeze` runs, `update` is skipped, so `padPoll` (called in `update`) does not run: a button pressed and released during a hitstop can be lost. No rumble (`vibrationActuator` unused).
+
+**Step 1, measure:** frame pacing and input-to-frame latency on the Tab S9 and Firefox on the PC (`?debug=perf`). Cheap external check: film screen and hand with a phone's 240 fps slow motion and count frames from button press to the first visible reaction.
+
+**Ideas to try (pick, tune, keep what feels good):**
+
+| Idea | What | Start value |
+|---|---|---|
+| Input buffer | Attack, dash and skill pressed during wind-up, recovery, dash or hitstop are stored and fire at the first legal frame. Keep polling input during `freeze` | 150 to 200 ms |
+| Cancel windows | Dash cancels attack recovery; attack right after a dash becomes a dash strike; skill cancels recovery | Recovery cancelable after the damage frame |
+| Short wind-ups | Damage frame early in the swing; weight comes from the follow-through, not the anticipation | Light ≤ 100 ms, heavy ≤ 200 ms |
+| Movement | Instant acceleration and turning; attacks snap to the aim or stick direction | Ramp ≤ 50 ms |
+| Aim assist | Soft lock-on cone toward the nearest enemy in the stick direction on controller and touch | ~25° cone |
+| Hitstop per weapon | Duration by weapon weight and hit type, not only crit/kill. Freeze attacker and target, keep the input buffer alive | Light 30 to 50 ms, heavy 80 to 120 ms |
+| Hit reactions | White flash for 1 to 2 frames, knockback along the blow, stagger or poise for big enemies | Flash 50 ms |
+| Impact sound | Sound on the exact damage frame, layered per weapon, slight random pitch | Same frame as the hit |
+| Screen shake | Small, directional, per weapon; extends the existing camera kick | ≤ 4 px light, more on heavy and kills |
+| Particles and trails | Sparks or blood on impact, weapon trail or smear on every swing | |
+| Dash | Fixed distance, i-frames, short cooldown, 1 to 2 charges, dust and afterimage (#31) | i-frames ~150 ms |
+| Rumble | Gamepad `vibrationActuator` on hits, dash and kills (Chrome; check Firefox) | 30 to 80 ms pulses |
+| Frame pacing | A steady 60 matters more than peak fps; check against the render cost of big canvases | p95 ≤ 17 ms |
+| Tablet layout | Hades-like thumb cluster: large attack button, dash next to it, skills in an arc; same buffer for touch | Mockup first |
+
+**Output beyond the code:** write the tuned numbers (buffer, windows, hitstop, shake, i-frames per weapon) to `docs/combat-feel.md`. If the 3D pivot goes ahead (`docs/plan-3d.md`), these numbers carry over; the 2D code does not. So keep 2D animation polish minimal and put the effort into timing, input and feedback.
+
+**Done when:** Johannes plays on the controller and an attack → dash → attack chain never drops an input, every hit has sound, flash and hitstop, and it feels close to Hades. Tune per weapon with #7.
 
 ## Ideas by theme
 
