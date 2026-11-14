@@ -99,7 +99,7 @@ const JOBT=[
  {k:'chest',n:t=>t>1?`Öffne ${t} Kellertruhen`:'Öffne eine Kellertruhe',t:()=>pick([1,2])},{k:'zone',n:t=>t>1?`Halte ${t} Funksignale`:'Halte ein Funksignal',t:()=>pick([1,2])},{k:'trade',n:t=>`Kaufe ${t} Teile beim Händler`,t:()=>pick([1,2])},
  {k:'boss',n:t=>t>1?`Besiege ${t} Endgegner`:'Besiege einen Endgegner',t:()=>pick([1,2])},{k:'rescue',n:t=>'Befreie eine gefangene Person',t:()=>1},{k:'shrine',n:t=>t>1?`Nutze ${t} Litfaßsäulen`:'Nutze eine Litfaßsäule',t:()=>pick([1,2])},{k:'rat',n:t=>`Besiege ${t} Ratten`,t:()=>pick([30,50])},{k:'bomb',n:t=>`Besiege ${t} Zünder`,t:()=>pick([6,10])},{k:'shield',n:t=>`Besiege ${t} Schildträger`,t:()=>pick([5,8])},{k:'wave',n:t=>`Erreiche Welle ${t} in einem Bezirk`,t:()=>pick([10,14,18])}];
 const CONS=[{k:'verband',n:'Verband',d:'Heilt 40% Leben über 3 Sekunden',p:15},{k:'molotow',n:'Molotow',d:'Wirft ein Feuerfeld, das Gegner in Brand setzt',p:25}],RZ=[0,.06,.03,.04,.14,.18,.2];
-const DIFF=[{n:'Leicht',hp:.7,dmg:.6,luck:0,sc:1},{n:'Normal',hp:1.5,dmg:1.25,luck:0,sc:1},{n:'Schwer',hp:1.85,dmg:1.5,luck:4,sc:1.3}];
+const DIFF=[{n:'Leicht',hp:.7,dmg:.6,luck:0,sc:1},{n:'Normal',hp:1.75,dmg:1.45,luck:0,sc:1},{n:'Schwer',hp:2.15,dmg:1.75,luck:4,sc:1.3}];
 const DF=()=>DIFF[S.diff==null?1:S.diff];
 const KIND={blade:{n:'Klinge',k:1,rate:.3,reach:60,arc:1.1,knock:240},hammer:{n:'Hammer',k:2.3,rate:.68,reach:74,arc:1.6,knock:430,stun:.6},sling:{n:'Werfer',k:.85,rate:.42,knock:120},spear:{n:'Speer',k:1.45,rate:.5,reach:98,arc:.34,knock:300}};
 const NW={blade:['Rostiges Rohr','Bewehrungsstahl','Machete','Brechstange'],hammer:['Vorschlaghammer','Pflasterhammer','Rohrzange'],sling:['Jagdzwille','Nagelwerfer','Steinschleuder'],spear:['Rohrspeer','Fahnenstange','Harpune']};
