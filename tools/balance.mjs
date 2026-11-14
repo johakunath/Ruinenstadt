@@ -1,4 +1,5 @@
 // Balance runner: node tools/balance.mjs [runs] [difficulty 0-2] [seedSave.json]
+// Two baselines (v0.99): no seed = fresh campaign from zero; a seed save (plain save JSON, e.g. Johannes' cloud save) = continue at that level.
 // Needs `python3 -m http.server 8765` in the repo root and Playwright (pre-installed in Claude Code cloud).
 // A bot plays a fresh campaign and prints one line per run plus a summary per district.
 import { createRequire } from 'module';
@@ -11,7 +12,8 @@ const b = await chromium.launch(); const p = await b.newPage({ viewport: { width
 const errs = []; p.on('pageerror', e => errs.push(e.message));
 await p.goto('http://localhost:8765/'); await p.waitForTimeout(800);
 await p.addScriptTag({ content: fs.readFileSync(new URL('./sim.js', import.meta.url), 'utf8') });
-await p.evaluate(d => { localStorage.clear(); S = fix(defSave()); S.diff = d; fillJobs(); SIM.setup(); }, diff);
+const seed = process.argv[4] ? fs.readFileSync(process.argv[4], 'utf8') : null;// v0.99: start from a given save (e.g. Johannes' level) instead of a fresh campaign
+await p.evaluate(([d, seed]) => { localStorage.clear(); S = fix(seed ? JSON.parse(seed) : defSave()); S.diff = d; fillJobs(); SIM.setup(); }, [diff, seed]);
 const rows = []; let fails = 0;
 for (let i = 0; i < N; i++) {
   const r = await p.evaluate(f => { let di = S.unlocked - 1; const tun = lineOpen(di) && !lineFree(di);/* v0.57: liberated district with a closed line: the bot plays the tunnel next */ if (f >= 3 && !tun) di = Math.max(0, di - 1); const r = SIM.run(di, { tun }); SIM.camp(); r.unl = S.unlocked; r.scrapBank = S.scrap; return r; }, fails);

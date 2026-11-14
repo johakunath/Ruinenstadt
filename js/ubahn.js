@@ -117,7 +117,7 @@ function eliteOf(e,m){e.elite=m;e.hp*=2.6;e.max=e.hp;e.xp*=3;e.sc*=4;e.r=Math.ro
 function tunSpecial(){const T=['rat','bomb','shield','crow','howl','kabel','bass','uhr','wurz','kern'],M=MIX[D.i]||[],o=T.filter((t,i)=>M[i]>0);return o.length?pick(o):'spitter';}
 function tunSpawn(c,x,y,sec){const out=[],add=(t,el)=>{const e=mkEnemy(t,x+R(-14,14),y+R(-14,14));if(el)eliteOf(e,el);e.sec=sec;enemies.push(e);out.push(e);};
   const t={g:'ghoul',s:'spitter',b:'brute',w:'bomb',h:(MIX[D.i]||[])[4]?'howl':'ghoul',x:tunSpecial(),E:'ghoul',B:'brute',r:'rat'}[c];
-  if(t==='rat')for(let i=0;i<5;i++)add('rat');else add(t,c==='E'||c==='B'?pick(['schnell','brennend','spaltend','gepanzert']):0);if(c!=='r'&&c!=='x'&&Math.random()<.5)add(c==='s'?'spitter':'ghoul');return out;}// v0.99: tunnels were filler without threat (bot and players rarely below 80% life); half the spawns bring a companion
+  if(t==='rat')for(let i=0;i<5;i++)add('rat');else add(t,c==='E'||c==='B'?pick(['schnell','brennend','spaltend','gepanzert']):0);if(c!=='r'&&c!=='x'&&Math.random()<Math.max(.15,.5-.1*TUN.k))add(c==='s'?'spitter':'ghoul');return out;}// v0.99: tunnels were filler without threat (bot and players rarely below 80% life); early lines: half the spawns bring a companion, fewer on later lines (Tempelhof line was near-unbeatable for the campaign bot)
 const inR=(r,x,y)=>x>=r[0]&&x<r[0]+r[2]&&y>=r[1]&&y<r[1]+r[3];
 function tunUpdate(dt){const T=TUN;if(!T||T.done)return;P.wet=P.x>=FLOOD[0]&&P.x<=FLOOD[1]&&Math.abs(P.y-cy(P.x))<THW;
   // side room: optional elite guard
