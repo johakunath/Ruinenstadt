@@ -64,7 +64,7 @@ testing. Production follows PR → completed Codex review → deploy.
 | D4 | Asset sources: 2026-11-11 SVG/code default, **overridden 2026-11-13** for pickup/equipment gaps, global ground and Köpenick/global painted building foundation; see current asset priority and workflow | Selected district boards are complete; shared material foundation in v0.88, unique landmarks/nature remain open |
 | D5 | Item level (built in v0.87, extended): Kampfkraft is gone from the UI. Shown item level = `ilvl` (+3 per district) plus a rarity bonus (white 0, magic +3, rare and set +6, legendary +10), after WoW where quality makes up a limited level gap. Higher shown level than the equipped piece = ▲ | Playtest: are the bonuses `RIL` in `js/items.js` right? |
 | D6 | Ultimate and skill animations: the Klinger ultimate still looks too weak. Rework ultimate, power and skill animations (spell VFX, charge-up, impact, screen read), start with Klinger | Mockup or short capture of 2 to 3 variants before building (`js/combat.js`, `js/art.js`) |
-| D8 | **3D pivot test (2026-11-14):** 3-week experiment in a new repo `Ruinenstadt-3D` (Three.js, TypeScript, Vite, CI, Pages), Qualität profile for PC and Leistung for tablet, real hitboxes, custom hero from gate 2. The 2D game stays playable. Plan: `docs/plan-3d.md`, one-shot prompt for gate 1: `docs/3d-oneshot-prompt.md` | First #35 (combat flow, 2D, one session), then gate 1 in the new repo (#46). Model: Fable 5.2 for the gate 1 kickoff if usage allows, else Opus 5.5 high |
+| D8 | **3D pivot test (2026-11-14):** 3-week experiment in a new repo `Ruinenstadt-Berlin` (Three.js, TypeScript, Vite, CI, Pages), Qualität profile for PC and Leistung for tablet, real hitboxes, custom hero from gate 2. The 2D game stays playable. Plan: `docs/plan-3d.md`, setup guide and Fable kickoff prompt: `docs/3d-getting-started.md` | Gate 1 in the new repo (#46), built by Fable 5.2. Then #35 combat flow in the 3D game |
 | D7 | Pickups (Döner and other drops) are still small SVGs. They need proper painted icons with material feel that still glow. Overrides the D4 row for this one family | Asset task in `pipeline/tasks/15-pickups.md`, list in `docs/chatgpt-assets.md` |
 
 **Camp stations:** small variant v0.83 and the iso station art (task 14) are in and approved (playtest 2026-11-11). Later: station quests and NPC lines (#36), garden minigame in the Imbiss (#33), more rooms or a second floor.
@@ -130,7 +130,7 @@ Focus: gameplay and content. Art runs in parallel through Codex (`pipeline/workf
 | 33 | Garden minigame | Gemüsegarten as beds: plant seeds (drops), harvest 1 to 3 expeditions later, better seeds give rare ingredients. Ties into #25 and #16 (camp as a place). Mockup first |
 | 34 | Smith, enchanter, epic materials | Diablo-style: smith crafts items of a chosen slot from materials, enchanter rerolls one affix (= #17 Umschmieden with control), rare district materials from bosses and elites (e.g. Fernsehturm-Splitter) for legendary crafting or a 3rd attachment slot. Decide with #32 |
 | 46 | **3D pivot (D8)** | Gates 1 to 3 in `docs/plan-3d.md`: look, feel and perf → hero and combat → vertical slice, then decide on migrating |
-| 35 | **Combat flow (next session, 2026-11-14)** | Goal: on an Xbox controller it feels like Hades. Full task below › #35 Combat flow |
+| 35 | **Combat flow (after 3D gate 1, decided 2026-11-14)** | Goal: on an Xbox controller it feels like Hades. Done in `Ruinenstadt-Berlin`, not in the 2D game. Full task below › #35 Combat flow |
 | 43 | Player hit feedback (later) | Brief visible flash and recoil/flinch, synchronized with impact sound; stronger recoil or short stumble for heavy hits. Reserve blinking for temporary invulnerability. Prefer animation recoil to forced displacement; preserve quick control/dodge recovery and avoid stun chains. Check the existing `hurt`/`drawPlayer` effects at game scale. Requested 2026-11-13; backlog only. |
 | 44 | Player death animation (later) | Show the survivor stagger, collapse and remain on the ground before „Gefallen“. Stop combat/input on death, but keep drawing the fall animation instead of immediately hiding the hero. Coordinate `die`, `drawPlayer` and the end-screen delay. Requested 2026-11-13; backlog only. |
 | - | GitHub Pages | When playtesting outside the dev setup |
@@ -141,7 +141,9 @@ Focus: gameplay and content. Art runs in parallel through Codex (`pipeline/workf
 
 **Model:** Opus 5.5 on high is enough. Feel is tuned by playing, so the bottleneck is the playtest loop, not reasoning depth. Fable 5.2 is optional; no verified benchmark says it tunes game feel better.
 
-**Verified state (v0.87):** `loop` in `js/render.js` uses a variable `dt` (capped at 50 ms, frame cap ~61 fps), no fixed step. Hitstop exists as the global `freeze` (crit .03 s, finisher .035, elite kill .08, boss kill .25, shocks). While `freeze` runs, `update` is skipped, so `padPoll` (called in `update`) does not run: a button pressed and released during a hitstop can be lost. No rumble (`vibrationActuator` unused).
+**Where:** in the 3D game (`Ruinenstadt-Berlin`) after gate 1, as part of gate 2 (`docs/plan-3d.md`). The ideas and start values below apply there unchanged. If the 3D pivot is dropped, do it here in the 2D game.
+
+**2D game state (verified v0.87, still true in v0.89), relevant only if done here:** `loop` in `js/render.js` uses a variable `dt` (capped at 50 ms, frame cap ~61 fps), no fixed step. Hitstop exists as the global `freeze` (crit .03 s, finisher .035, elite kill .08, boss kill .25, shocks). While `freeze` runs, `update` is skipped, so `padPoll` (called in `update`) does not run: a button pressed and released during a hitstop can be lost. No rumble (`vibrationActuator` unused).
 
 **Step 1, measure:** frame pacing and input-to-frame latency on the Tab S9 and Firefox on the PC (`?debug=perf`). Cheap external check: film screen and hand with a phone's 240 fps slow motion and count frames from button press to the first visible reaction.
 
@@ -164,7 +166,7 @@ Focus: gameplay and content. Art runs in parallel through Codex (`pipeline/workf
 | Frame pacing | A steady 60 matters more than peak fps; check against the render cost of big canvases | p95 ≤ 17 ms |
 | Tablet layout | Hades-like thumb cluster: large attack button, dash next to it, skills in an arc; same buffer for touch | Mockup first |
 
-**Output beyond the code:** write the tuned numbers (buffer, windows, hitstop, shake, i-frames per weapon) to `docs/combat-feel.md`. If the 3D pivot goes ahead (`docs/plan-3d.md`), these numbers carry over; the 2D code does not. So keep 2D animation polish minimal and put the effort into timing, input and feedback.
+**Output beyond the code:** write the tuned numbers (buffer, windows, hitstop, shake, i-frames per weapon) to `docs/combat-feel.md` in the repo where it is done.
 
 **Done when:** Johannes plays on the controller and an attack → dash → attack chain never drops an input, every hit has sound, flash and hitstop, and it feels close to Hades. Tune per weapon with #7. Player-side feedback (#43 hit flinch, #44 death) can follow in the same pass if time allows.
 

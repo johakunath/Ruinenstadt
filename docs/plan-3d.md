@@ -10,17 +10,18 @@ The ceiling of the Canvas 2D renderer is the main limit on the look: lights, sha
 
 | # | Decision | Reason |
 |---|---|---|
-| 3D1 | New repo `johakunath/Ruinenstadt-3D`. The 2D game stays playable and untouched | Old repo keeps its no-build rule; no risk to the current game |
+| 3D1 | New repo `johakunath/Ruinenstadt-Berlin`. The 2D game stays playable and untouched | Old repo keeps its no-build rule; no risk to the current game |
 | 3D2 | Three.js (WebGL 2 renderer), browser first, shareable link | Friends play without installing; JS know-how; cloud workflow |
 | 3D3 | TypeScript + Vite, CI on every PR, deploy to GitHub Pages via Actions | See *Build setup* below |
 | 3D4 | Two render profiles from the start: **Qualität** (PC, full effects) and **Leistung** (tablet/phone) | PC is the fidelity target, tablet must stay playable |
 | 3D5 | Gate 1 tests look, feel and performance together, measured on the PC and the Tab S9 | A pretty scene that stutters on the tablet or feels bad is no answer |
-| 3D6 | Gameplay on the ground plane with real hitboxes (see *Collision*). Full 3D physics only where a feature needs it | Precision comes from shapes and hit frames, not from a third axis |
+| 3D6 | Gameplay on the ground plane with 2D collision and real hitboxes (see *Collision*), confirmed 2026-11-14. Full 3D physics only where a feature needs it | Precision comes from shapes and hit frames, not from a third axis |
 | 3D7 | Assets: CC0 packs and Mixamo for gate 1; the hero becomes a proper custom character from gate 2 on (realistic proportions, swappable clothes and weapons, style bible). Mixamo files in the public repo are accepted (non-commercial, Johannes takes the risk) | Fast first test, quality where it matters most |
 | 3D8 | Asset production: Claude in the cloud for code-built geometry, shaders and integration; Codex or Claude on the PC with Blender (GPU, desktop) for characters, rigging, clothing and bakes | Mobile-only development is nice to have, not required; PC via Remote Control is fine |
 | 3D9 | Style bible stays the source of truth. The 3D look is chosen from 2 to 3 rendered variants in gate 1 | Critical visual decision (CLAUDE.md rule) |
 | 3D10 | No Godot benchmark planned. Trigger for one: gate 1 or 2 fails on tablet performance with animated characters, or the animation tooling blocks progress | Avoid a second project |
-| 3D11 | `#35 Combat flow` in the 2D game first, one focused session. Its tuned numbers (`docs/combat-feel.md`) feed the 3D combat | Numbers transfer, 2D code does not |
+| 3D11 | `#35 Combat flow` (snappiness) is done in the 3D game after gate 1, not in the 2D game (Johannes, 2026-11-14) | No effort into code that gets replaced |
+| 3D12 | Fable 5.2 builds the first version (gate 1) as the foundation for everything after | Strong at 3D; the first session sets the architecture |
 
 ## Build setup: why TypeScript + Vite
 
@@ -102,7 +103,7 @@ Goal: realistic proportions, red scarf, long brown leather coat, harness, pouche
 | Gate | Week | Deliverable | Pass criteria |
 |---|---|---|---|
 | 1 Look, feel, perf | 1 | Köpenick courtyard: code-built Altbau and Späti, cobblestones, lanterns, fire barrel, fog, bloom, embers. CC0/Mixamo hero: run, 3-hit combo, dodge, with controller, keyboard/mouse, touch. 20 to 40 CC0 zombies chase and die with hitstop, flash, sound. Qualität and Leistung profiles. Shareable Pages link | Johannes: clearly better looking than 2D, feel at least on the level of the 2D game, budgets above met on PC and Tab S9. Look variant chosen |
-| 2 Hero and combat | 2 | Custom hero with 2 outfits and 2 weapons, combat numbers from `docs/combat-feel.md`, hitboxes, one custom Köpenick ghoul | Hero fits the style bible; Hades-like feel on controller |
+| 2 Hero and combat | 2 | Custom hero with 2 outfits and 2 weapons, #35 combat flow (Hades feel) tuned and written to `docs/combat-feel.md`, hitboxes, one custom Köpenick ghoul | Hero fits the style bible; Hades-like feel on controller |
 | 3 Vertical slice | 3 | Small Köpenick expedition: several encounters, 3 enemy types, 1 boss, loot drops with ported item data, return to camp stub | Fun for 10 minutes; friends test it |
 | Decision | end of 3 | Migrate content to 3D or stay 2D | Slice clearly better than the 2D game |
 
@@ -117,6 +118,6 @@ Godot, Rapier, lightmaps, multiple districts, inventory UI port, save migration,
 | Gate 1 kickoff (setup, scene, look variants) | Fable 5.2 if usage allows, else Opus 5.5 high. Unverified whether Fable is better here; the first session makes many broad decisions at once |
 | Iterations, assets integration, tuning | Opus 5.5 high |
 
-## One-shot experiment
+## Getting started
 
-`docs/3d-oneshot-prompt.md` is a self-contained prompt for gate 1. Run it once in the empty new repo to see what a well-specified one-shot delivers, then continue from its result or restart with what was learned.
+Step-by-step setup and the Fable kickoff prompt: `docs/3d-getting-started.md`.
