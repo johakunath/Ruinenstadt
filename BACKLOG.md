@@ -12,7 +12,7 @@ Isometric loot ARPG in post-collapse Berlin. Hobby project to learn game develop
 - **Session:** 5 to 15 minutes. Devices: Galaxy Tab S9 first, Xiaomi 17 phone second. Later Xbox controller, Steam Deck, 2K monitor.
 - **Inspirations:** Diablo 2/3 (loot, acts), Hades (dash, boons, weapon = playstyle, hand-drawn look), V Rising (boss-gated unlocks, base), Valheim (weak to strong), Enshrouded (authored points of interest).
 - **UI text:** brief German labels and one-line hints. Explanations only on demand (tooltip/Kodex); no walls of text in game screens (Johannes, 2026-11-13).
-- **Out of scope:** multiplayer, hunger as a timer, story dialogue trees. 3D is being tested in a separate repo (D8).
+- **Out of scope:** multiplayer, hunger as a timer, story dialogue trees. Development moved to the 3D repo `johakunath/Ruinenstadt-Berlin` (2026-11-15); this repo is a frozen reference.
 
 ## Playtests
 

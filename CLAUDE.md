@@ -1,5 +1,7 @@
 # Ruinenstadt
 
+**Frozen reference (Johannes, 2026-11-15).** Development continues only in `johakunath/Ruinenstadt-Berlin` (3D). This repo is read for data, rules and feel; no new features. Fixes only on explicit request.
+
 - `AGENTS.md` only points here. Read `BACKLOG.md` for intent, roadmap and version history. Versions are `v0.N`. Historical device feedback is in `docs/playtests.md`.
 - Plain HTML/CSS/JS, no build step, no dependencies. Scripts are classic (not modules) and share globals; order in `index.html` matters.
 - View is 2:1 isometric. Logic, collision and map generation use flat world coords; only drawing projects (`js/iso.js`, `render()` in `js/render.js`).
