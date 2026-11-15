@@ -61,7 +61,7 @@ function closeIntro(){const T=S.tips||(S.tips={});if(introT)T[introT]=1;else if(
 // v0.101 in-run tutorial cards: pause once with a screenshot, then continue (replaces the floating tip for these keys)
 const TUTS={loot:['tut-inv','Neue Ausrüstung','Liegt jetzt im Rucksack. <b>Pause</b> rechts oben öffnet das Inventar: Teil antippen, <b>Anlegen</b>. ▲ heißt stärker.'],perk:['tut-segen','Segen','Nach jeder Welle wählst du 1 von 3. Gilt nur für diese Expedition. Das Symbol zeigt die Familie: Gleiche kommen öfter, zwei Familien öffnen einen Doppelsegen.']};
 function tutCard(k,then){if(!S.tips||S.tips[k])return false;const st=state;state='tut';clearInput();introGo=()=>{state=st;last=performance.now();if(then)then();};introT=k;introPg=0;introD=-1;$('introbox').innerHTML=introHTML();$('intro').hidden=false;sfx('ui');return true;}
-function introAct(a){if(a==='next'&&introD<0&&introPg<ITUT.length-1){introPg++;$('introbox').innerHTML=introHTML();}else closeIntro();}
+function introAct(a){if(a==='next'&&!introT&&introD<0&&introPg<ITUT.length-1){introPg++;$('introbox').innerHTML=introHTML();}else closeIntro();}
 $('intro').addEventListener('click',e=>{const b=e.target.closest('[data-intro]');if(b){initAudio();sfx('ui');introAct(b.dataset.intro);}});
 addEventListener('keydown',e=>{if(!$('intro').hidden&&(e.key==='Escape'||e.key==='Enter')){e.preventDefault();e.stopImmediatePropagation();introAct(e.key==='Enter'?'next':'done');}},{capture:true});
 function openInv(from){$('toasts').classList.add('low');invFrom=from;sel=null;invMsg='';allArm=false;invForge=false;if(run)run.quitArm=false;renderInv();$('inv').hidden=false;$('menu').hidden=true;}
