@@ -64,7 +64,15 @@ function tutCard(k,then){if(!S.tips||S.tips[k])return false;const st=state;state
 function introAct(a){if(a==='next'&&!introT&&introD<0&&introPg<ITUT.length-1){introPg++;$('introbox').innerHTML=introHTML();}else closeIntro();}
 $('intro').addEventListener('click',e=>{const b=e.target.closest('[data-intro]');if(b){initAudio();sfx('ui');introAct(b.dataset.intro);}});
 addEventListener('keydown',e=>{if(!$('intro').hidden&&(e.key==='Escape'||e.key==='Enter')){e.preventDefault();e.stopImmediatePropagation();introAct(e.key==='Enter'?'next':'done');}},{capture:true});
-function openInv(from){$('toasts').classList.add('low');invFrom=from;sel=null;invMsg='';allArm=false;invForge=false;if(run)run.quitArm=false;renderInv();$('inv').hidden=false;$('menu').hidden=true;}
+function openInv(from){$('toasts').classList.add('low');invFrom=from;sel=null;invMsg='';allArm=false;invForge=false;if(run)run.quitArm=false;renderInv();$('inv').hidden=false;$('inv').scrollTop=0;$('menu').hidden=true;}
+function revealInvDetail(){
+  const inv=$('inv'),detail=inv.querySelector('.idet'),header=inv.querySelector('.ihead'),tabs=header.querySelector('.tabs');
+  if(!detail)return;
+  const {top,height}=detail.getBoundingClientRect();
+  const start=Math.max(0,header.getBoundingClientRect().bottom)+8;
+  const end=getComputedStyle(tabs).position==='fixed'?tabs.getBoundingClientRect().top:inv.clientHeight;
+  if(top<start||top+Math.min(100,height)>end)inv.scrollTop+=top-start;
+}
 function slotBtn(k){const lbl=SLOTN[k];if(k==='i'&&!S.eq.i&&S.unlocked<=DI('Mitte'))return`<button class="slot si lockd${sel&&sel.slot==='i'?' sel':''}" data-eq="i" aria-label="${lbl}, gesperrt"><span class="ic empty">${LOCK}</span>${lbl}</button>`;const it=S.eq[k],s=sel&&sel.src==='eq'&&sel.slot===k;return`<button class="slot s${k}${s?' sel':''}" data-eq="${k}"${it?` data-dg="eq:${k}"`:''} aria-label="${lbl}"><span class="ic${it?'':' empty'}" style="${it?'border-color:'+rc(it)+';box-shadow:inset 0 0 18px '+rc(it)+'44':''}">${it?icon(it,44)+wcBadge(it):''}</span>${lbl}</button>`;}
 // paper doll: draws the player with current gear into the inventory canvas by borrowing the art functions
 function drawDoll(){const c=$('dollc');if(!c)return;const g=c.getContext('2d'),W=c.width,H=c.height,o=ctx,keep={};for(const k of ['x','y','face','mvx','mvy','swingT','spin','dashT','inv','torch','walk'])keep[k]=P[k];
@@ -221,8 +229,7 @@ $('invbox').addEventListener('click',e=>{if(dgJust){dgJust=false;return;}const t
   else if(d.b!==undefined)sel={src:'bag',i:+d.b};
   else if(d.st!==undefined)sel={src:'stash',i:+d.st};
   else if(d.eq)sel={src:'eq',slot:d.eq};
-  else if(d.a==='mods'){invTab='bag';sel={src:'mods'};renderInv();const c=document.querySelector('#inv .idet');if(c&&innerWidth<900)c.scrollIntoView({block:'start'});return;}
-  else if(d.mw){invTab='bag';sel={src:'mods'};renderInv();const c=document.querySelector('#inv .idet');if(c)c.scrollIntoView({block:'start'});return;}
+  else if(d.a==='mods'||d.mw){invTab='bag';sel={src:'mods'};renderInv();revealInvDetail();return;}
   else if(d.mk&&!modsOpen())invMsg='Aufsätze gibt es erst nach Xhain.';
   else if(d.mk){const m=MODS.find(x=>x.k===d.mk),miss=Object.entries(m.c).filter(([k,v])=>(S.mat[k]||0)<v);if(miss.length)invMsg='Dir fehlt '+miss.map(([k,v])=>`${v-(S.mat[k]||0)} ${MATS[k][0]}`).join(', ')+'.';else if(S.scrap<mp(m))invMsg=`Dir fehlen ${mp(m)-S.scrap} Schrott.`;else{for(const[k,v]of Object.entries(m.c))S.mat[k]-=v;S.scrap-=mp(m);S.mods[m.k]=(S.mods[m.k]||0)+1;save();sfx('coin');invMsg=`<span class="ok">${m.n} gebaut</span>`;}}
   else if(d.mo){const w=S.eq.w;if((w.mods||[]).includes(d.mo)){w.mods=w.mods.filter(k=>k!==d.mo);S.mods[d.mo]=(S.mods[d.mo]||0)+1;refresh();save();sfx('ui');invMsg=`${MODS.find(m=>m.k===d.mo).n} ausgebaut`;}}
@@ -240,7 +247,10 @@ $('invbox').addEventListener('click',e=>{if(dgJust){dgJust=false;return;}const t
   else if(d.a==='mute')setMute(!S.mute);else if(d.a==='auto'){S.auto=!autoAtk();save();}
   else if(d.a==='eco')setEco(!S.eco);
   else if(d.a==='quit'){if(!run.quitArm){run.quitArm=true;}else{logRun('quit');endDaily();S.best[run.d]=Math.max(S.best[run.d],run.wave-1);save();state='menu';run=null;refresh();$('inv').hidden=true;renderMenu();$('menu').hidden=false;return;}}
-  updateHot();renderInv();});
+  updateHot();renderInv();
+  if(d.t)$('inv').scrollTop=0;
+  else if((d.b!==undefined||d.st!==undefined||d.eq)&&matchMedia('(pointer:coarse)').matches)revealInvDetail();
+});
 function showEnd(won){if(!run)return;
   const d=DIST[run.d],tu=run.tun,L=LINES[run.d],nx=DIST[run.d+1];
   $('endbox').innerHTML=`<h2>${won?(tu?L.l+' frei':d.n+' befreit'):'Gefallen'}</h2><p class="lead">${won?(tu?`Die Strecke nach ${nx.n} ist frei. Der Bahnsteig hat wieder Strom.`:'Der Bezirk atmet wieder.'):tu?'Der Tunnel behält dich heute Nacht.':'Die Ruinen behalten dich heute Nacht.'}</p>

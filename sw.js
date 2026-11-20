@@ -1,5 +1,5 @@
 // Bump CACHE with every release so installed copies pick up the new files.
-const CACHE='ruinenstadt-0.101';
+const CACHE='ruinenstadt-0.102';
 const SHELL=[
   ...'sandstone concrete curtain brick steel glass canopy gold ceramic rail-brick plaza water speaker clinic mural train siegessaeule quadriga'.split(' ').map(n=>`assets/buildings/mitte-${n}.webp`),
   ...'rathaus limestone bronze curtain relief greenhouse station copper plaza rail-brick water awning fernsehturm weltzeit neptun'.split(' ').map(n=>`assets/buildings/alex-${n}.webp`),
